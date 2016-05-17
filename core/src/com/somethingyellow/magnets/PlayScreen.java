@@ -2,34 +2,36 @@ package com.somethingyellow.magnets;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.graphics.Color;
-import com.somethingyellow.TiledStage;
+
+import com.somethingyellow.tiled.*;
 
 import java.util.LinkedList;
-
-import javafx.util.Pair;
 
 public class PlayScreen implements Screen {
 	public static final float WORLD_WIDTH = 500f;
 	public static final String LAYER_ACTORS = "Actors";
 	public static final String LAYER_PROP_ISTOP = "isTop";
 	public static final String TILE_PROP_PLAYER = "Player";
+	public boolean DEBUG_MODE = true;
 
 	private Viewport _uiViewport;
 	private TiledStage _tiledStage;
 	private PlayerActor _playerActor;
 	private Stage _uiStage;
+
+	// Debugging tools
+	private FPSLogger _fpsLogger = new FPSLogger();
 
 	@Override
 	public void show() {
@@ -57,7 +59,7 @@ public class PlayScreen implements Screen {
 		if (players.size() != 1)
 			throw new IllegalArgumentException("Player count should be exactly 1!");
 
-		_playerActor = new PlayerActor();
+		_playerActor = new Player();
 		_tiledStage.addActor(_playerActor, players.get(0));
 		_tiledStage.setCameraFocalActor(_playerActor);
 		_tiledStage.setInputFocalActor(_playerActor);
@@ -77,6 +79,8 @@ public class PlayScreen implements Screen {
 
 		_tiledStage.draw();
 		_uiStage.draw();
+
+		if (DEBUG_MODE) _fpsLogger.log();
 	}
 
 	@Override

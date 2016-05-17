@@ -1,4 +1,4 @@
-package com.somethingyellow;
+package com.somethingyellow.tiled;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -9,6 +9,7 @@ import com.badlogic.gdx.maps.tiled.TiledMapImageLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Disposable;
@@ -20,6 +21,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class TiledStage extends Stage implements Disposable {
+	public static final float CAMERA_MAX_OFFSET = 2f;
+	public static final float CAMERA_PANNING_SMOOTH_RATIO = 0.2f;
+
 	private TiledMap _map;
 	private float _viewSizeX;
 	private float _viewSizeY;
@@ -91,13 +95,20 @@ public class TiledStage extends Stage implements Disposable {
 	@Override
 	public void act(float delta) {
 		super.act(delta);
-		_camera.translate((_cameraFocalActor.getX() - _camera.position.x) / 10, (_cameraFocalActor.getY() - _camera.position.y) / 10);
 	}
 
 	@Override
 	public void draw() {
 		act(Gdx.graphics.getDeltaTime());
 
+		// Camera
+		Vector2 camPos = new Vector2(_camera.position.x, _camera.position.y);
+		float camDistFromFocalActor = Math.abs(_cameraFocalActor.position().dst(camPos));
+		if (camDistFromFocalActor > CAMERA_MAX_OFFSET) {
+			_camera.position.set(camPos.interpolate(_cameraFocalActor.position(), CAMERA_PANNING_SMOOTH_RATIO, Interpolation.linear), 0);
+		}
+
+		// Map
 		_mapRenderer.setView(_camera);
 
 		_mapRenderer.getBatch().begin();

@@ -1,95 +1,44 @@
-package com.somethingyellow;
+package com.somethingyellow.tiled;
 
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Event;
 import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-import com.badlogic.gdx.utils.Disposable;
 
-public class TiledStageActor extends Actor implements Disposable, EventListener {
-
+public class PlayerActor extends TiledStageActor implements EventListener {
 	private static final Vector2 TempCoords = new Vector2();
-	private TiledStage.Coordinate _coordinate;
-	private TiledStage _stage;
-	private boolean _isMoving = false;
+	private boolean _isKeyLeftHeld = false;
+	private boolean _isKeyRightHeld = false;
+	private boolean _isKeyUpHeld = false;
+	private boolean _isKeyDownHeld = false;
 
-	public TiledStageActor() {
+	public PlayerActor() {
 		super();
-	}
 
-	@Override
-	public void act(float delta) {
-		super.act(delta);
-	}
-
-	public void create(TiledStage stage, TiledStage.Coordinate coordinate) {
-		_stage = stage;
-		_coordinate = coordinate;
-
-		Vector2 pos = _coordinate.position();
-		setPosition(pos.x, pos.y);
-	}
-
-	protected boolean canMoveTo(TiledStage.Coordinate coordinate) {
-		return true;
-	}
-
-	public boolean tryMoveTo(TiledStage.Coordinate coordinate, float speed) {
-		if (_isMoving) return false;
-		if (coordinate.row() >= _stage.tileRows() || coordinate.column() >= _stage.tileColumns() ||
-				coordinate.row() < 0 || coordinate.column() < 0) return false;
-		if (!canMoveTo(coordinate)) return false;
-
-		Vector2 pos = coordinate.position();
-
-		_isMoving = true;
-		addAction(Actions.sequence(
-				Actions.moveTo(pos.x, pos.y, 1 / speed),
-				Actions.run(new Runnable() {
-					@Override
-					public void run() {
-						_isMoving = false;
-					}
-				})));
-
-		setCoordinate(coordinate);
-		_stage.moveActor(this, coordinate);
-
-		return true;
-	}
-
-	public void destroy() {
-	}
-
-	@Override
-	public void dispose() {
-	}
-
-	// get/set
-	// ---------
-
-	public TiledStage.Coordinate coordinate() {
-		return _coordinate;
-	}
-
-	protected TiledStageActor setCoordinate(TiledStage.Coordinate coordinate) {
-		_coordinate = coordinate;
-		return this;
-	}
-
-	public boolean isMoving() {
-		return _isMoving;
-	}
-
-	@Override
-	public TiledStage getStage() {
-		return _stage;
+		addListener(this);
 	}
 
 	// event listener
 	// ---------------
+
+	protected boolean isKeyLeftHeld() {
+		return _isKeyLeftHeld;
+	}
+
+	protected boolean isKeyRightHeld() {
+		return _isKeyRightHeld;
+	}
+
+	protected boolean isKeyUpHeld() {
+		return _isKeyUpHeld;
+	}
+
+	protected boolean isKeyDownHeld() {
+		return _isKeyDownHeld;
+	}
+
 	@Override
 	public boolean handle(Event event) {
 		if (event instanceof InputEvent) {
@@ -132,11 +81,41 @@ public class TiledStageActor extends Actor implements Disposable, EventListener 
 	}
 
 	public boolean keyDown(InputEvent event, int keycode) {
-		return false;
+		switch (keycode) {
+			case Input.Keys.LEFT:
+				_isKeyLeftHeld = true;
+				break;
+			case Input.Keys.RIGHT:
+				_isKeyRightHeld = true;
+				break;
+			case Input.Keys.UP:
+				_isKeyUpHeld = true;
+				break;
+			case Input.Keys.DOWN:
+				_isKeyDownHeld = true;
+				break;
+		}
+
+		return true;
 	}
 
 	public boolean keyUp(InputEvent event, int keycode) {
-		return false;
+		switch (keycode) {
+			case Input.Keys.LEFT:
+				_isKeyLeftHeld = false;
+				break;
+			case Input.Keys.RIGHT:
+				_isKeyRightHeld = false;
+				break;
+			case Input.Keys.UP:
+				_isKeyUpHeld = false;
+				break;
+			case Input.Keys.DOWN:
+				_isKeyDownHeld = false;
+				break;
+		}
+
+		return true;
 	}
 
 	public boolean keyTyped(InputEvent event, int keycode) {
