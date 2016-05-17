@@ -22,17 +22,14 @@ import java.util.List;
 
 public class TiledStage extends Stage implements Disposable {
 	public static final float CAMERA_MAX_OFFSET = 2f;
-	public static final float CAMERA_PANNING_SMOOTH_RATIO = 0.2f;
-
+	public static final float CAMERA_PANNING_SMOOTH_RATIO = 0.1f;
 	private TiledMap _map;
 	private float _viewSizeX;
 	private float _viewSizeY;
-
 	private OrthogonalTiledMapRenderer _mapRenderer;
 	private OrthographicCamera _camera;
 	private TiledStageActor _cameraFocalActor;
 	private TiledStageActor _inputFocalActor;
-
 	private int _tileWidth;
 	private int _tileHeight;
 	private int _tileRows;
@@ -41,7 +38,6 @@ public class TiledStage extends Stage implements Disposable {
 	private HashMap<TiledStageActor, ActorOnCoordinate> _actors;
 	private ArrayList<Integer> _topLayers;
 	private ArrayList<Integer> _hiddenLayers;
-
 	public TiledStage(TiledMap map, float viewSizeX, float viewSizeY) {
 		_viewSizeX = viewSizeX;
 		_viewSizeY = viewSizeY;
@@ -49,6 +45,10 @@ public class TiledStage extends Stage implements Disposable {
 
 		initializeMap();
 		resetCamera();
+	}
+
+	public static boolean ParseBooleanProp(MapProperties props, String propName) {
+		return Boolean.parseBoolean((String) props.get(propName));
 	}
 
 	public void initializeMap() {
@@ -75,6 +75,7 @@ public class TiledStage extends Stage implements Disposable {
 
 	public void addActor(TiledStageActor actor, Coordinate coordinate) {
 		super.addActor(actor);
+		coordinate.addActor(actor);
 		actor.create(this, coordinate);
 		_actors.put(actor, new ActorOnCoordinate(actor, coordinate));
 	}
@@ -88,6 +89,7 @@ public class TiledStage extends Stage implements Disposable {
 
 	public void removeActor(TiledStageActor actor) {
 		_actors.remove(actor);
+		actor.coordinate().removeActor(actor);
 		actor.destroy();
 		actor.remove();
 	}
@@ -107,6 +109,7 @@ public class TiledStage extends Stage implements Disposable {
 		if (camDistFromFocalActor > CAMERA_MAX_OFFSET) {
 			_camera.position.set(camPos.interpolate(_cameraFocalActor.position(), CAMERA_PANNING_SMOOTH_RATIO, Interpolation.linear), 0);
 		}
+		_camera.update();
 
 		// Map
 		_mapRenderer.setView(_camera);
@@ -188,10 +191,7 @@ public class TiledStage extends Stage implements Disposable {
 	}
 
 	public Coordinate getCoordinate(int tileRow, int tileCol) {
-		if (tileRow >= _tileRows || tileCol >= _tileColumns || tileRow < 0 || tileCol < 0) {
-			throw new IllegalArgumentException("Invalid tileRow/tileCol!");
-		}
-
+		if (tileRow >= _tileRows || tileCol >= _tileColumns || tileRow < 0 || tileCol < 0) return null;
 		return _coordinates.get(tileRow * _tileColumns + tileCol);
 	}
 
@@ -223,7 +223,7 @@ public class TiledStage extends Stage implements Disposable {
 		LinkedList<MapLayer> layers = new LinkedList<MapLayer>();
 
 		for (MapLayer layer : _map.getLayers()) {
-			if (Boolean.parseBoolean((String) layer.getProperties().get(propName)) == value) {
+			if (ParseBooleanProp(layer.getProperties(), propName) == value) {
 				layers.add(layer);
 			}
 		}
@@ -245,7 +245,7 @@ public class TiledStage extends Stage implements Disposable {
 				TiledMapTile tile = coordinate.getTile(layerName);
 				if (tile == null) continue;
 
-				if (Boolean.parseBoolean((String) tile.getProperties().get(propName)) == value) {
+				if (ParseBooleanProp(tile.getProperties(), propName) == value) {
 					coordinates.add(coordinate);
 				}
 			}
@@ -275,6 +275,10 @@ public class TiledStage extends Stage implements Disposable {
 		setKeyboardFocus(actor);
 		setScrollFocus(actor);
 		return this;
+	}
+
+	public enum DIRECTION {
+		LEFT, RIGHT, UP, DOWN
 	}
 
 	public class Coordinate {
@@ -310,6 +314,25 @@ public class TiledStage extends Stage implements Disposable {
 			if (cell == null) return null;
 
 			return cell.getTile();
+		}
+
+		public Coordinate getAdjacentCoordinate(DIRECTION direction) {
+			switch (direction) {
+				case UP:
+					return getCoordinate(row() + 1, column());
+				case DOWN:
+					return getCoordinate(row() - 1, column());
+				case LEFT:
+					return getCoordinate(row(), column() - 1);
+				case RIGHT:
+					return getCoordinate(row(), column() + 1);
+			}
+
+			return null;
+		}
+
+		public boolean getTileBooleanProp(String layerName, String propName) {
+			return ParseBooleanProp(getTile(layerName).getProperties(), propName);
 		}
 
 		public int row() {

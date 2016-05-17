@@ -59,11 +59,14 @@
   </tile>
   <tile id="1">
    <properties>
-    <property name="isPushable" type="bool" value="true"/>
+    <property name="Stone" type="bool" value="true"/>
    </properties>
    <image width="32" height="48" source="Tiles/Lodestone (Pushable) (32x48).png"/>
   </tile>
   <tile id="2">
+   <properties>
+    <property name="Stone" type="bool" value="true"/>
+   </properties>
    <image width="32" height="48" source="Tiles/Lodestone (Unpushable) (32x48).png"/>
   </tile>
   <tile id="3">
@@ -88,9 +91,9 @@
 0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,
-0,0,17,18,0,0,20,0,0,
+0,0,17,19,0,0,20,0,0,
 0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,18,0,0,0,
+0,0,0,0,0,19,0,0,0,
 0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0

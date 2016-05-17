@@ -23,7 +23,8 @@ public class PlayScreen implements Screen {
 	public static final String LAYER_ACTORS = "Actors";
 	public static final String LAYER_PROP_ISTOP = "isTop";
 	public static final String TILE_PROP_PLAYER = "Player";
-	public boolean DEBUG_MODE = true;
+	public static final String TILE_PROP_STONE = "Stone";
+	public boolean DEBUG_MODE = false;
 
 	private Viewport _uiViewport;
 	private TiledStage _tiledStage;
@@ -55,14 +56,24 @@ public class PlayScreen implements Screen {
 		// Define layers rendered on top
 		_tiledStage.addTopLayers(_tiledStage.findLayers(LAYER_PROP_ISTOP, true));
 
-		LinkedList<TiledStage.Coordinate> players = _tiledStage.findCoordinates(LAYER_ACTORS, TILE_PROP_PLAYER, true);
-		if (players.size() != 1)
+		// Spawn player
+		LinkedList<TiledStage.Coordinate> coordinates = _tiledStage.findCoordinates(LAYER_ACTORS, TILE_PROP_PLAYER, true);
+		if (coordinates.size() != 1)
 			throw new IllegalArgumentException("Player count should be exactly 1!");
 
 		_playerActor = new Player();
-		_tiledStage.addActor(_playerActor, players.get(0));
+		_tiledStage.addActor(_playerActor, coordinates.get(0));
 		_tiledStage.setCameraFocalActor(_playerActor);
 		_tiledStage.setInputFocalActor(_playerActor);
+
+		// Spawn stones
+		coordinates = _tiledStage.findCoordinates(LAYER_ACTORS, TILE_PROP_STONE, true);
+
+		Block block;
+		for (TiledStage.Coordinate coordinate : coordinates) {
+			block = new Block();
+			_tiledStage.addActor(block, coordinate);
+		}
 
 		// UI
 		_uiViewport = new FitViewport(width, height);
