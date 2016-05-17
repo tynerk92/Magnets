@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="9" height="9" tilewidth="32" tileheight="32" nextobjectid="1">
+ <tileset firstgid="1" name="Floor and Walls" tilewidth="32" tileheight="48" tilecount="16" columns="0">
+  <tile id="0">
+   <image width="32" height="32" source="Tiles/Floor (Walkable) (32x32).png"/>
+  </tile>
+  <tile id="1">
+   <image width="32" height="48" source="Tiles/Wall (32x32).png"/>
+  </tile>
+  <tile id="2">
+   <image width="32" height="48" source="Tiles/Wall Behind (32x32).png"/>
+  </tile>
+  <tile id="3">
+   <image width="32" height="48" source="Tiles/Wall BL Corner (32x32).png"/>
+  </tile>
+  <tile id="4">
+   <image width="32" height="48" source="Tiles/Wall BR Corner (32x32).png"/>
+  </tile>
+  <tile id="5">
+   <image width="32" height="48" source="Tiles/Wall Front (32x32).png"/>
+  </tile>
+  <tile id="6">
+   <image width="32" height="48" source="Tiles/Wall Side (32x32).png"/>
+  </tile>
+  <tile id="7">
+   <image width="32" height="48" source="Tiles/Wall Side 2 (32x48).png"/>
+  </tile>
+  <tile id="8">
+   <image width="32" height="48" source="Tiles/Wall Standalone (32x48).png"/>
+  </tile>
+  <tile id="9">
+   <image width="32" height="48" source="Tiles/Wall Standalone Front (32x32).png"/>
+  </tile>
+  <tile id="10">
+   <image width="32" height="48" source="Tiles/Wall Tiny BL Corner (32x32).png"/>
+  </tile>
+  <tile id="11">
+   <image width="32" height="48" source="Tiles/Wall Tiny BR Corner (32x32).png"/>
+  </tile>
+  <tile id="12">
+   <image width="32" height="48" source="Tiles/Wall Tiny TL Corner (32x32).png"/>
+  </tile>
+  <tile id="13">
+   <image width="32" height="48" source="Tiles/Wall Tiny TR Corner (32x32).png"/>
+  </tile>
+  <tile id="14">
+   <image width="32" height="48" source="Tiles/Wall TL Corner (32x32).png"/>
+  </tile>
+  <tile id="15">
+   <image width="32" height="48" source="Tiles/Wall TR Corner (32x32).png"/>
+  </tile>
+ </tileset>
+ <tileset firstgid="17" name="Blocks" tilewidth="32" tileheight="48" tilecount="4" columns="0">
+  <tile id="0">
+   <properties>
+    <property name="Player" type="bool" value="true"/>
+   </properties>
+   <image width="32" height="32" source="Tiles/Button (32x32).png"/>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="isPushable" type="bool" value="true"/>
+   </properties>
+   <image width="32" height="48" source="Tiles/Lodestone (Pushable) (32x48).png"/>
+  </tile>
+  <tile id="2">
+   <image width="32" height="48" source="Tiles/Lodestone (Unpushable) (32x48).png"/>
+  </tile>
+  <tile id="3">
+   <image width="32" height="32" source="Tiles/Magnetic Area (Walkable) (32x32).png"/>
+  </tile>
+ </tileset>
+ <layer name="Floor" width="9" height="9">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,
+0,0,0,1,0,0,0,0,0,
+0,0,1,1,1,1,1,0,0,
+0,0,1,1,1,1,0,0,0,
+0,0,1,1,1,1,0,0,0,
+0,0,0,0,0,1,1,1,0,
+0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer name="Actors" width="9" height="9">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,
+0,0,17,18,0,0,20,0,0,
+0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,18,0,0,0,
+0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer name="Wall" width="9" height="9">
+  <properties>
+   <property name="isTop" type="bool" value="true"/>
+  </properties>
+  <data encoding="csv">
+2,2,2,2,2,2,2,2,2,
+2,2,12,6,11,2,2,2,2,
+2,12,5,0,4,6,6,11,2,
+2,7,0,0,0,0,0,8,2,
+2,7,0,0,0,0,15,13,2,
+2,7,0,0,0,0,4,6,11,
+2,14,3,3,16,0,0,0,8,
+2,2,2,2,14,3,3,3,13,
+2,2,2,2,2,2,2,2,2
+</data>
+ </layer>
+</map>
