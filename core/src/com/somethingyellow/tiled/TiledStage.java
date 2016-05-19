@@ -5,17 +5,14 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TiledMapImageLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
-import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Disposable;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -24,9 +21,10 @@ public class TiledStage extends Stage implements Disposable {
 	public static final float CAMERA_MAX_OFFSET = 2f;
 	public static final float CAMERA_PANNING_SMOOTH_RATIO = 0.1f;
 	private TiledMap _map;
+	private TiledMapTileLayer _actorsLayer;
 	private float _viewSizeX;
 	private float _viewSizeY;
-	private OrthogonalTiledMapRenderer _mapRenderer;
+	private TiledStageMapRenderer _mapRenderer;
 	private OrthographicCamera _camera;
 	private TiledStageActor _cameraFocalActor;
 	private TiledStageActor _inputFocalActor;
@@ -36,12 +34,12 @@ public class TiledStage extends Stage implements Disposable {
 	private int _tileColumns;
 	private ArrayList<Coordinate> _coordinates;
 	private HashMap<TiledStageActor, ActorOnCoordinate> _actors;
-	private ArrayList<Integer> _topLayers;
-	private ArrayList<Integer> _hiddenLayers;
-	public TiledStage(TiledMap map, float viewSizeX, float viewSizeY) {
+
+	public TiledStage(TiledMap map, TiledMapTileLayer actorsLayer, float viewSizeX, float viewSizeY) {
 		_viewSizeX = viewSizeX;
 		_viewSizeY = viewSizeY;
 		_map = map;
+		_actorsLayer = actorsLayer;
 
 		initializeMap();
 		resetCamera();
@@ -52,7 +50,7 @@ public class TiledStage extends Stage implements Disposable {
 	}
 
 	public void initializeMap() {
-		_mapRenderer = new OrthogonalTiledMapRenderer(_map);
+		_mapRenderer = new TiledStageMapRenderer(this, _actorsLayer, _map);
 		MapProperties props = _map.getProperties();
 		_tileWidth = props.get("tilewidth", Integer.class);
 		_tileHeight = props.get("tileheight", Integer.class);
@@ -68,15 +66,12 @@ public class TiledStage extends Stage implements Disposable {
 				_coordinates.add(new Coordinate(r, c));
 			}
 		}
-
-		_topLayers = new ArrayList<Integer>();
-		_hiddenLayers = new ArrayList<Integer>();
 	}
 
-	public void addActor(TiledStageActor actor, Coordinate coordinate) {
+	public void addActor(TiledStageActor actor, Coordinate coordinate, int type) {
 		super.addActor(actor);
 		coordinate.addActor(actor);
-		actor.create(this, coordinate);
+		actor.create(this, coordinate, type);
 		_actors.put(actor, new ActorOnCoordinate(actor, coordinate));
 	}
 
@@ -113,36 +108,7 @@ public class TiledStage extends Stage implements Disposable {
 
 		// Map
 		_mapRenderer.setView(_camera);
-
-		_mapRenderer.getBatch().begin();
-
-		for (int i = 0; i < _map.getLayers().getCount(); i++) {
-			if (Collections.binarySearch(_topLayers, i) >= 0) continue;
-			if (Collections.binarySearch(_hiddenLayers, i) >= 0) continue;
-			MapLayer layer = _map.getLayers().get(i);
-			if (layer instanceof TiledMapTileLayer)
-				_mapRenderer.renderTileLayer((TiledMapTileLayer) layer);
-			if (layer instanceof TiledMapImageLayer)
-				_mapRenderer.renderImageLayer((TiledMapImageLayer) layer);
-		}
-
-		_mapRenderer.getBatch().end();
-
-		super.draw();
-
-		_mapRenderer.getBatch().begin();
-
-		for (int i = 0; i < _map.getLayers().getCount(); i++) {
-			if (Collections.binarySearch(_topLayers, i) < 0) continue;
-			if (Collections.binarySearch(_hiddenLayers, i) >= 0) continue;
-			MapLayer layer = _map.getLayers().get(i);
-			if (layer instanceof TiledMapTileLayer)
-				_mapRenderer.renderTileLayer((TiledMapTileLayer) layer);
-			if (layer instanceof TiledMapImageLayer)
-				_mapRenderer.renderImageLayer((TiledMapImageLayer) layer);
-		}
-
-		_mapRenderer.getBatch().end();
+		_mapRenderer.render();
 	}
 
 	// visual
@@ -161,18 +127,16 @@ public class TiledStage extends Stage implements Disposable {
 		_map.dispose();
 	}
 
-	public OrthogonalTiledMapRenderer mapRenderer() {
+	// get/set
+	// --------
+
+	public TiledStageMapRenderer mapRenderer() {
 		return _mapRenderer;
 	}
 
-	public TiledStage setMapRenderer(OrthogonalTiledMapRenderer mapRenderer) {
-		_mapRenderer = mapRenderer;
-		return this;
+	public TiledMap map() {
+		return _map;
 	}
-
-
-	// get/set
-	// --------
 
 	public int tileWidth() {
 		return _tileWidth;
@@ -190,33 +154,13 @@ public class TiledStage extends Stage implements Disposable {
 		return _tileColumns;
 	}
 
+	public MapLayer actorsLayer() {
+		return _actorsLayer;
+	}
+
 	public Coordinate getCoordinate(int tileRow, int tileCol) {
 		if (tileRow >= _tileRows || tileCol >= _tileColumns || tileRow < 0 || tileCol < 0) return null;
 		return _coordinates.get(tileRow * _tileColumns + tileCol);
-	}
-
-	public TiledStage addTopLayers(List<MapLayer> layers) {
-		for (MapLayer layer : layers) {
-			int index = _map.getLayers().getIndex(layer);
-			if (index < 0) throw new IllegalArgumentException("Map layer in layers does not exist!");
-
-			_topLayers.add(index);
-		}
-
-		Collections.sort(_topLayers);
-		return this;
-	}
-
-	public TiledStage addHiddenLayers(List<MapLayer> layers) {
-		for (MapLayer layer : layers) {
-			int index = _map.getLayers().getIndex(layer);
-			if (index < 0) throw new IllegalArgumentException("Map layer in layers does not exist!");
-
-			_hiddenLayers.add(index);
-		}
-
-		Collections.sort(_hiddenLayers);
-		return this;
 	}
 
 	public LinkedList<MapLayer> findLayers(String propName, boolean value) {
@@ -254,7 +198,7 @@ public class TiledStage extends Stage implements Disposable {
 		return coordinates;
 	}
 
-	public MapLayer getLayer(String layerName) {
+	public MapLayer getMapLayer(String layerName) {
 		return _map.getLayers().get(layerName);
 	}
 
@@ -306,14 +250,24 @@ public class TiledStage extends Stage implements Disposable {
 			return this;
 		}
 
-		public TiledMapTile getTile(String layerName) {
+		public TiledMapTileLayer.Cell getCell(String layerName) {
 			MapLayer layer = _map.getLayers().get(layerName);
 			if (layer == null || !(layer instanceof TiledMapTileLayer)) return null;
+			return ((TiledMapTileLayer) layer).getCell(_col, _row);
+		}
 
-			TiledMapTileLayer.Cell cell = ((TiledMapTileLayer) layer).getCell(_col, _row);
+		public TiledMapTile getTile(String layerName) {
+			TiledMapTileLayer.Cell cell = getCell(layerName);
 			if (cell == null) return null;
-
 			return cell.getTile();
+		}
+
+		public TiledMapTile removeTile(String layerName) {
+			TiledMapTileLayer.Cell cell = getCell(layerName);
+			if (cell == null) return null;
+			TiledMapTile tile = cell.getTile();
+			cell.setTile(null);
+			return tile;
 		}
 
 		public Coordinate getAdjacentCoordinate(DIRECTION direction) {
@@ -332,7 +286,9 @@ public class TiledStage extends Stage implements Disposable {
 		}
 
 		public boolean getTileBooleanProp(String layerName, String propName) {
-			return ParseBooleanProp(getTile(layerName).getProperties(), propName);
+			TiledMapTile tile = getTile(layerName);
+			if (tile == null) return false;
+			return ParseBooleanProp(tile.getProperties(), propName);
 		}
 
 		public int row() {

@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -20,17 +21,15 @@ import java.util.LinkedList;
 
 public class PlayScreen implements Screen {
 	public static final float WORLD_WIDTH = 500f;
-	public static final String LAYER_ACTORS = "Actors";
-	public static final String LAYER_PROP_ISTOP = "isTop";
+	public static final String LAYER_OBJECTS = "Objects";
 	public static final String TILE_PROP_PLAYER = "Player";
 	public static final String TILE_PROP_STONE = "Stone";
+	public static final String TILE_PROP_WALL = "Wall";
 	public boolean DEBUG_MODE = false;
-
 	private Viewport _uiViewport;
 	private TiledStage _tiledStage;
 	private PlayerActor _playerActor;
 	private Stage _uiStage;
-
 	// Debugging tools
 	private FPSLogger _fpsLogger = new FPSLogger();
 
@@ -45,34 +44,32 @@ public class PlayScreen implements Screen {
 
 		TiledMap map = new TmxMapLoader().load("Level 1.tmx");
 
-		_tiledStage = new TiledStage(map, WORLD_WIDTH, WORLD_WIDTH / width * height);
+		MapLayer layer = map.getLayers().get(LAYER_OBJECTS);
+		if (!(layer instanceof TiledMapTileLayer))
+			throw new IllegalArgumentException("LAYER_OBJECTS should point to a tiled layer!");
+		_tiledStage = new TiledStage(map, (TiledMapTileLayer) layer, WORLD_WIDTH, WORLD_WIDTH / width * height);
+
 		Gdx.input.setInputProcessor(_tiledStage);
 
-		// Hide actors layer
-		_tiledStage.addHiddenLayers(new LinkedList<MapLayer>() {{
-			add(_tiledStage.getLayer(LAYER_ACTORS));
-		}});
-
-		// Define layers rendered on top
-		_tiledStage.addTopLayers(_tiledStage.findLayers(LAYER_PROP_ISTOP, true));
-
 		// Spawn player
-		LinkedList<TiledStage.Coordinate> coordinates = _tiledStage.findCoordinates(LAYER_ACTORS, TILE_PROP_PLAYER, true);
+		LinkedList<TiledStage.Coordinate> coordinates = _tiledStage.findCoordinates(LAYER_OBJECTS, TILE_PROP_PLAYER, true);
 		if (coordinates.size() != 1)
 			throw new IllegalArgumentException("Player count should be exactly 1!");
 
 		_playerActor = new Player();
-		_tiledStage.addActor(_playerActor, coordinates.get(0));
+		_tiledStage.addActor(_playerActor, coordinates.get(0), OBJECT_TYPES.PLAYER.ordinal());
+		coordinates.get(0).removeTile(LAYER_OBJECTS);
 		_tiledStage.setCameraFocalActor(_playerActor);
 		_tiledStage.setInputFocalActor(_playerActor);
 
 		// Spawn stones
-		coordinates = _tiledStage.findCoordinates(LAYER_ACTORS, TILE_PROP_STONE, true);
+		coordinates = _tiledStage.findCoordinates(LAYER_OBJECTS, TILE_PROP_STONE, true);
 
 		Block block;
 		for (TiledStage.Coordinate coordinate : coordinates) {
 			block = new Block();
-			_tiledStage.addActor(block, coordinate);
+			_tiledStage.addActor(block, coordinate, OBJECT_TYPES.STONE.ordinal());
+			coordinate.removeTile(LAYER_OBJECTS);
 		}
 
 		// UI
@@ -119,5 +116,9 @@ public class PlayScreen implements Screen {
 	public void dispose() {
 		_playerActor.dispose();
 		_tiledStage.dispose();
+	}
+
+	public enum OBJECT_TYPES {
+		PLAYER, STONE
 	}
 }

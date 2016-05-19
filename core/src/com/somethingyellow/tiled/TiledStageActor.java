@@ -3,7 +3,6 @@ package com.somethingyellow.tiled;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-import com.badlogic.gdx.scenes.scene2d.actions.RunnableAction;
 import com.badlogic.gdx.utils.Disposable;
 
 public abstract class TiledStageActor extends Actor implements Disposable {
@@ -11,6 +10,8 @@ public abstract class TiledStageActor extends Actor implements Disposable {
 
 	private TiledStage.Coordinate _coordinate;
 	private TiledStage _stage;
+	private int _type;
+
 	private boolean _isMoving = false;
 	private int _momentumY = 0;
 	private int _momentumX = 0;
@@ -26,9 +27,10 @@ public abstract class TiledStageActor extends Actor implements Disposable {
 		move();
 	}
 
-	public void create(TiledStage stage, TiledStage.Coordinate coordinate) {
+	public void create(TiledStage stage, TiledStage.Coordinate coordinate, int type) {
 		_stage = stage;
 		_coordinate = coordinate;
+		_type = type;
 
 		Vector2 pos = _coordinate.position();
 		setPosition(pos.x, pos.y);
@@ -138,6 +140,10 @@ public abstract class TiledStageActor extends Actor implements Disposable {
 
 	public int momentumX() {
 		return _momentumX;
+	}
+
+	public int type() {
+		return _type;
 	}
 
 	@Override
