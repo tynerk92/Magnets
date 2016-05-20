@@ -2,6 +2,7 @@ package com.somethingyellow.tiled;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -13,7 +14,6 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Disposable;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -33,7 +33,6 @@ public class TiledStage extends Stage implements Disposable {
 	private int _tileRows;
 	private int _tileColumns;
 	private ArrayList<Coordinate> _coordinates;
-	private HashMap<TiledStageActor, ActorOnCoordinate> _actors;
 
 	public TiledStage(TiledMap map, TiledMapTileLayer actorsLayer, float viewSizeX, float viewSizeY) {
 		_viewSizeX = viewSizeX;
@@ -46,7 +45,17 @@ public class TiledStage extends Stage implements Disposable {
 	}
 
 	public static boolean ParseBooleanProp(MapProperties props, String propName) {
-		return Boolean.parseBoolean((String) props.get(propName));
+		String prop = (String) props.get(propName);
+		return Boolean.parseBoolean(prop);
+	}
+
+	public static int ParseIntegerProp(MapProperties props, String propName) {
+		String prop = (String) props.get(propName);
+		return Integer.parseInt(prop);
+	}
+
+	public static String ParseProp(MapProperties props, String propName) {
+		return (String) props.get(propName);
 	}
 
 	public void initializeMap() {
@@ -57,8 +66,6 @@ public class TiledStage extends Stage implements Disposable {
 		_tileRows = props.get("height", Integer.class);
 		_tileColumns = props.get("width", Integer.class);
 
-		_actors = new HashMap<TiledStageActor, ActorOnCoordinate>();
-
 		_coordinates = new ArrayList<Coordinate>(_tileRows * _tileColumns);
 
 		for (int r = 0; r < _tileRows; r++) {
@@ -68,24 +75,12 @@ public class TiledStage extends Stage implements Disposable {
 		}
 	}
 
-	public void addActor(TiledStageActor actor, Coordinate coordinate, int type) {
+	public void addActor(TiledStageActor actor, Coordinate origin, TiledStageActor.BodyArea body, Sprite sprite, int type) {
 		super.addActor(actor);
-		coordinate.addActor(actor);
-		actor.create(this, coordinate, type);
-		_actors.put(actor, new ActorOnCoordinate(actor, coordinate));
-	}
-
-	public void moveActor(TiledStageActor actor, Coordinate coordinate) {
-		ActorOnCoordinate actorOnCoordinate = _actors.get(actor);
-		coordinate.addActor(actor);
-		getCoordinate(actorOnCoordinate.row(), actorOnCoordinate.column()).removeActor(actor);
-		actorOnCoordinate.setCoordinate(coordinate);
+		actor.create(this, origin, body, sprite, type);
 	}
 
 	public void removeActor(TiledStageActor actor) {
-		_actors.remove(actor);
-		actor.coordinate().removeActor(actor);
-		actor.destroy();
 		actor.remove();
 	}
 
@@ -304,34 +299,12 @@ public class TiledStage extends Stage implements Disposable {
 		}
 
 		public Vector2 getPosition(float offsetX, float offsetY) {
-			return new Vector2((_col + offsetX + 0.5f) * _tileWidth, (_row + offsetY + 0.5f) * _tileHeight);
-		}
-	}
-
-	public class ActorOnCoordinate {
-		private TiledStageActor _actor;
-		private Coordinate _coordinate;
-
-		public ActorOnCoordinate(TiledStageActor actor, Coordinate coordinate) {
-			_actor = actor;
-			_coordinate = coordinate;
+			return new Vector2((_col + offsetX) * _tileWidth, (_row + offsetY) * _tileHeight);
 		}
 
-		public TiledStageActor actor() {
-			return _actor;
-		}
-
-		public int row() {
-			return _coordinate.row();
-		}
-
-		public int column() {
-			return _coordinate.column();
-		}
-
-		public ActorOnCoordinate setCoordinate(Coordinate coordinate) {
-			_coordinate = coordinate;
-			return this;
+		@Override
+		public String toString() {
+			return "(" + _row + ", " + _col + ") with actors: " + _actors.toString();
 		}
 	}
 }

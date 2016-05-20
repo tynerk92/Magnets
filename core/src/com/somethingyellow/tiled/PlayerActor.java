@@ -16,7 +16,6 @@ public class PlayerActor extends TiledStageActor implements EventListener {
 
 	public PlayerActor() {
 		super();
-
 		addListener(this);
 	}
 
