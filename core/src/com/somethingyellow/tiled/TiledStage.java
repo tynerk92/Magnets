@@ -2,7 +2,6 @@ package com.somethingyellow.tiled;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -55,7 +54,9 @@ public class TiledStage extends Stage implements Disposable {
 	}
 
 	public static String ParseProp(MapProperties props, String propName) {
-		return (String) props.get(propName);
+		String prop = (String) props.get(propName);
+		if (prop == null) return "";
+		else return prop;
 	}
 
 	public void initializeMap() {
@@ -75,23 +76,13 @@ public class TiledStage extends Stage implements Disposable {
 		}
 	}
 
-	public void addActor(TiledStageActor actor, Coordinate origin, TiledStageActor.BodyArea body, Sprite sprite, int type) {
-		super.addActor(actor);
-		actor.create(this, origin, body, sprite, type);
-	}
-
-	public void removeActor(TiledStageActor actor) {
-		actor.remove();
-	}
-
-	@Override
-	public void act(float delta) {
-		super.act(delta);
-	}
-
 	@Override
 	public void draw() {
 		act(Gdx.graphics.getDeltaTime());
+
+		// Map
+		_mapRenderer.setView(_camera);
+		_mapRenderer.render();
 
 		// Camera
 		Vector2 camPos = new Vector2(_camera.position.x, _camera.position.y);
@@ -100,10 +91,6 @@ public class TiledStage extends Stage implements Disposable {
 			_camera.position.set(camPos.interpolate(_cameraFocalActor.position(), CAMERA_PANNING_SMOOTH_RATIO, Interpolation.linear), 0);
 		}
 		_camera.update();
-
-		// Map
-		_mapRenderer.setView(_camera);
-		_mapRenderer.render();
 	}
 
 	// visual
@@ -158,7 +145,7 @@ public class TiledStage extends Stage implements Disposable {
 		return _coordinates.get(tileRow * _tileColumns + tileCol);
 	}
 
-	public LinkedList<MapLayer> findLayers(String propName, boolean value) {
+	public LinkedList<MapLayer> findMapLayers(String propName, boolean value) {
 		LinkedList<MapLayer> layers = new LinkedList<MapLayer>();
 
 		for (MapLayer layer : _map.getLayers()) {
@@ -173,11 +160,6 @@ public class TiledStage extends Stage implements Disposable {
 	public LinkedList<Coordinate> findCoordinates(String layerName, String propName, boolean value) {
 		LinkedList<Coordinate> coordinates = new LinkedList<Coordinate>();
 
-		MapLayer layer = _map.getLayers().get(layerName);
-		if (layer == null) return coordinates;
-		if (!(layer instanceof TiledMapTileLayer)) return coordinates;
-		TiledMapTileLayer tiledLayer = (TiledMapTileLayer) layer;
-
 		for (int r = 0; r < _tileRows; r++) {
 			for (int c = 0; c < _tileColumns; c++) {
 				Coordinate coordinate = getCoordinate(r, c);
@@ -185,6 +167,42 @@ public class TiledStage extends Stage implements Disposable {
 				if (tile == null) continue;
 
 				if (ParseBooleanProp(tile.getProperties(), propName) == value) {
+					coordinates.add(coordinate);
+				}
+			}
+		}
+
+		return coordinates;
+	}
+
+	public LinkedList<Coordinate> findCoordinates(String layerName, String propName, String value) {
+		LinkedList<Coordinate> coordinates = new LinkedList<Coordinate>();
+
+		for (int r = 0; r < _tileRows; r++) {
+			for (int c = 0; c < _tileColumns; c++) {
+				Coordinate coordinate = getCoordinate(r, c);
+				TiledMapTile tile = coordinate.getTile(layerName);
+				if (tile == null) continue;
+
+				if (ParseProp(tile.getProperties(), propName).equals(value)) {
+					coordinates.add(coordinate);
+				}
+			}
+		}
+
+		return coordinates;
+	}
+
+	public LinkedList<Coordinate> findCoordinates(String layerName, String propName, int value) {
+		LinkedList<Coordinate> coordinates = new LinkedList<Coordinate>();
+
+		for (int r = 0; r < _tileRows; r++) {
+			for (int c = 0; c < _tileColumns; c++) {
+				Coordinate coordinate = getCoordinate(r, c);
+				TiledMapTile tile = coordinate.getTile(layerName);
+				if (tile == null) continue;
+
+				if (ParseIntegerProp(tile.getProperties(), propName) == value) {
 					coordinates.add(coordinate);
 				}
 			}
@@ -284,6 +302,12 @@ public class TiledStage extends Stage implements Disposable {
 			TiledMapTile tile = getTile(layerName);
 			if (tile == null) return false;
 			return ParseBooleanProp(tile.getProperties(), propName);
+		}
+
+		public String getTileProp(String layerName, String propName) {
+			TiledMapTile tile = getTile(layerName);
+			if (tile == null) return "";
+			return ParseProp(tile.getProperties(), propName);
 		}
 
 		public int row() {

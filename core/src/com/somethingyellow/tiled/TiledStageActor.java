@@ -1,48 +1,70 @@
 package com.somethingyellow.tiled;
 
-import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 
 public abstract class TiledStageActor extends Actor {
+
 	public static final float MOVE_SPEED = 10f;
-	public static BodyArea Body1x1 = new BodyArea(new boolean[]{
+	public static boolean[] BodyArea1x1 = new boolean[]{
 			true
-	}, 1);
-	public static BodyArea Body2x2 = new BodyArea(new boolean[]{
-			true, true,
-			true, true
-	}, 2);
+	};
 	private TiledStage.Coordinate _origin;
-	private Sprite _sprite;
 	private TiledStage _stage;
 	private int _type;
-	private BodyArea _body;
 	private boolean _isMoving = false;
 	private int _momentumY = 0;
 	private int _momentumX = 0;
+	private boolean[] _bodyArea;
+	private int _bodyWidth;
+	private int _bodyHeight;
+	private HashMap<String, Animation> _animations;
+	private float _animationTime;
+	private String _state;
+
+	public TiledStageActor(int type, boolean[] bodyArea, int bodyWidth, HashMap<String, Animation> animations,
+	                       TiledStage stage, TiledStage.Coordinate origin) {
+		if (bodyArea.length % bodyWidth != 0)
+			throw new IllegalArgumentException("Length of 'Body Area' should be a multiple of 'Body Width'!");
+
+		_type = type;
+		_bodyArea = bodyArea;
+		_bodyWidth = bodyWidth;
+		_bodyHeight = bodyArea.length / bodyWidth;
+		_animations = animations;
+		_stage = stage;
+		_origin = origin;
+		_animationTime = 0f;
+		_state = "";
+
+		_stage.addActor(this);
+		setOrigin(_origin);
+		Vector2 pos = _origin.position();
+		setPosition(pos.x, pos.y);
+	}
+
+	@Override
+	public boolean remove() {
+		for (TiledStage.Coordinate coordinate : bodyCoordinates()) {
+			coordinate.removeActor(this);
+		}
+
+		return super.remove();
+	}
 
 	@Override
 	public void act(float delta) {
 		super.act(delta);
 
+		_animationTime += delta;
+
 		move();
-	}
-
-	public void create(TiledStage stage, TiledStage.Coordinate origin, BodyArea body, Sprite sprite, int type) {
-		_stage = stage;
-		_type = type;
-		_body = body;
-		_sprite = sprite;
-		_origin = origin;
-
-		setOrigin(_origin);
-		Vector2 pos = _origin.position();
-		setPosition(pos.x, pos.y);
 	}
 
 	protected boolean canMove(TiledStage.Coordinate coordinate, TiledStage.DIRECTION direction) {
@@ -67,9 +89,11 @@ public abstract class TiledStageActor extends Actor {
 	private boolean moveDirection(TiledStage.DIRECTION direction, float speed) {
 		TiledStage.Coordinate targetCoordinate = origin().getAdjacentCoordinate(direction);
 		if (targetCoordinate == null) return false;
-
+		System.out.println(origin());
+		System.out.println(targetCoordinate);
 		// Check if all coordinates of body can move to their direction
-		LinkedList<TiledStage.Coordinate> coordinates = _body.getCoordinates(_stage, targetCoordinate);
+		LinkedList<TiledStage.Coordinate> coordinates = getBodyCoordinates(targetCoordinate);
+		System.out.println(coordinates);
 		for (TiledStage.Coordinate coordinate : coordinates) {
 			if (!canMove(coordinate, direction)) return false;
 		}
@@ -125,14 +149,38 @@ public abstract class TiledStageActor extends Actor {
 
 	// visual
 	// ----------
-	@Override
-	public void draw(Batch batch, float parentAlpha) {
-		_sprite.setPosition(getX(), getY());
-		_sprite.draw(batch);
-	}
 
 	public TiledStage.Coordinate origin() {
 		return _origin;
+	}
+
+	public LinkedList<TiledStage.Coordinate> bodyCoordinates() {
+		return getBodyCoordinates(_origin);
+	}
+
+	// Coordinate on tiledmap to render textureregion for actor
+	public TiledStage.Coordinate renderCoordinate() {
+		return _stage.getCoordinate(_bodyHeight - 1 + _origin.row(), _origin.column());
+	}
+
+	public TextureRegion textureRegion() {
+		Animation animation = _animations.get(_state);
+		if (animation != null) return animation.getKeyFrame(_animationTime);
+		return null;
+	}
+
+	public LinkedList<TiledStage.Coordinate> getBodyCoordinates(TiledStage.Coordinate origin) {
+		LinkedList<TiledStage.Coordinate> coordinates = new LinkedList<TiledStage.Coordinate>();
+
+		for (int i = 0; i < _bodyArea.length; i++) {
+			if (_bodyArea[i]) {
+				int tileRow = _bodyHeight - 1 - Math.floorDiv(i, _bodyWidth) + origin.row();
+				int tileCol = (i % _bodyWidth) + origin.column();
+				coordinates.add(_stage.getCoordinate(tileRow, tileCol));
+			}
+		}
+
+		return coordinates;
 	}
 
 	public TiledStageActor setOrigin(TiledStage.Coordinate origin) {
@@ -167,58 +215,22 @@ public abstract class TiledStageActor extends Actor {
 		return _type;
 	}
 
-	public LinkedList<TiledStage.Coordinate> bodyCoordinates() {
-		return _body.getCoordinates(_stage, _origin);
-	}
-
 	public TiledStage getStage() {
 		return _stage;
+	}
+
+	public String state() {
+		return _state;
+	}
+
+	public TiledStageActor setState(String state) {
+		_state = state;
+		_animationTime = 0f;
+		return this;
 	}
 
 	@Override
 	public String toString() {
 		return getClass().toString();
-	}
-
-	public static class BodyArea {
-		private boolean[] _area;
-		private int _width;
-		private int _height;
-
-		public BodyArea(boolean[] area, int width) {
-			if (area.length % width != 0)
-				throw new IllegalArgumentException("area's length must be a multiple of width!");
-
-			_area = area;
-			_width = width;
-			_height = _area.length / _width;
-		}
-
-		private static int GetOffsetX(int index, int width) {
-			return (index % width);
-		}
-
-		private static int GetOffsetY(int index, int width) {
-			return Math.floorDiv(index, width);
-		}
-
-		public boolean[] area() {
-			return _area;
-		}
-
-		public int width() {
-			return _width;
-		}
-
-		public LinkedList<TiledStage.Coordinate> getCoordinates(TiledStage stage, TiledStage.Coordinate origin) {
-			LinkedList<TiledStage.Coordinate> coordinates = new LinkedList<TiledStage.Coordinate>();
-
-			for (int i = 0; i < _area.length; i++) {
-				if (_area[i])
-					coordinates.add(stage.getCoordinate(_height - 1 + origin.row() - GetOffsetY(i, _width), origin.column() + GetOffsetX(i, _width)));
-			}
-
-			return coordinates;
-		}
 	}
 }

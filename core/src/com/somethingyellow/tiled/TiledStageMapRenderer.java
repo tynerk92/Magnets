@@ -8,8 +8,6 @@ import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.renderers.BatchTiledMapRenderer;
 
-import java.util.List;
-
 import static com.badlogic.gdx.graphics.g2d.Batch.C1;
 import static com.badlogic.gdx.graphics.g2d.Batch.C2;
 import static com.badlogic.gdx.graphics.g2d.Batch.C3;
@@ -202,8 +200,11 @@ public class TiledStageMapRenderer extends BatchTiledMapRenderer {
 				}
 
 				if (isStageLayer) {
-					for (TiledStageActor actor : _stage.getCoordinate(row, col).actors()) {
-						actor.draw(batch, 1);
+					TiledStage.Coordinate coordinate = _stage.getCoordinate(row, col);
+					for (TiledStageActor actor : coordinate.actors()) {
+						if (actor.renderCoordinate() == coordinate) {
+							batch.draw(actor.textureRegion(), actor.getX(), actor.getY());
+						}
 					}
 				}
 				x += layerTileWidth;

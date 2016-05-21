@@ -1,10 +1,18 @@
 package com.somethingyellow.magnets;
 
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.somethingyellow.tiled.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class Player extends PlayerActor {
+
+	public Player(int type, boolean[] bodyArea, int bodyWidth, HashMap<String, Animation> animations,
+	              TiledStage stage, TiledStage.Coordinate origin) {
+		super(type, bodyArea, bodyWidth, animations, stage, origin);
+	}
+
 
 	@Override
 	public void act(float delta) {
@@ -38,7 +46,7 @@ public class Player extends PlayerActor {
 	@Override
 	public boolean canMove(TiledStage.Coordinate coordinate, TiledStage.DIRECTION direction) {
 		if (!super.canMove(coordinate, direction)) return false;
-		if (coordinate.getTileBooleanProp(PlayScreen.LAYER_OBJECTS, PlayScreen.TILE_PROP_WALL))
+		if (coordinate.getTileProp(PlayScreen.LAYER_OBJECTS, PlayScreen.TILE_TYPE).equals(PlayScreen.TILE_TYPE_WALL))
 			return false;
 		for (TiledStageActor actor : coordinate.actors()) {
 			if (actor == this) continue;

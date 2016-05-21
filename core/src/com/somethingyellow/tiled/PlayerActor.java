@@ -1,11 +1,14 @@
 package com.somethingyellow.tiled;
 
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Event;
 import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+
+import java.util.HashMap;
 
 public class PlayerActor extends TiledStageActor implements EventListener {
 	private static final Vector2 TempCoords = new Vector2();
@@ -14,8 +17,9 @@ public class PlayerActor extends TiledStageActor implements EventListener {
 	private boolean _isKeyUpHeld = false;
 	private boolean _isKeyDownHeld = false;
 
-	public PlayerActor() {
-		super();
+	public PlayerActor(int type, boolean[] bodyArea, int bodyWidth, HashMap<String, Animation> animations,
+	                   TiledStage stage, TiledStage.Coordinate origin) {
+		super(type, bodyArea, bodyWidth, animations, stage, origin);
 		addListener(this);
 	}
 
