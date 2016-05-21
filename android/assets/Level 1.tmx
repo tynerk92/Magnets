@@ -605,18 +605,21 @@
    <image width="32" height="48" source="Graphics/Objects/Exit Right State 1.png"/>
   </tile>
   <tile id="103">
+   <properties>
+    <property name="Type" value="Magnetic Source"/>
+   </properties>
    <image width="32" height="48" source="Graphics/Objects/Magnetic Area (Walkable) State 1.png"/>
    <animation>
-    <frame tileid="106" duration="1000"/>
-    <frame tileid="112" duration="1000"/>
-    <frame tileid="103" duration="1000"/>
-    <frame tileid="108" duration="1000"/>
-    <frame tileid="104" duration="1000"/>
-    <frame tileid="109" duration="1000"/>
-    <frame tileid="105" duration="1000"/>
-    <frame tileid="113" duration="1000"/>
-    <frame tileid="107" duration="1000"/>
-    <frame tileid="111" duration="1000"/>
+    <frame tileid="103" duration="100"/>
+    <frame tileid="104" duration="100"/>
+    <frame tileid="105" duration="100"/>
+    <frame tileid="106" duration="100"/>
+    <frame tileid="107" duration="100"/>
+    <frame tileid="108" duration="100"/>
+    <frame tileid="109" duration="100"/>
+    <frame tileid="111" duration="100"/>
+    <frame tileid="112" duration="100"/>
+    <frame tileid="113" duration="100"/>
    </animation>
   </tile>
   <tile id="104">

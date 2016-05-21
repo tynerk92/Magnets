@@ -20,6 +20,10 @@ public class Block extends TiledStageActor {
 		super.act(delta);
 	}
 
+	public void push(TiledStage.DIRECTION direction) {
+		if (isPushable()) addMomentum(direction, 1);
+	}
+
 	@Override
 	public boolean canMove(TiledStage.Coordinate coordinate, TiledStage.DIRECTION direction) {
 		if (!super.canMove(coordinate, direction)) return false;

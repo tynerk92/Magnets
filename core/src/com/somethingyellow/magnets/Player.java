@@ -32,15 +32,10 @@ public class Player extends PlayerActor {
 		// check if there're any blocks in direction, push if there are
 		List<TiledStageActor> actors = origin().getAdjacentCoordinate(direction).actors();
 		for (TiledStageActor actor : actors) {
-			if (actor instanceof Block &&
-					actor.type() == PlayScreen.OBJECT_TYPES.BLOCK.ordinal()) {
-				pushBlock((Block) actor, direction);
+			if (actor instanceof Block) {
+				((Block) actor).push(direction);
 			}
 		}
-	}
-
-	private void pushBlock(Block block, TiledStage.DIRECTION direction) {
-		if (block.isPushable()) block.addMomentum(direction, 1);
 	}
 
 	@Override

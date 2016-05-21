@@ -48,15 +48,32 @@ public class TiledStage extends Stage implements Disposable {
 		return Boolean.parseBoolean(prop);
 	}
 
+	public static boolean ParseBooleanProp(MapProperties props, String propName, boolean defaultValue) {
+		String prop = (String) props.get(propName);
+		if (prop == null) return defaultValue;
+		return Boolean.parseBoolean(prop);
+	}
+
 	public static int ParseIntegerProp(MapProperties props, String propName) {
 		String prop = (String) props.get(propName);
 		return Integer.parseInt(prop);
 	}
 
+	public static int ParseIntegerProp(MapProperties props, String propName, int defaultValue) {
+		String prop = (String) props.get(propName);
+		if (prop == null) return defaultValue;
+		return Integer.parseInt(prop);
+	}
+
 	public static String ParseProp(MapProperties props, String propName) {
 		String prop = (String) props.get(propName);
-		if (prop == null) return "";
-		else return prop;
+		return prop;
+	}
+
+	public static String ParseProp(MapProperties props, String propName, String defaultValue) {
+		String prop = (String) props.get(propName);
+		if (prop == null) return defaultValue;
+		return prop;
 	}
 
 	public void initializeMap() {
@@ -80,10 +97,6 @@ public class TiledStage extends Stage implements Disposable {
 	public void draw() {
 		act(Gdx.graphics.getDeltaTime());
 
-		// Map
-		_mapRenderer.setView(_camera);
-		_mapRenderer.render();
-
 		// Camera
 		Vector2 camPos = new Vector2(_camera.position.x, _camera.position.y);
 		float camDistFromFocalActor = Math.abs(_cameraFocalActor.position().dst(camPos));
@@ -91,6 +104,10 @@ public class TiledStage extends Stage implements Disposable {
 			_camera.position.set(camPos.interpolate(_cameraFocalActor.position(), CAMERA_PANNING_SMOOTH_RATIO, Interpolation.linear), 0);
 		}
 		_camera.update();
+
+		// Map
+		_mapRenderer.setView(_camera);
+		_mapRenderer.render();
 	}
 
 	// visual
@@ -184,7 +201,7 @@ public class TiledStage extends Stage implements Disposable {
 				TiledMapTile tile = coordinate.getTile(layerName);
 				if (tile == null) continue;
 
-				if (ParseProp(tile.getProperties(), propName).equals(value)) {
+				if (ParseProp(tile.getProperties(), propName, "").equals(value)) {
 					coordinates.add(coordinate);
 				}
 			}

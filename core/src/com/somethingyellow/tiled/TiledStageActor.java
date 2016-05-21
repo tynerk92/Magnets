@@ -5,6 +5,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.somethingyellow.magnets.MagneticSource;
+import com.somethingyellow.magnets.PlayScreen;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -63,7 +65,6 @@ public abstract class TiledStageActor extends Actor {
 		super.act(delta);
 
 		_animationTime += delta;
-
 		move();
 	}
 
@@ -89,11 +90,9 @@ public abstract class TiledStageActor extends Actor {
 	private boolean moveDirection(TiledStage.DIRECTION direction, float speed) {
 		TiledStage.Coordinate targetCoordinate = origin().getAdjacentCoordinate(direction);
 		if (targetCoordinate == null) return false;
-		System.out.println(origin());
-		System.out.println(targetCoordinate);
+
 		// Check if all coordinates of body can move to their direction
 		LinkedList<TiledStage.Coordinate> coordinates = getBodyCoordinates(targetCoordinate);
-		System.out.println(coordinates);
 		for (TiledStage.Coordinate coordinate : coordinates) {
 			if (!canMove(coordinate, direction)) return false;
 		}

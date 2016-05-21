@@ -71,7 +71,7 @@ public class TiledStageMapRenderer extends BatchTiledMapRenderer {
 		final int col1 = Math.max(0, (int) (viewBounds.x / layerTileWidth));
 		final int col2 = Math.min(layerWidth, (int) ((viewBounds.x + viewBounds.width + layerTileWidth) / layerTileWidth)) - 1;
 
-		final int row1 = Math.max(0, (int) (viewBounds.y / layerTileHeight));
+		final int row1 = Math.max(0, (int) (viewBounds.y / layerTileHeight) - 1);
 		final int row2 = Math.min(layerHeight, (int) ((viewBounds.y + viewBounds.height + layerTileHeight) / layerTileHeight)) - 1;
 
 		float y = row2 * layerTileHeight;
