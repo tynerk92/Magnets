@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Player extends PlayerActor {
+	public static final float MOVE_SPEED = 5f;
+	public static final String STATE_WALKING = "Walking";
 
 	public Player(int type, boolean[] bodyArea, int bodyWidth, HashMap<String, Animation> animations,
 	              TiledStage stage, TiledStage.Coordinate origin) {
@@ -18,22 +20,41 @@ public class Player extends PlayerActor {
 	public void act(float delta) {
 		super.act(delta);
 
-		if (!isMoving() && momentumX() == 0 && momentumY() == 0) {
-			if (isKeyLeftHeld()) walkDirection(TiledStage.DIRECTION.LEFT);
-			else if (isKeyRightHeld()) walkDirection(TiledStage.DIRECTION.RIGHT);
-			else if (isKeyUpHeld()) walkDirection(TiledStage.DIRECTION.UP);
-			else if (isKeyDownHeld()) walkDirection(TiledStage.DIRECTION.DOWN);
-		}
+		checkKeyMovement();
 	}
 
-	private void walkDirection(TiledStage.DIRECTION direction) {
-		addMomentum(direction, 1);
+	private boolean checkKeyMovement() {
+		if (!isMoving()) {
+			if (isKeyLeftHeld()) return walkDirection(TiledStage.DIRECTION.WEST);
+			else if (isKeyRightHeld()) return walkDirection(TiledStage.DIRECTION.EAST);
+			else if (isKeyUpHeld()) return walkDirection(TiledStage.DIRECTION.NORTH);
+			else if (isKeyDownHeld()) return walkDirection(TiledStage.DIRECTION.SOUTH);
+		}
 
+		return false;
+	}
+
+	protected boolean walkDirection(TiledStage.DIRECTION direction) {
 		// check if there're any blocks in direction, push if there are
 		List<TiledStageActor> actors = origin().getAdjacentCoordinate(direction).actors();
 		for (TiledStageActor actor : actors) {
 			if (actor instanceof Block) {
 				((Block) actor).push(direction);
+				return false;
+			}
+		}
+
+		// if not, move
+		moveDirection(direction, MOVE_SPEED);
+		setState(STATE_WALKING);
+		return true;
+	}
+
+	@Override
+	protected void onStopMoving() {
+		if (!checkKeyMovement()) {
+			if (state().equals(STATE_WALKING)) {
+				setState(STATE_DEFAULT);
 			}
 		}
 	}

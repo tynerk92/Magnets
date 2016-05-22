@@ -606,6 +606,7 @@
   </tile>
   <tile id="103">
    <properties>
+    <property name="Name" value="Player Walking"/>
     <property name="Type" value="Magnetic Source"/>
    </properties>
    <image width="32" height="48" source="Graphics/Objects/Magnetic Area (Walkable) State 1.png"/>
@@ -651,6 +652,7 @@
   </tile>
   <tile id="114">
    <properties>
+    <property name="#Walking" value="Player Walking"/>
     <property name="Type" value="Player"/>
    </properties>
    <image width="32" height="48" source="Graphics/Objects/Player.png"/>

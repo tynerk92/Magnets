@@ -7,12 +7,14 @@ import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
+import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Disposable;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -228,6 +230,38 @@ public class TiledStage extends Stage implements Disposable {
 		return coordinates;
 	}
 
+	public TiledMapTile findTile(String propName, String value) {
+		LinkedList<TiledMapTile> tiles = findTiles(propName, value, true);
+		if (tiles.size() == 0) return null;
+		return tiles.get(0);
+	}
+
+	public LinkedList<TiledMapTile> findTiles(String propName, String value) {
+		return findTiles(propName, value, false);
+	}
+
+	private LinkedList<TiledMapTile> findTiles(String propName, String value, boolean ifFirst) {
+		LinkedList<TiledMapTile> tiles = new LinkedList<TiledMapTile>();
+		Iterator<TiledMapTileSet> tilesetsIterator = _map.getTileSets().iterator();
+		Iterator<TiledMapTile> tilesIterator;
+		TiledMapTile tile;
+
+		while (tilesetsIterator.hasNext()) {
+			TiledMapTileSet tileset = tilesetsIterator.next();
+			tilesIterator = tileset.iterator();
+
+			while (tilesIterator.hasNext()) {
+				tile = tilesIterator.next();
+				if (ParseProp(tile.getProperties(), propName, "").equals(value)) {
+					tiles.add(tile);
+					if (ifFirst) return tiles;
+				}
+			}
+		}
+
+		return tiles;
+	}
+
 	public MapLayer getMapLayer(String layerName) {
 		return _map.getLayers().get(layerName);
 	}
@@ -252,11 +286,16 @@ public class TiledStage extends Stage implements Disposable {
 	}
 
 	public enum DIRECTION {
-		LEFT, RIGHT, UP, DOWN
+		WEST, EAST, NORTH, SOUTH, NORTH_WEST, NORTH_EAST, SOUTH_WEST, SOUTH_EAST
+	}
+
+	public interface CoordinateEventListener {
+		void onActorsChanged(Coordinate coordinate);
 	}
 
 	public class Coordinate {
 		private LinkedList<TiledStageActor> _actors;
+		private LinkedList<CoordinateEventListener> _listeners;
 		private int _row;
 		private int _col;
 
@@ -264,6 +303,7 @@ public class TiledStage extends Stage implements Disposable {
 			_row = row;
 			_col = col;
 			_actors = new LinkedList<TiledStageActor>();
+			_listeners = new LinkedList<CoordinateEventListener>();
 		}
 
 		public List<TiledStageActor> actors() {
@@ -272,11 +312,27 @@ public class TiledStage extends Stage implements Disposable {
 
 		public Coordinate addActor(TiledStageActor actor) {
 			_actors.add(actor);
+			for (CoordinateEventListener listener : _listeners) {
+				listener.onActorsChanged(this);
+			}
 			return this;
 		}
 
 		public Coordinate removeActor(TiledStageActor actor) {
 			_actors.remove(actor);
+			for (CoordinateEventListener listener : _listeners) {
+				listener.onActorsChanged(this);
+			}
+			return this;
+		}
+
+		public Coordinate addEventListener(CoordinateEventListener listener) {
+			_listeners.add(listener);
+			return this;
+		}
+
+		public Coordinate removeEventListener(CoordinateEventListener listener) {
+			_listeners.remove(listener);
 			return this;
 		}
 
@@ -302,14 +358,22 @@ public class TiledStage extends Stage implements Disposable {
 
 		public Coordinate getAdjacentCoordinate(DIRECTION direction) {
 			switch (direction) {
-				case UP:
+				case NORTH:
 					return getCoordinate(row() + 1, column());
-				case DOWN:
+				case SOUTH:
 					return getCoordinate(row() - 1, column());
-				case LEFT:
+				case WEST:
 					return getCoordinate(row(), column() - 1);
-				case RIGHT:
+				case EAST:
 					return getCoordinate(row(), column() + 1);
+				case NORTH_EAST:
+					return getCoordinate(row() + 1, column() + 1);
+				case NORTH_WEST:
+					return getCoordinate(row() + 1, column() - 1);
+				case SOUTH_EAST:
+					return getCoordinate(row() - 1, column() + 1);
+				case SOUTH_WEST:
+					return getCoordinate(row() - 1, column() - 1);
 			}
 
 			return null;

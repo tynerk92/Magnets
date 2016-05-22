@@ -6,13 +6,18 @@ import com.somethingyellow.tiled.*;
 import java.util.HashMap;
 
 public class Block extends TiledStageActor {
+	public static final float MOVE_SPEED = 5f;
 
 	private boolean _isPushable;
+	private boolean _isMagnetisable;
+	private boolean _isMagnetised;
 
 	public Block(int type, boolean[] bodyArea, int bodyWidth, HashMap<String, Animation> animations,
-	             TiledStage stage, TiledStage.Coordinate origin, boolean isPushable) {
+	             TiledStage stage, TiledStage.Coordinate origin, boolean isPushable, boolean isMagnetisable, boolean isMagnetised) {
 		super(type, bodyArea, bodyWidth, animations, stage, origin);
 		_isPushable = isPushable;
+		_isMagnetisable = isMagnetisable;
+		_isMagnetised = isMagnetised;
 	}
 
 	@Override
@@ -21,7 +26,9 @@ public class Block extends TiledStageActor {
 	}
 
 	public void push(TiledStage.DIRECTION direction) {
-		if (isPushable()) addMomentum(direction, 1);
+		if (isPushable()) {
+			moveDirection(direction, MOVE_SPEED);
+		}
 	}
 
 	@Override
@@ -43,5 +50,13 @@ public class Block extends TiledStageActor {
 
 	public boolean isPushable() {
 		return _isPushable;
+	}
+
+	public boolean isMagnetisable() {
+		return _isMagnetisable;
+	}
+
+	public boolean isMagnetised() {
+		return _isMagnetised;
 	}
 }
