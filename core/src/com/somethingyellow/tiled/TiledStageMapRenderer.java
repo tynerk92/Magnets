@@ -7,6 +7,12 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.renderers.BatchTiledMapRenderer;
+import com.somethingyellow.magnets.Block;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedList;
 
 import static com.badlogic.gdx.graphics.g2d.Batch.C1;
 import static com.badlogic.gdx.graphics.g2d.Batch.C2;
@@ -31,30 +37,25 @@ import static com.badlogic.gdx.graphics.g2d.Batch.Y4;
 
 public class TiledStageMapRenderer extends BatchTiledMapRenderer {
 	private TiledStage _stage;
-	private TiledMapTileLayer _layer;
 
-	public TiledStageMapRenderer(TiledStage stage, TiledMapTileLayer layer, TiledMap map) {
+	public TiledStageMapRenderer(TiledStage stage, TiledMap map) {
 		super(map);
 		_stage = stage;
-		_layer = layer;
 	}
 
-	public TiledStageMapRenderer(TiledStage stage, TiledMapTileLayer layer, TiledMap map, Batch batch) {
+	public TiledStageMapRenderer(TiledStage stage, TiledMap map, Batch batch) {
 		super(map, batch);
 		_stage = stage;
-		_layer = layer;
 	}
 
-	public TiledStageMapRenderer(TiledStage stage, TiledMapTileLayer layer, TiledMap map, float unitScale) {
+	public TiledStageMapRenderer(TiledStage stage, TiledMap map, float unitScale) {
 		super(map, unitScale);
 		_stage = stage;
-		_layer = layer;
 	}
 
-	public TiledStageMapRenderer(TiledStage stage, TiledMapTileLayer layer, TiledMap map, float unitScale, Batch batch) {
+	public TiledStageMapRenderer(TiledStage stage, TiledMap map, float unitScale, Batch batch) {
 		super(map, unitScale, batch);
 		_stage = stage;
-		_layer = layer;
 	}
 
 	@Override
@@ -77,8 +78,6 @@ public class TiledStageMapRenderer extends BatchTiledMapRenderer {
 		float y = row2 * layerTileHeight;
 		float xStart = col1 * layerTileWidth;
 		final float[] vertices = this.vertices;
-
-		boolean isStageLayer = (layer == _layer);
 
 		for (int row = row2; row >= row1; row--) {
 			float x = xStart;
@@ -199,14 +198,21 @@ public class TiledStageMapRenderer extends BatchTiledMapRenderer {
 					}
 				}
 
-				if (isStageLayer) {
-					TiledStage.Coordinate coordinate = _stage.getCoordinate(row, col);
-					for (TiledStageActor actor : coordinate.actors()) {
-						if (actor.renderCoordinate() == coordinate) {
-							batch.draw(actor.textureRegion(), actor.getX(), actor.getY());
+				TiledStage.Coordinate coordinate = _stage.getCoordinate(row, col);
+
+				HashSet<TiledStageActor> actors = coordinate.actors();
+				TiledStageActor[] actorsArray = actors.toArray(new TiledStageActor[actors.size()]);
+				Arrays.sort(actorsArray);
+
+				for (TiledStageActor actor : actorsArray) {
+					if (actor.layerName().equals(layer.getName()) && actor.renderCoordinate() == coordinate) {
+						LinkedList<TextureRegion> textureRegions = actor.textureRegions();
+						for (TextureRegion textureRegion : textureRegions) {
+							batch.draw(textureRegion, actor.getX(), actor.getY());
 						}
 					}
 				}
+
 				x += layerTileWidth;
 			}
 			y -= layerTileHeight;

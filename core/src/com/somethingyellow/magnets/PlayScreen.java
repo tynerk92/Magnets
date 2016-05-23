@@ -4,18 +4,14 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.tiles.AnimatedTiledMapTile;
 import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -23,14 +19,15 @@ import com.badlogic.gdx.graphics.Color;
 
 import com.somethingyellow.tiled.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.LinkedList;
+import java.util.TreeSet;
 
 public class PlayScreen implements Screen {
 	public static final float WORLD_WIDTH = 500f;
 	public static final float TILE_ANIMATION_FRAME_DURATION = 0.1f;
-	public static final String LAYER_OBJECTS = "Objects";
+	public static final String LAYER_OBJECTS = "Walls and Objects";
 	public static final String TILE_TYPE = "Type";
 	public static final String TILE_NAME = "Name";
 	public static final String TILE_TYPE_PLAYER = "Player";
@@ -39,16 +36,17 @@ public class PlayScreen implements Screen {
 	public static final String TILE_TYPE_WALL = "Wall";
 	public static final String TILE_ISPUSHABLE = "IsPushable";
 	public static final String TILE_ISMAGNETISABLE = "IsMagnetisable";
-	public static final String TILE_ISMAGNETISED = "IsMagnetised";
-	public static final String TILE_RANGE = "Range";
 	public static final String TILE_BODY_WIDTH = "Body Width";
 	public static final String TILE_BODY_AREA = "Body Area";
+	public static final String TILE_THIS = "(this)";
+	public static final String TILE_ACTOR_DEPTH = "Actor Depth";
+	public static final String TILE_FRAME_DEPTH = "Frame Depth";
 
 	// Layer/Property names
 	public static int TILE_SIZE = 32;
 	public boolean DEBUG_MODE = false;
 	// Paths/Textures
-	private String _levelPath = "Level 1.tmx";
+	private String _levelPath = "Tutorial.tmx";
 	private Viewport _uiViewport;
 	private TiledStage _tiledStage;
 	private PlayerActor _playerActor;
@@ -90,33 +88,24 @@ public class PlayScreen implements Screen {
 		return TiledStage.ParseBooleanProp(tile.getProperties(), TILE_ISMAGNETISABLE, false);
 	}
 
-	public static boolean ExtractIsMagnetised(TiledMapTile tile) {
-		return TiledStage.ParseBooleanProp(tile.getProperties(), TILE_ISMAGNETISED, false);
-	}
-
-	public static int ExtractRange(TiledMapTile tile) {
-		return TiledStage.ParseIntegerProp(tile.getProperties(), TILE_RANGE, 1);
-	}
-
-	public static HashMap<String, Animation> ExtractAnimations(TiledStage stage, TiledMapTile tile) {
-		HashMap<String, Animation> animations = new HashMap<String, Animation>();
+	public static HashMap<String, TiledStageActor.Frames> ExtractAnimations(TiledStage stage, TiledMapTile tile) {
+		HashMap<String, TiledStageActor.Frames> animationFrames = new HashMap<String, TiledStageActor.Frames>();
 		Iterator<String> props = tile.getProperties().getKeys();
-
-		animations.put(TiledStageActor.STATE_DEFAULT, TileToAnimation(tile));
 
 		while (props.hasNext()) {
 			String prop = props.next();
 			if (prop.charAt(0) == '#') {
 				String name = TiledStage.ParseProp(tile.getProperties(), prop);
-				animations.put(prop.substring(1), TileToAnimation(stage.findTile(TILE_NAME, name)));
+				TiledMapTile animationTile = (name.equals(TILE_THIS)) ? tile : stage.findTile(TILE_NAME, name);
+				animationFrames.put(prop.substring(1), TileToAnimationFrames(animationTile));
 			}
 		}
 
-		return animations;
+		return animationFrames;
 	}
 
-	public static Animation TileToAnimation(TiledMapTile tile) {
-		Array<TextureRegion> animationTextureRegions;
+	public static TiledStageActor.Frames TileToAnimationFrames(TiledMapTile tile) {
+		ArrayList<TextureRegion> textureRegions;
 		StaticTiledMapTile[] frames;
 
 		if (tile instanceof AnimatedTiledMapTile) {
@@ -127,12 +116,21 @@ public class PlayScreen implements Screen {
 			return null;
 		}
 
-		animationTextureRegions = new Array<TextureRegion>(frames.length);
+		textureRegions = new ArrayList<TextureRegion>();
 		for (StaticTiledMapTile frameTile : frames) {
-			animationTextureRegions.add(frameTile.getTextureRegion());
+			textureRegions.add(frameTile.getTextureRegion());
 		}
 
-		return new Animation(TILE_ANIMATION_FRAME_DURATION, animationTextureRegions, Animation.PlayMode.LOOP);
+		// TODO: Memoise animations from same tile
+		return new TiledStageActor.Frames(textureRegions, TILE_ANIMATION_FRAME_DURATION, ExtractFrameDepth(tile));
+	}
+
+	public static int ExtractFrameDepth(TiledMapTile tile) {
+		return TiledStage.ParseIntegerProp(tile.getProperties(), TILE_FRAME_DEPTH, 0);
+	}
+
+	public static int ExtractActorDepth(TiledMapTile tile) {
+		return TiledStage.ParseIntegerProp(tile.getProperties(), TILE_ACTOR_DEPTH, 0);
 	}
 
 	@Override
@@ -146,10 +144,7 @@ public class PlayScreen implements Screen {
 
 		TiledMap map = new TmxMapLoader().load(_levelPath);
 
-		MapLayer layer = map.getLayers().get(LAYER_OBJECTS);
-		if (!(layer instanceof TiledMapTileLayer))
-			throw new IllegalArgumentException("LAYER_OBJECTS should point to a tiled layer!");
-		_tiledStage = new TiledStage(map, (TiledMapTileLayer) layer, WORLD_WIDTH, WORLD_WIDTH / width * height);
+		_tiledStage = new TiledStage(map, WORLD_WIDTH, WORLD_WIDTH / width * height);
 
 		Gdx.input.setInputProcessor(_tiledStage);
 		spawnPlayer();
@@ -165,23 +160,24 @@ public class PlayScreen implements Screen {
 	}
 
 	public void spawnPlayer() {
-		LinkedList<TiledStage.Coordinate> coordinates = _tiledStage.findCoordinates(LAYER_OBJECTS, TILE_TYPE, TILE_TYPE_PLAYER);
+		TreeSet<TiledStage.Coordinate> coordinates = _tiledStage.findCoordinates(LAYER_OBJECTS, TILE_TYPE, TILE_TYPE_PLAYER);
 		if (coordinates.size() != 1)
 			throw new IllegalArgumentException("There should only be 1 player on the tiled map!");
 
 		// Add player to stage
+		TiledMapTile tile = coordinates.first().getTile(LAYER_OBJECTS);
 		_playerActor = new Player(OBJECT_TYPES.PLAYER.ordinal(),
 				TiledStageActor.BodyArea1x1, 1,
-				ExtractAnimations(_tiledStage, coordinates.get(0).getTile(LAYER_OBJECTS)),
-				_tiledStage, coordinates.get(0));
+				ExtractAnimations(_tiledStage, tile),
+				_tiledStage, LAYER_OBJECTS, coordinates.first(), ExtractActorDepth(tile));
 
-		coordinates.get(0).removeTile(LAYER_OBJECTS);
+		coordinates.first().removeTile(LAYER_OBJECTS);
 		_tiledStage.setCameraFocalActor(_playerActor);
 		_tiledStage.setInputFocalActor(_playerActor);
 	}
 
 	public void spawnBlocks() {
-		LinkedList<TiledStage.Coordinate> coordinates = _tiledStage.findCoordinates(LAYER_OBJECTS, TILE_TYPE, TILE_TYPE_BLOCK);
+		TreeSet<TiledStage.Coordinate> coordinates = _tiledStage.findCoordinates(LAYER_OBJECTS, TILE_TYPE, TILE_TYPE_BLOCK);
 		Block block;
 		TiledMapTile tile;
 
@@ -190,14 +186,15 @@ public class PlayScreen implements Screen {
 			block = new Block(OBJECT_TYPES.BLOCK.ordinal(),
 					ExtractBodyArea(tile), ExtractBodyWidth(tile),
 					ExtractAnimations(_tiledStage, tile),
-					_tiledStage, coordinate, ExtractIsPushable(tile), ExtractIsMagnetisable(tile), ExtractIsMagnetised(tile));
+					_tiledStage, LAYER_OBJECTS, coordinate,
+					ExtractIsPushable(tile), ExtractIsMagnetisable(tile), ExtractActorDepth(tile));
 
 			coordinate.removeTile(LAYER_OBJECTS);
 		}
 	}
 
 	public void spawnMagneticSources() {
-		LinkedList<TiledStage.Coordinate> coordinates = _tiledStage.findCoordinates(LAYER_OBJECTS, TILE_TYPE, TILE_TYPE_MAGNETIC_SOURCE);
+		TreeSet<TiledStage.Coordinate> coordinates = _tiledStage.findCoordinates(LAYER_OBJECTS, TILE_TYPE, TILE_TYPE_MAGNETIC_SOURCE);
 		MagneticSource source;
 		TiledMapTile tile;
 
@@ -207,7 +204,7 @@ public class PlayScreen implements Screen {
 			source = new MagneticSource(OBJECT_TYPES.MAGNETIC_SOURCE.ordinal(),
 					ExtractBodyArea(tile), ExtractBodyWidth(tile),
 					ExtractAnimations(_tiledStage, tile),
-					_tiledStage, coordinate, ExtractRange(tile));
+					_tiledStage, LAYER_OBJECTS, coordinate, ExtractActorDepth(tile));
 
 			coordinate.removeTile(LAYER_OBJECTS);
 		}

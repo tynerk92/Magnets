@@ -1,7 +1,6 @@
 package com.somethingyellow.tiled;
 
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Event;
@@ -17,9 +16,9 @@ public class PlayerActor extends TiledStageActor implements EventListener {
 	private boolean _isKeyUpHeld = false;
 	private boolean _isKeyDownHeld = false;
 
-	public PlayerActor(int type, boolean[] bodyArea, int bodyWidth, HashMap<String, Animation> animations,
-	                   TiledStage stage, TiledStage.Coordinate origin) {
-		super(type, bodyArea, bodyWidth, animations, stage, origin);
+	public PlayerActor(int type, boolean[] bodyArea, int bodyWidth, HashMap<String, Frames> animationFrames,
+	                   TiledStage stage, String layerName, TiledStage.Coordinate origin, int actorDepth) {
+		super(type, bodyArea, bodyWidth, animationFrames, stage, layerName, origin, actorDepth);
 		addListener(this);
 	}
 

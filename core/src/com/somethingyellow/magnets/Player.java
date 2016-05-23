@@ -1,18 +1,24 @@
 package com.somethingyellow.magnets;
 
-import com.badlogic.gdx.graphics.g2d.Animation;
 import com.somethingyellow.tiled.*;
 
 import java.util.HashMap;
-import java.util.List;
+import java.util.HashSet;
 
 public class Player extends PlayerActor {
 	public static final float MOVE_SPEED = 5f;
+	public static final String STATE_STANDING = "";
 	public static final String STATE_WALKING = "Walking";
 
-	public Player(int type, boolean[] bodyArea, int bodyWidth, HashMap<String, Animation> animations,
-	              TiledStage stage, TiledStage.Coordinate origin) {
-		super(type, bodyArea, bodyWidth, animations, stage, origin);
+	public Player(int type, boolean[] bodyArea, int bodyWidth, HashMap<String, Frames> animationFrames,
+	              TiledStage stage, String layerName, TiledStage.Coordinate origin, int actorDepth) {
+		super(type, bodyArea, bodyWidth, animationFrames, stage, layerName, origin, actorDepth);
+		addState(STATE_STANDING);
+	}
+
+	@Override
+	public void preAct() {
+		checkPushes();
 	}
 
 
@@ -20,48 +26,71 @@ public class Player extends PlayerActor {
 	public void act(float delta) {
 		super.act(delta);
 
-		checkKeyMovement();
+		checkMovement();
 	}
 
-	private boolean checkKeyMovement() {
+	private boolean checkPushes() {
 		if (!isMoving()) {
-			if (isKeyLeftHeld()) return walkDirection(TiledStage.DIRECTION.WEST);
-			else if (isKeyRightHeld()) return walkDirection(TiledStage.DIRECTION.EAST);
-			else if (isKeyUpHeld()) return walkDirection(TiledStage.DIRECTION.NORTH);
-			else if (isKeyDownHeld()) return walkDirection(TiledStage.DIRECTION.SOUTH);
+			if (isKeyLeftHeld()) return pushDirection(TiledStage.DIRECTION.WEST);
+			if (isKeyRightHeld()) return pushDirection(TiledStage.DIRECTION.EAST);
+			if (isKeyUpHeld()) return pushDirection(TiledStage.DIRECTION.NORTH);
+			if (isKeyDownHeld()) return pushDirection(TiledStage.DIRECTION.SOUTH);
 		}
 
 		return false;
 	}
 
-	protected boolean walkDirection(TiledStage.DIRECTION direction) {
+	private boolean checkMovement() {
+		if (!isMoving()) {
+			if (isKeyLeftHeld() && isKeyUpHeld()) return moveDirection(TiledStage.DIRECTION.NORTH_WEST);
+			if (isKeyLeftHeld() && isKeyDownHeld()) return moveDirection(TiledStage.DIRECTION.SOUTH_WEST);
+			if (isKeyRightHeld() && isKeyUpHeld()) return moveDirection(TiledStage.DIRECTION.NORTH_EAST);
+			if (isKeyRightHeld() && isKeyDownHeld())
+				return moveDirection(TiledStage.DIRECTION.SOUTH_EAST);
+			if (isKeyLeftHeld()) return moveDirection(TiledStage.DIRECTION.WEST);
+			if (isKeyRightHeld()) return moveDirection(TiledStage.DIRECTION.EAST);
+			if (isKeyUpHeld()) return moveDirection(TiledStage.DIRECTION.NORTH);
+			if (isKeyDownHeld()) return moveDirection(TiledStage.DIRECTION.SOUTH);
+		}
+
+		return false;
+	}
+
+	protected boolean pushDirection(final TiledStage.DIRECTION direction) {
 		// check if there're any blocks in direction, push if there are
-		List<TiledStageActor> actors = origin().getAdjacentCoordinate(direction).actors();
-		for (TiledStageActor actor : actors) {
+		final TiledStage.Coordinate coordinate = origin().getAdjacentCoordinate(direction);
+		if (coordinate == null) return false;
+		HashSet<TiledStageActor> actors = coordinate.actors();
+		for (final TiledStageActor actor : actors) {
 			if (actor instanceof Block) {
 				((Block) actor).push(direction);
-				return false;
+				moveTo(coordinate, 1 / MOVE_SPEED);
+				return true;
 			}
 		}
+		return false;
+	}
 
-		// if not, move
-		moveDirection(direction, MOVE_SPEED);
-		setState(STATE_WALKING);
-		return true;
+	protected boolean moveDirection(TiledStage.DIRECTION direction) {
+		if (moveDirection(direction, 1 / MOVE_SPEED)) {
+			addState(STATE_WALKING).removeState(STATE_STANDING);
+			return true;
+		}
+		return false;
 	}
 
 	@Override
-	protected void onStopMoving() {
-		if (!checkKeyMovement()) {
-			if (state().equals(STATE_WALKING)) {
-				setState(STATE_DEFAULT);
-			}
+	protected void onMovementEnd(TiledStage.Coordinate origin, TiledStage.Coordinate target) {
+		super.onMovementEnd(origin, target);
+
+		if (!checkMovement()) {
+			addState(STATE_STANDING).removeState(STATE_WALKING);
 		}
 	}
 
 	@Override
-	public boolean canMove(TiledStage.Coordinate coordinate, TiledStage.DIRECTION direction) {
-		if (!super.canMove(coordinate, direction)) return false;
+	public boolean bodyCanBeAt(TiledStage.Coordinate coordinate) {
+		if (!super.bodyCanBeAt(coordinate)) return false;
 		if (coordinate.getTileProp(PlayScreen.LAYER_OBJECTS, PlayScreen.TILE_TYPE).equals(PlayScreen.TILE_TYPE_WALL))
 			return false;
 		for (TiledStageActor actor : coordinate.actors()) {
