@@ -9,6 +9,8 @@ import java.util.TreeSet;
 public class MagneticSource extends TiledStageActor {
 	public static final String STATE_STILL = "";
 	public static final int MAGNETISE_RANGE = 1;
+	public static final int ATTRACTION_RANGE = 2;
+	public static final int ATTRACTION_STRENGTH = 1;
 
 	public MagneticSource(int type, boolean[] bodyArea, int bodyWidth, HashMap<String, Frames> animationFrames,
 	                      TiledStage stage, String layerName, TiledStage.Coordinate origin, int actorDepth) {
@@ -34,6 +36,23 @@ public class MagneticSource extends TiledStageActor {
 				}
 			}
 
+		} else if (tick == PlayScreen.TICKS.FORCES.ordinal()) {
+			// Attract blocks within attraction range
+			for (TiledStage.Coordinate bodyCoordinate : bodyCoordinates()) {
+				for (TiledStage.Coordinate coordinate : bodyCoordinate.getCoordinatesInRange(ATTRACTION_RANGE, false)) {
+					for (TiledStageActor actor : coordinate.actors()) {
+						if (actor == this) continue;
+						if (actor instanceof Block) {
+							Block block = (Block) actor;
+							if (!block.isMagnetised()) {
+								TiledStage.DIRECTION direction = bodyCoordinate.getDirectionFrom(block.origin());
+								if (direction != null)
+									block.applyForce(direction, ATTRACTION_STRENGTH);
+							}
+						}
+					}
+				}
+			}
 		}
 	}
 

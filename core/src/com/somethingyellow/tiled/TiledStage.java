@@ -165,7 +165,7 @@ public class TiledStage extends Stage implements Disposable {
 	// -------
 
 	public void initializeMap() {
-		_mapRenderer = new TiledStageMapRenderer(this, _map);
+		_mapRenderer = new TiledStageMapRenderer(this, _map, getBatch());
 		MapProperties props = _map.getProperties();
 		_tileWidth = props.get("tilewidth", Integer.class);
 		_tileHeight = props.get("tileheight", Integer.class);

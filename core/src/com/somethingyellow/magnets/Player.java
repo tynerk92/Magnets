@@ -1,5 +1,7 @@
 package com.somethingyellow.magnets;
 
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.somethingyellow.tiled.*;
 
 import java.util.HashMap;
@@ -9,6 +11,8 @@ public class Player extends PlayerActor {
 	public static final float MOVE_SPEED = 5f;
 	public static final String STATE_STANDING = "";
 	public static final String STATE_WALKING = "Walking";
+
+	public TiledStage.DIRECTION _pushingDirection;
 
 	public Player(int type, boolean[] bodyArea, int bodyWidth, HashMap<String, Frames> animationFrames,
 	              TiledStage stage, String layerName, TiledStage.Coordinate origin, int actorDepth) {
@@ -24,7 +28,7 @@ public class Player extends PlayerActor {
 
 			checkPushes();
 
-		} else if (tick == PlayScreen.TICKS.MOVEMENT.ordinal()) {
+		} else if (tick == PlayScreen.TICKS.PLAYER_MOVEMENT.ordinal()) {
 
 			checkMovement();
 
@@ -44,6 +48,12 @@ public class Player extends PlayerActor {
 
 	private boolean checkMovement() {
 		if (!isMoving()) {
+			if (_pushingDirection != null) {
+				TiledStage.DIRECTION direction = _pushingDirection;
+				_pushingDirection = null;
+				return moveDirection(direction);
+			}
+
 			if (isKeyLeftHeld() && isKeyUpHeld()) return moveDirection(TiledStage.DIRECTION.NORTH_WEST);
 			if (isKeyLeftHeld() && isKeyDownHeld()) return moveDirection(TiledStage.DIRECTION.SOUTH_WEST);
 			if (isKeyRightHeld() && isKeyUpHeld()) return moveDirection(TiledStage.DIRECTION.NORTH_EAST);
@@ -65,8 +75,10 @@ public class Player extends PlayerActor {
 		HashSet<TiledStageActor> actors = coordinate.actors();
 		for (final TiledStageActor actor : actors) {
 			if (actor instanceof Block) {
-				((Block) actor).push(direction);
-				moveTo(coordinate, 1 / MOVE_SPEED);
+				Block block = (Block) actor;
+				block.push(direction);
+				_pushingDirection = direction;
+
 				return true;
 			}
 		}
@@ -74,11 +86,38 @@ public class Player extends PlayerActor {
 	}
 
 	protected boolean moveDirection(TiledStage.DIRECTION direction) {
-		if (moveDirection(direction, 1 / MOVE_SPEED)) {
-			addState(STATE_WALKING).removeState(STATE_STANDING);
-			return true;
+		TiledStage.Coordinate coordinate;
+
+		switch (direction) {
+			case NORTH_EAST:
+			case NORTH_WEST:
+				coordinate = origin().getAdjacentCoordinate(TiledStage.DIRECTION.NORTH);
+				if (coordinate != null) if (!canBeAt(coordinate)) return false;
+				break;
+			case SOUTH_EAST:
+			case SOUTH_WEST:
+				coordinate = origin().getAdjacentCoordinate(TiledStage.DIRECTION.SOUTH);
+				if (coordinate != null) if (!canBeAt(coordinate)) return false;
+				break;
 		}
-		return false;
+
+		switch (direction) {
+			case NORTH_EAST:
+			case SOUTH_EAST:
+				coordinate = origin().getAdjacentCoordinate(TiledStage.DIRECTION.EAST);
+				if (coordinate != null) if (!canBeAt(coordinate)) return false;
+				break;
+			case NORTH_WEST:
+			case SOUTH_WEST:
+				coordinate = origin().getAdjacentCoordinate(TiledStage.DIRECTION.WEST);
+				if (coordinate != null) if (!canBeAt(coordinate)) return false;
+				break;
+		}
+
+		if (!moveDirection(direction, 1 / MOVE_SPEED)) return false;
+
+		addState(STATE_WALKING).removeState(STATE_STANDING);
+		return true;
 	}
 
 	@Override
@@ -103,4 +142,18 @@ public class Player extends PlayerActor {
 
 		return true;
 	}
+
+	@Override
+	public boolean keyDown(InputEvent event, int keycode) {
+		super.keyDown(event, keycode);
+		switch (keycode) {
+			case Input.Keys.R:
+				Main.PlayScreen.dispose();
+				Main.PlayScreen.show();
+				break;
+		}
+
+		return true;
+	}
+
 }

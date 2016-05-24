@@ -206,10 +206,7 @@ public class TiledStageMapRenderer extends BatchTiledMapRenderer {
 
 				for (TiledStageActor actor : actorsArray) {
 					if (actor.layerName().equals(layer.getName()) && actor.renderCoordinate() == coordinate) {
-						LinkedList<TextureRegion> textureRegions = actor.textureRegions();
-						for (TextureRegion textureRegion : textureRegions) {
-							batch.draw(textureRegion, actor.getX(), actor.getY());
-						}
+						actor.draw(batch, 1f);
 					}
 				}
 

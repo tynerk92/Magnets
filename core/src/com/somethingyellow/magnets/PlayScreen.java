@@ -231,7 +231,7 @@ public class PlayScreen implements Screen {
 	}
 
 	public enum TICKS {
-		RESET, MAGNETISATION, FORCES, MOVEMENT
+		RESET, MAGNETISATION, FORCES, BLOCK_MOVEMENT, PLAYER_MOVEMENT
 	}
 
 	public enum OBJECT_TYPES {

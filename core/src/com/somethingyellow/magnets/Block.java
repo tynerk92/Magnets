@@ -60,9 +60,13 @@ public class Block extends TiledStageActor {
 						}
 					}
 				}
+
+				if (!hasState(STATE_MAGNETISED)) addState(STATE_MAGNETISED);
+			} else {
+				if (hasState(STATE_MAGNETISED)) removeState(STATE_MAGNETISED);
 			}
 
-		} else if (tick == PlayScreen.TICKS.MOVEMENT.ordinal()) {
+		} else if (tick == PlayScreen.TICKS.BLOCK_MOVEMENT.ordinal()) {
 
 			if (_forceX != 0 || _forceY != 0) {
 				moveDirection(TiledStage.GetDirection(_forceY, _forceX), 1 / MOVE_SPEED);
@@ -85,7 +89,6 @@ public class Block extends TiledStageActor {
 	public void magnetise() {
 		if (_isMagnetisable && !_isMagnetised) {
 			_isMagnetised = true;
-			if (!hasState(STATE_MAGNETISED)) addState(STATE_MAGNETISED);
 
 			// Magnetise blocks within magnetisation range
 			TreeSet<TiledStage.Coordinate> magnetiseCoodinates = new TreeSet<TiledStage.Coordinate>();
@@ -107,10 +110,7 @@ public class Block extends TiledStageActor {
 	}
 
 	public void demagnetise() {
-		if (_isMagnetised) {
-			_isMagnetised = false;
-			removeState(STATE_MAGNETISED);
-		}
+		if (_isMagnetised) _isMagnetised = false;
 	}
 
 	@Override
