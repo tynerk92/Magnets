@@ -63,19 +63,10 @@ public abstract class TiledStageActor extends Actor implements Comparable<TiledS
 		return super.remove();
 	}
 
-	@Override
-	public void act(float delta) {
-		super.act(delta);
-
+	public void act(float delta, int tick) {
 		for (String state : _states) {
 			_animationFrames.get(state).update(delta);
 		}
-	}
-
-	public void preAct() {
-	}
-
-	public void postAct() {
 	}
 
 	protected boolean bodyCanBeAt(TiledStage.Coordinate coordinate) {

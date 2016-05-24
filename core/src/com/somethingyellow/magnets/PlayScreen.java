@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
@@ -12,10 +11,6 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.tiles.AnimatedTiledMapTile;
 import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.badlogic.gdx.utils.viewport.Viewport;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.graphics.Color;
 
 import com.somethingyellow.tiled.*;
 
@@ -41,17 +36,14 @@ public class PlayScreen implements Screen {
 	public static final String TILE_THIS = "(this)";
 	public static final String TILE_ACTOR_DEPTH = "Actor Depth";
 	public static final String TILE_FRAME_DEPTH = "Frame Depth";
-
 	// Layer/Property names
 	public static int TILE_SIZE = 32;
 	public boolean DEBUG_MODE = false;
 	// Paths/Textures
 	private String _levelPath = "Tutorial.tmx";
-	private Viewport _uiViewport;
 	private TiledStage _tiledStage;
 	private PlayerActor _playerActor;
 	private Stage _uiStage;
-
 	// Debugging tools
 	private FPSLogger _fpsLogger = new FPSLogger();
 
@@ -144,19 +136,12 @@ public class PlayScreen implements Screen {
 
 		TiledMap map = new TmxMapLoader().load(_levelPath);
 
-		_tiledStage = new TiledStage(map, WORLD_WIDTH, WORLD_WIDTH / width * height);
+		_tiledStage = new TiledStage(map, WORLD_WIDTH, WORLD_WIDTH / width * height, TICKS.values().length);
 
 		Gdx.input.setInputProcessor(_tiledStage);
 		spawnPlayer();
 		spawnBlocks();
 		spawnMagneticSources();
-
-		// UI
-		_uiViewport = new FitViewport(width, height);
-		_uiStage = new Stage(_uiViewport);
-		Label label = new Label("SCORE", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-		label.setPosition(0, 0);
-		_uiStage.addActor(label);
 	}
 
 	public void spawnPlayer() {
@@ -216,7 +201,6 @@ public class PlayScreen implements Screen {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 		_tiledStage.draw();
-		_uiStage.draw();
 
 		if (DEBUG_MODE) _fpsLogger.log();
 	}
@@ -224,7 +208,6 @@ public class PlayScreen implements Screen {
 	@Override
 	public void resize(int width, int height) {
 		_tiledStage.getViewport().update(width, height);
-		_uiViewport.update(width, height);
 	}
 
 	@Override
@@ -245,6 +228,10 @@ public class PlayScreen implements Screen {
 	@Override
 	public void dispose() {
 		_tiledStage.dispose();
+	}
+
+	public enum TICKS {
+		RESET, MAGNETISATION, FORCES, MOVEMENT
 	}
 
 	public enum OBJECT_TYPES {

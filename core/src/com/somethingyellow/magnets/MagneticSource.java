@@ -18,18 +18,22 @@ public class MagneticSource extends TiledStageActor {
 	}
 
 	@Override
-	public void act(float delta) {
-		super.act(delta);
+	public void act(float delta, int tick) {
+		super.act(delta, tick);
 
-		TreeSet<TiledStage.Coordinate> magnetiseCoodinates = origin().getCoordinatesInRange(MAGNETISE_RANGE, false);
-		for (TiledStage.Coordinate coordinate : magnetiseCoodinates) {
-			for (TiledStageActor actor : coordinate.actors()) {
-				if (actor == this) continue;
-				if (actor instanceof Block) {
-					Block block = (Block) actor;
-					block.magnetise();
+		if (tick == PlayScreen.TICKS.MAGNETISATION.ordinal()) {
+
+			TreeSet<TiledStage.Coordinate> magnetiseCoodinates = origin().getCoordinatesInRange(MAGNETISE_RANGE, false);
+			for (TiledStage.Coordinate coordinate : magnetiseCoodinates) {
+				for (TiledStageActor actor : coordinate.actors()) {
+					if (actor == this) continue;
+					if (actor instanceof Block) {
+						Block block = (Block) actor;
+						block.magnetise();
+					}
 				}
 			}
+
 		}
 	}
 

@@ -10,7 +10,6 @@ import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Disposable;
 
@@ -23,6 +22,7 @@ import java.util.TreeSet;
 public class TiledStage extends Stage implements Disposable {
 	public static final float CAMERA_MAX_OFFSET = 2f;
 	public static final float CAMERA_PANNING_SMOOTH_RATIO = 0.1f;
+
 	private TiledMap _map;
 	private float _viewSizeX;
 	private float _viewSizeY;
@@ -35,13 +35,15 @@ public class TiledStage extends Stage implements Disposable {
 	private int _tileHeight;
 	private int _tileRows;
 	private int _tileColumns;
+	private int _maxTicks;
 	private ArrayList<Coordinate> _coordinates;
 
-	public TiledStage(TiledMap map, float viewSizeX, float viewSizeY) {
+	public TiledStage(TiledMap map, float viewSizeX, float viewSizeY, int maxTicks) {
 		_viewSizeX = viewSizeX;
 		_viewSizeY = viewSizeY;
 		_map = map;
 		_actors = new LinkedList<TiledStageActor>();
+		_maxTicks = maxTicks;
 
 		initializeMap();
 		resetCamera();
@@ -193,15 +195,17 @@ public class TiledStage extends Stage implements Disposable {
 
 	@Override
 	public void draw() {
-		for (TiledStageActor actor : _actors) {
-			actor.preAct();
+
+		float delta = Gdx.graphics.getDeltaTime();
+		for (int i = 0; i < _maxTicks; i++) {
+			for (TiledStageActor actor : _actors) {
+				actor.act(delta, i);
+			}
+
+			// TODO: Optimise calling of actors and their required ticks
 		}
 
-		act(Gdx.graphics.getDeltaTime());
-
-		for (TiledStageActor actor : _actors) {
-			actor.postAct();
-		}
+		super.act(delta);
 
 		// Camera
 		Vector2 camPos = new Vector2(_camera.position.x, _camera.position.y);

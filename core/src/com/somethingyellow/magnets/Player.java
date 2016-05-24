@@ -17,16 +17,18 @@ public class Player extends PlayerActor {
 	}
 
 	@Override
-	public void preAct() {
-		checkPushes();
-	}
+	public void act(float delta, int tick) {
+		super.act(delta, tick);
 
+		if (tick == PlayScreen.TICKS.FORCES.ordinal()) {
 
-	@Override
-	public void act(float delta) {
-		super.act(delta);
+			checkPushes();
 
-		checkMovement();
+		} else if (tick == PlayScreen.TICKS.MOVEMENT.ordinal()) {
+
+			checkMovement();
+
+		}
 	}
 
 	private boolean checkPushes() {
