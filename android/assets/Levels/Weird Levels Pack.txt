@@ -1,0 +1,41 @@
+What would happen?
+███████████████████████████████
+██████████M████████████████████
+██    x               x   e  ██
+██    x               x      ██
+██  X   X X X X X X X X X X  ██
+██ X X X X X X X X X X X X X ██
+██  X X X X X X X X X X X X  ██
+██ X X X X X X X X X X X X X ██
+██  X X X X X X X X X X X X  ██
+██ X X X X X X X X X X X   X ██
+██                       x   ██
+██   s                   x   ██
+████████████████M██████████████
+███████████████████████████████
+Test Cases
+██████████████████████████
+█  M     M e██ M     M  ██
+█     █     ██  Y █     ██
+█  x M█  x M█xx  M█M X M██
+█     █     █ x   █     ██
+█  M  █     █     █  M  ██
+█ █████████ █ █████████ ██
+█  M  ██ M  █     █  M  ██
+█   X ██    █ M x █ M M ██
+█  x M█ xx M█     █  x  ██
+█     █  x  █ x M █ xxx ██
+█                       ██
+███████████ s ████████████
+█xxx          MMM    M  ██
+█x    █     █       M M ██
+█M y M█yX   █ xxx MM y M██
+█    x█yy   █ x x M yyy M█
+█  xxx█y M x█      M   M██
+█ █████████x█ MMM   MMM ██
+█  MM █  M x█  MMM y    ██
+█     █     █    M yyy M██
+█M xy █  x  █M yy M     ██
+█M yy █  xX █      MMM  ██
+█        xx █  MM       ██
+██████████████████████████
