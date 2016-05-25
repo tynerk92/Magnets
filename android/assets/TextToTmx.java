@@ -105,85 +105,85 @@ public class TextToTmx {
 			"../Graphics/Walls/Set 1 (Standard)/Wall Decoration 4.png",
 			"../Graphics/Walls/Set 1 (Standard)/Wall Decoration 5.png",
 			"../Graphics/Walls/Set 1 (Standard)/Wall Decoration 6.png",
-			"../Graphics/Objects/Lodestone (Pushable) 1x1 1.png",
-			"../Graphics/Objects/Lodestone (Pushable) 1x1 2.png",
-			"../Graphics/Objects/Lodestone (Pushable) 1x1 3.png",
-			"../Graphics/Objects/Lodestone (Pushable) 1x1 4.png",
-			"../Graphics/Objects/Lodestone (Pushable) 1x2.png",
-			"../Graphics/Objects/Lodestone (Pushable) 1x3.png",
-			"../Graphics/Objects/Lodestone (Pushable) 2x1.png",
-			"../Graphics/Objects/Lodestone (Pushable) 2x2 1.png",
-			"../Graphics/Objects/Lodestone (Pushable) 2x2 2.png",
-			"../Graphics/Objects/Lodestone (Pushable) 2x2 3.png",
-			"../Graphics/Objects/Lodestone (Pushable) 2x2 4.png",
-			"../Graphics/Objects/Lodestone (Pushable) 2x2 5.png",
-			"../Graphics/Objects/Lodestone (Pushable) 2x3 1.png",
-			"../Graphics/Objects/Lodestone (Pushable) 2x3 2.png",
-			"../Graphics/Objects/Lodestone (Pushable) 2x3 3.png",
-			"../Graphics/Objects/Lodestone (Pushable) 2x3 4.png",
-			"../Graphics/Objects/Lodestone (Pushable) 2x3 5.png",
-			"../Graphics/Objects/Lodestone (Pushable) 2x3 6.png",
-			"../Graphics/Objects/Lodestone (Pushable) 2x3 7.png",
-			"../Graphics/Objects/Lodestone (Pushable) 2x3 8.png",
-			"../Graphics/Objects/Lodestone (Pushable) 2x3 9.png",
-			"../Graphics/Objects/Lodestone (Pushable) 2x3 10.png",
-			"../Graphics/Objects/Lodestone (Pushable) 2x3 11.png",
-			"../Graphics/Objects/Lodestone (Pushable) 2x3 12.png",
-			"../Graphics/Objects/Lodestone (Pushable) 2x3 13.png",
-			"../Graphics/Objects/Lodestone (Pushable) 2x3 14.png",
-			"../Graphics/Objects/Lodestone (Pushable) 3x1.png",
-			"../Graphics/Objects/Lodestone (Pushable) 3x2 1.png",
-			"../Graphics/Objects/Lodestone (Pushable) 3x2 2.png",
-			"../Graphics/Objects/Lodestone (Pushable) 3x2 3.png",
-			"../Graphics/Objects/Lodestone (Pushable) 3x2 4.png",
-			"../Graphics/Objects/Lodestone (Pushable) 3x2 5.png",
-			"../Graphics/Objects/Lodestone (Pushable) 3x2 6.png",
-			"../Graphics/Objects/Lodestone (Pushable) 3x2 7.png",
-			"../Graphics/Objects/Lodestone (Pushable) 3x2 8.png",
-			"../Graphics/Objects/Lodestone (Pushable) 3x2 9.png",
-			"../Graphics/Objects/Lodestone (Pushable) 3x2 10.png",
-			"../Graphics/Objects/Lodestone (Pushable) 3x2 11.png",
-			"../Graphics/Objects/Lodestone (Pushable) 3x2 12.png",
-			"../Graphics/Objects/Lodestone (Pushable) 3x2 13.png",
-			"../Graphics/Objects/Lodestone (Pushable) 3x2 14.png",
-			"../Graphics/Objects/Lodestone (Unpushable) 1x1.png",
-			"../Graphics/Objects/Lodestone (Unpushable) 1x2.png",
-			"../Graphics/Objects/Lodestone (Unpushable) 1x3.png",
-			"../Graphics/Objects/Lodestone (Unpushable) 2x1.png",
-			"../Graphics/Objects/Lodestone (Unpushable) 2x2 1.png",
-			"../Graphics/Objects/Lodestone (Unpushable) 2x2 2.png",
-			"../Graphics/Objects/Lodestone (Unpushable) 2x2 3.png",
-			"../Graphics/Objects/Lodestone (Unpushable) 2x2 4.png",
-			"../Graphics/Objects/Lodestone (Unpushable) 2x2 5.png",
-			"../Graphics/Objects/Lodestone (Unpushable) 2x3 1.png",
-			"../Graphics/Objects/Lodestone (Unpushable) 2x3 2.png",
-			"../Graphics/Objects/Lodestone (Unpushable) 2x3 3.png",
-			"../Graphics/Objects/Lodestone (Unpushable) 2x3 4.png",
-			"../Graphics/Objects/Lodestone (Unpushable) 2x3 5.png",
-			"../Graphics/Objects/Lodestone (Unpushable) 2x3 6.png",
-			"../Graphics/Objects/Lodestone (Unpushable) 2x3 7.png",
-			"../Graphics/Objects/Lodestone (Unpushable) 2x3 8.png",
-			"../Graphics/Objects/Lodestone (Unpushable) 2x3 9.png",
-			"../Graphics/Objects/Lodestone (Unpushable) 2x3 10.png",
-			"../Graphics/Objects/Lodestone (Unpushable) 2x3 11.png",
-			"../Graphics/Objects/Lodestone (Unpushable) 2x3 12.png",
-			"../Graphics/Objects/Lodestone (Unpushable) 2x3 13.png",
-			"../Graphics/Objects/Lodestone (Unpushable) 2x3 14.png",
-			"../Graphics/Objects/Lodestone (Unpushable) 3x1.png",
-			"../Graphics/Objects/Lodestone (Unpushable) 3x2 1.png",
-			"../Graphics/Objects/Lodestone (Unpushable) 3x2 2.png",
-			"../Graphics/Objects/Lodestone (Unpushable) 3x2 3.png",
-			"../Graphics/Objects/Lodestone (Unpushable) 3x2 4.png",
-			"../Graphics/Objects/Lodestone (Unpushable) 3x2 5.png",
-			"../Graphics/Objects/Lodestone (Unpushable) 3x2 6.png",
-			"../Graphics/Objects/Lodestone (Unpushable) 3x2 7.png",
-			"../Graphics/Objects/Lodestone (Unpushable) 3x2 8.png",
-			"../Graphics/Objects/Lodestone (Unpushable) 3x2 9.png",
-			"../Graphics/Objects/Lodestone (Unpushable) 3x2 10.png",
-			"../Graphics/Objects/Lodestone (Unpushable) 3x2 11.png",
-			"../Graphics/Objects/Lodestone (Unpushable) 3x2 12.png",
-			"../Graphics/Objects/Lodestone (Unpushable) 3x2 13.png",
-			"../Graphics/Objects/Lodestone (Unpushable) 3x2 14.png",
+			"../Graphics/Objects/Lodestone (Pushable) 1x1 1 - 1 1.png",
+			"../Graphics/Objects/Lodestone (Pushable) 1x1 2 - 1 1.png",
+			"../Graphics/Objects/Lodestone (Pushable) 1x1 3 - 1 1.png",
+			"../Graphics/Objects/Lodestone (Pushable) 1x1 4 - 1 1.png",
+			"../Graphics/Objects/Lodestone (Pushable) 1x2 1 - 1 11.png",
+			"../Graphics/Objects/Lodestone (Pushable) 1x3 1 - 1 111.png",
+			"../Graphics/Objects/Lodestone (Pushable) 2x1 1 - 2 11.png",
+			"../Graphics/Objects/Lodestone (Pushable) 2x2 1 - 2 1110.png",
+			"../Graphics/Objects/Lodestone (Pushable) 2x2 2 - 2 1101.png",
+			"../Graphics/Objects/Lodestone (Pushable) 2x2 3 - 2 0111.png",
+			"../Graphics/Objects/Lodestone (Pushable) 2x2 4 - 2 1011.png",
+			"../Graphics/Objects/Lodestone (Pushable) 2x2 5 - 2 1111.png",
+			"../Graphics/Objects/Lodestone (Pushable) 2x3 1 - 2 101110.png",
+			"../Graphics/Objects/Lodestone (Pushable) 2x3 2 - 2 011101.png",
+			"../Graphics/Objects/Lodestone (Pushable) 2x3 3 - 2 101011.png",
+			"../Graphics/Objects/Lodestone (Pushable) 2x3 4 - 2 111010.png",
+			"../Graphics/Objects/Lodestone (Pushable) 2x3 5 - 2 010111.png",
+			"../Graphics/Objects/Lodestone (Pushable) 2x3 6 - 2 110101.png",
+			"../Graphics/Objects/Lodestone (Pushable) 2x3 7 - 2 101101.png",
+			"../Graphics/Objects/Lodestone (Pushable) 2x3 8 - 2 011110.png",
+			"../Graphics/Objects/Lodestone (Pushable) 2x3 9 - 2 111011.png",
+			"../Graphics/Objects/Lodestone (Pushable) 2x3 10 - 2 110111.png",
+			"../Graphics/Objects/Lodestone (Pushable) 2x3 11 - 2 111110.png",
+			"../Graphics/Objects/Lodestone (Pushable) 2x3 12 - 2 111101.png",
+			"../Graphics/Objects/Lodestone (Pushable) 2x3 13 - 2 101111.png",
+			"../Graphics/Objects/Lodestone (Pushable) 2x3 14 - 2 011111.png",
+			"../Graphics/Objects/Lodestone (Pushable) 3x1 1 - 3 111.png",
+			"../Graphics/Objects/Lodestone (Pushable) 3x2 1 - 3 010111.png",
+			"../Graphics/Objects/Lodestone (Pushable) 3x2 10 - 3 101111.png",
+			"../Graphics/Objects/Lodestone (Pushable) 3x2 11 - 3 111110.png",
+			"../Graphics/Objects/Lodestone (Pushable) 3x2 12 - 3 111011.png",
+			"../Graphics/Objects/Lodestone (Pushable) 3x2 13 - 3 110111.png",
+			"../Graphics/Objects/Lodestone (Pushable) 3x2 14 - 3 011111.png",
+			"../Graphics/Objects/Lodestone (Pushable) 3x2 2 - 3 111010.png",
+			"../Graphics/Objects/Lodestone (Pushable) 3x2 3 - 3 111100.png",
+			"../Graphics/Objects/Lodestone (Pushable) 3x2 4 - 3 111001.png",
+			"../Graphics/Objects/Lodestone (Pushable) 3x2 5 - 3 100111.png",
+			"../Graphics/Objects/Lodestone (Pushable) 3x2 6 - 3 001111.png",
+			"../Graphics/Objects/Lodestone (Pushable) 3x2 7 - 3 110011.png",
+			"../Graphics/Objects/Lodestone (Pushable) 3x2 8 - 3 011110.png",
+			"../Graphics/Objects/Lodestone (Pushable) 3x2 9 - 3 111101.png",
+			"../Graphics/Objects/Lodestone (Unpushable) 1x1 1 - 1 1.png",
+			"../Graphics/Objects/Lodestone (Unpushable) 1x2 1 - 1 11.png",
+			"../Graphics/Objects/Lodestone (Unpushable) 1x3 1 - 1 111.png",
+			"../Graphics/Objects/Lodestone (Unpushable) 2x1 1 - 2 11.png",
+			"../Graphics/Objects/Lodestone (Unpushable) 2x2 1 - 2 1110.png",
+			"../Graphics/Objects/Lodestone (Unpushable) 2x2 2 - 2 1101.png",
+			"../Graphics/Objects/Lodestone (Unpushable) 2x2 3 - 2 0111.png",
+			"../Graphics/Objects/Lodestone (Unpushable) 2x2 4 - 2 1011.png",
+			"../Graphics/Objects/Lodestone (Unpushable) 2x2 5 - 2 1111.png",
+			"../Graphics/Objects/Lodestone (Unpushable) 2x3 1 - 2 101110.png",
+			"../Graphics/Objects/Lodestone (Unpushable) 2x3 10 - 2 110111.png",
+			"../Graphics/Objects/Lodestone (Unpushable) 2x3 11 - 2 111110.png",
+			"../Graphics/Objects/Lodestone (Unpushable) 2x3 12 - 2 111101.png",
+			"../Graphics/Objects/Lodestone (Unpushable) 2x3 13 - 2 101111.png",
+			"../Graphics/Objects/Lodestone (Unpushable) 2x3 14 - 2 011111.png",
+			"../Graphics/Objects/Lodestone (Unpushable) 2x3 2 - 2 011101.png",
+			"../Graphics/Objects/Lodestone (Unpushable) 2x3 3 - 2 101011.png",
+			"../Graphics/Objects/Lodestone (Unpushable) 2x3 4 - 2 111010.png",
+			"../Graphics/Objects/Lodestone (Unpushable) 2x3 5 - 2 010111.png",
+			"../Graphics/Objects/Lodestone (Unpushable) 2x3 6 - 2 110101.png",
+			"../Graphics/Objects/Lodestone (Unpushable) 2x3 7 - 2 101101.png",
+			"../Graphics/Objects/Lodestone (Unpushable) 2x3 8 - 2 011110.png",
+			"../Graphics/Objects/Lodestone (Unpushable) 2x3 9 - 2 111011.png",
+			"../Graphics/Objects/Lodestone (Unpushable) 3x1 1 - 3 111.png",
+			"../Graphics/Objects/Lodestone (Unpushable) 3x2 1 - 3 010111.png",
+			"../Graphics/Objects/Lodestone (Unpushable) 3x2 2 - 3 111010.png",
+			"../Graphics/Objects/Lodestone (Unpushable) 3x2 3 - 3 111100.png",
+			"../Graphics/Objects/Lodestone (Unpushable) 3x2 4 - 3 111001.png",
+			"../Graphics/Objects/Lodestone (Unpushable) 3x2 5 - 3 100111.png",
+			"../Graphics/Objects/Lodestone (Unpushable) 3x2 6 - 3 001111.png",
+			"../Graphics/Objects/Lodestone (Unpushable) 3x2 7 - 3 110011.png",
+			"../Graphics/Objects/Lodestone (Unpushable) 3x2 8 - 3 011110.png",
+			"../Graphics/Objects/Lodestone (Unpushable) 3x2 9 - 3 111101.png",
+			"../Graphics/Objects/Lodestone (Unpushable) 3x2 10 - 3 101111.png",
+			"../Graphics/Objects/Lodestone (Unpushable) 3x2 11 - 3 111110.png",
+			"../Graphics/Objects/Lodestone (Unpushable) 3x2 12 - 3 111011.png",
+			"../Graphics/Objects/Lodestone (Unpushable) 3x2 13 - 3 110111.png",
+			"../Graphics/Objects/Lodestone (Unpushable) 3x2 14 - 3 011111.png",
 			"../Graphics/Objects/Button 1 State 1.png",
 			"../Graphics/Objects/Button 1 State 2.png",
 			"../Graphics/Objects/Button 1 State 3.png",
@@ -238,218 +238,218 @@ public class TextToTmx {
 	
 	private void initiateTable() {
 		String[] names = new String[] {
-				"Floor 1",
-				"Floor 2",
-				"Floor 3",
-				"Floor 4",
-				"Floor 5",
-				"Floor 6",
-				"Floor 7",
-				"Floor 8",
-				"Floor 9",
-				"Floor 10",
-				"Floor 11",
-				"Floor 12",
-				"Floor 13",
-				"Floor 14",
-				"Floor 15",
-				"Floor 16",
-				"Debris 1",
-				"Debris 2",
-				"Debris 3",
-				"Debris 4",
-				"Debris 5",
-				"Debris 6",
-				"Debris 7",
-				"Debris 8",
-				"Scratches 1",
-				"Scratches 2",
-				"Scratches 3",
-				"Scratches 4",
-				"Pattern 1",
-				"Pattern 2",
-				"Pattern 3",
-				"Pattern 4",
-				"Wall Behind BL BR Tiny Corner",
-				"Wall Behind BL Tiny Corner",
-				"Wall Behind BR Tiny Corner",
-				"Wall Behind",
-				"Wall BL Corner TR Tiny Corner",
-				"Wall BL Corner",
-				"Wall BR Corner TL Tiny Corner",
-				"Wall BR Corner",
-				"Wall Front Behind",
-				"Wall Front TL Tiny Corner",
-				"Wall Front TR Tiny Corner",
-				"Wall Front TR TL Tiny Corner",
-				"Wall Front",
-				"Wall Left BL Corner",
-				"Wall Left Right",
-				"Wall Left TL BL Corner",
-				"Wall Left TL Corner",
-				"Wall Left",
-				"Wall Middle 2 Tiny BL TL Corner",
-				"Wall Middle 3 Tiny BL TL BR Corner",
-				"Wall Middle 4 Tiny All Corners",
-				"Wall Middle 1 Tiny BL",
-				"Wall Middle 2 Tiny BR BL Corner",
-				"Wall Middle 3 Tiny BR BL TR Corner",
-				"Wall Middle 1 Tiny BR Corner",
-				"Wall Middle 2 Tiny BR TR Corner",
-				"Wall Middle 1 Tiny TL Corner",
-				"Wall Middle 3 Tiny TL TR BL Corner",
-				"Wall Middle 3 Tiny TL TR BR Corner",
-				"Wall Middle 2 Tiny TL TR Corner",
-				"Wall Middle 1 Tiny TR Corner",
-				"Wall Middle 2 Tiny BL TR Corner",
-				"Wall Middle 2 Tiny BR TL Corner",
-				"Wall Right BR Corner",
-				"Wall Right TR BR Corner",
-				"Wall Right TR Corner",
-				"Wall Right",
-				"Wall Standalone Back",
-				"Wall Standalone Front",
-				"Wall Standalone Left",
-				"Wall Standalone Right",
-				"Wall Standalone",
-				"Wall TL Corner BR Tiny Corner",
-				"Wall TL Corner",
-				"Wall TR Corner BL Tiny Corner",
-				"Wall TR Corner",
-				"Wall",
-				"Wall Decoration 1",
-				"Wall Decoration 2",
-				"Wall Decoration 3",
-				"Wall Decoration 4",
-				"Wall Decoration 5",
-				"Wall Decoration 6",
-				"Lodestone (Pushable) 1x1 1",
-				"Lodestone (Pushable) 1x1 2",
-				"Lodestone (Pushable) 1x1 3",
-				"Lodestone (Pushable) 1x1 4",
-				"Lodestone (Pushable) 1x2",
-				"Lodestone (Pushable) 1x3",
-				"Lodestone (Pushable) 2x1",
-				"Lodestone (Pushable) 2x2 1",
-				"Lodestone (Pushable) 2x2 2",
-				"Lodestone (Pushable) 2x2 3",
-				"Lodestone (Pushable) 2x2 4",
-				"Lodestone (Pushable) 2x2 5",
-				"Lodestone (Pushable) 2x3 1",
-				"Lodestone (Pushable) 2x3 2",
-				"Lodestone (Pushable) 2x3 3",
-				"Lodestone (Pushable) 2x3 4",
-				"Lodestone (Pushable) 2x3 5",
-				"Lodestone (Pushable) 2x3 6",
-				"Lodestone (Pushable) 2x3 7",
-				"Lodestone (Pushable) 2x3 8",
-				"Lodestone (Pushable) 2x3 9",
-				"Lodestone (Pushable) 2x3 10",
-				"Lodestone (Pushable) 2x3 11",
-				"Lodestone (Pushable) 2x3 12",
-				"Lodestone (Pushable) 2x3 13",
-				"Lodestone (Pushable) 2x3 14",
-				"Lodestone (Pushable) 3x1",
-				"Lodestone (Pushable) 3x2 1",
-				"Lodestone (Pushable) 3x2 2",
-				"Lodestone (Pushable) 3x2 3",
-				"Lodestone (Pushable) 3x2 4",
-				"Lodestone (Pushable) 3x2 5",
-				"Lodestone (Pushable) 3x2 6",
-				"Lodestone (Pushable) 3x2 7",
-				"Lodestone (Pushable) 3x2 8",
-				"Lodestone (Pushable) 3x2 9",
-				"Lodestone (Pushable) 3x2 10",
-				"Lodestone (Pushable) 3x2 11",
-				"Lodestone (Pushable) 3x2 12",
-				"Lodestone (Pushable) 3x2 13",
-				"Lodestone (Pushable) 3x2 14",
-				"Lodestone (Unpushable) 1x1 1",
-				"Lodestone (Unpushable) 1x2",
-				"Lodestone (Unpushable) 1x3",
-				"Lodestone (Unpushable) 2x1",
-				"Lodestone (Unpushable) 2x2 1",
-				"Lodestone (Unpushable) 2x2 2",
-				"Lodestone (Unpushable) 2x2 3",
-				"Lodestone (Unpushable) 2x2 4",
-				"Lodestone (Unpushable) 2x2 5",
-				"Lodestone (Unpushable) 2x3 1",
-				"Lodestone (Unpushable) 2x3 2",
-				"Lodestone (Unpushable) 2x3 3",
-				"Lodestone (Unpushable) 2x3 4",
-				"Lodestone (Unpushable) 2x3 5",
-				"Lodestone (Unpushable) 2x3 6",
-				"Lodestone (Unpushable) 2x3 7",
-				"Lodestone (Unpushable) 2x3 8",
-				"Lodestone (Unpushable) 2x3 9",
-				"Lodestone (Unpushable) 2x3 10",
-				"Lodestone (Unpushable) 2x3 11",
-				"Lodestone (Unpushable) 2x3 12",
-				"Lodestone (Unpushable) 2x3 13",
-				"Lodestone (Unpushable) 2x3 14",
-				"Lodestone (Unpushable) 3x1",
-				"Lodestone (Unpushable) 3x2 1",
-				"Lodestone (Unpushable) 3x2 2",
-				"Lodestone (Unpushable) 3x2 3",
-				"Lodestone (Unpushable) 3x2 4",
-				"Lodestone (Unpushable) 3x2 5",
-				"Lodestone (Unpushable) 3x2 6",
-				"Lodestone (Unpushable) 3x2 7",
-				"Lodestone (Unpushable) 3x2 8",
-				"Lodestone (Unpushable) 3x2 9",
-				"Lodestone (Unpushable) 3x2 10",
-				"Lodestone (Unpushable) 3x2 11",
-				"Lodestone (Unpushable) 3x2 12",
-				"Lodestone (Unpushable) 3x2 13",
-				"Lodestone (Unpushable) 3x2 14",
-				"Button 1 State 1",
-				"Button 1 State 2",
-				"Button 1 State 3",
-				"Door 1 State 1",
-				"Door 1 State 2",
-				"Door 1 State 3",
-				"Door 1 State 4",
-				"Door 1 State 5",
-				"Button 2 State 1",
-				"Button 2 State 2",
-				"Button 2 State 3",
-				"Door 2 State 1",
-				"Door 2 State 2",
-				"Door 2 State 3",
-				"Door 2 State 4",
-				"Door 2 State 5",
-				"Exit Front State 1",
-				"Exit Front State 2",
-				"Exit Left State 1",
-				"Exit Left State 2",
-				"Exit Right State 1",
-				"Exit Right State 2",
-				"Magnetic Area (Walkable) State 1",
-				"Magnetic Area (Walkable) State 2",
-				"Magnetic Area (Walkable) State 3",
-				"Magnetic Area (Walkable) State 4",
-				"Magnetic Area (Walkable) State 5",
-				"Magnetic Area (Walkable) State 6",
-				"Magnetic Area (Walkable) State 7",
-				"Magnetic Area (Walkable) State 8",
-				"Magnetic Area (Walkable) State 9",
-				"Magnetic Area (Walkable) State 10",
-				"Player",
-				"Magnetized Horizontal State 1",
-				"Magnetized Horizontal State 2",
-				"Magnetized Horizontal State 3",
-				"Magnetized Horizontal State 4",
-				"Magnetized Horizontal State 5",
-				"Magnetized Horizontal State 6",
-				"Magnetized Horizontal State 7",
-				"Magnetized Vertical State 1",
-				"Magnetized Vertical State 2",
-				"Magnetized Vertical State 3",
-				"Magnetized Vertical State 4",
-				"Magnetized Vertical State 5",
-				"Magnetized Vertical State 6",
-				"Magnetized Vertical State 7",
-				"Magnetic Overlay"
+				"Floor 1",                                 //0  
+				"Floor 2",                                 //1  
+				"Floor 3",                                 //2  
+				"Floor 4",                                 //3  
+				"Floor 5",                                 //4  
+				"Floor 6",                                 //5  
+				"Floor 7",                                 //6  
+				"Floor 8",                                 //7  
+				"Floor 9",                                 //8  
+				"Floor 10",                                //9  
+				"Floor 11",                                //10 
+				"Floor 12",                                //11 
+				"Floor 13",                                //12 
+				"Floor 14",                                //13 
+				"Floor 15",                                //14 
+				"Floor 16",                                //15 
+				"Debris 1",                                //16 
+				"Debris 2",                                //17 
+				"Debris 3",                                //18 
+				"Debris 4",                                //19 
+				"Debris 5",                                //20 
+				"Debris 6",                                //21 
+				"Debris 7",                                //22 
+				"Debris 8",                                //23 
+				"Scratches 1",                             //24 
+				"Scratches 2",                             //25 
+				"Scratches 3",                             //26 
+				"Scratches 4",                             //27 
+				"Pattern 1",                               //28 
+				"Pattern 2",                               //29 
+				"Pattern 3",                               //30 
+				"Pattern 4",                               //31 
+				"Wall Behind BL BR Tiny Corner",           //32 
+				"Wall Behind BL Tiny Corner",              //33 
+				"Wall Behind BR Tiny Corner",              //34 
+				"Wall Behind",                             //35 
+				"Wall BL Corner TR Tiny Corner",           //36 
+				"Wall BL Corner",                          //37 
+				"Wall BR Corner TL Tiny Corner",           //38 
+				"Wall BR Corner",                          //39 
+				"Wall Front Behind",                       //40 
+				"Wall Front TL Tiny Corner",               //41 
+				"Wall Front TR Tiny Corner",               //42 
+				"Wall Front TR TL Tiny Corner",            //43 
+				"Wall Front",                              //44 
+				"Wall Left BL Corner",                     //45 
+				"Wall Left Right",                         //46 
+				"Wall Left TL BL Corner",                  //47 
+				"Wall Left TL Corner",                     //48 
+				"Wall Left",                               //49 
+				"Wall Middle 2 Tiny BL TL Corner",         //50 
+				"Wall Middle 3 Tiny BL TL BR Corner",      //51 
+				"Wall Middle 4 Tiny All Corners",          //52 
+				"Wall Middle 1 Tiny BL",                   //53 
+				"Wall Middle 2 Tiny BR BL Corner",         //54 
+				"Wall Middle 3 Tiny BR BL TR Corner",      //55 
+				"Wall Middle 1 Tiny BR Corner",            //56 
+				"Wall Middle 2 Tiny BR TR Corner",         //57 
+				"Wall Middle 1 Tiny TL Corner",            //58 
+				"Wall Middle 3 Tiny TL TR BL Corner",      //59 
+				"Wall Middle 3 Tiny TL TR BR Corner",      //60 
+				"Wall Middle 2 Tiny TL TR Corner",         //61 
+				"Wall Middle 1 Tiny TR Corner",            //62 
+				"Wall Middle 2 Tiny BL TR Corner",         //63 
+				"Wall Middle 2 Tiny BR TL Corner",         //64 
+				"Wall Right BR Corner",                    //65 
+				"Wall Right TR BR Corner",                 //66 
+				"Wall Right TR Corner",                    //67 
+				"Wall Right",                              //68 
+				"Wall Standalone Back",                    //69 
+				"Wall Standalone Front",                   //70 
+				"Wall Standalone Left",                    //71 
+				"Wall Standalone Right",                   //72 
+				"Wall Standalone",                         //73 
+				"Wall TL Corner BR Tiny Corner",           //74 
+				"Wall TL Corner",                          //75 
+				"Wall TR Corner BL Tiny Corner",           //76 
+				"Wall TR Corner",                          //77 
+				"Wall",                                    //78 
+				"Wall Decoration 1",                       //79 
+				"Wall Decoration 2",                       //80 
+				"Wall Decoration 3",                       //81 
+				"Wall Decoration 4",                       //82 
+				"Wall Decoration 5",                       //83 
+				"Wall Decoration 6",                       //84 
+				"Lodestone (Pushable) 1x1 1",              //85 
+				"Lodestone (Pushable) 1x1 2",              //86 
+				"Lodestone (Pushable) 1x1 3",              //87 
+				"Lodestone (Pushable) 1x1 4",              //88 
+				"Lodestone (Pushable) 1x2 1",              //89 
+				"Lodestone (Pushable) 1x3 1",              //90 
+				"Lodestone (Pushable) 2x1 1",              //91 
+				"Lodestone (Pushable) 2x2 1",              //92 
+				"Lodestone (Pushable) 2x2 2",              //93 
+				"Lodestone (Pushable) 2x2 3",              //94 
+				"Lodestone (Pushable) 2x2 4",              //95 
+				"Lodestone (Pushable) 2x2 5",              //96 
+				"Lodestone (Pushable) 2x3 1",              //97 
+				"Lodestone (Pushable) 2x3 2",              //98 
+				"Lodestone (Pushable) 2x3 3",              //99 
+				"Lodestone (Pushable) 2x3 4",              //100
+				"Lodestone (Pushable) 2x3 5",              //101
+				"Lodestone (Pushable) 2x3 6",              //102
+				"Lodestone (Pushable) 2x3 7",              //103
+				"Lodestone (Pushable) 2x3 8",              //104
+				"Lodestone (Pushable) 2x3 9",              //105
+				"Lodestone (Pushable) 2x3 10",             //106
+				"Lodestone (Pushable) 2x3 11",             //107
+				"Lodestone (Pushable) 2x3 12",             //108
+				"Lodestone (Pushable) 2x3 13",             //109
+				"Lodestone (Pushable) 2x3 14",             //110
+				"Lodestone (Pushable) 3x1 1",              //111
+				"Lodestone (Pushable) 3x2 1",              //112
+				"Lodestone (Pushable) 3x2 2",              //113
+				"Lodestone (Pushable) 3x2 3",              //114
+				"Lodestone (Pushable) 3x2 4",              //115
+				"Lodestone (Pushable) 3x2 5",              //116
+				"Lodestone (Pushable) 3x2 6",              //117
+				"Lodestone (Pushable) 3x2 7",              //118
+				"Lodestone (Pushable) 3x2 8",              //119
+				"Lodestone (Pushable) 3x2 9",              //120
+				"Lodestone (Pushable) 3x2 10",             //121
+				"Lodestone (Pushable) 3x2 11",             //122
+				"Lodestone (Pushable) 3x2 12",             //123
+				"Lodestone (Pushable) 3x2 13",             //124
+				"Lodestone (Pushable) 3x2 14",             //125
+				"Lodestone (Unpushable) 1x1 1",            //126
+				"Lodestone (Unpushable) 1x2 1",            //127
+				"Lodestone (Unpushable) 1x3 1",            //128
+				"Lodestone (Unpushable) 2x1 1",            //129
+				"Lodestone (Unpushable) 2x2 1",            //130
+				"Lodestone (Unpushable) 2x2 2",            //131
+				"Lodestone (Unpushable) 2x2 3",            //132
+				"Lodestone (Unpushable) 2x2 4",            //133
+				"Lodestone (Unpushable) 2x2 5",            //134
+				"Lodestone (Unpushable) 2x3 1",            //135
+				"Lodestone (Unpushable) 2x3 2",            //136
+				"Lodestone (Unpushable) 2x3 3",            //137
+				"Lodestone (Unpushable) 2x3 4",            //138
+				"Lodestone (Unpushable) 2x3 5",            //139
+				"Lodestone (Unpushable) 2x3 6",            //140
+				"Lodestone (Unpushable) 2x3 7",            //141
+				"Lodestone (Unpushable) 2x3 8",            //142
+				"Lodestone (Unpushable) 2x3 9",            //143
+				"Lodestone (Unpushable) 2x3 10",           //144
+				"Lodestone (Unpushable) 2x3 11",           //145
+				"Lodestone (Unpushable) 2x3 12",           //146
+				"Lodestone (Unpushable) 2x3 13",           //147
+				"Lodestone (Unpushable) 2x3 14",           //148
+				"Lodestone (Unpushable) 3x1 1",            //149
+				"Lodestone (Unpushable) 3x2 1",            //150
+				"Lodestone (Unpushable) 3x2 2",            //151
+				"Lodestone (Unpushable) 3x2 3",            //152
+				"Lodestone (Unpushable) 3x2 4",            //153
+				"Lodestone (Unpushable) 3x2 5",            //154
+				"Lodestone (Unpushable) 3x2 6",            //155
+				"Lodestone (Unpushable) 3x2 7",            //156
+				"Lodestone (Unpushable) 3x2 8",            //157
+				"Lodestone (Unpushable) 3x2 9",            //158
+				"Lodestone (Unpushable) 3x2 10",           //159
+				"Lodestone (Unpushable) 3x2 11",           //160
+				"Lodestone (Unpushable) 3x2 12",           //161
+				"Lodestone (Unpushable) 3x2 13",           //162
+				"Lodestone (Unpushable) 3x2 14",           //163
+				"Button 1 State 1",                        //164
+				"Button 1 State 2",                        //165
+				"Button 1 State 3",                        //166
+				"Door 1 State 1",                          //167
+				"Door 1 State 2",                          //168
+				"Door 1 State 3",                          //169
+				"Door 1 State 4",                          //170
+				"Door 1 State 5",                          //171
+				"Button 2 State 1",                        //172
+				"Button 2 State 2",                        //173
+				"Button 2 State 3",                        //174
+				"Door 2 State 1",                          //175
+				"Door 2 State 2",                          //176
+				"Door 2 State 3",                          //177
+				"Door 2 State 4",                          //178
+				"Door 2 State 5",                          //179
+				"Exit Front State 1",                      //180
+				"Exit Front State 2",                      //181
+				"Exit Left State 1",                       //182
+				"Exit Left State 2",                       //183
+				"Exit Right State 1",                      //184
+				"Exit Right State 2",                      //185
+				"Magnetic Area (Walkable) State 1",        //186
+				"Magnetic Area (Walkable) State 2",        //187
+				"Magnetic Area (Walkable) State 3",        //188
+				"Magnetic Area (Walkable) State 4",        //189
+				"Magnetic Area (Walkable) State 5",        //190
+				"Magnetic Area (Walkable) State 6",        //191
+				"Magnetic Area (Walkable) State 7",        //192
+				"Magnetic Area (Walkable) State 8",        //193
+				"Magnetic Area (Walkable) State 9",        //194
+				"Magnetic Area (Walkable) State 10",       //195
+				"Player",                                  //196
+				"Magnetized Horizontal State 1",           //197
+				"Magnetized Horizontal State 2",           //198
+				"Magnetized Horizontal State 3",           //199
+				"Magnetized Horizontal State 4",           //200
+				"Magnetized Horizontal State 5",           //201
+				"Magnetized Horizontal State 6",           //202
+				"Magnetized Horizontal State 7",           //203
+				"Magnetized Vertical State 1",             //204
+				"Magnetized Vertical State 2",             //205
+				"Magnetized Vertical State 3",             //206
+				"Magnetized Vertical State 4",             //207
+				"Magnetized Vertical State 5",             //208
+				"Magnetized Vertical State 6",             //209
+				"Magnetized Vertical State 7",             //210
+				"Magnetic Overlay"                         //211
 				};
 		
 		Dimensions = new int[][] {
@@ -838,16 +838,16 @@ public class TextToTmx {
 							WallsAndObjects[i - 1][j - 1] = nameToID.get("Lodestone (" + ((value < 91) ? "Unpushable) 1x1 1" : "Pushable) 1x1 " + (random.nextInt(4) + 1)));
 							
 						} else if ((b[0] + b[3] + b[4] + b[5] + b[9]).equals("00100")) {
-							WallsAndObjects[i][j - 1] = nameToID.get("Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 1x2");
+							WallsAndObjects[i][j - 1] = nameToID.get("Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 1x2 1");
 							LodestoneChecked[i + 1][j] = 1;
 						
 						} else if ((b[0] + b[3] + b[4] + b[5] + b[8] + b[9] + b[10]).equals("0010010")) {
-							WallsAndObjects[i + 1][j - 1] = nameToID.get("Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 1x3");
+							WallsAndObjects[i + 1][j - 1] = nameToID.get("Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 1x3 1");
 							LodestoneChecked[i + 1][j] = 1;
 							LodestoneChecked[i + 2][j] = 1;
 						
 						} else if ((b[0] + b[1] + b[4] + b[5]).equals("1000")) {
-							WallsAndObjects[i - 1][j - 1] = nameToID.get("Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 2x1");
+							WallsAndObjects[i - 1][j - 1] = nameToID.get("Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 2x1 1");
 							LodestoneChecked[i][j + 1] = 1;
 						
 						} else if ((b[0] + b[1] + b[3] + b[4] + b[5] + b[9]).equals("100100")) {
@@ -992,7 +992,7 @@ public class TextToTmx {
 							LodestoneChecked[i + 2][j - 1] = 1;
 						
 						} else if ((b[0] + b[1] + b[4] + b[5] + b[6]).equals("11000")) {
-							WallsAndObjects[i - 1][j - 1] = nameToID.get("Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 3x1");
+							WallsAndObjects[i - 1][j - 1] = nameToID.get("Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 3x1 1");
 							LodestoneChecked[i][j + 1] = 1;
 							LodestoneChecked[i][j + 2] = 1;
 						
@@ -1127,11 +1127,17 @@ public class TextToTmx {
                         "   </properties>");
 
             } else if (Blocks[n].contains("Lodestone")) {
+            	
+            	String[] data = Blocks[n].substring(Blocks[n].indexOf(" - ") + 3).split(" ");
+            	
+            	String area = data[1];
+            	String width = data[0];
+            	
 				writer.println("   <properties>\n" +
 						"    <property name=\"#\" value=\"(this)\"/>\n" +
 						"    <property name=\"#Magnetised\" value=\"Magnetised Overlay\"/>\n" +
-						"    <property name=\"Body Area\" value=\"1\"/>\n" +
-						"    <property name=\"Body Width\" type=\"int\" value=\"1\"/>\n" +
+						"    <property name=\"Body Area\" value=\"" + area + "\"/>\n" +
+						"    <property name=\"Body Width\" type=\"int\" value=\"" + width + "\"/>\n" +
 						"    <property name=\"IsMagnetisable\" type=\"bool\" value=\"true\"/>\n" +
 						"    <property name=\"IsPushable\" type=\"bool\" value=\"true\"/>\n" +
 						"    <property name=\"Type\" value=\"Block\"/>\n" +
@@ -1314,7 +1320,7 @@ public class TextToTmx {
 		
 		// To paste the text like, go to Preferences/Java/Editor/Typing/ "Escape text when pasting into a string literal"
 		
-		boolean update = false;
+		boolean update = true;
 		
 		if (update) {
 			String[] levelcodes = new String[] {
@@ -1436,7 +1442,7 @@ public class TextToTmx {
 					"██  █  █ █       b ██████████\r\n" + 
 					"██      X██   █   ███████████\r\n" + 
 					"██ █████ ████████████████████\r\n" + 
-					"██   XYXYY███████████████████\r\n" + 
+					"██   XYXYX███████████████████\r\n" + 
 					"██M██████████████████████████\r\n" + 
 					"█████████████████████████████",
 					"What would happen\r\n" + 
@@ -1485,30 +1491,36 @@ public class TextToTmx {
 			
 		} else {
 			
-			String levelcode = "Demo\r\n" + 
-					"█████████████████████████████\r\n" + 
-					"██   ██████████████ e ███████\r\n" + 
-					"██ s ████   X         ███████\r\n" + 
-					"██   ████ ██ ██████   ███████\r\n" + 
-					"███ █████X     ██████████████\r\n" + 
-					"██ x  M██  M       ██████████\r\n" + 
-					"██    ███     M███    FFX████\r\n" + 
-					"██   X███ x   ██████████y████\r\n" + 
-					"█████  ███████████████  X████\r\n" + 
-					"███    ███████████████ xy ███\r\n" + 
-					"███xyxy████   █   ████  X  f█\r\n" + 
-					"██M    M██ b       ██f    ███\r\n" + 
-					"██M    M██    x    D       f█\r\n" + 
-					"██M    M██    X    █████M████\r\n" + 
-					"██M    M███ xXMXx ███████████\r\n" + 
-					"█████ ████    X    ██████████\r\n" + 
-					"███M█ ██      x    ██████████\r\n" + 
-					"██  █  █ █       b ██████████\r\n" + 
-					"██      X██   █   ███████████\r\n" + 
-					"██ █████ ████████████████████\r\n" + 
-					"██   XYXYX███████████████████\r\n" + 
-					"██M██████████████████████████\r\n" + 
-					"█████████████████████████████";
+			String levelcode = "Triparte\r\n" + 
+					"███████████████████████████\r\n" + 
+					"███████████    ████████████\r\n" + 
+					"███████████     ███████████\r\n" + 
+					"███████████        ████████\r\n" + 
+					"████████████M  x x ████████\r\n" + 
+					"████████████   x x ████████\r\n" + 
+					"██████████         ████████\r\n" + 
+					"██████████    ███████  ████\r\n" + 
+					"███████████             ███\r\n" + 
+					"██████████████         ████\r\n" + 
+					"█████████████   ███████████\r\n" + 
+					"█████████████     █████████\r\n" + 
+					"███████████████   ██M █   █\r\n" + 
+					"███████████████xx█   xxx█ █\r\n" + 
+					"███████████████           █\r\n" + 
+					"█████████████   s  ████████\r\n" + 
+					"██   ███████M   ███████████\r\n" + 
+					"██ █ ███████      █████████\r\n" + 
+					"██ █    ████      █████████\r\n" + 
+					"█eZZ            xx ████████\r\n" + 
+					"██████   ███ M  x  ████████\r\n" + 
+					"██████MMM███    x██████████\r\n" + 
+					"██████████████ █ ██████████\r\n" + 
+					"████████████ xx█ ██████████\r\n" + 
+					"████████████ x       ██████\r\n" + 
+					"█████████████   ██xx ██████\r\n" + 
+					"██████████████   █ x███████\r\n" + 
+					"██████████████     ████████\r\n" + 
+					"███████████████████████████";
 			
 			TextToTmx lvl = new TextToTmx(levelcode);
 			lvl.convert("C:/Users/ckjr/Desktop/Magnets/android/assets/Levels/");

@@ -1,0 +1,139 @@
+ Volume in drive C is OS
+ Volume Serial Number is 8826-8147
+
+ Directory of C:\Users\ckjr\Desktop\Magnets\android\assets\Graphics\Objects
+
+25/05/2016  04:24 PM    <DIR>          .
+25/05/2016  04:24 PM    <DIR>          ..
+20/05/2016  03:20 PM               310 Button 1 State 1.png
+20/05/2016  03:19 PM               302 Button 1 State 2.png
+20/05/2016  03:18 PM               295 Button 1 State 3.png
+23/05/2016  11:02 PM               324 Button 2 State 1.png
+23/05/2016  11:03 PM               316 Button 2 State 2.png
+23/05/2016  11:03 PM               307 Button 2 State 3.png
+20/05/2016  03:31 PM               352 Door 1 State 1.png
+20/05/2016  03:32 PM               362 Door 1 State 2.png
+20/05/2016  03:33 PM               361 Door 1 State 3.png
+20/05/2016  03:34 PM               350 Door 1 State 4.png
+20/05/2016  03:35 PM               332 Door 1 State 5.png
+23/05/2016  11:05 PM               365 Door 2 State 1.png
+23/05/2016  11:06 PM               374 Door 2 State 2.png
+23/05/2016  11:06 PM               374 Door 2 State 3.png
+23/05/2016  11:06 PM               362 Door 2 State 4.png
+23/05/2016  11:07 PM               349 Door 2 State 5.png
+17/05/2016  10:45 PM               463 Exit Front State 1.png
+19/05/2016  11:10 AM               476 Exit Front State 2.png
+17/05/2016  10:43 PM               352 Exit Left State 1.png
+19/05/2016  11:11 AM               363 Exit Left State 2.png
+17/05/2016  10:43 PM               345 Exit Right State 1.png
+19/05/2016  11:12 AM               357 Exit Right State 2.png
+25/05/2016  04:24 PM                 0 listmyfolder.txt
+22/05/2016  05:23 PM               776 Lodestone (Pushable) 1x1 1 - 1 1.png
+24/05/2016  04:12 PM               794 Lodestone (Pushable) 1x1 2 - 1 1.png
+24/05/2016  04:13 PM               809 Lodestone (Pushable) 1x1 3 - 1 1.png
+24/05/2016  04:14 PM               787 Lodestone (Pushable) 1x1 4 - 1 1.png
+22/05/2016  05:24 PM             1,128 Lodestone (Pushable) 1x2 1 - 1 11.png
+22/05/2016  05:24 PM             1,580 Lodestone (Pushable) 1x3 1 - 1 111.png
+22/05/2016  07:40 PM             1,120 Lodestone (Pushable) 2x1 1 - 2 11.png
+22/05/2016  07:41 PM             1,504 Lodestone (Pushable) 2x2 1 - 2 1110.png
+22/05/2016  07:37 PM             1,487 Lodestone (Pushable) 2x2 2 - 2 1101.png
+22/05/2016  07:32 PM             1,484 Lodestone (Pushable) 2x2 3 - 2 0111.png
+22/05/2016  07:34 PM             1,528 Lodestone (Pushable) 2x2 4 - 2 1011.png
+22/05/2016  07:28 PM             1,510 Lodestone (Pushable) 2x2 5 - 2 1111.png
+22/05/2016  07:24 PM             2,075 Lodestone (Pushable) 2x3 1 - 2 101110.png
+23/05/2016  02:32 PM             2,410 Lodestone (Pushable) 2x3 10 - 2 110111.png
+23/05/2016  02:38 PM             2,016 Lodestone (Pushable) 2x3 11 - 2 111110.png
+23/05/2016  02:39 PM             2,016 Lodestone (Pushable) 2x3 12 - 2 111101.png
+23/05/2016  02:40 PM             1,896 Lodestone (Pushable) 2x3 13 - 2 101111.png
+23/05/2016  02:40 PM             1,912 Lodestone (Pushable) 2x3 14 - 2 011111.png
+22/05/2016  07:21 PM             1,976 Lodestone (Pushable) 2x3 2 - 2 011101.png
+22/05/2016  07:19 PM             1,824 Lodestone (Pushable) 2x3 3 - 2 101011.png
+22/05/2016  07:17 PM             1,898 Lodestone (Pushable) 2x3 4 - 2 111010.png
+22/05/2016  07:16 PM             1,983 Lodestone (Pushable) 2x3 5 - 2 010111.png
+22/05/2016  07:15 PM             2,008 Lodestone (Pushable) 2x3 6 - 2 110101.png
+22/05/2016  07:13 PM             2,044 Lodestone (Pushable) 2x3 7 - 2 101101.png
+22/05/2016  07:13 PM             2,219 Lodestone (Pushable) 2x3 8 - 2 011110.png
+23/05/2016  02:32 PM             2,430 Lodestone (Pushable) 2x3 9 - 2 111011.png
+22/05/2016  07:12 PM             1,459 Lodestone (Pushable) 3x1 1 - 3 111.png
+22/05/2016  07:10 PM             2,017 Lodestone (Pushable) 3x2 1 - 3 010111.png
+23/05/2016  01:22 AM             2,318 Lodestone (Pushable) 3x2 10 - 3 101111.png
+23/05/2016  01:27 AM             2,205 Lodestone (Pushable) 3x2 11 - 3 111110.png
+23/05/2016  01:27 AM             2,190 Lodestone (Pushable) 3x2 12 - 3 111011.png
+23/05/2016  01:30 AM             1,981 Lodestone (Pushable) 3x2 13 - 3 110111.png
+23/05/2016  01:30 AM             1,990 Lodestone (Pushable) 3x2 14 - 3 011111.png
+22/05/2016  06:47 PM             2,232 Lodestone (Pushable) 3x2 2 - 3 111010.png
+22/05/2016  06:29 PM             2,115 Lodestone (Pushable) 3x2 3 - 3 111100.png
+22/05/2016  06:33 PM             2,019 Lodestone (Pushable) 3x2 4 - 3 111001.png
+22/05/2016  05:50 PM             1,815 Lodestone (Pushable) 3x2 5 - 3 100111.png
+22/05/2016  05:34 PM             1,929 Lodestone (Pushable) 3x2 6 - 3 001111.png
+22/05/2016  05:25 PM             2,085 Lodestone (Pushable) 3x2 7 - 3 110011.png
+22/05/2016  05:24 PM             2,083 Lodestone (Pushable) 3x2 8 - 3 011110.png
+23/05/2016  01:21 AM             2,548 Lodestone (Pushable) 3x2 9 - 3 111101.png
+23/05/2016  09:20 PM               341 Lodestone (Unpushable) 1x1 1 - 1 1.png
+23/05/2016  09:20 PM               355 Lodestone (Unpushable) 1x2 1 - 1 11.png
+23/05/2016  09:20 PM               373 Lodestone (Unpushable) 1x3 1 - 1 111.png
+23/05/2016  09:20 PM               358 Lodestone (Unpushable) 2x1 1 - 2 11.png
+23/05/2016  09:20 PM               506 Lodestone (Unpushable) 2x2 1 - 2 1110.png
+23/05/2016  09:20 PM               469 Lodestone (Unpushable) 2x2 2 - 2 1101.png
+23/05/2016  09:20 PM               476 Lodestone (Unpushable) 2x2 3 - 2 0111.png
+23/05/2016  09:17 PM               452 Lodestone (Unpushable) 2x2 4 - 2 1011.png
+23/05/2016  09:20 PM               399 Lodestone (Unpushable) 2x2 5 - 2 1111.png
+23/05/2016  09:20 PM               566 Lodestone (Unpushable) 2x3 1 - 2 101110.png
+23/05/2016  09:20 PM               547 Lodestone (Unpushable) 2x3 10 - 2 110111.png
+23/05/2016  09:20 PM               548 Lodestone (Unpushable) 2x3 11 - 2 111110.png
+23/05/2016  09:19 PM               534 Lodestone (Unpushable) 2x3 12 - 2 111101.png
+23/05/2016  09:19 PM               493 Lodestone (Unpushable) 2x3 13 - 2 101111.png
+23/05/2016  09:19 PM               502 Lodestone (Unpushable) 2x3 14 - 2 011111.png
+23/05/2016  09:20 PM               573 Lodestone (Unpushable) 2x3 2 - 2 011101.png
+23/05/2016  09:20 PM               503 Lodestone (Unpushable) 2x3 3 - 2 101011.png
+23/05/2016  09:20 PM               546 Lodestone (Unpushable) 2x3 4 - 2 111010.png
+23/05/2016  09:20 PM               518 Lodestone (Unpushable) 2x3 5 - 2 010111.png
+23/05/2016  09:20 PM               538 Lodestone (Unpushable) 2x3 6 - 2 110101.png
+23/05/2016  09:20 PM               565 Lodestone (Unpushable) 2x3 7 - 2 101101.png
+23/05/2016  09:20 PM               586 Lodestone (Unpushable) 2x3 8 - 2 011110.png
+23/05/2016  09:20 PM               541 Lodestone (Unpushable) 2x3 9 - 2 111011.png
+23/05/2016  09:19 PM               406 Lodestone (Unpushable) 3x1 1 - 3 111.png
+23/05/2016  09:19 PM               617 Lodestone (Unpushable) 3x2 1 - 3 010111.png
+23/05/2016  09:19 PM               611 Lodestone (Unpushable) 3x2 10 - 3 101111.png
+23/05/2016  09:19 PM               591 Lodestone (Unpushable) 3x2 11 - 3 111110.png
+23/05/2016  09:19 PM               579 Lodestone (Unpushable) 3x2 12 - 3 111011.png
+23/05/2016  09:19 PM               515 Lodestone (Unpushable) 3x2 13 - 3 110111.png
+23/05/2016  09:20 PM               533 Lodestone (Unpushable) 3x2 14 - 3 011111.png
+23/05/2016  09:19 PM               712 Lodestone (Unpushable) 3x2 2 - 3 111010.png
+23/05/2016  09:19 PM               619 Lodestone (Unpushable) 3x2 3 - 3 111100.png
+23/05/2016  09:19 PM               577 Lodestone (Unpushable) 3x2 4 - 3 111001.png
+23/05/2016  09:19 PM               523 Lodestone (Unpushable) 3x2 5 - 3 100111.png
+23/05/2016  09:19 PM               541 Lodestone (Unpushable) 3x2 6 - 3 001111.png
+23/05/2016  09:19 PM               593 Lodestone (Unpushable) 3x2 7 - 3 110011.png
+23/05/2016  09:19 PM               625 Lodestone (Unpushable) 3x2 8 - 3 011110.png
+23/05/2016  09:19 PM               703 Lodestone (Unpushable) 3x2 9 - 3 111101.png
+20/05/2016  01:12 PM               595 Magnetic Area (Walkable) State 1.png
+20/05/2016  01:22 PM               598 Magnetic Area (Walkable) State 10.png
+20/05/2016  01:15 PM               580 Magnetic Area (Walkable) State 2.png
+20/05/2016  01:16 PM               587 Magnetic Area (Walkable) State 3.png
+20/05/2016  01:16 PM               592 Magnetic Area (Walkable) State 4.png
+20/05/2016  01:17 PM               586 Magnetic Area (Walkable) State 5.png
+20/05/2016  01:21 PM               606 Magnetic Area (Walkable) State 6.png
+20/05/2016  01:21 PM               591 Magnetic Area (Walkable) State 7.png
+20/05/2016  01:22 PM               599 Magnetic Area (Walkable) State 8.png
+20/05/2016  01:22 PM               602 Magnetic Area (Walkable) State 9.png
+25/05/2016  11:52 AM               273 Magnetic Overlay.png
+24/05/2016  02:37 PM               585 Magnetized Horizontal State 1.png
+24/05/2016  02:42 PM               528 Magnetized Horizontal State 2.png
+24/05/2016  02:43 PM               515 Magnetized Horizontal State 3.png
+24/05/2016  02:43 PM               515 Magnetized Horizontal State 4.png
+24/05/2016  02:42 PM               528 Magnetized Horizontal State 5.png
+24/05/2016  02:42 PM               528 Magnetized Horizontal State 6.png
+24/05/2016  02:42 PM               528 Magnetized Horizontal State 7.png
+24/05/2016  02:37 PM               451 Magnetized Vertical State 1.png
+24/05/2016  02:47 PM               424 Magnetized Vertical State 2.png
+24/05/2016  02:47 PM               437 Magnetized Vertical State 3.png
+24/05/2016  02:47 PM               436 Magnetized Vertical State 4.png
+24/05/2016  02:47 PM               443 Magnetized Vertical State 5.png
+24/05/2016  02:47 PM               443 Magnetized Vertical State 6.png
+24/05/2016  02:47 PM               444 Magnetized Vertical State 7.png
+20/05/2016  06:40 PM    <DIR>          Overlay
+17/05/2016  10:28 PM               522 Player.png
+25/05/2016  11:42 AM    <DIR>          To be added
+             128 File(s)        115,561 bytes
+               4 Dir(s)  112,782,372,864 bytes free
