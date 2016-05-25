@@ -48,10 +48,8 @@ public class TextToTmx {
 			"../Graphics/Floor/Overlays/Scratches 2.png",
 			"../Graphics/Floor/Overlays/Scratches 3.png",
 			"../Graphics/Floor/Overlays/Scratches 4.png",
-			"../Graphics/Floor/Overlays/Pattern 1.png",
-			"../Graphics/Floor/Overlays/Pattern 2.png",
-			"../Graphics/Floor/Overlays/Pattern 3.png",
-			"../Graphics/Floor/Overlays/Pattern 4.png",
+			"../Graphics/Floor/Overlays/Small Corner 1.png",
+			"../Graphics/Floor/Overlays/Small Corner 2.png",
 			"../Graphics/Walls/Set 1 (Standard)/Wall Behind BL BR Tiny Corner.png",
 			"../Graphics/Walls/Set 1 (Standard)/Wall Behind BL Tiny Corner.png",
 			"../Graphics/Walls/Set 1 (Standard)/Wall Behind BR Tiny Corner.png",
@@ -266,10 +264,8 @@ public class TextToTmx {
 				"Scratches 2",                             
 				"Scratches 3",                             
 				"Scratches 4",                             
-				"Pattern 1",                               
-				"Pattern 2",                               
-				"Pattern 3",                               
-				"Pattern 4",                               
+				"Small Corner 1",                               
+				"Small Corner 2",                             
 				"Wall Behind BL BR Tiny Corner",           
 				"Wall Behind BL Tiny Corner",              
 				"Wall Behind BR Tiny Corner",              
@@ -485,8 +481,8 @@ public class TextToTmx {
 				new int[] {32, 32},
 				new int[] {32, 32},
 				new int[] {32, 32},
-				new int[] {32, 32},
-				new int[] {32, 32},
+				new int[] {32, 48},
+				new int[] {32, 48},
 				new int[] {32, 48},
 				new int[] {32, 48},
 				new int[] {32, 48},
@@ -688,6 +684,7 @@ public class TextToTmx {
 		int[][] WallsAndObjects  = new int[rows][cols];
 		int[][] Floor            = new int[rows][cols];
 		int[][] FloorDeco		 = new int[rows][cols];
+		int[][] WallDeco		 = new int[rows][cols];
 		int[][] Lodestones       = new int[rows + 2][cols + 2];
 		int[][] LodestoneChecked = new int[rows][cols];
 		int[][] Collision	     = new int[rows][cols];
@@ -699,6 +696,7 @@ public class TextToTmx {
 		for (String[] row: data) Arrays.fill(row, " ");
 		for (int[] row: Floor) Arrays.fill(row, -1);
 		for (int[] row: FloorDeco) Arrays.fill(row, -1);
+		for (int[] row: WallDeco) Arrays.fill(row, -1);
 		for (int[] row: WallsAndObjects) Arrays.fill(row, -1);
 		
 		// To check for which lodestone to place
@@ -788,6 +786,15 @@ public class TextToTmx {
 					else if (adjacents.equals("1000"))				WallsAndObjects[i - 1][j - 1] = nameToID.get("Wall Standalone Front");
 					else if (adjacents.equals("0010"))				WallsAndObjects[i - 1][j - 1] = nameToID.get("Wall Standalone Left");
 					else if (adjacents.equals("0100"))				WallsAndObjects[i - 1][j - 1] = nameToID.get("Wall Standalone Right");
+					
+					if (Math.random() < 0.1 && data[i - 1][j].equals("█")) {
+						if (data[i + 1][j].equals("█")) {
+							WallDeco[i - 1][j - 1] = nameToID.get("Wall Decoration 1");
+						} else if (data[i + 1][j].equals(" ")){
+							WallDeco[i - 1][j - 1] = nameToID.get("Wall Decoration 2");
+						}
+					}
+					
 				} else {
 					if (data[i][j].equals("b")) 					WallsAndObjects[i - 1][j - 1] = nameToID.get("Button 1 State 1");
 					else if (data[i][j].equals("B")) 				WallsAndObjects[i - 1][j - 1] = nameToID.get("Door 1 State 1");
@@ -800,12 +807,20 @@ public class TextToTmx {
 						Lodestones[i][j] = data[i][j].charAt(0);
 					}
 					
-					if ("fFBb".contains(data[i][j])) {
+					if ("fFBbMxyzXYZe".contains(data[i][j])) {
 						Floor[i - 1][j - 1] = 1;
 					} else {
 						Floor[i - 1][j - 1] = (int) (16 * Math.pow(Math.random(), 0.75));
-						if      (Math.random() < 0.3)   FloorDeco[i - 1][j - 1] = (Math.random() < 0.3) ? nameToID.get("Debris " + (random.nextInt(8) + 1)) : nameToID.get("Scratches " + (random.nextInt(4) + 1));
-						else if (Math.random() < 0.3)  	FloorDeco[i - 1][j - 1] = nameToID.get("Pattern " + (random.nextInt(4) + 1));
+						
+						if (Math.random() < 0.3) {
+							FloorDeco[i - 1][j - 1] = (Math.random() < 0.7) ? nameToID.get("Debris " + (random.nextInt(8) + 1)) : nameToID.get("Scratches " + (random.nextInt(4) + 1));
+						}
+						
+						if (data[i - 1][j].equals("█") && data[i][j + 1].equals("█")) {
+							WallDeco[i - 1][j - 1] = nameToID.get("Small Corner 1");
+						} else if (data[i - 1][j].equals("█") && data[i][j - 1].equals("█")) {
+							WallDeco[i - 1][j - 1] = nameToID.get("Small Corner 2");
+						}
 					}
 				}
 			}
@@ -1258,6 +1273,24 @@ public class TextToTmx {
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < cols; j++) {
 				writer.print((WallsAndObjects[i][j] + 1));
+				if (i != rows - 1 || j != cols - 1) writer.print(",");
+			}
+			writer.println();
+		}
+		
+		writer.println(
+				"</data>\r\n" + 
+				" </layer>");
+		
+		// Walls Deco Layer
+		
+		writer.println(
+				" <layer name=\"Walls and Objects\" width=\"" + cols + "\" height=\"" + rows + "\">\r\n" + 
+				"  <data encoding=\"csv\">");
+		
+		for (int i = 0; i < rows; i++) {
+			for (int j = 0; j < cols; j++) {
+				writer.print((WallDeco[i][j] + 1));
 				if (i != rows - 1 || j != cols - 1) writer.print(",");
 			}
 			writer.println();
