@@ -505,7 +505,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="1.png"/>
+    <property name="Body Area" value="1"/>
     <property name="Body Width" type="int" value="1"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -518,7 +518,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="1.png"/>
+    <property name="Body Area" value="1"/>
     <property name="Body Width" type="int" value="1"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -531,7 +531,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="1.png"/>
+    <property name="Body Area" value="1"/>
     <property name="Body Width" type="int" value="1"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -544,7 +544,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="1.png"/>
+    <property name="Body Area" value="1"/>
     <property name="Body Width" type="int" value="1"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -557,7 +557,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="11.png"/>
+    <property name="Body Area" value="11"/>
     <property name="Body Width" type="int" value="1"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -570,7 +570,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="111.png"/>
+    <property name="Body Area" value="111"/>
     <property name="Body Width" type="int" value="1"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -583,7 +583,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="11.png"/>
+    <property name="Body Area" value="11"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -596,7 +596,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="1110.png"/>
+    <property name="Body Area" value="1110"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -609,7 +609,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="1101.png"/>
+    <property name="Body Area" value="1101"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -622,7 +622,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="0111.png"/>
+    <property name="Body Area" value="0111"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -635,7 +635,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="1011.png"/>
+    <property name="Body Area" value="1011"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -648,7 +648,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="1111.png"/>
+    <property name="Body Area" value="1111"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -661,7 +661,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="101110.png"/>
+    <property name="Body Area" value="101110"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -674,7 +674,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="011101.png"/>
+    <property name="Body Area" value="011101"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -687,7 +687,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="101011.png"/>
+    <property name="Body Area" value="101011"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -700,7 +700,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="111010.png"/>
+    <property name="Body Area" value="111010"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -713,7 +713,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="010111.png"/>
+    <property name="Body Area" value="010111"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -726,7 +726,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="110101.png"/>
+    <property name="Body Area" value="110101"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -739,7 +739,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="101101.png"/>
+    <property name="Body Area" value="101101"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -752,7 +752,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="011110.png"/>
+    <property name="Body Area" value="011110"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -765,7 +765,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="111011.png"/>
+    <property name="Body Area" value="111011"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -778,7 +778,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="110111.png"/>
+    <property name="Body Area" value="110111"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -791,7 +791,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="111110.png"/>
+    <property name="Body Area" value="111110"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -804,7 +804,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="111101.png"/>
+    <property name="Body Area" value="111101"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -817,7 +817,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="101111.png"/>
+    <property name="Body Area" value="101111"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -830,7 +830,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="011111.png"/>
+    <property name="Body Area" value="011111"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -843,7 +843,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="111.png"/>
+    <property name="Body Area" value="111"/>
     <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -856,7 +856,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="010111.png"/>
+    <property name="Body Area" value="010111"/>
     <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -869,7 +869,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="101111.png"/>
+    <property name="Body Area" value="101111"/>
     <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -882,7 +882,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="111110.png"/>
+    <property name="Body Area" value="111110"/>
     <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -895,7 +895,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="111011.png"/>
+    <property name="Body Area" value="111011"/>
     <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -908,7 +908,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="110111.png"/>
+    <property name="Body Area" value="110111"/>
     <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -921,7 +921,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="011111.png"/>
+    <property name="Body Area" value="011111"/>
     <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -934,7 +934,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="111010.png"/>
+    <property name="Body Area" value="111010"/>
     <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -947,7 +947,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="111100.png"/>
+    <property name="Body Area" value="111100"/>
     <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -960,7 +960,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="111001.png"/>
+    <property name="Body Area" value="111001"/>
     <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -973,7 +973,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="100111.png"/>
+    <property name="Body Area" value="100111"/>
     <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -986,7 +986,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="001111.png"/>
+    <property name="Body Area" value="001111"/>
     <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -999,7 +999,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="110011.png"/>
+    <property name="Body Area" value="110011"/>
     <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -1012,7 +1012,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="011110.png"/>
+    <property name="Body Area" value="011110"/>
     <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -1025,7 +1025,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="111101.png"/>
+    <property name="Body Area" value="111101"/>
     <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -1038,7 +1038,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="1.png"/>
+    <property name="Body Area" value="1"/>
     <property name="Body Width" type="int" value="1"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -1051,7 +1051,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="11.png"/>
+    <property name="Body Area" value="11"/>
     <property name="Body Width" type="int" value="1"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -1064,7 +1064,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="111.png"/>
+    <property name="Body Area" value="111"/>
     <property name="Body Width" type="int" value="1"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -1077,7 +1077,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="11.png"/>
+    <property name="Body Area" value="11"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -1090,7 +1090,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="1110.png"/>
+    <property name="Body Area" value="1110"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -1103,7 +1103,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="1101.png"/>
+    <property name="Body Area" value="1101"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -1116,7 +1116,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="0111.png"/>
+    <property name="Body Area" value="0111"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -1129,7 +1129,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="1011.png"/>
+    <property name="Body Area" value="1011"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -1142,7 +1142,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="1111.png"/>
+    <property name="Body Area" value="1111"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -1155,7 +1155,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="101110.png"/>
+    <property name="Body Area" value="101110"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -1168,7 +1168,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="110111.png"/>
+    <property name="Body Area" value="110111"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -1181,7 +1181,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="111110.png"/>
+    <property name="Body Area" value="111110"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -1194,7 +1194,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="111101.png"/>
+    <property name="Body Area" value="111101"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -1207,7 +1207,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="101111.png"/>
+    <property name="Body Area" value="101111"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -1220,7 +1220,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="011111.png"/>
+    <property name="Body Area" value="011111"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -1233,7 +1233,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="011101.png"/>
+    <property name="Body Area" value="011101"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -1246,7 +1246,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="101011.png"/>
+    <property name="Body Area" value="101011"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -1259,7 +1259,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="111010.png"/>
+    <property name="Body Area" value="111010"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -1272,7 +1272,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="010111.png"/>
+    <property name="Body Area" value="010111"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -1285,7 +1285,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="110101.png"/>
+    <property name="Body Area" value="110101"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -1298,7 +1298,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="101101.png"/>
+    <property name="Body Area" value="101101"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -1311,7 +1311,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="011110.png"/>
+    <property name="Body Area" value="011110"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -1324,7 +1324,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="111011.png"/>
+    <property name="Body Area" value="111011"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -1337,7 +1337,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="111.png"/>
+    <property name="Body Area" value="111"/>
     <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -1350,7 +1350,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="010111.png"/>
+    <property name="Body Area" value="010111"/>
     <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -1363,7 +1363,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="111010.png"/>
+    <property name="Body Area" value="111010"/>
     <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -1376,7 +1376,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="111100.png"/>
+    <property name="Body Area" value="111100"/>
     <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -1389,7 +1389,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="111001.png"/>
+    <property name="Body Area" value="111001"/>
     <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -1402,7 +1402,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="100111.png"/>
+    <property name="Body Area" value="100111"/>
     <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -1415,7 +1415,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="001111.png"/>
+    <property name="Body Area" value="001111"/>
     <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -1428,7 +1428,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="110011.png"/>
+    <property name="Body Area" value="110011"/>
     <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -1441,7 +1441,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="011110.png"/>
+    <property name="Body Area" value="011110"/>
     <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -1454,7 +1454,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="111101.png"/>
+    <property name="Body Area" value="111101"/>
     <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -1467,7 +1467,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="101111.png"/>
+    <property name="Body Area" value="101111"/>
     <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -1480,7 +1480,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="111110.png"/>
+    <property name="Body Area" value="111110"/>
     <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -1493,7 +1493,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="111011.png"/>
+    <property name="Body Area" value="111011"/>
     <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -1506,7 +1506,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="110111.png"/>
+    <property name="Body Area" value="110111"/>
     <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -1519,7 +1519,7 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="011111.png"/>
+    <property name="Body Area" value="011111"/>
     <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
@@ -1784,18 +1784,18 @@
  <layer name="Floor" width="14" height="14">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,7,10,4,11,10,0,0,0,0,0,
-0,0,0,15,13,5,8,6,11,3,0,0,0,0,
-0,0,14,4,4,12,15,10,11,13,0,11,0,0,
-0,14,7,10,13,12,14,2,13,8,3,1,0,0,
-0,9,13,13,8,6,10,15,3,0,0,5,0,0,
-0,12,10,2,9,0,10,13,11,0,0,16,0,0,
-0,11,12,16,0,0,6,3,7,12,0,15,0,0,
-0,10,11,12,0,0,10,11,7,11,0,9,0,0,
-0,10,7,14,0,0,13,3,4,12,0,11,0,0,
-0,10,2,13,15,0,11,8,8,14,0,8,0,0,
-0,13,14,5,10,9,10,16,12,14,7,15,0,0,
-0,12,14,8,10,8,0,0,0,0,0,0,0,0,
+0,0,0,0,13,16,5,9,11,0,0,0,0,0,
+0,0,0,10,11,15,13,16,14,4,0,0,0,0,
+0,0,15,2,13,11,3,5,14,14,0,10,0,0,
+0,11,14,10,16,16,1,16,13,7,6,12,0,0,
+0,13,3,14,11,14,16,11,10,0,0,14,0,0,
+0,9,9,9,6,0,11,13,6,0,0,14,0,0,
+0,4,16,11,0,0,6,12,8,13,0,8,0,0,
+0,10,13,10,0,0,14,3,15,13,0,12,0,0,
+0,12,5,7,0,0,10,12,8,9,0,6,0,0,
+0,8,15,6,12,0,6,8,15,10,0,4,0,0,
+0,4,10,8,1,4,4,16,10,16,12,12,0,0,
+0,9,11,10,12,13,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
@@ -1803,18 +1803,18 @@
  <layer name="Floor Decorations" width="14" height="14">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,25,30,0,0,0,0,0,0,0,
-0,0,0,25,0,0,25,31,0,28,0,0,0,0,
-0,0,0,28,0,0,32,0,0,26,0,27,0,0,
-0,27,18,0,0,0,0,0,30,25,0,0,0,0,
-0,26,31,26,0,0,0,18,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,28,0,0,
-0,0,30,17,0,0,0,0,0,0,0,28,0,0,
-0,0,0,0,0,0,0,29,22,27,0,23,0,0,
-0,32,30,32,0,0,32,0,0,19,0,25,0,0,
-0,27,32,18,26,0,27,0,0,28,0,30,0,0,
-0,0,29,0,0,28,26,30,0,30,26,21,0,0,
-0,20,32,0,0,19,0,0,0,0,0,0,0,0,
+0,0,0,0,0,28,26,0,0,0,0,0,0,0,
+0,0,0,29,29,0,27,29,0,0,0,0,0,0,
+0,0,0,0,32,27,0,0,0,29,0,26,0,0,
+0,30,27,29,0,0,0,30,0,0,0,32,0,0,
+0,25,0,29,0,26,0,31,19,0,0,31,0,0,
+0,0,24,0,0,0,0,28,0,0,0,0,0,0,
+0,27,29,0,0,0,26,18,29,29,0,0,0,0,
+0,28,25,27,0,0,0,25,0,29,0,0,0,0,
+0,24,27,0,0,0,0,28,26,0,0,30,0,0,
+0,0,25,0,0,0,25,31,29,23,0,31,0,0,
+0,29,23,0,30,31,0,26,30,19,0,26,0,0,
+0,0,0,25,27,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
