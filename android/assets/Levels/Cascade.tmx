@@ -1,507 +1,507 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="8" height="15" tilewidth="32" tileheight="32" nextobjectid="1">
  <tileset firstgid="1" name="Tileset" tilewidth="96" tileheight="112" tilecount="212" columns="0">
-  <tile id="0">
 
+  <tile id="0">
    <image width="32" height="32" source="../Graphics/Floor/Floor 1.png"/>
   </tile>
-  <tile id="1">
 
+  <tile id="1">
    <image width="32" height="32" source="../Graphics/Floor/Floor 2.png"/>
   </tile>
-  <tile id="2">
 
+  <tile id="2">
    <image width="32" height="32" source="../Graphics/Floor/Floor 3.png"/>
   </tile>
-  <tile id="3">
 
+  <tile id="3">
    <image width="32" height="32" source="../Graphics/Floor/Floor 4.png"/>
   </tile>
-  <tile id="4">
 
+  <tile id="4">
    <image width="32" height="32" source="../Graphics/Floor/Floor 5.png"/>
   </tile>
-  <tile id="5">
 
+  <tile id="5">
    <image width="32" height="32" source="../Graphics/Floor/Floor 6.png"/>
   </tile>
-  <tile id="6">
 
+  <tile id="6">
    <image width="32" height="32" source="../Graphics/Floor/Floor 7.png"/>
   </tile>
-  <tile id="7">
 
+  <tile id="7">
    <image width="32" height="32" source="../Graphics/Floor/Floor 8.png"/>
   </tile>
-  <tile id="8">
 
+  <tile id="8">
    <image width="32" height="32" source="../Graphics/Floor/Floor 9.png"/>
   </tile>
-  <tile id="9">
 
+  <tile id="9">
    <image width="32" height="32" source="../Graphics/Floor/Floor 10.png"/>
   </tile>
-  <tile id="10">
 
+  <tile id="10">
    <image width="32" height="32" source="../Graphics/Floor/Floor 11.png"/>
   </tile>
-  <tile id="11">
 
+  <tile id="11">
    <image width="32" height="32" source="../Graphics/Floor/Floor 12.png"/>
   </tile>
-  <tile id="12">
 
+  <tile id="12">
    <image width="32" height="32" source="../Graphics/Floor/Floor 13.png"/>
   </tile>
-  <tile id="13">
 
+  <tile id="13">
    <image width="32" height="32" source="../Graphics/Floor/Floor 14.png"/>
   </tile>
-  <tile id="14">
 
+  <tile id="14">
    <image width="32" height="32" source="../Graphics/Floor/Floor 15.png"/>
   </tile>
-  <tile id="15">
 
+  <tile id="15">
    <image width="32" height="32" source="../Graphics/Floor/Floor 16.png"/>
   </tile>
-  <tile id="16">
 
+  <tile id="16">
    <image width="32" height="32" source="../Graphics/Floor/Overlays/Debris 1.png"/>
   </tile>
-  <tile id="17">
 
+  <tile id="17">
    <image width="32" height="32" source="../Graphics/Floor/Overlays/Debris 2.png"/>
   </tile>
-  <tile id="18">
 
+  <tile id="18">
    <image width="32" height="32" source="../Graphics/Floor/Overlays/Debris 3.png"/>
   </tile>
-  <tile id="19">
 
+  <tile id="19">
    <image width="32" height="32" source="../Graphics/Floor/Overlays/Debris 4.png"/>
   </tile>
-  <tile id="20">
 
+  <tile id="20">
    <image width="32" height="32" source="../Graphics/Floor/Overlays/Debris 5.png"/>
   </tile>
-  <tile id="21">
 
+  <tile id="21">
    <image width="32" height="32" source="../Graphics/Floor/Overlays/Debris 6.png"/>
   </tile>
-  <tile id="22">
 
+  <tile id="22">
    <image width="32" height="32" source="../Graphics/Floor/Overlays/Debris 7.png"/>
   </tile>
-  <tile id="23">
 
+  <tile id="23">
    <image width="32" height="32" source="../Graphics/Floor/Overlays/Debris 8.png"/>
   </tile>
-  <tile id="24">
 
+  <tile id="24">
    <image width="32" height="32" source="../Graphics/Floor/Overlays/Scratches 1.png"/>
   </tile>
-  <tile id="25">
 
+  <tile id="25">
    <image width="32" height="32" source="../Graphics/Floor/Overlays/Scratches 2.png"/>
   </tile>
-  <tile id="26">
 
+  <tile id="26">
    <image width="32" height="32" source="../Graphics/Floor/Overlays/Scratches 3.png"/>
   </tile>
-  <tile id="27">
 
+  <tile id="27">
    <image width="32" height="32" source="../Graphics/Floor/Overlays/Scratches 4.png"/>
   </tile>
-  <tile id="28">
 
+  <tile id="28">
    <image width="32" height="32" source="../Graphics/Floor/Overlays/Pattern 1.png"/>
   </tile>
-  <tile id="29">
 
+  <tile id="29">
    <image width="32" height="32" source="../Graphics/Floor/Overlays/Pattern 2.png"/>
   </tile>
-  <tile id="30">
 
+  <tile id="30">
    <image width="32" height="32" source="../Graphics/Floor/Overlays/Pattern 3.png"/>
   </tile>
-  <tile id="31">
 
+  <tile id="31">
    <image width="32" height="32" source="../Graphics/Floor/Overlays/Pattern 4.png"/>
   </tile>
-  <tile id="32">
 
+  <tile id="32">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="32" source="../Graphics/Walls/Set 1 (Standard)/Wall Behind BL BR Tiny Corner.png"/>
   </tile>
-  <tile id="33">
 
+  <tile id="33">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="32" source="../Graphics/Walls/Set 1 (Standard)/Wall Behind BL Tiny Corner.png"/>
   </tile>
-  <tile id="34">
 
+  <tile id="34">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Walls/Set 1 (Standard)/Wall Behind BR Tiny Corner.png"/>
   </tile>
-  <tile id="35">
 
+  <tile id="35">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Walls/Set 1 (Standard)/Wall Behind.png"/>
   </tile>
-  <tile id="36">
 
+  <tile id="36">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Walls/Set 1 (Standard)/Wall BL Corner TR Tiny Corner.png"/>
   </tile>
-  <tile id="37">
 
+  <tile id="37">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Walls/Set 1 (Standard)/Wall BL Corner.png"/>
   </tile>
-  <tile id="38">
 
+  <tile id="38">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Walls/Set 1 (Standard)/Wall BR Corner TL Tiny Corner.png"/>
   </tile>
-  <tile id="39">
 
+  <tile id="39">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Walls/Set 1 (Standard)/Wall BR Corner.png"/>
   </tile>
-  <tile id="40">
 
+  <tile id="40">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Walls/Set 1 (Standard)/Wall Front Behind.png"/>
   </tile>
-  <tile id="41">
 
+  <tile id="41">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Walls/Set 1 (Standard)/Wall Front TL Tiny Corner.png"/>
   </tile>
-  <tile id="42">
 
+  <tile id="42">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Walls/Set 1 (Standard)/Wall Front TR Tiny Corner.png"/>
   </tile>
-  <tile id="43">
 
+  <tile id="43">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Walls/Set 1 (Standard)/Wall Front TR TL Tiny Corner.png"/>
   </tile>
-  <tile id="44">
 
+  <tile id="44">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Walls/Set 1 (Standard)/Wall Front.png"/>
   </tile>
-  <tile id="45">
 
+  <tile id="45">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Walls/Set 1 (Standard)/Wall Left BL Corner.png"/>
   </tile>
-  <tile id="46">
 
+  <tile id="46">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Walls/Set 1 (Standard)/Wall Left Right.png"/>
   </tile>
-  <tile id="47">
 
+  <tile id="47">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Walls/Set 1 (Standard)/Wall Left TL BL Corner.png"/>
   </tile>
-  <tile id="48">
 
+  <tile id="48">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Walls/Set 1 (Standard)/Wall Left TL Corner.png"/>
   </tile>
-  <tile id="49">
 
+  <tile id="49">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Walls/Set 1 (Standard)/Wall Left.png"/>
   </tile>
-  <tile id="50">
 
+  <tile id="50">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Walls/Set 1 (Standard)/Wall Middle 2 Tiny BL TL Corner.png"/>
   </tile>
-  <tile id="51">
 
+  <tile id="51">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Walls/Set 1 (Standard)/Wall Middle 3 Tiny BL TL BR Corner.png"/>
   </tile>
-  <tile id="52">
 
+  <tile id="52">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Walls/Set 1 (Standard)/Wall Middle 4 Tiny All Corners.png"/>
   </tile>
-  <tile id="53">
 
+  <tile id="53">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Walls/Set 1 (Standard)/Wall Middle 1 Tiny BL.png"/>
   </tile>
-  <tile id="54">
 
+  <tile id="54">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Walls/Set 1 (Standard)/Wall Middle 2 Tiny BR BL Corner.png"/>
   </tile>
-  <tile id="55">
 
+  <tile id="55">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Walls/Set 1 (Standard)/Wall Middle 3 Tiny BR BL TR Corner.png"/>
   </tile>
-  <tile id="56">
 
+  <tile id="56">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Walls/Set 1 (Standard)/Wall Middle 1 Tiny BR Corner.png"/>
   </tile>
-  <tile id="57">
 
+  <tile id="57">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Walls/Set 1 (Standard)/Wall Middle 2 Tiny BR TR Corner.png"/>
   </tile>
-  <tile id="58">
 
+  <tile id="58">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Walls/Set 1 (Standard)/Wall Middle 1 Tiny TL Corner.png"/>
   </tile>
-  <tile id="59">
 
+  <tile id="59">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Walls/Set 1 (Standard)/Wall Middle 3 Tiny TL TR BL Corner.png"/>
   </tile>
-  <tile id="60">
 
+  <tile id="60">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Walls/Set 1 (Standard)/Wall Middle 3 Tiny TL TR BR Corner.png"/>
   </tile>
-  <tile id="61">
 
+  <tile id="61">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Walls/Set 1 (Standard)/Wall Middle 2 Tiny TL TR Corner.png"/>
   </tile>
-  <tile id="62">
 
+  <tile id="62">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Walls/Set 1 (Standard)/Wall Middle 1 Tiny TR Corner.png"/>
   </tile>
-  <tile id="63">
 
+  <tile id="63">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Walls/Set 1 (Standard)/Wall Middle 2 Tiny BL TR Corner.png"/>
   </tile>
-  <tile id="64">
 
+  <tile id="64">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Walls/Set 1 (Standard)/Wall Middle 2 Tiny BR TL Corner.png"/>
   </tile>
-  <tile id="65">
 
+  <tile id="65">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Walls/Set 1 (Standard)/Wall Right BR Corner.png"/>
   </tile>
-  <tile id="66">
 
+  <tile id="66">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Walls/Set 1 (Standard)/Wall Right TR BR Corner.png"/>
   </tile>
-  <tile id="67">
 
+  <tile id="67">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Walls/Set 1 (Standard)/Wall Right TR Corner.png"/>
   </tile>
-  <tile id="68">
 
+  <tile id="68">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Walls/Set 1 (Standard)/Wall Right.png"/>
   </tile>
-  <tile id="69">
 
+  <tile id="69">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Walls/Set 1 (Standard)/Wall Standalone Back.png"/>
   </tile>
-  <tile id="70">
 
+  <tile id="70">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Walls/Set 1 (Standard)/Wall Standalone Front.png"/>
   </tile>
-  <tile id="71">
 
+  <tile id="71">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Walls/Set 1 (Standard)/Wall Standalone Left.png"/>
   </tile>
-  <tile id="72">
 
+  <tile id="72">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Walls/Set 1 (Standard)/Wall Standalone Right.png"/>
   </tile>
-  <tile id="73">
 
+  <tile id="73">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Walls/Set 1 (Standard)/Wall Standalone.png"/>
   </tile>
-  <tile id="74">
 
+  <tile id="74">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Walls/Set 1 (Standard)/Wall TL Corner BR Tiny Corner.png"/>
   </tile>
-  <tile id="75">
 
+  <tile id="75">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Walls/Set 1 (Standard)/Wall TL Corner.png"/>
   </tile>
-  <tile id="76">
 
+  <tile id="76">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Walls/Set 1 (Standard)/Wall TR Corner BL Tiny Corner.png"/>
   </tile>
-  <tile id="77">
 
+  <tile id="77">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Walls/Set 1 (Standard)/Wall TR Corner.png"/>
   </tile>
-  <tile id="78">
 
+  <tile id="78">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Walls/Set 1 (Standard)/Wall.png"/>
   </tile>
-  <tile id="79">
 
+  <tile id="79">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Walls/Set 1 (Standard)/Wall Decoration 1.png"/>
   </tile>
-  <tile id="80">
 
+  <tile id="80">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Walls/Set 1 (Standard)/Wall Decoration 2.png"/>
   </tile>
-  <tile id="81">
 
+  <tile id="81">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Walls/Set 1 (Standard)/Wall Decoration 3.png"/>
   </tile>
-  <tile id="82">
 
+  <tile id="82">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Walls/Set 1 (Standard)/Wall Decoration 4.png"/>
   </tile>
-  <tile id="83">
 
+  <tile id="83">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="64" source="../Graphics/Walls/Set 1 (Standard)/Wall Decoration 5.png"/>
   </tile>
-  <tile id="84">
 
+  <tile id="84">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="64" source="../Graphics/Walls/Set 1 (Standard)/Wall Decoration 6.png"/>
   </tile>
-  <tile id="85">
 
+  <tile id="85">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -513,8 +513,8 @@
    </properties>
    <image width="32" height="64" source="../Graphics/Objects/Lodestone (Pushable) 1x1 1 - 1 1.png"/>
   </tile>
-  <tile id="86">
 
+  <tile id="86">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -526,8 +526,8 @@
    </properties>
    <image width="32" height="64" source="../Graphics/Objects/Lodestone (Pushable) 1x1 2 - 1 1.png"/>
   </tile>
-  <tile id="87">
 
+  <tile id="87">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -539,8 +539,8 @@
    </properties>
    <image width="32" height="48" source="../Graphics/Objects/Lodestone (Pushable) 1x1 3 - 1 1.png"/>
   </tile>
-  <tile id="88">
 
+  <tile id="88">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -552,8 +552,8 @@
    </properties>
    <image width="32" height="48" source="../Graphics/Objects/Lodestone (Pushable) 1x1 4 - 1 1.png"/>
   </tile>
-  <tile id="89">
 
+  <tile id="89">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -565,8 +565,8 @@
    </properties>
    <image width="32" height="48" source="../Graphics/Objects/Lodestone (Pushable) 1x2 1 - 1 11.png"/>
   </tile>
-  <tile id="90">
 
+  <tile id="90">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -578,8 +578,8 @@
    </properties>
    <image width="32" height="48" source="../Graphics/Objects/Lodestone (Pushable) 1x3 1 - 1 111.png"/>
   </tile>
-  <tile id="91">
 
+  <tile id="91">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -591,8 +591,8 @@
    </properties>
    <image width="32" height="80" source="../Graphics/Objects/Lodestone (Pushable) 2x1 1 - 2 11.png"/>
   </tile>
-  <tile id="92">
 
+  <tile id="92">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -604,8 +604,8 @@
    </properties>
    <image width="32" height="11" source="../Graphics/Objects/Lodestone (Pushable) 2x2 1 - 2 1110.png"/>
   </tile>
-  <tile id="93">
 
+  <tile id="93">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -617,8 +617,8 @@
    </properties>
    <image width="64" height="48" source="../Graphics/Objects/Lodestone (Pushable) 2x2 2 - 2 1101.png"/>
   </tile>
-  <tile id="94">
 
+  <tile id="94">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -630,8 +630,8 @@
    </properties>
    <image width="64" height="80" source="../Graphics/Objects/Lodestone (Pushable) 2x2 3 - 2 0111.png"/>
   </tile>
-  <tile id="95">
 
+  <tile id="95">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -643,8 +643,8 @@
    </properties>
    <image width="64" height="80" source="../Graphics/Objects/Lodestone (Pushable) 2x2 4 - 2 1011.png"/>
   </tile>
-  <tile id="96">
 
+  <tile id="96">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -656,8 +656,8 @@
    </properties>
    <image width="64" height="80" source="../Graphics/Objects/Lodestone (Pushable) 2x2 5 - 2 1111.png"/>
   </tile>
-  <tile id="97">
 
+  <tile id="97">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -669,8 +669,8 @@
    </properties>
    <image width="64" height="80" source="../Graphics/Objects/Lodestone (Pushable) 2x3 1 - 2 101110.png"/>
   </tile>
-  <tile id="98">
 
+  <tile id="98">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -682,8 +682,8 @@
    </properties>
    <image width="64" height="80" source="../Graphics/Objects/Lodestone (Pushable) 2x3 2 - 2 011101.png"/>
   </tile>
-  <tile id="99">
 
+  <tile id="99">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -695,8 +695,8 @@
    </properties>
    <image width="64" height="112" source="../Graphics/Objects/Lodestone (Pushable) 2x3 3 - 2 101011.png"/>
   </tile>
-  <tile id="100">
 
+  <tile id="100">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -708,8 +708,8 @@
    </properties>
    <image width="64" height="112" source="../Graphics/Objects/Lodestone (Pushable) 2x3 4 - 2 111010.png"/>
   </tile>
-  <tile id="101">
 
+  <tile id="101">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -721,8 +721,8 @@
    </properties>
    <image width="64" height="112" source="../Graphics/Objects/Lodestone (Pushable) 2x3 5 - 2 010111.png"/>
   </tile>
-  <tile id="102">
 
+  <tile id="102">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -734,8 +734,8 @@
    </properties>
    <image width="64" height="112" source="../Graphics/Objects/Lodestone (Pushable) 2x3 6 - 2 110101.png"/>
   </tile>
-  <tile id="103">
 
+  <tile id="103">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -747,8 +747,8 @@
    </properties>
    <image width="64" height="112" source="../Graphics/Objects/Lodestone (Pushable) 2x3 7 - 2 101101.png"/>
   </tile>
-  <tile id="104">
 
+  <tile id="104">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -760,8 +760,8 @@
    </properties>
    <image width="64" height="112" source="../Graphics/Objects/Lodestone (Pushable) 2x3 8 - 2 011110.png"/>
   </tile>
-  <tile id="105">
 
+  <tile id="105">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -773,8 +773,8 @@
    </properties>
    <image width="64" height="112" source="../Graphics/Objects/Lodestone (Pushable) 2x3 9 - 2 111011.png"/>
   </tile>
-  <tile id="106">
 
+  <tile id="106">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -786,8 +786,8 @@
    </properties>
    <image width="64" height="112" source="../Graphics/Objects/Lodestone (Pushable) 2x3 10 - 2 110111.png"/>
   </tile>
-  <tile id="107">
 
+  <tile id="107">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -799,8 +799,8 @@
    </properties>
    <image width="64" height="112" source="../Graphics/Objects/Lodestone (Pushable) 2x3 11 - 2 111110.png"/>
   </tile>
-  <tile id="108">
 
+  <tile id="108">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -812,8 +812,8 @@
    </properties>
    <image width="64" height="112" source="../Graphics/Objects/Lodestone (Pushable) 2x3 12 - 2 111101.png"/>
   </tile>
-  <tile id="109">
 
+  <tile id="109">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -825,8 +825,8 @@
    </properties>
    <image width="64" height="112" source="../Graphics/Objects/Lodestone (Pushable) 2x3 13 - 2 101111.png"/>
   </tile>
-  <tile id="110">
 
+  <tile id="110">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -838,8 +838,8 @@
    </properties>
    <image width="64" height="112" source="../Graphics/Objects/Lodestone (Pushable) 2x3 14 - 2 011111.png"/>
   </tile>
-  <tile id="111">
 
+  <tile id="111">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -851,8 +851,8 @@
    </properties>
    <image width="64" height="112" source="../Graphics/Objects/Lodestone (Pushable) 3x1 1 - 3 111.png"/>
   </tile>
-  <tile id="112">
 
+  <tile id="112">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -864,73 +864,8 @@
    </properties>
    <image width="64" height="112" source="../Graphics/Objects/Lodestone (Pushable) 3x2 1 - 3 010111.png"/>
   </tile>
+
   <tile id="113">
-
-   <properties>
-    <property name="#" value="(this)"/>
-    <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="101111"/>
-    <property name="Body Width" type="int" value="3"/>
-    <property name="IsMagnetisable" type="bool" value="true"/>
-    <property name="IsPushable" type="bool" value="true"/>
-    <property name="Type" value="Block"/>
-   </properties>
-   <image width="96" height="48" source="../Graphics/Objects/Lodestone (Pushable) 3x2 10 - 3 101111.png"/>
-  </tile>
-  <tile id="114">
-
-   <properties>
-    <property name="#" value="(this)"/>
-    <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="111110"/>
-    <property name="Body Width" type="int" value="3"/>
-    <property name="IsMagnetisable" type="bool" value="true"/>
-    <property name="IsPushable" type="bool" value="true"/>
-    <property name="Type" value="Block"/>
-   </properties>
-   <image width="96" height="80" source="../Graphics/Objects/Lodestone (Pushable) 3x2 11 - 3 111110.png"/>
-  </tile>
-  <tile id="115">
-
-   <properties>
-    <property name="#" value="(this)"/>
-    <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="111011"/>
-    <property name="Body Width" type="int" value="3"/>
-    <property name="IsMagnetisable" type="bool" value="true"/>
-    <property name="IsPushable" type="bool" value="true"/>
-    <property name="Type" value="Block"/>
-   </properties>
-   <image width="96" height="80" source="../Graphics/Objects/Lodestone (Pushable) 3x2 12 - 3 111011.png"/>
-  </tile>
-  <tile id="116">
-
-   <properties>
-    <property name="#" value="(this)"/>
-    <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="110111"/>
-    <property name="Body Width" type="int" value="3"/>
-    <property name="IsMagnetisable" type="bool" value="true"/>
-    <property name="IsPushable" type="bool" value="true"/>
-    <property name="Type" value="Block"/>
-   </properties>
-   <image width="96" height="80" source="../Graphics/Objects/Lodestone (Pushable) 3x2 13 - 3 110111.png"/>
-  </tile>
-  <tile id="117">
-
-   <properties>
-    <property name="#" value="(this)"/>
-    <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="011111"/>
-    <property name="Body Width" type="int" value="3"/>
-    <property name="IsMagnetisable" type="bool" value="true"/>
-    <property name="IsPushable" type="bool" value="true"/>
-    <property name="Type" value="Block"/>
-   </properties>
-   <image width="96" height="80" source="../Graphics/Objects/Lodestone (Pushable) 3x2 14 - 3 011111.png"/>
-  </tile>
-  <tile id="118">
-
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -940,10 +875,10 @@
     <property name="IsPushable" type="bool" value="true"/>
     <property name="Type" value="Block"/>
    </properties>
-   <image width="96" height="80" source="../Graphics/Objects/Lodestone (Pushable) 3x2 2 - 3 111010.png"/>
+   <image width="96" height="48" source="../Graphics/Objects/Lodestone (Pushable) 3x2 2 - 3 111010.png"/>
   </tile>
-  <tile id="119">
 
+  <tile id="114">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -955,8 +890,8 @@
    </properties>
    <image width="96" height="80" source="../Graphics/Objects/Lodestone (Pushable) 3x2 3 - 3 111100.png"/>
   </tile>
-  <tile id="120">
 
+  <tile id="115">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -968,8 +903,8 @@
    </properties>
    <image width="96" height="80" source="../Graphics/Objects/Lodestone (Pushable) 3x2 4 - 3 111001.png"/>
   </tile>
-  <tile id="121">
 
+  <tile id="116">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -981,8 +916,8 @@
    </properties>
    <image width="96" height="80" source="../Graphics/Objects/Lodestone (Pushable) 3x2 5 - 3 100111.png"/>
   </tile>
-  <tile id="122">
 
+  <tile id="117">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -994,8 +929,8 @@
    </properties>
    <image width="96" height="80" source="../Graphics/Objects/Lodestone (Pushable) 3x2 6 - 3 001111.png"/>
   </tile>
-  <tile id="123">
 
+  <tile id="118">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -1007,8 +942,8 @@
    </properties>
    <image width="96" height="80" source="../Graphics/Objects/Lodestone (Pushable) 3x2 7 - 3 110011.png"/>
   </tile>
-  <tile id="124">
 
+  <tile id="119">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -1020,8 +955,8 @@
    </properties>
    <image width="96" height="80" source="../Graphics/Objects/Lodestone (Pushable) 3x2 8 - 3 011110.png"/>
   </tile>
-  <tile id="125">
 
+  <tile id="120">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -1033,8 +968,73 @@
    </properties>
    <image width="96" height="80" source="../Graphics/Objects/Lodestone (Pushable) 3x2 9 - 3 111101.png"/>
   </tile>
-  <tile id="126">
 
+  <tile id="121">
+   <properties>
+    <property name="#" value="(this)"/>
+    <property name="#Magnetised" value="Magnetised Overlay"/>
+    <property name="Body Area" value="101111"/>
+    <property name="Body Width" type="int" value="3"/>
+    <property name="IsMagnetisable" type="bool" value="true"/>
+    <property name="IsPushable" type="bool" value="true"/>
+    <property name="Type" value="Block"/>
+   </properties>
+   <image width="96" height="80" source="../Graphics/Objects/Lodestone (Pushable) 3x2 10 - 3 101111.png"/>
+  </tile>
+
+  <tile id="122">
+   <properties>
+    <property name="#" value="(this)"/>
+    <property name="#Magnetised" value="Magnetised Overlay"/>
+    <property name="Body Area" value="111110"/>
+    <property name="Body Width" type="int" value="3"/>
+    <property name="IsMagnetisable" type="bool" value="true"/>
+    <property name="IsPushable" type="bool" value="true"/>
+    <property name="Type" value="Block"/>
+   </properties>
+   <image width="96" height="80" source="../Graphics/Objects/Lodestone (Pushable) 3x2 11 - 3 111110.png"/>
+  </tile>
+
+  <tile id="123">
+   <properties>
+    <property name="#" value="(this)"/>
+    <property name="#Magnetised" value="Magnetised Overlay"/>
+    <property name="Body Area" value="111011"/>
+    <property name="Body Width" type="int" value="3"/>
+    <property name="IsMagnetisable" type="bool" value="true"/>
+    <property name="IsPushable" type="bool" value="true"/>
+    <property name="Type" value="Block"/>
+   </properties>
+   <image width="96" height="80" source="../Graphics/Objects/Lodestone (Pushable) 3x2 12 - 3 111011.png"/>
+  </tile>
+
+  <tile id="124">
+   <properties>
+    <property name="#" value="(this)"/>
+    <property name="#Magnetised" value="Magnetised Overlay"/>
+    <property name="Body Area" value="110111"/>
+    <property name="Body Width" type="int" value="3"/>
+    <property name="IsMagnetisable" type="bool" value="true"/>
+    <property name="IsPushable" type="bool" value="true"/>
+    <property name="Type" value="Block"/>
+   </properties>
+   <image width="96" height="80" source="../Graphics/Objects/Lodestone (Pushable) 3x2 13 - 3 110111.png"/>
+  </tile>
+
+  <tile id="125">
+   <properties>
+    <property name="#" value="(this)"/>
+    <property name="#Magnetised" value="Magnetised Overlay"/>
+    <property name="Body Area" value="011111"/>
+    <property name="Body Width" type="int" value="3"/>
+    <property name="IsMagnetisable" type="bool" value="true"/>
+    <property name="IsPushable" type="bool" value="true"/>
+    <property name="Type" value="Block"/>
+   </properties>
+   <image width="96" height="80" source="../Graphics/Objects/Lodestone (Pushable) 3x2 14 - 3 011111.png"/>
+  </tile>
+
+  <tile id="126">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -1046,8 +1046,8 @@
    </properties>
    <image width="96" height="80" source="../Graphics/Objects/Lodestone (Unpushable) 1x1 1 - 1 1.png"/>
   </tile>
-  <tile id="127">
 
+  <tile id="127">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -1059,8 +1059,8 @@
    </properties>
    <image width="96" height="80" source="../Graphics/Objects/Lodestone (Unpushable) 1x2 1 - 1 11.png"/>
   </tile>
-  <tile id="128">
 
+  <tile id="128">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -1072,8 +1072,8 @@
    </properties>
    <image width="32" height="48" source="../Graphics/Objects/Lodestone (Unpushable) 1x3 1 - 1 111.png"/>
   </tile>
-  <tile id="129">
 
+  <tile id="129">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -1085,8 +1085,8 @@
    </properties>
    <image width="32" height="80" source="../Graphics/Objects/Lodestone (Unpushable) 2x1 1 - 2 11.png"/>
   </tile>
-  <tile id="130">
 
+  <tile id="130">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -1098,8 +1098,8 @@
    </properties>
    <image width="32" height="112" source="../Graphics/Objects/Lodestone (Unpushable) 2x2 1 - 2 1110.png"/>
   </tile>
-  <tile id="131">
 
+  <tile id="131">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -1111,8 +1111,8 @@
    </properties>
    <image width="64" height="48" source="../Graphics/Objects/Lodestone (Unpushable) 2x2 2 - 2 1101.png"/>
   </tile>
-  <tile id="132">
 
+  <tile id="132">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -1124,8 +1124,8 @@
    </properties>
    <image width="64" height="80" source="../Graphics/Objects/Lodestone (Unpushable) 2x2 3 - 2 0111.png"/>
   </tile>
-  <tile id="133">
 
+  <tile id="133">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -1137,8 +1137,8 @@
    </properties>
    <image width="64" height="80" source="../Graphics/Objects/Lodestone (Unpushable) 2x2 4 - 2 1011.png"/>
   </tile>
-  <tile id="134">
 
+  <tile id="134">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -1150,8 +1150,8 @@
    </properties>
    <image width="64" height="80" source="../Graphics/Objects/Lodestone (Unpushable) 2x2 5 - 2 1111.png"/>
   </tile>
-  <tile id="135">
 
+  <tile id="135">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -1163,73 +1163,8 @@
    </properties>
    <image width="64" height="80" source="../Graphics/Objects/Lodestone (Unpushable) 2x3 1 - 2 101110.png"/>
   </tile>
+
   <tile id="136">
-
-   <properties>
-    <property name="#" value="(this)"/>
-    <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="110111"/>
-    <property name="Body Width" type="int" value="2"/>
-    <property name="IsMagnetisable" type="bool" value="true"/>
-    <property name="IsPushable" type="bool" value="false"/>
-    <property name="Type" value="Block"/>
-   </properties>
-   <image width="64" height="80" source="../Graphics/Objects/Lodestone (Unpushable) 2x3 10 - 2 110111.png"/>
-  </tile>
-  <tile id="137">
-
-   <properties>
-    <property name="#" value="(this)"/>
-    <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="111110"/>
-    <property name="Body Width" type="int" value="2"/>
-    <property name="IsMagnetisable" type="bool" value="true"/>
-    <property name="IsPushable" type="bool" value="false"/>
-    <property name="Type" value="Block"/>
-   </properties>
-   <image width="64" height="112" source="../Graphics/Objects/Lodestone (Unpushable) 2x3 11 - 2 111110.png"/>
-  </tile>
-  <tile id="138">
-
-   <properties>
-    <property name="#" value="(this)"/>
-    <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="111101"/>
-    <property name="Body Width" type="int" value="2"/>
-    <property name="IsMagnetisable" type="bool" value="true"/>
-    <property name="IsPushable" type="bool" value="false"/>
-    <property name="Type" value="Block"/>
-   </properties>
-   <image width="64" height="112" source="../Graphics/Objects/Lodestone (Unpushable) 2x3 12 - 2 111101.png"/>
-  </tile>
-  <tile id="139">
-
-   <properties>
-    <property name="#" value="(this)"/>
-    <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="101111"/>
-    <property name="Body Width" type="int" value="2"/>
-    <property name="IsMagnetisable" type="bool" value="true"/>
-    <property name="IsPushable" type="bool" value="false"/>
-    <property name="Type" value="Block"/>
-   </properties>
-   <image width="64" height="112" source="../Graphics/Objects/Lodestone (Unpushable) 2x3 13 - 2 101111.png"/>
-  </tile>
-  <tile id="140">
-
-   <properties>
-    <property name="#" value="(this)"/>
-    <property name="#Magnetised" value="Magnetised Overlay"/>
-    <property name="Body Area" value="011111"/>
-    <property name="Body Width" type="int" value="2"/>
-    <property name="IsMagnetisable" type="bool" value="true"/>
-    <property name="IsPushable" type="bool" value="false"/>
-    <property name="Type" value="Block"/>
-   </properties>
-   <image width="64" height="112" source="../Graphics/Objects/Lodestone (Unpushable) 2x3 14 - 2 011111.png"/>
-  </tile>
-  <tile id="141">
-
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -1239,10 +1174,10 @@
     <property name="IsPushable" type="bool" value="false"/>
     <property name="Type" value="Block"/>
    </properties>
-   <image width="64" height="112" source="../Graphics/Objects/Lodestone (Unpushable) 2x3 2 - 2 011101.png"/>
+   <image width="64" height="80" source="../Graphics/Objects/Lodestone (Unpushable) 2x3 2 - 2 011101.png"/>
   </tile>
-  <tile id="142">
 
+  <tile id="137">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -1254,8 +1189,8 @@
    </properties>
    <image width="64" height="112" source="../Graphics/Objects/Lodestone (Unpushable) 2x3 3 - 2 101011.png"/>
   </tile>
-  <tile id="143">
 
+  <tile id="138">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -1267,8 +1202,8 @@
    </properties>
    <image width="64" height="112" source="../Graphics/Objects/Lodestone (Unpushable) 2x3 4 - 2 111010.png"/>
   </tile>
-  <tile id="144">
 
+  <tile id="139">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -1280,8 +1215,8 @@
    </properties>
    <image width="64" height="112" source="../Graphics/Objects/Lodestone (Unpushable) 2x3 5 - 2 010111.png"/>
   </tile>
-  <tile id="145">
 
+  <tile id="140">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -1293,8 +1228,8 @@
    </properties>
    <image width="64" height="112" source="../Graphics/Objects/Lodestone (Unpushable) 2x3 6 - 2 110101.png"/>
   </tile>
-  <tile id="146">
 
+  <tile id="141">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -1306,8 +1241,8 @@
    </properties>
    <image width="64" height="112" source="../Graphics/Objects/Lodestone (Unpushable) 2x3 7 - 2 101101.png"/>
   </tile>
-  <tile id="147">
 
+  <tile id="142">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -1319,8 +1254,8 @@
    </properties>
    <image width="64" height="112" source="../Graphics/Objects/Lodestone (Unpushable) 2x3 8 - 2 011110.png"/>
   </tile>
-  <tile id="148">
 
+  <tile id="143">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -1332,8 +1267,73 @@
    </properties>
    <image width="64" height="112" source="../Graphics/Objects/Lodestone (Unpushable) 2x3 9 - 2 111011.png"/>
   </tile>
-  <tile id="149">
 
+  <tile id="144">
+   <properties>
+    <property name="#" value="(this)"/>
+    <property name="#Magnetised" value="Magnetised Overlay"/>
+    <property name="Body Area" value="110111"/>
+    <property name="Body Width" type="int" value="2"/>
+    <property name="IsMagnetisable" type="bool" value="true"/>
+    <property name="IsPushable" type="bool" value="false"/>
+    <property name="Type" value="Block"/>
+   </properties>
+   <image width="64" height="112" source="../Graphics/Objects/Lodestone (Unpushable) 2x3 10 - 2 110111.png"/>
+  </tile>
+
+  <tile id="145">
+   <properties>
+    <property name="#" value="(this)"/>
+    <property name="#Magnetised" value="Magnetised Overlay"/>
+    <property name="Body Area" value="111110"/>
+    <property name="Body Width" type="int" value="2"/>
+    <property name="IsMagnetisable" type="bool" value="true"/>
+    <property name="IsPushable" type="bool" value="false"/>
+    <property name="Type" value="Block"/>
+   </properties>
+   <image width="64" height="112" source="../Graphics/Objects/Lodestone (Unpushable) 2x3 11 - 2 111110.png"/>
+  </tile>
+
+  <tile id="146">
+   <properties>
+    <property name="#" value="(this)"/>
+    <property name="#Magnetised" value="Magnetised Overlay"/>
+    <property name="Body Area" value="111101"/>
+    <property name="Body Width" type="int" value="2"/>
+    <property name="IsMagnetisable" type="bool" value="true"/>
+    <property name="IsPushable" type="bool" value="false"/>
+    <property name="Type" value="Block"/>
+   </properties>
+   <image width="64" height="112" source="../Graphics/Objects/Lodestone (Unpushable) 2x3 12 - 2 111101.png"/>
+  </tile>
+
+  <tile id="147">
+   <properties>
+    <property name="#" value="(this)"/>
+    <property name="#Magnetised" value="Magnetised Overlay"/>
+    <property name="Body Area" value="101111"/>
+    <property name="Body Width" type="int" value="2"/>
+    <property name="IsMagnetisable" type="bool" value="true"/>
+    <property name="IsPushable" type="bool" value="false"/>
+    <property name="Type" value="Block"/>
+   </properties>
+   <image width="64" height="112" source="../Graphics/Objects/Lodestone (Unpushable) 2x3 13 - 2 101111.png"/>
+  </tile>
+
+  <tile id="148">
+   <properties>
+    <property name="#" value="(this)"/>
+    <property name="#Magnetised" value="Magnetised Overlay"/>
+    <property name="Body Area" value="011111"/>
+    <property name="Body Width" type="int" value="2"/>
+    <property name="IsMagnetisable" type="bool" value="true"/>
+    <property name="IsPushable" type="bool" value="false"/>
+    <property name="Type" value="Block"/>
+   </properties>
+   <image width="64" height="112" source="../Graphics/Objects/Lodestone (Unpushable) 2x3 14 - 2 011111.png"/>
+  </tile>
+
+  <tile id="149">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -1345,8 +1345,8 @@
    </properties>
    <image width="64" height="112" source="../Graphics/Objects/Lodestone (Unpushable) 3x1 1 - 3 111.png"/>
   </tile>
-  <tile id="150">
 
+  <tile id="150">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -1358,8 +1358,8 @@
    </properties>
    <image width="64" height="112" source="../Graphics/Objects/Lodestone (Unpushable) 3x2 1 - 3 010111.png"/>
   </tile>
-  <tile id="151">
 
+  <tile id="151">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -1371,8 +1371,8 @@
    </properties>
    <image width="96" height="48" source="../Graphics/Objects/Lodestone (Unpushable) 3x2 2 - 3 111010.png"/>
   </tile>
-  <tile id="152">
 
+  <tile id="152">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -1384,8 +1384,8 @@
    </properties>
    <image width="96" height="80" source="../Graphics/Objects/Lodestone (Unpushable) 3x2 3 - 3 111100.png"/>
   </tile>
-  <tile id="153">
 
+  <tile id="153">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -1397,8 +1397,8 @@
    </properties>
    <image width="96" height="80" source="../Graphics/Objects/Lodestone (Unpushable) 3x2 4 - 3 111001.png"/>
   </tile>
-  <tile id="154">
 
+  <tile id="154">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -1410,8 +1410,8 @@
    </properties>
    <image width="96" height="80" source="../Graphics/Objects/Lodestone (Unpushable) 3x2 5 - 3 100111.png"/>
   </tile>
-  <tile id="155">
 
+  <tile id="155">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -1423,8 +1423,8 @@
    </properties>
    <image width="96" height="80" source="../Graphics/Objects/Lodestone (Unpushable) 3x2 6 - 3 001111.png"/>
   </tile>
-  <tile id="156">
 
+  <tile id="156">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -1436,8 +1436,8 @@
    </properties>
    <image width="96" height="80" source="../Graphics/Objects/Lodestone (Unpushable) 3x2 7 - 3 110011.png"/>
   </tile>
-  <tile id="157">
 
+  <tile id="157">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -1449,8 +1449,8 @@
    </properties>
    <image width="96" height="80" source="../Graphics/Objects/Lodestone (Unpushable) 3x2 8 - 3 011110.png"/>
   </tile>
-  <tile id="158">
 
+  <tile id="158">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -1462,8 +1462,8 @@
    </properties>
    <image width="96" height="80" source="../Graphics/Objects/Lodestone (Unpushable) 3x2 9 - 3 111101.png"/>
   </tile>
-  <tile id="159">
 
+  <tile id="159">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -1475,8 +1475,8 @@
    </properties>
    <image width="96" height="80" source="../Graphics/Objects/Lodestone (Unpushable) 3x2 10 - 3 101111.png"/>
   </tile>
-  <tile id="160">
 
+  <tile id="160">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -1488,8 +1488,8 @@
    </properties>
    <image width="96" height="80" source="../Graphics/Objects/Lodestone (Unpushable) 3x2 11 - 3 111110.png"/>
   </tile>
-  <tile id="161">
 
+  <tile id="161">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -1501,8 +1501,8 @@
    </properties>
    <image width="96" height="80" source="../Graphics/Objects/Lodestone (Unpushable) 3x2 12 - 3 111011.png"/>
   </tile>
-  <tile id="162">
 
+  <tile id="162">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -1514,8 +1514,8 @@
    </properties>
    <image width="96" height="80" source="../Graphics/Objects/Lodestone (Unpushable) 3x2 13 - 3 110111.png"/>
   </tile>
-  <tile id="163">
 
+  <tile id="163">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetised Overlay"/>
@@ -1527,170 +1527,150 @@
    </properties>
    <image width="96" height="80" source="../Graphics/Objects/Lodestone (Unpushable) 3x2 14 - 3 011111.png"/>
   </tile>
-  <tile id="164">
 
+  <tile id="164">
    <image width="96" height="80" source="../Graphics/Objects/Button 1 State 1.png"/>
   </tile>
-  <tile id="165">
 
+  <tile id="165">
    <image width="96" height="80" source="../Graphics/Objects/Button 1 State 2.png"/>
   </tile>
-  <tile id="166">
 
+  <tile id="166">
    <image width="32" height="32" source="../Graphics/Objects/Button 1 State 3.png"/>
   </tile>
-  <tile id="167">
 
+  <tile id="167">
    <image width="32" height="32" source="../Graphics/Objects/Door 1 State 1.png"/>
   </tile>
-  <tile id="168">
 
+  <tile id="168">
    <image width="32" height="32" source="../Graphics/Objects/Door 1 State 2.png"/>
   </tile>
-  <tile id="169">
 
+  <tile id="169">
    <image width="32" height="48" source="../Graphics/Objects/Door 1 State 3.png"/>
   </tile>
-  <tile id="170">
 
+  <tile id="170">
    <image width="32" height="48" source="../Graphics/Objects/Door 1 State 4.png"/>
   </tile>
-  <tile id="171">
 
+  <tile id="171">
    <image width="32" height="48" source="../Graphics/Objects/Door 1 State 5.png"/>
   </tile>
-  <tile id="172">
 
+  <tile id="172">
    <image width="32" height="48" source="../Graphics/Objects/Button 2 State 1.png"/>
   </tile>
-  <tile id="173">
 
+  <tile id="173">
    <image width="32" height="48" source="../Graphics/Objects/Button 2 State 2.png"/>
   </tile>
-  <tile id="174">
 
+  <tile id="174">
    <image width="32" height="32" source="../Graphics/Objects/Button 2 State 3.png"/>
   </tile>
-  <tile id="175">
 
+  <tile id="175">
    <image width="32" height="32" source="../Graphics/Objects/Door 2 State 1.png"/>
   </tile>
-  <tile id="176">
 
+  <tile id="176">
    <image width="32" height="32" source="../Graphics/Objects/Door 2 State 2.png"/>
   </tile>
-  <tile id="177">
 
+  <tile id="177">
    <image width="32" height="48" source="../Graphics/Objects/Door 2 State 3.png"/>
   </tile>
-  <tile id="178">
 
+  <tile id="178">
    <image width="32" height="48" source="../Graphics/Objects/Door 2 State 4.png"/>
   </tile>
-  <tile id="179">
 
+  <tile id="179">
    <image width="32" height="48" source="../Graphics/Objects/Door 2 State 5.png"/>
   </tile>
-  <tile id="180">
 
+  <tile id="180">
    <image width="32" height="48" source="../Graphics/Objects/Exit Front State 1.png"/>
   </tile>
-  <tile id="181">
 
+  <tile id="181">
    <image width="32" height="48" source="../Graphics/Objects/Exit Front State 2.png"/>
   </tile>
-  <tile id="182">
 
+  <tile id="182">
    <image width="32" height="48" source="../Graphics/Objects/Exit Left State 1.png"/>
   </tile>
-  <tile id="183">
 
+  <tile id="183">
    <image width="32" height="48" source="../Graphics/Objects/Exit Left State 2.png"/>
   </tile>
-  <tile id="184">
 
+  <tile id="184">
    <image width="32" height="48" source="../Graphics/Objects/Exit Right State 1.png"/>
   </tile>
-  <tile id="185">
 
+  <tile id="185">
    <image width="32" height="48" source="../Graphics/Objects/Exit Right State 2.png"/>
   </tile>
+
   <tile id="186">
-
-   <properties>
-    <property name="#" value="(this)"/>
-    <property name="Actor Depth" type="int" value="-1"/>
-    <property name="Type" value="Magnetic Source"/>
-   </properties>
-   <image width="32" height="48" source="../Graphics/Objects/Magnetic Area (Walkable) State 1.png"/>
+   <image width="32" height="48" source="../Graphics/Objects/Magnetic Area (Walkable) North State 1.png"/>
    <animation>
-    <frame tileid="193" duration="750"/>
-    <frame tileid="190" duration="750"/>
-    <frame tileid="187" duration="750"/>
-    <frame tileid="194" duration="750"/>
-    <frame tileid="191" duration="750"/>
-    <frame tileid="188" duration="750"/>
-    <frame tileid="195" duration="750"/>
-    <frame tileid="192" duration="750"/>
-    <frame tileid="189" duration="750"/>
     <frame tileid="186" duration="750"/>
+    <frame tileid="187" duration="750"/>
+    <frame tileid="188" duration="750"/>
+    <frame tileid="189" duration="750"/>
+    <frame tileid="190" duration="750"/>
    </animation>
   </tile>
+
   <tile id="187">
-
-   <image width="32" height="48" source="../Graphics/Objects/Magnetic Area (Walkable) State 2.png"/>
+   <image width="32" height="48" source="../Graphics/Objects/Magnetic Area (Walkable) North State 2.png"/>
   </tile>
+
   <tile id="188">
-
-   <image width="32" height="48" source="../Graphics/Objects/Magnetic Area (Walkable) State 3.png"/>
+   <image width="32" height="48" source="../Graphics/Objects/Magnetic Area (Walkable) North State 3.png"/>
   </tile>
+
   <tile id="189">
-
-   <image width="32" height="48" source="../Graphics/Objects/Magnetic Area (Walkable) State 4.png"/>
+   <image width="32" height="48" source="../Graphics/Objects/Magnetic Area (Walkable) North State 4.png"/>
   </tile>
+
   <tile id="190">
-
-   <image width="32" height="48" source="../Graphics/Objects/Magnetic Area (Walkable) State 5.png"/>
+   <image width="32" height="48" source="../Graphics/Objects/Magnetic Area (Walkable) North State 5.png"/>
   </tile>
+
   <tile id="191">
-
-   <image width="32" height="48" source="../Graphics/Objects/Magnetic Area (Walkable) State 6.png"/>
-  </tile>
-  <tile id="192">
-
-   <image width="32" height="48" source="../Graphics/Objects/Magnetic Area (Walkable) State 7.png"/>
-  </tile>
-  <tile id="193">
-
-   <image width="32" height="48" source="../Graphics/Objects/Magnetic Area (Walkable) State 8.png"/>
-  </tile>
-  <tile id="194">
-
-   <image width="32" height="48" source="../Graphics/Objects/Magnetic Area (Walkable) State 9.png"/>
-  </tile>
-  <tile id="195">
-
-   <properties>
-    <property name="#" value="(this)"/>
-    <property name="Actor Depth" type="int" value="-1"/>
-    <property name="Type" value="Magnetic Source"/>
-   </properties>
-   <image width="32" height="48" source="../Graphics/Objects/Magnetic Area (Walkable) State 10.png"/>
+   <image width="32" height="48" source="../Graphics/Objects/Magnetic Area (Walkable) South State 1.png"/>
    <animation>
-    <frame tileid="202" duration="750"/>
-    <frame tileid="199" duration="750"/>
-    <frame tileid="196" duration="750"/>
-    <frame tileid="203" duration="750"/>
-    <frame tileid="200" duration="750"/>
-    <frame tileid="197" duration="750"/>
-    <frame tileid="204" duration="750"/>
-    <frame tileid="201" duration="750"/>
-    <frame tileid="198" duration="750"/>
+    <frame tileid="191" duration="750"/>
+    <frame tileid="192" duration="750"/>
+    <frame tileid="193" duration="750"/>
+    <frame tileid="194" duration="750"/>
     <frame tileid="195" duration="750"/>
    </animation>
   </tile>
-  <tile id="196">
 
+  <tile id="192">
+   <image width="32" height="48" source="../Graphics/Objects/Magnetic Area (Walkable) South State 2.png"/>
+  </tile>
+
+  <tile id="193">
+   <image width="32" height="48" source="../Graphics/Objects/Magnetic Area (Walkable) South State 3.png"/>
+  </tile>
+
+  <tile id="194">
+   <image width="32" height="48" source="../Graphics/Objects/Magnetic Area (Walkable) South State 4.png"/>
+  </tile>
+
+  <tile id="195">
+   <image width="32" height="48" source="../Graphics/Objects/Magnetic Area (Walkable) South State 5.png"/>
+  </tile>
+
+  <tile id="196">
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Walking" value="(this)"/>
@@ -1698,8 +1678,8 @@
    </properties>
    <image width="32" height="48" source="../Graphics/Objects/Player.png"/>
   </tile>
-  <tile id="197">
 
+  <tile id="197">
    <image width="32" height="48" source="../Graphics/Objects/Magnetized Horizontal State 1.png"/>
    <animation>
     <frame tileid="197" duration="375"/>
@@ -1711,32 +1691,32 @@
     <frame tileid="203" duration="375"/>
    </animation>
   </tile>
-  <tile id="198">
 
+  <tile id="198">
    <image width="32" height="48" source="../Graphics/Objects/Magnetized Horizontal State 2.png"/>
   </tile>
-  <tile id="199">
 
+  <tile id="199">
    <image width="32" height="48" source="../Graphics/Objects/Magnetized Horizontal State 3.png"/>
   </tile>
-  <tile id="200">
 
+  <tile id="200">
    <image width="32" height="48" source="../Graphics/Objects/Magnetized Horizontal State 4.png"/>
   </tile>
-  <tile id="201">
 
+  <tile id="201">
    <image width="32" height="48" source="../Graphics/Objects/Magnetized Horizontal State 5.png"/>
   </tile>
-  <tile id="202">
 
+  <tile id="202">
    <image width="32" height="48" source="../Graphics/Objects/Magnetized Horizontal State 6.png"/>
   </tile>
-  <tile id="203">
 
+  <tile id="203">
    <image width="32" height="48" source="../Graphics/Objects/Magnetized Horizontal State 7.png"/>
   </tile>
-  <tile id="204">
 
+  <tile id="204">
    <image width="32" height="48" source="../Graphics/Objects/Magnetized Vertical State 1.png"/>
    <animation>
     <frame tileid="204" duration="375"/>
@@ -1748,32 +1728,32 @@
     <frame tileid="210" duration="375"/>
    </animation>
   </tile>
-  <tile id="205">
 
+  <tile id="205">
    <image width="32" height="48" source="../Graphics/Objects/Magnetized Vertical State 2.png"/>
   </tile>
-  <tile id="206">
 
+  <tile id="206">
    <image width="32" height="48" source="../Graphics/Objects/Magnetized Vertical State 3.png"/>
   </tile>
-  <tile id="207">
 
+  <tile id="207">
    <image width="32" height="48" source="../Graphics/Objects/Magnetized Vertical State 4.png"/>
   </tile>
-  <tile id="208">
 
+  <tile id="208">
    <image width="32" height="48" source="../Graphics/Objects/Magnetized Vertical State 5.png"/>
   </tile>
-  <tile id="209">
 
+  <tile id="209">
    <image width="32" height="48" source="../Graphics/Objects/Magnetized Vertical State 6.png"/>
   </tile>
-  <tile id="210">
 
+  <tile id="210">
    <image width="32" height="48" source="../Graphics/Objects/Magnetized Vertical State 7.png"/>
   </tile>
-  <tile id="211">
 
+  <tile id="211">
    <properties>
     <property name="Frame Depth" type="int" value="-1"/>
     <property name="Name" value="Magnetised Overlay"/>
@@ -1784,17 +1764,17 @@
  <layer name="Floor" width="8" height="15">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,
-0,9,14,11,7,12,9,0,
-0,3,14,4,13,7,12,0,
-0,10,4,4,8,4,14,0,
-0,14,5,7,13,7,7,0,
-0,0,2,9,8,14,0,0,
-0,14,8,10,10,2,8,0,
-0,6,12,8,15,2,14,0,
-0,10,13,9,12,12,8,0,
-0,11,10,14,16,14,6,0,
-0,0,0,0,5,0,0,0,
-0,0,0,0,11,12,4,0,
+0,11,10,3,11,11,7,0,
+0,14,14,11,8,13,9,0,
+0,8,10,13,10,7,13,0,
+0,7,14,16,6,13,13,0,
+0,0,11,5,6,7,0,0,
+0,14,12,9,16,9,8,0,
+0,9,5,14,15,2,5,0,
+0,12,1,15,10,12,12,0,
+0,14,9,7,8,10,11,0,
+0,0,0,0,16,0,0,0,
+0,0,0,0,10,16,10,0,
 0,0,0,0,2,0,0,0,
 0,0,0,0,2,0,0,0,
 0,0,0,0,0,0,0,0
@@ -1804,17 +1784,17 @@
  <layer name="Floor Decorations" width="8" height="15">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,
-0,31,32,29,0,30,25,0,
-0,0,0,32,0,25,0,0,
-0,0,30,28,23,25,25,0,
-0,30,26,0,29,25,0,0,
-0,0,0,0,0,28,0,0,
-0,0,32,28,0,0,29,0,
-0,29,0,32,0,28,0,0,
-0,25,0,0,27,30,0,0,
-0,22,31,0,0,0,27,0,
-0,0,0,0,25,0,0,0,
-0,0,0,0,0,0,28,0,
+0,20,29,0,0,29,26,0,
+0,0,25,25,17,27,0,0,
+0,0,0,0,31,29,30,0,
+0,31,23,21,31,28,0,0,
+0,0,0,26,22,0,0,0,
+0,17,23,0,17,0,31,0,
+0,0,24,0,0,0,26,0,
+0,29,0,0,0,0,0,0,
+0,17,0,21,27,32,0,0,
+0,0,0,0,0,0,0,0,
+0,0,0,0,19,0,30,0,
 0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0
@@ -1825,14 +1805,14 @@
   <data encoding="csv">
 75,41,41,41,41,41,41,77,
 47,0,0,0,0,0,0,47,
-47,0,0,87,86,0,0,47,
-47,0,0,0,89,88,0,47,
+47,0,0,88,88,0,0,47,
+47,0,0,0,89,86,0,47,
 47,0,0,0,0,0,0,47,
 67,73,0,0,0,0,72,48,
-47,187,0,0,0,0,187,47,
-47,187,0,0,0,0,187,47,
-47,187,0,0,0,0,187,47,
-47,187,0,0,0,0,187,47,
+47,192,0,0,0,0,192,47,
+47,187,0,0,0,0,192,47,
+47,187,0,0,0,0,192,47,
+47,187,0,0,0,0,192,47,
 68,36,36,78,0,72,41,48,
 69,79,79,50,0,0,181,47,
 69,79,79,50,165,76,36,49,
