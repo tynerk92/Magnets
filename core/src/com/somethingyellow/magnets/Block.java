@@ -19,7 +19,7 @@ public class Block extends TiledStageActor {
 	private int _forceX;
 	private int _forceY;
 
-	public Block(int type, boolean[] bodyArea, int bodyWidth, HashMap<String, Frames> animationFrames,
+	public Block(int type, boolean[] bodyArea, int bodyWidth, HashMap<String, FrameSequence> animationFrames,
 	             TiledStage stage, String layerName, TiledStage.Coordinate origin, boolean isPushable,
 	             boolean isMagnetisable, int actorDepth) {
 		super(type, bodyArea, bodyWidth, animationFrames, stage, layerName, origin, actorDepth);
@@ -116,7 +116,7 @@ public class Block extends TiledStageActor {
 	@Override
 	public boolean bodyCanBeAt(TiledStage.Coordinate coordinate) {
 		if (!super.bodyCanBeAt(coordinate)) return false;
-		if (coordinate.getTileProp(PlayScreen.LAYER_OBJECTS, PlayScreen.TILE_TYPE).equals(PlayScreen.TILE_TYPE_WALL))
+		if (coordinate.getTileProp(PlayScreen.LAYER_ACTORS, PlayScreen.TILE_TYPE, "").equals(PlayScreen.TILE_TYPE_WALL))
 			return false;
 		for (TiledStageActor actor : coordinate.actors()) {
 			if (actor == this) continue;

@@ -1,6 +1,7 @@
 package com.somethingyellow.magnets;
 
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.somethingyellow.tiled.*;
 
@@ -14,7 +15,7 @@ public class Player extends PlayerActor {
 
 	public TiledStage.DIRECTION _pushingDirection;
 
-	public Player(int type, boolean[] bodyArea, int bodyWidth, HashMap<String, Frames> animationFrames,
+	public Player(int type, boolean[] bodyArea, int bodyWidth, HashMap<String, FrameSequence> animationFrames,
 	              TiledStage stage, String layerName, TiledStage.Coordinate origin, int actorDepth) {
 		super(type, bodyArea, bodyWidth, animationFrames, stage, layerName, origin, actorDepth);
 		addState(STATE_STANDING);
@@ -132,7 +133,7 @@ public class Player extends PlayerActor {
 	@Override
 	public boolean bodyCanBeAt(TiledStage.Coordinate coordinate) {
 		if (!super.bodyCanBeAt(coordinate)) return false;
-		if (coordinate.getTileProp(PlayScreen.LAYER_OBJECTS, PlayScreen.TILE_TYPE).equals(PlayScreen.TILE_TYPE_WALL))
+		if (coordinate.getTileProp(PlayScreen.LAYER_ACTORS, PlayScreen.TILE_TYPE, "").equals(PlayScreen.TILE_TYPE_WALL))
 			return false;
 		for (TiledStageActor actor : coordinate.actors()) {
 			if (actor == this) continue;

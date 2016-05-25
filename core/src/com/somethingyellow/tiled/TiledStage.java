@@ -14,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Disposable;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -37,6 +38,7 @@ public class TiledStage extends Stage implements Disposable {
 	private int _tileColumns;
 	private int _maxTicks;
 	private ArrayList<Coordinate> _coordinates;
+	private HashMap<String, TiledMapTileLayer> _tileLayers;
 
 	public TiledStage(TiledMap map, float viewSizeX, float viewSizeY, int maxTicks) {
 		_viewSizeX = viewSizeX;
@@ -173,6 +175,12 @@ public class TiledStage extends Stage implements Disposable {
 		_tileColumns = props.get("width", Integer.class);
 
 		_coordinates = new ArrayList<Coordinate>(_tileRows * _tileColumns);
+		_tileLayers = new HashMap<String, TiledMapTileLayer>();
+
+		for (MapLayer layer : _map.getLayers()) {
+			if (layer instanceof TiledMapTileLayer)
+				_tileLayers.put(layer.getName(), (TiledMapTileLayer) layer);
+		}
 
 		for (int r = 0; r < _tileRows; r++) {
 			for (int c = 0; c < _tileColumns; c++) {
@@ -266,106 +274,20 @@ public class TiledStage extends Stage implements Disposable {
 		return tileRow * _tileColumns + tileCol;
 	}
 
-	public TreeSet<MapLayer> findMapLayers(String propName, boolean value) {
-		TreeSet<MapLayer> layers = new TreeSet<MapLayer>();
-
-		for (MapLayer layer : _map.getLayers()) {
-			if (ParseBooleanProp(layer.getProperties(), propName) == value) {
-				layers.add(layer);
-			}
-		}
-
-		return layers;
+	public HashMap<String, TiledMapTileLayer> tileLayers() {
+		return _tileLayers;
 	}
 
-	public TreeSet<Coordinate> findCoordinates(String layerName, String propName, boolean value) {
-		TreeSet<Coordinate> coordinates = new TreeSet<Coordinate>();
-
-		for (int r = 0; r < _tileRows; r++) {
-			for (int c = 0; c < _tileColumns; c++) {
-				Coordinate coordinate = getCoordinate(r, c);
-				TiledMapTile tile = coordinate.getTile(layerName);
-				if (tile == null) continue;
-
-				if (ParseBooleanProp(tile.getProperties(), propName) == value) {
-					coordinates.add(coordinate);
-				}
-			}
-		}
-
-		return coordinates;
+	public Iterator<Cell> cells() {
+		return new CellsIterator();
 	}
 
-	public TreeSet<Coordinate> findCoordinates(String layerName, String propName, String value) {
-		TreeSet<Coordinate> coordinates = new TreeSet<Coordinate>();
-
-		for (int r = 0; r < _tileRows; r++) {
-			for (int c = 0; c < _tileColumns; c++) {
-				Coordinate coordinate = getCoordinate(r, c);
-				TiledMapTile tile = coordinate.getTile(layerName);
-				if (tile == null) continue;
-
-				if (ParseProp(tile.getProperties(), propName, "").equals(value)) {
-					coordinates.add(coordinate);
-				}
-			}
-		}
-
-		return coordinates;
+	public Iterator<Cell> getCells(String layerName) {
+		return new CellsIterator(layerName);
 	}
 
-	public TreeSet<Coordinate> findCoordinates(String layerName, String propName, int value) {
-		TreeSet<Coordinate> coordinates = new TreeSet<Coordinate>();
-
-		for (int r = 0; r < _tileRows; r++) {
-			for (int c = 0; c < _tileColumns; c++) {
-				Coordinate coordinate = getCoordinate(r, c);
-				TiledMapTile tile = coordinate.getTile(layerName);
-				if (tile == null) continue;
-
-				if (ParseIntegerProp(tile.getProperties(), propName) == value) {
-					coordinates.add(coordinate);
-				}
-			}
-		}
-
-		return coordinates;
-	}
-
-	public TiledMapTile findTile(String propName, String value) {
-		LinkedList<TiledMapTile> tiles = findTiles(propName, value, true);
-		if (tiles.size() == 0) return null;
-		return tiles.get(0);
-	}
-
-	public LinkedList<TiledMapTile> findTiles(String propName, String value) {
-		return findTiles(propName, value, false);
-	}
-
-	private LinkedList<TiledMapTile> findTiles(String propName, String value, boolean ifFirst) {
-		LinkedList<TiledMapTile> tiles = new LinkedList<TiledMapTile>();
-		Iterator<TiledMapTileSet> tilesetsIterator = _map.getTileSets().iterator();
-		Iterator<TiledMapTile> tilesIterator;
-		TiledMapTile tile;
-
-		while (tilesetsIterator.hasNext()) {
-			TiledMapTileSet tileset = tilesetsIterator.next();
-			tilesIterator = tileset.iterator();
-
-			while (tilesIterator.hasNext()) {
-				tile = tilesIterator.next();
-				if (ParseProp(tile.getProperties(), propName, "").equals(value)) {
-					tiles.add(tile);
-					if (ifFirst) return tiles;
-				}
-			}
-		}
-
-		return tiles;
-	}
-
-	public MapLayer getMapLayer(String layerName) {
-		return _map.getLayers().get(layerName);
+	public Iterator<TiledMapTile> tiles() {
+		return new TilesIterator();
 	}
 
 	public TiledStage setViewSize(float viewSizeX, float viewSizeY) {
@@ -395,11 +317,18 @@ public class TiledStage extends Stage implements Disposable {
 		private HashSet<TiledStageActor> _actors;
 		private int _row;
 		private int _col;
+		private HashMap<String, Cell> _cells;
 
 		public Coordinate(int row, int col) {
 			_row = row;
 			_col = col;
 			_actors = new HashSet<TiledStageActor>();
+
+			_cells = new HashMap<String, Cell>(_tileLayers.size());
+			for (String layerName : _tileLayers.keySet()) {
+				TiledMapTileLayer layer = _tileLayers.get(layerName);
+				_cells.put(layerName, new Cell(this, layerName));
+			}
 		}
 
 		public HashSet<TiledStageActor> actors() {
@@ -414,26 +343,6 @@ public class TiledStage extends Stage implements Disposable {
 		public Coordinate removeActor(TiledStageActor actor) {
 			_actors.remove(actor);
 			return this;
-		}
-
-		public TiledMapTileLayer.Cell getCell(String layerName) {
-			MapLayer layer = _map.getLayers().get(layerName);
-			if (layer == null || !(layer instanceof TiledMapTileLayer)) return null;
-			return ((TiledMapTileLayer) layer).getCell(_col, _row);
-		}
-
-		public TiledMapTile getTile(String layerName) {
-			TiledMapTileLayer.Cell cell = getCell(layerName);
-			if (cell == null) return null;
-			return cell.getTile();
-		}
-
-		public TiledMapTile removeTile(String layerName) {
-			TiledMapTileLayer.Cell cell = getCell(layerName);
-			if (cell == null) return null;
-			TiledMapTile tile = cell.getTile();
-			cell.setTile(null);
-			return tile;
 		}
 
 		public DIRECTION getDirectionFrom(Coordinate sourceCoordinate) {
@@ -454,7 +363,6 @@ public class TiledStage extends Stage implements Disposable {
 						(Math.abs(targetCoordinate._col - _col) <= range && targetCoordinate._row == _row);
 			}
 		}
-
 
 		public TreeSet<Coordinate> getCoordinatesInRange(int range, boolean includeDiagonally) {
 			TreeSet<Coordinate> coordinates = new TreeSet<Coordinate>();
@@ -486,24 +394,32 @@ public class TiledStage extends Stage implements Disposable {
 					column() + GetUnitColumn(direction));
 		}
 
-		public boolean getTileBooleanProp(String layerName, String propName) {
-			TiledMapTile tile = getTile(layerName);
-			if (tile == null) return false;
-			return ParseBooleanProp(tile.getProperties(), propName, false);
-		}
-
-		public String getTileProp(String layerName, String propName) {
-			TiledMapTile tile = getTile(layerName);
-			if (tile == null) return "";
-			return ParseProp(tile.getProperties(), propName, "");
-		}
-
 		public int row() {
 			return _row;
 		}
 
 		public int column() {
 			return _col;
+		}
+
+		public Cell getCell(String layerName) {
+			return _cells.get(layerName);
+		}
+
+		public HashMap<String, Cell> cells() {
+			return _cells;
+		}
+
+		public TiledMapTile getTile(String layerName) {
+			Cell cell = _cells.get(layerName);
+			if (cell == null) return null;
+			return cell.tile();
+		}
+
+		public String getTileProp(String layerName, String propName, String defaultValue) {
+			TiledMapTile tile = getTile(layerName);
+			if (tile == null) return defaultValue;
+			return ParseProp(tile.getProperties(), propName, defaultValue);
 		}
 
 		public Vector2 position() {
@@ -522,6 +438,123 @@ public class TiledStage extends Stage implements Disposable {
 		@Override
 		public int compareTo(Coordinate coordinate) {
 			return getCoordinateIndex(_row, _col) - getCoordinateIndex(coordinate._row, coordinate._col);
+		}
+	}
+
+	public class Cell {
+		private Coordinate _coordinate;
+		private String _layerName;
+
+		public Cell(Coordinate coordinate, String layerName) {
+			_coordinate = coordinate;
+			_layerName = layerName;
+		}
+
+		public Coordinate coordinate() {
+			return _coordinate;
+		}
+
+		public String layerName() {
+			return _layerName;
+		}
+
+		public TiledMapTile tile() {
+			TiledMapTileLayer layer = _tileLayers.get(_layerName);
+			if (layer == null) return null;
+			TiledMapTileLayer.Cell cell = layer.getCell(_coordinate._col, _coordinate._row);
+			if (cell == null) return null;
+			return cell.getTile();
+		}
+
+		public Cell removeTile() {
+			TiledMapTileLayer layer = _tileLayers.get(_layerName);
+			if (layer == null) return null;
+			TiledMapTileLayer.Cell cell = layer.getCell(_coordinate._col, _coordinate._row);
+			if (cell == null) return null;
+			cell.setTile(null);
+			return this;
+		}
+	}
+
+	private class CoordinatesIterator implements Iterator<Coordinate> {
+		private int _row = 0;
+		private int _col = 0;
+
+		public CoordinatesIterator() {
+		}
+
+		@Override
+		public boolean hasNext() {
+			return (_row < _tileRows && _col < _tileColumns);
+		}
+
+		@Override
+		public Coordinate next() {
+			Coordinate coordinate = getCoordinate(_row, _col);
+
+			_col++;
+			if (_col >= tileColumns()) {
+				_col = 0;
+				_row++;
+			}
+
+			return coordinate;
+		}
+	}
+
+	private class CellsIterator implements Iterator<Cell> {
+		private Iterator<Coordinate> _coordinatesIterator = new CoordinatesIterator();
+		private Iterator<Cell> _cellsIterator;
+		private String _onlyLayerName;
+
+		public CellsIterator() {
+			if (_coordinatesIterator.hasNext())
+				_cellsIterator = _coordinatesIterator.next().cells().values().iterator();
+		}
+
+		public CellsIterator(String onlyLayerName) {
+			_onlyLayerName = onlyLayerName;
+		}
+
+		@Override
+		public boolean hasNext() {
+			return (_cellsIterator != null && _cellsIterator.hasNext());
+		}
+
+		@Override
+		public Cell next() {
+			Cell cell;
+			do {
+				cell = _cellsIterator.next();
+			} while (_onlyLayerName != null && !cell._layerName.equals(_onlyLayerName));
+
+			if (!_cellsIterator.hasNext() && _coordinatesIterator.hasNext())
+				_cellsIterator = _coordinatesIterator.next().cells().values().iterator();
+
+			return cell;
+		}
+	}
+
+	private class TilesIterator implements Iterator<TiledMapTile> {
+		private Iterator<TiledMapTileSet> _tilesetsIterator = _map.getTileSets().iterator();
+		private Iterator<TiledMapTile> _tilesIterator;
+
+		public TilesIterator() {
+			if (_tilesetsIterator.hasNext()) _tilesIterator = _tilesetsIterator.next().iterator();
+		}
+
+		@Override
+		public boolean hasNext() {
+			return (_tilesIterator != null && _tilesIterator.hasNext());
+		}
+
+		@Override
+		public TiledMapTile next() {
+			TiledMapTile tile = _tilesIterator.next();
+			if (!_tilesIterator.hasNext() && _tilesetsIterator.hasNext())
+				_tilesIterator = _tilesetsIterator.next().iterator();
+
+			return tile;
 		}
 	}
 }

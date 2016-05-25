@@ -2,6 +2,9 @@ package com.somethingyellow.tiled;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.maps.tiled.TiledMapTile;
+import com.badlogic.gdx.maps.tiled.tiles.AnimatedTiledMapTile;
+import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
@@ -27,10 +30,10 @@ public abstract class TiledStageActor extends Actor implements Comparable<TiledS
 	private boolean[] _bodyArea;
 	private int _bodyWidth;
 	private int _bodyHeight;
-	private HashMap<String, Frames> _animationFrames;
+	private HashMap<String, FrameSequence> _animationFrames;
 	private TreeSet<String> _states;
 
-	public TiledStageActor(int type, boolean[] bodyArea, int bodyWidth, HashMap<String, Frames> animationFrames,
+	public TiledStageActor(int type, boolean[] bodyArea, int bodyWidth, HashMap<String, FrameSequence> animationFrames,
 	                       TiledStage stage, String layerName, TiledStage.Coordinate origin, int actorDepth) {
 		if (bodyArea.length % bodyWidth != 0)
 			throw new IllegalArgumentException("Length of 'Body Area' should be a multiple of 'Body Width'!");
@@ -104,13 +107,14 @@ public abstract class TiledStageActor extends Actor implements Comparable<TiledS
 
 		if (canBeAt(targetCoordinate)) {
 			_isMoving = true;
-			for (TiledStage.Coordinate coordinate : getBodyCoordinates(targetCoordinate)) {
-				coordinate.addActor(actor);
-			}
-			_origin = targetCoordinate;
-			onMovement(_origin, origin);
+
 			for (TiledStage.Coordinate coordinate : getBodyCoordinates(origin)) {
 				coordinate.removeActor(actor);
+			}
+			onMovement(origin, targetCoordinate);
+			_origin = targetCoordinate;
+			for (TiledStage.Coordinate coordinate : getBodyCoordinates(targetCoordinate)) {
+				coordinate.addActor(actor);
 			}
 
 			actor.addAction(Actions.sequence(
@@ -167,17 +171,17 @@ public abstract class TiledStageActor extends Actor implements Comparable<TiledS
 	}
 
 	private LinkedList<TextureRegion> textureRegions() {
-		ArrayList<Frames> framesList = new ArrayList<Frames>(_states.size());
+		ArrayList<FrameSequence> frameSequenceList = new ArrayList<FrameSequence>(_states.size());
 
 		for (String name : _states) {
-			framesList.add(_animationFrames.get(name));
+			frameSequenceList.add(_animationFrames.get(name));
 		}
 
-		Collections.sort(framesList);
+		Collections.sort(frameSequenceList);
 
 		LinkedList<TextureRegion> textureRegions = new LinkedList<TextureRegion>();
-		for (Frames frames : framesList) {
-			textureRegions.add(frames.textureRegion());
+		for (FrameSequence frameSequence : frameSequenceList) {
+			textureRegions.add(frameSequence.textureRegion());
 		}
 
 		return textureRegions;
@@ -247,36 +251,81 @@ public abstract class TiledStageActor extends Actor implements Comparable<TiledS
 		return (_actorDepth - actor._actorDepth);
 	}
 
-	public static class Frames implements Comparable<Frames> {
+	public static class Frame {
+		private TextureRegion _textureRegion;
+		private float _duration;
+
+		public Frame(TextureRegion textureRegion, float duration) {
+			_textureRegion = textureRegion;
+			_duration = duration;
+		}
+
+		public TextureRegion textureRegion() {
+			return _textureRegion;
+		}
+
+		public float duration() {
+			return _duration;
+		}
+	}
+
+	public static class FrameSequence implements Comparable<FrameSequence> {
 		private float _time;
-		private float _frameDuration;
-		private ArrayList<TextureRegion> _textureRegions;
+		private ArrayList<Frame> _frames;
+		private int _frameIndex;
 		private int _renderDepth;
 
-		public Frames(ArrayList<TextureRegion> textureRegions, float frameDuration, int renderDepth) {
+		public FrameSequence(ArrayList<Frame> frames, int renderDepth) {
 			_time = 0f;
-			_frameDuration = frameDuration;
-			_textureRegions = textureRegions;
+			_frameIndex = 0;
+			_frames = frames;
 			_renderDepth = renderDepth;
 		}
 
-		public Frames update(float timeDelta) {
+		public static ArrayList<Frame> TileToFrames(TiledMapTile tile) {
+			ArrayList<Frame> frames;
+
+			if (tile instanceof AnimatedTiledMapTile) {
+				AnimatedTiledMapTile animatedTile = (AnimatedTiledMapTile) tile;
+				frames = new ArrayList<Frame>(animatedTile.getFrameTiles().length);
+				int[] intervals = animatedTile.getAnimationIntervals();
+				StaticTiledMapTile[] staticTiles = animatedTile.getFrameTiles();
+
+				for (int i = 0; i < staticTiles.length; i++) {
+					frames.add(i, new Frame(staticTiles[i].getTextureRegion(), intervals[i]));
+				}
+			} else if (tile instanceof StaticTiledMapTile) {
+				frames = new ArrayList<Frame>(1);
+				frames.add(new Frame(tile.getTextureRegion(), 1f));
+			} else {
+				frames = new ArrayList<Frame>();
+			}
+
+			return frames;
+		}
+
+		public FrameSequence update(float timeDelta) {
 			_time += timeDelta;
+			while (_time > _frames.get(_frameIndex)._duration) {
+				_time -= _frames.get(_frameIndex)._duration;
+				_frameIndex = (_frameIndex + 1) % _frames.size();
+			}
 			return this;
 		}
 
 		public TextureRegion textureRegion() {
-			return _textureRegions.get(((int) (_time / _frameDuration)) % _textureRegions.size());
+			return _frames.get(_frameIndex)._textureRegion;
 		}
 
-		public Frames reset() {
+		public FrameSequence reset() {
 			_time = 0f;
+			_frameIndex = 0;
 			return this;
 		}
 
 		@Override
-		public int compareTo(Frames frames) {
-			return (_renderDepth - frames._renderDepth);
+		public int compareTo(FrameSequence frameSequence) {
+			return (_renderDepth - frameSequence._renderDepth);
 		}
 	}
 }
