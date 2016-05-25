@@ -7,10 +7,10 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.tiles.AnimatedTiledMapTile;
 import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 
 import com.somethingyellow.tiled.*;
 
@@ -22,12 +22,13 @@ import java.util.TreeSet;
 public class PlayScreen implements Screen {
 	public static final float WORLD_WIDTH = 500f;
 	public static final float TILE_ANIMATION_FRAME_DURATION = 0.1f;
-	public static final String LAYER_OBJECTS = "Walls and Objects";
+	public static final String LAYER_ACTORS = "Walls and Objects";
+	// Tile properties
 	public static final String TILE_TYPE = "Type";
 	public static final String TILE_NAME = "Name";
 	public static final String TILE_TYPE_PLAYER = "Player";
 	public static final String TILE_TYPE_BLOCK = "Block";
-	public static final String TILE_TYPE_MAGNETIC_SOURCE = "Magnetic Source";
+	public static final String TILE_TYPE_MAGNETIC_AREA = "Magnetic Source";
 	public static final String TILE_TYPE_WALL = "Wall";
 	public static final String TILE_ISPUSHABLE = "IsPushable";
 	public static final String TILE_ISMAGNETISABLE = "IsMagnetisable";
@@ -36,14 +37,13 @@ public class PlayScreen implements Screen {
 	public static final String TILE_THIS = "(this)";
 	public static final String TILE_ACTOR_DEPTH = "Actor Depth";
 	public static final String TILE_FRAME_DEPTH = "Frame Depth";
-	// Layer/Property names
-	public static int TILE_SIZE = 32;
 	public boolean DEBUG_MODE = false;
 	// Paths/Textures
-	private String _levelPath = "Tutorial.tmx";
+	private String _levelPath = "Levels/test.tmx";
 	private TiledStage _tiledStage;
 	private PlayerActor _playerActor;
-	private Stage _uiStage;
+	private HashMap<String, TiledMapTile> _tilesByName;
+	private HashMap<TiledMapTile, TiledStageActor.FrameSequence> _tileFrameSequencesByName;
 	// Debugging tools
 	private FPSLogger _fpsLogger = new FPSLogger();
 
@@ -80,49 +80,39 @@ public class PlayScreen implements Screen {
 		return TiledStage.ParseBooleanProp(tile.getProperties(), TILE_ISMAGNETISABLE, false);
 	}
 
-	public static HashMap<String, TiledStageActor.Frames> ExtractAnimations(TiledStage stage, TiledMapTile tile) {
-		HashMap<String, TiledStageActor.Frames> animationFrames = new HashMap<String, TiledStageActor.Frames>();
-		Iterator<String> props = tile.getProperties().getKeys();
-
-		while (props.hasNext()) {
-			String prop = props.next();
-			if (prop.charAt(0) == '#') {
-				String name = TiledStage.ParseProp(tile.getProperties(), prop);
-				TiledMapTile animationTile = (name.equals(TILE_THIS)) ? tile : stage.findTile(TILE_NAME, name);
-				animationFrames.put(prop.substring(1), TileToAnimationFrames(animationTile));
-			}
-		}
-
-		return animationFrames;
-	}
-
-	public static TiledStageActor.Frames TileToAnimationFrames(TiledMapTile tile) {
-		ArrayList<TextureRegion> textureRegions;
-		StaticTiledMapTile[] frames;
-
-		if (tile instanceof AnimatedTiledMapTile) {
-			frames = ((AnimatedTiledMapTile) tile).getFrameTiles();
-		} else if (tile instanceof StaticTiledMapTile) {
-			frames = new StaticTiledMapTile[]{(StaticTiledMapTile) tile};
-		} else {
-			return null;
-		}
-
-		textureRegions = new ArrayList<TextureRegion>();
-		for (StaticTiledMapTile frameTile : frames) {
-			textureRegions.add(frameTile.getTextureRegion());
-		}
-
-		// TODO: Memoise animations from same tile
-		return new TiledStageActor.Frames(textureRegions, TILE_ANIMATION_FRAME_DURATION, ExtractFrameDepth(tile));
-	}
-
 	public static int ExtractFrameDepth(TiledMapTile tile) {
 		return TiledStage.ParseIntegerProp(tile.getProperties(), TILE_FRAME_DEPTH, 0);
 	}
 
 	public static int ExtractActorDepth(TiledMapTile tile) {
 		return TiledStage.ParseIntegerProp(tile.getProperties(), TILE_ACTOR_DEPTH, 0);
+	}
+
+	public HashMap<String, TiledStageActor.FrameSequence> getAnimations(TiledMapTile tile) {
+		HashMap<String, TiledStageActor.FrameSequence> animationFrames = new HashMap<String, TiledStageActor.FrameSequence>();
+		Iterator<String> props = tile.getProperties().getKeys();
+
+		while (props.hasNext()) {
+			String prop = props.next();
+
+			if (prop.charAt(0) == '#') {
+				String name = TiledStage.ParseProp(tile.getProperties(), prop);
+
+				TiledMapTile animationTile = tile;
+				if (!name.equals(TILE_THIS)) {
+					animationTile = _tilesByName.get(name);
+				}
+
+				if (!_tileFrameSequencesByName.containsKey(animationTile)) {
+					_tileFrameSequencesByName.put(animationTile, new TiledStageActor.FrameSequence(TiledStageActor.FrameSequence.TileToFrames(animationTile), ExtractFrameDepth(tile)));
+				}
+
+				animationFrames.put(prop.substring(1), _tileFrameSequencesByName.get(animationTile));
+				System.out.println(_tileFrameSequencesByName);
+			}
+		}
+
+		return animationFrames;
 	}
 
 	@Override
@@ -137,62 +127,73 @@ public class PlayScreen implements Screen {
 		TiledMap map = new TmxMapLoader().load(_levelPath);
 
 		_tiledStage = new TiledStage(map, WORLD_WIDTH, WORLD_WIDTH / width * height, TICKS.values().length);
+		_tilesByName = new HashMap<String, TiledMapTile>();
+		_tileFrameSequencesByName = new HashMap<TiledMapTile, TiledStageActor.FrameSequence>();
 
 		Gdx.input.setInputProcessor(_tiledStage);
-		spawnPlayer();
-		spawnBlocks();
-		spawnMagneticSources();
+
+		Iterator<TiledMapTile> tiles = _tiledStage.tiles();
+		while (tiles.hasNext()) {
+			TiledMapTile tile = tiles.next();
+
+			String name = TiledStage.ParseProp(tile.getProperties(), TILE_NAME);
+			if (name != null) {
+				_tilesByName.put(name, tile);
+			}
+		}
+
+		Iterator<TiledStage.Cell> cells = _tiledStage.cells();
+		while (cells.hasNext()) {
+			TiledStage.Cell cell = cells.next();
+			TiledMapTile tile = cell.tile();
+			if (tile == null) continue;
+
+			String type = TiledStage.ParseProp(cell.tile().getProperties(), TILE_TYPE, "");
+
+			if (type.equals(TILE_TYPE_BLOCK)) {
+				spawnBlock(cell);
+			} else if (type.equals(TILE_TYPE_MAGNETIC_AREA)) {
+				spawnMagneticArea(cell);
+			} else if (type.equals(TILE_TYPE_PLAYER)) {
+				spawnPlayer(cell);
+			}
+		}
 	}
 
-	public void spawnPlayer() {
-		TreeSet<TiledStage.Coordinate> coordinates = _tiledStage.findCoordinates(LAYER_OBJECTS, TILE_TYPE, TILE_TYPE_PLAYER);
-		if (coordinates.size() != 1)
+	public void spawnPlayer(TiledStage.Cell cell) {
+		if (_playerActor != null)
 			throw new IllegalArgumentException("There should only be 1 player on the tiled map!");
 
 		// Add player to stage
-		TiledMapTile tile = coordinates.first().getTile(LAYER_OBJECTS);
 		_playerActor = new Player(OBJECT_TYPES.PLAYER.ordinal(),
 				TiledStageActor.BodyArea1x1, 1,
-				ExtractAnimations(_tiledStage, tile),
-				_tiledStage, LAYER_OBJECTS, coordinates.first(), ExtractActorDepth(tile));
+				getAnimations(cell.tile()),
+				_tiledStage, LAYER_ACTORS, cell.coordinate(), ExtractActorDepth(cell.tile()));
 
-		coordinates.first().removeTile(LAYER_OBJECTS);
+		cell.removeTile();
 		_tiledStage.setCameraFocalActor(_playerActor);
 		_tiledStage.setInputFocalActor(_playerActor);
 	}
 
-	public void spawnBlocks() {
-		TreeSet<TiledStage.Coordinate> coordinates = _tiledStage.findCoordinates(LAYER_OBJECTS, TILE_TYPE, TILE_TYPE_BLOCK);
-		Block block;
-		TiledMapTile tile;
+	public void spawnBlock(TiledStage.Cell cell) {
 
-		for (TiledStage.Coordinate coordinate : coordinates) {
-			tile = coordinate.getTile(LAYER_OBJECTS);
-			block = new Block(OBJECT_TYPES.BLOCK.ordinal(),
-					ExtractBodyArea(tile), ExtractBodyWidth(tile),
-					ExtractAnimations(_tiledStage, tile),
-					_tiledStage, LAYER_OBJECTS, coordinate,
-					ExtractIsPushable(tile), ExtractIsMagnetisable(tile), ExtractActorDepth(tile));
+		new Block(OBJECT_TYPES.BLOCK.ordinal(),
+				ExtractBodyArea(cell.tile()), ExtractBodyWidth(cell.tile()),
+				getAnimations(cell.tile()),
+				_tiledStage, LAYER_ACTORS, cell.coordinate(),
+				ExtractIsPushable(cell.tile()), ExtractIsMagnetisable(cell.tile()), ExtractActorDepth(cell.tile()));
 
-			coordinate.removeTile(LAYER_OBJECTS);
-		}
+		cell.removeTile();
 	}
 
-	public void spawnMagneticSources() {
-		TreeSet<TiledStage.Coordinate> coordinates = _tiledStage.findCoordinates(LAYER_OBJECTS, TILE_TYPE, TILE_TYPE_MAGNETIC_SOURCE);
-		MagneticSource source;
-		TiledMapTile tile;
+	public void spawnMagneticArea(TiledStage.Cell cell) {
 
+		new MagneticSource(OBJECT_TYPES.MAGNETIC_SOURCE.ordinal(),
+				ExtractBodyArea(cell.tile()), ExtractBodyWidth(cell.tile()),
+				getAnimations(cell.tile()),
+				_tiledStage, LAYER_ACTORS, cell.coordinate(), ExtractActorDepth(cell.tile()));
 
-		for (TiledStage.Coordinate coordinate : coordinates) {
-			tile = coordinate.getTile(LAYER_OBJECTS);
-			source = new MagneticSource(OBJECT_TYPES.MAGNETIC_SOURCE.ordinal(),
-					ExtractBodyArea(tile), ExtractBodyWidth(tile),
-					ExtractAnimations(_tiledStage, tile),
-					_tiledStage, LAYER_OBJECTS, coordinate, ExtractActorDepth(tile));
-
-			coordinate.removeTile(LAYER_OBJECTS);
-		}
+		cell.removeTile();
 	}
 
 	@Override
