@@ -1132,6 +1132,7 @@ public class TextToTmx {
             	
             	String area = data[1].substring(0, data[1].length() - 4);
             	String width = data[0];
+            	Boolean pushable = Blocks[n].contains("Pushable");
             	
 				writer.println("   <properties>\n" +
 						"    <property name=\"#\" value=\"(this)\"/>\n" +
@@ -1139,7 +1140,7 @@ public class TextToTmx {
 						"    <property name=\"Body Area\" value=\"" + area + "\"/>\n" +
 						"    <property name=\"Body Width\" type=\"int\" value=\"" + width + "\"/>\n" +
 						"    <property name=\"IsMagnetisable\" type=\"bool\" value=\"true\"/>\n" +
-						"    <property name=\"IsPushable\" type=\"bool\" value=\"true\"/>\n" +
+						"    <property name=\"IsPushable\" type=\"bool\" value=\"" + pushable + "\"/>\n" +
 						"    <property name=\"Type\" value=\"Block\"/>\n" +
 						"   </properties>");
 
