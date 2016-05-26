@@ -43,10 +43,14 @@ public class Player extends PlayerActor {
 
 	private boolean checkPushes() {
 		if (!isMoving()) {
-			if (isKeyLeftHeld()) return pushDirection(TiledStage.DIRECTION.WEST);
-			if (isKeyRightHeld()) return pushDirection(TiledStage.DIRECTION.EAST);
-			if (isKeyUpHeld()) return pushDirection(TiledStage.DIRECTION.NORTH);
-			if (isKeyDownHeld()) return pushDirection(TiledStage.DIRECTION.SOUTH);
+			if (isKeyLeftHeld() && !isKeyRightHeld() && !isKeyUpHeld() && !isKeyDownHeld())
+				return pushDirection(TiledStage.DIRECTION.WEST);
+			else if (isKeyRightHeld() && !isKeyLeftHeld() && !isKeyUpHeld() && !isKeyDownHeld())
+				return pushDirection(TiledStage.DIRECTION.EAST);
+			else if (isKeyUpHeld() && !isKeyLeftHeld() && !isKeyRightHeld() && !isKeyDownHeld())
+				return pushDirection(TiledStage.DIRECTION.NORTH);
+			else if (isKeyDownHeld() && !isKeyLeftHeld() && !isKeyUpHeld() && !isKeyUpHeld())
+				return pushDirection(TiledStage.DIRECTION.SOUTH);
 		}
 
 		return false;
