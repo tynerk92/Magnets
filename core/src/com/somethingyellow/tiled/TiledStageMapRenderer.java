@@ -13,6 +13,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.TreeSet;
 
 import static com.badlogic.gdx.graphics.g2d.Batch.C1;
 import static com.badlogic.gdx.graphics.g2d.Batch.C2;
@@ -84,20 +85,34 @@ public class TiledStageMapRenderer extends BatchTiledMapRenderer {
 		float xStart = col1 * layerTileWidth;
 		final float[] vertices = this.vertices;
 
+		HashSet<TiledStageActor> actors;
+		LinkedList<TextureRegion> textureRegions;
+		LinkedList<TiledStage.Coordinate> bodyCoordinates;
+		TiledStageActor[] actorsArray;
+
 		for (int row = row2; row >= row1; row--) {
 			float x = xStart;
 
 			if (layer.getName().equals(_actorsLayerName)) {
+
+				actors = new HashSet<TiledStageActor>();
+
 				for (int col = col1; col <= col2; col++) {
 					TiledStage.Coordinate coordinate = _stage.getCoordinate(row, col);
+					for (TiledStageActor actor : coordinate.actors()) {
+						actors.add(actor);
+					}
+				}
 
-					HashSet<TiledStageActor> actors = coordinate.actors();
-					TiledStageActor[] actorsArray = actors.toArray(new TiledStageActor[actors.size()]);
-					Arrays.sort(actorsArray);
+				actorsArray = actors.toArray(new TiledStageActor[actors.size()]);
+				Arrays.sort(actorsArray);
 
-					LinkedList<TextureRegion> textureRegions;
-					for (int i = 0; i < actorsArray.length; i++) {
-						TiledStageActor actor = actorsArray[i];
+				// In ascending actor depth
+				for (TiledStageActor actor : actorsArray) {
+					bodyCoordinates = actor.bodyCoordinates();
+
+					for (TiledStage.Coordinate coordinate : bodyCoordinates) {
+						if (coordinate.row() != row) continue;
 
 						// if there is some actor on both this and the above coordinate on the same layer with a higher actor depth
 						// or the actor's body also exists in the above coordinate, do not render protrusion
