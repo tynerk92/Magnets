@@ -16,8 +16,8 @@ public class Player extends PlayerActor {
 	public TiledStage.DIRECTION _pushingDirection;
 
 	public Player(int type, boolean[] bodyArea, int bodyWidth, HashMap<String, FrameSequence> animationFrames,
-	              TiledStage stage, String layerName, TiledStage.Coordinate origin, int actorDepth) {
-		super(type, bodyArea, bodyWidth, animationFrames, stage, layerName, origin, actorDepth);
+	              TiledStage stage, TiledStage.Coordinate origin, int actorDepth) {
+		super(type, bodyArea, bodyWidth, animationFrames, stage, origin, actorDepth);
 		addState(STATE_STANDING);
 	}
 

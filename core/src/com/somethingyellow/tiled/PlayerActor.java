@@ -17,8 +17,8 @@ public class PlayerActor extends TiledStageActor implements EventListener {
 	private boolean _isKeyDownHeld = false;
 
 	public PlayerActor(int type, boolean[] bodyArea, int bodyWidth, HashMap<String, FrameSequence> animationFrames,
-	                   TiledStage stage, String layerName, TiledStage.Coordinate origin, int actorDepth) {
-		super(type, bodyArea, bodyWidth, animationFrames, stage, layerName, origin, actorDepth);
+	                   TiledStage stage, TiledStage.Coordinate origin, int actorDepth) {
+		super(type, bodyArea, bodyWidth, animationFrames, stage, origin, actorDepth);
 		addListener(this);
 	}
 

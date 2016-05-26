@@ -1,6 +1,5 @@
 package com.somethingyellow.tiled;
 
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.tiles.AnimatedTiledMapTile;
@@ -22,7 +21,6 @@ public abstract class TiledStageActor extends Actor implements Comparable<TiledS
 			true
 	};
 	private TiledStage.Coordinate _origin;
-	private String _layerName;
 	private int _actorDepth;
 	private TiledStage _stage;
 	private int _type;
@@ -34,14 +32,13 @@ public abstract class TiledStageActor extends Actor implements Comparable<TiledS
 	private TreeSet<String> _states;
 
 	public TiledStageActor(int type, boolean[] bodyArea, int bodyWidth, HashMap<String, FrameSequence> animationFrames,
-	                       TiledStage stage, String layerName, TiledStage.Coordinate origin, int actorDepth) {
+	                       TiledStage stage, TiledStage.Coordinate origin, int actorDepth) {
 		if (bodyArea.length % bodyWidth != 0)
 			throw new IllegalArgumentException("Length of 'Body Area' should be a multiple of 'Body Width'!");
 
 		_type = type;
 		_bodyArea = bodyArea;
 		_bodyWidth = bodyWidth;
-		_layerName = layerName;
 		_animationFrames = animationFrames;
 		_bodyHeight = bodyArea.length / bodyWidth;
 		_stage = stage;
@@ -157,20 +154,11 @@ public abstract class TiledStageActor extends Actor implements Comparable<TiledS
 		return _origin;
 	}
 
-	public String layerName() {
-		return _layerName;
-	}
-
 	public LinkedList<TiledStage.Coordinate> bodyCoordinates() {
 		return getBodyCoordinates(_origin);
 	}
 
-	// Coordinate on tiledmap to render textureregion for actor
-	public TiledStage.Coordinate renderCoordinate() {
-		return _stage.getCoordinate(_bodyHeight - 1 + _origin.row(), _origin.column());
-	}
-
-	private LinkedList<TextureRegion> textureRegions() {
+	public LinkedList<TextureRegion> textureRegions() {
 		ArrayList<FrameSequence> frameSequenceList = new ArrayList<FrameSequence>(_states.size());
 
 		for (String name : _states) {
@@ -214,6 +202,19 @@ public abstract class TiledStageActor extends Actor implements Comparable<TiledS
 		return _type;
 	}
 
+	public int actorDepth() {
+		return _actorDepth;
+	}
+
+	public int bodyWidth() {
+		return _bodyWidth;
+	}
+
+	public int bodyHeight() {
+		return _bodyHeight;
+	}
+
+	@Override
 	public TiledStage getStage() {
 		return _stage;
 	}
@@ -231,14 +232,6 @@ public abstract class TiledStageActor extends Actor implements Comparable<TiledS
 	public TiledStageActor removeState(String state) {
 		_states.remove(state);
 		return this;
-	}
-
-	@Override
-	public void draw(Batch batch, float parentAlpha) {
-		LinkedList<TextureRegion> textureRegions = textureRegions();
-		for (TextureRegion textureRegion : textureRegions) {
-			batch.draw(textureRegion, getX(), getY());
-		}
 	}
 
 	@Override

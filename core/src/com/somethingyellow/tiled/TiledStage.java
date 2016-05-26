@@ -38,11 +38,13 @@ public class TiledStage extends Stage implements Disposable {
 	private int _tileColumns;
 	private int _maxTicks;
 	private ArrayList<Coordinate> _coordinates;
+	private String _actorsLayerName;
 	private HashMap<String, TiledMapTileLayer> _tileLayers;
 
-	public TiledStage(TiledMap map, float viewSizeX, float viewSizeY, int maxTicks) {
+	public TiledStage(TiledMap map, String actorsLayerName, float viewSizeX, float viewSizeY, int maxTicks) {
 		_viewSizeX = viewSizeX;
 		_viewSizeY = viewSizeY;
+		_actorsLayerName = actorsLayerName;
 		_map = map;
 		_actors = new LinkedList<TiledStageActor>();
 		_maxTicks = maxTicks;
@@ -167,7 +169,7 @@ public class TiledStage extends Stage implements Disposable {
 	// -------
 
 	public void initializeMap() {
-		_mapRenderer = new TiledStageMapRenderer(this, _map, getBatch());
+		_mapRenderer = new TiledStageMapRenderer(this, _map, getBatch(), _actorsLayerName);
 		MapProperties props = _map.getProperties();
 		_tileWidth = props.get("tilewidth", Integer.class);
 		_tileHeight = props.get("tileheight", Integer.class);

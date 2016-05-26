@@ -20,9 +20,9 @@ public class Block extends TiledStageActor {
 	private int _forceY;
 
 	public Block(int type, boolean[] bodyArea, int bodyWidth, HashMap<String, FrameSequence> animationFrames,
-	             TiledStage stage, String layerName, TiledStage.Coordinate origin, boolean isPushable,
+	             TiledStage stage, TiledStage.Coordinate origin, boolean isPushable,
 	             boolean isMagnetisable, int actorDepth) {
-		super(type, bodyArea, bodyWidth, animationFrames, stage, layerName, origin, actorDepth);
+		super(type, bodyArea, bodyWidth, animationFrames, stage, origin, actorDepth);
 		_isPushable = isPushable;
 		_isMagnetisable = isMagnetisable;
 		_isMagnetised = false;
