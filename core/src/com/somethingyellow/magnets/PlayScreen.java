@@ -23,7 +23,7 @@ public class PlayScreen implements Screen {
 	public static final String TILE_NAME = "Name";
 	public static final String TILE_TYPE_PLAYER = "Player";
 	public static final String TILE_TYPE_BLOCK = "Block";
-	public static final String TILE_TYPE_MAGNETIC_AREA = "Magnetic Source";
+	public static final String TILE_TYPE_MAGNETIC_SOURCE = "Magnetic Source";
 	public static final String TILE_TYPE_WALL = "Wall";
 	public static final String TILE_ISPUSHABLE = "IsPushable";
 	public static final String TILE_ISMAGNETISABLE = "IsMagnetisable";
@@ -145,7 +145,7 @@ public class PlayScreen implements Screen {
 			String type = TiledStage.ParseProp(tile.getProperties(), TILE_TYPE, "");
 			if (type.equals(TILE_TYPE_BLOCK)) {
 				spawnBlock(cell);
-			} else if (type.equals(TILE_TYPE_MAGNETIC_AREA)) {
+			} else if (type.equals(TILE_TYPE_MAGNETIC_SOURCE)) {
 				spawnMagneticArea(cell);
 			} else if (type.equals(TILE_TYPE_PLAYER)) {
 				spawnPlayer(cell);

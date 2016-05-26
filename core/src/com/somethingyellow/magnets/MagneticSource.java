@@ -45,7 +45,7 @@ public class MagneticSource extends TiledStageActor {
 						if (actor instanceof Block) {
 							Block block = (Block) actor;
 							if (!block.isMagnetised()) {
-								TiledStage.DIRECTION direction = bodyCoordinate.getDirectionFrom(block.origin());
+								TiledStage.DIRECTION direction = bodyCoordinate.getDirectionFrom(coordinate);
 								if (direction != null)
 									block.applyForce(direction, ATTRACTION_STRENGTH);
 							}

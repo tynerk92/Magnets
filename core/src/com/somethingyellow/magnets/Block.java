@@ -121,7 +121,8 @@ public class Block extends TiledStageActor {
 		for (TiledStageActor actor : coordinate.actors()) {
 			if (actor == this) continue;
 			if (actor.type() == PlayScreen.OBJECT_TYPES.PLAYER.ordinal() ||
-					actor.type() == PlayScreen.OBJECT_TYPES.BLOCK.ordinal()) return false;
+					actor.type() == PlayScreen.OBJECT_TYPES.BLOCK.ordinal() ||
+					actor.type() == PlayScreen.OBJECT_TYPES.MAGNETIC_SOURCE.ordinal()) return false;
 		}
 
 		return true;
