@@ -33,8 +33,8 @@ public class Block extends TiledStageActor {
 	}
 
 	@Override
-	public void act(float delta, int tick) {
-		super.act(delta, tick);
+	public void act(int tick) {
+		super.act(tick);
 
 		if (tick == PlayScreen.TICKS.RESET.ordinal()) {
 
@@ -71,7 +71,6 @@ public class Block extends TiledStageActor {
 			if (_forceX != 0 || _forceY != 0) {
 				moveDirection(TiledStage.GetDirection(_forceY, _forceX), 1 / MOVE_SPEED);
 			}
-
 		}
 	}
 
@@ -121,7 +120,8 @@ public class Block extends TiledStageActor {
 		for (TiledStageActor actor : coordinate.actors()) {
 			if (actor == this) continue;
 			if (actor.type() == PlayScreen.OBJECT_TYPES.PLAYER.ordinal() ||
-					actor.type() == PlayScreen.OBJECT_TYPES.BLOCK.ordinal()) return false;
+					actor.type() == PlayScreen.OBJECT_TYPES.BLOCK.ordinal() ||
+					actor.type() == PlayScreen.OBJECT_TYPES.MAGNETIC_SOURCE.ordinal()) return false;
 		}
 
 		return true;

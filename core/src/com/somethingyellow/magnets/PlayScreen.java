@@ -4,20 +4,15 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
-import com.badlogic.gdx.maps.tiled.tiles.AnimatedTiledMapTile;
-import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
 
 import com.somethingyellow.tiled.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.TreeSet;
 
 public class PlayScreen implements Screen {
 	public static final float WORLD_WIDTH = 500f;
@@ -28,7 +23,7 @@ public class PlayScreen implements Screen {
 	public static final String TILE_NAME = "Name";
 	public static final String TILE_TYPE_PLAYER = "Player";
 	public static final String TILE_TYPE_BLOCK = "Block";
-	public static final String TILE_TYPE_MAGNETIC_AREA = "Magnetic Source";
+	public static final String TILE_TYPE_MAGNETIC_SOURCE = "Magnetic Source";
 	public static final String TILE_TYPE_WALL = "Wall";
 	public static final String TILE_ISPUSHABLE = "IsPushable";
 	public static final String TILE_ISMAGNETISABLE = "IsMagnetisable";
@@ -39,11 +34,11 @@ public class PlayScreen implements Screen {
 	public static final String TILE_FRAME_DEPTH = "Frame Depth";
 	public boolean DEBUG_MODE = false;
 	// Paths/Textures
-	private String _levelPath = "Levels/Test Cases.tmx";
+	private String _levelPath = "Levels/What would happen.tmx";
 	private TiledStage _tiledStage;
 	private PlayerActor _playerActor;
 	private HashMap<String, TiledMapTile> _tilesByName;
-	private HashMap<TiledMapTile, TiledStageActor.FrameSequence> _tileFrameSequencesByName;
+	private HashMap<TiledMapTile, ArrayList<TiledStageActor.Frame>> _tileFramesByName;
 	// Debugging tools
 	private FPSLogger _fpsLogger = new FPSLogger();
 
@@ -103,11 +98,11 @@ public class PlayScreen implements Screen {
 					animationTile = _tilesByName.get(name);
 				}
 
-				if (!_tileFrameSequencesByName.containsKey(animationTile)) {
-					_tileFrameSequencesByName.put(animationTile, new TiledStageActor.FrameSequence(TiledStageActor.FrameSequence.TileToFrames(animationTile), ExtractFrameDepth(tile)));
+				if (!_tileFramesByName.containsKey(animationTile)) {
+					_tileFramesByName.put(animationTile, TiledStageActor.FrameSequence.TileToFrames(animationTile));
 				}
 
-				animationFrames.put(prop.substring(1), _tileFrameSequencesByName.get(animationTile));
+				animationFrames.put(prop.substring(1), new TiledStageActor.FrameSequence(_tileFramesByName.get(animationTile), ExtractFrameDepth(tile)));
 			}
 		}
 
@@ -127,7 +122,8 @@ public class PlayScreen implements Screen {
 
 		_tiledStage = new TiledStage(map, LAYER_ACTORS, WORLD_WIDTH, WORLD_WIDTH / width * height, TICKS.values().length);
 		_tilesByName = new HashMap<String, TiledMapTile>();
-		_tileFrameSequencesByName = new HashMap<TiledMapTile, TiledStageActor.FrameSequence>();
+		_tileFramesByName = new HashMap<TiledMapTile, ArrayList<TiledStageActor.Frame>>();
+		_playerActor = null;
 
 		Gdx.input.setInputProcessor(_tiledStage);
 
@@ -150,7 +146,7 @@ public class PlayScreen implements Screen {
 			String type = TiledStage.ParseProp(tile.getProperties(), TILE_TYPE, "");
 			if (type.equals(TILE_TYPE_BLOCK)) {
 				spawnBlock(cell);
-			} else if (type.equals(TILE_TYPE_MAGNETIC_AREA)) {
+			} else if (type.equals(TILE_TYPE_MAGNETIC_SOURCE)) {
 				spawnMagneticArea(cell);
 			} else if (type.equals(TILE_TYPE_PLAYER)) {
 				spawnPlayer(cell);

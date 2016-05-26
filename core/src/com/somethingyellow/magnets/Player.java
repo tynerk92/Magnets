@@ -2,7 +2,9 @@ package com.somethingyellow.magnets;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.somethingyellow.tiled.*;
 
 import java.util.HashMap;
@@ -10,6 +12,8 @@ import java.util.HashSet;
 
 public class Player extends PlayerActor {
 	public static final float MOVE_SPEED = 5f;
+	public static final float TRY_MOVE_DURATION = 0.2f;
+	public static final float TRY_MOVE_DISTANCE = 5f;
 	public static final String STATE_STANDING = "";
 	public static final String STATE_WALKING = "Walking";
 
@@ -19,11 +23,12 @@ public class Player extends PlayerActor {
 	              TiledStage stage, TiledStage.Coordinate origin, int actorDepth) {
 		super(type, bodyArea, bodyWidth, animationFrames, stage, origin, actorDepth);
 		addState(STATE_STANDING);
+		_pushingDirection = null;
 	}
 
 	@Override
-	public void act(float delta, int tick) {
-		super.act(delta, tick);
+	public void act(int tick) {
+		super.act(tick);
 
 		if (tick == PlayScreen.TICKS.FORCES.ordinal()) {
 
@@ -74,7 +79,7 @@ public class Player extends PlayerActor {
 		final TiledStage.Coordinate coordinate = origin().getAdjacentCoordinate(direction);
 		if (coordinate == null) return false;
 		HashSet<TiledStageActor> actors = coordinate.actors();
-		for (final TiledStageActor actor : actors) {
+		for (TiledStageActor actor : actors) {
 			if (actor instanceof Block) {
 				Block block = (Block) actor;
 				block.push(direction);
@@ -87,46 +92,30 @@ public class Player extends PlayerActor {
 	}
 
 	protected boolean moveDirection(TiledStage.DIRECTION direction) {
-		TiledStage.Coordinate coordinate;
+		if (moveDirection(direction, 1 / MOVE_SPEED)) {
+			addState(STATE_WALKING).removeState(STATE_STANDING);
+			return true;
+		} else {
+			if (!isMoving()) {
+				TiledStage.Coordinate target = origin().getAdjacentCoordinate(direction);
+				float distance = origin().position().dst(target.position());
+				Vector2 tryMovePos = origin().position().lerp(target.position(), TRY_MOVE_DISTANCE / distance);
 
-		switch (direction) {
-			case NORTH_EAST:
-			case NORTH_WEST:
-				coordinate = origin().getAdjacentCoordinate(TiledStage.DIRECTION.NORTH);
-				if (coordinate != null) if (!canBeAt(coordinate)) return false;
-				break;
-			case SOUTH_EAST:
-			case SOUTH_WEST:
-				coordinate = origin().getAdjacentCoordinate(TiledStage.DIRECTION.SOUTH);
-				if (coordinate != null) if (!canBeAt(coordinate)) return false;
-				break;
-		}
+				setIsMoving(true);
+				final Player player = this;
+				addAction(Actions.sequence(
+						Actions.moveTo(tryMovePos.x, tryMovePos.y, TRY_MOVE_DURATION / 2),
+						Actions.moveTo(origin().position().x, origin().position().y, TRY_MOVE_DURATION / 2),
+						Actions.run(new Runnable() {
+							@Override
+							public void run() {
+								player.setIsMoving(false);
+							}
+						})
+				));
+			}
 
-		switch (direction) {
-			case NORTH_EAST:
-			case SOUTH_EAST:
-				coordinate = origin().getAdjacentCoordinate(TiledStage.DIRECTION.EAST);
-				if (coordinate != null) if (!canBeAt(coordinate)) return false;
-				break;
-			case NORTH_WEST:
-			case SOUTH_WEST:
-				coordinate = origin().getAdjacentCoordinate(TiledStage.DIRECTION.WEST);
-				if (coordinate != null) if (!canBeAt(coordinate)) return false;
-				break;
-		}
-
-		if (!moveDirection(direction, 1 / MOVE_SPEED)) return false;
-
-		addState(STATE_WALKING).removeState(STATE_STANDING);
-		return true;
-	}
-
-	@Override
-	protected void onMovementEnd(TiledStage.Coordinate origin, TiledStage.Coordinate target) {
-		super.onMovementEnd(origin, target);
-
-		if (!checkMovement()) {
-			addState(STATE_STANDING).removeState(STATE_WALKING);
+			return false;
 		}
 	}
 
@@ -138,7 +127,8 @@ public class Player extends PlayerActor {
 		for (TiledStageActor actor : coordinate.actors()) {
 			if (actor == this) continue;
 			if (actor.type() == PlayScreen.OBJECT_TYPES.PLAYER.ordinal() ||
-					actor.type() == PlayScreen.OBJECT_TYPES.BLOCK.ordinal()) return false;
+					actor.type() == PlayScreen.OBJECT_TYPES.BLOCK.ordinal() ||
+					actor.type() == PlayScreen.OBJECT_TYPES.MAGNETIC_SOURCE.ordinal()) return false;
 		}
 
 		return true;
