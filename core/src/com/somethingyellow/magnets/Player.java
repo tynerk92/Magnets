@@ -22,8 +22,8 @@ public class Player extends PlayerActor {
 	}
 
 	@Override
-	public void act(float delta, int tick) {
-		super.act(delta, tick);
+	public void act(int tick) {
+		super.act(tick);
 
 		if (tick == PlayScreen.TICKS.FORCES.ordinal()) {
 

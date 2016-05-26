@@ -65,7 +65,7 @@ public abstract class TiledStageActor extends Actor implements Comparable<TiledS
 		return super.remove();
 	}
 
-	public void act(float delta, int tick) {
+	public void act(int tick) {
 	}
 
 	@Override
@@ -285,7 +285,7 @@ public abstract class TiledStageActor extends Actor implements Comparable<TiledS
 				StaticTiledMapTile[] staticTiles = animatedTile.getFrameTiles();
 
 				for (int i = 0; i < staticTiles.length; i++) {
-					frames.add(i, new Frame(staticTiles[i].getTextureRegion(), intervals[i]));
+					frames.add(i, new Frame(staticTiles[i].getTextureRegion(), (float) intervals[i] / 1000));
 				}
 			} else if (tile instanceof StaticTiledMapTile) {
 				frames = new ArrayList<Frame>(1);
@@ -303,6 +303,7 @@ public abstract class TiledStageActor extends Actor implements Comparable<TiledS
 				_time -= _frames.get(_frameIndex)._duration;
 				_frameIndex = (_frameIndex + 1) % _frames.size();
 			}
+
 			return this;
 		}
 

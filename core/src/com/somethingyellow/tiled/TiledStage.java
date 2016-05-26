@@ -209,7 +209,7 @@ public class TiledStage extends Stage implements Disposable {
 		float delta = Gdx.graphics.getDeltaTime();
 		for (int i = 0; i < _maxTicks; i++) {
 			for (TiledStageActor actor : _actors) {
-				actor.act(delta, i);
+				actor.act(i);
 			}
 
 			// TODO: Optimise calling of actors and their required ticks

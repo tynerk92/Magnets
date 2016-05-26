@@ -20,8 +20,8 @@ public class MagneticSource extends TiledStageActor {
 	}
 
 	@Override
-	public void act(float delta, int tick) {
-		super.act(delta, tick);
+	public void act(int tick) {
+		super.act(tick);
 
 		if (tick == PlayScreen.TICKS.MAGNETISATION.ordinal()) {
 
