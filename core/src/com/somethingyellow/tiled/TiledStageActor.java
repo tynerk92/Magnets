@@ -15,8 +15,6 @@ import java.util.LinkedList;
 import java.util.TreeSet;
 
 public abstract class TiledStageActor extends Actor implements Comparable<TiledStageActor> {
-	public static final float TRY_MOVE_DISTANCE = 1.5f;
-	public static final float TRY_MOVE_DURATION = 0.1f;
 	public static boolean[] BodyArea1x1 = new boolean[]{
 			true
 	};
@@ -91,51 +89,66 @@ public abstract class TiledStageActor extends Actor implements Comparable<TiledS
 	}
 
 	protected void moveTo(final TiledStage.Coordinate targetCoordinate, final float duration) {
-		if (targetCoordinate == null) return;
-
 		final TiledStage.Coordinate origin = origin();
-		if (origin == targetCoordinate) return;
-
 		final TiledStageActor actor = this;
 
-		final Vector2 pos = targetCoordinate.position();
-		final float distance = origin.position().dst(pos);
-		Vector2 tryToMovePos = origin.position().lerp(pos, TRY_MOVE_DISTANCE / distance);
+		Vector2 pos = targetCoordinate.position();
+		_isMoving = true;
 
-		if (canBeAt(targetCoordinate)) {
-			_isMoving = true;
+		for (TiledStage.Coordinate coordinate : getBodyCoordinates(origin)) {
+			coordinate.removeActor(actor);
+		}
+		onMovement(origin, targetCoordinate);
+		_origin = targetCoordinate;
+		for (TiledStage.Coordinate coordinate : getBodyCoordinates(targetCoordinate)) {
+			coordinate.addActor(actor);
+		}
 
-			for (TiledStage.Coordinate coordinate : getBodyCoordinates(origin)) {
-				coordinate.removeActor(actor);
-			}
-			onMovement(origin, targetCoordinate);
-			_origin = targetCoordinate;
-			for (TiledStage.Coordinate coordinate : getBodyCoordinates(targetCoordinate)) {
-				coordinate.addActor(actor);
-			}
-
-			actor.addAction(Actions.sequence(
-					Actions.moveTo(pos.x, pos.y, duration),
-					Actions.run(new Runnable() {
+		addAction(Actions.sequence(
+				Actions.moveTo(pos.x, pos.y, duration),
+				Actions.run(new Runnable() {
 						@Override
 						public void run() {
 							actor._isMoving = false;
 							onMovementEnd(origin, targetCoordinate);
 						}
 					})
-			));
-
-		} else {
-			actor.addAction(Actions.sequence(
-					Actions.moveTo(tryToMovePos.x, tryToMovePos.y, TRY_MOVE_DURATION / 2),
-					Actions.moveTo(origin().position().x, origin().position().y, TRY_MOVE_DURATION / 2)
-			));
-		}
+		));
 	}
 
 	protected boolean moveDirection(TiledStage.DIRECTION direction, float duration) {
 		if (_isMoving) return false;
-		moveTo(origin().getAdjacentCoordinate(direction), duration);
+
+		TiledStage.Coordinate checkCoordinate;
+
+		int unitRow = TiledStage.GetUnitRow(direction);
+		int unitCol = TiledStage.GetUnitColumn(direction);
+
+		if (unitRow != 0) {
+			checkCoordinate = _stage.getCoordinate(_origin.row() + unitRow, _origin.column());
+			if (checkCoordinate == null || !canBeAt(checkCoordinate)) {
+				unitRow = 0;
+			}
+		}
+
+		if (unitCol != 0) {
+			checkCoordinate = _stage.getCoordinate(_origin.row(), _origin.column() + unitCol);
+			if (checkCoordinate == null || !canBeAt(checkCoordinate)) {
+				unitCol = 0;
+			}
+		}
+
+		// Checking diagonal coordinate
+		if (unitRow != 0 && unitCol != 0) {
+			checkCoordinate = _stage.getCoordinate(_origin.row() + unitRow, _origin.column() + unitCol);
+			if (checkCoordinate == null || !canBeAt(checkCoordinate)) {
+				unitRow = 0;
+				unitCol = 0;
+			}
+		}
+
+		if (unitRow == 0 && unitCol == 0) return false;
+		moveTo(_stage.getCoordinate(_origin.row() + unitRow, _origin.column() + unitCol), duration);
 		return true;
 	}
 
@@ -196,6 +209,11 @@ public abstract class TiledStageActor extends Actor implements Comparable<TiledS
 
 	public boolean isMoving() {
 		return _isMoving;
+	}
+
+	public TiledStageActor setIsMoving(boolean isMoving) {
+		_isMoving = isMoving;
+		return this;
 	}
 
 	public int type() {

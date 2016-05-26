@@ -34,7 +34,7 @@ public class PlayScreen implements Screen {
 	public static final String TILE_FRAME_DEPTH = "Frame Depth";
 	public boolean DEBUG_MODE = false;
 	// Paths/Textures
-	private String _levelPath = "Levels/Test Cases.tmx";
+	private String _levelPath = "Levels/What would happen.tmx";
 	private TiledStage _tiledStage;
 	private PlayerActor _playerActor;
 	private HashMap<String, TiledMapTile> _tilesByName;
@@ -123,6 +123,7 @@ public class PlayScreen implements Screen {
 		_tiledStage = new TiledStage(map, LAYER_ACTORS, WORLD_WIDTH, WORLD_WIDTH / width * height, TICKS.values().length);
 		_tilesByName = new HashMap<String, TiledMapTile>();
 		_tileFramesByName = new HashMap<TiledMapTile, ArrayList<TiledStageActor.Frame>>();
+		_playerActor = null;
 
 		Gdx.input.setInputProcessor(_tiledStage);
 

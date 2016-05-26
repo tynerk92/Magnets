@@ -71,7 +71,6 @@ public class Block extends TiledStageActor {
 			if (_forceX != 0 || _forceY != 0) {
 				moveDirection(TiledStage.GetDirection(_forceY, _forceX), 1 / MOVE_SPEED);
 			}
-
 		}
 	}
 
