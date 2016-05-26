@@ -1,0 +1,87 @@
+Normal block mechanics
+
+Pxx => Pxx
+
+If there are two blocks (x)s in a row and you (P) are pushing them from a side as if you want both of them to move at the same time, you can't do it.
+
+Px
+ x@
+
+If a block (x)s is more than 1 unit in area, and any part of it is blocked by any other object (@) , you (P) can't move it any further. 
+
+Some blocks are not pushable. (UNpushable lodestones)
+
+Some blocks can be walked over (Floor Magnetic Sources)
+
+There is no pause between pushing an object past multiple tiles. 
+
+The player can push objects over a magnetic source. 
+
+
+
+
+
+Rotatable blocks
+
+Based on the hinge, a hinged object can be rotated around if there are no blockades. 
+
+
+
+
+
+Attraction Mechanics
+
+A lodestone will move towards a magnetic source that is 1 block away. However, if there are more than 1 magnetic source within range, it will only move under some circumstances. If it is between 2 magnetic sources (left and right or up and down), it will not move as the force is "cancelled" out. If it is between 3 magnetic sources (i.e. Left, right and up), the left and right will cancel out and hence it will move up. A particular ambiguous case would be involving 2 magnetic sources (i.e. Left and Up). In this case, it will not move. Think of the floor as "tracks" that lets the lodestone slide between adjacent blocks, but not diagonal blocks. Through this logic, this ambiguous case and all other equivalent cases will result in no movement of the lodestone. 
+
+If the lodestone is blocked by any other object or the player, it will not move until the blockade is gone. 
+
+At each check, multiple lodestones may move at the same time. 
+
+When a lodestone is being attracted to the magnetic source, it accelerates towards it and stops abruptly beside it. If a player is pushing it towards the magnetic source, the timing is such that the lodestone does not experience any pauses in movement. 
+
+A lodestone that is currently magnetised count as a magnetic source, in addition to the magnetic source it is attracted to. 
+
+A lodestone that is currently magnetised will not move anymore, unless the player pushes it in a way that it is cut off from the magnetic source. 
+
+A lodestone that has it's magnetic source cut off will immediately become demagnetised; stop functionining as a magnetic source.
+
+If a player stands between a lodestone and a magnetic source. The player displays an animation as if he is trying to prevent the lodestone from moving. If the player moves out of the way, the lodestone moves towards the magnetic source normally.
+
+A copper block can nullify a magnetic field when it is pushed onto the magnetic source.
+
+If a boulder is pushed onto the magnetic source, there is no change in the magnetic source because the magnetic field passes through it. 
+
+
+
+Button Mechanics
+
+All buttons in a level must be pressed in order for the right door(s) to open. (Probably same colour). 
+
+A player is able to press the button by standing on it.
+
+If the last button is stood on the player and subsequently the door beside the player is open, the player will be crushed by the door. (? or if there is a ceiling. Probably this can do with some interesting multi-level puzzles if no stairs are used.)
+
+If an object is over a open door, and one of the buttons is released, it will get stuck if there is a ceiling directly above. Otherwise, the object will be lifted up to the next level. If the object is more than 1 unit in area, it will get stuck no matter what.  
+
+Doors may extend up to 2 levels. (As far as the game allows)
+
+
+
+Magnet Mechanics
+
+If two magnets have their like sides in contact with each other, they will repel each other such that they end up with 2 blocks of empty space between if there are no blockades in their line of movement. Like the attraction animation, both will move apart at a decelerating motion. 
+
+If a magnet is being repelled from two adjacent sides (i.e. Left and Up) and one of the directions it can move is blocked (i.e. Right), then it will move down. It is impossible for a magnet to be repelled from two adjacent sides while having more than 1 direction of freedom. 
+
+Players can push a magnet into another magnet (inciting repulsion) and then holding it there. The magnets will spring apart if the player walks away. 
+
+
+Optional Mechanics
+
+Pulling Mechanics. Some blocks may have bars attached to them and hence may be pulled in that direction only. 
+
+Pits. Like Kwirk, the player cannot walk over pits, but they can push things into the pit. Only objects that is a subset of the shape of the pit can fall into the pit, creating new ground to walk upon. 
+
+Really strong magnetic source. Its activated for a short while only (some trigger, possibly a button). All lodestones in the line of sight are attracted towards it immediately. If a lodestone is caught between two strong magnetic sources, it will move towards the closer one. If equally between them, it will not move. 
+
+Death. Forced reset of the level. Occurs when a player is crushed between blocks. Note that this does not occur if the player is caught between a normal magnetic source and a lodestone. 

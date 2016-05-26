@@ -20,22 +20,69 @@ public class TextToTmx {
 	private Random random = new Random();
 	
 	private String[] Blocks = new String[] {
-			"../Graphics/Floor/Floor 1.png",
-			"../Graphics/Floor/Floor 2.png",
-			"../Graphics/Floor/Floor 3.png",
-			"../Graphics/Floor/Floor 4.png",
-			"../Graphics/Floor/Floor 5.png",
-			"../Graphics/Floor/Floor 6.png",
-			"../Graphics/Floor/Floor 7.png",
-			"../Graphics/Floor/Floor 8.png",
-			"../Graphics/Floor/Floor 9.png",
-			"../Graphics/Floor/Floor 10.png",
-			"../Graphics/Floor/Floor 11.png",
-			"../Graphics/Floor/Floor 12.png",
-			"../Graphics/Floor/Floor 13.png",
-			"../Graphics/Floor/Floor 14.png",
-			"../Graphics/Floor/Floor 15.png",
-			"../Graphics/Floor/Floor 16.png",
+			"../Graphics/Floor/Set 1 (Flat)/Floor 01011010.png",
+			"../Graphics/Floor/Set 1 (Flat)/Floor 01011011.png",
+			"../Graphics/Floor/Set 1 (Flat)/Floor 01011110.png",
+			"../Graphics/Floor/Set 1 (Flat)/Floor 01011111.png",
+			"../Graphics/Floor/Set 1 (Flat)/Floor 01011X0X.png",
+			"../Graphics/Floor/Set 1 (Flat)/Floor 01111010.png",
+			"../Graphics/Floor/Set 1 (Flat)/Floor 01111011.png",
+			"../Graphics/Floor/Set 1 (Flat)/Floor 01111110.png",
+			"../Graphics/Floor/Set 1 (Flat)/Floor 01111111.png",
+			"../Graphics/Floor/Set 1 (Flat)/Floor 01111X0X.png",
+			"../Graphics/Floor/Set 1 (Flat)/Floor 01X1001X.png",
+			"../Graphics/Floor/Set 1 (Flat)/Floor 01X1011X.png",
+			"../Graphics/Floor/Set 1 (Flat)/Floor 01X10X0X.png",
+			"../Graphics/Floor/Set 1 (Flat)/Floor 11011010.png",
+			"../Graphics/Floor/Set 1 (Flat)/Floor 11011011.png",
+			"../Graphics/Floor/Set 1 (Flat)/Floor 11011110.png",
+			"../Graphics/Floor/Set 1 (Flat)/Floor 11011111.png",
+			"../Graphics/Floor/Set 1 (Flat)/Floor 11011X0X.png",
+			"../Graphics/Floor/Set 1 (Flat)/Floor 11111010.png",
+			"../Graphics/Floor/Set 1 (Flat)/Floor 11111011.png",
+			"../Graphics/Floor/Set 1 (Flat)/Floor 11111110.png",
+			"../Graphics/Floor/Set 1 (Flat)/Floor 11111111.png",
+			"../Graphics/Floor/Set 1 (Flat)/Floor 11111X0X.png",
+			"../Graphics/Floor/Set 1 (Flat)/Floor 11X1001X.png",
+			"../Graphics/Floor/Set 1 (Flat)/Floor 11X1011X.png",
+			"../Graphics/Floor/Set 1 (Flat)/Floor 11X10X0X.png",
+			"../Graphics/Floor/Set 1 (Flat)/Floor X0X00X0X.png",
+			"../Graphics/Floor/Set 1 (Flat)/Floor X0X00X1X.png",
+			"../Graphics/Floor/Set 1 (Flat)/Floor X0X01X0X.png",
+			"../Graphics/Floor/Set 1 (Flat)/Floor X0X01X10.png",
+			"../Graphics/Floor/Set 1 (Flat)/Floor X0X01X11.png",
+			"../Graphics/Floor/Set 1 (Flat)/Floor X0X1001X.png",
+			"../Graphics/Floor/Set 1 (Flat)/Floor X0X1011X.png",
+			"../Graphics/Floor/Set 1 (Flat)/Floor X0X10X0X.png",
+			"../Graphics/Floor/Set 1 (Flat)/Floor X0X11010.png",
+			"../Graphics/Floor/Set 1 (Flat)/Floor X0X11011.png",
+			"../Graphics/Floor/Set 1 (Flat)/Floor X0X11110.png",
+			"../Graphics/Floor/Set 1 (Flat)/Floor X0X11111.png",
+			"../Graphics/Floor/Set 1 (Flat)/Floor X0X11X0X.png",
+			"../Graphics/Floor/Set 1 (Flat)/Floor X1001X0X.png",
+			"../Graphics/Floor/Set 1 (Flat)/Floor X1001X10.png",
+			"../Graphics/Floor/Set 1 (Flat)/Floor X1001X11.png",
+			"../Graphics/Floor/Set 1 (Flat)/Floor X1101X0X.png",
+			"../Graphics/Floor/Set 1 (Flat)/Floor X1101X10.png",
+			"../Graphics/Floor/Set 1 (Flat)/Floor X1101X11.png",
+			"../Graphics/Floor/Set 1 (Flat)/Floor X1X00X0X.png",
+			"../Graphics/Floor/Set 1 (Flat)/Floor X1X00X1X.png",
+			"../Graphics/Floor/Set 2 (Tiled)/Floor 1.png",
+			"../Graphics/Floor/Set 2 (Tiled)/Floor 2.png",
+			"../Graphics/Floor/Set 2 (Tiled)/Floor 3.png",
+			"../Graphics/Floor/Set 2 (Tiled)/Floor 4.png",
+			"../Graphics/Floor/Set 2 (Tiled)/Floor 5.png",
+			"../Graphics/Floor/Set 2 (Tiled)/Floor 6.png",
+			"../Graphics/Floor/Set 2 (Tiled)/Floor 7.png",
+			"../Graphics/Floor/Set 2 (Tiled)/Floor 8.png",
+			"../Graphics/Floor/Set 2 (Tiled)/Floor 9.png",
+			"../Graphics/Floor/Set 2 (Tiled)/Floor 10.png",
+			"../Graphics/Floor/Set 2 (Tiled)/Floor 11.png",
+			"../Graphics/Floor/Set 2 (Tiled)/Floor 12.png",
+			"../Graphics/Floor/Set 2 (Tiled)/Floor 13.png",
+			"../Graphics/Floor/Set 2 (Tiled)/Floor 14.png",
+			"../Graphics/Floor/Set 2 (Tiled)/Floor 15.png",
+			"../Graphics/Floor/Set 2 (Tiled)/Floor 16.png",
 			"../Graphics/Floor/Overlays/Debris 1.png",
 			"../Graphics/Floor/Overlays/Debris 2.png",
 			"../Graphics/Floor/Overlays/Debris 3.png",
@@ -50,53 +97,53 @@ public class TextToTmx {
 			"../Graphics/Floor/Overlays/Scratches 4.png",
 			"../Graphics/Floor/Overlays/Small Corner 1.png",
 			"../Graphics/Floor/Overlays/Small Corner 2.png",
-			"../Graphics/Walls/Set 1 (Standard)/Wall Behind BL BR Tiny Corner.png",
-			"../Graphics/Walls/Set 1 (Standard)/Wall Behind BL Tiny Corner.png",
-			"../Graphics/Walls/Set 1 (Standard)/Wall Behind BR Tiny Corner.png",
-			"../Graphics/Walls/Set 1 (Standard)/Wall Behind.png",
-			"../Graphics/Walls/Set 1 (Standard)/Wall BL Corner TR Tiny Corner.png",
-			"../Graphics/Walls/Set 1 (Standard)/Wall BL Corner.png",
-			"../Graphics/Walls/Set 1 (Standard)/Wall BR Corner TL Tiny Corner.png",
-			"../Graphics/Walls/Set 1 (Standard)/Wall BR Corner.png",
-			"../Graphics/Walls/Set 1 (Standard)/Wall Front Behind.png",
-			"../Graphics/Walls/Set 1 (Standard)/Wall Front TL Tiny Corner.png",
-			"../Graphics/Walls/Set 1 (Standard)/Wall Front TR Tiny Corner.png",
-			"../Graphics/Walls/Set 1 (Standard)/Wall Front TR TL Tiny Corner.png",
-			"../Graphics/Walls/Set 1 (Standard)/Wall Front.png",
-			"../Graphics/Walls/Set 1 (Standard)/Wall Left BL Corner.png",
-			"../Graphics/Walls/Set 1 (Standard)/Wall Left Right.png",
-			"../Graphics/Walls/Set 1 (Standard)/Wall Left TL BL Corner.png",
-			"../Graphics/Walls/Set 1 (Standard)/Wall Left TL Corner.png",
-			"../Graphics/Walls/Set 1 (Standard)/Wall Left.png",
-			"../Graphics/Walls/Set 1 (Standard)/Wall Middle 2 Tiny BL TL Corner.png",
-			"../Graphics/Walls/Set 1 (Standard)/Wall Middle 3 Tiny BL TL BR Corner.png",
-			"../Graphics/Walls/Set 1 (Standard)/Wall Middle 4 Tiny All Corners.png",
-			"../Graphics/Walls/Set 1 (Standard)/Wall Middle 1 Tiny BL.png",
-			"../Graphics/Walls/Set 1 (Standard)/Wall Middle 2 Tiny BR BL Corner.png",
-			"../Graphics/Walls/Set 1 (Standard)/Wall Middle 3 Tiny BR BL TR Corner.png",
-			"../Graphics/Walls/Set 1 (Standard)/Wall Middle 1 Tiny BR Corner.png",
-			"../Graphics/Walls/Set 1 (Standard)/Wall Middle 2 Tiny BR TR Corner.png",
-			"../Graphics/Walls/Set 1 (Standard)/Wall Middle 1 Tiny TL Corner.png",
-			"../Graphics/Walls/Set 1 (Standard)/Wall Middle 3 Tiny TL TR BL Corner.png",
-			"../Graphics/Walls/Set 1 (Standard)/Wall Middle 3 Tiny TL TR BR Corner.png",
-			"../Graphics/Walls/Set 1 (Standard)/Wall Middle 2 Tiny TL TR Corner.png",
-			"../Graphics/Walls/Set 1 (Standard)/Wall Middle 1 Tiny TR Corner.png",
-			"../Graphics/Walls/Set 1 (Standard)/Wall Middle 2 Tiny BL TR Corner.png",
-			"../Graphics/Walls/Set 1 (Standard)/Wall Middle 2 Tiny BR TL Corner.png",
-			"../Graphics/Walls/Set 1 (Standard)/Wall Right BR Corner.png",
-			"../Graphics/Walls/Set 1 (Standard)/Wall Right TR BR Corner.png",
-			"../Graphics/Walls/Set 1 (Standard)/Wall Right TR Corner.png",
-			"../Graphics/Walls/Set 1 (Standard)/Wall Right.png",
-			"../Graphics/Walls/Set 1 (Standard)/Wall Standalone Back.png",
-			"../Graphics/Walls/Set 1 (Standard)/Wall Standalone Front.png",
-			"../Graphics/Walls/Set 1 (Standard)/Wall Standalone Left.png",
-			"../Graphics/Walls/Set 1 (Standard)/Wall Standalone Right.png",
-			"../Graphics/Walls/Set 1 (Standard)/Wall Standalone.png",
-			"../Graphics/Walls/Set 1 (Standard)/Wall TL Corner BR Tiny Corner.png",
-			"../Graphics/Walls/Set 1 (Standard)/Wall TL Corner.png",
-			"../Graphics/Walls/Set 1 (Standard)/Wall TR Corner BL Tiny Corner.png",
-			"../Graphics/Walls/Set 1 (Standard)/Wall TR Corner.png",
-			"../Graphics/Walls/Set 1 (Standard)/Wall.png",
+			"../Graphics/Walls/Set 1 (Standard)/Wall 01011010.png",
+			"../Graphics/Walls/Set 1 (Standard)/Wall 01011011.png",
+			"../Graphics/Walls/Set 1 (Standard)/Wall 01011110.png",
+			"../Graphics/Walls/Set 1 (Standard)/Wall 01011111.png",
+			"../Graphics/Walls/Set 1 (Standard)/Wall 01011X0X.png",
+			"../Graphics/Walls/Set 1 (Standard)/Wall 01111010.png",
+			"../Graphics/Walls/Set 1 (Standard)/Wall 01111011.png",
+			"../Graphics/Walls/Set 1 (Standard)/Wall 01111110.png",
+			"../Graphics/Walls/Set 1 (Standard)/Wall 01111111.png",
+			"../Graphics/Walls/Set 1 (Standard)/Wall 01111X0X.png",
+			"../Graphics/Walls/Set 1 (Standard)/Wall 01X1001X.png",
+			"../Graphics/Walls/Set 1 (Standard)/Wall 01X1011X.png",
+			"../Graphics/Walls/Set 1 (Standard)/Wall 01X10X0X.png",
+			"../Graphics/Walls/Set 1 (Standard)/Wall 11011010.png",
+			"../Graphics/Walls/Set 1 (Standard)/Wall 11011011.png",
+			"../Graphics/Walls/Set 1 (Standard)/Wall 11011110.png",
+			"../Graphics/Walls/Set 1 (Standard)/Wall 11011111.png",
+			"../Graphics/Walls/Set 1 (Standard)/Wall 11011X0X.png",
+			"../Graphics/Walls/Set 1 (Standard)/Wall 11111010.png",
+			"../Graphics/Walls/Set 1 (Standard)/Wall 11111011.png",
+			"../Graphics/Walls/Set 1 (Standard)/Wall 11111110.png",
+			"../Graphics/Walls/Set 1 (Standard)/Wall 11111111.png",
+			"../Graphics/Walls/Set 1 (Standard)/Wall 11111X0X.png",
+			"../Graphics/Walls/Set 1 (Standard)/Wall 11X1001X.png",
+			"../Graphics/Walls/Set 1 (Standard)/Wall 11X1011X.png",
+			"../Graphics/Walls/Set 1 (Standard)/Wall 11X10X0X.png",
+			"../Graphics/Walls/Set 1 (Standard)/Wall X0X00X0X.png",
+			"../Graphics/Walls/Set 1 (Standard)/Wall X0X00X1X.png",
+			"../Graphics/Walls/Set 1 (Standard)/Wall X0X01X0X.png",
+			"../Graphics/Walls/Set 1 (Standard)/Wall X0X01X10.png",
+			"../Graphics/Walls/Set 1 (Standard)/Wall X0X01X11.png",
+			"../Graphics/Walls/Set 1 (Standard)/Wall X0X1001X.png",
+			"../Graphics/Walls/Set 1 (Standard)/Wall X0X1011X.png",
+			"../Graphics/Walls/Set 1 (Standard)/Wall X0X10X0X.png",
+			"../Graphics/Walls/Set 1 (Standard)/Wall X0X11010.png",
+			"../Graphics/Walls/Set 1 (Standard)/Wall X0X11011.png",
+			"../Graphics/Walls/Set 1 (Standard)/Wall X0X11110.png",
+			"../Graphics/Walls/Set 1 (Standard)/Wall X0X11111.png",
+			"../Graphics/Walls/Set 1 (Standard)/Wall X0X11X0X.png",
+			"../Graphics/Walls/Set 1 (Standard)/Wall X1001X0X.png",
+			"../Graphics/Walls/Set 1 (Standard)/Wall X1001X10.png",
+			"../Graphics/Walls/Set 1 (Standard)/Wall X1001X11.png",
+			"../Graphics/Walls/Set 1 (Standard)/Wall X1101X0X.png",
+			"../Graphics/Walls/Set 1 (Standard)/Wall X1101X10.png",
+			"../Graphics/Walls/Set 1 (Standard)/Wall X1101X11.png",
+			"../Graphics/Walls/Set 1 (Standard)/Wall X1X00X0X.png",
+			"../Graphics/Walls/Set 1 (Standard)/Wall X1X00X1X.png",
 			"../Graphics/Walls/Set 1 (Standard)/Wall Decoration 1.png",
 			"../Graphics/Walls/Set 1 (Standard)/Wall Decoration 2.png",
 			"../Graphics/Walls/Set 1 (Standard)/Wall Decoration 3.png",
@@ -236,22 +283,69 @@ public class TextToTmx {
 	
 	private void initiateTable() {
 		String[] names = new String[] {
-				"Floor 1",                                 
-				"Floor 2",                                 
-				"Floor 3",                                 
-				"Floor 4",                                 
-				"Floor 5",                                 
-				"Floor 6",                                 
-				"Floor 7",                                 
-				"Floor 8",                                 
-				"Floor 9",                                 
-				"Floor 10",                                
-				"Floor 11",                                
-				"Floor 12",                                
-				"Floor 13",                                
-				"Floor 14",                                
-				"Floor 15",                                
-				"Floor 16",                                
+				"Set 1 Floor 01011010",
+				"Set 1 Floor 01011011",
+				"Set 1 Floor 01011110",
+				"Set 1 Floor 01011111",
+				"Set 1 Floor 01011X0X",
+				"Set 1 Floor 01111010",
+				"Set 1 Floor 01111011",
+				"Set 1 Floor 01111110",
+				"Set 1 Floor 01111111",
+				"Set 1 Floor 01111X0X",
+				"Set 1 Floor 01X1001X",
+				"Set 1 Floor 01X1011X",
+				"Set 1 Floor 01X10X0X",
+				"Set 1 Floor 11011010",
+				"Set 1 Floor 11011011",
+				"Set 1 Floor 11011110",
+				"Set 1 Floor 11011111",
+				"Set 1 Floor 11011X0X",
+				"Set 1 Floor 11111010",
+				"Set 1 Floor 11111011",
+				"Set 1 Floor 11111110",
+				"Set 1 Floor 11111111",
+				"Set 1 Floor 11111X0X",
+				"Set 1 Floor 11X1001X",
+				"Set 1 Floor 11X1011X",
+				"Set 1 Floor 11X10X0X",
+				"Set 1 Floor X0X00X0X",
+				"Set 1 Floor X0X00X1X",
+				"Set 1 Floor X0X01X0X",
+				"Set 1 Floor X0X01X10",
+				"Set 1 Floor X0X01X11",
+				"Set 1 Floor X0X1001X",
+				"Set 1 Floor X0X1011X",
+				"Set 1 Floor X0X10X0X",
+				"Set 1 Floor X0X11010",
+				"Set 1 Floor X0X11011",
+				"Set 1 Floor X0X11110",
+				"Set 1 Floor X0X11111",
+				"Set 1 Floor X0X11X0X",
+				"Set 1 Floor X1001X0X",
+				"Set 1 Floor X1001X10",
+				"Set 1 Floor X1001X11",
+				"Set 1 Floor X1101X0X",
+				"Set 1 Floor X1101X10",
+				"Set 1 Floor X1101X11",
+				"Set 1 Floor X1X00X0X",
+				"Set 1 Floor X1X00X1X",
+				"Set 2 Floor 1", 
+				"Set 2 Floor 2", 
+				"Set 2 Floor 3", 
+				"Set 2 Floor 4", 
+				"Set 2 Floor 5", 
+				"Set 2 Floor 6", 
+				"Set 2 Floor 7", 
+				"Set 2 Floor 8", 
+				"Set 2 Floor 9", 
+				"Set 2 Floor 10",
+				"Set 2 Floor 11",
+				"Set 2 Floor 12",
+				"Set 2 Floor 13",
+				"Set 2 Floor 14",
+				"Set 2 Floor 15",
+				"Set 2 Floor 16",                              
 				"Debris 1",                                
 				"Debris 2",                                
 				"Debris 3",                                
@@ -266,53 +360,53 @@ public class TextToTmx {
 				"Scratches 4",                             
 				"Small Corner 1",                               
 				"Small Corner 2",                             
-				"Wall Behind BL BR Tiny Corner",           
-				"Wall Behind BL Tiny Corner",              
-				"Wall Behind BR Tiny Corner",              
-				"Wall Behind",                             
-				"Wall BL Corner TR Tiny Corner",           
-				"Wall BL Corner",                          
-				"Wall BR Corner TL Tiny Corner",           
-				"Wall BR Corner",                          
-				"Wall Front Behind",                       
-				"Wall Front TL Tiny Corner",               
-				"Wall Front TR Tiny Corner",               
-				"Wall Front TR TL Tiny Corner",            
-				"Wall Front",                              
-				"Wall Left BL Corner",                     
-				"Wall Left Right",                         
-				"Wall Left TL BL Corner",                  
-				"Wall Left TL Corner",                     
-				"Wall Left",                               
-				"Wall Middle 2 Tiny BL TL Corner",         
-				"Wall Middle 3 Tiny BL TL BR Corner",      
-				"Wall Middle 4 Tiny All Corners",          
-				"Wall Middle 1 Tiny BL",                   
-				"Wall Middle 2 Tiny BR BL Corner",         
-				"Wall Middle 3 Tiny BR BL TR Corner",      
-				"Wall Middle 1 Tiny BR Corner",            
-				"Wall Middle 2 Tiny BR TR Corner",         
-				"Wall Middle 1 Tiny TL Corner",            
-				"Wall Middle 3 Tiny TL TR BL Corner",      
-				"Wall Middle 3 Tiny TL TR BR Corner",      
-				"Wall Middle 2 Tiny TL TR Corner",         
-				"Wall Middle 1 Tiny TR Corner",            
-				"Wall Middle 2 Tiny BL TR Corner",         
-				"Wall Middle 2 Tiny BR TL Corner",         
-				"Wall Right BR Corner",                    
-				"Wall Right TR BR Corner",                 
-				"Wall Right TR Corner",                    
-				"Wall Right",                              
-				"Wall Standalone Back",                    
-				"Wall Standalone Front",                   
-				"Wall Standalone Left",                    
-				"Wall Standalone Right",                   
-				"Wall Standalone",                         
-				"Wall TL Corner BR Tiny Corner",           
-				"Wall TL Corner",                          
-				"Wall TR Corner BL Tiny Corner",           
-				"Wall TR Corner",                          
-				"Wall",                                    
+				"Set 1 Wall 01011010",
+				"Set 1 Wall 01011011",
+				"Set 1 Wall 01011110",
+				"Set 1 Wall 01011111",
+				"Set 1 Wall 01011X0X",
+				"Set 1 Wall 01111010",
+				"Set 1 Wall 01111011",
+				"Set 1 Wall 01111110",
+				"Set 1 Wall 01111111",
+				"Set 1 Wall 01111X0X",
+				"Set 1 Wall 01X1001X",
+				"Set 1 Wall 01X1011X",
+				"Set 1 Wall 01X10X0X",
+				"Set 1 Wall 11011010",
+				"Set 1 Wall 11011011",
+				"Set 1 Wall 11011110",
+				"Set 1 Wall 11011111",
+				"Set 1 Wall 11011X0X",
+				"Set 1 Wall 11111010",
+				"Set 1 Wall 11111011",
+				"Set 1 Wall 11111110",
+				"Set 1 Wall 11111111",
+				"Set 1 Wall 11111X0X",
+				"Set 1 Wall 11X1001X",
+				"Set 1 Wall 11X1011X",
+				"Set 1 Wall 11X10X0X",
+				"Set 1 Wall X0X00X0X",
+				"Set 1 Wall X0X00X1X",
+				"Set 1 Wall X0X01X0X",
+				"Set 1 Wall X0X01X10",
+				"Set 1 Wall X0X01X11",
+				"Set 1 Wall X0X1001X",
+				"Set 1 Wall X0X1011X",
+				"Set 1 Wall X0X10X0X",
+				"Set 1 Wall X0X11010",
+				"Set 1 Wall X0X11011",
+				"Set 1 Wall X0X11110",
+				"Set 1 Wall X0X11111",
+				"Set 1 Wall X0X11X0X",
+				"Set 1 Wall X1001X0X",
+				"Set 1 Wall X1001X10",
+				"Set 1 Wall X1001X11",
+				"Set 1 Wall X1101X0X",
+				"Set 1 Wall X1101X10",
+				"Set 1 Wall X1101X11",
+				"Set 1 Wall X1X00X0X",
+				"Set 1 Wall X1X00X1X",            
 				"Wall Decoration 1",                       
 				"Wall Decoration 2",                       
 				"Wall Decoration 3",                       
@@ -449,6 +543,49 @@ public class TextToTmx {
 				};
 		
 		Dimensions = new int[][] {
+				new int[] {32, 32},
+				new int[] {32, 32},
+				new int[] {32, 32},
+				new int[] {32, 32},
+				new int[] {32, 32},
+				new int[] {32, 32},
+				new int[] {32, 32},
+				new int[] {32, 32},
+				new int[] {32, 32},
+				new int[] {32, 32},
+				new int[] {32, 32},
+				new int[] {32, 32},
+				new int[] {32, 32},
+				new int[] {32, 32},
+				new int[] {32, 32},
+				new int[] {32, 32},
+				new int[] {32, 32},
+				new int[] {32, 32},
+				new int[] {32, 32},
+				new int[] {32, 32},
+				new int[] {32, 32},
+				new int[] {32, 32},
+				new int[] {32, 32},
+				new int[] {32, 32},
+				new int[] {32, 32},
+				new int[] {32, 32},
+				new int[] {32, 32},
+				new int[] {32, 32},
+				new int[] {32, 32},
+				new int[] {32, 32},
+				new int[] {32, 32},
+				new int[] {32, 32},
+				new int[] {32, 32},
+				new int[] {32, 32},
+				new int[] {32, 32},
+				new int[] {32, 32},
+				new int[] {32, 32},
+				new int[] {32, 32},
+				new int[] {32, 32},
+				new int[] {32, 32},
+				new int[] {32, 32},
+				new int[] {32, 32},
+				new int[] {32, 32},
 				new int[] {32, 32},
 				new int[] {32, 32},
 				new int[] {32, 32},
@@ -721,71 +858,24 @@ public class TextToTmx {
 		for (int i = 1; i < rows + 1; i++) {
 			for (int j = 1; j < cols + 1; j++) {
 				if (data[i][j].equals("█")) {
-					String a            = getNeighbours(i,j);
-					String adjacents    = "" + a.charAt(1) + a.charAt(3) + a.charAt(4) + a.charAt(6);
-					String allCorners   = "" + a.charAt(0) + a.charAt(2) + a.charAt(5) + a.charAt(7);
-					String lowerCorners = "" + a.charAt(5) + a.charAt(7);
-					String upperCorners = "" + a.charAt(0) + a.charAt(2);
-					String rightCorners = "" + a.charAt(2) + a.charAt(7);
-					String  leftCorners = "" + a.charAt(0) + a.charAt(5);
-
-					if      (a.equals("11111111")) 					WallsAndObjects[i - 1][j - 1] = nameToID.get("Wall");
-					else if (adjacents.equals("0000"))	 			WallsAndObjects[i - 1][j - 1] = nameToID.get("Wall Standalone");
-					else if (adjacents.equals("0111")) {		
-						if 		(lowerCorners.equals("00")) 		WallsAndObjects[i - 1][j - 1] = nameToID.get("Wall Behind BL BR Tiny Corner");
-						else if (lowerCorners.equals("01"))			WallsAndObjects[i - 1][j - 1] = nameToID.get("Wall Behind BL Tiny Corner");
-						else if (lowerCorners.equals("10"))			WallsAndObjects[i - 1][j - 1] = nameToID.get("Wall Behind BR Tiny Corner");
-						else if (lowerCorners.equals("11"))			WallsAndObjects[i - 1][j - 1] = nameToID.get("Wall Behind");
-					} else if (adjacents.equals("1110")) {						
-						if 		(upperCorners.equals("01")) 		WallsAndObjects[i - 1][j - 1] = nameToID.get("Wall Front TL Tiny Corner");
-						else if (upperCorners.equals("10"))			WallsAndObjects[i - 1][j - 1] = nameToID.get("Wall Front TR Tiny Corner");
-						else if (upperCorners.equals("00"))			WallsAndObjects[i - 1][j - 1] = nameToID.get("Wall Front TR TL Tiny Corner");
-						else if (upperCorners.equals("11"))			WallsAndObjects[i - 1][j - 1] = nameToID.get("Wall Front");
-					} else if (adjacents.equals("1101")) {						
-						if 		(leftCorners.equals("10")) 			WallsAndObjects[i - 1][j - 1] = nameToID.get("Wall Left BL Corner");
-						else if (leftCorners.equals("00"))			WallsAndObjects[i - 1][j - 1] = nameToID.get("Wall Left TL BL Corner");
-						else if (leftCorners.equals("01"))			WallsAndObjects[i - 1][j - 1] = nameToID.get("Wall Left TL Corner");
-						else if (leftCorners.equals("11"))			WallsAndObjects[i - 1][j - 1] = nameToID.get("Wall Left");
-					} else if (adjacents.equals("1011")) {						
-						if 		(rightCorners.equals("10")) 		WallsAndObjects[i - 1][j - 1] = nameToID.get("Wall Right BR Corner");
-						else if (rightCorners.equals("00"))			WallsAndObjects[i - 1][j - 1] = nameToID.get("Wall Right TR BR Corner");
-						else if (rightCorners.equals("01"))			WallsAndObjects[i - 1][j - 1] = nameToID.get("Wall Right TR Corner");
-						else if (rightCorners.equals("11"))			WallsAndObjects[i - 1][j - 1] = nameToID.get("Wall Right");
-					} else if (adjacents.equals("1010")) {
-						if 		(("" + a.charAt(2)).equals("0")) 	WallsAndObjects[i - 1][j - 1] = nameToID.get("Wall BL Corner TR Tiny Corner");
-						else if (("" + a.charAt(2)).equals("1"))	WallsAndObjects[i - 1][j - 1] = nameToID.get("Wall BL Corner");
-					} else if (adjacents.equals("1100")) {
-						if 		(("" + a.charAt(0)).equals("0")) 	WallsAndObjects[i - 1][j - 1] = nameToID.get("Wall BR Corner TL Tiny Corner");
-						else if (("" + a.charAt(0)).equals("1"))	WallsAndObjects[i - 1][j - 1] = nameToID.get("Wall BR Corner");
-					} else if (adjacents.equals("0011")) {
-						if 		(("" + a.charAt(7)).equals("0")) 	WallsAndObjects[i - 1][j - 1] = nameToID.get("Wall TL Corner BR Tiny Corner");
-						else if (("" + a.charAt(7)).equals("1"))	WallsAndObjects[i - 1][j - 1] = nameToID.get("Wall TL Corner");
-					} else if (adjacents.equals("0101")) {
-						if 		(("" + a.charAt(5)).equals("0")) 	WallsAndObjects[i - 1][j - 1] = nameToID.get("Wall TR Corner BL Tiny Corner");
-						else if (("" + a.charAt(5)).equals("1"))	WallsAndObjects[i - 1][j - 1] = nameToID.get("Wall TR Corner");
-					} else if (adjacents.equals("0110"))			WallsAndObjects[i - 1][j - 1] = nameToID.get("Wall Front Behind");
-					else if (adjacents.equals("1001"))				WallsAndObjects[i - 1][j - 1] = nameToID.get("Wall Left Right");
-					else if (adjacents.equals("1111")) {
-						if 		(allCorners.equals("0101"))			WallsAndObjects[i - 1][j - 1] = nameToID.get("Wall Middle 2 Tiny BL TL Corner");
-						else if (allCorners.equals("0100"))			WallsAndObjects[i - 1][j - 1] = nameToID.get("Wall Middle 3 Tiny BL TL BR Corner");
-						else if (allCorners.equals("0000"))			WallsAndObjects[i - 1][j - 1] = nameToID.get("Wall Middle 4 Tiny All Corners");
-						else if (allCorners.equals("1101"))			WallsAndObjects[i - 1][j - 1] = nameToID.get("Wall Middle 1 Tiny BL");
-						else if (allCorners.equals("1100"))			WallsAndObjects[i - 1][j - 1] = nameToID.get("Wall Middle 2 Tiny BR BL Corner");
-						else if (allCorners.equals("1000"))			WallsAndObjects[i - 1][j - 1] = nameToID.get("Wall Middle 3 Tiny BR BL TR Corner");
-						else if (allCorners.equals("1110"))			WallsAndObjects[i - 1][j - 1] = nameToID.get("Wall Middle 1 Tiny BR Corner");
-						else if (allCorners.equals("1010"))			WallsAndObjects[i - 1][j - 1] = nameToID.get("Wall Middle 2 Tiny BR TR Corner");
-						else if (allCorners.equals("0111"))			WallsAndObjects[i - 1][j - 1] = nameToID.get("Wall Middle 1 Tiny TL Corner");
-						else if (allCorners.equals("0001"))			WallsAndObjects[i - 1][j - 1] = nameToID.get("Wall Middle 3 Tiny TL TR BL Corner");
-						else if (allCorners.equals("0010"))			WallsAndObjects[i - 1][j - 1] = nameToID.get("Wall Middle 3 Tiny TL TR BR Corner");
-						else if (allCorners.equals("0011"))			WallsAndObjects[i - 1][j - 1] = nameToID.get("Wall Middle 2 Tiny TL TR Corner");
-						else if (allCorners.equals("1011"))			WallsAndObjects[i - 1][j - 1] = nameToID.get("Wall Middle 1 Tiny TR Corner");
-						else if (allCorners.equals("1001"))			WallsAndObjects[i - 1][j - 1] = nameToID.get("Wall Middle 2 Tiny BL TR Corner");
-						else if (allCorners.equals("0110"))			WallsAndObjects[i - 1][j - 1] = nameToID.get("Wall Middle 2 Tiny BR TL Corner");
-					} 
-					else if (adjacents.equals("0001"))				WallsAndObjects[i - 1][j - 1] = nameToID.get("Wall Standalone Back");
-					else if (adjacents.equals("1000"))				WallsAndObjects[i - 1][j - 1] = nameToID.get("Wall Standalone Front");
-					else if (adjacents.equals("0010"))				WallsAndObjects[i - 1][j - 1] = nameToID.get("Wall Standalone Left");
-					else if (adjacents.equals("0100"))				WallsAndObjects[i - 1][j - 1] = nameToID.get("Wall Standalone Right");
+					
+					String wallNeighbours = getNeighbours(i, j, "█");
+					
+					for (String code: new String[] {
+							"01011010", "01011011", "01011110", "01011111", "01011X0X", 
+							"01111010", "01111011", "01111110", "01111111", "01111X0X", 
+							"01X1001X", "01X1011X", "01X10X0X", "11011010", "11011011", 
+							"11011110", "11011111", "11011X0X", "11111010", "11111011", 
+							"11111110", "11111111", "11111X0X", "11X1001X", "11X1011X", 
+							"11X10X0X", "X0X00X0X", "X0X00X1X", "X0X01X0X", "X0X01X10", 
+							"X0X01X11", "X0X1001X", "X0X1011X", "X0X10X0X", "X0X11010", 
+							"X0X11011", "X0X11110", "X0X11111", "X0X11X0X", "X1001X0X", 
+							"X1001X10", "X1001X11", "X1101X0X", "X1101X10", "X1101X11", 
+							"X1X00X0X", "X1X00X1X"}) {
+						if (compareWithDontCares(wallNeighbours, code)) {
+							WallsAndObjects[i - 1][j - 1] = nameToID.get("Set 1 Wall " + code);
+						}
+					}
 					
 					if (Math.random() < 0.1 && data[i - 1][j].equals("█")) {
 						if (data[i + 1][j].equals("█")) {
@@ -796,7 +886,7 @@ public class TextToTmx {
 					}
 					
 				} else {
-					if (data[i][j].equals("b")) 					WallsAndObjects[i - 1][j - 1] = nameToID.get("Button 1 State 1");
+					if 		(data[i][j].equals("b")) 				WallsAndObjects[i - 1][j - 1] = nameToID.get("Button 1 State 1");
 					else if (data[i][j].equals("B")) 				WallsAndObjects[i - 1][j - 1] = nameToID.get("Door 1 State 1");
 					else if (data[i][j].equals("F")) 				WallsAndObjects[i - 1][j - 1] = nameToID.get("Door 2 State 1");
 					else if (data[i][j].equals("f")) 				WallsAndObjects[i - 1][j - 1] = nameToID.get("Button 2 State 1");
@@ -807,20 +897,50 @@ public class TextToTmx {
 						Lodestones[i][j] = data[i][j].charAt(0);
 					}
 					
+					/*// Floor Set 2 only
 					if ("fFBbMxyzXYZe".contains(data[i][j])) {
 						Floor[i - 1][j - 1] = 1;
 					} else {
 						Floor[i - 1][j - 1] = (int) (16 * Math.pow(Math.random(), 0.75));
-						
-						if (Math.random() < 0.3) {
-							FloorDeco[i - 1][j - 1] = (Math.random() < 0.7) ? nameToID.get("Debris " + (random.nextInt(8) + 1)) : nameToID.get("Scratches " + (random.nextInt(4) + 1));
+					}*/
+					
+					String floorNeighbours = "" + (data[i - 1][j - 1].equals("█") ? 0 : 1) + 
+												  (data[i - 1][j].equals("█") ? 0 : 1) + 
+												  (data[i - 1][j + 1].equals("█") ? 0 : 1) + 
+												  (data[i][j - 1].equals("█") ? 0 : 1) + 
+												  (data[i][j + 1].equals("█") ? 0 : 1) + 
+												  (data[i + 1][j - 1].equals("█") ? 0 : 1) + 
+												  (data[i + 1][j].equals("█") ? 0 : 1) + 
+												  (data[i + 1][j + 1].equals("█") ? 0 : 1);
+					
+					for (String code: new String[] {
+							"01011010", "01011011", "01011110", "01011111", "01011X0X", 
+							"01111010", "01111011", "01111110", "01111111", "01111X0X", 
+							"01X1001X", "01X1011X", "01X10X0X", "11011010", "11011011", 
+							"11011110", "11011111", "11011X0X", "11111010", "11111011", 
+							"11111110", "11111111", "11111X0X", "11X1001X", "11X1011X", 
+							"11X10X0X", "X0X00X0X", "X0X00X1X", "X0X01X0X", "X0X01X10", 
+							"X0X01X11", "X0X1001X", "X0X1011X", "X0X10X0X", "X0X11010", 
+							"X0X11011", "X0X11110", "X0X11111", "X0X11X0X", "X1001X0X", 
+							"X1001X10", "X1001X11", "X1101X0X", "X1101X10", "X1101X11", 
+							"X1X00X0X", "X1X00X1X"}) {
+						if (compareWithDontCares(floorNeighbours, code)) {
+							Floor[i - 1][j - 1] = nameToID.get("Set 1 Floor " + code);
 						}
-						
-						if (data[i - 1][j].equals("█") && data[i][j + 1].equals("█")) {
-							WallDeco[i - 1][j - 1] = nameToID.get("Small Corner 1");
-						} else if (data[i - 1][j].equals("█") && data[i][j - 1].equals("█")) {
-							WallDeco[i - 1][j - 1] = nameToID.get("Small Corner 2");
+					}
+					
+					if (Math.random() < 0.3) {
+						if (Math.random() < 0.7) {
+							FloorDeco[i - 1][j - 1] = nameToID.get("Debris " + (random.nextInt(8) + 1));
+						} else {
+							FloorDeco[i - 1][j - 1] = nameToID.get("Scratches " + (random.nextInt(4) + 1));
 						}
+					}
+					
+					if (data[i - 1][j].equals("█") && data[i][j + 1].equals("█")) {
+						FloorDeco[i - 1][j - 1] = nameToID.get("Small Corner 1");
+					} else if (data[i - 1][j].equals("█") && data[i][j - 1].equals("█")) {
+						FloorDeco[i - 1][j - 1] = nameToID.get("Small Corner 2");
 					}
 				}
 			}
@@ -835,7 +955,7 @@ public class TextToTmx {
 						//       001**
 						//       *****
 						//       *****
-						
+									     
 						String[] b = new String[] {"" + (Lodestones[i][j + 1] == value ? 1 : 0),
 												   "" + (Lodestones[i][j + 2] == value ? 1 : 0),
 												   "" + (Lodestones[i + 1][j - 2] == value ? 1 : 0),
@@ -1159,7 +1279,7 @@ public class TextToTmx {
 						"    <property name=\"Type\" value=\"Block\"/>\n" +
 						"   </properties>");
 
-            } else if (Blocks[n].contains("Magnetic Area (Walkable) State 1")) {
+            } else if (Blocks[n].contains("Magnetic Area (Walkable)") && Blocks[n].contains("State 1")) {
 				writer.println("   <properties>\n" +
 						"    <property name=\"#\" value=\"(this)\"/>\n" +
 						"    <property name=\"Actor Depth\" type=\"int\" value=\"-1\"/>\n" +
@@ -1187,7 +1307,6 @@ public class TextToTmx {
 			// states but following the same pattern.
 			
 			if (Blocks[n].contains("Magnetic Area (Walkable)") && Blocks[n].contains("State 1")) {
-				
 				writer.println(
 				"   <animation>\r\n" + 
 				"    <frame tileid=\"" + (n) + "\" duration=\"750\"/>\r\n" + 
@@ -1197,9 +1316,9 @@ public class TextToTmx {
 				"    <frame tileid=\"" + (n + 4) + "\" duration=\"750\"/>\r\n" + 
 				"   </animation>");
 
-			} else if (Blocks[n].equals("Graphics/Objects/Exit Front State 1.png") ||
-					   Blocks[n].equals("Graphics/Objects/Exit Left State 1.png")  ||
-					   Blocks[n].equals("Graphics/Objects/Exit Right State 1.png")) {
+			} else if (Blocks[n].contains("Exit Front State 1.png") ||
+					   Blocks[n].contains("Exit Left State 1.png")  ||
+					   Blocks[n].contains("Exit Right State 1.png")) {
 				writer.println(
 				"   <animation>\r\n" + 
 				"    <frame tileid=\"" + n + "\" duration=\"1500\"/>\r\n" +
@@ -1285,7 +1404,7 @@ public class TextToTmx {
 		// Walls Deco Layer
 		
 		writer.println(
-				" <layer name=\"Walls and Objects\" width=\"" + cols + "\" height=\"" + rows + "\">\r\n" + 
+				" <layer name=\"Walls Deco\" width=\"" + cols + "\" height=\"" + rows + "\">\r\n" + 
 				"  <data encoding=\"csv\">");
 		
 		for (int i = 0; i < rows; i++) {
@@ -1327,23 +1446,37 @@ public class TextToTmx {
 		writer.close();
 	}
 	
-	private String getNeighbours(int i, int j) {
-		String result = ((data[i - 1][j - 1].equals("█")) ? "1" : "0") + 
-						((data[i - 1][j].equals("█")) ? "1" : "0") +
-						((data[i - 1][j + 1].equals("█")) ? "1" : "0") +
-						((data[i][j - 1].equals("█")) ? "1" : "0") +
-						((data[i][j + 1].equals("█")) ? "1" : "0") +
-						((data[i + 1][j - 1].equals("█")) ? "1" : "0") +
-						((data[i + 1][j].equals("█")) ? "1" : "0") +
-						((data[i + 1][j + 1].equals("█")) ? "1" : "0");
+	private String getNeighbours(int i, int j, String block) {
+		String result = ((data[i - 1][j - 1].equals(block)) ? "1" : "0") + 
+						((data[i - 1][j].equals(block)) ? "1" : "0") +
+						((data[i - 1][j + 1].equals(block)) ? "1" : "0") +
+						((data[i][j - 1].equals(block)) ? "1" : "0") +
+						((data[i][j + 1].equals(block)) ? "1" : "0") +
+						((data[i + 1][j - 1].equals(block)) ? "1" : "0") +
+						((data[i + 1][j].equals(block)) ? "1" : "0") +
+						((data[i + 1][j + 1].equals(block)) ? "1" : "0");
 		return result;
 	}
 	
-	int n = 0;
-	
-	private int count() {
-		n = (n + 7) % 10;
-		return n;
+	/**
+	 * Uses the concept of dontcares from circuit logic to compare binary strings
+	 * @param input
+	 * @param condition
+	 * @return
+	 */
+	private boolean compareWithDontCares(String input, String condition) {
+		if (input.length() != condition.length()) {
+			throw new IllegalArgumentException("Strings does not match in length");
+		}
+		
+		for (int i = 0; i < condition.length(); i++) {
+			if (condition.charAt(i) == "X".charAt(0)) {
+				continue;
+			} else if (condition.charAt(i) != input.charAt(i)) {
+				return false;
+			}
+		}
+		return true;
 	}
 	
 	public static void main(String[] args) throws IOException {
@@ -1566,9 +1699,9 @@ public class TextToTmx {
 					"██       ██████████████\r\n" + 
 					"██      ███████████████\r\n" + 
 					"██      █████M  XXYY███\r\n" + 
-					"█      ████████ ██X████\r\n" + 
+					"█      ████████ ██ ████\r\n" + 
 					"██      ███████ ██X████\r\n" + 
-					"██        █████ ██Y████\r\n" + 
+					"██        █████ ██X████\r\n" + 
 					"██         ████ ██Y████\r\n" + 
 					"███            s  Y  e█\r\n" + 
 					"█████  █   ███   ██████\r\n" + 
