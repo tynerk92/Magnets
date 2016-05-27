@@ -395,7 +395,7 @@ public class TextToTmx {
 		for (int i = 1; i < rows + 1; i++) {
 			for (int j = 1; j < cols + 1; j++) {
 				if (data[i][j].equals("█")) {
-					String wallNeighbours = getNeighbours(i, j, "█");
+					String wallNeighbours = getNeighbours(i, j, "█", data, false);
 					for (String code: new String[] {
 							"01011010", "01011011", "01011110", "01011111", "01011X0X", 
 							"01111010", "01111011", "01111110", "01111111", "01111X0X", 
@@ -442,14 +442,7 @@ public class TextToTmx {
 						Floor[i - 1][j - 1] = (int) (16 * Math.pow(Math.random(), 0.75));
 					}*/
 					
-					String floorNeighbours = "" + (data[i - 1][j - 1].equals("█") ? 0 : 1) + 
-												  (data[i - 1][j].equals("█") ? 0 : 1) + 
-												  (data[i - 1][j + 1].equals("█") ? 0 : 1) + 
-												  (data[i][j - 1].equals("█") ? 0 : 1) + 
-												  (data[i][j + 1].equals("█") ? 0 : 1) + 
-												  (data[i + 1][j - 1].equals("█") ? 0 : 1) + 
-												  (data[i + 1][j].equals("█") ? 0 : 1) + 
-												  (data[i + 1][j + 1].equals("█") ? 0 : 1);
+					String floorNeighbours = getNeighbours(i, j, "█", data, true);
 					
 					for (String code: new String[] {
 							"01011010", "01011011", "01011110", "01011111", "01011X0X", 
@@ -1015,15 +1008,19 @@ public class TextToTmx {
 		writer.close();
 	}
 	
-	private String getNeighbours(int i, int j, String block) {
-		String result = ((data[i - 1][j - 1].equals(block)) ? "1" : "0") + 
-						((data[i - 1][j].equals(block)) ? "1" : "0") +
-						((data[i - 1][j + 1].equals(block)) ? "1" : "0") +
-						((data[i][j - 1].equals(block)) ? "1" : "0") +
-						((data[i][j + 1].equals(block)) ? "1" : "0") +
-						((data[i + 1][j - 1].equals(block)) ? "1" : "0") +
-						((data[i + 1][j].equals(block)) ? "1" : "0") +
-						((data[i + 1][j + 1].equals(block)) ? "1" : "0");
+	private String getNeighbours(int i, int j, String block, String[][] arr, boolean flip) {
+		int tru = 1, fals = 0;
+		if (flip) {
+			tru = 0; fals = 1;
+		}
+		String result = ((arr[i - 1][j - 1].equals(block)) ? tru : fals) + "" + 
+						((arr[i - 1][j].equals(block)) ? tru : fals) +
+						((arr[i - 1][j + 1].equals(block)) ? tru : fals) +
+						((arr[i][j - 1].equals(block)) ? tru : fals) +
+						((arr[i][j + 1].equals(block)) ? tru : fals) +
+						((arr[i + 1][j - 1].equals(block)) ? tru : fals) +
+						((arr[i + 1][j].equals(block)) ? tru : fals) +
+						((arr[i + 1][j + 1].equals(block)) ? tru : fals);
 		return result;
 	}
 	
