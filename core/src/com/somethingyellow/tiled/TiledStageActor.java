@@ -112,7 +112,7 @@ public abstract class TiledStageActor extends Actor implements Comparable<TiledS
 							actor._isMoving = false;
 							onMovementEnd(origin, targetCoordinate);
 						}
-					})
+				})
 		));
 	}
 

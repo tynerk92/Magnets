@@ -24,6 +24,7 @@ public class PlayScreen implements Screen {
 	public static final String TILE_TYPE_PLAYER = "Player";
 	public static final String TILE_TYPE_BLOCK = "Block";
 	public static final String TILE_TYPE_MAGNETIC_SOURCE = "Magnetic Source";
+	public static final String TILE_TYPE_MAGNETIC_FLOOR = "Magnetic Floor";
 	public static final String TILE_TYPE_WALL = "Wall";
 	public static final String TILE_ISPUSHABLE = "IsPushable";
 	public static final String TILE_ISMAGNETISABLE = "IsMagnetisable";
@@ -34,7 +35,7 @@ public class PlayScreen implements Screen {
 	public static final String TILE_FRAME_DEPTH = "Frame Depth";
 	public boolean DEBUG_MODE = false;
 	// Paths/Textures
-	private String _levelPath = "Levels/Triparte.tmx";
+	private String _levelPath = "Levels/Medium Levels Pack/Chain.tmx";
 	private TiledStage _tiledStage;
 	private PlayerActor _playerActor;
 	private HashMap<String, TiledMapTile> _tilesByName;
@@ -147,7 +148,9 @@ public class PlayScreen implements Screen {
 			if (type.equals(TILE_TYPE_BLOCK)) {
 				spawnBlock(cell);
 			} else if (type.equals(TILE_TYPE_MAGNETIC_SOURCE)) {
-				spawnMagneticArea(cell);
+				spawnMagneticSource(cell);
+			} else if (type.equals(TILE_TYPE_MAGNETIC_FLOOR)) {
+				spawnMagneticFloor(cell);
 			} else if (type.equals(TILE_TYPE_PLAYER)) {
 				spawnPlayer(cell);
 			}
@@ -180,12 +183,19 @@ public class PlayScreen implements Screen {
 		cell.removeTile();
 	}
 
-	public void spawnMagneticArea(TiledStage.Cell cell) {
+	public void spawnMagneticSource(TiledStage.Cell cell) {
 
 		new MagneticSource(OBJECT_TYPES.MAGNETIC_SOURCE.ordinal(),
-				ExtractBodyArea(cell.tile()), ExtractBodyWidth(cell.tile()),
-				getAnimations(cell.tile()),
-				_tiledStage, cell.coordinate(), ExtractActorDepth(cell.tile()));
+				getAnimations(cell.tile()), _tiledStage,
+				cell.coordinate(), ExtractActorDepth(cell.tile()));
+
+		cell.removeTile();
+	}
+
+	public void spawnMagneticFloor(TiledStage.Cell cell) {
+		new MagneticFloor(OBJECT_TYPES.MAGNETIC_FLOOR.ordinal(),
+				getAnimations(cell.tile()), _tiledStage,
+				cell.coordinate(), ExtractActorDepth(cell.tile()));
 
 		cell.removeTile();
 	}
@@ -230,6 +240,6 @@ public class PlayScreen implements Screen {
 	}
 
 	public enum OBJECT_TYPES {
-		PLAYER, BLOCK, MAGNETIC_SOURCE
+		PLAYER, BLOCK, MAGNETIC_SOURCE, MAGNETIC_FLOOR
 	}
 }
