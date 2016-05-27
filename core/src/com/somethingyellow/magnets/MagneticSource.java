@@ -12,9 +12,9 @@ public class MagneticSource extends TiledStageActor {
 	public static final int ATTRACTION_RANGE = 2;
 	public static final int ATTRACTION_STRENGTH = 1;
 
-	public MagneticSource(int type, boolean[] bodyArea, int bodyWidth, HashMap<String, FrameSequence> animationFrames,
+	public MagneticSource(int type, HashMap<String, FrameSequence> animationFrames,
 	                      TiledStage stage, TiledStage.Coordinate origin, int actorDepth) {
-		super(type, bodyArea, bodyWidth, animationFrames, stage, origin, actorDepth);
+		super(type, TiledStageActor.BodyArea1x1, 1, animationFrames, stage, origin, actorDepth);
 
 		addState(STATE_STILL);
 	}
