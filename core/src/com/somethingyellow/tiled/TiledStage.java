@@ -205,8 +205,8 @@ public class TiledStage extends Stage implements Disposable {
 
 	@Override
 	public void draw() {
-
 		float delta = Gdx.graphics.getDeltaTime();
+
 		for (int i = 0; i < _maxTicks; i++) {
 			for (TiledStageActor actor : _actors) {
 				actor.act(i);
@@ -272,7 +272,11 @@ public class TiledStage extends Stage implements Disposable {
 		return _coordinates.get(getCoordinateIndex(tileRow, tileCol));
 	}
 
-	public int getCoordinateIndex(int tileRow, int tileCol) {
+	public Coordinate getCoordinateAt(float x, float y) {
+		return getCoordinate(Math.floorDiv((int) y, _tileHeight), Math.floorDiv((int) x, _tileWidth));
+	}
+
+	private int getCoordinateIndex(int tileRow, int tileCol) {
 		return tileRow * _tileColumns + tileCol;
 	}
 
@@ -280,7 +284,7 @@ public class TiledStage extends Stage implements Disposable {
 		return _tileLayers;
 	}
 
-	public Iterator<Cell> cells() {
+	public Iterator<Cell> cellsIterator() {
 		return new CellsIterator();
 	}
 
@@ -288,8 +292,12 @@ public class TiledStage extends Stage implements Disposable {
 		return new CellsIterator(layerName);
 	}
 
-	public Iterator<TiledMapTile> tiles() {
+	public Iterator<TiledMapTile> tilesIterator() {
 		return new TilesIterator();
+	}
+
+	public Iterator<TiledStageActor> actorsIterator() {
+		return new ActorsIterator();
 	}
 
 	public TiledStage setViewSize(float viewSizeX, float viewSizeY) {
@@ -478,12 +486,59 @@ public class TiledStage extends Stage implements Disposable {
 		}
 	}
 
+	private class ActorsIterator implements Iterator<TiledStageActor> {
+		private HashSet<TiledStageActor> _prevActors = new HashSet<TiledStageActor>();
+		private TiledStageActor[] _nextActors;
+		private TiledStageActor _nextActor;
+		private int _row = 0;
+		private int _col = 0;
+		private int _actorIndex = 0;
+
+		public ActorsIterator() {
+			next();
+		}
+
+		@Override
+		public boolean hasNext() {
+			return _nextActor != null;
+		}
+
+		@Override
+		public TiledStageActor next() {
+			TiledStageActor actor = _nextActor;
+			_nextActor = null;
+
+			while (_row < _tileRows) {
+				while (_col < _tileColumns) {
+					if (_nextActors == null) {
+						HashSet<TiledStageActor> actors = getCoordinate(_row, _col).actors();
+						_nextActors = actors.toArray(new TiledStageActor[actors.size()]);
+					}
+
+					while (_actorIndex < _nextActors.length) {
+						TiledStageActor nextActor = _nextActors[_actorIndex];
+						_actorIndex++;
+						if (!_prevActors.contains(nextActor)) {
+							_nextActor = nextActor;
+							_prevActors.add(_nextActor);
+							return actor;
+						}
+					}
+					_nextActors = null;
+					_actorIndex = 0;
+					_col++;
+				}
+				_col = 0;
+				_row++;
+			}
+
+			return actor;
+		}
+	}
+
 	private class CoordinatesIterator implements Iterator<Coordinate> {
 		private int _row = 0;
 		private int _col = 0;
-
-		public CoordinatesIterator() {
-		}
 
 		@Override
 		public boolean hasNext() {
@@ -495,7 +550,7 @@ public class TiledStage extends Stage implements Disposable {
 			Coordinate coordinate = getCoordinate(_row, _col);
 
 			_col++;
-			if (_col >= tileColumns()) {
+			if (_col >= _tileColumns) {
 				_col = 0;
 				_row++;
 			}

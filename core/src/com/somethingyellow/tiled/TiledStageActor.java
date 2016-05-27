@@ -228,6 +228,10 @@ public abstract class TiledStageActor extends Actor implements Comparable<TiledS
 		return _bodyWidth;
 	}
 
+	public boolean[] bodyArea() {
+		return _bodyArea;
+	}
+
 	public int bodyHeight() {
 		return _bodyHeight;
 	}

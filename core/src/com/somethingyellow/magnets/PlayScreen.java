@@ -128,7 +128,7 @@ public class PlayScreen implements Screen {
 
 		Gdx.input.setInputProcessor(_tiledStage);
 
-		Iterator<TiledMapTile> tiles = _tiledStage.tiles();
+		Iterator<TiledMapTile> tiles = _tiledStage.tilesIterator();
 		while (tiles.hasNext()) {
 			TiledMapTile tile = tiles.next();
 
@@ -138,7 +138,7 @@ public class PlayScreen implements Screen {
 			}
 		}
 
-		Iterator<TiledStage.Cell> cells = _tiledStage.cells();
+		Iterator<TiledStage.Cell> cells = _tiledStage.cellsIterator();
 		while (cells.hasNext()) {
 			TiledStage.Cell cell = cells.next();
 			TiledMapTile tile = cell.tile();
