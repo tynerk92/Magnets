@@ -821,7 +821,7 @@ public class TextToTmx {
 				
 			} else if (Blocks[n].name.contains("Lodestone")) {
             	
-            	String[] data = Blocks[n].name.substring(Blocks[n].name.indexOf(" - ") + 3).split(" ");
+            	String[] data = Blocks[n].dir.substring(Blocks[n].dir.indexOf(" - ") + 3).split(" ");
             	
             	String area = data[1].substring(0, data[1].length() - 4);
             	String width = data[0];

@@ -685,8 +685,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 1x1 1"/>
-    <property name="Body Area" value="(Pusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="1"/>
+    <property name="Body Width" type="int" value="1"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
     <property name="Type" value="Block"/>
@@ -698,8 +698,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 1x1 1"/>
-    <property name="Body Area" value="(Pusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="1"/>
+    <property name="Body Width" type="int" value="1"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
     <property name="Type" value="Block"/>
@@ -711,8 +711,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 1x1 1"/>
-    <property name="Body Area" value="(Pusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="1"/>
+    <property name="Body Width" type="int" value="1"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
     <property name="Type" value="Block"/>
@@ -724,8 +724,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 1x1 1"/>
-    <property name="Body Area" value="(Pusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="1"/>
+    <property name="Body Width" type="int" value="1"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
     <property name="Type" value="Block"/>
@@ -737,8 +737,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 1x2 1"/>
-    <property name="Body Area" value="(Pusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="11"/>
+    <property name="Body Width" type="int" value="1"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
     <property name="Type" value="Block"/>
@@ -750,8 +750,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 1x3 1"/>
-    <property name="Body Area" value="(Pusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="111"/>
+    <property name="Body Width" type="int" value="1"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
     <property name="Type" value="Block"/>
@@ -763,8 +763,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 2x1 1"/>
-    <property name="Body Area" value="(Pusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="11"/>
+    <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
     <property name="Type" value="Block"/>
@@ -776,8 +776,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 2x2 1"/>
-    <property name="Body Area" value="(Pusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="1110"/>
+    <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
     <property name="Type" value="Block"/>
@@ -789,8 +789,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 2x2 2"/>
-    <property name="Body Area" value="(Pusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="1101"/>
+    <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
     <property name="Type" value="Block"/>
@@ -802,8 +802,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 2x2 3"/>
-    <property name="Body Area" value="(Pusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="0111"/>
+    <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
     <property name="Type" value="Block"/>
@@ -815,8 +815,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 2x2 4"/>
-    <property name="Body Area" value="(Pusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="1011"/>
+    <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
     <property name="Type" value="Block"/>
@@ -828,8 +828,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 2x2 5"/>
-    <property name="Body Area" value="(Pusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="1111"/>
+    <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
     <property name="Type" value="Block"/>
@@ -841,8 +841,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 2x3 1"/>
-    <property name="Body Area" value="(Pusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="101110"/>
+    <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
     <property name="Type" value="Block"/>
@@ -854,8 +854,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 2x3 2"/>
-    <property name="Body Area" value="(Pusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="011101"/>
+    <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
     <property name="Type" value="Block"/>
@@ -867,8 +867,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 2x3 3"/>
-    <property name="Body Area" value="(Pusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="101011"/>
+    <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
     <property name="Type" value="Block"/>
@@ -880,8 +880,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 2x3 4"/>
-    <property name="Body Area" value="(Pusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="111010"/>
+    <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
     <property name="Type" value="Block"/>
@@ -893,8 +893,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 2x3 5"/>
-    <property name="Body Area" value="(Pusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="010111"/>
+    <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
     <property name="Type" value="Block"/>
@@ -906,8 +906,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 2x3 6"/>
-    <property name="Body Area" value="(Pusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="110101"/>
+    <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
     <property name="Type" value="Block"/>
@@ -919,8 +919,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 2x3 7"/>
-    <property name="Body Area" value="(Pusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="101101"/>
+    <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
     <property name="Type" value="Block"/>
@@ -932,8 +932,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 2x3 8"/>
-    <property name="Body Area" value="(Pusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="011110"/>
+    <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
     <property name="Type" value="Block"/>
@@ -945,8 +945,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 2x3 9"/>
-    <property name="Body Area" value="(Pusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="111011"/>
+    <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
     <property name="Type" value="Block"/>
@@ -958,8 +958,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 2x3 10"/>
-    <property name="Body Area" value="(Pusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="110111"/>
+    <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
     <property name="Type" value="Block"/>
@@ -971,8 +971,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 2x3 11"/>
-    <property name="Body Area" value="(Pusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="111110"/>
+    <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
     <property name="Type" value="Block"/>
@@ -984,8 +984,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 2x3 12"/>
-    <property name="Body Area" value="(Pusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="111101"/>
+    <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
     <property name="Type" value="Block"/>
@@ -997,8 +997,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 2x3 13"/>
-    <property name="Body Area" value="(Pusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="101111"/>
+    <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
     <property name="Type" value="Block"/>
@@ -1010,8 +1010,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 2x3 14"/>
-    <property name="Body Area" value="(Pusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="011111"/>
+    <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
     <property name="Type" value="Block"/>
@@ -1023,8 +1023,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 3x1 1"/>
-    <property name="Body Area" value="(Pusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="111"/>
+    <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
     <property name="Type" value="Block"/>
@@ -1036,8 +1036,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 3x2 1"/>
-    <property name="Body Area" value="(Pusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="010111"/>
+    <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
     <property name="Type" value="Block"/>
@@ -1049,8 +1049,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 3x2 2"/>
-    <property name="Body Area" value="(Pusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="111010"/>
+    <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
     <property name="Type" value="Block"/>
@@ -1062,8 +1062,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 3x2 3"/>
-    <property name="Body Area" value="(Pusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="111100"/>
+    <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
     <property name="Type" value="Block"/>
@@ -1075,8 +1075,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 3x2 4"/>
-    <property name="Body Area" value="(Pusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="111001"/>
+    <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
     <property name="Type" value="Block"/>
@@ -1088,8 +1088,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 3x2 5"/>
-    <property name="Body Area" value="(Pusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="100111"/>
+    <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
     <property name="Type" value="Block"/>
@@ -1101,8 +1101,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 3x2 6"/>
-    <property name="Body Area" value="(Pusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="001111"/>
+    <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
     <property name="Type" value="Block"/>
@@ -1114,8 +1114,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 3x2 7"/>
-    <property name="Body Area" value="(Pusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="110011"/>
+    <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
     <property name="Type" value="Block"/>
@@ -1127,8 +1127,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 3x2 8"/>
-    <property name="Body Area" value="(Pusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="011110"/>
+    <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
     <property name="Type" value="Block"/>
@@ -1140,8 +1140,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 3x2 9"/>
-    <property name="Body Area" value="(Pusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="111101"/>
+    <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
     <property name="Type" value="Block"/>
@@ -1153,8 +1153,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 3x2 10"/>
-    <property name="Body Area" value="(Pusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="101111"/>
+    <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
     <property name="Type" value="Block"/>
@@ -1166,8 +1166,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 3x2 11"/>
-    <property name="Body Area" value="(Pusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="111110"/>
+    <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
     <property name="Type" value="Block"/>
@@ -1179,8 +1179,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 3x2 12"/>
-    <property name="Body Area" value="(Pusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="111011"/>
+    <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
     <property name="Type" value="Block"/>
@@ -1192,8 +1192,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 3x2 13"/>
-    <property name="Body Area" value="(Pusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="110111"/>
+    <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
     <property name="Type" value="Block"/>
@@ -1205,8 +1205,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 3x2 14"/>
-    <property name="Body Area" value="(Pusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="011111"/>
+    <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
     <property name="Type" value="Block"/>
@@ -1218,8 +1218,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 1x1 1"/>
-    <property name="Body Area" value="(Unpusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="1"/>
+    <property name="Body Width" type="int" value="1"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="false"/>
     <property name="Type" value="Block"/>
@@ -1231,8 +1231,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 1x2 1"/>
-    <property name="Body Area" value="(Unpusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="11"/>
+    <property name="Body Width" type="int" value="1"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="false"/>
     <property name="Type" value="Block"/>
@@ -1244,8 +1244,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 1x3 1"/>
-    <property name="Body Area" value="(Unpusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="111"/>
+    <property name="Body Width" type="int" value="1"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="false"/>
     <property name="Type" value="Block"/>
@@ -1257,8 +1257,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 2x1 1"/>
-    <property name="Body Area" value="(Unpusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="11"/>
+    <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="false"/>
     <property name="Type" value="Block"/>
@@ -1270,8 +1270,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 2x2 1"/>
-    <property name="Body Area" value="(Unpusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="1110"/>
+    <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="false"/>
     <property name="Type" value="Block"/>
@@ -1283,8 +1283,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 2x2 2"/>
-    <property name="Body Area" value="(Unpusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="1101"/>
+    <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="false"/>
     <property name="Type" value="Block"/>
@@ -1296,8 +1296,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 2x2 3"/>
-    <property name="Body Area" value="(Unpusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="0111"/>
+    <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="false"/>
     <property name="Type" value="Block"/>
@@ -1309,8 +1309,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 2x2 4"/>
-    <property name="Body Area" value="(Unpusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="1011"/>
+    <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="false"/>
     <property name="Type" value="Block"/>
@@ -1322,8 +1322,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 2x2 5"/>
-    <property name="Body Area" value="(Unpusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="1111"/>
+    <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="false"/>
     <property name="Type" value="Block"/>
@@ -1335,8 +1335,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 2x3 1"/>
-    <property name="Body Area" value="(Unpusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="101110"/>
+    <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="false"/>
     <property name="Type" value="Block"/>
@@ -1348,8 +1348,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 2x3 2"/>
-    <property name="Body Area" value="(Unpusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="011101"/>
+    <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="false"/>
     <property name="Type" value="Block"/>
@@ -1361,8 +1361,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 2x3 3"/>
-    <property name="Body Area" value="(Unpusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="101011"/>
+    <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="false"/>
     <property name="Type" value="Block"/>
@@ -1374,8 +1374,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 2x3 4"/>
-    <property name="Body Area" value="(Unpusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="111010"/>
+    <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="false"/>
     <property name="Type" value="Block"/>
@@ -1387,8 +1387,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 2x3 5"/>
-    <property name="Body Area" value="(Unpusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="010111"/>
+    <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="false"/>
     <property name="Type" value="Block"/>
@@ -1400,8 +1400,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 2x3 6"/>
-    <property name="Body Area" value="(Unpusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="110101"/>
+    <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="false"/>
     <property name="Type" value="Block"/>
@@ -1413,8 +1413,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 2x3 7"/>
-    <property name="Body Area" value="(Unpusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="101101"/>
+    <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="false"/>
     <property name="Type" value="Block"/>
@@ -1426,8 +1426,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 2x3 8"/>
-    <property name="Body Area" value="(Unpusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="011110"/>
+    <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="false"/>
     <property name="Type" value="Block"/>
@@ -1439,8 +1439,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 2x3 9"/>
-    <property name="Body Area" value="(Unpusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="111011"/>
+    <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="false"/>
     <property name="Type" value="Block"/>
@@ -1452,8 +1452,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 2x3 10"/>
-    <property name="Body Area" value="(Unpusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="110111"/>
+    <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="false"/>
     <property name="Type" value="Block"/>
@@ -1465,8 +1465,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 2x3 11"/>
-    <property name="Body Area" value="(Unpusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="111110"/>
+    <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="false"/>
     <property name="Type" value="Block"/>
@@ -1478,8 +1478,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 2x3 12"/>
-    <property name="Body Area" value="(Unpusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="111101"/>
+    <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="false"/>
     <property name="Type" value="Block"/>
@@ -1491,8 +1491,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 2x3 13"/>
-    <property name="Body Area" value="(Unpusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="101111"/>
+    <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="false"/>
     <property name="Type" value="Block"/>
@@ -1504,8 +1504,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 2x3 14"/>
-    <property name="Body Area" value="(Unpusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="011111"/>
+    <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="false"/>
     <property name="Type" value="Block"/>
@@ -1517,8 +1517,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 3x1 1"/>
-    <property name="Body Area" value="(Unpusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="111"/>
+    <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="false"/>
     <property name="Type" value="Block"/>
@@ -1530,8 +1530,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 3x2 1"/>
-    <property name="Body Area" value="(Unpusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="010111"/>
+    <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="false"/>
     <property name="Type" value="Block"/>
@@ -1543,8 +1543,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 3x2 2"/>
-    <property name="Body Area" value="(Unpusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="111010"/>
+    <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="false"/>
     <property name="Type" value="Block"/>
@@ -1556,8 +1556,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 3x2 3"/>
-    <property name="Body Area" value="(Unpusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="111100"/>
+    <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="false"/>
     <property name="Type" value="Block"/>
@@ -1569,8 +1569,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 3x2 4"/>
-    <property name="Body Area" value="(Unpusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="111001"/>
+    <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="false"/>
     <property name="Type" value="Block"/>
@@ -1582,8 +1582,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 3x2 5"/>
-    <property name="Body Area" value="(Unpusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="100111"/>
+    <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="false"/>
     <property name="Type" value="Block"/>
@@ -1595,8 +1595,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 3x2 6"/>
-    <property name="Body Area" value="(Unpusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="001111"/>
+    <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="false"/>
     <property name="Type" value="Block"/>
@@ -1608,8 +1608,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 3x2 7"/>
-    <property name="Body Area" value="(Unpusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="110011"/>
+    <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="false"/>
     <property name="Type" value="Block"/>
@@ -1621,8 +1621,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 3x2 8"/>
-    <property name="Body Area" value="(Unpusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="011110"/>
+    <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="false"/>
     <property name="Type" value="Block"/>
@@ -1634,8 +1634,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 3x2 9"/>
-    <property name="Body Area" value="(Unpusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="111101"/>
+    <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="false"/>
     <property name="Type" value="Block"/>
@@ -1647,8 +1647,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 3x2 10"/>
-    <property name="Body Area" value="(Unpusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="101111"/>
+    <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="false"/>
     <property name="Type" value="Block"/>
@@ -1660,8 +1660,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 3x2 11"/>
-    <property name="Body Area" value="(Unpusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="111110"/>
+    <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="false"/>
     <property name="Type" value="Block"/>
@@ -1673,8 +1673,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 3x2 12"/>
-    <property name="Body Area" value="(Unpusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="111011"/>
+    <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="false"/>
     <property name="Type" value="Block"/>
@@ -1686,8 +1686,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 3x2 13"/>
-    <property name="Body Area" value="(Unpusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="110111"/>
+    <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="false"/>
     <property name="Type" value="Block"/>
@@ -1699,8 +1699,8 @@
    <properties>
     <property name="#" value="(this)"/>
     <property name="#Magnetised" value="Magnetic Overlay Lodestone 3x2 14"/>
-    <property name="Body Area" value="(Unpusha"/>
-    <property name="Body Width" type="int" value="destone"/>
+    <property name="Body Area" value="011111"/>
+    <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="false"/>
     <property name="Type" value="Block"/>
@@ -2271,9 +2271,9 @@
 0,0,0,0,0,0,0,
 0,0,76,0,0,0,0,
 0,77,0,0,0,76,0,
-0,0,0,0,73,0,0,
-0,67,0,0,0,0,0,
-0,0,0,0,69,76,0,
+0,68,75,0,0,0,0,
+0,0,69,0,0,0,0,
+0,0,0,0,0,76,0,
 0,0,0,0,0,0,0
 </data>
  </layer>
@@ -2282,7 +2282,7 @@
   <data encoding="csv">
 108,114,116,113,115,115,110,
 121,103,242,120,100,100,101,
-124,0,133,0,0,237,124,
+124,0,132,0,0,237,124,
 124,0,0,0,0,108,89,
 124,0,0,0,172,120,101,
 119,115,115,110,0,226,124,
@@ -2292,12 +2292,12 @@
  <layer name="Walls Deco" width="7" height="7">
   <data encoding="csv">
 0,0,0,0,0,0,0,
-0,0,0,126,0,0,0,
 0,0,0,0,0,0,125,
 0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,
-0,0,0,0,0,0,0
+0,0,0,0,0,0,0,
+0,0,0,126,0,0,0
 </data>
  </layer>
 </map>
