@@ -20,6 +20,8 @@ public class TextToTmx {
 	private String graphicsCode = "";
 	private boolean plantTrees = false;
 	
+	private String whichWallSet = "2";
+	
 	TextToTmx() {
 		initiateTable();
 	}
@@ -40,53 +42,53 @@ public class TextToTmx {
 	
 	private void initiateTable() {
 		Blocks = new Block[] {
-				new Block ("../../Graphics/Floor/Set 1 (Flat)/Floor 01011010.png",                    "Set 1 Floor 01011010",                new int[] {32, 32}),
-				new Block ("../../Graphics/Floor/Set 1 (Flat)/Floor 01011011.png",                    "Set 1 Floor 01011011",                new int[] {32, 32}),
-				new Block ("../../Graphics/Floor/Set 1 (Flat)/Floor 01011110.png",                    "Set 1 Floor 01011110",                new int[] {32, 32}),
-				new Block ("../../Graphics/Floor/Set 1 (Flat)/Floor 01011111.png",                    "Set 1 Floor 01011111",                new int[] {32, 32}),
-				new Block ("../../Graphics/Floor/Set 1 (Flat)/Floor 01011X0X.png",                    "Set 1 Floor 01011X0X",                new int[] {32, 32}),
-				new Block ("../../Graphics/Floor/Set 1 (Flat)/Floor 01111010.png",                    "Set 1 Floor 01111010",                new int[] {32, 32}),
-				new Block ("../../Graphics/Floor/Set 1 (Flat)/Floor 01111011.png",                    "Set 1 Floor 01111011",                new int[] {32, 32}),
-				new Block ("../../Graphics/Floor/Set 1 (Flat)/Floor 01111110.png",                    "Set 1 Floor 01111110",                new int[] {32, 32}),
-				new Block ("../../Graphics/Floor/Set 1 (Flat)/Floor 01111111.png",                    "Set 1 Floor 01111111",                new int[] {32, 32}),
-				new Block ("../../Graphics/Floor/Set 1 (Flat)/Floor 01111X0X.png",                    "Set 1 Floor 01111X0X",                new int[] {32, 32}),
-				new Block ("../../Graphics/Floor/Set 1 (Flat)/Floor 01X1001X.png",                    "Set 1 Floor 01X1001X",                new int[] {32, 32}),
-				new Block ("../../Graphics/Floor/Set 1 (Flat)/Floor 01X1011X.png",                    "Set 1 Floor 01X1011X",                new int[] {32, 32}),
-				new Block ("../../Graphics/Floor/Set 1 (Flat)/Floor 01X10X0X.png",                    "Set 1 Floor 01X10X0X",                new int[] {32, 32}),
-				new Block ("../../Graphics/Floor/Set 1 (Flat)/Floor 11011010.png",                    "Set 1 Floor 11011010",                new int[] {32, 32}),
-				new Block ("../../Graphics/Floor/Set 1 (Flat)/Floor 11011011.png",                    "Set 1 Floor 11011011",                new int[] {32, 32}),
-				new Block ("../../Graphics/Floor/Set 1 (Flat)/Floor 11011110.png",                    "Set 1 Floor 11011110",                new int[] {32, 32}),
-				new Block ("../../Graphics/Floor/Set 1 (Flat)/Floor 11011111.png",                    "Set 1 Floor 11011111",                new int[] {32, 32}),
-				new Block ("../../Graphics/Floor/Set 1 (Flat)/Floor 11011X0X.png",                    "Set 1 Floor 11011X0X",                new int[] {32, 32}),
-				new Block ("../../Graphics/Floor/Set 1 (Flat)/Floor 11111010.png",                    "Set 1 Floor 11111010",                new int[] {32, 32}),
-				new Block ("../../Graphics/Floor/Set 1 (Flat)/Floor 11111011.png",                    "Set 1 Floor 11111011",                new int[] {32, 32}),
-				new Block ("../../Graphics/Floor/Set 1 (Flat)/Floor 11111110.png",                    "Set 1 Floor 11111110",                new int[] {32, 32}),
-				new Block ("../../Graphics/Floor/Set 1 (Flat)/Floor 11111111.png",                    "Set 1 Floor 11111111",                new int[] {32, 32}),
-				new Block ("../../Graphics/Floor/Set 1 (Flat)/Floor 11111X0X.png",                    "Set 1 Floor 11111X0X",                new int[] {32, 32}),
-				new Block ("../../Graphics/Floor/Set 1 (Flat)/Floor 11X1001X.png",                    "Set 1 Floor 11X1001X",                new int[] {32, 32}),
-				new Block ("../../Graphics/Floor/Set 1 (Flat)/Floor 11X1011X.png",                    "Set 1 Floor 11X1011X",                new int[] {32, 32}),
-				new Block ("../../Graphics/Floor/Set 1 (Flat)/Floor 11X10X0X.png",                    "Set 1 Floor 11X10X0X",                new int[] {32, 32}),
-				new Block ("../../Graphics/Floor/Set 1 (Flat)/Floor X0X00X0X.png",                    "Set 1 Floor X0X00X0X",                new int[] {32, 32}),
-				new Block ("../../Graphics/Floor/Set 1 (Flat)/Floor X0X00X1X.png",                    "Set 1 Floor X0X00X1X",                new int[] {32, 32}),
-				new Block ("../../Graphics/Floor/Set 1 (Flat)/Floor X0X01X0X.png",                    "Set 1 Floor X0X01X0X",                new int[] {32, 32}),
-				new Block ("../../Graphics/Floor/Set 1 (Flat)/Floor X0X01X10.png",                    "Set 1 Floor X0X01X10",                new int[] {32, 32}),
-				new Block ("../../Graphics/Floor/Set 1 (Flat)/Floor X0X01X11.png",                    "Set 1 Floor X0X01X11",                new int[] {32, 32}),
-				new Block ("../../Graphics/Floor/Set 1 (Flat)/Floor X0X1001X.png",                    "Set 1 Floor X0X1001X",                new int[] {32, 32}),
-				new Block ("../../Graphics/Floor/Set 1 (Flat)/Floor X0X1011X.png",                    "Set 1 Floor X0X1011X",                new int[] {32, 32}),
-				new Block ("../../Graphics/Floor/Set 1 (Flat)/Floor X0X10X0X.png",                    "Set 1 Floor X0X10X0X",                new int[] {32, 32}),
-				new Block ("../../Graphics/Floor/Set 1 (Flat)/Floor X0X11010.png",                    "Set 1 Floor X0X11010",                new int[] {32, 32}),
-				new Block ("../../Graphics/Floor/Set 1 (Flat)/Floor X0X11011.png",                    "Set 1 Floor X0X11011",                new int[] {32, 32}),
-				new Block ("../../Graphics/Floor/Set 1 (Flat)/Floor X0X11110.png",                    "Set 1 Floor X0X11110",                new int[] {32, 32}),
-				new Block ("../../Graphics/Floor/Set 1 (Flat)/Floor X0X11111.png",                    "Set 1 Floor X0X11111",                new int[] {32, 32}),
-				new Block ("../../Graphics/Floor/Set 1 (Flat)/Floor X0X11X0X.png",                    "Set 1 Floor X0X11X0X",                new int[] {32, 32}),
-				new Block ("../../Graphics/Floor/Set 1 (Flat)/Floor X1001X0X.png",                    "Set 1 Floor X1001X0X",                new int[] {32, 32}),
-				new Block ("../../Graphics/Floor/Set 1 (Flat)/Floor X1001X10.png",                    "Set 1 Floor X1001X10",                new int[] {32, 32}),
-				new Block ("../../Graphics/Floor/Set 1 (Flat)/Floor X1001X11.png",                    "Set 1 Floor X1001X11",                new int[] {32, 32}),
-				new Block ("../../Graphics/Floor/Set 1 (Flat)/Floor X1101X0X.png",                    "Set 1 Floor X1101X0X",                new int[] {32, 32}),
-				new Block ("../../Graphics/Floor/Set 1 (Flat)/Floor X1101X10.png",                    "Set 1 Floor X1101X10",                new int[] {32, 32}),
-				new Block ("../../Graphics/Floor/Set 1 (Flat)/Floor X1101X11.png",                    "Set 1 Floor X1101X11",                new int[] {32, 32}),
-				new Block ("../../Graphics/Floor/Set 1 (Flat)/Floor X1X00X0X.png",                    "Set 1 Floor X1X00X0X",                new int[] {32, 32}),
-				new Block ("../../Graphics/Floor/Set 1 (Flat)/Floor X1X00X1X.png",                    "Set 1 Floor X1X00X1X",                new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Set 1 (Crude)/Floor 01011010.png",                   "Set 1 Floor 01011010",                new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Set 1 (Crude)/Floor 01011011.png",                   "Set 1 Floor 01011011",                new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Set 1 (Crude)/Floor 01011110.png",                   "Set 1 Floor 01011110",                new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Set 1 (Crude)/Floor 01011111.png",                   "Set 1 Floor 01011111",                new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Set 1 (Crude)/Floor 01011X0X.png",                   "Set 1 Floor 01011X0X",                new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Set 1 (Crude)/Floor 01111010.png",                   "Set 1 Floor 01111010",                new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Set 1 (Crude)/Floor 01111011.png",                   "Set 1 Floor 01111011",                new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Set 1 (Crude)/Floor 01111110.png",                   "Set 1 Floor 01111110",                new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Set 1 (Crude)/Floor 01111111.png",                   "Set 1 Floor 01111111",                new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Set 1 (Crude)/Floor 01111X0X.png",                   "Set 1 Floor 01111X0X",                new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Set 1 (Crude)/Floor 01X1001X.png",                   "Set 1 Floor 01X1001X",                new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Set 1 (Crude)/Floor 01X1011X.png",                   "Set 1 Floor 01X1011X",                new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Set 1 (Crude)/Floor 01X10X0X.png",                   "Set 1 Floor 01X10X0X",                new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Set 1 (Crude)/Floor 11011010.png",                   "Set 1 Floor 11011010",                new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Set 1 (Crude)/Floor 11011011.png",                   "Set 1 Floor 11011011",                new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Set 1 (Crude)/Floor 11011110.png",                   "Set 1 Floor 11011110",                new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Set 1 (Crude)/Floor 11011111.png",                   "Set 1 Floor 11011111",                new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Set 1 (Crude)/Floor 11011X0X.png",                   "Set 1 Floor 11011X0X",                new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Set 1 (Crude)/Floor 11111010.png",                   "Set 1 Floor 11111010",                new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Set 1 (Crude)/Floor 11111011.png",                   "Set 1 Floor 11111011",                new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Set 1 (Crude)/Floor 11111110.png",                   "Set 1 Floor 11111110",                new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Set 1 (Crude)/Floor 11111111.png",                   "Set 1 Floor 11111111",                new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Set 1 (Crude)/Floor 11111X0X.png",                   "Set 1 Floor 11111X0X",                new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Set 1 (Crude)/Floor 11X1001X.png",                   "Set 1 Floor 11X1001X",                new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Set 1 (Crude)/Floor 11X1011X.png",                   "Set 1 Floor 11X1011X",                new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Set 1 (Crude)/Floor 11X10X0X.png",                   "Set 1 Floor 11X10X0X",                new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Set 1 (Crude)/Floor X0X00X0X.png",                   "Set 1 Floor X0X00X0X",                new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Set 1 (Crude)/Floor X0X00X1X.png",                   "Set 1 Floor X0X00X1X",                new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Set 1 (Crude)/Floor X0X01X0X.png",                   "Set 1 Floor X0X01X0X",                new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Set 1 (Crude)/Floor X0X01X10.png",                   "Set 1 Floor X0X01X10",                new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Set 1 (Crude)/Floor X0X01X11.png",                   "Set 1 Floor X0X01X11",                new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Set 1 (Crude)/Floor X0X1001X.png",                   "Set 1 Floor X0X1001X",                new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Set 1 (Crude)/Floor X0X1011X.png",                   "Set 1 Floor X0X1011X",                new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Set 1 (Crude)/Floor X0X10X0X.png",                   "Set 1 Floor X0X10X0X",                new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Set 1 (Crude)/Floor X0X11010.png",                   "Set 1 Floor X0X11010",                new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Set 1 (Crude)/Floor X0X11011.png",                   "Set 1 Floor X0X11011",                new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Set 1 (Crude)/Floor X0X11110.png",                   "Set 1 Floor X0X11110",                new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Set 1 (Crude)/Floor X0X11111.png",                   "Set 1 Floor X0X11111",                new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Set 1 (Crude)/Floor X0X11X0X.png",                   "Set 1 Floor X0X11X0X",                new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Set 1 (Crude)/Floor X1001X0X.png",                   "Set 1 Floor X1001X0X",                new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Set 1 (Crude)/Floor X1001X10.png",                   "Set 1 Floor X1001X10",                new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Set 1 (Crude)/Floor X1001X11.png",                   "Set 1 Floor X1001X11",                new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Set 1 (Crude)/Floor X1101X0X.png",                   "Set 1 Floor X1101X0X",                new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Set 1 (Crude)/Floor X1101X10.png",                   "Set 1 Floor X1101X10",                new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Set 1 (Crude)/Floor X1101X11.png",                   "Set 1 Floor X1101X11",                new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Set 1 (Crude)/Floor X1X00X0X.png",                   "Set 1 Floor X1X00X0X",                new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Set 1 (Crude)/Floor X1X00X1X.png",                   "Set 1 Floor X1X00X1X",                new int[] {32, 32}),
 				new Block ("../../Graphics/Floor/Set 2 (Tiled)/Floor 1.png",                          "Set 2 Floor 1",                       new int[] {32, 32}),
 				new Block ("../../Graphics/Floor/Set 2 (Tiled)/Floor 2.png",                          "Set 2 Floor 2",                       new int[] {32, 32}),
 				new Block ("../../Graphics/Floor/Set 2 (Tiled)/Floor 3.png",                          "Set 2 Floor 3",                       new int[] {32, 32}),
@@ -164,13 +166,60 @@ public class TextToTmx {
 				new Block ("../../Graphics/Walls/Set 1 (Standard)/Wall X1101X11.png",                 "Set 1 Wall X1101X11",                 new int[] {32, 48}),
 				new Block ("../../Graphics/Walls/Set 1 (Standard)/Wall X1X00X0X.png",                 "Set 1 Wall X1X00X0X",                 new int[] {32, 48}),
 				new Block ("../../Graphics/Walls/Set 1 (Standard)/Wall X1X00X1X.png",                 "Set 1 Wall X1X00X1X",                 new int[] {32, 48}),
-				new Block ("../../Graphics/Walls/Set 1 (Standard)/Wall Decoration 1.png",             "Wall Decoration 1",                   new int[] {32, 48}),
-				new Block ("../../Graphics/Walls/Set 1 (Standard)/Wall Decoration 2.png",             "Wall Decoration 2",                   new int[] {32, 48}),
-				new Block ("../../Graphics/Walls/Set 1 (Standard)/Wall Decoration 3.png",             "Wall Decoration 3",                   new int[] {32, 64}),
-				new Block ("../../Graphics/Walls/Set 1 (Standard)/Wall Decoration 4.png",             "Wall Decoration 4",                   new int[] {32, 64}),
-				new Block ("../../Graphics/Walls/Set 1 (Standard)/Wall Decoration 5.png",             "Wall Decoration 5",                   new int[] {32, 64}),
-				new Block ("../../Graphics/Walls/Set 1 (Standard)/Wall Decoration 6.png",             "Wall Decoration 6",                   new int[] {32, 64}),
+				new Block ("../../Graphics/Walls/Set 1 (Standard)/Decoration/Wall Decoration 1.png",  "Wall Decoration 1",                   new int[] {32, 48}),
+				new Block ("../../Graphics/Walls/Set 1 (Standard)/Decoration/Wall Decoration 2.png",  "Wall Decoration 2",                   new int[] {32, 48}),
+				new Block ("../../Graphics/Walls/Set 1 (Standard)/Decoration/Wall Decoration 3.png",  "Wall Decoration 3",                   new int[] {32, 64}),
+				new Block ("../../Graphics/Walls/Set 1 (Standard)/Decoration/Wall Decoration 4.png",  "Wall Decoration 4",                   new int[] {32, 64}),
+				new Block ("../../Graphics/Walls/Set 1 (Standard)/Decoration/Wall Decoration 5.png",  "Wall Decoration 5",                   new int[] {32, 64}),
+				new Block ("../../Graphics/Walls/Set 1 (Standard)/Decoration/Wall Decoration 6.png",  "Wall Decoration 6",                   new int[] {32, 64}),
 				new Block ("../../Graphics/Walls/Set 1 (Standard)/Big Tree 111111X1X.png", 	          "Big Tree 111111X1X",				     new int[] {96, 96}),
+				new Block ("../../Graphics/Walls/Set 2 (Cave)/Wall 01011010.png",                     "Set 2 Wall 01011010",                 new int[] {32, 48}),
+				new Block ("../../Graphics/Walls/Set 2 (Cave)/Wall 01011011.png",                     "Set 2 Wall 01011011",                 new int[] {32, 48}),
+				new Block ("../../Graphics/Walls/Set 2 (Cave)/Wall 01011110.png",                     "Set 2 Wall 01011110",                 new int[] {32, 48}),
+				new Block ("../../Graphics/Walls/Set 2 (Cave)/Wall 01011111.png",                     "Set 2 Wall 01011111",                 new int[] {32, 48}),
+				new Block ("../../Graphics/Walls/Set 2 (Cave)/Wall 01011X0X.png",                     "Set 2 Wall 01011X0X",                 new int[] {32, 48}),
+				new Block ("../../Graphics/Walls/Set 2 (Cave)/Wall 01111010.png",                     "Set 2 Wall 01111010",                 new int[] {32, 48}),
+				new Block ("../../Graphics/Walls/Set 2 (Cave)/Wall 01111011.png",                     "Set 2 Wall 01111011",                 new int[] {32, 48}),
+				new Block ("../../Graphics/Walls/Set 2 (Cave)/Wall 01111110.png",                     "Set 2 Wall 01111110",                 new int[] {32, 48}),
+				new Block ("../../Graphics/Walls/Set 2 (Cave)/Wall 01111111.png",                     "Set 2 Wall 01111111",                 new int[] {32, 48}),
+				new Block ("../../Graphics/Walls/Set 2 (Cave)/Wall 01111X0X.png",                     "Set 2 Wall 01111X0X",                 new int[] {32, 48}),
+				new Block ("../../Graphics/Walls/Set 2 (Cave)/Wall 01X1001X.png",                     "Set 2 Wall 01X1001X",                 new int[] {32, 48}),
+				new Block ("../../Graphics/Walls/Set 2 (Cave)/Wall 01X1011X.png",                     "Set 2 Wall 01X1011X",                 new int[] {32, 48}),
+				new Block ("../../Graphics/Walls/Set 2 (Cave)/Wall 01X10X0X.png",                     "Set 2 Wall 01X10X0X",                 new int[] {32, 48}),
+				new Block ("../../Graphics/Walls/Set 2 (Cave)/Wall 11011010.png",                     "Set 2 Wall 11011010",                 new int[] {32, 48}),
+				new Block ("../../Graphics/Walls/Set 2 (Cave)/Wall 11011011.png",                     "Set 2 Wall 11011011",                 new int[] {32, 48}),
+				new Block ("../../Graphics/Walls/Set 2 (Cave)/Wall 11011110.png",                     "Set 2 Wall 11011110",                 new int[] {32, 48}),
+				new Block ("../../Graphics/Walls/Set 2 (Cave)/Wall 11011111.png",                     "Set 2 Wall 11011111",                 new int[] {32, 48}),
+				new Block ("../../Graphics/Walls/Set 2 (Cave)/Wall 11011X0X.png",                     "Set 2 Wall 11011X0X",                 new int[] {32, 48}),
+				new Block ("../../Graphics/Walls/Set 2 (Cave)/Wall 11111010.png",                     "Set 2 Wall 11111010",                 new int[] {32, 48}),
+				new Block ("../../Graphics/Walls/Set 2 (Cave)/Wall 11111011.png",                     "Set 2 Wall 11111011",                 new int[] {32, 48}),
+				new Block ("../../Graphics/Walls/Set 2 (Cave)/Wall 11111110.png",                     "Set 2 Wall 11111110",                 new int[] {32, 48}),
+				new Block ("../../Graphics/Walls/Set 2 (Cave)/Wall 11111111.png",                     "Set 2 Wall 11111111",                 new int[] {32, 48}),
+				new Block ("../../Graphics/Walls/Set 2 (Cave)/Wall 11111X0X.png",                     "Set 2 Wall 11111X0X",                 new int[] {32, 48}),
+				new Block ("../../Graphics/Walls/Set 2 (Cave)/Wall 11X1001X.png",                     "Set 2 Wall 11X1001X",                 new int[] {32, 48}),
+				new Block ("../../Graphics/Walls/Set 2 (Cave)/Wall 11X1011X.png",                     "Set 2 Wall 11X1011X",                 new int[] {32, 48}),
+				new Block ("../../Graphics/Walls/Set 2 (Cave)/Wall 11X10X0X.png",                     "Set 2 Wall 11X10X0X",                 new int[] {32, 48}),
+				new Block ("../../Graphics/Walls/Set 2 (Cave)/Wall X0X00X0X.png",                     "Set 2 Wall X0X00X0X",                 new int[] {32, 48}),
+				new Block ("../../Graphics/Walls/Set 2 (Cave)/Wall X0X00X1X.png",                     "Set 2 Wall X0X00X1X",                 new int[] {32, 48}),
+				new Block ("../../Graphics/Walls/Set 2 (Cave)/Wall X0X01X0X.png",                     "Set 2 Wall X0X01X0X",                 new int[] {32, 48}),
+				new Block ("../../Graphics/Walls/Set 2 (Cave)/Wall X0X01X10.png",                     "Set 2 Wall X0X01X10",                 new int[] {32, 48}),
+				new Block ("../../Graphics/Walls/Set 2 (Cave)/Wall X0X01X11.png",                     "Set 2 Wall X0X01X11",                 new int[] {32, 48}),
+				new Block ("../../Graphics/Walls/Set 2 (Cave)/Wall X0X1001X.png",                     "Set 2 Wall X0X1001X",                 new int[] {32, 48}),
+				new Block ("../../Graphics/Walls/Set 2 (Cave)/Wall X0X1011X.png",                     "Set 2 Wall X0X1011X",                 new int[] {32, 48}),
+				new Block ("../../Graphics/Walls/Set 2 (Cave)/Wall X0X10X0X.png",                     "Set 2 Wall X0X10X0X",                 new int[] {32, 48}),
+				new Block ("../../Graphics/Walls/Set 2 (Cave)/Wall X0X11010.png",                     "Set 2 Wall X0X11010",                 new int[] {32, 48}),
+				new Block ("../../Graphics/Walls/Set 2 (Cave)/Wall X0X11011.png",                     "Set 2 Wall X0X11011",                 new int[] {32, 48}),
+				new Block ("../../Graphics/Walls/Set 2 (Cave)/Wall X0X11110.png",                     "Set 2 Wall X0X11110",                 new int[] {32, 48}),
+				new Block ("../../Graphics/Walls/Set 2 (Cave)/Wall X0X11111.png",                     "Set 2 Wall X0X11111",                 new int[] {32, 48}),
+				new Block ("../../Graphics/Walls/Set 2 (Cave)/Wall X0X11X0X.png",                     "Set 2 Wall X0X11X0X",                 new int[] {32, 48}),
+				new Block ("../../Graphics/Walls/Set 2 (Cave)/Wall X1001X0X.png",                     "Set 2 Wall X1001X0X",                 new int[] {32, 48}),
+				new Block ("../../Graphics/Walls/Set 2 (Cave)/Wall X1001X10.png",                     "Set 2 Wall X1001X10",                 new int[] {32, 48}),
+				new Block ("../../Graphics/Walls/Set 2 (Cave)/Wall X1001X11.png",                     "Set 2 Wall X1001X11",                 new int[] {32, 48}),
+				new Block ("../../Graphics/Walls/Set 2 (Cave)/Wall X1101X0X.png",                     "Set 2 Wall X1101X0X",                 new int[] {32, 48}),
+				new Block ("../../Graphics/Walls/Set 2 (Cave)/Wall X1101X10.png",                     "Set 2 Wall X1101X10",                 new int[] {32, 48}),
+				new Block ("../../Graphics/Walls/Set 2 (Cave)/Wall X1101X11.png",                     "Set 2 Wall X1101X11",                 new int[] {32, 48}),
+				new Block ("../../Graphics/Walls/Set 2 (Cave)/Wall X1X00X0X.png",                     "Set 2 Wall X1X00X0X",                 new int[] {32, 48}),
+				new Block ("../../Graphics/Walls/Set 2 (Cave)/Wall X1X00X1X.png",                     "Set 2 Wall X1X00X1X",                 new int[] {32, 48}),
 				new Block ("../../Graphics/Objects/Lodestone (Pushable) 1x1 1 - 1 1.png",             "Lodestone (Pushable) 1x1 1",          new int[] {32, 48}),
 				new Block ("../../Graphics/Objects/Lodestone (Pushable) 1x1 2 - 1 1.png",             "Lodestone (Pushable) 1x1 2",          new int[] {32, 48}),
 				new Block ("../../Graphics/Objects/Lodestone (Pushable) 1x1 3 - 1 1.png",             "Lodestone (Pushable) 1x1 3",          new int[] {32, 48}),
@@ -262,11 +311,21 @@ public class TextToTmx {
 				new Block ("../../Graphics/Objects/Contraption 1 NSEW State 7.png",                   "Contraption 1 NSEW State 7",          new int[] {32, 48}),
 				new Block ("../../Graphics/Objects/Contraption 1 NSEW State 8.png",                   "Contraption 1 NSEW State 8",          new int[] {32, 48}),
 				new Block ("../../Graphics/Objects/Contraption 1 NSEW State 9.png",                   "Contraption 1 NSEW State 9",          new int[] {32, 48}),
-				new Block ("../../Graphics/Objects/Exit Front State 1.png",                           "Exit Front State 1",                  new int[] {32, 48}),
-				new Block ("../../Graphics/Objects/Exit Front State 2.png",                           "Exit Front State 2",                  new int[] {32, 48}),
-				new Block ("../../Graphics/Objects/Exit Front State 3.png",                           "Exit Front State 3",                  new int[] {32, 48}),
-				new Block ("../../Graphics/Objects/Exit Front State 4.png",                           "Exit Front State 4",                  new int[] {32, 48}),
-				new Block ("../../Graphics/Objects/Exit Front State 5.png",                           "Exit Front State 5",                  new int[] {32, 48}),
+				new Block ("../../Graphics/Objects/Exit Cave Forwards Front State 1.png",             "Exit Cave Forwards Front State 1",    new int[] {32, 48}),
+				new Block ("../../Graphics/Objects/Exit Cave Forwards Front State 2.png",             "Exit Cave Forwards Front State 2",    new int[] {32, 48}),
+				new Block ("../../Graphics/Objects/Exit Cave Forwards Front State 3.png",             "Exit Cave Forwards Front State 3",    new int[] {32, 48}),
+				new Block ("../../Graphics/Objects/Exit Cave Forwards Front State 4.png",             "Exit Cave Forwards Front State 4",    new int[] {32, 48}),
+				new Block ("../../Graphics/Objects/Exit Cave Forwards Front State 5.png",             "Exit Cave Forwards Front State 5",    new int[] {32, 48}),
+				new Block ("../../Graphics/Objects/Exit Cave Down Front State 1.png",                 "Exit Cave Down Front State 1",        new int[] {32, 48}),
+				new Block ("../../Graphics/Objects/Exit Cave Down Front State 2.png",                 "Exit Cave Down Front State 2",        new int[] {32, 48}),
+				new Block ("../../Graphics/Objects/Exit Cave Down Front State 3.png",                 "Exit Cave Down Front State 3",        new int[] {32, 48}),
+				new Block ("../../Graphics/Objects/Exit Cave Down Front State 4.png",                 "Exit Cave Down Front State 4",        new int[] {32, 48}),
+				new Block ("../../Graphics/Objects/Exit Cave Down Front State 5.png",                 "Exit Cave Down Front State 5",        new int[] {32, 48}),
+				new Block ("../../Graphics/Objects/Exit Standard Front State 1.png",                  "Exit Standard Front State 1",         new int[] {32, 48}),
+				new Block ("../../Graphics/Objects/Exit Standard Front State 2.png",                  "Exit Standard Front State 2",         new int[] {32, 48}),
+				new Block ("../../Graphics/Objects/Exit Standard Front State 3.png",                  "Exit Standard Front State 3",         new int[] {32, 48}),
+				new Block ("../../Graphics/Objects/Exit Standard Front State 4.png",                  "Exit Standard Front State 4",         new int[] {32, 48}),
+				new Block ("../../Graphics/Objects/Exit Standard Front State 5.png",                  "Exit Standard Front State 5",         new int[] {32, 48}),
 				new Block ("../../Graphics/Objects/Magnet North State 1.png",                         "Magnet North State 1",                new int[] {32, 48}),
 				new Block ("../../Graphics/Objects/Magnet North State 2.png",                         "Magnet North State 2",                new int[] {32, 48}),
 				new Block ("../../Graphics/Objects/Magnet North State 3.png",                         "Magnet North State 3",                new int[] {32, 48}),
@@ -278,7 +337,11 @@ public class TextToTmx {
 				new Block ("../../Graphics/Objects/Magnet South State 4.png",                         "Magnet South State 4",                new int[] {32, 48}),
 				new Block ("../../Graphics/Objects/Magnet South State 5.png",                         "Magnet South State 5",                new int[] {32, 48}),
 				new Block ("../../Graphics/Objects/Player.png",                                       "Player",                              new int[] {32, 48}),
-				new Block ("../../Graphics/Objects/Magnetic Floor.png",                               "Magnetic Floor",                      new int[] {32, 32}),
+				new Block ("../../Graphics/Objects/Magnetic Floor State 1.png",                       "Magnetic Floor State 1",              new int[] {32, 32}),
+				new Block ("../../Graphics/Objects/Magnetic Floor State 2.png",                       "Magnetic Floor State 2",              new int[] {32, 32}),
+				new Block ("../../Graphics/Objects/Magnetic Floor State 3.png",                       "Magnetic Floor State 3",              new int[] {32, 32}),
+				new Block ("../../Graphics/Objects/Magnetic Floor State 4.png",                       "Magnetic Floor State 4",              new int[] {32, 32}),
+				new Block ("../../Graphics/Objects/Magnetic Floor State 5.png",                       "Magnetic Floor State 5",              new int[] {32, 32}),
 				new Block ("../../Graphics/Objects/Overlay/Magnetized Horizontal State 1.png",        "Magnetized Horizontal State 1",       new int[] {32, 48}),
 				new Block ("../../Graphics/Objects/Overlay/Magnetized Horizontal State 2.png",        "Magnetized Horizontal State 2",       new int[] {32, 48}),
 				new Block ("../../Graphics/Objects/Overlay/Magnetized Horizontal State 3.png",        "Magnetized Horizontal State 3",       new int[] {32, 48}),
@@ -330,7 +393,8 @@ public class TextToTmx {
 				new Block ("../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 3x2 11.png",    "Magnetic Overlay Lodestone 3x2 11",   new int[] {96, 80}),
 				new Block ("../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 3x2 12.png",    "Magnetic Overlay Lodestone 3x2 12",   new int[] {96, 80}),
 				new Block ("../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 3x2 13.png",    "Magnetic Overlay Lodestone 3x2 13",   new int[] {96, 80}),
-				new Block ("../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 3x2 14.png",    "Magnetic Overlay Lodestone 3x2 14",   new int[] {96, 80})
+				new Block ("../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 3x2 14.png",    "Magnetic Overlay Lodestone 3x2 14",   new int[] {96, 80}),
+				new Block ("../../Graphics/Ambience/Darker.png",                                      "Darker",                              new int[] {32, 32})
 		};
 		
 		for (int i = 0; i < Blocks.length; i++) {
@@ -461,10 +525,10 @@ public class TextToTmx {
 				// Gives a animaation to each of the magnetic areas. All of them will be starting at different
 				// states but following the same pattern.
 				
-				if (Blocks[n].name.contains("Magnet ") && Blocks[n].name.contains("State 1")) {
+				if ((Blocks[n].name.contains("Magnet ") || Blocks[n].name.contains("Magnetic Floor")) && Blocks[n].name.contains("State 1")) {
 					
 					int numFrames = 5;
-					int interval = 160;
+					int interval = 640;
 					
 					int delay = (Blocks[n].name.contains("South")) ? numFrames / 2 : 0;
 						
@@ -495,7 +559,7 @@ public class TextToTmx {
 						graphicsCode += "   </animation>\r\n";
 					}
 					
-				} else if (Blocks[n].name.contains("Exit Front State 1")) {
+				} else if (Blocks[n].name.contains("Exit") && Blocks[n].name.contains("State 1")) {
 					
 					int numFrames = 5;
 					int interval = 80;
@@ -549,6 +613,7 @@ public class TextToTmx {
 		int[][] Lodestones       = new int[rows + 2][cols + 2];
 		int[][] LodestoneChecked = new int[rows][cols];
 		int[][] Collision	     = new int[rows][cols];
+		int[][] Ambience 		 = new int[rows][cols];
 		
 		// Determines if the collision layer should be created
 		Boolean hasCollision = false;
@@ -569,6 +634,9 @@ public class TextToTmx {
 		
 		// Sometimes the placement for lodestones collide
 		for (int[] row: Collision) Arrays.fill(row, -1);
+		
+		// Ambience layer. Functions like some sort of static shader
+		for (int[] row: Ambience) Arrays.fill(row, -1);
 		
 		level = level.replace("\r\n", "");
 		
@@ -623,10 +691,10 @@ public class TextToTmx {
 							"X1001X10", "X1001X11", "X1101X0X", "X1101X10", "X1101X11", 
 							"X1X00X0X", "X1X00X1X"}) {
 						if (compareWithDontCares(wallNeighbours, code)) {
-							WallsAndObjects[i - 1][j - 1] = nameToID.get("Set 1 Wall " + code);
+							WallsAndObjects[i - 1][j - 1] = nameToID.get("Set " + whichWallSet + " Wall " + code);
 						}
 					}
-					
+					Ambience[i - 1][j - 1] = nameToID.get("Darker");
 					/*
 					if (Math.random() < 0.05 && data[i - 1][j].equals("█")) {
 						if      (data[i + 1][j].equals("█")) 	WallDeco[i - 1][j - 1] = nameToID.get("Wall Decoration 1");
@@ -635,12 +703,14 @@ public class TextToTmx {
 					*/
 				} else {
 					
+					if (!"Mm".contains(data[i][j])) 		Ambience[i - 1][j - 1] = nameToID.get("Darker");
+					
 					if 		(data[i][j].equals("b")) 		WallsAndObjects[i - 1][j - 1] = nameToID.get("Button 1 State 1");
 					else if (data[i][j].equals("B")) 		WallsAndObjects[i - 1][j - 1] = nameToID.get("Contraption 1 NSEW State 1");
 					//else if (data[i][j].equals("F")) 		WallsAndObjects[i - 1][j - 1] = nameToID.get("Door 2 State 1");
 					//else if (data[i][j].equals("f")) 		WallsAndObjects[i - 1][j - 1] = nameToID.get("Button 2 State 1");
 					else if (data[i][j].equals("M")) 		WallsAndObjects[i - 1][j - 1] = nameToID.get("Magnet " + (Math.random() < 0.5 ? "North" : "South") + " State 1");
-					else if (data[i][j].equals("m")) 		WallsAndObjects[i - 1][j - 1] = nameToID.get("Magnetic Floor");
+					else if (data[i][j].equals("m")) 		WallsAndObjects[i - 1][j - 1] = nameToID.get("Magnetic Floor State 1");
 					else if (data[i][j].equals("T")) {
 						if (WallsAndObjects[i - 1][j - 2] == -1) {
 							WallsAndObjects[i - 1][j - 2] = nameToID.get("Big Tree 111111X1X");
@@ -648,9 +718,9 @@ public class TextToTmx {
 							hasCollision = true;
 							Collision[i - 1][j - 2] = nameToID.get("Big Tree 111111X1X");
 						}
-					}
-					else if (data[i][j].equals("e")) {
-						WallsAndObjects[i - 1][j - 1] = nameToID.get("Exit Front State 1");
+					} else if (data[i][j].equals("e")) {
+						if (whichWallSet.equals("1")) 		WallsAndObjects[i - 1][j - 1] = nameToID.get("Exit Standard Front State 1");
+						else if (whichWallSet.equals("2")) 	WallsAndObjects[i - 1][j - 1] = nameToID.get("Exit Cave " + (Math.random() < 0.5 ? "Forwards" : "Down") + " Front State 1");
 						numExits++;
 					} else if (data[i][j].equals("s")) {
 						WallsAndObjects[i - 1][j - 1] = nameToID.get("Player");
@@ -692,11 +762,12 @@ public class TextToTmx {
 						}
 					}
 					
+					/*
 					if (data[i - 1][j].equals("█") && data[i][j + 1].equals("█")) {
 						FloorDeco[i - 1][j - 1] = nameToID.get("Small Corner 1");
 					} else if (data[i - 1][j].equals("█") && data[i][j - 1].equals("█")) {
 						FloorDeco[i - 1][j - 1] = nameToID.get("Small Corner 2");
-					}
+					}*/
 				}
 			}
 		}
@@ -1111,6 +1182,26 @@ public class TextToTmx {
 			writer.println("</data>\r\n" + 
 						   " </layer>\r\n");
 		
+		}
+		
+		// Ambience (Underground - Darker)
+		
+		if (whichWallSet == "2") {
+			
+			writer.println(" <layer name=\"Ambience\" width=\"" + cols + "\" height=\"" + rows + "\">\r\n" + 
+					"  <data encoding=\"csv\">");
+			
+			for (int i = 0; i < rows; i++) {
+				for (int j = 0; j < cols; j++) {
+					writer.print(Ambience[i][j] + 1);
+					if (i != rows - 1 || j != cols - 1) writer.print(",");
+				}
+				writer.println();
+			}
+			
+			writer.println("</data>\r\n" + 
+					" </layer>\r\n");
+			
 		}
 		
 		writer.println("</map>");
