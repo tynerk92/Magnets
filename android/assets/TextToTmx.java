@@ -18,18 +18,24 @@ public class TextToTmx {
 	private Hashtable<String, Integer> nameToID = new Hashtable<String, Integer>();
 	private Boolean wroteGraphics = false;
 	private String graphicsCode = "";
+	private int whichWallSet;
 	private boolean plantTrees = false;
 	
-	private String whichWallSet = "2";
+	private String chooseATheme = "Underground"; // "City"
 	
 	TextToTmx() {
 		initiateTable();
+		if (chooseATheme.equals("Underground")) {
+			this.whichWallSet = 2;
+			this.plantTrees = false;
+		}
 	}
 	
 	private void setLevel(String level) {
 		this.level = level;
 	}
 	
+	// A block has three properties: dir - Relative path to the graphic, name and dimensions
 	private class Block {
 		String dir, name;
 		int[] dimensions;
@@ -113,12 +119,26 @@ public class TextToTmx {
 				new Block ("../../Graphics/Floor/Overlays/Debris 6.png",                              "Debris 6",                            new int[] {32, 32}),
 				new Block ("../../Graphics/Floor/Overlays/Debris 7.png",                              "Debris 7",                            new int[] {32, 32}),
 				new Block ("../../Graphics/Floor/Overlays/Debris 8.png",                              "Debris 8",                            new int[] {32, 32}),
-				new Block ("../../Graphics/Floor/Overlays/Scratches 1.png",                           "Scratches 1",                         new int[] {32, 32}),
-				new Block ("../../Graphics/Floor/Overlays/Scratches 2.png",                           "Scratches 2",                         new int[] {32, 32}),
-				new Block ("../../Graphics/Floor/Overlays/Scratches 3.png",                           "Scratches 3",                         new int[] {32, 32}),
-				new Block ("../../Graphics/Floor/Overlays/Scratches 4.png",                           "Scratches 4",                         new int[] {32, 32}),
-				new Block ("../../Graphics/Floor/Overlays/Small Corner 1.png",                        "Small Corner 1",                      new int[] {32, 48}),
-				new Block ("../../Graphics/Floor/Overlays/Small Corner 2.png",                        "Small Corner 2",                      new int[] {32, 48}),
+				new Block ("../../Graphics/Floor/Overlays/Blue Scratches 1.png",                      "Blue Scratches 1",                    new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Overlays/Blue Scratches 2.png",                      "Blue Scratches 2",                    new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Overlays/Blue Scratches 3.png",                      "Blue Scratches 3",                    new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Overlays/Blue Scratches 4.png",                      "Blue Scratches 4",                    new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Overlays/Grey Scratches 1.png",                      "Grey Scratches 1",                    new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Overlays/Grey Scratches 2.png",                      "Grey Scratches 2",                    new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Overlays/Grey Scratches 3.png",                      "Grey Scratches 3",                    new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Overlays/Grey Scratches 4.png",                      "Grey Scratches 4",                    new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Overlays/Grey Scratches 5.png",                      "Grey Scratches 5",                    new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Overlays/Grey Scratches 6.png",                      "Grey Scratches 6",                    new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Overlays/Grey Scratches 7.png",                      "Grey Scratches 7",                    new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Overlays/Grey Scratches 8.png",                      "Grey Scratches 8",                    new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Overlays/Depression 1.png",                          "Depression 1",                        new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Overlays/Depression 2.png",                          "Depression 2",                        new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Overlays/Depression 3.png",                          "Depression 3",                        new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Overlays/Depression 4.png",                          "Depression 4",                        new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Overlays/Depression 5.png",                          "Depression 5",                        new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Overlays/Depression 6.png",                          "Depression 6",                        new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Overlays/Depression 7.png",                          "Depression 7",                        new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Overlays/Depression 8.png",                          "Depression 8",                        new int[] {32, 32}),
 				new Block ("../../Graphics/Walls/Set 1 (Standard)/Wall 01011010.png",                 "Set 1 Wall 01011010",                 new int[] {32, 48}),
 				new Block ("../../Graphics/Walls/Set 1 (Standard)/Wall 01011011.png",                 "Set 1 Wall 01011011",                 new int[] {32, 48}),
 				new Block ("../../Graphics/Walls/Set 1 (Standard)/Wall 01011110.png",                 "Set 1 Wall 01011110",                 new int[] {32, 48}),
@@ -311,6 +331,18 @@ public class TextToTmx {
 				new Block ("../../Graphics/Objects/Contraption 1 NSEW State 7.png",                   "Contraption 1 NSEW State 7",          new int[] {32, 48}),
 				new Block ("../../Graphics/Objects/Contraption 1 NSEW State 8.png",                   "Contraption 1 NSEW State 8",          new int[] {32, 48}),
 				new Block ("../../Graphics/Objects/Contraption 1 NSEW State 9.png",                   "Contraption 1 NSEW State 9",          new int[] {32, 48}),
+				new Block ("../../Graphics/Objects/Button 2 State 1.png",                             "Button 2 State 1",                    new int[] {32, 32}),
+				new Block ("../../Graphics/Objects/Button 2 State 2.png",                             "Button 2 State 2",                    new int[] {32, 32}),
+				new Block ("../../Graphics/Objects/Button 2 State 3.png",                             "Button 2 State 3",                    new int[] {32, 32}),
+				new Block ("../../Graphics/Objects/Contraption 2 NSEW State 1.png",                   "Contraption 2 NSEW State 1",          new int[] {32, 48}),
+				new Block ("../../Graphics/Objects/Contraption 2 NSEW State 2.png",                   "Contraption 2 NSEW State 2",          new int[] {32, 48}),
+				new Block ("../../Graphics/Objects/Contraption 2 NSEW State 3.png",                   "Contraption 2 NSEW State 3",          new int[] {32, 48}),
+				new Block ("../../Graphics/Objects/Contraption 2 NSEW State 4.png",                   "Contraption 2 NSEW State 4",          new int[] {32, 48}),
+				new Block ("../../Graphics/Objects/Contraption 2 NSEW State 5.png",                   "Contraption 2 NSEW State 5",          new int[] {32, 48}),
+				new Block ("../../Graphics/Objects/Contraption 2 NSEW State 6.png",                   "Contraption 2 NSEW State 6",          new int[] {32, 48}),
+				new Block ("../../Graphics/Objects/Contraption 2 NSEW State 7.png",                   "Contraption 2 NSEW State 7",          new int[] {32, 48}),
+				new Block ("../../Graphics/Objects/Contraption 2 NSEW State 8.png",                   "Contraption 2 NSEW State 8",          new int[] {32, 48}),
+				new Block ("../../Graphics/Objects/Contraption 2 NSEW State 9.png",                   "Contraption 2 NSEW State 9",          new int[] {32, 48}),
 				new Block ("../../Graphics/Objects/Exit Cave Forwards Front State 1.png",             "Exit Cave Forwards Front State 1",    new int[] {32, 48}),
 				new Block ("../../Graphics/Objects/Exit Cave Forwards Front State 2.png",             "Exit Cave Forwards Front State 2",    new int[] {32, 48}),
 				new Block ("../../Graphics/Objects/Exit Cave Forwards Front State 3.png",             "Exit Cave Forwards Front State 3",    new int[] {32, 48}),
@@ -404,12 +436,14 @@ public class TextToTmx {
 	
 	private void writeGraphics(PrintWriter writer, int cols, int rows) {
 		
+		// The only varying part between every level.
+		// The dimensions of the levels change. 
 		writer.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n" + 
 				"<map version=\"1.0\" orientation=\"orthogonal\" renderorder=\"right-down\" width=\"" + cols + "\" height=\"" + rows + "\" tilewidth=\"32\" tileheight=\"32\" nextobjectid=\"1\">\r\n" + 
 				" <tileset firstgid=\"1\" name=\"Tileset\" tilewidth=\"96\" tileheight=\"112\" tilecount=\"" + Blocks.length + "\" columns=\"0\">");
 		
+		// This part is the same for any level, hence it should only be executed once.
 		if (!wroteGraphics) {
-			
 			for (int n = 0; n < Blocks.length; n++) {
 	
 				graphicsCode += "\n  <tile id=\"" + n + "\">\r\n";
@@ -595,20 +629,25 @@ public class TextToTmx {
 	
 	public void convert(String dir) throws IOException {
 		
-		int numPlayers = 0;		// Check validity of the level
-		int numExits = 0;		// Check validity of the level
+		// Check validity of the level
+		int numPlayers = 0;
+		int numExits = 0;
 		
 		// All the level information gotten from the data provided
 		String name = level.substring(0, level.indexOf("\r\n"));
 		level = level.substring(level.indexOf("\r\n") + 2);
 		
+		// This is to make the level look better i suppose. Makes the camera moves around more dynamically when nearing the 
+		// boundaries of the level
 		int bufferWalls = 4;
+		
 		int cols = level.indexOf("\r\n") + bufferWalls * 2;
 		int rows = (level.length() - level.replace("\r\n", "").length()) / 2 + 1 + bufferWalls * 2;
 		
 		int[][] WallsAndObjects  = new int[rows][cols];
 		int[][] Floor            = new int[rows][cols];
 		int[][] FloorDeco		 = new int[rows][cols];
+		int[][] FloorDeco2		 = new int[rows][cols];
 		int[][] WallDeco		 = new int[rows][cols];
 		int[][] Lodestones       = new int[rows + 2][cols + 2];
 		int[][] LodestoneChecked = new int[rows][cols];
@@ -622,21 +661,22 @@ public class TextToTmx {
 		data = new String[rows + 2][cols + 2];
 		
 		// Initialize all the layers
-		for (String[] row: data) Arrays.fill(row, "█");
-		for (int[] row: Floor) Arrays.fill(row, -1);
-		for (int[] row: FloorDeco) Arrays.fill(row, -1);
-		for (int[] row: WallDeco) Arrays.fill(row, -1);
-		for (int[] row: WallsAndObjects) Arrays.fill(row, -1);
+		for (String[] row: data) 			Arrays.fill(row, "█");
+		for (int[] row: Floor) 				Arrays.fill(row, -1);
+		for (int[] row: FloorDeco) 			Arrays.fill(row, -1);
+		for (int[] row: FloorDeco2) 		Arrays.fill(row, -1);
+		for (int[] row: WallDeco) 			Arrays.fill(row, -1);
+		for (int[] row: WallsAndObjects) 	Arrays.fill(row, -1);
 		
 		// To check for which lodestone to place
-		for (int[] row: Lodestones) Arrays.fill(row, 0);
-		for (int[] row: LodestoneChecked) Arrays.fill(row, 0);
+		for (int[] row: Lodestones) 		Arrays.fill(row, 0);
+		for (int[] row: LodestoneChecked) 	Arrays.fill(row, 0);
 		
 		// Sometimes the placement for lodestones collide
-		for (int[] row: Collision) Arrays.fill(row, -1);
+		for (int[] row: Collision) 			Arrays.fill(row, -1);
 		
 		// Ambience layer. Functions like some sort of static shader
-		for (int[] row: Ambience) Arrays.fill(row, -1);
+		for (int[] row: Ambience) 			Arrays.fill(row, -1);
 		
 		level = level.replace("\r\n", "");
 		
@@ -666,7 +706,9 @@ public class TextToTmx {
 				}
 			}
 		}
-		/*//Testing
+		
+		
+		/*//Print out level in text form
 		for (int i = 1; i < rows + 1; i++) {
 			for (int j = 1; j < cols + 1; j++) {
 				System.out.print(data[i][j]);
@@ -674,11 +716,20 @@ public class TextToTmx {
 		}
 		System.out.println();
 		*/
+		
+		
 		// Processing walls and floors and other objects
 		for (int i = 1; i < rows + 1; i++) {
 			for (int j = 1; j < cols + 1; j++) {
+				
+				// Detects a wall
 				if (data[i][j].equals("█")) {
+					
+					// Refer the the function for details
 					String wallNeighbours = getNeighbours(i, j, "█", data, false);
+					
+					// All the possible 8 neighbours of a tile. Refer to getNeighbours function for explanation of 
+					// the purpose of 0, 1 and X
 					for (String code: new String[] {
 							"01011010", "01011011", "01011110", "01011111", "01011X0X", 
 							"01111010", "01111011", "01111110", "01111111", "01111X0X", 
@@ -690,27 +741,37 @@ public class TextToTmx {
 							"X0X11011", "X0X11110", "X0X11111", "X0X11X0X", "X1001X0X", 
 							"X1001X10", "X1001X11", "X1101X0X", "X1101X10", "X1101X11", 
 							"X1X00X0X", "X1X00X1X"}) {
+						
+						// Refer the the function for details
 						if (compareWithDontCares(wallNeighbours, code)) {
 							WallsAndObjects[i - 1][j - 1] = nameToID.get("Set " + whichWallSet + " Wall " + code);
 						}
 					}
 					Ambience[i - 1][j - 1] = nameToID.get("Darker");
-					/*
-					if (Math.random() < 0.05 && data[i - 1][j].equals("█")) {
-						if      (data[i + 1][j].equals("█")) 	WallDeco[i - 1][j - 1] = nameToID.get("Wall Decoration 1");
-						else if (data[i + 1][j].equals(" ")) 	WallDeco[i - 1][j - 1] = nameToID.get("Wall Decoration 2");
-					}
-					*/
+				
+				// Not a wall
 				} else {
 					
-					if (!"Mm".contains(data[i][j])) 		Ambience[i - 1][j - 1] = nameToID.get("Darker");
+					//if (!"Mm".contains(data[i][j])) 		Ambience[i - 1][j - 1] = nameToID.get("Darker");
 					
+					// Only for underground that you need to darken all the tiles to fit the ambience.
+					Ambience[i - 1][j - 1] = nameToID.get("Darker");
+					
+					// Button and Contraption Set 1
 					if 		(data[i][j].equals("b")) 		WallsAndObjects[i - 1][j - 1] = nameToID.get("Button 1 State 1");
 					else if (data[i][j].equals("B")) 		WallsAndObjects[i - 1][j - 1] = nameToID.get("Contraption 1 NSEW State 1");
-					//else if (data[i][j].equals("F")) 		WallsAndObjects[i - 1][j - 1] = nameToID.get("Door 2 State 1");
-					//else if (data[i][j].equals("f")) 		WallsAndObjects[i - 1][j - 1] = nameToID.get("Button 2 State 1");
+					
+					// Button and Contraption Set 2
+					else if (data[i][j].equals("f")) 		WallsAndObjects[i - 1][j - 1] = nameToID.get("Button 2 State 1");
+					else if (data[i][j].equals("F")) 		WallsAndObjects[i - 1][j - 1] = nameToID.get("Contraption 2 NSEW State 1");
+					
+					// Randomly placing either North or South magnets first, since repulsion is not done.
 					else if (data[i][j].equals("M")) 		WallsAndObjects[i - 1][j - 1] = nameToID.get("Magnet " + (Math.random() < 0.5 ? "North" : "South") + " State 1");
+					
+					// Magnetic Floor. A tile that does passive magnetization. Does not pull or push any block that is not on top of it,
 					else if (data[i][j].equals("m")) 		WallsAndObjects[i - 1][j - 1] = nameToID.get("Magnetic Floor State 1");
+					
+					// A multi-tile tree that acts as a wall.
 					else if (data[i][j].equals("T")) {
 						if (WallsAndObjects[i - 1][j - 2] == -1) {
 							WallsAndObjects[i - 1][j - 2] = nameToID.get("Big Tree 111111X1X");
@@ -718,13 +779,20 @@ public class TextToTmx {
 							hasCollision = true;
 							Collision[i - 1][j - 2] = nameToID.get("Big Tree 111111X1X");
 						}
+						
+					// Exits
 					} else if (data[i][j].equals("e")) {
-						if (whichWallSet.equals("1")) 		WallsAndObjects[i - 1][j - 1] = nameToID.get("Exit Standard Front State 1");
-						else if (whichWallSet.equals("2")) 	WallsAndObjects[i - 1][j - 1] = nameToID.get("Exit Cave " + (Math.random() < 0.5 ? "Forwards" : "Down") + " Front State 1");
+						if 		(whichWallSet == 1) 	WallsAndObjects[i - 1][j - 1] = nameToID.get("Exit Standard Front State 1");
+						else if (whichWallSet == 2) 	WallsAndObjects[i - 1][j - 1] = nameToID.get("Exit Cave " + (Math.random() < 0.5 ? "Forwards" : "Down") + " Front State 1");
 						numExits++;
+					
+					// The starting point / the player
 					} else if (data[i][j].equals("s")) {
 						WallsAndObjects[i - 1][j - 1] = nameToID.get("Player");
 						numPlayers++;
+						
+					// Lodestones. Note that Lodestones array does not contain the data to be written into the tmx file
+					// Instead, it serves as a mechanism to determine the individual multi-tile lodestones in the later part.
 					} else if (Arrays.asList(lodestoneSymbols).contains(data[i][j])) {
 						Lodestones[i][j] = data[i][j].charAt(0);
 					}
@@ -736,8 +804,11 @@ public class TextToTmx {
 						Floor[i - 1][j - 1] = (int) (16 * Math.pow(Math.random(), 0.75));
 					}*/
 					
+					// Refer the the function for details
 					String floorNeighbours = getNeighbours(i, j, "█", data, true);
 					
+					// All the possible 8 neighbours of a tile. Refer to getNeighbours function for explanation of 
+					// the purpose of 0, 1 and X
 					for (String code: new String[] {
 							"01011010", "01011011", "01011110", "01011111", "01011X0X", 
 							"01111010", "01111011", "01111110", "01111111", "01111X0X", 
@@ -749,17 +820,27 @@ public class TextToTmx {
 							"X0X11011", "X0X11110", "X0X11111", "X0X11X0X", "X1001X0X", 
 							"X1001X10", "X1001X11", "X1101X0X", "X1101X10", "X1101X11", 
 							"X1X00X0X", "X1X00X1X"}) {
+						
+						// Refer the the function for details
 						if (compareWithDontCares(floorNeighbours, code)) {
 							Floor[i - 1][j - 1] = nameToID.get("Set 1 Floor " + code);
 						}
 					}
 					
-					if (Math.random() < 0.3 && !data[i][j].equals("B")) {
-						if (Math.random() < 0.7) {
-							FloorDeco[i - 1][j - 1] = nameToID.get("Debris " + (random.nextInt(8) + 1));
-						} else {
-							FloorDeco[i - 1][j - 1] = nameToID.get("Scratches " + (random.nextInt(4) + 1));
-						}
+					// Purely decorational. Decorations should not spawn on top of buttons, contraptions, nor exits
+					if (Math.random() < 0.35 && !"bBfFe".contains(data[i][j])) {
+						if (Math.random() < 0.7) 		FloorDeco[i - 1][j - 1] = nameToID.get("Debris " + (random.nextInt(8) + 1));
+						else if (Math.random() < 0.25)  FloorDeco[i - 1][j - 1] = nameToID.get("Depression " + (random.nextInt(8) + 1));
+						else if (whichWallSet == 1) 	FloorDeco[i - 1][j - 1] = nameToID.get("Grey Scratches " + (random.nextInt(8) + 1));
+						else if (whichWallSet == 2) 	FloorDeco[i - 1][j - 1] = nameToID.get("Blue Scratches " + (random.nextInt(4) + 1));
+					}
+					
+					// Just wanna see if having 2 layers of decorations will work out
+					if (Math.random() < 0.2 && !"bBfFe".contains(data[i][j])) {
+						if (Math.random() < 0.3) 		FloorDeco2[i - 1][j - 1] = nameToID.get("Debris " + (random.nextInt(8) + 1));
+						else if (Math.random() < 0.75)  FloorDeco2[i - 1][j - 1] = nameToID.get("Depression " + (random.nextInt(8) + 1));
+						else if (whichWallSet == 1) 	FloorDeco2[i - 1][j - 1] = nameToID.get("Grey Scratches " + (random.nextInt(8) + 1));
+						else if (whichWallSet == 2) 	FloorDeco2[i - 1][j - 1] = nameToID.get("Blue Scratches " + (random.nextInt(4) + 1));
 					}
 					
 					/*
@@ -772,19 +853,58 @@ public class TextToTmx {
 			}
 		}
 		
+		// Since this program processes all levels in a batch, incorrectly designed levels missing or having too many players
+		// or exits or both will be noted down here. 
 		String errorMSG = "";
-		if (numPlayers == 0) errorMSG += "No players present. ";
-		if (numPlayers > 1) errorMSG += "Multiple players are detected. ";
-		if (numExits == 0) errorMSG += "No exits detected. ";
-		if (numExits > 1) errorMSG += "Multiple exits detected. ";
-		if (!errorMSG.equals("")) System.out.println(errorMSG += dir.split("Levels/")[1] + "[" + name + "].tmx");
+		if (numPlayers == 0) 		errorMSG += "No players present. ";
+		if (numPlayers > 1) 		errorMSG += "Multiple players are detected. ";
+		if (numExits == 0) 			errorMSG += "No exits detected. ";
+		if (numExits > 1) 			errorMSG += "Multiple exits detected. ";
+		if (!errorMSG.equals("")) 	System.out.println(errorMSG += dir.split("Levels/")[1] + "[" + name + "].tmx");
 		
+		// Due to the nature of lodestones being multi-tile, there needs to be a way to determine which coordinate 
+		// a multi-tile lodestone spawns on. And with most multi-tile blocks, it may result in a collision within the same layer.
+		//
+		//    XX
+		//    █X
+		// 
+		// In the above case, the 3-tile lodestone's coordinate clashes with the only wall displayed there. Hence a collision layer
+		// is needed.
+		//
+		// Also, as you can see in the 2 for loops, tiles are scanned from left to right for every row, starting from the top row. 
+		// Can you determine which part of these lodestones are scanned first?
+		//
+		// X	 X		 X		  X								   @	 @		 @		  @	
+		// X	 X		XXX		XXX							=>	   X	 X		XXX		XXX	
+		// XX 	XX												   XX 	XX					
+		//
+		// Based on the scanning algorithm, the block that appears first in the lodestone are these respectively. Marked @ respectively.
+		// Additionally, remember we can have a clusterfuck of lodestones appearing together.
+		//
+		//  xy
+		//  xyyz   (3 different lodestones are displayed here). 
+		// xxzzz
+		//
+		// To properly differentiate those multi-tile lodestones, we need to assign sets of different characters to them. Two neighbouring
+		// lodestones should have different characters, and a neighbour of a neighbouring block may or may not be in contact with the
+		// lodestone in question.
+		//
+		// Lowercase dictates a pushable lodestone. Uppercase dictates an unpushable lodestone.
+		//
+		// So far this program differentiates between 3 different characters x,y,z. 
+		// Continue reading for explanation
 		
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < cols; j++) {
+				
+				// Because a lodestone can span multiple tiles, and we do not want to risk multiple checks on all parts of the lodestone.
+				// An incorrect lodestone will be output if we let it do so. 
+				// Hence there is another array to check if a tile is checked.
 				if (LodestoneChecked[i][j] == 0) {		// Unchecked
+					
+					// Value is important. Remember when i said that we are using multiple characters to represent lodestones.
 					int value = Lodestones[i][j];
-					if (value != 0) {		// Contains a portion of a lodestone
+					if (value != 0) {					// Contains a portion of a lodestone
 						
 						/*  // This might make the program run slower, so I stopped progress
 						for (String code: new String[] {
@@ -801,10 +921,26 @@ public class TextToTmx {
 						}
 						 */
 						
+						// This diagram below shows the logic behind the checking of the neighbours to determine which lodestone is it
+						//
 						//       001**
 						//       *****
 						//       *****
-									     
+						//
+						// When the 1 is reached, that means the previous 2 tiles checked is probably 0, but it is unimportant.
+						// What matters is the parts labeled by *, because whatever is there determines what lodestone it is and 
+						// where it should be placed to be rendered correctly.
+						//
+						// X				  10X
+						// XX		=>		X0110
+						//  X				XX010
+						//
+						// Can you figure out why the neighbour code for this particular lodestone is as shown?
+						// 0 = must not have a lodestone tile there. 1 = must have a lodestone tile there. X = don't care
+						// Anyway this code (manually determined for optimization purposes) is a fingerprint of a lodestone
+						// It uniquely identifies a lodestone. 
+						
+						// This string array is a representation of all the neighbours *. 
 						String[] b = new String[] {"" + (Lodestones[i][j + 1] == value ? 1 : 0),
 												   "" + (Lodestones[i][j + 2] == value ? 1 : 0),
 												   "" + (Lodestones[i + 1][j - 2] == value ? 1 : 0),
@@ -818,6 +954,8 @@ public class TextToTmx {
 												   "" + (Lodestones[i + 2][j + 1] == value ? 1 : 0),
 												   "" + (Lodestones[i + 2][j + 2] == value ? 1 : 0)};
 						
+						// 91 is one of the numbers that divides the upper and lower case alphabets in the ascii code table.
+						// Uppercase = Unpushable. Lowercase = Pushable
 						if ((b[0] + b[4]).equals("00")) {
 							WallsAndObjects[i - 1][j - 1] = nameToID.get("Lodestone (" + ((value < 91) ? "Unpushable) 1x1 1" : "Pushable) 1x1 " + (random.nextInt(4) + 1)));
 							
@@ -1090,118 +1228,99 @@ public class TextToTmx {
 							LodestoneChecked[i + 1][j] = 1;
 							LodestoneChecked[i + 1][j + 1] = 1;
 						}
-					}
-					LodestoneChecked[i][j] = 1;
+					} LodestoneChecked[i][j] = 1;
 				}
 			}
 		}
 		
+		// Refer to function
 		writeGraphics(writer, cols, rows);
 		
-		// Floor layer
 		
+		// Floor layer
 		writer.println(" <layer name=\"Floor\" width=\"" + cols + "\" height=\"" + rows + "\">\r\n" + 
 					   "  <data encoding=\"csv\">");
-		
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < cols; j++) {
 				writer.print((Floor[i][j] + 1));
 				if (i != rows - 1 || j != cols - 1) writer.print(",");
-			}
-			writer.println();
-		}
-		
-		writer.println("</data>\r\n" + 
-					   " </layer>\r\n");
+			} writer.println();
+		} writer.println("</data>\r\n" + 
+					     " </layer>\r\n");
 		
 		
 		// Floor decor layer
-		
 		writer.println(" <layer name=\"Floor Decorations\" width=\"" + cols + "\" height=\"" + rows + "\">\r\n" + 
 					   "  <data encoding=\"csv\">");
-		
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < cols; j++) {
 				writer.print((FloorDeco[i][j] + 1));
 				if (i != rows - 1 || j != cols - 1) writer.print(",");
-			}
-			writer.println();
-		}
+			} writer.println();
+		} writer.println("</data>\r\n" + 
+					     " </layer>\r\n");
 		
-		writer.println("</data>\r\n" + 
-					   " </layer>\r\n");
+		
+		// Floor decor layer 2
+		writer.println(" <layer name=\"Floor Decorations 2\" width=\"" + cols + "\" height=\"" + rows + "\">\r\n" + 
+					   "  <data encoding=\"csv\">");
+		for (int i = 0; i < rows; i++) {
+			for (int j = 0; j < cols; j++) {
+				writer.print((FloorDeco2[i][j] + 1));
+				if (i != rows - 1 || j != cols - 1) writer.print(",");
+			} writer.println();
+		} writer.println("</data>\r\n" + 
+					     " </layer>\r\n");
 		
 		
 		// Walls and Objects layer
-		
 		writer.println(" <layer name=\"Walls and Objects\" width=\"" + cols + "\" height=\"" + rows + "\">\r\n" + 
 					   "  <data encoding=\"csv\">");
-		
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < cols; j++) {
 				writer.print((WallsAndObjects[i][j] + 1));
 				if (i != rows - 1 || j != cols - 1) writer.print(",");
-			}
-			writer.println();
-		}
+			} writer.println();
+		} writer.println("</data>\r\n" + 
+					     " </layer>");
 		
-		writer.println("</data>\r\n" + 
-					   " </layer>");
 		
 		// Walls Deco Layer
-		
 		writer.println(" <layer name=\"Walls Deco\" width=\"" + cols + "\" height=\"" + rows + "\">\r\n" + 
 					   "  <data encoding=\"csv\">");
-		
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < cols; j++) {
 				writer.print((WallDeco[i][j] + 1));
 				if (i != rows - 1 || j != cols - 1) writer.print(",");
-			}
-			writer.println();
-		}
+			} writer.println();
+		} writer.println("</data>\r\n" + 
+					     " </layer>");
 		
-		writer.println("</data>\r\n" + 
-					   " </layer>");
 		
 		// Collision layer
-		
 		if (hasCollision) {
-		
 			writer.println(" <layer name=\"Collision\" width=\"" + cols + "\" height=\"" + rows + "\">\r\n" + 
 						   "  <data encoding=\"csv\">");
-			
 			for (int i = 0; i < rows; i++) {
 				for (int j = 0; j < cols; j++) {
 					writer.print((Collision[i][j] + 1));
 					if (i != rows - 1 || j != cols - 1) writer.print(",");
-				}
-				writer.println();
-			}
-			
-			writer.println("</data>\r\n" + 
-						   " </layer>\r\n");
-		
+				} writer.println();
+			} writer.println("</data>\r\n" + 
+						     " </layer>\r\n");
 		}
 		
 		// Ambience (Underground - Darker)
-		
-		if (whichWallSet == "2") {
-			
+		if (whichWallSet == 2) {
 			writer.println(" <layer name=\"Ambience\" width=\"" + cols + "\" height=\"" + rows + "\">\r\n" + 
-					"  <data encoding=\"csv\">");
-			
+					       "  <data encoding=\"csv\">");
 			for (int i = 0; i < rows; i++) {
 				for (int j = 0; j < cols; j++) {
 					writer.print(Ambience[i][j] + 1);
 					if (i != rows - 1 || j != cols - 1) writer.print(",");
-				}
-				writer.println();
-			}
-			
-			writer.println("</data>\r\n" + 
-					" </layer>\r\n");
-			
+				} writer.println();
+			} writer.println("</data>\r\n" + 
+					         " </layer>\r\n");
 		}
 		
 		writer.println("</map>");
@@ -1209,20 +1328,24 @@ public class TextToTmx {
 		writer.close();
 	}
 	
+	/**
+	 * Returns the 8 neighbours of a block
+	 * 
+	 *  123
+	 *  4 5
+	 *  678
+	 */
 	private String getNeighbours(int i, int j, String block, String[][] arr, boolean flip) {
-		int tru = 1, fals = 0;
-		if (flip) {
-			tru = 0; fals = 1;
-		}
-		String result = (block.contains(arr[i - 1][j - 1]) ? tru : fals) + "" + 
-						(block.contains(arr[i - 1][j]) ? tru : fals) +
-						(block.contains(arr[i - 1][j + 1]) ? tru : fals) +
-						(block.contains(arr[i][j - 1]) ? tru : fals) +
-						(block.contains(arr[i][j + 1]) ? tru : fals) +
-						(block.contains(arr[i + 1][j - 1]) ? tru : fals) +
-						(block.contains(arr[i + 1][j]) ? tru : fals) +
-						(block.contains(arr[i + 1][j + 1]) ? tru : fals);
-		return result;
+		int trueVal = flip ? 0 : 1;
+		int falseVal = 1 - trueVal;
+		return  (block.contains(arr[i - 1][j - 1]) ? trueVal : falseVal) + "" + 
+				(block.contains(arr[i - 1][j    ]) ? trueVal : falseVal) +
+				(block.contains(arr[i - 1][j + 1]) ? trueVal : falseVal) +
+				(block.contains(arr[i    ][j - 1]) ? trueVal : falseVal) +
+				(block.contains(arr[i    ][j + 1]) ? trueVal : falseVal) +
+				(block.contains(arr[i + 1][j - 1]) ? trueVal : falseVal) +
+				(block.contains(arr[i + 1][j    ]) ? trueVal : falseVal) +
+				(block.contains(arr[i + 1][j + 1]) ? trueVal : falseVal);
 	}
 	
 	/**
@@ -1232,31 +1355,17 @@ public class TextToTmx {
 	 * @return
 	 */
 	private boolean compareWithDontCares(String input, String condition) {
-		if (input.length() != condition.length()) {
-			throw new IllegalArgumentException("Strings does not match in length");
-		}
-		
+		if (input.length() != condition.length()) throw new IllegalArgumentException("Strings does not match in length");
 		for (int i = 0; i < condition.length(); i++) {
-			if (condition.charAt(i) == 88 || input.charAt(i) == 88) {
-				continue;
-			} else if (condition.charAt(i) != input.charAt(i)) {
-				return false;
-			}
-		}
-		return true;
+			if 	    (condition.charAt(i) == 88 || input.charAt(i) == 88) 	continue;
+			else if (condition.charAt(i) != input.charAt(i)) 				return false;
+		} return true;
 	}
 	
 	public static void main(String[] args) throws IOException {
-		
 		TextToTmx prog = new TextToTmx();
-		
-		for (String pack: new String[] { 	"Easy Levels Pack", 
-											"Medium Levels Pack", 
-											"Hard Levels Pack", 
-											"Weird Levels Pack"}) {
-			
+		for (String pack: new String[] { "Easy Levels Pack", "Medium Levels Pack", "Hard Levels Pack", "Weird Levels Pack"}) {
 			String content = new String(Files.readAllBytes(Paths.get("C:/Users/ckjr/Desktop/Magnets/android/assets/Levels/" + pack + ".txt")));
-			
 			for (String levelcode: content.split("\\r\\n\\r\\n")) {
 				prog.setLevel(levelcode);
 				prog.convert("C:/Users/ckjr/Desktop/Magnets/android/assets/Levels/" + pack + "/");
