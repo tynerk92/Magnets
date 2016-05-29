@@ -3,4 +3,4 @@ Magnets (tentative name) is a block-pushing puzzle game similar to Sokoban and t
 
 This project is a NUS Orbital project in the works by students @nginyc and @ckjr, mentored by @melvinzhang.
 
-![Demo](https://github.com/nginyc/Magnets/blob/master/android/assets/Others/demo.gif)
+![Demo](https://raw.githubusercontent.com/nginyc/Magnets/f0952aea2614ed0553c44502efdf3006105d15b6/android/assets/Others/demo.gif)
