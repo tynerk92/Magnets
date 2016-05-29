@@ -45,7 +45,7 @@ public class PlayScreen implements Screen {
 	public static final String TILE_FRAME_DEPTH = "Frame Depth";
 	public boolean DEBUG_MODE = false;
 	// Paths/Textures
-	private String _levelPath = "Levels/Easy Levels Pack/Buttons.tmx";
+	private String _levelPath = "Levels/Easy Levels Pack/Buttons new.tmx";
 	private TiledStage _tiledStage;
 	private PlayerActor _playerActor;
 	private HashMap<String, TiledMapTile> _tilesByReference;
