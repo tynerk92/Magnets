@@ -1,4 +1,4 @@
-What would happen
+﻿What would happen
 ███████████████████████████████
 ██████████M████████████████████
 ██    x               x   e  ██
@@ -13,6 +13,67 @@ What would happen
 ██   s                   x   ██
 ████████████████M██████████████
 ███████████████████████████████
+
+What would happen 2
+███████████████████████████████
+███████████████████████████████
+██    x   m           x   e  ██
+██    x               x      ██
+██  X   X X X X X X X X X X  ██
+██  X   X X X X X X X X X X  ██
+██ X X X X X X X X X X X X X ██
+██ X X X X X X X X X X X X X ██
+██  X X X X X X X X X X X X  ██
+██  X X X X X X X X X X X X  ██
+██ X X X X X X X X X X X X X ██
+██ X X X X X X X X X X X X X ██
+██  X X X X X X X X X X X X  ██
+██  X X X X X X X X X X X X  ██
+██ X X X X X X X X X X X X X ██
+██ X X X X X X X X X X X X X ██
+██  X X X X X X X X X X X X  ██
+██  X X X X X X X X X X X X  ██
+██ X X X X X X X X X X X X X ██
+██ X X X X X X X X X X X X X ██
+██  X X X X X X X X X X X X  ██
+██  X X X X X X X X X X X X  ██
+██ X X X X X X X X X X X   X ██
+██ X X X X X X X X X X X   X ██
+██                       x   ██
+██   s         m         x   ██
+███████████████████████████████
+
+What would happen 3
+█████████████████████████████████████████
+█        xx   m                 Y  e    █
+█                               Y       █
+█  XX XX XX XX XX XX XX XX XX XX XX XX  █
+█  X  X  X  X  X  X  X  X  X  X  X  X   █
+█XX XX XX XX XX XX XX XX XX XX XX XX XX █
+█X  X  X  X  X  X  X  X  X  X  X  X  X  █
+█ XX XX XX XX XX XX XX XX XX XX XX XX XX█
+█ X  X  X  X  X  X  X  X  X  X  X  X  X █
+█  XX XX XX XX XX XX XX XX XX XX XX XX  █
+█  X  X  X  X  X  X  X  X  X  X  X  X   █
+█XX XX XX XX XX XX XX XX XX XX XX XX XX █
+█X  X  X  X  X  X  X  X  X  X  X  X  X  █
+█ XX XX XX XX XX XX XX XX XX XX XX XX XX█
+█ X  X  X  X  X  X  X  X  X  X  X  X  X █
+█  XX XX XX XX XX XX XX XX XX XX XX XX  █
+█  X  X  X  X  X  X  X  X  X  X  X  X   █
+█XX XX XX XX XX XX XX XX XX XX XX XX XX █
+█X  X  X  X  X  X  X  X  X  X  X  X  X  █
+█ XX XX XX XX XX XX XX XX XX XX XX XX XX█
+█ X  X  X  X  X  X  X  X  X  X  X  X  X █
+█  XX XX XX XX XX XX XX XX XX XX XX XX  █
+█  X  X  X  X  X  X  X  X  X  X  X  X   █
+█XX XX XX XX XX XX XX XX XX XX XX XX XX █
+█X  X  X  X  X  X  X  X  X  X  X  X  X  █
+█ XX XX XX XX XX XX XX XX XX XX XX XX XX█
+█ X  X  X  X  X  X  X  X  X  X  X  X  X █
+█                 m    xx               █
+█             s                         █
+█████████████████████████████████████████
 
 Test Cases
 ██████████████████████████
@@ -40,6 +101,18 @@ Test Cases
 █M yy █  xX █      MMM  ██
 █        xx █  MM       ██
 ██████████████████████████
+
+Test cases 2
+██████████████
+█████YYY██████
+█████YX ██X███
+█████ X YYX ██
+███e█X████ ███
+███  X x  XX██
+██████ xm█████
+██████ s █████
+██████████████
+██████████████
 
 Wake me up when there is repulsion
 ████████████████████
