@@ -4,8 +4,11 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Hashtable;
+import java.util.List;
 import java.util.Random;
 
 
@@ -16,12 +19,16 @@ public class TextToTmx {
 	private Block[] Blocks;
 	private Random random = new Random();
 	private Hashtable<String, Integer> nameToID = new Hashtable<String, Integer>();
+	private Hashtable<String, String> symbolToName = new Hashtable<String, String>();
 	private Boolean wroteGraphics = false;
 	private String graphicsCode = "";
 	private int whichWallSet;
 	private boolean plantTrees = false;
+	private int nameCount;
 	
 	private String chooseATheme = "Underground"; // "City"
+	private String validObjects = "bBfFs";
+	private String lodestoneSymbols ="xyzXYZ";
 	
 	TextToTmx() {
 		initiateTable();
@@ -43,6 +50,21 @@ public class TextToTmx {
 			this.dir = dir;
 			this.name = name;
 			this.dimensions = dimensions;
+		}
+	}
+	private class Object implements Comparable<Object> {
+		String name, properties;
+		Block block;
+		int i, j;
+		Object(String blockname, String properties, int i, int j) {
+			this.name = blockname;
+			this.block = Blocks[nameToID.get(blockname)];
+			this.properties = properties;
+			this.i = i;
+			this.j = j;
+		}
+		public int compareTo(Object that) {
+			return this.name.compareTo(that.name);
 		}
 	}
 	
@@ -95,6 +117,7 @@ public class TextToTmx {
 				new Block ("../../Graphics/Floor/Set 1 (Crude)/Floor X1101X11.png",                   "Set 1 Floor X1101X11",                new int[] {32, 32}),
 				new Block ("../../Graphics/Floor/Set 1 (Crude)/Floor X1X00X0X.png",                   "Set 1 Floor X1X00X0X",                new int[] {32, 32}),
 				new Block ("../../Graphics/Floor/Set 1 (Crude)/Floor X1X00X1X.png",                   "Set 1 Floor X1X00X1X",                new int[] {32, 32}),
+				new Block ("../../Graphics/Floor/Set 1 (Crude)/Floor Null.png",                       "Set 1 Floor Null",                    new int[] {32, 32}),
 				new Block ("../../Graphics/Floor/Set 2 (Tiled)/Floor 1.png",                          "Set 2 Floor 1",                       new int[] {32, 32}),
 				new Block ("../../Graphics/Floor/Set 2 (Tiled)/Floor 2.png",                          "Set 2 Floor 2",                       new int[] {32, 32}),
 				new Block ("../../Graphics/Floor/Set 2 (Tiled)/Floor 3.png",                          "Set 2 Floor 3",                       new int[] {32, 32}),
@@ -245,7 +268,7 @@ public class TextToTmx {
 				new Block ("../../Graphics/Objects/Lodestone (Pushable) 1x1 3 - 1 1.png",             "Lodestone (Pushable) 1x1 3",          new int[] {32, 48}),
 				new Block ("../../Graphics/Objects/Lodestone (Pushable) 1x1 4 - 1 1.png",             "Lodestone (Pushable) 1x1 4",          new int[] {32, 48}),
 				new Block ("../../Graphics/Objects/Lodestone (Pushable) 1x2 1 - 1 11.png",            "Lodestone (Pushable) 1x2 1",          new int[] {32, 80}),
-				new Block ("../../Graphics/Objects/Lodestone (Pushable) 1x3 1 - 1 111.png",           "Lodestone (Pushable) 1x3 1",          new int[] {32, 11}),
+				new Block ("../../Graphics/Objects/Lodestone (Pushable) 1x3 1 - 1 111.png",           "Lodestone (Pushable) 1x3 1",          new int[] {32, 112}),
 				new Block ("../../Graphics/Objects/Lodestone (Pushable) 2x1 1 - 2 11.png",            "Lodestone (Pushable) 2x1 1",          new int[] {64, 48}),
 				new Block ("../../Graphics/Objects/Lodestone (Pushable) 2x2 1 - 2 1110.png",          "Lodestone (Pushable) 2x2 1",          new int[] {64, 80}),
 				new Block ("../../Graphics/Objects/Lodestone (Pushable) 2x2 2 - 2 1101.png",          "Lodestone (Pushable) 2x2 2",          new int[] {64, 80}),
@@ -432,178 +455,206 @@ public class TextToTmx {
 		for (int i = 0; i < Blocks.length; i++) {
 			nameToID.put(Blocks[i].name, i);
 		}
+		
+		symbolToName.put("b", "Button 1 State 1");
+		symbolToName.put("B", "Contraption 1 NSEW State 1");
+		symbolToName.put("f", "Button 2 State 1");
+		symbolToName.put("F", "Contraption 2 NSEW State 1");
+		symbolToName.put("s", "Player");
+		symbolToName.put("m", "Magnetic Floor State 1");
 	}
 	
-	private void writeGraphics(PrintWriter writer, int cols, int rows) {
+	private void writeGraphics(PrintWriter writer, int cols, int rows, int lastobjectid) {
 		
 		// The only varying part between every level.
 		// The dimensions of the levels change. 
-		writer.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n" + 
-				"<map version=\"1.0\" orientation=\"orthogonal\" renderorder=\"right-down\" width=\"" + cols + "\" height=\"" + rows + "\" tilewidth=\"32\" tileheight=\"32\" nextobjectid=\"1\">\r\n" + 
-				" <tileset firstgid=\"1\" name=\"Tileset\" tilewidth=\"96\" tileheight=\"112\" tilecount=\"" + Blocks.length + "\" columns=\"0\">");
+		writer.println(
+				"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + 
+				"<map version=\"1.0\" orientation=\"orthogonal\" renderorder=\"right-down\" width=\"" + cols + "\" height=\"" + rows + "\" tilewidth=\"32\" tileheight=\"32\" nextobjectid=\"" + lastobjectid + "\">\n" + 
+				" <tileset firstgid=\"1\" name=\"Tileset\" tilewidth=\"96\" tileheight=\"112\" tilecount=\"" + Blocks.length + "\" columns=\"0\">"
+		);
 		
 		// This part is the same for any level, hence it should only be executed once.
 		if (!wroteGraphics) {
 			for (int n = 0; n < Blocks.length; n++) {
-	
-				graphicsCode += "\n  <tile id=\"" + n + "\">\r\n";
-	
+				graphicsCode += "\n  <tile id=\"" + n + "\">\n";
 	            if (Blocks[n].name.contains("Wall") || Blocks[n].name.contains("Big Tree")) {
-	            	graphicsCode += "   <properties>\n" +
+	            	graphicsCode += 
+	            			"   <properties>\n" +
 	                        "    <property name=\"Type\" value=\"Wall\"/>\n" +
-	                        "   </properties>\r\n";
+	                        "   </properties>\n";
 	
 	            } else if (Blocks[n].name.contains("Overlay Lodestone ")) {
-	            	graphicsCode += "   <properties>\r\n" + 
-							"    <property name=\"Frame Depth\" type=\"int\" value=\"-1\"/>\r\n" + 
-							"    <property name=\"Name\" value=\"" + Blocks[n].name + "\"/>\r\n" + 
-							"   </properties>\r\n";
+	            	graphicsCode += 
+	            			"   <properties>\n" + 
+							"    <property name=\"Actor Depth\" type=\"int\" value=\"-1\"/>\n" + 
+							"    <property name=\"Name\" value=\"" + Blocks[n].name + "\"/>\n" + 
+							"   </properties>\n";
 				
 	            } else if (Blocks[n].name.contains("Button ")) {
 	            	
 	            	// Naming convention!!!
-	            	String[] a = Blocks[n].name.split(" ");
-	            	
-	            	int whichSet = Integer.parseInt(a[1]);
-	            	int whichFrame = Integer.parseInt(a[3]);
-	            	
-	            	String out = "   <properties>\r\n" + 
-								 "    <property name=\"Frame Depth\" type=\"int\" value=\"-1\"/>\r\n";
+	            	String[] a 		= Blocks[n].name.split(" ");
+	            	int totalFrames = 3;
+	            	//int whichSet 	= Integer.parseInt(a[1]);
+	            	int whichFrame 	= Integer.parseInt(a[3]);
 	            	
 	            	if (whichFrame == 1) {
-	            		out += "";
+	            		graphicsCode +=  
+	            				"   <properties>\n" + 
+	            				"    <property name=\"@Off\" value=\"(this)\"/>\n" + 
+	            				"    <property name=\"@Offing\" value=\"~Button Pressing\"/>\n" + 
+	            				"    <property name=\"@On\" value=\"~Button On\"/>\n" + 
+	            				"    <property name=\"@Oning\" value=\"~Button Pressing\"/>\n" + 
+	            				"   </properties>\n";
+	            	} else if (whichFrame < totalFrames) {
+	            		graphicsCode +=  
+	            				"   <properties>\n" + 
+	            				"    <property name=\"~\" value=\"Button Pressing\"/>\n" + 
+	            				"   </properties>\n";
+	            	} else {
+	            		graphicsCode +=  
+	            				"   <properties>\n" + 
+	            				"    <property name=\"~\" value=\"Button On\"/>\n" + 
+	            				"   </properties>\n";
 	            	}
-	            	graphicsCode += "   <properties>\r\n" + 
-							"    <property name=\"Frame Depth\" type=\"int\" value=\"-1\"/>\r\n" + 
-							"    <property name=\"Name\" value=\"Button " + Blocks[n].name.split(" ")[1].charAt(0) + "\"/>\r\n" + 
-							"   </properties>\r\n";
 					
 	            } else if (Blocks[n].name.contains("Contraption")) {
 		            	
 	        		// Naming convention!!!
-	            	String[] a = Blocks[n].name.split(" ");
-	            	
+	            	String[] a 		= Blocks[n].name.split(" ");
 	            	int totalFrames = 9;
+	            	//int whichSet = Integer.parseInt(a[1]);
+	            	int whichFrame 	= Integer.parseInt(a[4]);
+	            	//String whichSides = a[2];
 	            	
-	            	int whichSet = Integer.parseInt(a[1]);
-	            	int whichFrame = Integer.parseInt(a[4]);
-	            	String whichSides = a[2];
-	            	
-	            	graphicsCode += "   <properties>\r\n";
-	            	String out = "";
-								 
-	            	
-	            	if (whichFrame == 1 || whichFrame == totalFrames) {
-	            		out +=   "    <property name=\"#\" type=\"int\" value=\"(this)\"/>\r\n";
-	            		out +=   "    <property name=\"#Closing\" type=\"int\" value=\"Door Closing\"/>\r\n";
-	            		if (whichFrame == 1) {
-	            			out +=   "    <property name=\"#Opened\" type=\"int\" value=\"Door Opened\"/>\r\n";
-	            		} else {
-	            			out +=   "    <property name=\"#Closed\" type=\"int\" value=\"Door Closed\"/>\r\n";
-	            		}
-	            		out +=   "    <property name=\"#Opening\" type=\"int\" value=\"Door Opening\"/>\r\n";
-	            	} 
-	            	
-	            	out += 	     "    <property name=\"Frame Depth\" type=\"int\" value=\"-1\"/>\r\n";
-	            	
-	            	graphicsCode += 
-							"    <property name=\"Name\" value=\"" + Blocks[n].name + "\"/>\r\n" + 
-							"   </properties>\r\n";
+	            	if (whichFrame == 1) {
+	            		graphicsCode +=  
+	            				"    <property name=\"@Closed\" value=\"(this)\"/>\n" + 
+	            				"    <property name=\"@Closing\" value=\"~Door Closing\"/>\n" + 
+	            				"    <property name=\"@Opened\" value=\"~Door Opened\"/>\n" + 
+	            				"    <property name=\"@Opening\" value=\"~Door Opening\"/>\n" + 
+	            				"    <property name=\"Actor Depth\" type=\"int\" value=\"-1\"/>\n" + 
+	            				"    <property name=\"Type\" value=\"Door\"/>\n";
+	            	} else if (whichFrame == 2) {
+	            		graphicsCode +=  
+	            				"   <properties>\n" + 
+	            				"    <property name=\"~\" value=\"Door Opening\"/>\n" + 
+	            				"   </properties>\n";
+	            	} else if (whichFrame < totalFrames - 1) {
+	            	} else if (whichFrame == totalFrames - 1) {
+	            		graphicsCode +=  
+	            				"   <properties>\n" + 
+	            				"    <property name=\"~\" value=\"Door Closing\"/>\n" + 
+	            				"   </properties>\n";
+	            	} else {
+	            		graphicsCode +=  
+	            				"   <properties>\n" + 
+	            				"    <property name=\"~\" value=\"Door Opened\"/>\n" + 
+	            				"   </properties>\n";
+	            	}
 						
 				} else if (Blocks[n].name.contains("Lodestone")) {
 	            	
-	            	String[] data = Blocks[n].dir.substring(Blocks[n].dir.indexOf(" - ") + 3).split(" ");
-	            	
-	            	String area = data[1].substring(0, data[1].length() - 4);
-	            	String width = data[0];
+	            	String[]    data = Blocks[n].dir.substring(Blocks[n].dir.indexOf(" - ") + 3).split(" ");
+	            	String      area = data[1].substring(0, data[1].length() - 4);
+	            	String     width = data[0];
 	            	Boolean pushable = Blocks[n].name.contains("Pushable");
-	            	
-	            	String write = Blocks[n].name.split("\\) ")[1];
+	            	String     write = Blocks[n].name.split("\\) ")[1];
 	            	if (write.contains("1x1")) write = "1x1 1";
 	            	
-	            	graphicsCode += "   <properties>\n" +
-							"    <property name=\"#\" value=\"(this)\"/>\n" +
-							"    <property name=\"#Magnetised\" value=\"Magnetic Overlay Lodestone " + write + "\"/>\n" +
+	            	graphicsCode += 
+	            			"   <properties>\n" +
+							"    <property name=\"@Default\" value=\"(this)\"/>\n" +
+							"    <property name=\"@Magnetised\" value=\"Magnetic Overlay Lodestone " + write + "\"/>\n" +
 							"    <property name=\"Body Area\" value=\"" + area + "\"/>\n" +
 							"    <property name=\"Body Width\" type=\"int\" value=\"" + width + "\"/>\n" +
 							"    <property name=\"IsMagnetisable\" type=\"bool\" value=\"true\"/>\n" +
 							"    <property name=\"IsPushable\" type=\"bool\" value=\"" + pushable + "\"/>\n" +
 							"    <property name=\"Type\" value=\"Block\"/>\n" +
-							"   </properties>\r\n";
+							"   </properties>\n";
 	
 	            } else if (Blocks[n].name.contains("Magnet ") && Blocks[n].name.contains("State 1")) {
-	            	graphicsCode += "   <properties>\n" +
-							"    <property name=\"#\" value=\"(this)\"/>\n" +
+	            	graphicsCode += 
+	            			"   <properties>\n" +
+							"    <property name=\"@Default\" value=\"(this)\"/>\n" + 
 							"    <property name=\"Type\" value=\"Magnetic Source\"/>\n" +
-							"    <property name=\"Pole\" value=\"South\"/>\n" +
-							"   </properties>\r\n";
+							"   </properties>\n";
 					
-	            } else if (Blocks[n].name.contains("Magnetic Floor")) {
-	            	graphicsCode += "   <properties>\n" +
-							"    <property name=\"#\" value=\"(this)\"/>\n" +
-							"    <property name=\"Actor Depth\" type=\"int\" value=\"-1\"/>\n" +
+	            } else if (Blocks[n].name.contains("Magnetic Floor") && Blocks[n].name.contains("State 1")) {
+	            	graphicsCode += 
+	            			"   <properties>\n" +
+							"    <property name=\"@Default\" value=\"(this)\"/>\n" + 
+							"    <property name=\"Actor Depth\" type=\"int\" value=\"-1\"/>\n" + 
 							"    <property name=\"Type\" value=\"Magnetic Floor\"/>\n" +
-							"   </properties>\r\n";
+							"   </properties>\n";
 	
 				} else if (Blocks[n].dir.contains("Objects/Player.png")) {
-					graphicsCode += "   <properties>\n" +
-							"    <property name=\"#\" value=\"(this)\"/>\n" +
-							"    <property name=\"#Walking\" value=\"(this)\"/>\n" +
+					graphicsCode += 
+							"   <properties>\n" +
+							"    <property name=\"@Standing\" value=\"(this)\"/>\n" + 
+							"    <property name=\"@Walking\" value=\"(this)\"/>\n" + 
 							"    <property name=\"Type\" value=\"Player\"/>\n" +
-							"   </properties>\r\n";
+							"   </properties>\n";
+					
+				} else if (Blocks[n].dir.contains("Magnetized Overlay")) {
+					graphicsCode += 
+							"   <properties>\n" +
+							"    <property name=\"Frame Depth\" type=\"int\" value=\"1\"/>\n" + 
+							"    <property name=\"~\" value=\"" + Blocks[n].name + "\"/>\n" +
+							"   </properties>\n";
 					
 				} 
 	
-	            graphicsCode += "   <image width=\"" + Blocks[n].dimensions[0] + "\" height=\"" + Blocks[n].dimensions[1] + "\" source=\"" + Blocks[n].dir + "\"/>\r\n";
+	            graphicsCode += "   <image width=\"" + Blocks[n].dimensions[0] + "\" height=\"" + Blocks[n].dimensions[1] + "\" source=\"" + Blocks[n].dir + "\"/>\n";
 				
 				// Gives a animaation to each of the magnetic areas. All of them will be starting at different
 				// states but following the same pattern.
 				
 				if ((Blocks[n].name.contains("Magnet ") || Blocks[n].name.contains("Magnetic Floor")) && Blocks[n].name.contains("State 1")) {
 					
-					int numFrames = 5;
-					int interval = 640;
-					
-					int delay = (Blocks[n].name.contains("South")) ? numFrames / 2 : 0;
+					int numFrames	= 5;
+					int interval 	= 640;
+					int delay		= (Blocks[n].name.contains("South")) ? numFrames / 2 : 0;
 						
-					graphicsCode += "   <animation>\r\n";
+					graphicsCode += "   <animation>\n";
 					for (int j = 0; j < 3; j++)
 						for (int i = 0; i < numFrames; i++) 
-							graphicsCode += "    <frame tileid=\"" + (n + (i * j + i + j + delay) % numFrames) + "\" duration=\"" + interval + "\"/>\r\n";
-					graphicsCode += "   </animation>\r\n";
+							graphicsCode += "    <frame tileid=\"" + (n + (i * j + i + j + delay) % numFrames) + "\" duration=\"" + interval + "\"/>\n";
+					graphicsCode += "   </animation>\n";
 					
 				} else if (Blocks[n].name.contains("Contraption ")) {
 					
 					// Naming convention!!!
 	            	String[] a = Blocks[n].name.split(" ");
 					
-					int numFrames = 9;
-					int interval = 40;
-					int whichFrame = Integer.parseInt(a[4]);
+					int numFrames 	= 9;
+					int interval 	= 40;
+					int whichFrame 	= Integer.parseInt(a[4]);
 					
 					if (whichFrame == 2 || whichFrame == (numFrames - 1)) {
-						graphicsCode += "   <animation>\r\n";
+						graphicsCode += "   <animation>\n";
 						if (whichFrame == 2) {
 							for (int i = 0; i < numFrames - 2; i++)
-								writer.println("    <frame tileid=\"" + (n + i) + "\" duration=\"" + interval + "\"/>\r\n");
+								writer.println("    <frame tileid=\"" + (n + i) + "\" duration=\"" + interval + "\"/>\n");
 						} else if (whichFrame == (numFrames - 1)) {
 							for (int i = 0; i < numFrames - 2; i++)
-								writer.println("    <frame tileid=\"" + (n - i) + "\" duration=\"" + interval + "\"/>\r\n");
+								writer.println("    <frame tileid=\"" + (n - i) + "\" duration=\"" + interval + "\"/>\n");
 						}
-						graphicsCode += "   </animation>\r\n";
+						graphicsCode += "   </animation>\n";
 					}
 					
 				} else if (Blocks[n].name.contains("Exit") && Blocks[n].name.contains("State 1")) {
 					
-					int numFrames = 5;
-					int interval = 80;
+					int numFrames 	= 5;
+					int interval 	= 80;
 					
-					graphicsCode += "   <animation>\r\n";
+					graphicsCode += "   <animation>\n";
 					for (int i = 0; i < numFrames; i++) 		
-						graphicsCode += "    <frame tileid=\"" + (n + i) + "\" duration=\"" + interval + "\"/>\r\n";
+						graphicsCode += "    <frame tileid=\"" + (n + i) + "\" duration=\"" + interval + "\"/>\n";
 					for (int i = numFrames - 1; i >= 0; i--)  	
-						graphicsCode += "    <frame tileid=\"" + (n + i) + "\" duration=\"" + interval + "\"/>\r\n";
-						graphicsCode += "   </animation>\r\n";
+						graphicsCode += "    <frame tileid=\"" + (n + i) + "\" duration=\"" + interval + "\"/>\n";
+					graphicsCode += "   </animation>\n";
 					
 				} else if (Blocks[n].name.contains("Magnetized Horizontal State 1") ||
 						   Blocks[n].name.contains("Magnetized Vertical State 1")) {
@@ -611,16 +662,16 @@ public class TextToTmx {
 					int numFrames = 7;
 					int interval = 375;
 					
-					graphicsCode += "   <animation>\r\n";
+					graphicsCode += "   <animation>\n";
 					for (int i = 0; i < numFrames; i++) 
-						graphicsCode += "    <frame tileid=\"" + (n + i) + "\" duration=\"" + interval + "\"/>\r\n";
-					graphicsCode += "   </animation>\r\n";
+						graphicsCode += "    <frame tileid=\"" + (n + i) + "\" duration=\"" + interval + "\"/>\n";
+					graphicsCode += "   </animation>\n";
 				}
 				
-				graphicsCode += "  </tile>\r\n";
+				graphicsCode += "  </tile>\n";
 			}
 			
-			graphicsCode += " </tileset>\r\n";
+			graphicsCode += " </tileset>\n";
 			wroteGraphics = true;
 		} 
 		
@@ -629,9 +680,15 @@ public class TextToTmx {
 	
 	public void convert(String dir) throws IOException {
 		
+		// Reset
+		List<Object> Objects = new ArrayList<Object>();
+		int lastobjectid = 0;
+		nameCount = 0;
+		
 		// Check validity of the level
 		int numPlayers = 0;
 		int numExits = 0;
+		
 		
 		// All the level information gotten from the data provided
 		String name = level.substring(0, level.indexOf("\r\n"));
@@ -647,7 +704,6 @@ public class TextToTmx {
 		int[][] WallsAndObjects  = new int[rows][cols];
 		int[][] Floor            = new int[rows][cols];
 		int[][] FloorDeco		 = new int[rows][cols];
-		int[][] FloorDeco2		 = new int[rows][cols];
 		int[][] WallDeco		 = new int[rows][cols];
 		int[][] Lodestones       = new int[rows + 2][cols + 2];
 		int[][] LodestoneChecked = new int[rows][cols];
@@ -664,7 +720,6 @@ public class TextToTmx {
 		for (String[] row: data) 			Arrays.fill(row, "█");
 		for (int[] row: Floor) 				Arrays.fill(row, -1);
 		for (int[] row: FloorDeco) 			Arrays.fill(row, -1);
-		for (int[] row: FloorDeco2) 		Arrays.fill(row, -1);
 		for (int[] row: WallDeco) 			Arrays.fill(row, -1);
 		for (int[] row: WallsAndObjects) 	Arrays.fill(row, -1);
 		
@@ -689,8 +744,6 @@ public class TextToTmx {
 		File file = new File(dir + name + ".tmx");
 		file.getParentFile().mkdirs();
 		PrintWriter writer = new PrintWriter(file, "UTF-8");
-		
-		String[] lodestoneSymbols = new String[] {"x", "y", "z", "X", "Y", "Z"};
 		
 		// Adding trees as deco
 		if (plantTrees) {
@@ -717,13 +770,14 @@ public class TextToTmx {
 		System.out.println();
 		*/
 		
-		
 		// Processing walls and floors and other objects
 		for (int i = 1; i < rows + 1; i++) {
 			for (int j = 1; j < cols + 1; j++) {
 				
+				String currentTile = data[i][j];
+				
 				// Detects a wall
-				if (data[i][j].equals("█")) {
+				if (currentTile.equals("█")) {
 					
 					// Refer the the function for details
 					String wallNeighbours = getNeighbours(i, j, "█", data, false);
@@ -747,54 +801,65 @@ public class TextToTmx {
 							WallsAndObjects[i - 1][j - 1] = nameToID.get("Set " + whichWallSet + " Wall " + code);
 						}
 					}
+					
 					Ambience[i - 1][j - 1] = nameToID.get("Darker");
 				
 				// Not a wall
 				} else {
 					
-					//if (!"Mm".contains(data[i][j])) 		Ambience[i - 1][j - 1] = nameToID.get("Darker");
-					
 					// Only for underground that you need to darken all the tiles to fit the ambience.
 					Ambience[i - 1][j - 1] = nameToID.get("Darker");
 					
-					// Button and Contraption Set 1
-					if 		(data[i][j].equals("b")) 		WallsAndObjects[i - 1][j - 1] = nameToID.get("Button 1 State 1");
-					else if (data[i][j].equals("B")) 		WallsAndObjects[i - 1][j - 1] = nameToID.get("Contraption 1 NSEW State 1");
+					String objname = "";
+					int ioffset = 0, joffset = 0;
 					
-					// Button and Contraption Set 2
-					else if (data[i][j].equals("f")) 		WallsAndObjects[i - 1][j - 1] = nameToID.get("Button 2 State 1");
-					else if (data[i][j].equals("F")) 		WallsAndObjects[i - 1][j - 1] = nameToID.get("Contraption 2 NSEW State 1");
-					
-					// Randomly placing either North or South magnets first, since repulsion is not done.
-					else if (data[i][j].equals("M")) 		WallsAndObjects[i - 1][j - 1] = nameToID.get("Magnet " + (Math.random() < 0.5 ? "North" : "South") + " State 1");
-					
-					// Magnetic Floor. A tile that does passive magnetization. Does not pull or push any block that is not on top of it,
-					else if (data[i][j].equals("m")) 		WallsAndObjects[i - 1][j - 1] = nameToID.get("Magnetic Floor State 1");
-					
-					// A multi-tile tree that acts as a wall.
-					else if (data[i][j].equals("T")) {
-						if (WallsAndObjects[i - 1][j - 2] == -1) {
-							WallsAndObjects[i - 1][j - 2] = nameToID.get("Big Tree 111111X1X");
-						} else {
-							hasCollision = true;
-							Collision[i - 1][j - 2] = nameToID.get("Big Tree 111111X1X");
-						}
+					switch (currentTile) {
+						case "b": objname = "Button 1 State 1"; 			break;
+						case "B": objname = "Contraption 1 NSEW State 1"; 	break;
 						
-					// Exits
-					} else if (data[i][j].equals("e")) {
-						if 		(whichWallSet == 1) 	WallsAndObjects[i - 1][j - 1] = nameToID.get("Exit Standard Front State 1");
-						else if (whichWallSet == 2) 	WallsAndObjects[i - 1][j - 1] = nameToID.get("Exit Cave " + (Math.random() < 0.5 ? "Forwards" : "Down") + " Front State 1");
-						numExits++;
-					
-					// The starting point / the player
-					} else if (data[i][j].equals("s")) {
-						WallsAndObjects[i - 1][j - 1] = nameToID.get("Player");
-						numPlayers++;
+						case "f": objname = "Button 2 State 1";				break;
+						case "F": objname = "Contraption 2 NSEW State 1"; 	break;
 						
-					// Lodestones. Note that Lodestones array does not contain the data to be written into the tmx file
-					// Instead, it serves as a mechanism to determine the individual multi-tile lodestones in the later part.
-					} else if (Arrays.asList(lodestoneSymbols).contains(data[i][j])) {
-						Lodestones[i][j] = data[i][j].charAt(0);
+						// The starting point / the player
+						case "s": objname = "Player"; numPlayers++;			break;
+						
+						// Randomly placing either North or South magnets first, since repulsion is not done.
+						case "M": objname = "Magnet " + (Math.random() < 0.5 ? "North" : "South") + " State 1"; 	break;
+						
+						// Magnetic Floor. A tile that does passive magnetization. Does not pull or push any block that is not on top of it,
+						case "m": objname = "Magnetic Floor State 1"; 		break;
+						
+						// A multi-tile tree that acts as a wall.
+						case "T": 
+							if (WallsAndObjects[i - 1][j - 2] == -1) {
+								objname = "Big Tree 111111X1X";
+								joffset = -1;
+							} else {
+								hasCollision = true;
+								Collision[i - 1][j - 2] = nameToID.get("Big Tree 111111X1X");
+							} 												break;
+						
+						// Exits
+						case "e":
+							if 		(whichWallSet == 1) 	objname = "Exit Standard Front State 1";
+							else if (whichWallSet == 2) 	objname = "Exit Cave " + (Math.random() < 0.5 ? "Forwards" : "Down") + " Front State 1";
+							numExits++; 									break;
+						
+						// Lodestones. Note that Lodestones array does not contain the data to be written into the tmx file
+						// Instead, it serves as a mechanism to determine the individual multi-tile lodestones in the later part.
+						default:
+							if (lodestoneSymbols.contains(currentTile)) {
+								Lodestones[i][j] = currentTile.charAt(0); 
+							} 												break;
+					}
+					
+					if ("mMTe".contains(currentTile)) {
+						WallsAndObjects[i - 1 + ioffset][j - 1 + joffset] = nameToID.get(objname);
+					}
+					
+					if (validObjects.contains(currentTile)) {
+						Objects.add(new Object(objname, "prop", i, j));
+						lastobjectid++;
 					}
 					
 					/*// Floor Set 2 only
@@ -804,51 +869,40 @@ public class TextToTmx {
 						Floor[i - 1][j - 1] = (int) (16 * Math.pow(Math.random(), 0.75));
 					}*/
 					
-					// Refer the the function for details
-					String floorNeighbours = getNeighbours(i, j, "█", data, true);
-					
-					// All the possible 8 neighbours of a tile. Refer to getNeighbours function for explanation of 
-					// the purpose of 0, 1 and X
-					for (String code: new String[] {
-							"01011010", "01011011", "01011110", "01011111", "01011X0X", 
-							"01111010", "01111011", "01111110", "01111111", "01111X0X", 
-							"01X1001X", "01X1011X", "01X10X0X", "11011010", "11011011", 
-							"11011110", "11011111", "11011X0X", "11111010", "11111011", 
-							"11111110", "11111111", "11111X0X", "11X1001X", "11X1011X", 
-							"11X10X0X", "X0X00X0X", "X0X00X1X", "X0X01X0X", "X0X01X10", 
-							"X0X01X11", "X0X1001X", "X0X1011X", "X0X10X0X", "X0X11010", 
-							"X0X11011", "X0X11110", "X0X11111", "X0X11X0X", "X1001X0X", 
-							"X1001X10", "X1001X11", "X1101X0X", "X1101X10", "X1101X11", 
-							"X1X00X0X", "X1X00X1X"}) {
-						
+					// Floor Tiles
+
+					if (" es".contains(currentTile)) {
 						// Refer the the function for details
-						if (compareWithDontCares(floorNeighbours, code)) {
-							Floor[i - 1][j - 1] = nameToID.get("Set 1 Floor " + code);
+						// Also, all objects except exit and player have a depressed floor at the start
+						String floorNeighbours = getNeighbours(i, j, " es", data, false);
+						//String floorNeighbours = getNeighbours(i, j, "█", data, true);
+
+						// All the possible 8 neighbours of a tile. Refer to getNeighbours function for explanation of 
+						// the purpose of 0, 1 and X
+						for (String code: new String[] {
+								"01011010", "01011011", "01011110", "01011111", "01011X0X", 
+								"01111010", "01111011", "01111110", "01111111", "01111X0X", 
+								"01X1001X", "01X1011X", "01X10X0X", "11011010", "11011011", 
+								"11011110", "11011111", "11011X0X", "11111010", "11111011", 
+								"11111110", "11111111", "11111X0X", "11X1001X", "11X1011X", 
+								"11X10X0X", "X0X00X0X", "X0X00X1X", "X0X01X0X", "X0X01X10", 
+								"X0X01X11", "X0X1001X", "X0X1011X", "X0X10X0X", "X0X11010", 
+								"X0X11011", "X0X11110", "X0X11111", "X0X11X0X", "X1001X0X", 
+								"X1001X10", "X1001X11", "X1101X0X", "X1101X10", "X1101X11", 
+								"X1X00X0X", "X1X00X1X"}) {
+
+							// Refer the the function for details
+							if (compareWithDontCares(floorNeighbours, code)) 	Floor[i - 1][j - 1] = nameToID.get("Set 1 Floor " + code);
 						}
-					}
+					} else Floor[i - 1][j - 1] = nameToID.get("Set 1 Floor Null");
 					
 					// Purely decorational. Decorations should not spawn on top of buttons, contraptions, nor exits
-					if (Math.random() < 0.35 && !"bBfFe".contains(data[i][j])) {
+					if (Math.random() < 0.35 && data[i][j].equals(" ")) {
 						if (Math.random() < 0.7) 		FloorDeco[i - 1][j - 1] = nameToID.get("Debris " + (random.nextInt(8) + 1));
 						else if (Math.random() < 0.25)  FloorDeco[i - 1][j - 1] = nameToID.get("Depression " + (random.nextInt(8) + 1));
 						else if (whichWallSet == 1) 	FloorDeco[i - 1][j - 1] = nameToID.get("Grey Scratches " + (random.nextInt(8) + 1));
 						else if (whichWallSet == 2) 	FloorDeco[i - 1][j - 1] = nameToID.get("Blue Scratches " + (random.nextInt(4) + 1));
 					}
-					
-					// Just wanna see if having 2 layers of decorations will work out
-					if (Math.random() < 0.2 && !"bBfFe".contains(data[i][j])) {
-						if (Math.random() < 0.3) 		FloorDeco2[i - 1][j - 1] = nameToID.get("Debris " + (random.nextInt(8) + 1));
-						else if (Math.random() < 0.75)  FloorDeco2[i - 1][j - 1] = nameToID.get("Depression " + (random.nextInt(8) + 1));
-						else if (whichWallSet == 1) 	FloorDeco2[i - 1][j - 1] = nameToID.get("Grey Scratches " + (random.nextInt(8) + 1));
-						else if (whichWallSet == 2) 	FloorDeco2[i - 1][j - 1] = nameToID.get("Blue Scratches " + (random.nextInt(4) + 1));
-					}
-					
-					/*
-					if (data[i - 1][j].equals("█") && data[i][j + 1].equals("█")) {
-						FloorDeco[i - 1][j - 1] = nameToID.get("Small Corner 1");
-					} else if (data[i - 1][j].equals("█") && data[i][j - 1].equals("█")) {
-						FloorDeco[i - 1][j - 1] = nameToID.get("Small Corner 2");
-					}*/
 				}
 			}
 		}
@@ -954,373 +1008,363 @@ public class TextToTmx {
 												   "" + (Lodestones[i + 2][j + 1] == value ? 1 : 0),
 												   "" + (Lodestones[i + 2][j + 2] == value ? 1 : 0)};
 						
+						String objname = "";
+						int ioff = 0, joff = 0;
 						// 91 is one of the numbers that divides the upper and lower case alphabets in the ascii code table.
 						// Uppercase = Unpushable. Lowercase = Pushable
 						if ((b[0] + b[4]).equals("00")) {
-							WallsAndObjects[i - 1][j - 1] = nameToID.get("Lodestone (" + ((value < 91) ? "Unpushable) 1x1 1" : "Pushable) 1x1 " + (random.nextInt(4) + 1)));
+							objname = "Lodestone (" + ((value < 91) ? "Unpushable) 1x1 1" : "Pushable) 1x1 " + (random.nextInt(4) + 1));
 							
 						} else if ((b[0] + b[3] + b[4] + b[5] + b[9]).equals("00100")) {
-							WallsAndObjects[i][j - 1] = nameToID.get("Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 1x2 1");
-							LodestoneChecked[i + 1][j] = 1;
+							objname = "Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 1x2 1";
+							LodestoneChecked[i + 1][j] = 1;		ioff = 1;
 						
 						} else if ((b[0] + b[3] + b[4] + b[5] + b[8] + b[9] + b[10]).equals("0010010")) {
-							WallsAndObjects[i + 1][j - 1] = nameToID.get("Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 1x3 1");
-							LodestoneChecked[i + 1][j] = 1;
+							objname = "Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 1x3 1";
+							LodestoneChecked[i + 1][j] = 1;		ioff = 2;
 							LodestoneChecked[i + 2][j] = 1;
 						
 						} else if ((b[0] + b[1] + b[4] + b[5]).equals("1000")) {
-							WallsAndObjects[i - 1][j - 1] = nameToID.get("Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 2x1 1");
+							objname = "Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 2x1 1";
 							LodestoneChecked[i][j + 1] = 1;
 						
 						} else if ((b[0] + b[1] + b[3] + b[4] + b[5] + b[9]).equals("100100")) {
-							WallsAndObjects[i][j - 1] = nameToID.get("Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 2x2 1");
-							LodestoneChecked[i + 1][j] = 1;
+							objname = "Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 2x2 1";
+							LodestoneChecked[i + 1][j] = 1;		ioff = 1;
 							LodestoneChecked[i][j + 1] = 1;
 						
 						} else if ((b[0] + b[1] + b[4] + b[5] + b[6] + b[10]).equals("100100")) {
-							if (WallsAndObjects[i][j - 1] == -1) {
-								WallsAndObjects[i][j - 1] = nameToID.get("Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 2x2 2");
-							} else {
-								hasCollision = true;
-								Collision[i][j - 1] = nameToID.get("Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 2x2 2");
-							}
-							LodestoneChecked[i][j + 1] = 1;
+							objname = "Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 2x2 2";
+							LodestoneChecked[i][j + 1] = 1;		ioff = 1;
 							LodestoneChecked[i + 1][j + 1] = 1;
 							
 						} else if ((b[0] + b[2] + b[3] + b[4] + b[5] + b[8] + b[9]).equals("0011000")) {
-							WallsAndObjects[i][j - 2] = nameToID.get("Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 2x2 3");
-							LodestoneChecked[i + 1][j] = 1;
-							LodestoneChecked[i + 1][j - 1] = 1;
+							objname = "Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 2x2 3";
+							LodestoneChecked[i + 1][j] = 1;		ioff = 1;
+							LodestoneChecked[i + 1][j - 1] = 1;	joff = -1;
 						
 						} else if ((b[0] + b[3] + b[4] + b[5] + b[6] + b[9] + b[10]).equals("0011000")) {
-							WallsAndObjects[i][j - 1] = nameToID.get("Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 2x2 4");
-							LodestoneChecked[i + 1][j] = 1;
+							objname = "Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 2x2 4";
+							LodestoneChecked[i + 1][j] = 1;		ioff = 1;
 							LodestoneChecked[i + 1][j + 1] = 1;
 						
 						} else if ((b[0] + b[1] + b[3] + b[4] + b[5] + b[6] + b[9] + b[10]).equals("10011000")) {
-							WallsAndObjects[i][j - 1] = nameToID.get("Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 2x2 5");
-							LodestoneChecked[i + 1][j] = 1;
+							objname = "Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 2x2 5";
+							LodestoneChecked[i + 1][j] = 1;		ioff = 1;
 							LodestoneChecked[i][j + 1] = 1;
 							LodestoneChecked[i + 1][j + 1] = 1;
 						
 						} else if ((b[0] + b[3] + b[4] + b[5] + b[6] + b[8] + b[9] + b[10]).equals("00110010")) {
-							WallsAndObjects[i + 1][j - 1] = nameToID.get("Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 2x3 1");
-							LodestoneChecked[i + 1][j] = 1;
+							objname = "Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 2x3 1";
+							LodestoneChecked[i + 1][j] = 1;		ioff = 2;
 							LodestoneChecked[i + 1][j + 1] = 1;
 							LodestoneChecked[i + 2][j] = 1;
 						
 						} else if ((b[0] + b[2] + b[3] + b[4] + b[5] + b[8] + b[9] + b[10]).equals("00110010")) {
-							if (WallsAndObjects[i + 1][j - 2] == -1) {
-								WallsAndObjects[i + 1][j - 2] = nameToID.get("Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 2x3 2");
-							} else {
-								hasCollision = true;
-								Collision[i + 1][j - 2] = nameToID.get("Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 2x3 2");
-							}
-							LodestoneChecked[i + 1][j] = 1;
-							LodestoneChecked[i + 1][j - 1] = 1;
+							objname = "Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 2x3 2";
+							LodestoneChecked[i + 1][j] = 1;		ioff = 2;
+							LodestoneChecked[i + 1][j - 1] = 1; joff = -1;
 							LodestoneChecked[i + 2][j] = 1;
 							
 						} else if ((b[0] + b[3] + b[4] + b[5] + b[8] + b[9] + b[10] + b[11]).equals("00100110")) {
-							WallsAndObjects[i + 1][j - 1] = nameToID.get("Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 2x3 3");
-							LodestoneChecked[i + 1][j] = 1;
+							objname = "Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 2x3 3";
+							LodestoneChecked[i + 1][j] = 1;		ioff = 2;
 							LodestoneChecked[i + 2][j] = 1;
 							LodestoneChecked[i + 2][j + 1] = 1;
 						
 						} else if ((b[0] + b[1] + b[3] + b[4] + b[5] + b[8] + b[9] + b[10]).equals("10010010")) {
-							WallsAndObjects[i + 1][j - 1] = nameToID.get("Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 2x3 4");
-							LodestoneChecked[i][j + 1] = 1;
+							objname = "Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 2x3 4";
+							LodestoneChecked[i][j + 1] = 1;		ioff = 2;
 							LodestoneChecked[i + 1][j] = 1;
 							LodestoneChecked[i + 2][j] = 1;
 							
 						} else if ((b[0] + b[3] + b[4] + b[5] + b[7] + b[8] + b[9] + b[10]).equals("00100110")) {
-							WallsAndObjects[i + 1][j - 2] = nameToID.get("Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 2x3 5");
-							LodestoneChecked[i + 1][j] = 1;
-							LodestoneChecked[i + 2][j] = 1;
+							objname = "Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 2x3 5";
+							LodestoneChecked[i + 1][j] = 1;		ioff = 2;
+							LodestoneChecked[i + 2][j] = 1;		joff = -1;
 							LodestoneChecked[i + 2][j - 1] = 1;
 						
 						} else if ((b[0] + b[1] + b[4] + b[5] + b[6] + b[9] + b[10] + b[11]).equals("10010010")) {
-							if (WallsAndObjects[i + 1][j - 1] == -1) {
-								WallsAndObjects[i + 1][j - 1] = nameToID.get("Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 2x3 6");
-							} else {
-								hasCollision = true;
-								Collision[i + 1][j - 1] = nameToID.get("Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 2x3 6");
-							}
-							LodestoneChecked[i][j + 1] = 1;
+							objname = "Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 2x3 6";
+							LodestoneChecked[i][j + 1] = 1;		ioff = 2;
 							LodestoneChecked[i + 1][j + 1] = 1;
 							LodestoneChecked[i + 2][j + 1] = 1;
 							
 						} else if ((b[0] + b[3] + b[4] + b[5] + b[6] + b[9] + b[10] + b[11]).equals("00110010")) {
-							if (WallsAndObjects[i + 1][j - 1] != -1) {
-								WallsAndObjects[i + 1][j - 1] = nameToID.get("Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 2x3 7");
-							} else {
-								hasCollision = true;
-								Collision[i + 1][j - 1] = nameToID.get("Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 2x3 7");
-							}
-							LodestoneChecked[i + 1][j] = 1;
+							objname = "Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 2x3 7";
+							LodestoneChecked[i + 1][j] = 1;		ioff = 2;
 							LodestoneChecked[i + 1][j + 1] = 1;
 							LodestoneChecked[i + 2][j + 1] = 1;
 							
 						} else if ((b[0] + b[2] + b[3] + b[4] + b[5] + b[7] + b[8] + b[9]).equals("00110010")) {
-							WallsAndObjects[i + 1][j - 2] = nameToID.get("Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 2x3 8");
-							LodestoneChecked[i + 1][j] = 1;
-							LodestoneChecked[i + 1][j - 1] = 1;
+							objname = "Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 2x3 8";
+							LodestoneChecked[i + 1][j] = 1;		ioff = 2;
+							LodestoneChecked[i + 1][j - 1] = 1;	joff = -1;
 							LodestoneChecked[i + 2][j - 1] = 1;
 						
 						} else if ((b[0] + b[1] + b[3] + b[4] + b[5] + b[8] + b[9] + b[10] + b[11]).equals("100100110")) {
-							WallsAndObjects[i + 1][j - 1] = nameToID.get("Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 2x3 9");
-							LodestoneChecked[i][j + 1] = 1;
+							objname = "Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 2x3 9";
+							LodestoneChecked[i][j + 1] = 1;		ioff = 2;
 							LodestoneChecked[i + 1][j] = 1;
 							LodestoneChecked[i + 2][j] = 1;
 							LodestoneChecked[i + 2][j + 1] = 1;
 						
 						} else if ((b[0] + b[1] + b[4] + b[5] + b[6] + b[8] + b[9] + b[10] + b[11]).equals("100100110")) {
-							WallsAndObjects[i + 1][j - 1] = nameToID.get("Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 2x3 10");
-							LodestoneChecked[i][j + 1] = 1;
+							objname = "Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 2x3 10";
+							LodestoneChecked[i][j + 1] = 1;		ioff = 2;
 							LodestoneChecked[i + 1][j + 1] = 1;
 							LodestoneChecked[i + 2][j + 1] = 1;
 							LodestoneChecked[i + 2][j] = 1;
 						
 						} else if ((b[0] + b[1] + b[3] + b[4] + b[5] + b[6] + b[8] + b[9] + b[10]).equals("100110010")) {
-							WallsAndObjects[i + 1][j - 1] = nameToID.get("Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 2x3 11");
-							LodestoneChecked[i][j + 1] = 1;
+							objname = "Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 2x3 11";
+							LodestoneChecked[i][j + 1] = 1;		ioff = 2;
 							LodestoneChecked[i + 1][j] = 1;
 							LodestoneChecked[i + 1][j + 1] = 1;
 							LodestoneChecked[i + 2][j] = 1;
 						
 						} else if ((b[0] + b[1] + b[3] + b[4] + b[5] + b[6] + b[9] + b[10] + b[11]).equals("100110010")) {
-							if (WallsAndObjects[i + 1][j - 1] == -1) {
-								WallsAndObjects[i + 1][j - 1] = nameToID.get("Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 2x3 12");
-							} else {
-								hasCollision = true;
-								Collision[i + 1][j - 1] = nameToID.get("Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 2x3 12");
-							}
-							LodestoneChecked[i][j + 1] = 1;
+							objname = "Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 2x3 12";
+							LodestoneChecked[i][j + 1] = 1;		ioff = 2;
 							LodestoneChecked[i + 1][j] = 1;
 							LodestoneChecked[i + 1][j + 1] = 1;
 							LodestoneChecked[i + 2][j + 1] = 1;
 							
 						} else if ((b[0] + b[3] + b[4] + b[5] + b[6] + b[8] + b[9] + b[10] + b[11]).equals("001100110")) {
-							WallsAndObjects[i + 1][j - 1] = nameToID.get("Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 2x3 13");
-							LodestoneChecked[i + 1][j] = 1;
+							objname = "Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 2x3 13";
+							LodestoneChecked[i + 1][j] = 1;		ioff = 2;
 							LodestoneChecked[i + 1][j + 1] = 1;
 							LodestoneChecked[i + 2][j] = 1;
 							LodestoneChecked[i + 2][j + 1] = 1;
 						
 						} else if ((b[0] + b[2] + b[3] + b[4] + b[5] + b[7] + b[8] + b[9] + b[10]).equals("001100110")) {
-							WallsAndObjects[i + 1][j - 2] = nameToID.get("Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 2x3 14");
-							LodestoneChecked[i + 1][j] = 1;
-							LodestoneChecked[i + 1][j - 1] = 1;
+							objname = "Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 2x3 14";
+							LodestoneChecked[i + 1][j] = 1;		ioff = 2;
+							LodestoneChecked[i + 1][j - 1] = 1;	joff = -1;
 							LodestoneChecked[i + 2][j] = 1;
 							LodestoneChecked[i + 2][j - 1] = 1;
 						
 						} else if ((b[0] + b[1] + b[4] + b[5] + b[6]).equals("11000")) {
-							WallsAndObjects[i - 1][j - 1] = nameToID.get("Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 3x1 1");
+							objname = "Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 3x1 1";
 							LodestoneChecked[i][j + 1] = 1;
 							LodestoneChecked[i][j + 2] = 1;
 						
 						} else if ((b[0] + b[2] + b[3] + b[4] + b[5] + b[6] + b[8] + b[9] + b[10]).equals("001110000")) {
-							WallsAndObjects[i][j - 2] = nameToID.get("Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 3x2 1");
-							LodestoneChecked[i + 1][j - 1] = 1;
-							LodestoneChecked[i + 1][j] = 1;
+							objname = "Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 3x2 1";
+							LodestoneChecked[i + 1][j - 1] = 1;	ioff = 1;
+							LodestoneChecked[i + 1][j] = 1;     joff = -1;
 							LodestoneChecked[i + 1][j + 1] = 1;
 						
 						} else if ((b[0] + b[1] + b[4] + b[5] + b[6] + b[10]).equals("110100")) {
-							if (WallsAndObjects[i][j - 1] == -1) {
-								WallsAndObjects[i][j - 1] = nameToID.get("Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 3x2 2");
-							} else {
-								hasCollision = true;
-								Collision[i][j - 1] = nameToID.get("Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 3x2 2");
-							}
-							LodestoneChecked[i][j + 1] = 1;
+							objname = "Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 3x2 2";
+							LodestoneChecked[i][j + 1] = 1;		ioff = 1;
 							LodestoneChecked[i][j + 2] = 1;
 							LodestoneChecked[i + 1][j + 1] = 1;
 							
 						} else if ((b[0] + b[1] + b[3] + b[4] + b[5] + b[6] + b[9]).equals("1101000")) {
-							WallsAndObjects[i][j - 1] = nameToID.get("Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 3x2 3");
-							LodestoneChecked[i][j + 1] = 1;
+							objname = "Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 3x2 3";
+							LodestoneChecked[i][j + 1] = 1;		ioff = 1;
 							LodestoneChecked[i][j + 2] = 1;
 							LodestoneChecked[i + 1][j] = 1;
 						
 						} else if ((b[0] + b[1] + b[4] + b[5] + b[6] + b[11]).equals("110010")) {
-							if (WallsAndObjects[i][j - 1] == -1) {
-								WallsAndObjects[i][j - 1] = nameToID.get("Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 3x2 4");
-							} else {
-								hasCollision = true;
-								Collision[i][j - 1] = nameToID.get("Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 3x2 4");
-							}
-							LodestoneChecked[i][j + 1] = 1;
+							objname = "Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 3x2 4";
+							LodestoneChecked[i][j + 1] = 1;		ioff = 1;
 							LodestoneChecked[i][j + 2] = 1;
 							LodestoneChecked[i + 1][j + 2] = 1;
 							
 						} else if ((b[0] + b[1] + b[3] + b[4] + b[5] + b[6] + b[9] + b[10] + b[11]).equals("000111000")) {
-							WallsAndObjects[i][j - 1] = nameToID.get("Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 3x2 5");
-							LodestoneChecked[i + 1][j] = 1;
+							objname = "Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 3x2 5";
+							LodestoneChecked[i + 1][j] = 1;		ioff = 1;
 							LodestoneChecked[i + 1][j + 1] = 1;
 							LodestoneChecked[i + 1][j + 2] = 1;
 						
 						} else if ((b[0] + b[2] + b[3] + b[4] + b[5] + b[7] + b[8] + b[9]).equals("01110000")) {
-							WallsAndObjects[i][j - 3] = nameToID.get("Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 3x2 6");
-							LodestoneChecked[i + 1][j - 2] = 1;
-							LodestoneChecked[i + 1][j - 1] = 1;
+							objname = "Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 3x2 6";
+							LodestoneChecked[i + 1][j - 2] = 1;	ioff = 1;
+							LodestoneChecked[i + 1][j - 1] = 1;	joff = -2;
 							LodestoneChecked[i + 1][j] = 1;
 						
 						} else if ((b[0] + b[1] + b[4] + b[5] + b[6] + b[10] + b[11]).equals("1001100")) {
-							if (WallsAndObjects[i][j - 1] == -1) {
-								WallsAndObjects[i][j - 1] = nameToID.get("Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 3x2 7");
-							} else {
-								hasCollision = true;
-								Collision[i][j - 1] = nameToID.get("Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 3x2 7");
-							}
-							LodestoneChecked[i][j + 1] = 1;
+							objname = "Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 3x2 7";
+							LodestoneChecked[i][j + 1] = 1;		ioff = 1;
 							LodestoneChecked[i + 1][j + 1] = 1;
 							LodestoneChecked[i + 1][j + 2] = 1;
 							
 						} else if ((b[0] + b[1] + b[2] + b[3] + b[4] + b[5] + b[8] + b[9]).equals("10011000")) {
-							WallsAndObjects[i][j - 2] = nameToID.get("Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 3x2 8");
-							LodestoneChecked[i][j + 1] = 1;
-							LodestoneChecked[i + 1][j] = 1;
+							objname = "Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 3x2 8";
+							LodestoneChecked[i][j + 1] = 1;		ioff = 1;
+							LodestoneChecked[i + 1][j] = 1;		joff = -1;
 							LodestoneChecked[i + 1][j - 1] = 1;
 						
 						} else if ((b[0] + b[1] + b[3] + b[4] + b[5] + b[6] + b[9] + b[11]).equals("11010100")) {
-							WallsAndObjects[i][j - 1] = nameToID.get("Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 3x2 9");
-							LodestoneChecked[i + 1][j] = 1;
+							objname = "Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 3x2 9";
+							LodestoneChecked[i + 1][j] = 1;		ioff = 1;
 							LodestoneChecked[i][j + 1] = 1;
 							LodestoneChecked[i][j + 2] = 1;
 							LodestoneChecked[i + 1][j + 2] = 1;
 						
 						} else if ((b[0] + b[1] + b[3] + b[4] + b[5] + b[6] + b[9] + b[10] + b[11]).equals("010111000")) {
-							WallsAndObjects[i][j - 1] = nameToID.get("Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 3x2 10");
-							LodestoneChecked[i + 1][j] = 1;
+							objname = "Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 3x2 10";
+							LodestoneChecked[i + 1][j] = 1;		ioff = 1;
 							LodestoneChecked[i + 1][j + 1] = 1;
 							LodestoneChecked[i + 1][j + 2] = 1;
 							LodestoneChecked[i][j + 2] = 1;
 						
 						} else if ((b[0] + b[1] + b[3] + b[4] + b[5] + b[6] + b[9] + b[10]).equals("11011000")) {
-							WallsAndObjects[i][j - 1] = nameToID.get("Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 3x2 11");
-							LodestoneChecked[i][j + 1] = 1;
+							objname = "Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 3x2 11";
+							LodestoneChecked[i][j + 1] = 1;		ioff = 1;
 							LodestoneChecked[i][j + 2] = 1;
 							LodestoneChecked[i + 1][j] = 1;
 							LodestoneChecked[i + 1][j + 1] = 1;
 						
 						} else if ((b[0] + b[1] + b[4] + b[5] + b[6] + b[10] + b[11]).equals("1101100")) {
-							if (WallsAndObjects[i][j - 1] == -1) {
-								WallsAndObjects[i][j - 1] = nameToID.get("Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 3x2 12");
-							} else {
-								hasCollision = true;
-								Collision[i][j - 1] = nameToID.get("Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 3x2 12");
-							}
-							LodestoneChecked[i][j + 1] = 1;
+							objname = "Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 3x2 12";
+							LodestoneChecked[i][j + 1] = 1;		ioff = 1;
 							LodestoneChecked[i][j + 2] = 1;
 							LodestoneChecked[i + 1][j + 1] = 1;
 							LodestoneChecked[i + 1][j + 2] = 1;
 							
 						} else if ((b[0] + b[1] + b[3] + b[4] + b[5] + b[6] + b[9] + b[10] + b[11]).equals("100111000")) {
-							WallsAndObjects[i][j - 1] = nameToID.get("Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 3x2 13");
-							LodestoneChecked[i][j + 1] = 1;
+							objname = "Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 3x2 13";
+							LodestoneChecked[i][j + 1] = 1;		ioff = 1;
 							LodestoneChecked[i + 1][j] = 1;
 							LodestoneChecked[i + 1][j + 1] = 1;
 							LodestoneChecked[i + 1][j + 2] = 1;
 						
 						} else if ((b[0] + b[1] + b[2] + b[3] + b[4] + b[5] + b[6] + b[8] + b[9] + b[10]).equals("1001110000")) {
-							WallsAndObjects[i][j - 2] = nameToID.get("Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 3x2 14");
-							LodestoneChecked[i][j + 1] = 1;
-							LodestoneChecked[i + 1][j - 1] = 1;
+							objname = "Lodestone (" + ((value < 91) ? "Unp" : "P") + "ushable) 3x2 14";
+							LodestoneChecked[i][j + 1] = 1;		ioff = 1;
+							LodestoneChecked[i + 1][j - 1] = 1;	joff = -1;
 							LodestoneChecked[i + 1][j] = 1;
 							LodestoneChecked[i + 1][j + 1] = 1;
 						}
+						Objects.add(new Object(objname, "prop", i + ioff, j + joff));
+						lastobjectid++;
 					} LodestoneChecked[i][j] = 1;
 				}
 			}
 		}
 		
 		// Refer to function
-		writeGraphics(writer, cols, rows);
+		writeGraphics(writer, cols, rows, lastobjectid);
 		
 		
 		// Floor layer
-		writer.println(" <layer name=\"Floor\" width=\"" + cols + "\" height=\"" + rows + "\">\r\n" + 
+		writer.println(" <layer name=\"Floor\" width=\"" + cols + "\" height=\"" + rows + "\">\n" + 
 					   "  <data encoding=\"csv\">");
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < cols; j++) {
 				writer.print((Floor[i][j] + 1));
 				if (i != rows - 1 || j != cols - 1) writer.print(",");
 			} writer.println();
-		} writer.println("</data>\r\n" + 
-					     " </layer>\r\n");
+		} writer.println("</data>\n" + 
+					     " </layer>\n");
 		
 		
 		// Floor decor layer
-		writer.println(" <layer name=\"Floor Decorations\" width=\"" + cols + "\" height=\"" + rows + "\">\r\n" + 
+		writer.println(" <layer name=\"Floor Decorations\" width=\"" + cols + "\" height=\"" + rows + "\">\n" + 
 					   "  <data encoding=\"csv\">");
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < cols; j++) {
 				writer.print((FloorDeco[i][j] + 1));
 				if (i != rows - 1 || j != cols - 1) writer.print(",");
 			} writer.println();
-		} writer.println("</data>\r\n" + 
-					     " </layer>\r\n");
-		
-		
-		// Floor decor layer 2
-		writer.println(" <layer name=\"Floor Decorations 2\" width=\"" + cols + "\" height=\"" + rows + "\">\r\n" + 
-					   "  <data encoding=\"csv\">");
-		for (int i = 0; i < rows; i++) {
-			for (int j = 0; j < cols; j++) {
-				writer.print((FloorDeco2[i][j] + 1));
-				if (i != rows - 1 || j != cols - 1) writer.print(",");
-			} writer.println();
-		} writer.println("</data>\r\n" + 
-					     " </layer>\r\n");
+		} writer.println("</data>\n" + 
+					     " </layer>\n");
 		
 		
 		// Walls and Objects layer
-		writer.println(" <layer name=\"Walls and Objects\" width=\"" + cols + "\" height=\"" + rows + "\">\r\n" + 
+		writer.println(" <layer name=\"Walls and Objects\" width=\"" + cols + "\" height=\"" + rows + "\">\n" + 
 					   "  <data encoding=\"csv\">");
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < cols; j++) {
 				writer.print((WallsAndObjects[i][j] + 1));
 				if (i != rows - 1 || j != cols - 1) writer.print(",");
 			} writer.println();
-		} writer.println("</data>\r\n" + 
+		} writer.println("</data>\n" + 
 					     " </layer>");
 		
 		
 		// Walls Deco Layer
-		writer.println(" <layer name=\"Walls Deco\" width=\"" + cols + "\" height=\"" + rows + "\">\r\n" + 
+		writer.println(" <layer name=\"Walls Deco\" width=\"" + cols + "\" height=\"" + rows + "\">\n" + 
 					   "  <data encoding=\"csv\">");
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < cols; j++) {
 				writer.print((WallDeco[i][j] + 1));
 				if (i != rows - 1 || j != cols - 1) writer.print(",");
 			} writer.println();
-		} writer.println("</data>\r\n" + 
+		} writer.println("</data>\n" + 
 					     " </layer>");
 		
 		
 		// Collision layer
 		if (hasCollision) {
-			writer.println(" <layer name=\"Collision\" width=\"" + cols + "\" height=\"" + rows + "\">\r\n" + 
+			writer.println(" <layer name=\"Collision\" width=\"" + cols + "\" height=\"" + rows + "\">\n" + 
 						   "  <data encoding=\"csv\">");
 			for (int i = 0; i < rows; i++) {
 				for (int j = 0; j < cols; j++) {
 					writer.print((Collision[i][j] + 1));
 					if (i != rows - 1 || j != cols - 1) writer.print(",");
 				} writer.println();
-			} writer.println("</data>\r\n" + 
-						     " </layer>\r\n");
+			} writer.println("</data>\n" + 
+						     " </layer>\n");
 		}
 		
+		
+		// Objects Layer
+		writer.println(" <objectgroup name=\"Objects\">");
+		int n = 0;
+		List<String> buttons1 = new ArrayList<String>();
+		List<String> buttons2 = new ArrayList<String>();
+		//Arrays.fill(buttons1, "#Bu " + generateName() + "@On");
+		Collections.sort(Objects);
+		for (Object object : Objects) {
+			int width  = object.block.dimensions[0];
+			int height = object.block.dimensions[1];
+			String currName = object.name.substring(0, 2) + " (" + generateName() + ")";
+			if (object.name.contains("Button 1")) 		buttons1.add("#" + currName + "@On");
+			else if (object.name.contains("Button 2")) 	buttons2.add("#" + currName + "@On");
+			writer.println(
+					"  <object id=\"" + n++ + 
+					(object.name.equals("") ? "" : "\" name=\"" + currName) +
+					"\" gid=\"" + (nameToID.get(object.name.split(" \\([0-9a-z]+\\)$")[0]) + 1) + 
+					"\" x=\"" + ((object.j - 1) * 32) + 
+					"\" y=\"" + ((object.i) * 32)+ 
+					"\" width=\"" + width + 
+					"\" height=\"" + height + 
+					"\"/>");
+			
+			// Has some properties
+			if (!object.properties.equals("")) {
+				// If its a contraption, properties are ignored as it is procedurally generated
+				if (object.name.contains("Contraption")) {
+					int whichSet = Integer.parseInt(object.name.split(" ")[1]);
+					String open = "";
+					if (whichSet == 1) {
+						open += String.join(" AND ", buttons1.toArray(new String[buttons1.size()]));
+					} else if (whichSet == 2) {
+						open += String.join(" AND ", buttons2.toArray(new String[buttons2.size()]));
+					}
+					writer.println(
+						"   <properties>\n" + 
+						"    <property name=\"+Open\" value=\"" + open + "\"/>\n" + 
+						"   </properties>");
+				}
+			}
+		} writer.println(" </objectgroup>");
+				
 		// Ambience (Underground - Darker)
 		if (whichWallSet == 2) {
-			writer.println(" <layer name=\"Ambience\" width=\"" + cols + "\" height=\"" + rows + "\">\r\n" + 
+			writer.println(" <layer name=\"Ambience\" width=\"" + cols + "\" height=\"" + rows + "\">\n" + 
 					       "  <data encoding=\"csv\">");
 			for (int i = 0; i < rows; i++) {
 				for (int j = 0; j < cols; j++) {
 					writer.print(Ambience[i][j] + 1);
 					if (i != rows - 1 || j != cols - 1) writer.print(",");
 				} writer.println();
-			} writer.println("</data>\r\n" + 
-					         " </layer>\r\n");
+			} writer.println("</data>\n" + 
+					         " </layer>\n");
 		}
 		
 		writer.println("</map>");
@@ -1360,6 +1404,10 @@ public class TextToTmx {
 			if 	    (condition.charAt(i) == 88 || input.charAt(i) == 88) 	continue;
 			else if (condition.charAt(i) != input.charAt(i)) 				return false;
 		} return true;
+	}
+	
+	private String generateName() {
+		return "" + nameCount++;
 	}
 	
 	public static void main(String[] args) throws IOException {

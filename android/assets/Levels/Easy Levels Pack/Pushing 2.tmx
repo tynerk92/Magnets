@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="23" tilewidth="32" tileheight="32" nextobjectid="3">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="23" tilewidth="32" tileheight="32" nextobjectid="65">
  <tileset firstgid="1" name="Tileset" tilewidth="96" tileheight="112" tilecount="380" columns="0">
 
   <tile id="0">
@@ -1152,7 +1152,7 @@
     <property name="IsPushable" type="bool" value="true"/>
     <property name="Type" value="Block"/>
    </properties>
-   <image width="32" height="11" source="../../Graphics/Objects/Lodestone (Pushable) 1x3 1 - 1 111.png"/>
+   <image width="32" height="112" source="../../Graphics/Objects/Lodestone (Pushable) 1x3 1 - 1 111.png"/>
   </tile>
 
   <tile id="199">
@@ -2909,17 +2909,17 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,68,0,67,0,0,0,0,0,0,71,0,0,0,0,0,0,0,0,
-0,0,0,0,0,75,0,0,0,0,0,0,0,0,0,0,0,66,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,70,0,0,0,0,0,0,0,74,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,66,0,0,0,0,0,0,71,0,70,0,0,0,0,0,0,0,
-0,0,0,0,0,85,0,0,0,0,0,0,0,71,0,71,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,65,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,90,0,65,76,67,72,0,0,72,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,65,70,0,0,0,0,90,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,72,67,76,0,0,70,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,73,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,71,0,0,0,0,0,0,65,0,0,0,0,0,0,0,0,
+0,0,0,0,0,76,69,74,0,0,0,0,87,0,0,0,0,72,0,0,0,0,0,0,0,
+0,0,0,0,0,71,0,0,0,0,0,0,0,0,0,0,0,68,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,70,0,0,0,74,0,0,0,67,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,91,0,0,76,71,0,0,0,0,0,90,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,75,0,0,0,0,0,0,0,0,0,67,0,70,0,0,0,0,0,0,0,
+0,0,0,0,0,76,0,75,0,76,0,0,0,0,0,74,66,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,72,69,65,66,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,70,0,67,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,71,0,0,0,73,0,0,0,0,71,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,70,0,0,0,0,0,76,0,0,0,0,0,72,0,0,0,0,0,0,0,
+0,0,0,0,0,66,0,0,72,0,0,0,0,71,0,75,69,66,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -2936,19 +2936,19 @@
 168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,
 168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,
 168,168,168,167,169,169,169,169,169,169,169,169,169,169,169,169,169,169,169,166,168,168,168,168,168,
-168,168,168,171,258,0,0,235,235,238,0,235,302,0,235,235,235,0,0,191,168,168,168,168,168,
-168,168,168,171,235,0,0,0,0,0,0,0,0,236,0,0,0,240,0,191,168,168,168,168,168,
-168,168,168,171,0,0,0,0,236,0,0,258,0,0,0,0,235,0,0,191,168,168,168,168,168,
-168,168,168,171,236,0,0,0,235,0,0,0,0,0,0,0,0,0,236,191,168,168,168,168,168,
-168,168,168,171,0,0,237,0,0,0,237,0,0,0,237,0,0,0,235,191,168,168,168,168,168,
-168,168,168,171,236,0,0,0,0,0,0,0,0,0,0,0,237,0,235,191,168,168,168,168,168,
-168,168,168,171,0,0,0,0,236,0,242,0,0,241,0,0,0,0,0,191,168,168,168,168,168,
-168,168,168,171,0,0,236,0,235,0,0,0,0,0,0,0,235,235,236,191,168,168,168,168,168,
-168,168,168,171,237,0,0,0,235,235,235,0,238,0,235,0,235,0,235,191,168,168,168,168,168,
-168,168,168,171,0,0,0,0,0,0,0,194,0,0,0,0,0,0,0,191,168,168,168,168,168,
-168,168,168,171,0,0,236,238,0,235,235,0,258,0,0,0,235,0,236,191,168,168,168,168,168,
-168,168,168,171,237,0,0,0,0,0,0,0,0,0,0,0,0,0,235,191,168,168,168,168,168,
-168,168,168,171,235,235,238,0,238,0,235,235,235,235,238,0,235,235,235,191,168,168,168,168,168,
+168,168,168,171,0,0,0,0,0,0,0,0,302,0,0,0,0,0,0,191,168,168,168,168,168,
+168,168,168,171,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,191,168,168,168,168,168,
+168,168,168,171,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,191,168,168,168,168,168,
+168,168,168,171,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,191,168,168,168,168,168,
+168,168,168,171,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,191,168,168,168,168,168,
+168,168,168,171,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,191,168,168,168,168,168,
+168,168,168,171,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,191,168,168,168,168,168,
+168,168,168,171,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,191,168,168,168,168,168,
+168,168,168,171,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,191,168,168,168,168,168,
+168,168,168,171,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,191,168,168,168,168,168,
+168,168,168,171,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,191,168,168,168,168,168,
+168,168,168,171,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,191,168,168,168,168,168,
+168,168,168,171,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,191,168,168,168,168,168,
 168,168,168,163,184,184,184,184,184,184,184,184,184,184,184,184,184,184,184,155,168,168,168,168,168,
 168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,
 168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,
@@ -2988,7 +2988,7 @@
   <object id="0" name="Bu (0)" gid="273" x="448" y="192" width="32" height="32"/>
   <object id="1" name="Co (1)" gid="276" x="352" y="192" width="32" height="48"/>
    <properties>
-    <property name="+Open" value="#Button 1 State 1@On"/>
+    <property name="+Open" value="#Bu (0)@On"/>
    </properties>
   <object id="2" name="Lo (2)" gid="197" x="352" y="448" width="32" height="48"/>
   <object id="3" name="Lo (3)" gid="235" x="224" y="160" width="32" height="48"/>
@@ -2998,61 +2998,61 @@
   <object id="7" name="Lo (7)" gid="235" x="480" y="160" width="32" height="48"/>
   <object id="8" name="Lo (8)" gid="235" x="512" y="160" width="32" height="48"/>
   <object id="9" name="Lo (9)" gid="235" x="128" y="192" width="32" height="48"/>
-  <object id="10" name="Lo (a)" gid="235" x="512" y="224" width="32" height="48"/>
-  <object id="11" name="Lo (b)" gid="235" x="256" y="256" width="32" height="48"/>
-  <object id="12" name="Lo (c)" gid="235" x="576" y="288" width="32" height="48"/>
-  <object id="13" name="Lo (d)" gid="235" x="576" y="320" width="32" height="48"/>
-  <object id="14" name="Lo (e)" gid="235" x="256" y="384" width="32" height="48"/>
-  <object id="15" name="Lo (f)" gid="235" x="512" y="384" width="32" height="48"/>
-  <object id="16" name="Lo (10)" gid="235" x="544" y="384" width="32" height="48"/>
-  <object id="17" name="Lo (11)" gid="235" x="256" y="416" width="32" height="48"/>
-  <object id="18" name="Lo (12)" gid="235" x="288" y="416" width="32" height="48"/>
-  <object id="19" name="Lo (13)" gid="235" x="320" y="416" width="32" height="48"/>
-  <object id="20" name="Lo (14)" gid="235" x="448" y="416" width="32" height="48"/>
-  <object id="21" name="Lo (15)" gid="235" x="512" y="416" width="32" height="48"/>
-  <object id="22" name="Lo (16)" gid="235" x="576" y="416" width="32" height="48"/>
-  <object id="23" name="Lo (17)" gid="235" x="288" y="480" width="32" height="48"/>
-  <object id="24" name="Lo (18)" gid="235" x="320" y="480" width="32" height="48"/>
-  <object id="25" name="Lo (19)" gid="235" x="512" y="480" width="32" height="48"/>
-  <object id="26" name="Lo (1a)" gid="235" x="576" y="512" width="32" height="48"/>
-  <object id="27" name="Lo (1b)" gid="235" x="128" y="544" width="32" height="48"/>
-  <object id="28" name="Lo (1c)" gid="235" x="160" y="544" width="32" height="48"/>
-  <object id="29" name="Lo (1d)" gid="235" x="320" y="544" width="32" height="48"/>
-  <object id="30" name="Lo (1e)" gid="235" x="352" y="544" width="32" height="48"/>
-  <object id="31" name="Lo (1f)" gid="235" x="384" y="544" width="32" height="48"/>
-  <object id="32" name="Lo (20)" gid="235" x="416" y="544" width="32" height="48"/>
-  <object id="33" name="Lo (21)" gid="235" x="512" y="544" width="32" height="48"/>
-  <object id="34" name="Lo (22)" gid="235" x="544" y="544" width="32" height="48"/>
-  <object id="35" name="Lo (23)" gid="235" x="576" y="544" width="32" height="48"/>
-  <object id="36" name="Lo (24)" gid="236" x="416" y="160" width="32" height="80"/>
-  <object id="37" name="Lo (25)" gid="236" x="256" y="192" width="32" height="80"/>
-  <object id="38" name="Lo (26)" gid="236" x="128" y="224" width="32" height="80"/>
-  <object id="39" name="Lo (27)" gid="236" x="576" y="224" width="32" height="80"/>
-  <object id="40" name="Lo (28)" gid="236" x="128" y="288" width="32" height="80"/>
-  <object id="41" name="Lo (29)" gid="236" x="256" y="320" width="32" height="80"/>
-  <object id="42" name="Lo (2a)" gid="236" x="192" y="352" width="32" height="80"/>
-  <object id="43" name="Lo (2b)" gid="236" x="576" y="352" width="32" height="80"/>
-  <object id="44" name="Lo (2c)" gid="236" x="192" y="448" width="32" height="80"/>
-  <object id="45" name="Lo (2d)" gid="236" x="576" y="448" width="32" height="80"/>
-  <object id="46" name="Lo (2e)" gid="237" x="192" y="224" width="32" height="112"/>
-  <object id="47" name="Lo (2f)" gid="237" x="320" y="224" width="32" height="112"/>
-  <object id="48" name="Lo (30)" gid="237" x="448" y="224" width="32" height="112"/>
-  <object id="49" name="Lo (31)" gid="237" x="512" y="256" width="32" height="112"/>
-  <object id="50" name="Lo (32)" gid="237" x="128" y="352" width="32" height="112"/>
-  <object id="51" name="Lo (33)" gid="237" x="128" y="448" width="32" height="112"/>
-  <object id="52" name="Lo (34)" gid="238" x="288" y="160" width="64" height="48"/>
-  <object id="53" name="Lo (35)" gid="238" x="384" y="416" width="64" height="48"/>
-  <object id="54" name="Lo (36)" gid="238" x="224" y="480" width="64" height="48"/>
-  <object id="55" name="Lo (37)" gid="238" x="192" y="544" width="64" height="48"/>
-  <object id="56" name="Lo (38)" gid="238" x="256" y="544" width="64" height="48"/>
-  <object id="57" name="Lo (39)" gid="238" x="448" y="544" width="64" height="48"/>
-  <object id="58" name="Lo (3a)" gid="240" x="544" y="160" width="64" height="80"/>
-  <object id="59" name="Lo (3b)" gid="241" x="448" y="320" width="64" height="80"/>
-  <object id="60" name="Lo (3c)" gid="242" x="320" y="320" width="64" height="80"/>
-  <object id="61" name="Lo (3d)" gid="258" x="128" y="160" width="96" height="48"/>
-  <object id="62" name="Lo (3e)" gid="258" x="352" y="224" width="96" height="48"/>
-  <object id="63" name="Lo (3f)" gid="258" x="384" y="480" width="96" height="48"/>
-  <object id="64" name="Pl (40)" gid="322" x="384" y="288" width="32" height="48"/>
+  <object id="10" name="Lo (10)" gid="235" x="512" y="224" width="32" height="48"/>
+  <object id="11" name="Lo (11)" gid="235" x="256" y="256" width="32" height="48"/>
+  <object id="12" name="Lo (12)" gid="235" x="576" y="288" width="32" height="48"/>
+  <object id="13" name="Lo (13)" gid="235" x="576" y="320" width="32" height="48"/>
+  <object id="14" name="Lo (14)" gid="235" x="256" y="384" width="32" height="48"/>
+  <object id="15" name="Lo (15)" gid="235" x="512" y="384" width="32" height="48"/>
+  <object id="16" name="Lo (16)" gid="235" x="544" y="384" width="32" height="48"/>
+  <object id="17" name="Lo (17)" gid="235" x="256" y="416" width="32" height="48"/>
+  <object id="18" name="Lo (18)" gid="235" x="288" y="416" width="32" height="48"/>
+  <object id="19" name="Lo (19)" gid="235" x="320" y="416" width="32" height="48"/>
+  <object id="20" name="Lo (20)" gid="235" x="448" y="416" width="32" height="48"/>
+  <object id="21" name="Lo (21)" gid="235" x="512" y="416" width="32" height="48"/>
+  <object id="22" name="Lo (22)" gid="235" x="576" y="416" width="32" height="48"/>
+  <object id="23" name="Lo (23)" gid="235" x="288" y="480" width="32" height="48"/>
+  <object id="24" name="Lo (24)" gid="235" x="320" y="480" width="32" height="48"/>
+  <object id="25" name="Lo (25)" gid="235" x="512" y="480" width="32" height="48"/>
+  <object id="26" name="Lo (26)" gid="235" x="576" y="512" width="32" height="48"/>
+  <object id="27" name="Lo (27)" gid="235" x="128" y="544" width="32" height="48"/>
+  <object id="28" name="Lo (28)" gid="235" x="160" y="544" width="32" height="48"/>
+  <object id="29" name="Lo (29)" gid="235" x="320" y="544" width="32" height="48"/>
+  <object id="30" name="Lo (30)" gid="235" x="352" y="544" width="32" height="48"/>
+  <object id="31" name="Lo (31)" gid="235" x="384" y="544" width="32" height="48"/>
+  <object id="32" name="Lo (32)" gid="235" x="416" y="544" width="32" height="48"/>
+  <object id="33" name="Lo (33)" gid="235" x="512" y="544" width="32" height="48"/>
+  <object id="34" name="Lo (34)" gid="235" x="544" y="544" width="32" height="48"/>
+  <object id="35" name="Lo (35)" gid="235" x="576" y="544" width="32" height="48"/>
+  <object id="36" name="Lo (36)" gid="236" x="416" y="192" width="32" height="80"/>
+  <object id="37" name="Lo (37)" gid="236" x="256" y="224" width="32" height="80"/>
+  <object id="38" name="Lo (38)" gid="236" x="128" y="256" width="32" height="80"/>
+  <object id="39" name="Lo (39)" gid="236" x="576" y="256" width="32" height="80"/>
+  <object id="40" name="Lo (40)" gid="236" x="128" y="320" width="32" height="80"/>
+  <object id="41" name="Lo (41)" gid="236" x="256" y="352" width="32" height="80"/>
+  <object id="42" name="Lo (42)" gid="236" x="192" y="384" width="32" height="80"/>
+  <object id="43" name="Lo (43)" gid="236" x="576" y="384" width="32" height="80"/>
+  <object id="44" name="Lo (44)" gid="236" x="192" y="480" width="32" height="80"/>
+  <object id="45" name="Lo (45)" gid="236" x="576" y="480" width="32" height="80"/>
+  <object id="46" name="Lo (46)" gid="237" x="192" y="288" width="32" height="112"/>
+  <object id="47" name="Lo (47)" gid="237" x="320" y="288" width="32" height="112"/>
+  <object id="48" name="Lo (48)" gid="237" x="448" y="288" width="32" height="112"/>
+  <object id="49" name="Lo (49)" gid="237" x="512" y="320" width="32" height="112"/>
+  <object id="50" name="Lo (50)" gid="237" x="128" y="416" width="32" height="112"/>
+  <object id="51" name="Lo (51)" gid="237" x="128" y="512" width="32" height="112"/>
+  <object id="52" name="Lo (52)" gid="238" x="288" y="160" width="64" height="48"/>
+  <object id="53" name="Lo (53)" gid="238" x="384" y="416" width="64" height="48"/>
+  <object id="54" name="Lo (54)" gid="238" x="224" y="480" width="64" height="48"/>
+  <object id="55" name="Lo (55)" gid="238" x="192" y="544" width="64" height="48"/>
+  <object id="56" name="Lo (56)" gid="238" x="256" y="544" width="64" height="48"/>
+  <object id="57" name="Lo (57)" gid="238" x="448" y="544" width="64" height="48"/>
+  <object id="58" name="Lo (58)" gid="240" x="544" y="192" width="64" height="80"/>
+  <object id="59" name="Lo (59)" gid="241" x="416" y="352" width="64" height="80"/>
+  <object id="60" name="Lo (60)" gid="242" x="320" y="352" width="64" height="80"/>
+  <object id="61" name="Lo (61)" gid="258" x="128" y="160" width="96" height="48"/>
+  <object id="62" name="Lo (62)" gid="258" x="352" y="224" width="96" height="48"/>
+  <object id="63" name="Lo (63)" gid="258" x="384" y="480" width="96" height="48"/>
+  <object id="64" name="Pl (64)" gid="322" x="384" y="288" width="32" height="48"/>
  </objectgroup>
  <layer name="Ambience" width="25" height="23">
   <data encoding="csv">
