@@ -1,0 +1,34 @@
+Log. 
+
+
+SOLVED LEVELS
+Hard - Roundabout
+
+
+IDEAS
+
+Boulder. 
+
+	Blocks that can be pushed, just like the lodestone.
+	For this special type of boulder, it is much easier to be pushed.
+	Therefore, if there are multiple boulders in a row, the player can push all of them at once.
+	Possible ambiguity: If a lodestone lies at the end of that chain, should the player still be able to push the boulders along with the lodestone?
+	
+Bonfire.
+
+	Lights up adjacent tiles.
+	A barrier to the player, but not to blocks.
+	Any object that gets pushed over on top of it will extinguish it.
+	
+Hinged Walls.
+
+	Reference: Kwirk.
+	A multi-tile wall with different states (orientations). 
+	
+When a block is magnetized, the door opens
+
+Blocks against a wall open doors.
+	
+RANDOM
+
+The floor under any object at the start of all levels should be slightly darker to indicate that they have been there for quite long. (Change floor placement algorithm)
