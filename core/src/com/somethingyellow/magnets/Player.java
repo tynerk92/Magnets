@@ -14,32 +14,55 @@ public class Player extends PlayerActor {
 	public static final float MOVE_SPEED = 5f;
 	public static final float TRY_MOVE_DURATION = 0.2f;
 	public static final float TRY_MOVE_DISTANCE = 5f;
-	public static final String STATE_STANDING = "";
+	public static final String STATE_STANDING = "Standing";
 	public static final String STATE_WALKING = "Walking";
+	public static final int[] TICKS = new int[] {
+			PlayScreen.TICKS.FORCES.ordinal(),
+			PlayScreen.TICKS.PLAYER_MOVEMENT.ordinal(),
+			PlayScreen.TICKS.BUTTON_PRESSES.ordinal()
+	};
 
 	public TiledStage.DIRECTION _pushingDirection;
 
-	public Player(int type, boolean[] bodyArea, int bodyWidth, HashMap<String, FrameSequence> animationFrames,
+	public Player(boolean[] bodyArea, int bodyWidth, HashMap<String, FrameSequence> animationFrames,
 	              TiledStage stage, TiledStage.Coordinate origin, int actorDepth) {
-		super(type, bodyArea, bodyWidth, animationFrames, stage, origin, actorDepth);
+		super(bodyArea, bodyWidth, animationFrames, stage, origin, actorDepth);
 		addState(STATE_STANDING);
 		_pushingDirection = null;
 	}
 
 	@Override
 	public void act(int tick) {
-		super.act(tick);
-
 		if (tick == PlayScreen.TICKS.FORCES.ordinal()) {
 
 			checkPushes();
 
 		} else if (tick == PlayScreen.TICKS.PLAYER_MOVEMENT.ordinal()) {
 
-			checkMovement();
+			if (checkMovement()) {
+				if (!hasState(STATE_WALKING)) {
+					addState(STATE_WALKING).removeState(STATE_STANDING);
+				}
+			} else {
+				if (hasState(STATE_WALKING)) {
+					addState(STATE_STANDING).removeState(STATE_WALKING);
+				}
+			}
+
+		} else if (tick == PlayScreen.TICKS.BUTTON_PRESSES.ordinal()) {
+
+			for (TiledStage.Coordinate bodyCoordinate : bodyCoordinates()) {
+				for (TiledStageActor actor : bodyCoordinate.actors()) {
+					if (actor instanceof Button) {
+						Button button = (Button)actor;
+						button.on();
+					}
+				}
+			}
 
 		}
 	}
+
 
 	private boolean checkPushes() {
 		if (!isMoving()) {
@@ -73,9 +96,11 @@ public class Player extends PlayerActor {
 			if (isKeyRightHeld()) return moveDirection(TiledStage.DIRECTION.EAST);
 			if (isKeyUpHeld()) return moveDirection(TiledStage.DIRECTION.NORTH);
 			if (isKeyDownHeld()) return moveDirection(TiledStage.DIRECTION.SOUTH);
-		}
 
-		return false;
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 	protected boolean pushDirection(final TiledStage.DIRECTION direction) {
@@ -97,7 +122,6 @@ public class Player extends PlayerActor {
 
 	protected boolean moveDirection(TiledStage.DIRECTION direction) {
 		if (moveDirection(direction, 1 / MOVE_SPEED)) {
-			addState(STATE_WALKING).removeState(STATE_STANDING);
 			return true;
 		} else {
 			if (!isMoving()) {
@@ -125,14 +149,12 @@ public class Player extends PlayerActor {
 
 	@Override
 	public boolean bodyCanBeAt(TiledStage.Coordinate coordinate) {
-		if (!super.bodyCanBeAt(coordinate)) return false;
 		if (coordinate.getTileProp(PlayScreen.LAYER_ACTORS, PlayScreen.TILE_TYPE, "").equals(PlayScreen.TILE_TYPE_WALL))
 			return false;
 		for (TiledStageActor actor : coordinate.actors()) {
 			if (actor == this) continue;
-			if (actor.type() == PlayScreen.OBJECT_TYPES.PLAYER.ordinal() ||
-					actor.type() == PlayScreen.OBJECT_TYPES.BLOCK.ordinal() ||
-					actor.type() == PlayScreen.OBJECT_TYPES.MAGNETIC_SOURCE.ordinal()) return false;
+			if (actor instanceof  Player || actor instanceof  Block || actor instanceof  MagneticSource ||
+					(actor instanceof Door && !((Door)actor).isOpen())) return false;
 		}
 
 		return true;
@@ -151,4 +173,11 @@ public class Player extends PlayerActor {
 		return true;
 	}
 
+	// get/set
+	// ---------
+
+	@Override
+	public int[] TICKS() {
+		return TICKS;
+	}
 }

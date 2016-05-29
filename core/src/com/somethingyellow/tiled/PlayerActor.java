@@ -9,16 +9,16 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 
 import java.util.HashMap;
 
-public class PlayerActor extends TiledStageActor implements EventListener {
+public abstract class PlayerActor extends TiledStageActor implements EventListener {
 	private static final Vector2 TempCoords = new Vector2();
 	private boolean _isKeyLeftHeld = false;
 	private boolean _isKeyRightHeld = false;
 	private boolean _isKeyUpHeld = false;
 	private boolean _isKeyDownHeld = false;
 
-	public PlayerActor(int type, boolean[] bodyArea, int bodyWidth, HashMap<String, FrameSequence> animationFrames,
+	public PlayerActor(boolean[] bodyArea, int bodyWidth, HashMap<String, FrameSequence> animationFrames,
 	                   TiledStage stage, TiledStage.Coordinate origin, int actorDepth) {
-		super(type, bodyArea, bodyWidth, animationFrames, stage, origin, actorDepth);
+		super(bodyArea, bodyWidth, animationFrames, stage, origin, actorDepth);
 		addListener(this);
 	}
 

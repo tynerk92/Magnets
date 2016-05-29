@@ -40,7 +40,6 @@ public class TiledStageMapRenderer extends BatchTiledMapRenderer {
 	private TiledStage _stage;
 	private String _actorsLayerName;
 	private ArrayList<HashSet<TiledStageActor>> _actorsOnCoordinates;
-	private HashMap<TiledStageActor, TiledStage.Coordinate> _actorOrigins = new HashMap<TiledStageActor, TiledStage.Coordinate>();
 
 	public TiledStageMapRenderer(TiledStage stage, TiledMap map, String actorsLayerName) {
 		super(map);
@@ -122,7 +121,7 @@ public class TiledStageMapRenderer extends BatchTiledMapRenderer {
 
 				// In ascending actor depth
 				for (TiledStageActor actor : actors) {
-					TiledStage.Coordinate renderOrigin = _actorOrigins.get(actor);
+					TiledStage.Coordinate renderOrigin = getRenderOrigin(actor);
 					bodyCoordinates = actor.getBodyCoordinates(renderOrigin);
 
 					for (TiledStage.Coordinate coordinate : bodyCoordinates) {
@@ -297,18 +296,15 @@ public class TiledStageMapRenderer extends BatchTiledMapRenderer {
 			_actorsOnCoordinates.get(i).clear();
 		}
 
-		Iterator<TiledStageActor> actorsIterator = _stage.actorsIterator();
-
-		while (actorsIterator.hasNext()) {
-			TiledStageActor actor = actorsIterator.next();
-			TiledStage.Coordinate renderOrigin = _stage.getCoordinateAt(actor.getX(), actor.getY());
-			if (renderOrigin == null) renderOrigin = actor.origin();
-
-			_actorOrigins.put(actor, renderOrigin);
-
-			for (TiledStage.Coordinate bodyCoordinate : actor.getBodyCoordinates(renderOrigin)) {
+		for (TiledStageActor actor : _stage.actors()) {
+			for (TiledStage.Coordinate bodyCoordinate : actor.getBodyCoordinates(getRenderOrigin(actor))) {
 				_actorsOnCoordinates.get(bodyCoordinate.row() * _stage.tileColumns() + bodyCoordinate.column()).add(actor);
 			}
 		}
+	}
+
+	private TiledStage.Coordinate getRenderOrigin(TiledStageActor actor) {
+		TiledStage.Coordinate renderOrigin = _stage.getCoordinateAt(actor.getX(), actor.getY());
+		return (renderOrigin == null) ? actor.origin() : renderOrigin;
 	}
 }

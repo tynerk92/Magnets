@@ -8,6 +8,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 
+import com.somethingyellow.LogicMachine;
 import com.somethingyellow.tiled.*;
 
 import java.util.ArrayList;
@@ -20,14 +21,23 @@ public class PlayScreen implements Screen {
 	public static final String LAYER_ACTORS = "Walls and Objects";
 	// Tile properties
 	public static final String TILE_TYPE = "Type";
-	public static final String TILE_NAME = "Name";
+	public static final String TILE_REFERENCE = "~";
+	public static final String TILE_STATE = "@";
+	public static final String TILE_NAME = "#";
+	public static final String TILE_ACTION = "+";
+	public static final String TILE_EXPRESSION_AND = "AND";
+	public static final String TILE_EXPRESSION_OR = "OR";
+	public static final String TILE_EXPRESSION_NOT = "!";
 	public static final String TILE_TYPE_PLAYER = "Player";
 	public static final String TILE_TYPE_BLOCK = "Block";
 	public static final String TILE_TYPE_MAGNETIC_SOURCE = "Magnetic Source";
 	public static final String TILE_TYPE_MAGNETIC_FLOOR = "Magnetic Floor";
+	public static final String TILE_TYPE_DOOR = "Door";
+	public static final String TILE_TYPE_BUTTON = "Button";
 	public static final String TILE_TYPE_WALL = "Wall";
 	public static final String TILE_ISPUSHABLE = "IsPushable";
 	public static final String TILE_ISMAGNETISABLE = "IsMagnetisable";
+	public static final String TILE_ISOPEN = "IsOpen";
 	public static final String TILE_BODY_WIDTH = "Body Width";
 	public static final String TILE_BODY_AREA = "Body Area";
 	public static final String TILE_THIS = "(this)";
@@ -35,11 +45,13 @@ public class PlayScreen implements Screen {
 	public static final String TILE_FRAME_DEPTH = "Frame Depth";
 	public boolean DEBUG_MODE = false;
 	// Paths/Textures
-	private String _levelPath = "Levels/Medium Levels Pack/Chain.tmx";
+	private String _levelPath = "Levels/Easy Levels Pack/Buttons.tmx";
 	private TiledStage _tiledStage;
 	private PlayerActor _playerActor;
-	private HashMap<String, TiledMapTile> _tilesByName;
-	private HashMap<TiledMapTile, ArrayList<TiledStageActor.Frame>> _tileFramesByName;
+	private HashMap<String, TiledMapTile> _tilesByReference;
+	private HashMap<TiledMapTile, ArrayList<TiledStageActor.Frame>> _tileFramesByTile;
+	private LogicMachine _logicMachine;
+
 	// Debugging tools
 	private FPSLogger _fpsLogger = new FPSLogger();
 
@@ -84,6 +96,10 @@ public class PlayScreen implements Screen {
 		return TiledStage.ParseIntegerProp(tile.getProperties(), TILE_ACTOR_DEPTH, 0);
 	}
 
+	public static boolean ExtractIsOpen(TiledMapTile tile) {
+		return TiledStage.ParseBooleanProp(tile.getProperties(), TILE_ISOPEN, false);
+	}
+
 	public HashMap<String, TiledStageActor.FrameSequence> getAnimations(TiledMapTile tile) {
 		HashMap<String, TiledStageActor.FrameSequence> animationFrames = new HashMap<String, TiledStageActor.FrameSequence>();
 		Iterator<String> props = tile.getProperties().getKeys();
@@ -91,23 +107,108 @@ public class PlayScreen implements Screen {
 		while (props.hasNext()) {
 			String prop = props.next();
 
-			if (prop.charAt(0) == '#') {
-				String name = TiledStage.ParseProp(tile.getProperties(), prop);
-
+			if (prop.indexOf(TILE_STATE) == 0) {
 				TiledMapTile animationTile = tile;
-				if (!name.equals(TILE_THIS)) {
-					animationTile = _tilesByName.get(name);
+
+				String reference = TiledStage.ParseProp(tile.getProperties(), prop);
+				if (!reference.equals(TILE_THIS)) {
+					if (reference.indexOf(TILE_REFERENCE) == 0) {
+						animationTile = _tilesByReference.get(reference.substring(TILE_REFERENCE.length()));
+					} else {
+						throw new IllegalArgumentException("Property '" + prop + "' should either be '" + TILE_THIS + "' or '" + TILE_REFERENCE + "tileReference'!");
+					}
 				}
 
-				if (!_tileFramesByName.containsKey(animationTile)) {
-					_tileFramesByName.put(animationTile, TiledStageActor.FrameSequence.TileToFrames(animationTile));
+				if (!_tileFramesByTile.containsKey(animationTile)) {
+					_tileFramesByTile.put(animationTile, TiledStageActor.FrameSequence.TileToFrames(animationTile));
 				}
 
-				animationFrames.put(prop.substring(1), new TiledStageActor.FrameSequence(_tileFramesByName.get(animationTile), ExtractFrameDepth(tile)));
+				animationFrames.put(prop.substring(TILE_STATE.length()),
+						new TiledStageActor.FrameSequence(_tileFramesByTile.get(animationTile), ExtractFrameDepth(tile)));
 			}
 		}
 
 		return animationFrames;
+	}
+
+	public void processActions(final TiledStageActor actor, TiledStage.TiledObject object) {
+		Iterator<String> props = object.properties().getKeys();
+		while (props.hasNext()) {
+			String prop = props.next();
+
+			if (prop.indexOf(TILE_ACTION) == 0) {
+				final String action = prop.substring(TILE_ACTION.length());
+
+				String expression = TiledStage.ParseProp(object.properties(), prop);
+				final String actionName = TILE_NAME + actor.getName() + TILE_ACTION + action;
+
+				// Replace and/or/not and add statement to logicmachine
+				expression = expression.replace(TILE_EXPRESSION_AND, LogicMachine.TERM_AND).
+						replace(TILE_EXPRESSION_OR, LogicMachine.TERM_OR).
+						replace(TILE_EXPRESSION_NOT, LogicMachine.TERM_NOT);
+
+				expression += " " + LogicMachine.TERM_IMPLY + " " + actionName;
+				System.out.println(expression);
+				LogicMachine.Statement statement = _logicMachine.addStatement(expression);
+
+				// Hook premises of actor states to actor
+				for (final LogicMachine.Predicate predicate : statement.premises()) {
+					if (predicate.name().indexOf(TILE_NAME) != 0) {
+						throw new IllegalArgumentException("Property '" + prop + "' should be a valid expression! Predicate " + predicate.name() + " should be prefixed with an actor's name.");
+					}
+
+					String[] parts = predicate.name().substring(TILE_NAME.length()).split(TILE_STATE);
+					if (parts.length != 2)
+						throw new IllegalArgumentException("Property '" + prop + "' should be a valid expression! Predicate " + predicate.name() + " should point to the actor's state.");
+
+					TiledStageActor predActor = _tiledStage.getActor(parts[0]);
+					if (predActor == null)
+						throw new IllegalArgumentException("Property '" + prop + "' should be a valid expression! Predicate " + predicate.name() + " should point a non-null actor.");
+
+					final String predState = parts[1];
+					predActor.addStateListener(new TiledStageActor.StateListener() {
+						@Override
+						public void added(String state) {
+							if (state.equals(predState)) _logicMachine.set(predicate.name(), true);
+						}
+
+						@Override
+						public void removed(String state) {
+							if (state.equals(predState)) _logicMachine.set(predicate.name(), false);
+						}
+					});
+				}
+
+				// Hook logicmachine's conclusion to action of actor
+				_logicMachine.addListener(new LogicMachine.Listener() {
+					@Override
+					public void validated(String name) {
+						if (name.equals(actionName)) {
+							doAction(actor, action);
+						}
+					}
+
+					@Override
+					public void invalidated(String name) {
+					}
+
+					@Override
+					public void changed(String name) {
+					}
+				});
+			}
+		}
+	}
+
+	public void doAction(TiledStageActor actor, String action) {
+		if (actor instanceof Door) {
+			Door door = (Door) actor;
+			if (action.equals(Door.ACTION_OPEN)) {
+				door.open();
+			} else if (action.equals(Door.ACTION_CLOSE)) {
+				door.close();
+			}
+		}
 	}
 
 	@Override
@@ -122,9 +223,10 @@ public class PlayScreen implements Screen {
 		TiledMap map = new TmxMapLoader().load(_levelPath);
 
 		_tiledStage = new TiledStage(map, LAYER_ACTORS, WORLD_WIDTH, WORLD_WIDTH / width * height, TICKS.values().length);
-		_tilesByName = new HashMap<String, TiledMapTile>();
-		_tileFramesByName = new HashMap<TiledMapTile, ArrayList<TiledStageActor.Frame>>();
+		_tilesByReference = new HashMap<String, TiledMapTile>();
+		_tileFramesByTile = new HashMap<TiledMapTile, ArrayList<TiledStageActor.Frame>>();
 		_playerActor = null;
+		_logicMachine = new LogicMachine();
 
 		Gdx.input.setInputProcessor(_tiledStage);
 
@@ -132,73 +234,86 @@ public class PlayScreen implements Screen {
 		while (tiles.hasNext()) {
 			TiledMapTile tile = tiles.next();
 
-			String name = TiledStage.ParseProp(tile.getProperties(), TILE_NAME);
-			if (name != null) {
-				_tilesByName.put(name, tile);
+			String reference = TiledStage.ParseProp(tile.getProperties(), TILE_REFERENCE);
+			if (reference != null) {
+				_tilesByReference.put(reference, tile);
 			}
 		}
 
-		Iterator<TiledStage.Cell> cells = _tiledStage.cellsIterator();
-		while (cells.hasNext()) {
-			TiledStage.Cell cell = cells.next();
-			TiledMapTile tile = cell.tile();
+		for (TiledStage.TiledObject object : _tiledStage.objects()) {
+			TiledMapTile tile = object.tile();
 			if (tile == null) continue;
 
 			String type = TiledStage.ParseProp(tile.getProperties(), TILE_TYPE, "");
+			TiledStageActor actor = null;
 			if (type.equals(TILE_TYPE_BLOCK)) {
-				spawnBlock(cell);
+				actor = spawnBlock(object);
 			} else if (type.equals(TILE_TYPE_MAGNETIC_SOURCE)) {
-				spawnMagneticSource(cell);
+				actor = spawnMagneticSource(object);
 			} else if (type.equals(TILE_TYPE_MAGNETIC_FLOOR)) {
-				spawnMagneticFloor(cell);
+				actor = spawnMagneticFloor(object);
 			} else if (type.equals(TILE_TYPE_PLAYER)) {
-				spawnPlayer(cell);
+				actor = spawnPlayer(object);
+			} else if (type.equals(TILE_TYPE_BUTTON)) {
+				actor = spawnButton(object);
+			} else if (type.equals(TILE_TYPE_DOOR)) {
+				actor = spawnDoor(object);
 			}
+
+			if (actor != null && object.name() != null) actor.setName(object.name());
+		}
+
+		for (TiledStage.TiledObject object : _tiledStage.objects()) {
+			TiledStageActor actor = _tiledStage.getActor(object.name());
+			if (actor == null) continue;
+
+			processActions(actor, object);
 		}
 	}
 
-	public void spawnPlayer(TiledStage.Cell cell) {
-		if (_playerActor != null)
+	public TiledStageActor spawnPlayer(TiledStage.TiledObject object) {
+		if (_playerActor != null) {
 			throw new IllegalArgumentException("There should only be 1 player on the tiled map!");
+		}
 
 		// Add player to stage
-		_playerActor = new Player(OBJECT_TYPES.PLAYER.ordinal(),
-				TiledStageActor.BodyArea1x1, 1,
-				getAnimations(cell.tile()),
-				_tiledStage, cell.coordinate(), ExtractActorDepth(cell.tile()));
+		_playerActor = new Player(TiledStageActor.BodyArea1x1, 1,
+				getAnimations(object.tile()),
+				_tiledStage, object.origin(), ExtractActorDepth(object.tile()));
 
-		cell.removeTile();
 		_tiledStage.setCameraFocalActor(_playerActor);
 		_tiledStage.setInputFocalActor(_playerActor);
+
+		return _playerActor;
 	}
 
-	public void spawnBlock(TiledStage.Cell cell) {
-
-		new Block(OBJECT_TYPES.BLOCK.ordinal(),
-				ExtractBodyArea(cell.tile()), ExtractBodyWidth(cell.tile()),
-				getAnimations(cell.tile()),
-				_tiledStage, cell.coordinate(),
-				ExtractIsPushable(cell.tile()), ExtractIsMagnetisable(cell.tile()), ExtractActorDepth(cell.tile()));
-
-		cell.removeTile();
+	public TiledStageActor spawnBlock(TiledStage.TiledObject object) {
+		return new Block(ExtractBodyArea(object.tile()), ExtractBodyWidth(object.tile()),
+				getAnimations(object.tile()),
+				_tiledStage, object.origin(),
+				ExtractIsPushable(object.tile()), ExtractIsMagnetisable(object.tile()), ExtractActorDepth(object.tile()));
 	}
 
-	public void spawnMagneticSource(TiledStage.Cell cell) {
-
-		new MagneticSource(OBJECT_TYPES.MAGNETIC_SOURCE.ordinal(),
-				getAnimations(cell.tile()), _tiledStage,
-				cell.coordinate(), ExtractActorDepth(cell.tile()));
-
-		cell.removeTile();
+	public TiledStageActor spawnMagneticSource(TiledStage.TiledObject object) {
+		return new MagneticSource(getAnimations(object.tile()), _tiledStage,
+				object.origin(), ExtractActorDepth(object.tile()));
 	}
 
-	public void spawnMagneticFloor(TiledStage.Cell cell) {
-		new MagneticFloor(OBJECT_TYPES.MAGNETIC_FLOOR.ordinal(),
-				getAnimations(cell.tile()), _tiledStage,
-				cell.coordinate(), ExtractActorDepth(cell.tile()));
-
-		cell.removeTile();
+	public TiledStageActor spawnMagneticFloor(TiledStage.TiledObject object) {
+		return new MagneticFloor(getAnimations(object.tile()), _tiledStage,
+				object.origin(), ExtractActorDepth(object.tile()));
 	}
+
+	public TiledStageActor spawnDoor(TiledStage.TiledObject object) {
+		return new Door(getAnimations(object.tile()), _tiledStage,
+				object.origin(), ExtractActorDepth(object.tile()), ExtractIsOpen(object.tile()));
+	}
+
+	public TiledStageActor spawnButton(TiledStage.TiledObject object) {
+		return new Button(getAnimations(object.tile()), _tiledStage,
+				object.origin(), ExtractActorDepth(object.tile()));
+	}
+
 
 	@Override
 	public void render(float delta) {
@@ -236,10 +351,6 @@ public class PlayScreen implements Screen {
 	}
 
 	public enum TICKS {
-		RESET, MAGNETISATION, FORCES, BLOCK_MOVEMENT, PLAYER_MOVEMENT
-	}
-
-	public enum OBJECT_TYPES {
-		PLAYER, BLOCK, MAGNETIC_SOURCE, MAGNETIC_FLOOR
+		RESET, MAGNETISATION, FORCES, BLOCK_MOVEMENT, PLAYER_MOVEMENT, BUTTON_PRESSES, GRAPHICS
 	}
 }

@@ -7,20 +7,21 @@ import java.util.HashMap;
 import java.util.TreeSet;
 
 public class MagneticFloor extends TiledStageActor {
-	public static final String STATE_STILL = "";
+	public static final String STATE_DEFAULT = "Default";
 	public static final int MAGNETISE_RANGE = 0;
+	public static final int[] TICKS = new int[]{
+			PlayScreen.TICKS.MAGNETISATION.ordinal()
+	};
 
-	public MagneticFloor(int type, HashMap<String, FrameSequence> animationFrames,
+	public MagneticFloor(HashMap<String, FrameSequence> animationFrames,
 	                     TiledStage stage, TiledStage.Coordinate origin, int actorDepth) {
-		super(type, TiledStageActor.BodyArea1x1, 1, animationFrames, stage, origin, actorDepth);
+		super(TiledStageActor.BodyArea1x1, 1, animationFrames, stage, origin, actorDepth);
 
-		addState(STATE_STILL);
+		addState(STATE_DEFAULT);
 	}
 
 	@Override
 	public void act(int tick) {
-		super.act(tick);
-
 		if (tick == PlayScreen.TICKS.MAGNETISATION.ordinal()) {
 
 			TreeSet<TiledStage.Coordinate> magnetiseCoodinates = origin().getCoordinatesInRange(MAGNETISE_RANGE, false);
@@ -36,6 +37,16 @@ public class MagneticFloor extends TiledStageActor {
 		}
 	}
 
+	@Override
+	public boolean bodyCanBeAt(TiledStage.Coordinate coordinate) {
+		return true;
+	}
+
 	// get/set
 	// ---------
+
+	@Override
+	public int[] TICKS() {
+		return TICKS;
+	}
 }

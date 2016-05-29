@@ -7,22 +7,24 @@ import java.util.HashMap;
 import java.util.TreeSet;
 
 public class MagneticSource extends TiledStageActor {
-	public static final String STATE_STILL = "";
+	public static final String STATE_DEFAULT = "Default";
 	public static final int MAGNETISE_RANGE = 1;
 	public static final int ATTRACTION_RANGE = 2;
 	public static final int ATTRACTION_STRENGTH = 1;
+	public static final int[] TICKS = new int[]{
+			PlayScreen.TICKS.MAGNETISATION.ordinal(),
+			PlayScreen.TICKS.FORCES.ordinal()
+	};
 
-	public MagneticSource(int type, HashMap<String, FrameSequence> animationFrames,
+	public MagneticSource(HashMap<String, FrameSequence> animationFrames,
 	                      TiledStage stage, TiledStage.Coordinate origin, int actorDepth) {
-		super(type, TiledStageActor.BodyArea1x1, 1, animationFrames, stage, origin, actorDepth);
+		super(TiledStageActor.BodyArea1x1, 1, animationFrames, stage, origin, actorDepth);
 
-		addState(STATE_STILL);
+		addState(STATE_DEFAULT);
 	}
 
 	@Override
 	public void act(int tick) {
-		super.act(tick);
-
 		if (tick == PlayScreen.TICKS.MAGNETISATION.ordinal()) {
 
 			TreeSet<TiledStage.Coordinate> magnetiseCoodinates = origin().getCoordinatesInRange(MAGNETISE_RANGE, false);
@@ -56,6 +58,16 @@ public class MagneticSource extends TiledStageActor {
 		}
 	}
 
+	@Override
+	public boolean bodyCanBeAt(TiledStage.Coordinate coordinate) {
+		return false;
+	}
+
 	// get/set
 	// ---------
+
+	@Override
+	public int[] TICKS() {
+		return TICKS;
+	}
 }
