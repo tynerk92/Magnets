@@ -17,6 +17,7 @@ public class Door extends TiledStageActor {
 	public static final float CLOSING_DURATION = 0.6f;
 
 	public static final int[] TICKS = new int[]{
+			PlayScreen.TICKS.GRAPHICS.ordinal()
 	};
 
 	private boolean _isOpen;
@@ -32,37 +33,43 @@ public class Door extends TiledStageActor {
 
 	@Override
 	public void act(int tick) {
+		if (tick == PlayScreen.TICKS.GRAPHICS.ordinal()) {
+			if (_isOpen) {
+				if (hasState(STATE_CLOSED)) {
+					addState(STATE_OPENING).removeState(STATE_CLOSED);
 
+					final Door door = this;
+
+					addAction(Actions.delay(OPENING_DURATION, Actions.run(new Runnable() {
+						@Override
+						public void run() {
+							door.addState(STATE_OPENED).removeState(STATE_OPENING);
+						}
+					})));
+				}
+			} else {
+				if (hasState(STATE_OPENED)) {
+					addState(STATE_CLOSING).removeState(STATE_OPENED);
+
+					final Door door = this;
+
+					addAction(Actions.delay(CLOSING_DURATION, Actions.run(new Runnable() {
+						@Override
+						public void run() {
+							door.addState(STATE_CLOSED).removeState(STATE_CLOSING);
+						}
+					})));
+				}
+			}
+		}
 	}
 
 	public void open() {
-		if (!_isOpen && hasState(STATE_CLOSED)) {
-			addState(STATE_OPENING).removeState(STATE_CLOSED);
-			final Door door = this;
-
-			addAction(Actions.delay(OPENING_DURATION, Actions.run(new Runnable() {
-				@Override
-				public void run() {
-					door.addState(STATE_OPENED).removeState(STATE_OPENING);
-					door._isOpen = true;
-				}
-			})));
-		}
+		_isOpen = true;
 	}
 
 	public void close() {
-		if (_isOpen && hasState(STATE_OPENED)) {
-			addState(STATE_CLOSING).removeState(STATE_OPENED);
-			final Door door = this;
-
-			addAction(Actions.delay(CLOSING_DURATION, Actions.run(new Runnable() {
-				@Override
-				public void run() {
-					door.addState(STATE_CLOSED).removeState(STATE_CLOSED);
-					door._isOpen = false;
-				}
-			})));
-		}
+		_isOpen = false;
 	}
 
 	@Override

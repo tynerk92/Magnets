@@ -27,7 +27,7 @@ public class PlayScreen implements Screen {
 	public static final String TILE_ACTION = "+";
 	public static final String TILE_EXPRESSION_AND = "AND";
 	public static final String TILE_EXPRESSION_OR = "OR";
-	public static final String TILE_EXPRESSION_NOT = "!";
+	public static final String TILE_EXPRESSION_NOT = "NOT";
 	public static final String TILE_TYPE_PLAYER = "Player";
 	public static final String TILE_TYPE_BLOCK = "Block";
 	public static final String TILE_TYPE_MAGNETIC_SOURCE = "Magnetic Source";
@@ -45,7 +45,7 @@ public class PlayScreen implements Screen {
 	public static final String TILE_FRAME_DEPTH = "Frame Depth";
 	public boolean DEBUG_MODE = false;
 	// Paths/Textures
-	private String _levelPath = "Levels/Easy Levels Pack/Buttons new.tmx";
+	private String _levelPath = "Levels/Easy Levels Pack/Buttons.tmx";
 	private TiledStage _tiledStage;
 	private PlayerActor _playerActor;
 	private HashMap<String, TiledMapTile> _tilesByReference;
@@ -139,63 +139,49 @@ public class PlayScreen implements Screen {
 			if (prop.indexOf(TILE_ACTION) == 0) {
 				final String action = prop.substring(TILE_ACTION.length());
 
-				String expression = TiledStage.ParseProp(object.properties(), prop);
+				String expressionString = TiledStage.ParseProp(object.properties(), prop);
 				final String actionName = TILE_NAME + actor.getName() + TILE_ACTION + action;
 
 				// Replace and/or/not and add statement to logicmachine
-				expression = expression.replace(TILE_EXPRESSION_AND, LogicMachine.TERM_AND).
+				expressionString = expressionString.replace(TILE_EXPRESSION_AND, LogicMachine.TERM_AND).
 						replace(TILE_EXPRESSION_OR, LogicMachine.TERM_OR).
 						replace(TILE_EXPRESSION_NOT, LogicMachine.TERM_NOT);
 
-				expression += " " + LogicMachine.TERM_IMPLY + " " + actionName;
-				System.out.println(expression);
-				LogicMachine.Statement statement = _logicMachine.addStatement(expression);
+				// Hook action of actor to logicmachine expression
+				LogicMachine.Expression expression = _logicMachine.addExpression(expressionString, new LogicMachine.Listener() {
+					@Override
+					public void changed(boolean isTrue) {
+						if (isTrue) doAction(actor, action);
+					}
+				});
 
 				// Hook premises of actor states to actor
-				for (final LogicMachine.Predicate predicate : statement.premises()) {
-					if (predicate.name().indexOf(TILE_NAME) != 0) {
-						throw new IllegalArgumentException("Property '" + prop + "' should be a valid expression! Predicate " + predicate.name() + " should be prefixed with an actor's name.");
+				for (final String predicate : expression.premises()) {
+					if (predicate.indexOf(TILE_NAME) != 0) {
+						throw new IllegalArgumentException("Property '" + prop + "' should be a valid expression! Predicate " + predicate + " should be prefixed with an actor's name.");
 					}
 
-					String[] parts = predicate.name().substring(TILE_NAME.length()).split(TILE_STATE);
+					String[] parts = predicate.substring(TILE_NAME.length()).split(TILE_STATE);
 					if (parts.length != 2)
-						throw new IllegalArgumentException("Property '" + prop + "' should be a valid expression! Predicate " + predicate.name() + " should point to the actor's state.");
+						throw new IllegalArgumentException("Property '" + prop + "' should be a valid expression! Predicate " + predicate + " should point to the actor's state.");
 
 					TiledStageActor predActor = _tiledStage.getActor(parts[0]);
 					if (predActor == null)
-						throw new IllegalArgumentException("Property '" + prop + "' should be a valid expression! Predicate " + predicate.name() + " should point a non-null actor.");
+						throw new IllegalArgumentException("Property '" + prop + "' should be a valid expression! Predicate " + predicate + " should point a non-null actor.");
 
 					final String predState = parts[1];
 					predActor.addStateListener(new TiledStageActor.StateListener() {
 						@Override
 						public void added(String state) {
-							if (state.equals(predState)) _logicMachine.set(predicate.name(), true);
+							if (state.equals(predState)) _logicMachine.set(predicate, true);
 						}
 
 						@Override
 						public void removed(String state) {
-							if (state.equals(predState)) _logicMachine.set(predicate.name(), false);
+							if (state.equals(predState)) _logicMachine.set(predicate, false);
 						}
 					});
 				}
-
-				// Hook logicmachine's conclusion to action of actor
-				_logicMachine.addListener(new LogicMachine.Listener() {
-					@Override
-					public void validated(String name) {
-						if (name.equals(actionName)) {
-							doAction(actor, action);
-						}
-					}
-
-					@Override
-					public void invalidated(String name) {
-					}
-
-					@Override
-					public void changed(String name) {
-					}
-				});
 			}
 		}
 	}
