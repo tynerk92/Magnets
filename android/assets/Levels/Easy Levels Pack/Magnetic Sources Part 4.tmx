@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="15" height="15" tilewidth="32" tileheight="32" nextobjectid="3">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="15" height="15" tilewidth="32" tileheight="32" nextobjectid="5">
  <tileset firstgid="1" name="Tileset" tilewidth="96" tileheight="112" tilecount="380" columns="0">
 
   <tile id="0">
@@ -2106,6 +2106,8 @@
 
   <tile id="272">
    <properties>
+    <property name="Actor Depth" type="int" value="-1"/>
+    <property name="Type" value="Button"/>
     <property name="@Off" value="(this)"/>
     <property name="@Offing" value="~Button Pressing"/>
     <property name="@On" value="~Button On"/>
@@ -2116,6 +2118,8 @@
 
   <tile id="273">
    <properties>
+    <property name="Actor Depth" type="int" value="-1"/>
+    <property name="Type" value="Button"/>
     <property name="~" value="Button Pressing"/>
    </properties>
    <image width="32" height="32" source="../../Graphics/Objects/Button 1 State 2.png"/>
@@ -2123,18 +2127,22 @@
 
   <tile id="274">
    <properties>
+    <property name="Actor Depth" type="int" value="-1"/>
+    <property name="Type" value="Button"/>
     <property name="~" value="Button On"/>
    </properties>
    <image width="32" height="32" source="../../Graphics/Objects/Button 1 State 3.png"/>
   </tile>
 
   <tile id="275">
+   <properties>
     <property name="@Closed" value="(this)"/>
     <property name="@Closing" value="~Door Closing"/>
     <property name="@Opened" value="~Door Opened"/>
     <property name="@Opening" value="~Door Opening"/>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="Type" value="Door"/>
+   </properties>
    <image width="32" height="48" source="../../Graphics/Objects/Contraption 1 NSEW State 1.png"/>
   </tile>
 
@@ -2148,22 +2156,32 @@
   </tile>
 
   <tile id="277">
+   <properties>
+   </properties>
    <image width="32" height="48" source="../../Graphics/Objects/Contraption 1 NSEW State 3.png"/>
   </tile>
 
   <tile id="278">
+   <properties>
+   </properties>
    <image width="32" height="48" source="../../Graphics/Objects/Contraption 1 NSEW State 4.png"/>
   </tile>
 
   <tile id="279">
+   <properties>
+   </properties>
    <image width="32" height="48" source="../../Graphics/Objects/Contraption 1 NSEW State 5.png"/>
   </tile>
 
   <tile id="280">
+   <properties>
+   </properties>
    <image width="32" height="48" source="../../Graphics/Objects/Contraption 1 NSEW State 6.png"/>
   </tile>
 
   <tile id="281">
+   <properties>
+   </properties>
    <image width="32" height="48" source="../../Graphics/Objects/Contraption 1 NSEW State 7.png"/>
   </tile>
 
@@ -2185,6 +2203,8 @@
 
   <tile id="284">
    <properties>
+    <property name="Actor Depth" type="int" value="-1"/>
+    <property name="Type" value="Button"/>
     <property name="@Off" value="(this)"/>
     <property name="@Offing" value="~Button Pressing"/>
     <property name="@On" value="~Button On"/>
@@ -2195,6 +2215,8 @@
 
   <tile id="285">
    <properties>
+    <property name="Actor Depth" type="int" value="-1"/>
+    <property name="Type" value="Button"/>
     <property name="~" value="Button Pressing"/>
    </properties>
    <image width="32" height="32" source="../../Graphics/Objects/Button 2 State 2.png"/>
@@ -2202,18 +2224,22 @@
 
   <tile id="286">
    <properties>
+    <property name="Actor Depth" type="int" value="-1"/>
+    <property name="Type" value="Button"/>
     <property name="~" value="Button On"/>
    </properties>
    <image width="32" height="32" source="../../Graphics/Objects/Button 2 State 3.png"/>
   </tile>
 
   <tile id="287">
+   <properties>
     <property name="@Closed" value="(this)"/>
     <property name="@Closing" value="~Door Closing"/>
     <property name="@Opened" value="~Door Opened"/>
     <property name="@Opening" value="~Door Opening"/>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="Type" value="Door"/>
+   </properties>
    <image width="32" height="48" source="../../Graphics/Objects/Contraption 2 NSEW State 1.png"/>
   </tile>
 
@@ -2227,22 +2253,32 @@
   </tile>
 
   <tile id="289">
+   <properties>
+   </properties>
    <image width="32" height="48" source="../../Graphics/Objects/Contraption 2 NSEW State 3.png"/>
   </tile>
 
   <tile id="290">
+   <properties>
+   </properties>
    <image width="32" height="48" source="../../Graphics/Objects/Contraption 2 NSEW State 4.png"/>
   </tile>
 
   <tile id="291">
+   <properties>
+   </properties>
    <image width="32" height="48" source="../../Graphics/Objects/Contraption 2 NSEW State 5.png"/>
   </tile>
 
   <tile id="292">
+   <properties>
+   </properties>
    <image width="32" height="48" source="../../Graphics/Objects/Contraption 2 NSEW State 6.png"/>
   </tile>
 
   <tile id="293">
+   <properties>
+   </properties>
    <image width="32" height="48" source="../../Graphics/Objects/Contraption 2 NSEW State 7.png"/>
   </tile>
 
@@ -2568,7 +2604,7 @@
   <tile id="341">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
-    <property name="Name" value="Magnetic Overlay Lodestone 1x1 1"/>
+    <property name="~" value="Magnetic Overlay Lodestone 1x1 1"/>
    </properties>
    <image width="32" height="48" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 1x1 1.png"/>
   </tile>
@@ -2576,7 +2612,7 @@
   <tile id="342">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
-    <property name="Name" value="Magnetic Overlay Lodestone 1x2 1"/>
+    <property name="~" value="Magnetic Overlay Lodestone 1x2 1"/>
    </properties>
    <image width="32" height="80" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 1x2 1.png"/>
   </tile>
@@ -2584,7 +2620,7 @@
   <tile id="343">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
-    <property name="Name" value="Magnetic Overlay Lodestone 1x3 1"/>
+    <property name="~" value="Magnetic Overlay Lodestone 1x3 1"/>
    </properties>
    <image width="32" height="11" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 1x3 1.png"/>
   </tile>
@@ -2592,7 +2628,7 @@
   <tile id="344">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
-    <property name="Name" value="Magnetic Overlay Lodestone 2x1 1"/>
+    <property name="~" value="Magnetic Overlay Lodestone 2x1 1"/>
    </properties>
    <image width="64" height="48" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 2x1 1.png"/>
   </tile>
@@ -2600,7 +2636,7 @@
   <tile id="345">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
-    <property name="Name" value="Magnetic Overlay Lodestone 2x2 1"/>
+    <property name="~" value="Magnetic Overlay Lodestone 2x2 1"/>
    </properties>
    <image width="64" height="80" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 2x2 1.png"/>
   </tile>
@@ -2608,7 +2644,7 @@
   <tile id="346">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
-    <property name="Name" value="Magnetic Overlay Lodestone 2x2 2"/>
+    <property name="~" value="Magnetic Overlay Lodestone 2x2 2"/>
    </properties>
    <image width="64" height="80" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 2x2 2.png"/>
   </tile>
@@ -2616,7 +2652,7 @@
   <tile id="347">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
-    <property name="Name" value="Magnetic Overlay Lodestone 2x2 3"/>
+    <property name="~" value="Magnetic Overlay Lodestone 2x2 3"/>
    </properties>
    <image width="64" height="80" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 2x2 3.png"/>
   </tile>
@@ -2624,7 +2660,7 @@
   <tile id="348">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
-    <property name="Name" value="Magnetic Overlay Lodestone 2x2 4"/>
+    <property name="~" value="Magnetic Overlay Lodestone 2x2 4"/>
    </properties>
    <image width="64" height="80" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 2x2 4.png"/>
   </tile>
@@ -2632,7 +2668,7 @@
   <tile id="349">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
-    <property name="Name" value="Magnetic Overlay Lodestone 2x2 5"/>
+    <property name="~" value="Magnetic Overlay Lodestone 2x2 5"/>
    </properties>
    <image width="64" height="80" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 2x2 5.png"/>
   </tile>
@@ -2640,7 +2676,7 @@
   <tile id="350">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
-    <property name="Name" value="Magnetic Overlay Lodestone 2x3 1"/>
+    <property name="~" value="Magnetic Overlay Lodestone 2x3 1"/>
    </properties>
    <image width="64" height="112" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 2x3 1.png"/>
   </tile>
@@ -2648,7 +2684,7 @@
   <tile id="351">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
-    <property name="Name" value="Magnetic Overlay Lodestone 2x3 2"/>
+    <property name="~" value="Magnetic Overlay Lodestone 2x3 2"/>
    </properties>
    <image width="64" height="112" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 2x3 2.png"/>
   </tile>
@@ -2656,7 +2692,7 @@
   <tile id="352">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
-    <property name="Name" value="Magnetic Overlay Lodestone 2x3 3"/>
+    <property name="~" value="Magnetic Overlay Lodestone 2x3 3"/>
    </properties>
    <image width="64" height="112" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 2x3 3.png"/>
   </tile>
@@ -2664,7 +2700,7 @@
   <tile id="353">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
-    <property name="Name" value="Magnetic Overlay Lodestone 2x3 4"/>
+    <property name="~" value="Magnetic Overlay Lodestone 2x3 4"/>
    </properties>
    <image width="64" height="112" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 2x3 4.png"/>
   </tile>
@@ -2672,7 +2708,7 @@
   <tile id="354">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
-    <property name="Name" value="Magnetic Overlay Lodestone 2x3 5"/>
+    <property name="~" value="Magnetic Overlay Lodestone 2x3 5"/>
    </properties>
    <image width="64" height="112" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 2x3 5.png"/>
   </tile>
@@ -2680,7 +2716,7 @@
   <tile id="355">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
-    <property name="Name" value="Magnetic Overlay Lodestone 2x3 6"/>
+    <property name="~" value="Magnetic Overlay Lodestone 2x3 6"/>
    </properties>
    <image width="64" height="112" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 2x3 6.png"/>
   </tile>
@@ -2688,7 +2724,7 @@
   <tile id="356">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
-    <property name="Name" value="Magnetic Overlay Lodestone 2x3 7"/>
+    <property name="~" value="Magnetic Overlay Lodestone 2x3 7"/>
    </properties>
    <image width="64" height="112" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 2x3 7.png"/>
   </tile>
@@ -2696,7 +2732,7 @@
   <tile id="357">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
-    <property name="Name" value="Magnetic Overlay Lodestone 2x3 8"/>
+    <property name="~" value="Magnetic Overlay Lodestone 2x3 8"/>
    </properties>
    <image width="64" height="112" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 2x3 8.png"/>
   </tile>
@@ -2704,7 +2740,7 @@
   <tile id="358">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
-    <property name="Name" value="Magnetic Overlay Lodestone 2x3 9"/>
+    <property name="~" value="Magnetic Overlay Lodestone 2x3 9"/>
    </properties>
    <image width="64" height="112" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 2x3 9.png"/>
   </tile>
@@ -2712,7 +2748,7 @@
   <tile id="359">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
-    <property name="Name" value="Magnetic Overlay Lodestone 2x3 10"/>
+    <property name="~" value="Magnetic Overlay Lodestone 2x3 10"/>
    </properties>
    <image width="64" height="112" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 2x3 10.png"/>
   </tile>
@@ -2720,7 +2756,7 @@
   <tile id="360">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
-    <property name="Name" value="Magnetic Overlay Lodestone 2x3 11"/>
+    <property name="~" value="Magnetic Overlay Lodestone 2x3 11"/>
    </properties>
    <image width="64" height="112" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 2x3 11.png"/>
   </tile>
@@ -2728,7 +2764,7 @@
   <tile id="361">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
-    <property name="Name" value="Magnetic Overlay Lodestone 2x3 12"/>
+    <property name="~" value="Magnetic Overlay Lodestone 2x3 12"/>
    </properties>
    <image width="64" height="112" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 2x3 12.png"/>
   </tile>
@@ -2736,7 +2772,7 @@
   <tile id="362">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
-    <property name="Name" value="Magnetic Overlay Lodestone 2x3 13"/>
+    <property name="~" value="Magnetic Overlay Lodestone 2x3 13"/>
    </properties>
    <image width="64" height="112" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 2x3 13.png"/>
   </tile>
@@ -2744,7 +2780,7 @@
   <tile id="363">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
-    <property name="Name" value="Magnetic Overlay Lodestone 2x3 14"/>
+    <property name="~" value="Magnetic Overlay Lodestone 2x3 14"/>
    </properties>
    <image width="64" height="112" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 2x3 14.png"/>
   </tile>
@@ -2752,7 +2788,7 @@
   <tile id="364">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
-    <property name="Name" value="Magnetic Overlay Lodestone 3x1 1"/>
+    <property name="~" value="Magnetic Overlay Lodestone 3x1 1"/>
    </properties>
    <image width="96" height="48" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 3x1 1.png"/>
   </tile>
@@ -2760,7 +2796,7 @@
   <tile id="365">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
-    <property name="Name" value="Magnetic Overlay Lodestone 3x2 1"/>
+    <property name="~" value="Magnetic Overlay Lodestone 3x2 1"/>
    </properties>
    <image width="96" height="80" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 3x2 1.png"/>
   </tile>
@@ -2768,7 +2804,7 @@
   <tile id="366">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
-    <property name="Name" value="Magnetic Overlay Lodestone 3x2 2"/>
+    <property name="~" value="Magnetic Overlay Lodestone 3x2 2"/>
    </properties>
    <image width="96" height="80" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 3x2 2.png"/>
   </tile>
@@ -2776,7 +2812,7 @@
   <tile id="367">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
-    <property name="Name" value="Magnetic Overlay Lodestone 3x2 3"/>
+    <property name="~" value="Magnetic Overlay Lodestone 3x2 3"/>
    </properties>
    <image width="96" height="80" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 3x2 3.png"/>
   </tile>
@@ -2784,7 +2820,7 @@
   <tile id="368">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
-    <property name="Name" value="Magnetic Overlay Lodestone 3x2 4"/>
+    <property name="~" value="Magnetic Overlay Lodestone 3x2 4"/>
    </properties>
    <image width="96" height="80" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 3x2 4.png"/>
   </tile>
@@ -2792,7 +2828,7 @@
   <tile id="369">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
-    <property name="Name" value="Magnetic Overlay Lodestone 3x2 5"/>
+    <property name="~" value="Magnetic Overlay Lodestone 3x2 5"/>
    </properties>
    <image width="96" height="80" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 3x2 5.png"/>
   </tile>
@@ -2800,7 +2836,7 @@
   <tile id="370">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
-    <property name="Name" value="Magnetic Overlay Lodestone 3x2 6"/>
+    <property name="~" value="Magnetic Overlay Lodestone 3x2 6"/>
    </properties>
    <image width="96" height="80" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 3x2 6.png"/>
   </tile>
@@ -2808,7 +2844,7 @@
   <tile id="371">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
-    <property name="Name" value="Magnetic Overlay Lodestone 3x2 7"/>
+    <property name="~" value="Magnetic Overlay Lodestone 3x2 7"/>
    </properties>
    <image width="96" height="80" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 3x2 7.png"/>
   </tile>
@@ -2816,7 +2852,7 @@
   <tile id="372">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
-    <property name="Name" value="Magnetic Overlay Lodestone 3x2 8"/>
+    <property name="~" value="Magnetic Overlay Lodestone 3x2 8"/>
    </properties>
    <image width="96" height="80" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 3x2 8.png"/>
   </tile>
@@ -2824,7 +2860,7 @@
   <tile id="373">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
-    <property name="Name" value="Magnetic Overlay Lodestone 3x2 9"/>
+    <property name="~" value="Magnetic Overlay Lodestone 3x2 9"/>
    </properties>
    <image width="96" height="80" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 3x2 9.png"/>
   </tile>
@@ -2832,7 +2868,7 @@
   <tile id="374">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
-    <property name="Name" value="Magnetic Overlay Lodestone 3x2 10"/>
+    <property name="~" value="Magnetic Overlay Lodestone 3x2 10"/>
    </properties>
    <image width="96" height="80" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 3x2 10.png"/>
   </tile>
@@ -2840,7 +2876,7 @@
   <tile id="375">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
-    <property name="Name" value="Magnetic Overlay Lodestone 3x2 11"/>
+    <property name="~" value="Magnetic Overlay Lodestone 3x2 11"/>
    </properties>
    <image width="96" height="80" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 3x2 11.png"/>
   </tile>
@@ -2848,7 +2884,7 @@
   <tile id="376">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
-    <property name="Name" value="Magnetic Overlay Lodestone 3x2 12"/>
+    <property name="~" value="Magnetic Overlay Lodestone 3x2 12"/>
    </properties>
    <image width="96" height="80" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 3x2 12.png"/>
   </tile>
@@ -2856,7 +2892,7 @@
   <tile id="377">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
-    <property name="Name" value="Magnetic Overlay Lodestone 3x2 13"/>
+    <property name="~" value="Magnetic Overlay Lodestone 3x2 13"/>
    </properties>
    <image width="96" height="80" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 3x2 13.png"/>
   </tile>
@@ -2864,7 +2900,7 @@
   <tile id="378">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
-    <property name="Name" value="Magnetic Overlay Lodestone 3x2 14"/>
+    <property name="~" value="Magnetic Overlay Lodestone 3x2 14"/>
    </properties>
    <image width="96" height="80" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 3x2 14.png"/>
   </tile>
@@ -2894,16 +2930,16 @@
 </data>
  </layer>
 
- <layer name="Floor Decorations" width="15" height="15">
+ <layer name="Floor Decoration" width="15" height="15">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,69,65,0,0,0,0,0,0,0,
-0,0,0,0,66,0,69,74,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,69,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -2921,10 +2957,10 @@
 168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,
 168,168,168,168,167,169,166,168,168,168,168,168,168,168,168,
 168,168,168,167,172,0,189,169,169,166,168,168,168,168,168,
-168,168,168,171,0,0,0,0,317,191,168,168,168,168,168,
+168,168,168,171,0,0,0,0,0,191,168,168,168,168,168,
 168,168,168,171,0,0,0,0,177,155,168,168,168,168,168,
 168,168,168,171,0,0,0,0,189,166,168,168,168,168,168,
-168,168,168,163,184,184,179,0,297,191,168,168,168,168,168,
+168,168,168,163,184,184,179,0,0,191,168,168,168,168,168,
 168,168,168,168,168,168,163,184,184,155,168,168,168,168,168,
 168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,
 168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,
@@ -2933,7 +2969,8 @@
 168,168,168,168,168,168,168,168,168,168,168,168,168,168,168
 </data>
  </layer>
- <layer name="Walls Deco" width="15" height="15">
+
+ <layer name="Wall Deco" width="15" height="15">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -2952,10 +2989,13 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+
  <objectgroup name="Objects">
-  <object id="0" name="Lo (0)" gid="195" x="160" y="192" width="32" height="48"/>
-  <object id="1" name="Lo (1)" gid="235" x="224" y="256" width="32" height="48"/>
-  <object id="2" name="Pl (2)" gid="322" x="160" y="160" width="32" height="48"/>
+  <object id="0" name="Ex_0_" gid="302" x="256" y="288" width="32" height="48"/>
+  <object id="1" name="Lo_1_" gid="196" x="160" y="192" width="32" height="48"/>
+  <object id="2" name="Lo_2_" gid="235" x="224" y="256" width="32" height="48"/>
+  <object id="3" name="Ma_3_" gid="317" x="256" y="192" width="32" height="48"/>
+  <object id="4" name="Pl_4_" gid="322" x="160" y="160" width="32" height="48"/>
  </objectgroup>
  <layer name="Ambience" width="15" height="15">
   <data encoding="csv">
@@ -2976,5 +3016,6 @@
 380,380,380,380,380,380,380,380,380,380,380,380,380,380,380
 </data>
  </layer>
+
 
 </map>
