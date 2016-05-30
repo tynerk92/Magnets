@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="35" height="23" tilewidth="32" tileheight="32" nextobjectid="1">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="35" height="23" tilewidth="32" tileheight="32" nextobjectid="19">
  <tileset firstgid="1" name="Tileset" tilewidth="96" tileheight="112" tilecount="380" columns="0">
     <frame tileid="276" duration="40"/>
 
@@ -1136,7 +1136,7 @@
   <tile id="193">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 1x1 1"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 1x1 1"/>
     <property name="Body Area" value="1"/>
     <property name="Body Width" type="int" value="1"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -1149,7 +1149,7 @@
   <tile id="194">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 1x1 1"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 1x1 1"/>
     <property name="Body Area" value="1"/>
     <property name="Body Width" type="int" value="1"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -1162,7 +1162,7 @@
   <tile id="195">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 1x1 1"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 1x1 1"/>
     <property name="Body Area" value="1"/>
     <property name="Body Width" type="int" value="1"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -1175,7 +1175,7 @@
   <tile id="196">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 1x1 1"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 1x1 1"/>
     <property name="Body Area" value="1"/>
     <property name="Body Width" type="int" value="1"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -1188,7 +1188,7 @@
   <tile id="197">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 1x2 1"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 1x2 1"/>
     <property name="Body Area" value="11"/>
     <property name="Body Width" type="int" value="1"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -1201,20 +1201,20 @@
   <tile id="198">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 1x3 1"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 1x3 1"/>
     <property name="Body Area" value="111"/>
     <property name="Body Width" type="int" value="1"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
     <property name="IsPushable" type="bool" value="true"/>
     <property name="Type" value="Block"/>
    </properties>
-   <image width="32" height="11" source="../../Graphics/Objects/Lodestone (Pushable) 1x3 1 - 1 111.png"/>
+   <image width="32" height="112" source="../../Graphics/Objects/Lodestone (Pushable) 1x3 1 - 1 111.png"/>
   </tile>
 
   <tile id="199">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 2x1 1"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 2x1 1"/>
     <property name="Body Area" value="11"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -1227,7 +1227,7 @@
   <tile id="200">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 2x2 1"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 2x2 1"/>
     <property name="Body Area" value="1110"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -1240,7 +1240,7 @@
   <tile id="201">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 2x2 2"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 2x2 2"/>
     <property name="Body Area" value="1101"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -1253,7 +1253,7 @@
   <tile id="202">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 2x2 3"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 2x2 3"/>
     <property name="Body Area" value="0111"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -1266,7 +1266,7 @@
   <tile id="203">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 2x2 4"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 2x2 4"/>
     <property name="Body Area" value="1011"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -1279,7 +1279,7 @@
   <tile id="204">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 2x2 5"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 2x2 5"/>
     <property name="Body Area" value="1111"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -1292,7 +1292,7 @@
   <tile id="205">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 2x3 1"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 2x3 1"/>
     <property name="Body Area" value="101110"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -1305,7 +1305,7 @@
   <tile id="206">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 2x3 2"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 2x3 2"/>
     <property name="Body Area" value="011101"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -1318,7 +1318,7 @@
   <tile id="207">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 2x3 3"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 2x3 3"/>
     <property name="Body Area" value="101011"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -1331,7 +1331,7 @@
   <tile id="208">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 2x3 4"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 2x3 4"/>
     <property name="Body Area" value="111010"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -1344,7 +1344,7 @@
   <tile id="209">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 2x3 5"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 2x3 5"/>
     <property name="Body Area" value="010111"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -1357,7 +1357,7 @@
   <tile id="210">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 2x3 6"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 2x3 6"/>
     <property name="Body Area" value="110101"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -1370,7 +1370,7 @@
   <tile id="211">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 2x3 7"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 2x3 7"/>
     <property name="Body Area" value="101101"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -1383,7 +1383,7 @@
   <tile id="212">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 2x3 8"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 2x3 8"/>
     <property name="Body Area" value="011110"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -1396,7 +1396,7 @@
   <tile id="213">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 2x3 9"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 2x3 9"/>
     <property name="Body Area" value="111011"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -1409,7 +1409,7 @@
   <tile id="214">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 2x3 10"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 2x3 10"/>
     <property name="Body Area" value="110111"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -1422,7 +1422,7 @@
   <tile id="215">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 2x3 11"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 2x3 11"/>
     <property name="Body Area" value="111110"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -1435,7 +1435,7 @@
   <tile id="216">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 2x3 12"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 2x3 12"/>
     <property name="Body Area" value="111101"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -1448,7 +1448,7 @@
   <tile id="217">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 2x3 13"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 2x3 13"/>
     <property name="Body Area" value="101111"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -1461,7 +1461,7 @@
   <tile id="218">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 2x3 14"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 2x3 14"/>
     <property name="Body Area" value="011111"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -1474,7 +1474,7 @@
   <tile id="219">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 3x1 1"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 3x1 1"/>
     <property name="Body Area" value="111"/>
     <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -1487,7 +1487,7 @@
   <tile id="220">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 3x2 1"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 3x2 1"/>
     <property name="Body Area" value="010111"/>
     <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -1500,7 +1500,7 @@
   <tile id="221">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 3x2 2"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 3x2 2"/>
     <property name="Body Area" value="111010"/>
     <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -1513,7 +1513,7 @@
   <tile id="222">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 3x2 3"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 3x2 3"/>
     <property name="Body Area" value="111100"/>
     <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -1526,7 +1526,7 @@
   <tile id="223">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 3x2 4"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 3x2 4"/>
     <property name="Body Area" value="111001"/>
     <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -1539,7 +1539,7 @@
   <tile id="224">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 3x2 5"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 3x2 5"/>
     <property name="Body Area" value="100111"/>
     <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -1552,7 +1552,7 @@
   <tile id="225">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 3x2 6"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 3x2 6"/>
     <property name="Body Area" value="001111"/>
     <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -1565,7 +1565,7 @@
   <tile id="226">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 3x2 7"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 3x2 7"/>
     <property name="Body Area" value="110011"/>
     <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -1578,7 +1578,7 @@
   <tile id="227">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 3x2 8"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 3x2 8"/>
     <property name="Body Area" value="011110"/>
     <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -1591,7 +1591,7 @@
   <tile id="228">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 3x2 9"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 3x2 9"/>
     <property name="Body Area" value="111101"/>
     <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -1604,7 +1604,7 @@
   <tile id="229">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 3x2 10"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 3x2 10"/>
     <property name="Body Area" value="101111"/>
     <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -1617,7 +1617,7 @@
   <tile id="230">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 3x2 11"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 3x2 11"/>
     <property name="Body Area" value="111110"/>
     <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -1630,7 +1630,7 @@
   <tile id="231">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 3x2 12"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 3x2 12"/>
     <property name="Body Area" value="111011"/>
     <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -1643,7 +1643,7 @@
   <tile id="232">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 3x2 13"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 3x2 13"/>
     <property name="Body Area" value="110111"/>
     <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -1656,7 +1656,7 @@
   <tile id="233">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 3x2 14"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 3x2 14"/>
     <property name="Body Area" value="011111"/>
     <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -1669,7 +1669,7 @@
   <tile id="234">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 1x1 1"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 1x1 1"/>
     <property name="Body Area" value="1"/>
     <property name="Body Width" type="int" value="1"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -1682,7 +1682,7 @@
   <tile id="235">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 1x2 1"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 1x2 1"/>
     <property name="Body Area" value="11"/>
     <property name="Body Width" type="int" value="1"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -1695,7 +1695,7 @@
   <tile id="236">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 1x3 1"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 1x3 1"/>
     <property name="Body Area" value="111"/>
     <property name="Body Width" type="int" value="1"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -1708,7 +1708,7 @@
   <tile id="237">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 2x1 1"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 2x1 1"/>
     <property name="Body Area" value="11"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -1721,7 +1721,7 @@
   <tile id="238">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 2x2 1"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 2x2 1"/>
     <property name="Body Area" value="1110"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -1734,7 +1734,7 @@
   <tile id="239">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 2x2 2"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 2x2 2"/>
     <property name="Body Area" value="1101"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -1747,7 +1747,7 @@
   <tile id="240">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 2x2 3"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 2x2 3"/>
     <property name="Body Area" value="0111"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -1760,7 +1760,7 @@
   <tile id="241">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 2x2 4"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 2x2 4"/>
     <property name="Body Area" value="1011"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -1773,7 +1773,7 @@
   <tile id="242">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 2x2 5"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 2x2 5"/>
     <property name="Body Area" value="1111"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -1786,7 +1786,7 @@
   <tile id="243">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 2x3 1"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 2x3 1"/>
     <property name="Body Area" value="101110"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -1799,7 +1799,7 @@
   <tile id="244">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 2x3 2"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 2x3 2"/>
     <property name="Body Area" value="011101"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -1812,7 +1812,7 @@
   <tile id="245">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 2x3 3"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 2x3 3"/>
     <property name="Body Area" value="101011"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -1825,7 +1825,7 @@
   <tile id="246">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 2x3 4"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 2x3 4"/>
     <property name="Body Area" value="111010"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -1838,7 +1838,7 @@
   <tile id="247">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 2x3 5"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 2x3 5"/>
     <property name="Body Area" value="010111"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -1851,7 +1851,7 @@
   <tile id="248">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 2x3 6"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 2x3 6"/>
     <property name="Body Area" value="110101"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -1864,7 +1864,7 @@
   <tile id="249">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 2x3 7"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 2x3 7"/>
     <property name="Body Area" value="101101"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -1877,7 +1877,7 @@
   <tile id="250">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 2x3 8"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 2x3 8"/>
     <property name="Body Area" value="011110"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -1890,7 +1890,7 @@
   <tile id="251">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 2x3 9"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 2x3 9"/>
     <property name="Body Area" value="111011"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -1903,7 +1903,7 @@
   <tile id="252">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 2x3 10"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 2x3 10"/>
     <property name="Body Area" value="110111"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -1916,7 +1916,7 @@
   <tile id="253">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 2x3 11"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 2x3 11"/>
     <property name="Body Area" value="111110"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -1929,7 +1929,7 @@
   <tile id="254">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 2x3 12"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 2x3 12"/>
     <property name="Body Area" value="111101"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -1942,7 +1942,7 @@
   <tile id="255">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 2x3 13"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 2x3 13"/>
     <property name="Body Area" value="101111"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -1955,7 +1955,7 @@
   <tile id="256">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 2x3 14"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 2x3 14"/>
     <property name="Body Area" value="011111"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -1968,7 +1968,7 @@
   <tile id="257">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 3x1 1"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 3x1 1"/>
     <property name="Body Area" value="111"/>
     <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -1981,7 +1981,7 @@
   <tile id="258">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 3x2 1"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 3x2 1"/>
     <property name="Body Area" value="010111"/>
     <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -1994,7 +1994,7 @@
   <tile id="259">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 3x2 2"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 3x2 2"/>
     <property name="Body Area" value="111010"/>
     <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -2007,7 +2007,7 @@
   <tile id="260">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 3x2 3"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 3x2 3"/>
     <property name="Body Area" value="111100"/>
     <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -2020,7 +2020,7 @@
   <tile id="261">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 3x2 4"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 3x2 4"/>
     <property name="Body Area" value="111001"/>
     <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -2033,7 +2033,7 @@
   <tile id="262">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 3x2 5"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 3x2 5"/>
     <property name="Body Area" value="100111"/>
     <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -2046,7 +2046,7 @@
   <tile id="263">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 3x2 6"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 3x2 6"/>
     <property name="Body Area" value="001111"/>
     <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -2059,7 +2059,7 @@
   <tile id="264">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 3x2 7"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 3x2 7"/>
     <property name="Body Area" value="110011"/>
     <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -2072,7 +2072,7 @@
   <tile id="265">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 3x2 8"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 3x2 8"/>
     <property name="Body Area" value="011110"/>
     <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -2085,7 +2085,7 @@
   <tile id="266">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 3x2 9"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 3x2 9"/>
     <property name="Body Area" value="111101"/>
     <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -2098,7 +2098,7 @@
   <tile id="267">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 3x2 10"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 3x2 10"/>
     <property name="Body Area" value="101111"/>
     <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -2111,7 +2111,7 @@
   <tile id="268">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 3x2 11"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 3x2 11"/>
     <property name="Body Area" value="111110"/>
     <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -2124,7 +2124,7 @@
   <tile id="269">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 3x2 12"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 3x2 12"/>
     <property name="Body Area" value="111011"/>
     <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -2137,7 +2137,7 @@
   <tile id="270">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 3x2 13"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 3x2 13"/>
     <property name="Body Area" value="110111"/>
     <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -2150,7 +2150,7 @@
   <tile id="271">
    <properties>
     <property name="@Default" value="(this)"/>
-    <property name="@Magnetised" value="Magnetic Overlay Lodestone 3x2 14"/>
+    <property name="@Magnetised" value="~Magnetic Overlay Lodestone 3x2 14"/>
     <property name="Body Area" value="011111"/>
     <property name="Body Width" type="int" value="3"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -2964,19 +2964,19 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,71,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,65,90,0,0,66,66,70,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,72,0,0,65,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,65,0,0,0,0,0,0,0,69,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,65,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,70,88,0,76,73,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,66,0,0,0,0,0,70,0,0,0,91,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,72,0,66,0,0,72,0,67,0,0,0,67,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,76,0,0,0,0,0,72,0,72,0,0,0,69,0,76,0,0,91,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,76,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,65,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,67,0,0,0,0,66,0,69,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,75,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,70,0,0,0,0,0,76,0,0,67,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,72,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,76,70,67,0,0,66,0,0,72,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,87,0,0,0,0,0,0,0,90,0,0,70,0,0,0,0,0,0,65,68,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,72,65,89,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,69,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,73,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,71,0,71,0,0,0,0,0,0,0,0,0,0,0,0,0,0,73,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,68,0,0,0,0,92,0,0,0,0,87,68,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,66,0,0,0,0,0,0,73,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -2993,18 +2993,18 @@
 168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,
 168,168,168,167,169,169,169,169,169,166,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,
 168,168,168,171,0,0,0,0,0,189,169,169,169,169,166,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,
-168,168,168,171,0,0,0,0,196,0,0,0,0,0,191,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,
+168,168,168,171,0,0,0,0,0,0,0,0,0,0,191,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,
 168,168,168,163,184,184,184,184,184,184,184,179,0,177,155,168,167,169,169,169,169,169,166,168,168,168,168,168,168,168,168,168,168,168,168,
 168,168,168,168,168,168,168,168,168,168,167,172,0,191,168,168,171,0,0,0,0,0,191,168,168,168,168,168,168,168,168,168,168,168,168,
-168,168,168,168,168,168,168,168,168,167,172,0,0,191,167,169,172,0,203,0,0,0,189,169,166,167,169,169,169,166,168,168,168,168,168,
-168,168,168,168,168,168,168,168,167,172,0,196,195,191,171,0,0,0,0,0,0,0,0,0,191,171,0,297,0,191,168,168,168,168,168,
-168,168,168,168,168,168,168,168,171,0,197,195,0,191,171,0,174,0,202,0,0,0,174,0,191,171,0,0,0,191,168,168,168,168,168,
+168,168,168,168,168,168,168,168,168,167,172,0,0,191,167,169,172,0,0,0,0,0,189,169,166,167,169,169,169,166,168,168,168,168,168,
+168,168,168,168,168,168,168,168,167,172,0,0,0,191,171,0,0,0,0,0,0,0,0,0,191,171,0,297,0,191,168,168,168,168,168,
+168,168,168,168,168,168,168,168,171,0,0,0,0,191,171,0,174,0,0,0,0,0,174,0,191,171,0,0,0,191,168,168,168,168,168,
 168,168,168,168,168,168,168,168,171,0,0,0,177,155,171,0,188,184,184,184,184,184,158,0,191,171,0,0,0,191,168,168,168,168,168,
 168,168,168,168,168,168,168,168,163,179,0,177,155,167,172,0,189,166,167,169,169,169,172,0,191,163,179,0,177,155,168,168,168,168,168,
-168,168,168,168,168,168,168,168,168,171,0,189,169,172,0,0,0,191,171,0,194,0,196,0,191,168,171,0,189,166,168,168,168,168,168,
-168,168,168,168,168,168,168,168,168,171,0,0,0,0,0,0,0,191,171,194,0,196,0,175,156,169,172,0,0,191,168,168,168,168,168,
-168,168,168,168,168,168,168,168,168,163,184,184,184,179,0,199,195,191,171,0,197,0,195,0,0,0,0,0,0,191,168,168,168,168,168,
-168,168,168,168,168,168,168,168,168,168,168,168,168,171,0,0,0,191,171,197,0,197,0,197,177,184,184,184,184,155,168,168,168,168,168,
+168,168,168,168,168,168,168,168,168,171,0,189,169,172,0,0,0,191,171,0,0,0,0,0,191,168,171,0,189,166,168,168,168,168,168,
+168,168,168,168,168,168,168,168,168,171,0,0,0,0,0,0,0,191,171,0,0,0,0,175,156,169,172,0,0,191,168,168,168,168,168,
+168,168,168,168,168,168,168,168,168,163,184,184,184,179,0,0,0,191,171,0,0,0,0,0,0,0,0,0,0,191,168,168,168,168,168,
+168,168,168,168,168,168,168,168,168,168,168,168,168,171,0,0,0,191,171,0,0,0,0,0,177,184,184,184,184,155,168,168,168,168,168,
 168,168,168,168,168,168,168,168,168,168,168,168,168,163,184,184,184,155,163,184,184,184,184,184,155,168,168,168,168,168,168,168,168,168,168,
 168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,
 168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,
@@ -3041,25 +3041,25 @@
 </data>
  </layer>
  <objectgroup name="Objects">
-  <object id="0" name="Lo (0)" gid="194" x="256" y="192" width="32" height="48"/>
-  <object id="1" name="Lo (1)" gid="194" x="320" y="352" width="32" height="48"/>
-  <object id="2" name="Lo (2)" gid="194" x="512" y="512" width="32" height="48"/>
-  <object id="3" name="Lo (3)" gid="194" x="640" y="512" width="32" height="48"/>
-  <object id="4" name="Lo (4)" gid="194" x="704" y="512" width="32" height="48"/>
-  <object id="5" name="Lo (5)" gid="195" x="608" y="480" width="32" height="48"/>
-  <object id="6" name="Lo (6)" gid="195" x="608" y="544" width="32" height="48"/>
-  <object id="7" name="Lo (7)" gid="195" x="672" y="544" width="32" height="48"/>
-  <object id="8" name="Lo (8)" gid="195" x="736" y="544" width="32" height="48"/>
-  <object id="9" name="Lo (9)" gid="196" x="352" y="320" width="32" height="48"/>
-  <object id="10" name="Lo (a)" gid="196" x="384" y="320" width="32" height="48"/>
-  <object id="11" name="Lo (b)" gid="196" x="352" y="352" width="32" height="48"/>
-  <object id="12" name="Lo (c)" gid="196" x="640" y="448" width="32" height="48"/>
-  <object id="13" name="Lo (d)" gid="197" x="704" y="448" width="32" height="48"/>
-  <object id="14" name="Lo (e)" gid="197" x="672" y="480" width="32" height="48"/>
-  <object id="15" name="Lo (f)" gid="199" x="480" y="448" width="32" height="11"/>
-  <object id="16" name="Lo (10)" gid="202" x="576" y="320" width="64" height="80"/>
-  <object id="17" name="Lo (11)" gid="203" x="608" y="256" width="64" height="80"/>
-  <object id="18" name="Pl (12)" gid="322" x="160" y="192" width="32" height="48"/>
+  <object id="0" name="Lo (0)" gid="194" x="608" y="480" width="32" height="48"/>
+  <object id="1" name="Lo (1)" gid="194" x="672" y="480" width="32" height="48"/>
+  <object id="2" name="Lo (2)" gid="194" x="640" y="512" width="32" height="48"/>
+  <object id="3" name="Lo (3)" gid="194" x="608" y="544" width="32" height="48"/>
+  <object id="4" name="Lo (4)" gid="194" x="736" y="544" width="32" height="48"/>
+  <object id="5" name="Lo (5)" gid="195" x="512" y="512" width="32" height="48"/>
+  <object id="6" name="Lo (6)" gid="195" x="704" y="512" width="32" height="48"/>
+  <object id="7" name="Lo (7)" gid="196" x="352" y="320" width="32" height="48"/>
+  <object id="8" name="Lo (8)" gid="196" x="320" y="352" width="32" height="48"/>
+  <object id="9" name="Lo (9)" gid="196" x="352" y="352" width="32" height="48"/>
+  <object id="10" name="Lo (10)" gid="196" x="640" y="448" width="32" height="48"/>
+  <object id="11" name="Lo (11)" gid="196" x="704" y="448" width="32" height="48"/>
+  <object id="12" name="Lo (12)" gid="197" x="256" y="192" width="32" height="48"/>
+  <object id="13" name="Lo (13)" gid="197" x="384" y="320" width="32" height="48"/>
+  <object id="14" name="Lo (14)" gid="197" x="672" y="544" width="32" height="48"/>
+  <object id="15" name="Lo (15)" gid="199" x="480" y="512" width="32" height="112"/>
+  <object id="16" name="Lo (16)" gid="202" x="576" y="352" width="64" height="80"/>
+  <object id="17" name="Lo (17)" gid="203" x="576" y="288" width="64" height="80"/>
+  <object id="18" name="Pl (18)" gid="322" x="160" y="192" width="32" height="48"/>
  </objectgroup>
  <layer name="Ambience" width="35" height="23">
   <data encoding="csv">

@@ -566,7 +566,7 @@ public class TextToTmx {
 	            	graphicsCode += 
 	            			"   <properties>\n" +
 							"    <property name=\"@Default\" value=\"(this)\"/>\n" +
-							"    <property name=\"@Magnetised\" value=\"Magnetic Overlay Lodestone " + write + "\"/>\n" +
+							"    <property name=\"@Magnetised\" value=\"~Magnetic Overlay Lodestone " + write + "\"/>\n" +
 							"    <property name=\"Body Area\" value=\"" + area + "\"/>\n" +
 							"    <property name=\"Body Width\" type=\"int\" value=\"" + width + "\"/>\n" +
 							"    <property name=\"IsMagnetisable\" type=\"bool\" value=\"true\"/>\n" +
@@ -1411,12 +1411,13 @@ public class TextToTmx {
 	}
 	
 	public static void main(String[] args) throws IOException {
+		String mainDir = "D:/Dropbox/Orbital/Magnets-master/android/assets/";
 		TextToTmx prog = new TextToTmx();
 		for (String pack: new String[] { "Easy Levels Pack", "Medium Levels Pack", "Hard Levels Pack", "Weird Levels Pack"}) {
-			String content = new String(Files.readAllBytes(Paths.get("C:/Users/ckjr/Desktop/Magnets/android/assets/Levels/" + pack + ".txt")));
+			String content = new String(Files.readAllBytes(Paths.get(mainDir + "Levels/" + pack + ".txt")));
 			for (String levelcode: content.split("\\r\\n\\r\\n")) {
 				prog.setLevel(levelcode);
-				prog.convert("C:/Users/ckjr/Desktop/Magnets/android/assets/Levels/" + pack + "/");
+				prog.convert(mainDir + "Levels/" + pack + "/");
 			}
 		}
 	}
