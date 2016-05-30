@@ -35,19 +35,21 @@ public class TiledStage extends Stage implements Disposable {
 	private TiledStageActor _inputFocalActor;
 	private HashMap<String, TiledStageActor> _actorsByName;
 	private HashMap<TiledStageActor, Integer> _actorsCoordinateCount;
-	private ArrayList<HashSet<TiledStageActor>> _ticksToActors;
+	private ArrayList<HashSet<TiledStageActor>> _subTicksToActors;
 	private ArrayList<TiledStageActor> _tempActors = new ArrayList<TiledStageActor>();
 	private int _tileWidth;
 	private int _tileHeight;
 	private int _tileRows;
 	private int _tileColumns;
-	private int _maxTicks;
+	private int _maxSubTicks;
+	private float _tickTime;
+	private float _tickDuration;
 	private ArrayList<Coordinate> _coordinates;
 	private String _actorsLayerName;
 	private HashMap<String, TiledMapTileLayer> _tileLayers;
 	private LinkedList<TiledObject> _objects;
 
-	public TiledStage(TiledMap map, String actorsLayerName, float viewSizeX, float viewSizeY, int maxTicks) {
+	public TiledStage(TiledMap map, String actorsLayerName, float viewSizeX, float viewSizeY, int maxSubTicks, float tickDuration) {
 		_viewSizeX = viewSizeX;
 		_viewSizeY = viewSizeY;
 		_actorsLayerName = actorsLayerName;
@@ -55,11 +57,13 @@ public class TiledStage extends Stage implements Disposable {
 		_actorsCoordinateCount = new HashMap<TiledStageActor, Integer>();
 		_actorsByName = new HashMap<String, TiledStageActor>();
 		_objects = new LinkedList<TiledObject>();
-		_maxTicks = maxTicks;
+		_maxSubTicks = maxSubTicks;
+		_tickTime = 0f;
+		_tickDuration = tickDuration;
 
-		_ticksToActors = new ArrayList<HashSet<TiledStageActor>>(_maxTicks);
-		for (int i = 0; i < _maxTicks; i++) {
-			_ticksToActors.add(i, new HashSet<TiledStageActor>());
+		_subTicksToActors = new ArrayList<HashSet<TiledStageActor>>(_maxSubTicks);
+		for (int i = 0; i < _maxSubTicks; i++) {
+			_subTicksToActors.add(i, new HashSet<TiledStageActor>());
 		}
 
 		initializeMap();
@@ -227,12 +231,18 @@ public class TiledStage extends Stage implements Disposable {
 	public void draw() {
 		float delta = Gdx.graphics.getDeltaTime();
 
-		for (int i = 0; i < _maxTicks; i++) {
-			_tempActors.clear();
-			_tempActors.addAll(_ticksToActors.get(i));
-			for (TiledStageActor actor : _tempActors) {
-				actor.act(i);
+		_tickTime += delta;
+
+		while (_tickTime >= _tickDuration) {
+			for (int i = 0; i < _maxSubTicks; i++) {
+				_tempActors.clear();
+				_tempActors.addAll(_subTicksToActors.get(i));
+				for (TiledStageActor actor : _tempActors) {
+					actor.act(i);
+				}
 			}
+
+			_tickTime -= _tickDuration;
 		}
 
 		super.act(delta);
@@ -287,6 +297,10 @@ public class TiledStage extends Stage implements Disposable {
 		return _tileColumns;
 	}
 
+	public float tickDuration() {
+		return _tickDuration;
+	}
+
 	public Coordinate getCoordinate(int tileRow, int tileCol) {
 		if (tileRow >= _tileRows || tileCol >= _tileColumns || tileRow < 0 || tileCol < 0) return null;
 		return _coordinates.get(getCoordinateIndex(tileRow, tileCol));
@@ -303,8 +317,8 @@ public class TiledStage extends Stage implements Disposable {
 			} else {
 				_actorsCoordinateCount.put(actor, 1);
 
-				for (int i : actor.TICKS()) {
-					_ticksToActors.get(i).add(actor);
+				for (int i : actor.SUBTICKS()) {
+					_subTicksToActors.get(i).add(actor);
 				}
 			}
 		}
@@ -317,7 +331,7 @@ public class TiledStage extends Stage implements Disposable {
 				if (_actorsCoordinateCount.get(actor) == 1) {
 					_actorsCoordinateCount.remove(actor);
 
-					for (HashSet<TiledStageActor> actors : _ticksToActors) {
+					for (HashSet<TiledStageActor> actors : _subTicksToActors) {
 						if (actors.contains(actor)) actors.remove(actor);
 					}
 				} else {

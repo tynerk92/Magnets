@@ -11,9 +11,9 @@ public class MagneticSource extends TiledStageActor {
 	public static final int MAGNETISE_RANGE = 1;
 	public static final int ATTRACTION_RANGE = 2;
 	public static final int ATTRACTION_STRENGTH = 1;
-	public static final int[] TICKS = new int[]{
-			PlayScreen.TICKS.MAGNETISATION.ordinal(),
-			PlayScreen.TICKS.FORCES.ordinal()
+	public static final int[] SUBTICKS = new int[]{
+			PlayScreen.SUBTICKS.MAGNETISATION.ordinal(),
+			PlayScreen.SUBTICKS.FORCES.ordinal()
 	};
 
 	public MagneticSource(HashMap<String, FrameSequence> animationFrames,
@@ -24,8 +24,8 @@ public class MagneticSource extends TiledStageActor {
 	}
 
 	@Override
-	public void act(int tick) {
-		if (tick == PlayScreen.TICKS.MAGNETISATION.ordinal()) {
+	public void act(int subtick) {
+		if (subtick == PlayScreen.SUBTICKS.MAGNETISATION.ordinal()) {
 
 			TreeSet<TiledStage.Coordinate> magnetiseCoodinates = origin().getCoordinatesInRange(MAGNETISE_RANGE, false);
 			for (TiledStage.Coordinate coordinate : magnetiseCoodinates) {
@@ -38,7 +38,7 @@ public class MagneticSource extends TiledStageActor {
 				}
 			}
 
-		} else if (tick == PlayScreen.TICKS.FORCES.ordinal()) {
+		} else if (subtick == PlayScreen.SUBTICKS.FORCES.ordinal()) {
 			// Attract blocks within attraction range
 			for (TiledStage.Coordinate bodyCoordinate : bodyCoordinates()) {
 				for (TiledStage.Coordinate coordinate : bodyCoordinate.getCoordinatesInRange(ATTRACTION_RANGE, false)) {
@@ -67,7 +67,7 @@ public class MagneticSource extends TiledStageActor {
 	// ---------
 
 	@Override
-	public int[] TICKS() {
-		return TICKS;
+	public int[] SUBTICKS() {
+		return SUBTICKS;
 	}
 }

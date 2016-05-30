@@ -9,8 +9,8 @@ import java.util.TreeSet;
 public class MagneticFloor extends TiledStageActor {
 	public static final String STATE_DEFAULT = "Default";
 	public static final int MAGNETISE_RANGE = 0;
-	public static final int[] TICKS = new int[]{
-			PlayScreen.TICKS.MAGNETISATION.ordinal()
+	public static final int[] SUBTICKS = new int[]{
+			PlayScreen.SUBTICKS.MAGNETISATION.ordinal()
 	};
 
 	public MagneticFloor(HashMap<String, FrameSequence> animationFrames,
@@ -21,8 +21,8 @@ public class MagneticFloor extends TiledStageActor {
 	}
 
 	@Override
-	public void act(int tick) {
-		if (tick == PlayScreen.TICKS.MAGNETISATION.ordinal()) {
+	public void act(int subtick) {
+		if (subtick == PlayScreen.SUBTICKS.MAGNETISATION.ordinal()) {
 
 			TreeSet<TiledStage.Coordinate> magnetiseCoodinates = origin().getCoordinatesInRange(MAGNETISE_RANGE, false);
 			for (TiledStage.Coordinate coordinate : magnetiseCoodinates) {
@@ -46,7 +46,7 @@ public class MagneticFloor extends TiledStageActor {
 	// ---------
 
 	@Override
-	public int[] TICKS() {
-		return TICKS;
+	public int[] SUBTICKS() {
+		return SUBTICKS;
 	}
 }

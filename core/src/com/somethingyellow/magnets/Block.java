@@ -6,17 +6,17 @@ import java.util.HashMap;
 import java.util.TreeSet;
 
 public class Block extends TiledStageActor {
-	public static final float MOVE_SPEED = 8f;
+	public static final int MOVE_TICKS = 1;
 	public static final String STATE_DEFAULT = "Default";
 	public static final String STATE_MAGNETISED = "Magnetised";
 	public static final int MAGNETISED_ATTRACTION_RANGE = 2;
 	public static final int MAGNETISED_MAGNETISE_RANGE = 1;
 	public static final int MAGNETISED_ATTRACTION_STRENGTH = 1;
-	public static final int[] TICKS = new int[]{
-			PlayScreen.TICKS.RESET.ordinal(),
-			PlayScreen.TICKS.FORCES.ordinal(),
-			PlayScreen.TICKS.BLOCK_MOVEMENT.ordinal(),
-			PlayScreen.TICKS.BUTTON_PRESSES.ordinal()
+	public static final int[] SUBTICKS = new int[]{
+			PlayScreen.SUBTICKS.RESET.ordinal(),
+			PlayScreen.SUBTICKS.FORCES.ordinal(),
+			PlayScreen.SUBTICKS.BLOCK_MOVEMENT.ordinal(),
+			PlayScreen.SUBTICKS.BUTTON_PRESSES.ordinal()
 	};
 
 	private boolean _isPushable;
@@ -39,13 +39,13 @@ public class Block extends TiledStageActor {
 	}
 
 	@Override
-	public void act(int tick) {
-		if (tick == PlayScreen.TICKS.RESET.ordinal()) {
+	public void act(int subtick) {
+		if (subtick == PlayScreen.SUBTICKS.RESET.ordinal()) {
 
 			demagnetise();
 			_forceX = _forceY = 0;
 
-		} else if (tick == PlayScreen.TICKS.FORCES.ordinal()) {
+		} else if (subtick == PlayScreen.SUBTICKS.FORCES.ordinal()) {
 
 			if (_isMagnetised) {
 				// Attract blocks within attraction range
@@ -70,13 +70,13 @@ public class Block extends TiledStageActor {
 				if (hasState(STATE_MAGNETISED)) removeState(STATE_MAGNETISED);
 			}
 
-		} else if (tick == PlayScreen.TICKS.BLOCK_MOVEMENT.ordinal()) {
+		} else if (subtick == PlayScreen.SUBTICKS.BLOCK_MOVEMENT.ordinal()) {
 
 			if (_forceX != 0 || _forceY != 0) {
-				moveDirection(TiledStage.GetDirection(_forceY, _forceX), 1 / MOVE_SPEED);
+				moveDirection(TiledStage.GetDirection(_forceY, _forceX), MOVE_TICKS);
 			}
 
-		} else if (tick == PlayScreen.TICKS.BUTTON_PRESSES.ordinal()) {
+		} else if (subtick == PlayScreen.SUBTICKS.BUTTON_PRESSES.ordinal()) {
 
 			for (TiledStage.Coordinate bodyCoordinate : bodyCoordinates()) {
 				for (TiledStageActor actor : bodyCoordinate.actors()) {
@@ -87,12 +87,6 @@ public class Block extends TiledStageActor {
 				}
 			}
 
-		}
-	}
-
-	public void push(TiledStage.DIRECTION direction) {
-		if (_isPushable) {
-			applyForce(direction, 100);
 		}
 	}
 
@@ -157,7 +151,7 @@ public class Block extends TiledStageActor {
 	}
 
 	@Override
-	public int[] TICKS() {
-		return TICKS;
+	public int[] SUBTICKS() {
+		return SUBTICKS;
 	}
 }

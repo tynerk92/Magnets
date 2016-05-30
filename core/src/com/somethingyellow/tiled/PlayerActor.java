@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Event;
 import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.somethingyellow.magnets.PlayScreen;
 
 import java.util.HashMap;
 
@@ -15,6 +16,7 @@ public abstract class PlayerActor extends TiledStageActor implements EventListen
 	private boolean _isKeyRightHeld = false;
 	private boolean _isKeyUpHeld = false;
 	private boolean _isKeyDownHeld = false;
+
 
 	public PlayerActor(boolean[] bodyArea, int bodyWidth, HashMap<String, FrameSequence> animationFrames,
 	                   TiledStage stage, TiledStage.Coordinate origin, int actorDepth) {
@@ -82,7 +84,7 @@ public abstract class PlayerActor extends TiledStageActor implements EventListen
 		return false;
 	}
 
-	public boolean keyDown(InputEvent event, int keycode) {
+	protected boolean keyDown(InputEvent event, int keycode) {
 		switch (keycode) {
 			case Input.Keys.LEFT:
 				_isKeyLeftHeld = true;
@@ -101,7 +103,7 @@ public abstract class PlayerActor extends TiledStageActor implements EventListen
 		return true;
 	}
 
-	public boolean keyUp(InputEvent event, int keycode) {
+	protected boolean keyUp(InputEvent event, int keycode) {
 		switch (keycode) {
 			case Input.Keys.LEFT:
 				_isKeyLeftHeld = false;
@@ -120,31 +122,31 @@ public abstract class PlayerActor extends TiledStageActor implements EventListen
 		return true;
 	}
 
-	public boolean keyTyped(InputEvent event, int keycode) {
+	protected boolean keyTyped(InputEvent event, int keycode) {
 		return false;
 	}
 
-	public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+	protected boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
 		return false;
 	}
 
-	public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+	protected void touchUp(InputEvent event, float x, float y, int pointer, int button) {
 	}
 
-	public void touchDragged(InputEvent event, float x, float y, int pointer) {
+	protected void touchDragged(InputEvent event, float x, float y, int pointer) {
 	}
 
-	public boolean mouseMoved(InputEvent event, float x, float y) {
+	protected boolean mouseMoved(InputEvent event, float x, float y) {
 		return false;
 	}
 
-	public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
+	protected void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
 	}
 
-	public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
+	protected void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
 	}
 
-	public boolean scrolled(InputEvent event, float x, float y, int amount) {
+	protected boolean scrolled(InputEvent event, float x, float y, int amount) {
 		return false;
 	}
 }

@@ -13,11 +13,9 @@ public class Door extends TiledStageActor {
 	public static final String STATE_CLOSED = "Closed";
 	public static final String ACTION_OPEN = "Open";
 	public static final String ACTION_CLOSE = "Close";
-	public static final float OPENING_DURATION = 0.6f;
-	public static final float CLOSING_DURATION = 0.6f;
 
-	public static final int[] TICKS = new int[]{
-			PlayScreen.TICKS.GRAPHICS.ordinal()
+	public static final int[] SUBTICKS = new int[]{
+			PlayScreen.SUBTICKS.GRAPHICS.ordinal()
 	};
 
 	private boolean _isOpen;
@@ -27,38 +25,39 @@ public class Door extends TiledStageActor {
 		super(TiledStageActor.BodyArea1x1, 1, animationFrames, stage, origin, actorDepth);
 
 		_isOpen = isOpen;
-		if (_isOpen) addState(STATE_OPENED);
-		else addState(STATE_CLOSED);
+		if (_isOpen) {
+			addState(STATE_OPENED);
+		} else {
+			addState(STATE_CLOSED);
+		}
+
+		// Frame events
+		final Door door = this;
+		getStateFrames(STATE_OPENING).setListener(new TiledStageActor.FrameSequenceListener() {
+			@Override
+			public void ended() {
+				addState(STATE_OPENED).removeState(STATE_OPENING);
+			}
+		});
+
+		getStateFrames(STATE_CLOSING).setListener(new TiledStageActor.FrameSequenceListener() {
+			@Override
+			public void ended() {
+				addState(STATE_CLOSED).removeState(STATE_CLOSING);
+			}
+		});
 	}
 
 	@Override
-	public void act(int tick) {
-		if (tick == PlayScreen.TICKS.GRAPHICS.ordinal()) {
+	public void act(int subtick) {
+		if (subtick == PlayScreen.SUBTICKS.GRAPHICS.ordinal()) {
 			if (_isOpen) {
 				if (hasState(STATE_CLOSED)) {
 					addState(STATE_OPENING).removeState(STATE_CLOSED);
-
-					final Door door = this;
-
-					addAction(Actions.delay(OPENING_DURATION, Actions.run(new Runnable() {
-						@Override
-						public void run() {
-							door.addState(STATE_OPENED).removeState(STATE_OPENING);
-						}
-					})));
 				}
 			} else {
 				if (hasState(STATE_OPENED)) {
 					addState(STATE_CLOSING).removeState(STATE_OPENED);
-
-					final Door door = this;
-
-					addAction(Actions.delay(CLOSING_DURATION, Actions.run(new Runnable() {
-						@Override
-						public void run() {
-							door.addState(STATE_CLOSED).removeState(STATE_CLOSING);
-						}
-					})));
 				}
 			}
 		}
@@ -85,7 +84,7 @@ public class Door extends TiledStageActor {
 	}
 
 	@Override
-	public int[] TICKS() {
-		return TICKS;
+	public int[] SUBTICKS() {
+		return SUBTICKS;
 	}
 }

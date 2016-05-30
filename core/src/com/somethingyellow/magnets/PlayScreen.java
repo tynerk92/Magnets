@@ -18,6 +18,7 @@ import java.util.Iterator;
 public class PlayScreen implements Screen {
 	public static final float WORLD_WIDTH = 500f;
 	public static final float TILE_ANIMATION_FRAME_DURATION = 0.1f;
+	public static final float TICK_DURATION = 0.1f;
 	public static final String LAYER_ACTORS = "Walls and Objects";
 	// Tile properties
 	public static final String TILE_TYPE = "Type";
@@ -45,7 +46,7 @@ public class PlayScreen implements Screen {
 	public static final String TILE_FRAME_DEPTH = "Frame Depth";
 	public boolean DEBUG_MODE = false;
 	// Paths/Textures
-	private String _levelPath = "Levels/Easy Levels Pack/Buttons.tmx";
+	private String _levelPath = "Levels/Hard Levels Pack/Back and Forth.tmx";
 	private TiledStage _tiledStage;
 	private PlayerActor _playerActor;
 	private HashMap<String, TiledMapTile> _tilesByReference;
@@ -120,7 +121,7 @@ public class PlayScreen implements Screen {
 				}
 
 				if (!_tileFramesByTile.containsKey(animationTile)) {
-					_tileFramesByTile.put(animationTile, TiledStageActor.FrameSequence.TileToFrames(animationTile));
+					_tileFramesByTile.put(animationTile, TiledStageActor.FrameSequence.TileToFrames(animationTile, _tiledStage.tickDuration()));
 				}
 
 				animationFrames.put(prop.substring(TILE_STATE.length()),
@@ -208,7 +209,7 @@ public class PlayScreen implements Screen {
 
 		TiledMap map = new TmxMapLoader().load(_levelPath);
 
-		_tiledStage = new TiledStage(map, LAYER_ACTORS, WORLD_WIDTH, WORLD_WIDTH / width * height, TICKS.values().length);
+		_tiledStage = new TiledStage(map, LAYER_ACTORS, WORLD_WIDTH, WORLD_WIDTH / width * height, SUBTICKS.values().length, TICK_DURATION);
 		_tilesByReference = new HashMap<String, TiledMapTile>();
 		_tileFramesByTile = new HashMap<TiledMapTile, ArrayList<TiledStageActor.Frame>>();
 		_playerActor = null;
@@ -336,7 +337,7 @@ public class PlayScreen implements Screen {
 		_tiledStage.dispose();
 	}
 
-	public enum TICKS {
-		RESET, MAGNETISATION, FORCES, BLOCK_MOVEMENT, PLAYER_MOVEMENT, BUTTON_PRESSES, GRAPHICS
+	public enum SUBTICKS {
+		RESET, BUTTON_PRESSES, MAGNETISATION, FORCES, BLOCK_MOVEMENT, PLAYER_MOVEMENT, GRAPHICS
 	}
 }
