@@ -2106,30 +2106,30 @@
 
   <tile id="272">
    <properties>
+    <property name="@Off" value="(this)"/>
+    <property name="@Offing" value="~Button Pressing 1"/>
+    <property name="@On" value="~Button On 1"/>
+    <property name="@Oning" value="~Button Pressing 1"/>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="Type" value="Button"/>
-    <property name="@Off" value="(this)"/>
-    <property name="@Offing" value="~Button Pressing"/>
-    <property name="@On" value="~Button On"/>
-    <property name="@Oning" value="~Button Pressing"/>
    </properties>
    <image width="32" height="32" source="../../Graphics/Objects/Button 1 State 1.png"/>
   </tile>
 
   <tile id="273">
    <properties>
+    <property name="~" value="Button Pressing 1"/>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="Type" value="Button"/>
-    <property name="~" value="Button Pressing"/>
    </properties>
    <image width="32" height="32" source="../../Graphics/Objects/Button 1 State 2.png"/>
   </tile>
 
   <tile id="274">
    <properties>
+    <property name="~" value="Button On 1"/>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="Type" value="Button"/>
-    <property name="~" value="Button On"/>
    </properties>
    <image width="32" height="32" source="../../Graphics/Objects/Button 1 State 3.png"/>
   </tile>
@@ -2137,96 +2137,100 @@
   <tile id="275">
    <properties>
     <property name="@Closed" value="(this)"/>
-    <property name="@Closing" value="~Door Closing"/>
-    <property name="@Opened" value="~Door Opened"/>
-    <property name="@Opening" value="~Door Opening"/>
+    <property name="@Closing" value="~Door Closing 1"/>
+    <property name="@Opened" value="~Door Opened 1"/>
+    <property name="@Opening" value="~Door Opening 1"/>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="Type" value="Door"/>
    </properties>
-   <image width="32" height="48" source="../../Graphics/Objects/Contraption 1 NSEW State 1.png"/>
+   <image width="32" height="48" source="../../Graphics/Objects/Door 1 NSEW State 1.png"/>
   </tile>
 
   <tile id="276">
    <properties>
-    <property name="~" value="Door Opening"/>
+    <property name="~" value="Door Opening 1"/>
    </properties>
-   <image width="32" height="48" source="../../Graphics/Objects/Contraption 1 NSEW State 2.png"/>
+   <image width="32" height="48" source="../../Graphics/Objects/Door 1 NSEW State 2.png"/>
    <animation>
+    <frame tileid="276" duration="40"/>
+    <frame tileid="277" duration="40"/>
+    <frame tileid="278" duration="40"/>
+    <frame tileid="279" duration="40"/>
+    <frame tileid="280" duration="40"/>
+    <frame tileid="281" duration="40"/>
+    <frame tileid="282" duration="40"/>
    </animation>
   </tile>
 
   <tile id="277">
-   <properties>
-   </properties>
-   <image width="32" height="48" source="../../Graphics/Objects/Contraption 1 NSEW State 3.png"/>
+   <image width="32" height="48" source="../../Graphics/Objects/Door 1 NSEW State 3.png"/>
   </tile>
 
   <tile id="278">
-   <properties>
-   </properties>
-   <image width="32" height="48" source="../../Graphics/Objects/Contraption 1 NSEW State 4.png"/>
+   <image width="32" height="48" source="../../Graphics/Objects/Door 1 NSEW State 4.png"/>
   </tile>
 
   <tile id="279">
-   <properties>
-   </properties>
-   <image width="32" height="48" source="../../Graphics/Objects/Contraption 1 NSEW State 5.png"/>
+   <image width="32" height="48" source="../../Graphics/Objects/Door 1 NSEW State 5.png"/>
   </tile>
 
   <tile id="280">
-   <properties>
-   </properties>
-   <image width="32" height="48" source="../../Graphics/Objects/Contraption 1 NSEW State 6.png"/>
+   <image width="32" height="48" source="../../Graphics/Objects/Door 1 NSEW State 6.png"/>
   </tile>
 
   <tile id="281">
-   <properties>
-   </properties>
-   <image width="32" height="48" source="../../Graphics/Objects/Contraption 1 NSEW State 7.png"/>
+   <image width="32" height="48" source="../../Graphics/Objects/Door 1 NSEW State 7.png"/>
   </tile>
 
   <tile id="282">
    <properties>
-    <property name="~" value="Door Closing"/>
+    <property name="~" value="Door Closing 1"/>
    </properties>
-   <image width="32" height="48" source="../../Graphics/Objects/Contraption 1 NSEW State 8.png"/>
+   <image width="32" height="48" source="../../Graphics/Objects/Door 1 NSEW State 8.png"/>
    <animation>
+    <frame tileid="282" duration="40"/>
+    <frame tileid="281" duration="40"/>
+    <frame tileid="280" duration="40"/>
+    <frame tileid="279" duration="40"/>
+    <frame tileid="278" duration="40"/>
+    <frame tileid="277" duration="40"/>
+    <frame tileid="276" duration="40"/>
    </animation>
   </tile>
 
   <tile id="283">
    <properties>
-    <property name="~" value="Door Opened"/>
+    <property name="~" value="Door Opened 1"/>
    </properties>
-   <image width="32" height="48" source="../../Graphics/Objects/Contraption 1 NSEW State 9.png"/>
+   <image width="32" height="48" source="../../Graphics/Objects/Door 1 NSEW State 9.png"/>
   </tile>
 
   <tile id="284">
    <properties>
+    <property name="@Off" value="(this)"/>
+    <property name="@Offing" value="~Button Pressing 2"/>
+    <property name="@On" value="~Button On 2"/>
+    <property name="@Oning" value="~Button Pressing 2"/>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="Type" value="Button"/>
-    <property name="@Off" value="(this)"/>
-    <property name="@Offing" value="~Button Pressing"/>
-    <property name="@On" value="~Button On"/>
-    <property name="@Oning" value="~Button Pressing"/>
    </properties>
    <image width="32" height="32" source="../../Graphics/Objects/Button 2 State 1.png"/>
   </tile>
 
   <tile id="285">
    <properties>
+    <property name="~" value="Button Pressing 2"/>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="Type" value="Button"/>
-    <property name="~" value="Button Pressing"/>
    </properties>
    <image width="32" height="32" source="../../Graphics/Objects/Button 2 State 2.png"/>
   </tile>
 
   <tile id="286">
    <properties>
+    <property name="~" value="Button On 2"/>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="Type" value="Button"/>
-    <property name="~" value="Button On"/>
    </properties>
    <image width="32" height="32" source="../../Graphics/Objects/Button 2 State 3.png"/>
   </tile>
@@ -2234,68 +2238,72 @@
   <tile id="287">
    <properties>
     <property name="@Closed" value="(this)"/>
-    <property name="@Closing" value="~Door Closing"/>
-    <property name="@Opened" value="~Door Opened"/>
-    <property name="@Opening" value="~Door Opening"/>
+    <property name="@Closing" value="~Door Closing 2"/>
+    <property name="@Opened" value="~Door Opened 2"/>
+    <property name="@Opening" value="~Door Opening 2"/>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="Type" value="Door"/>
    </properties>
-   <image width="32" height="48" source="../../Graphics/Objects/Contraption 2 NSEW State 1.png"/>
+   <image width="32" height="48" source="../../Graphics/Objects/Door 2 NSEW State 1.png"/>
   </tile>
 
   <tile id="288">
    <properties>
-    <property name="~" value="Door Opening"/>
+    <property name="~" value="Door Opening 2"/>
    </properties>
-   <image width="32" height="48" source="../../Graphics/Objects/Contraption 2 NSEW State 2.png"/>
+   <image width="32" height="48" source="../../Graphics/Objects/Door 2 NSEW State 2.png"/>
    <animation>
+    <frame tileid="288" duration="40"/>
+    <frame tileid="289" duration="40"/>
+    <frame tileid="290" duration="40"/>
+    <frame tileid="291" duration="40"/>
+    <frame tileid="292" duration="40"/>
+    <frame tileid="293" duration="40"/>
+    <frame tileid="294" duration="40"/>
    </animation>
   </tile>
 
   <tile id="289">
-   <properties>
-   </properties>
-   <image width="32" height="48" source="../../Graphics/Objects/Contraption 2 NSEW State 3.png"/>
+   <image width="32" height="48" source="../../Graphics/Objects/Door 2 NSEW State 3.png"/>
   </tile>
 
   <tile id="290">
-   <properties>
-   </properties>
-   <image width="32" height="48" source="../../Graphics/Objects/Contraption 2 NSEW State 4.png"/>
+   <image width="32" height="48" source="../../Graphics/Objects/Door 2 NSEW State 4.png"/>
   </tile>
 
   <tile id="291">
-   <properties>
-   </properties>
-   <image width="32" height="48" source="../../Graphics/Objects/Contraption 2 NSEW State 5.png"/>
+   <image width="32" height="48" source="../../Graphics/Objects/Door 2 NSEW State 5.png"/>
   </tile>
 
   <tile id="292">
-   <properties>
-   </properties>
-   <image width="32" height="48" source="../../Graphics/Objects/Contraption 2 NSEW State 6.png"/>
+   <image width="32" height="48" source="../../Graphics/Objects/Door 2 NSEW State 6.png"/>
   </tile>
 
   <tile id="293">
-   <properties>
-   </properties>
-   <image width="32" height="48" source="../../Graphics/Objects/Contraption 2 NSEW State 7.png"/>
+   <image width="32" height="48" source="../../Graphics/Objects/Door 2 NSEW State 7.png"/>
   </tile>
 
   <tile id="294">
    <properties>
-    <property name="~" value="Door Closing"/>
+    <property name="~" value="Door Closing 2"/>
    </properties>
-   <image width="32" height="48" source="../../Graphics/Objects/Contraption 2 NSEW State 8.png"/>
+   <image width="32" height="48" source="../../Graphics/Objects/Door 2 NSEW State 8.png"/>
    <animation>
+    <frame tileid="294" duration="40"/>
+    <frame tileid="293" duration="40"/>
+    <frame tileid="292" duration="40"/>
+    <frame tileid="291" duration="40"/>
+    <frame tileid="290" duration="40"/>
+    <frame tileid="289" duration="40"/>
+    <frame tileid="288" duration="40"/>
    </animation>
   </tile>
 
   <tile id="295">
    <properties>
-    <property name="~" value="Door Opened"/>
+    <property name="~" value="Door Opened 2"/>
    </properties>
-   <image width="32" height="48" source="../../Graphics/Objects/Contraption 2 NSEW State 9.png"/>
+   <image width="32" height="48" source="../../Graphics/Objects/Door 2 NSEW State 9.png"/>
   </tile>
 
   <tile id="296">
@@ -2954,29 +2962,29 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,70,71,71,67,0,0,74,0,0,0,76,0,67,71,0,0,71,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,69,0,89,65,68,0,0,0,0,0,89,0,0,66,0,0,0,0,0,0,0,72,0,0,0,0,0,0,0,0,
-0,0,0,0,68,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,65,69,0,0,69,0,0,69,0,68,71,0,0,0,66,0,74,0,66,66,0,0,67,0,0,0,0,0,0,0,
-0,0,0,0,68,0,0,0,0,0,0,71,69,73,0,0,0,0,0,70,0,0,0,67,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,71,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,68,0,0,0,0,0,0,0,0,72,0,0,66,0,0,0,68,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,69,0,67,0,0,0,0,66,0,0,0,0,0,0,0,0,72,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,67,0,0,0,0,72,0,0,66,0,0,65,71,76,0,66,0,76,74,0,89,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,73,67,0,0,70,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,69,89,0,0,69,92,0,0,74,0,0,67,86,69,0,0,67,0,66,0,73,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,66,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,65,90,71,71,0,76,74,72,0,75,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,69,0,0,0,0,0,0,0,0,0,71,0,71,70,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,72,0,0,0,0,0,0,0,0,66,0,0,0,0,0,0,0,0,
-0,0,0,0,75,72,0,0,0,0,0,0,67,0,72,0,74,0,68,0,68,0,66,0,0,0,67,0,0,0,0,0,0,0,
-0,0,0,0,0,73,0,0,0,0,0,74,0,66,0,0,0,68,0,76,0,0,0,0,67,71,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,76,0,68,0,88,0,0,0,0,0,67,0,0,67,0,0,68,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,69,0,0,76,76,0,0,89,73,0,75,0,0,75,72,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,72,0,0,0,0,0,0,68,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,76,0,0,0,0,0,68,0,65,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,70,66,0,0,71,0,72,0,0,73,73,0,0,72,0,0,0,0,0,66,0,69,0,0,0,0,0,0,0,0,
+0,0,0,0,72,0,0,0,0,0,0,0,0,0,73,0,66,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,75,0,0,88,67,0,0,73,0,72,0,0,0,70,0,0,68,0,71,66,0,0,72,0,0,0,0,0,0,0,
+0,0,0,0,0,69,67,0,0,0,0,68,0,0,0,0,0,0,0,0,76,0,0,0,0,0,86,0,0,0,0,0,0,0,
+0,0,0,0,66,0,0,0,0,0,0,0,0,0,0,0,0,65,0,0,0,0,0,0,0,69,0,0,0,0,0,0,0,0,
+0,0,0,0,66,75,0,69,86,0,71,0,0,74,0,0,85,0,76,0,85,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,69,0,0,0,65,0,66,0,0,69,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,65,0,0,0,0,0,0,0,0,0,0,86,0,69,0,0,75,0,0,0,0,0,0,0,
-0,0,0,0,65,0,0,67,0,0,0,0,72,0,0,0,0,0,0,75,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,73,0,0,0,0,0,0,0,0,73,0,0,0,0,76,66,0,65,71,0,0,0,0,0,0,0,
-0,0,0,0,0,65,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,74,0,0,0,72,66,0,0,0,0,65,0,0,0,70,91,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,73,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,71,0,71,73,0,0,0,0,66,0,0,70,0,0,66,68,65,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,67,0,76,0,0,0,0,0,68,0,0,66,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,66,0,91,0,0,0,0,65,66,0,0,74,0,0,0,75,0,75,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,67,68,0,0,0,0,0,0,0,0,0,0,70,0,0,0,0,0,0,0,66,0,0,0,0,0,0,0,0,0,
+0,0,0,0,68,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,72,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,87,0,0,0,0,0,0,0,0,0,0,0,70,0,0,0,0,0,0,67,67,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,72,75,0,0,0,71,0,0,0,0,0,0,0,90,69,0,0,0,0,0,66,0,0,0,0,0,0,0,0,
+0,0,0,0,0,66,0,0,72,0,70,0,0,0,0,0,0,0,0,0,0,0,0,0,67,72,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,74,0,68,0,0,66,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,65,92,0,0,0,76,0,0,0,74,0,74,0,0,0,91,0,68,72,0,72,70,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -3063,92 +3071,92 @@
  </layer>
 
  <objectgroup name="Objects">
-  <object id="0" name="Ex_0_" gid="297" x="448" y="160" width="32" height="48"/>
-  <object id="1" name="Lo_1_" gid="194" x="192" y="800" width="32" height="48"/>
-  <object id="2" name="Lo_2_" gid="195" x="192" y="416" width="32" height="48"/>
-  <object id="3" name="Lo_3_" gid="196" x="192" y="224" width="32" height="48"/>
-  <object id="4" name="Lo_4_" gid="196" x="608" y="384" width="32" height="48"/>
-  <object id="5" name="Lo_5_" gid="197" x="384" y="224" width="32" height="48"/>
-  <object id="6" name="Lo_6_" gid="197" x="544" y="448" width="32" height="48"/>
-  <object id="7" name="Lo_7_" gid="197" x="192" y="608" width="32" height="48"/>
-  <object id="8" name="Lo_8_" gid="199" x="448" y="736" width="32" height="112"/>
-  <object id="9" name="Lo_9_" gid="200" x="576" y="800" width="64" height="48"/>
-  <object id="10" name="Lo_10_" gid="202" x="512" y="256" width="64" height="80"/>
-  <object id="11" name="Lo_11_" gid="202" x="352" y="448" width="64" height="80"/>
-  <object id="12" name="Lo_12_" gid="203" x="192" y="832" width="64" height="80"/>
-  <object id="13" name="Lo_13_" gid="206" x="320" y="672" width="64" height="112"/>
-  <object id="14" name="Lo_14_" gid="208" x="384" y="864" width="64" height="112"/>
-  <object id="15" name="Lo_15_" gid="221" x="736" y="448" width="96" height="80"/>
-  <object id="16" name="Lo_16_" gid="221" x="736" y="640" width="96" height="80"/>
-  <object id="17" name="Lo_17_" gid="223" x="128" y="576" width="96" height="80"/>
-  <object id="18" name="Lo_18_" gid="225" x="704" y="768" width="96" height="80"/>
-  <object id="19" name="Lo_19_" gid="226" x="192" y="672" width="96" height="80"/>
-  <object id="20" name="Lo_20_" gid="229" x="544" y="640" width="96" height="80"/>
-  <object id="21" name="Lo_21_" gid="235" x="608" y="192" width="32" height="48"/>
-  <object id="22" name="Lo_22_" gid="235" x="768" y="224" width="32" height="48"/>
-  <object id="23" name="Lo_23_" gid="235" x="224" y="384" width="32" height="48"/>
-  <object id="24" name="Lo_24_" gid="235" x="352" y="608" width="32" height="48"/>
-  <object id="25" name="Lo_25_" gid="235" x="416" y="832" width="32" height="48"/>
-  <object id="26" name="Ma_26_" gid="312" x="256" y="224" width="32" height="48"/>
-  <object id="27" name="Ma_27_" gid="312" x="640" y="224" width="32" height="48"/>
-  <object id="28" name="Ma_28_" gid="312" x="768" y="288" width="32" height="48"/>
-  <object id="29" name="Ma_29_" gid="312" x="192" y="352" width="32" height="48"/>
-  <object id="30" name="Ma_30_" gid="312" x="384" y="352" width="32" height="48"/>
-  <object id="31" name="Ma_31_" gid="312" x="768" y="352" width="32" height="48"/>
-  <object id="32" name="Ma_32_" gid="312" x="800" y="384" width="32" height="48"/>
-  <object id="33" name="Ma_33_" gid="312" x="608" y="448" width="32" height="48"/>
-  <object id="34" name="Ma_34_" gid="312" x="544" y="544" width="32" height="48"/>
-  <object id="35" name="Ma_35_" gid="312" x="576" y="544" width="32" height="48"/>
-  <object id="36" name="Ma_36_" gid="312" x="768" y="544" width="32" height="48"/>
-  <object id="37" name="Ma_37_" gid="312" x="736" y="576" width="32" height="48"/>
-  <object id="38" name="Ma_38_" gid="312" x="128" y="608" width="32" height="48"/>
-  <object id="39" name="Ma_39_" gid="312" x="256" y="608" width="32" height="48"/>
-  <object id="40" name="Ma_40_" gid="312" x="672" y="608" width="32" height="48"/>
-  <object id="41" name="Ma_41_" gid="312" x="672" y="640" width="32" height="48"/>
-  <object id="42" name="Ma_42_" gid="312" x="864" y="640" width="32" height="48"/>
-  <object id="43" name="Ma_43_" gid="312" x="384" y="672" width="32" height="48"/>
-  <object id="44" name="Ma_44_" gid="312" x="832" y="672" width="32" height="48"/>
-  <object id="45" name="Ma_45_" gid="312" x="544" y="704" width="32" height="48"/>
-  <object id="46" name="Ma_46_" gid="312" x="768" y="704" width="32" height="48"/>
-  <object id="47" name="Ma_47_" gid="312" x="800" y="704" width="32" height="48"/>
-  <object id="48" name="Ma_48_" gid="312" x="192" y="736" width="32" height="48"/>
-  <object id="49" name="Ma_49_" gid="312" x="608" y="736" width="32" height="48"/>
-  <object id="50" name="Ma_50_" gid="312" x="640" y="768" width="32" height="48"/>
-  <object id="51" name="Ma_51_" gid="312" x="832" y="768" width="32" height="48"/>
-  <object id="52" name="Ma_52_" gid="312" x="128" y="832" width="32" height="48"/>
-  <object id="53" name="Ma_53_" gid="312" x="704" y="832" width="32" height="48"/>
-  <object id="54" name="Ma_54_" gid="312" x="736" y="832" width="32" height="48"/>
-  <object id="55" name="Ma_55_" gid="312" x="768" y="832" width="32" height="48"/>
-  <object id="56" name="Ma_56_" gid="312" x="576" y="864" width="32" height="48"/>
-  <object id="57" name="Ma_57_" gid="317" x="192" y="160" width="32" height="48"/>
-  <object id="58" name="Ma_58_" gid="317" x="384" y="160" width="32" height="48"/>
-  <object id="59" name="Ma_59_" gid="317" x="576" y="160" width="32" height="48"/>
-  <object id="60" name="Ma_60_" gid="317" x="768" y="160" width="32" height="48"/>
-  <object id="61" name="Ma_61_" gid="317" x="448" y="224" width="32" height="48"/>
-  <object id="62" name="Ma_62_" gid="317" x="704" y="224" width="32" height="48"/>
-  <object id="63" name="Ma_63_" gid="317" x="832" y="224" width="32" height="48"/>
-  <object id="64" name="Ma_64_" gid="317" x="192" y="288" width="32" height="48"/>
-  <object id="65" name="Ma_65_" gid="317" x="544" y="384" width="32" height="48"/>
-  <object id="66" name="Ma_66_" gid="317" x="736" y="384" width="32" height="48"/>
-  <object id="67" name="Ma_67_" gid="317" x="256" y="416" width="32" height="48"/>
-  <object id="68" name="Ma_68_" gid="317" x="448" y="416" width="32" height="48"/>
-  <object id="69" name="Ma_69_" gid="317" x="608" y="544" width="32" height="48"/>
-  <object id="70" name="Ma_70_" gid="317" x="800" y="576" width="32" height="48"/>
-  <object id="71" name="Ma_71_" gid="317" x="704" y="608" width="32" height="48"/>
-  <object id="72" name="Ma_72_" gid="317" x="832" y="608" width="32" height="48"/>
-  <object id="73" name="Ma_73_" gid="317" x="704" y="672" width="32" height="48"/>
-  <object id="74" name="Ma_74_" gid="317" x="576" y="704" width="32" height="48"/>
-  <object id="75" name="Ma_75_" gid="317" x="608" y="704" width="32" height="48"/>
-  <object id="76" name="Ma_76_" gid="317" x="736" y="704" width="32" height="48"/>
-  <object id="77" name="Ma_77_" gid="317" x="224" y="736" width="32" height="48"/>
-  <object id="78" name="Ma_78_" gid="317" x="384" y="736" width="32" height="48"/>
-  <object id="79" name="Ma_79_" gid="317" x="576" y="736" width="32" height="48"/>
-  <object id="80" name="Ma_80_" gid="317" x="640" y="736" width="32" height="48"/>
-  <object id="81" name="Ma_81_" gid="317" x="128" y="800" width="32" height="48"/>
-  <object id="82" name="Ma_82_" gid="317" x="512" y="800" width="32" height="48"/>
-  <object id="83" name="Ma_83_" gid="317" x="672" y="800" width="32" height="48"/>
-  <object id="84" name="Ma_84_" gid="317" x="608" y="864" width="32" height="48"/>
-  <object id="85" name="Pl_85_" gid="322" x="480" y="512" width="32" height="48"/>
+  <object id="0" name="Ex0" gid="302" x="448" y="160" width="32" height="48"/>
+  <object id="1" name="Lo1" gid="194" x="192" y="224" width="32" height="48"/>
+  <object id="2" name="Lo2" gid="195" x="608" y="384" width="32" height="48"/>
+  <object id="3" name="Lo3" gid="195" x="544" y="448" width="32" height="48"/>
+  <object id="4" name="Lo4" gid="196" x="192" y="416" width="32" height="48"/>
+  <object id="5" name="Lo5" gid="196" x="192" y="608" width="32" height="48"/>
+  <object id="6" name="Lo6" gid="197" x="384" y="224" width="32" height="48"/>
+  <object id="7" name="Lo7" gid="197" x="192" y="800" width="32" height="48"/>
+  <object id="8" name="Lo8" gid="199" x="448" y="736" width="32" height="112"/>
+  <object id="9" name="Lo9" gid="200" x="576" y="800" width="64" height="48"/>
+  <object id="10" name="Lo10" gid="202" x="512" y="256" width="64" height="80"/>
+  <object id="11" name="Lo11" gid="202" x="352" y="448" width="64" height="80"/>
+  <object id="12" name="Lo12" gid="203" x="192" y="832" width="64" height="80"/>
+  <object id="13" name="Lo13" gid="206" x="320" y="672" width="64" height="112"/>
+  <object id="14" name="Lo14" gid="208" x="384" y="864" width="64" height="112"/>
+  <object id="15" name="Lo15" gid="221" x="736" y="448" width="96" height="80"/>
+  <object id="16" name="Lo16" gid="221" x="736" y="640" width="96" height="80"/>
+  <object id="17" name="Lo17" gid="223" x="128" y="576" width="96" height="80"/>
+  <object id="18" name="Lo18" gid="225" x="704" y="768" width="96" height="80"/>
+  <object id="19" name="Lo19" gid="226" x="192" y="672" width="96" height="80"/>
+  <object id="20" name="Lo20" gid="229" x="544" y="640" width="96" height="80"/>
+  <object id="21" name="Lo21" gid="235" x="608" y="192" width="32" height="48"/>
+  <object id="22" name="Lo22" gid="235" x="768" y="224" width="32" height="48"/>
+  <object id="23" name="Lo23" gid="235" x="224" y="384" width="32" height="48"/>
+  <object id="24" name="Lo24" gid="235" x="352" y="608" width="32" height="48"/>
+  <object id="25" name="Lo25" gid="235" x="416" y="832" width="32" height="48"/>
+  <object id="26" name="Ma26" gid="312" x="192" y="160" width="32" height="48"/>
+  <object id="27" name="Ma27" gid="312" x="768" y="160" width="32" height="48"/>
+  <object id="28" name="Ma28" gid="312" x="256" y="224" width="32" height="48"/>
+  <object id="29" name="Ma29" gid="312" x="704" y="224" width="32" height="48"/>
+  <object id="30" name="Ma30" gid="312" x="832" y="224" width="32" height="48"/>
+  <object id="31" name="Ma31" gid="312" x="544" y="384" width="32" height="48"/>
+  <object id="32" name="Ma32" gid="312" x="736" y="384" width="32" height="48"/>
+  <object id="33" name="Ma33" gid="312" x="800" y="384" width="32" height="48"/>
+  <object id="34" name="Ma34" gid="312" x="256" y="416" width="32" height="48"/>
+  <object id="35" name="Ma35" gid="312" x="544" y="544" width="32" height="48"/>
+  <object id="36" name="Ma36" gid="312" x="608" y="544" width="32" height="48"/>
+  <object id="37" name="Ma37" gid="312" x="736" y="576" width="32" height="48"/>
+  <object id="38" name="Ma38" gid="312" x="128" y="608" width="32" height="48"/>
+  <object id="39" name="Ma39" gid="312" x="256" y="608" width="32" height="48"/>
+  <object id="40" name="Ma40" gid="312" x="672" y="608" width="32" height="48"/>
+  <object id="41" name="Ma41" gid="312" x="672" y="640" width="32" height="48"/>
+  <object id="42" name="Ma42" gid="312" x="864" y="640" width="32" height="48"/>
+  <object id="43" name="Ma43" gid="312" x="576" y="704" width="32" height="48"/>
+  <object id="44" name="Ma44" gid="312" x="192" y="736" width="32" height="48"/>
+  <object id="45" name="Ma45" gid="312" x="576" y="736" width="32" height="48"/>
+  <object id="46" name="Ma46" gid="312" x="608" y="736" width="32" height="48"/>
+  <object id="47" name="Ma47" gid="312" x="128" y="832" width="32" height="48"/>
+  <object id="48" name="Ma48" gid="312" x="704" y="832" width="32" height="48"/>
+  <object id="49" name="Ma49" gid="312" x="768" y="832" width="32" height="48"/>
+  <object id="50" name="Ma50" gid="312" x="608" y="864" width="32" height="48"/>
+  <object id="51" name="Ma51" gid="317" x="384" y="160" width="32" height="48"/>
+  <object id="52" name="Ma52" gid="317" x="576" y="160" width="32" height="48"/>
+  <object id="53" name="Ma53" gid="317" x="448" y="224" width="32" height="48"/>
+  <object id="54" name="Ma54" gid="317" x="640" y="224" width="32" height="48"/>
+  <object id="55" name="Ma55" gid="317" x="192" y="288" width="32" height="48"/>
+  <object id="56" name="Ma56" gid="317" x="768" y="288" width="32" height="48"/>
+  <object id="57" name="Ma57" gid="317" x="192" y="352" width="32" height="48"/>
+  <object id="58" name="Ma58" gid="317" x="384" y="352" width="32" height="48"/>
+  <object id="59" name="Ma59" gid="317" x="768" y="352" width="32" height="48"/>
+  <object id="60" name="Ma60" gid="317" x="448" y="416" width="32" height="48"/>
+  <object id="61" name="Ma61" gid="317" x="608" y="448" width="32" height="48"/>
+  <object id="62" name="Ma62" gid="317" x="576" y="544" width="32" height="48"/>
+  <object id="63" name="Ma63" gid="317" x="768" y="544" width="32" height="48"/>
+  <object id="64" name="Ma64" gid="317" x="800" y="576" width="32" height="48"/>
+  <object id="65" name="Ma65" gid="317" x="704" y="608" width="32" height="48"/>
+  <object id="66" name="Ma66" gid="317" x="832" y="608" width="32" height="48"/>
+  <object id="67" name="Ma67" gid="317" x="384" y="672" width="32" height="48"/>
+  <object id="68" name="Ma68" gid="317" x="704" y="672" width="32" height="48"/>
+  <object id="69" name="Ma69" gid="317" x="832" y="672" width="32" height="48"/>
+  <object id="70" name="Ma70" gid="317" x="544" y="704" width="32" height="48"/>
+  <object id="71" name="Ma71" gid="317" x="608" y="704" width="32" height="48"/>
+  <object id="72" name="Ma72" gid="317" x="736" y="704" width="32" height="48"/>
+  <object id="73" name="Ma73" gid="317" x="768" y="704" width="32" height="48"/>
+  <object id="74" name="Ma74" gid="317" x="800" y="704" width="32" height="48"/>
+  <object id="75" name="Ma75" gid="317" x="224" y="736" width="32" height="48"/>
+  <object id="76" name="Ma76" gid="317" x="384" y="736" width="32" height="48"/>
+  <object id="77" name="Ma77" gid="317" x="640" y="736" width="32" height="48"/>
+  <object id="78" name="Ma78" gid="317" x="640" y="768" width="32" height="48"/>
+  <object id="79" name="Ma79" gid="317" x="832" y="768" width="32" height="48"/>
+  <object id="80" name="Ma80" gid="317" x="128" y="800" width="32" height="48"/>
+  <object id="81" name="Ma81" gid="317" x="512" y="800" width="32" height="48"/>
+  <object id="82" name="Ma82" gid="317" x="672" y="800" width="32" height="48"/>
+  <object id="83" name="Ma83" gid="317" x="736" y="832" width="32" height="48"/>
+  <object id="84" name="Ma84" gid="317" x="576" y="864" width="32" height="48"/>
+  <object id="85" name="Pl85" gid="322" x="480" y="512" width="32" height="48"/>
  </objectgroup>
  <layer name="Ambience" width="34" height="33">
   <data encoding="csv">
