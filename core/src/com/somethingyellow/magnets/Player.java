@@ -22,7 +22,6 @@ public class Player extends PlayerActor {
 			PlayScreen.SUBTICKS.GRAPHICS.ordinal()
 	};
 
-	public TiledStage.DIRECTION _pushingDirection;
 	private boolean _toMoveLeft = false;
 	private boolean _toMoveRight = false;
 	private boolean _toMoveUp = false;
@@ -32,7 +31,6 @@ public class Player extends PlayerActor {
 	              TiledStage stage, TiledStage.Coordinate origin, int actorDepth) {
 		super(bodyArea, bodyWidth, animationFrames, stage, origin, actorDepth);
 		addState(STATE_STANDING);
-		_pushingDirection = null;
 	}
 
 	@Override
@@ -85,12 +83,6 @@ public class Player extends PlayerActor {
 
 	private boolean checkMovement() {
 		if (!isMoving()) {
-			if (_pushingDirection != null) {
-				TiledStage.DIRECTION direction = _pushingDirection;
-				_pushingDirection = null;
-				return moveDirection(direction);
-			}
-
 			if (_toMoveLeft && !_toMoveRight && !_toMoveUp && !_toMoveDown)
 				return moveDirection(TiledStage.DIRECTION.WEST);
 			else if (_toMoveRight && !_toMoveLeft && !_toMoveUp && !_toMoveDown)
@@ -108,14 +100,23 @@ public class Player extends PlayerActor {
 
 	protected boolean pushDirection(final TiledStage.DIRECTION direction) {
 		// check if there're any blocks in direction, push if there are
-		final TiledStage.Coordinate coordinate = origin().getAdjacentCoordinate(direction);
-		if (coordinate == null) return false;
-		HashSet<TiledStageActor> actors = coordinate.actors();
+		TiledStage.Coordinate targetCoordinate = origin().getAdjacentCoordinate(direction);
+		if (targetCoordinate == null) return false;
+		HashSet<TiledStageActor> actors = targetCoordinate.actors();
 		for (TiledStageActor actor : actors) {
 			if (actor instanceof Block) {
 				Block block = (Block) actor;
-				if (block.isPushable()) block.applyForce(direction, PLAYER_PUSH_FORCE);
-				_pushingDirection = direction;
+
+				if (block.isPushable()) {
+					TiledStage.Coordinate origin = origin();
+					moveToInstantly(targetCoordinate);
+					if (block.push(direction)) { // if block can really move to its pushed position (not considering actor)
+						moveToInstantly(origin);
+						moveDirection(direction);
+					} else {
+						moveToInstantly(origin);
+					}
+				}
 
 				return true;
 			}

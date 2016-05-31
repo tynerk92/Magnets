@@ -110,6 +110,10 @@ public class Block extends TiledStageActor {
 		}
 	}
 
+	public boolean push(TiledStage.DIRECTION direction) {
+		return moveDirection(direction, MOVE_TICKS);
+	}
+
 	@Override
 	public boolean bodyCanBeAt(TiledStage.Coordinate coordinate) {
 		if (coordinate.getTileProp(PlayScreen.LAYER_ACTORS, PlayScreen.TILE_TYPE, "").equals(PlayScreen.TILE_TYPE_WALL))

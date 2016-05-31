@@ -88,23 +88,24 @@ public abstract class TiledStageActor extends Actor implements Comparable<TiledS
 		return true;
 	}
 
-	protected void moveTo(final TiledStage.Coordinate targetCoordinate, final int ticks) {
-		final TiledStage.Coordinate origin = origin();
-		final TiledStageActor actor = this;
-
-		Vector2 pos = targetCoordinate.position();
-		_isMoving = true;
-
-		for (TiledStage.Coordinate coordinate : getBodyCoordinates(origin)) {
+	protected void moveToInstantly(TiledStage.Coordinate targetCoordinate) {
+		for (TiledStage.Coordinate coordinate : getBodyCoordinates(_origin)) {
 			_stage.removeActor(this, coordinate);
 		}
 
 		for (TiledStage.Coordinate coordinate : getBodyCoordinates(targetCoordinate)) {
 			_stage.addActor(this, coordinate);
 		}
-
 		_origin = targetCoordinate;
+	}
 
+	protected void moveTo(final TiledStage.Coordinate targetCoordinate, final int ticks) {
+		_isMoving = true;
+
+		moveToInstantly(targetCoordinate);
+
+		final TiledStageActor actor = this;
+		Vector2 pos = targetCoordinate.position();
 		addAction(Actions.sequence(
 				Actions.moveTo(pos.x, pos.y, ticksToTime(ticks)),
 				Actions.run(new Runnable() {
