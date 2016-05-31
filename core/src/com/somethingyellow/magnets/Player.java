@@ -12,18 +12,16 @@ import java.util.HashSet;
 public class Player extends PlayerActor {
 	public static final int MOVE_TICKS = 2;
 	public static final int TRY_MOVE_TICKS = 1;
-	public static final float TRY_MOVE_DISTANCE = 5f;
+	public static final float TRY_MOVE_DISTANCE = 3f;
 	public static final String STATE_STANDING = "Standing";
 	public static final String STATE_WALKING = "Walking";
 	public static final int PLAYER_PUSH_FORCE = 100;
 	public static final int[] SUBTICKS = new int[]{
 			PlayScreen.SUBTICKS.FORCES.ordinal(),
 			PlayScreen.SUBTICKS.PLAYER_MOVEMENT.ordinal(),
-			PlayScreen.SUBTICKS.BUTTON_PRESSES.ordinal(),
 			PlayScreen.SUBTICKS.GRAPHICS.ordinal()
 	};
 
-	public TiledStage.DIRECTION _pushingDirection;
 	private boolean _toMoveLeft = false;
 	private boolean _toMoveRight = false;
 	private boolean _toMoveUp = false;
@@ -33,7 +31,6 @@ public class Player extends PlayerActor {
 	              TiledStage stage, TiledStage.Coordinate origin, int actorDepth) {
 		super(bodyArea, bodyWidth, animationFrames, stage, origin, actorDepth);
 		addState(STATE_STANDING);
-		_pushingDirection = null;
 	}
 
 	@Override
@@ -65,17 +62,6 @@ public class Player extends PlayerActor {
 
 			_toMoveLeft = _toMoveRight = _toMoveUp = _toMoveDown = false;
 
-		} else if (subtick == PlayScreen.SUBTICKS.BUTTON_PRESSES.ordinal()) {
-
-			for (TiledStage.Coordinate bodyCoordinate : bodyCoordinates()) {
-				for (TiledStageActor actor : bodyCoordinate.actors()) {
-					if (actor instanceof Button) {
-						Button button = (Button)actor;
-						button.on();
-					}
-				}
-			}
-
 		}
 	}
 
@@ -97,12 +83,6 @@ public class Player extends PlayerActor {
 
 	private boolean checkMovement() {
 		if (!isMoving()) {
-			if (_pushingDirection != null) {
-				TiledStage.DIRECTION direction = _pushingDirection;
-				_pushingDirection = null;
-				return moveDirection(direction);
-			}
-
 			if (_toMoveLeft && !_toMoveRight && !_toMoveUp && !_toMoveDown)
 				return moveDirection(TiledStage.DIRECTION.WEST);
 			else if (_toMoveRight && !_toMoveLeft && !_toMoveUp && !_toMoveDown)
@@ -120,14 +100,23 @@ public class Player extends PlayerActor {
 
 	protected boolean pushDirection(final TiledStage.DIRECTION direction) {
 		// check if there're any blocks in direction, push if there are
-		final TiledStage.Coordinate coordinate = origin().getAdjacentCoordinate(direction);
-		if (coordinate == null) return false;
-		HashSet<TiledStageActor> actors = coordinate.actors();
+		TiledStage.Coordinate targetCoordinate = origin().getAdjacentCoordinate(direction);
+		if (targetCoordinate == null) return false;
+		HashSet<TiledStageActor> actors = targetCoordinate.actors();
 		for (TiledStageActor actor : actors) {
 			if (actor instanceof Block) {
 				Block block = (Block) actor;
-				if (block.isPushable()) block.applyForce(direction, PLAYER_PUSH_FORCE);
-				_pushingDirection = direction;
+
+				if (block.isPushable()) {
+					TiledStage.Coordinate origin = origin();
+					moveToInstantly(targetCoordinate);
+					if (block.push(direction)) { // if block can really move to its pushed position (not considering actor)
+						moveToInstantly(origin);
+						moveDirection(direction);
+					} else {
+						moveToInstantly(origin);
+					}
+				}
 
 				return true;
 			}
@@ -136,30 +125,7 @@ public class Player extends PlayerActor {
 	}
 
 	protected boolean moveDirection(TiledStage.DIRECTION direction) {
-		if (moveDirection(direction, MOVE_TICKS)) {
-			return true;
-		} else {
-			if (!isMoving()) {
-				TiledStage.Coordinate target = origin().getAdjacentCoordinate(direction);
-				float distance = origin().position().dst(target.position());
-				Vector2 tryMovePos = origin().position().lerp(target.position(), TRY_MOVE_DISTANCE / distance);
-
-				setIsMoving(true);
-				final Player player = this;
-				addAction(Actions.sequence(
-						Actions.moveTo(tryMovePos.x, tryMovePos.y, ticksToTime(TRY_MOVE_TICKS) / 2),
-						Actions.moveTo(origin().position().x, origin().position().y, ticksToTime(TRY_MOVE_TICKS) / 2),
-						Actions.run(new Runnable() {
-							@Override
-							public void run() {
-								player.setIsMoving(false);
-							}
-						})
-				));
-			}
-
-			return false;
-		}
+		return moveDirection(direction, MOVE_TICKS);
 	}
 
 	@Override

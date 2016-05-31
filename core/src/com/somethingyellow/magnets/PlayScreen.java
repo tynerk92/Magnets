@@ -18,7 +18,7 @@ import java.util.Iterator;
 public class PlayScreen implements Screen {
 	public static final float WORLD_WIDTH = 500f;
 	public static final float TILE_ANIMATION_FRAME_DURATION = 0.1f;
-	public static final float TICK_DURATION = 0.1f;
+	public static final float TICK_DURATION = 0.08f;
 	public static final String LAYER_ACTORS = "Walls and Objects";
 	// Tile properties
 	public static final String TILE_TYPE = "Type";
@@ -46,7 +46,7 @@ public class PlayScreen implements Screen {
 	public static final String TILE_FRAME_DEPTH = "Frame Depth";
 	public boolean DEBUG_MODE = false;
 	// Paths/Textures
-	private String _levelPath = "Levels/Hard Levels Pack/Back and Forth.tmx";
+	private String _levelPath = "Levels/Weird Levels Pack/Test Cases.tmx";
 	private TiledStage _tiledStage;
 	private PlayerActor _playerActor;
 	private HashMap<String, TiledMapTile> _tilesByReference;
@@ -292,12 +292,14 @@ public class PlayScreen implements Screen {
 	}
 
 	public TiledStageActor spawnDoor(TiledStage.TiledObject object) {
-		return new Door(getAnimations(object.tile()), _tiledStage,
+		return new Door(ExtractBodyArea(object.tile()), ExtractBodyWidth(object.tile()),
+				getAnimations(object.tile()), _tiledStage,
 				object.origin(), ExtractActorDepth(object.tile()), ExtractIsOpen(object.tile()));
 	}
 
 	public TiledStageActor spawnButton(TiledStage.TiledObject object) {
-		return new Button(getAnimations(object.tile()), _tiledStage,
+		return new Button(ExtractBodyArea(object.tile()), ExtractBodyWidth(object.tile()),
+				getAnimations(object.tile()), _tiledStage,
 				object.origin(), ExtractActorDepth(object.tile()));
 	}
 

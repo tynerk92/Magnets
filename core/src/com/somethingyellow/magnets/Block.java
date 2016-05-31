@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.TreeSet;
 
 public class Block extends TiledStageActor {
-	public static final int MOVE_TICKS = 1;
+	public static final int MOVE_TICKS = 2;
 	public static final String STATE_DEFAULT = "Default";
 	public static final String STATE_MAGNETISED = "Magnetised";
 	public static final int MAGNETISED_ATTRACTION_RANGE = 2;
@@ -15,8 +15,7 @@ public class Block extends TiledStageActor {
 	public static final int[] SUBTICKS = new int[]{
 			PlayScreen.SUBTICKS.RESET.ordinal(),
 			PlayScreen.SUBTICKS.FORCES.ordinal(),
-			PlayScreen.SUBTICKS.BLOCK_MOVEMENT.ordinal(),
-			PlayScreen.SUBTICKS.BUTTON_PRESSES.ordinal()
+			PlayScreen.SUBTICKS.BLOCK_MOVEMENT.ordinal()
 	};
 
 	private boolean _isPushable;
@@ -42,49 +41,40 @@ public class Block extends TiledStageActor {
 	public void act(int subtick) {
 		if (subtick == PlayScreen.SUBTICKS.RESET.ordinal()) {
 
-			demagnetise();
+			_isMagnetised = false;
 			_forceX = _forceY = 0;
 
 		} else if (subtick == PlayScreen.SUBTICKS.FORCES.ordinal()) {
 
 			if (_isMagnetised) {
-				// Attract blocks within attraction range
-				for (TiledStage.Coordinate bodyCoordinate : bodyCoordinates()) {
-					for (TiledStage.Coordinate coordinate : bodyCoordinate.getCoordinatesInRange(MAGNETISED_ATTRACTION_RANGE, false)) {
-						for (TiledStageActor actor : coordinate.actors()) {
-							if (actor == this) continue;
-							if (actor instanceof Block) {
-								Block block = (Block) actor;
-								if (!block.isMagnetised()) {
-									TiledStage.DIRECTION direction = bodyCoordinate.getDirectionFrom(coordinate);
-									if (direction != null)
-										block.applyForce(direction, MAGNETISED_ATTRACTION_STRENGTH);
+				if (!isMoving()) {
+					// Attract blocks within attraction range
+					for (TiledStage.Coordinate bodyCoordinate : bodyCoordinates()) {
+						for (TiledStage.Coordinate coordinate : bodyCoordinate.getCoordinatesInRange(MAGNETISED_ATTRACTION_RANGE, false)) {
+							for (TiledStageActor actor : coordinate.actors()) {
+								if (actor == this) continue;
+								if (actor instanceof Block) {
+									Block block = (Block) actor;
+									if (!block.isMagnetised()) {
+										TiledStage.DIRECTION direction = bodyCoordinate.getDirectionFrom(coordinate);
+										if (direction != null)
+											block.applyForce(direction, MAGNETISED_ATTRACTION_STRENGTH);
+									}
 								}
 							}
 						}
 					}
 				}
-
 				if (!hasState(STATE_MAGNETISED)) addState(STATE_MAGNETISED);
 			} else {
 				if (hasState(STATE_MAGNETISED)) removeState(STATE_MAGNETISED);
 			}
 
+
 		} else if (subtick == PlayScreen.SUBTICKS.BLOCK_MOVEMENT.ordinal()) {
 
 			if (_forceX != 0 || _forceY != 0) {
 				moveDirection(TiledStage.GetDirection(_forceY, _forceX), MOVE_TICKS);
-			}
-
-		} else if (subtick == PlayScreen.SUBTICKS.BUTTON_PRESSES.ordinal()) {
-
-			for (TiledStage.Coordinate bodyCoordinate : bodyCoordinates()) {
-				for (TiledStageActor actor : bodyCoordinate.actors()) {
-					if (actor instanceof Button) {
-						Button button = (Button) actor;
-						button.on();
-					}
-				}
 			}
 
 		}
@@ -96,6 +86,8 @@ public class Block extends TiledStageActor {
 	}
 
 	public void magnetise() {
+		if (isMoving()) return;
+
 		if (_isMagnetisable && !_isMagnetised) {
 			_isMagnetised = true;
 
@@ -118,8 +110,8 @@ public class Block extends TiledStageActor {
 		}
 	}
 
-	public void demagnetise() {
-		_isMagnetised = false;
+	public boolean push(TiledStage.DIRECTION direction) {
+		return moveDirection(direction, MOVE_TICKS);
 	}
 
 	@Override

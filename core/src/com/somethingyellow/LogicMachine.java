@@ -169,7 +169,7 @@ public class LogicMachine {
 				}
 			}
 
-			System.out.println("For expression " + _premisePattern.pattern() + ", result: " + matchString + " = " + _premisePattern.matcher(matchString).find());
+			// System.out.println("For expression " + _premisePattern.pattern() + ", result: " + matchString + " = " + _premisePattern.matcher(matchString).find());
 			// if expression is true
 			if (_premisePattern.matcher(matchString).find()) {
 				if (!_prevValue) {
