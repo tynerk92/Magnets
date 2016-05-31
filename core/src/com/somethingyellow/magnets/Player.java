@@ -12,7 +12,7 @@ import java.util.HashSet;
 public class Player extends PlayerActor {
 	public static final int MOVE_TICKS = 2;
 	public static final int TRY_MOVE_TICKS = 1;
-	public static final float TRY_MOVE_DISTANCE = 5f;
+	public static final float TRY_MOVE_DISTANCE = 3f;
 	public static final String STATE_STANDING = "Standing";
 	public static final String STATE_WALKING = "Walking";
 	public static final int PLAYER_PUSH_FORCE = 100;
@@ -136,30 +136,7 @@ public class Player extends PlayerActor {
 	}
 
 	protected boolean moveDirection(TiledStage.DIRECTION direction) {
-		if (moveDirection(direction, MOVE_TICKS)) {
-			return true;
-		} else {
-			if (!isMoving()) {
-				TiledStage.Coordinate target = origin().getAdjacentCoordinate(direction);
-				float distance = origin().position().dst(target.position());
-				Vector2 tryMovePos = origin().position().lerp(target.position(), TRY_MOVE_DISTANCE / distance);
-
-				setIsMoving(true);
-				final Player player = this;
-				addAction(Actions.sequence(
-						Actions.moveTo(tryMovePos.x, tryMovePos.y, ticksToTime(TRY_MOVE_TICKS) / 2),
-						Actions.moveTo(origin().position().x, origin().position().y, ticksToTime(TRY_MOVE_TICKS) / 2),
-						Actions.run(new Runnable() {
-							@Override
-							public void run() {
-								player.setIsMoving(false);
-							}
-						})
-				));
-			}
-
-			return false;
-		}
+		return moveDirection(direction, MOVE_TICKS);
 	}
 
 	@Override

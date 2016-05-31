@@ -27,6 +27,7 @@ public class MagneticSource extends TiledStageActor {
 	public void act(int subtick) {
 		if (subtick == PlayScreen.SUBTICKS.MAGNETISATION.ordinal()) {
 
+			// Magnetise adjacent blocks
 			TreeSet<TiledStage.Coordinate> magnetiseCoodinates = origin().getCoordinatesInRange(MAGNETISE_RANGE, false);
 			for (TiledStage.Coordinate coordinate : magnetiseCoodinates) {
 				for (TiledStageActor actor : coordinate.actors()) {
@@ -39,6 +40,7 @@ public class MagneticSource extends TiledStageActor {
 			}
 
 		} else if (subtick == PlayScreen.SUBTICKS.FORCES.ordinal()) {
+
 			// Attract blocks within attraction range
 			for (TiledStage.Coordinate bodyCoordinate : bodyCoordinates()) {
 				for (TiledStage.Coordinate coordinate : bodyCoordinate.getCoordinatesInRange(ATTRACTION_RANGE, false)) {
@@ -55,6 +57,7 @@ public class MagneticSource extends TiledStageActor {
 					}
 				}
 			}
+
 		}
 	}
 

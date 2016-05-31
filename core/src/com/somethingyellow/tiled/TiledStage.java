@@ -313,7 +313,7 @@ public class TiledStage extends Stage implements Disposable {
 	public TiledStage addActor(TiledStageActor actor, Coordinate coordinate) {
 		if (coordinate.addActor(actor)) {
 			if (_actorsCoordinateCount.containsKey(actor)) {
-				_actorsCoordinateCount.put(actor, _actorsCoordinateCount.get(actor) + 1);
+				_actorsCoordinateCount.put(actor, _actorsCoordinateCount.get(actor));
 			} else {
 				_actorsCoordinateCount.put(actor, 1);
 
