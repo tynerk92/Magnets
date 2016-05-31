@@ -24,8 +24,10 @@ Hinged Walls.
 
 	Reference: Kwirk.
 	A multi-tile wall with different states (orientations). 
-	
-When a block is magnetized, the door opens
+
+Doors / mechanisms that open as long as they are magnetized.
+
+When a block is magnetized, the door opens.
 
 Blocks against a wall open doors.
 	
