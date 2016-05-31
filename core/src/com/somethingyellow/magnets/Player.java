@@ -19,7 +19,6 @@ public class Player extends PlayerActor {
 	public static final int[] SUBTICKS = new int[]{
 			PlayScreen.SUBTICKS.FORCES.ordinal(),
 			PlayScreen.SUBTICKS.PLAYER_MOVEMENT.ordinal(),
-			PlayScreen.SUBTICKS.BUTTON_PRESSES.ordinal(),
 			PlayScreen.SUBTICKS.GRAPHICS.ordinal()
 	};
 
@@ -64,17 +63,6 @@ public class Player extends PlayerActor {
 			}
 
 			_toMoveLeft = _toMoveRight = _toMoveUp = _toMoveDown = false;
-
-		} else if (subtick == PlayScreen.SUBTICKS.BUTTON_PRESSES.ordinal()) {
-
-			for (TiledStage.Coordinate bodyCoordinate : bodyCoordinates()) {
-				for (TiledStageActor actor : bodyCoordinate.actors()) {
-					if (actor instanceof Button) {
-						Button button = (Button)actor;
-						button.on();
-					}
-				}
-			}
 
 		}
 	}

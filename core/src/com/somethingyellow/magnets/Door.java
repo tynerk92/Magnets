@@ -18,18 +18,16 @@ public class Door extends TiledStageActor {
 			PlayScreen.SUBTICKS.GRAPHICS.ordinal()
 	};
 
-	private boolean _isOpen;
+	private boolean _isOpen; // whether the door IS open
+	private boolean _toOpen; // whether the door SHOULD be open
 
-	public Door(HashMap<String, FrameSequence> animationFrames,
-	            TiledStage stage, TiledStage.Coordinate origin, int actorDepth, boolean isOpen) {
-		super(TiledStageActor.BodyArea1x1, 1, animationFrames, stage, origin, actorDepth);
+	public Door(boolean[] bodyArea, int bodyWidth, HashMap<String, FrameSequence> animationFrames,
+	            TiledStage stage, TiledStage.Coordinate origin, int actorDepth, boolean toOpen) {
+		super(bodyArea, bodyWidth, animationFrames, stage, origin, actorDepth);
 
-		_isOpen = isOpen;
-		if (_isOpen) {
-			addState(STATE_OPENED);
-		} else {
-			addState(STATE_CLOSED);
-		}
+		_toOpen = toOpen;
+		_isOpen = false;
+		addState(STATE_CLOSED);
 
 		// Frame events
 		final Door door = this;
@@ -51,6 +49,30 @@ public class Door extends TiledStageActor {
 	@Override
 	public void act(int subtick) {
 		if (subtick == PlayScreen.SUBTICKS.GRAPHICS.ordinal()) {
+
+			if (_toOpen && !_isOpen) {
+				_isOpen = true;
+
+			} else if (!_toOpen && _isOpen) {
+				// Check if blocked by anything to prevent it from opening
+				boolean ifBlocked = false;
+
+				loop:
+				for (TiledStage.Coordinate bodyCoordinate : bodyCoordinates()) {
+					for (TiledStageActor actor : bodyCoordinate.actors()) {
+						if (actor instanceof Block || actor instanceof Player) {
+							ifBlocked = true;
+							break loop;
+						}
+					}
+				}
+
+				if (!ifBlocked) {
+					_isOpen = false;
+				}
+			}
+
+
 			if (_isOpen) {
 				if (hasState(STATE_CLOSED)) {
 					addState(STATE_OPENING).removeState(STATE_CLOSED);
@@ -60,15 +82,16 @@ public class Door extends TiledStageActor {
 					addState(STATE_CLOSING).removeState(STATE_OPENED);
 				}
 			}
+
 		}
 	}
 
 	public void open() {
-		_isOpen = true;
+		_toOpen = true;
 	}
 
 	public void close() {
-		_isOpen = false;
+		_toOpen = false;
 	}
 
 	@Override

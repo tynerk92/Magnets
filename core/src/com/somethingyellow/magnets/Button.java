@@ -12,15 +12,15 @@ public class Button extends TiledStageActor {
 	public static final String STATE_OFFING = "Offing";
 	public static final String STATE_ONING = "Oning";
 	public static final int[] SUBTICKS = new int[]{
-			PlayScreen.SUBTICKS.RESET.ordinal(),
+			PlayScreen.SUBTICKS.BUTTON_PRESSES.ordinal(),
 			PlayScreen.SUBTICKS.GRAPHICS.ordinal()
 	};
 
 	private boolean _isOn;
 
-	public Button(HashMap<String, FrameSequence> animationFrames,
+	public Button(boolean[] bodyArea, int bodyWidth, HashMap<String, FrameSequence> animationFrames,
 	              TiledStage stage, TiledStage.Coordinate origin, int actorDepth) {
-		super(TiledStageActor.BodyArea1x1, 1, animationFrames, stage, origin, actorDepth);
+		super(bodyArea, bodyWidth, animationFrames, stage, origin, actorDepth);
 
 		_isOn = false;
 		addState(STATE_OFF);
@@ -44,9 +44,19 @@ public class Button extends TiledStageActor {
 
 	@Override
 	public void act(int subtick) {
-		if (subtick == PlayScreen.SUBTICKS.RESET.ordinal()) {
+		if (subtick == PlayScreen.SUBTICKS.BUTTON_PRESSES.ordinal()) {
 
 			_isOn = false;
+			loop:
+			for (TiledStage.Coordinate bodyCoordinate : bodyCoordinates()) {
+				for (TiledStageActor actor : bodyCoordinate.actors()) {
+					if (actor instanceof Player || actor instanceof Block) {
+						_isOn = true;
+						break loop;
+					}
+				}
+			}
+
 
 		} else if (subtick == PlayScreen.SUBTICKS.GRAPHICS.ordinal()) {
 
@@ -61,10 +71,6 @@ public class Button extends TiledStageActor {
 			}
 
 		}
-	}
-
-	public void on() {
-		_isOn = true;
 	}
 
 	@Override

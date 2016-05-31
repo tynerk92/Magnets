@@ -15,8 +15,7 @@ public class Block extends TiledStageActor {
 	public static final int[] SUBTICKS = new int[]{
 			PlayScreen.SUBTICKS.RESET.ordinal(),
 			PlayScreen.SUBTICKS.FORCES.ordinal(),
-			PlayScreen.SUBTICKS.BLOCK_MOVEMENT.ordinal(),
-			PlayScreen.SUBTICKS.BUTTON_PRESSES.ordinal()
+			PlayScreen.SUBTICKS.BLOCK_MOVEMENT.ordinal()
 	};
 
 	private boolean _isPushable;
@@ -76,17 +75,6 @@ public class Block extends TiledStageActor {
 
 			if (_forceX != 0 || _forceY != 0) {
 				moveDirection(TiledStage.GetDirection(_forceY, _forceX), MOVE_TICKS);
-			}
-
-		} else if (subtick == PlayScreen.SUBTICKS.BUTTON_PRESSES.ordinal()) {
-
-			for (TiledStage.Coordinate bodyCoordinate : bodyCoordinates()) {
-				for (TiledStageActor actor : bodyCoordinate.actors()) {
-					if (actor instanceof Button) {
-						Button button = (Button) actor;
-						button.on();
-					}
-				}
 			}
 
 		}
