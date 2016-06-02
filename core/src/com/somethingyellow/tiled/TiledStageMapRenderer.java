@@ -10,6 +10,7 @@ import com.badlogic.gdx.maps.tiled.renderers.BatchTiledMapRenderer;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -40,6 +41,7 @@ public class TiledStageMapRenderer extends BatchTiledMapRenderer {
 	private TiledStage _stage;
 	private String _actorsLayerName;
 	private ArrayList<HashSet<TiledStageActor>> _actorsOnCoordinates;
+	private ArrayList<TiledStageActor> _tempActors = new ArrayList<TiledStageActor>();
 
 	public TiledStageMapRenderer(TiledStage stage, TiledMap map, String actorsLayerName) {
 		super(map);
@@ -74,8 +76,6 @@ public class TiledStageMapRenderer extends BatchTiledMapRenderer {
 
 	@Override
 	public void renderTileLayer(TiledMapTileLayer layer) {
-		// TODO: Optimize rendering
-
 		final Color batchColor = batch.getColor();
 		final float color = Color.toFloatBits(batchColor.r, batchColor.g, batchColor.b, batchColor.a * layer.getOpacity());
 
@@ -110,17 +110,21 @@ public class TiledStageMapRenderer extends BatchTiledMapRenderer {
 
 			if (isActorsLayer) {
 
-				actors = new ArrayList<TiledStageActor>();
+				_tempActors.clear();
 				for (int col = col1; col <= col2; col++) {
 					for (TiledStageActor actor : _actorsOnCoordinates.get(row * _stage.tileColumns() + col)) {
-						actors.add(actor);
+						_tempActors.add(actor);
 					}
 				}
-
-				Collections.sort(actors);
+				_tempActors.sort(new Comparator<TiledStageActor>() {
+					@Override
+					public int compare(TiledStageActor actor1, TiledStageActor actor2) {
+						return actor1.actorDepth() - actor2.actorDepth();
+					}
+				});
 
 				// In ascending actor depth
-				for (TiledStageActor actor : actors) {
+				for (TiledStageActor actor : _tempActors) {
 					TiledStage.Coordinate renderOrigin = getRenderOrigin(actor);
 					bodyCoordinates = actor.getBodyCoordinates(renderOrigin);
 

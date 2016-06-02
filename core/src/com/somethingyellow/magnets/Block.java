@@ -3,10 +3,11 @@ package com.somethingyellow.magnets;
 import com.somethingyellow.tiled.*;
 
 import java.util.HashMap;
+import java.util.Set;
 import java.util.TreeSet;
 
 public class Block extends TiledStageActor {
-	public static final int MOVE_TICKS = 2;
+	public static final int MOVE_TICKS = 3;
 	public static final String STATE_DEFAULT = "Default";
 	public static final String STATE_MAGNETISED = "Magnetised";
 	public static final int MAGNETISED_ATTRACTION_RANGE = 2;
@@ -142,8 +143,7 @@ public class Block extends TiledStageActor {
 		return _isMagnetised;
 	}
 
-	@Override
-	public int[] SUBTICKS() {
+	public int[] subticks() {
 		return SUBTICKS;
 	}
 }

@@ -17,8 +17,7 @@ import java.util.Iterator;
 
 public class PlayScreen implements Screen {
 	public static final float WORLD_WIDTH = 500f;
-	public static final float TILE_ANIMATION_FRAME_DURATION = 0.1f;
-	public static final float TICK_DURATION = 0.08f;
+	public static final float TICK_DURATION = 0.06f;
 	public static final String LAYER_ACTORS = "Walls and Objects";
 	// Tile properties
 	public static final String TILE_TYPE = "Type";
@@ -45,16 +44,25 @@ public class PlayScreen implements Screen {
 	public static final String TILE_ACTOR_DEPTH = "Actor Depth";
 	public static final String TILE_FRAME_DEPTH = "Frame Depth";
 	public boolean DEBUG_MODE = false;
-	// Paths/Textures
-	private String _levelPath = "Levels/Weird Levels Pack/Test Cases.tmx";
+
 	private TiledStage _tiledStage;
+	private TiledMap _map;
 	private PlayerActor _playerActor;
 	private HashMap<String, TiledMapTile> _tilesByReference;
 	private HashMap<TiledMapTile, ArrayList<TiledStageActor.Frame>> _tileFramesByTile;
 	private LogicMachine _logicMachine;
+	private TmxMapLoader _tmxMapLoader;
 
 	// Debugging tools
-	private FPSLogger _fpsLogger = new FPSLogger();
+	private FPSLogger _fpsLogger;
+
+	public PlayScreen() {
+		_tmxMapLoader = new TmxMapLoader();
+		_fpsLogger = new FPSLogger();
+		_tilesByReference = new HashMap<String, TiledMapTile>();
+		_tileFramesByTile = new HashMap<TiledMapTile, ArrayList<TiledStageActor.Frame>>();
+		_logicMachine = new LogicMachine();
+	}
 
 	public static boolean[] ExtractBodyArea(TiledMapTile tile) {
 		String bodyArea = TiledStage.ParseProp(tile.getProperties(), TILE_BODY_AREA);
@@ -200,20 +208,23 @@ public class PlayScreen implements Screen {
 
 	@Override
 	public void show() {
-		loadLevel(1);
+		if (_tiledStage == null) {
+			_tiledStage = new TiledStage(LAYER_ACTORS, WORLD_WIDTH, WORLD_WIDTH / Gdx.graphics.getWidth() * Gdx.graphics.getHeight(),
+					SUBTICKS.values().length, TICK_DURATION);
+		}
 	}
 
-	public void loadLevel(int level) {
-		float width = Gdx.graphics.getWidth();
-		float height = Gdx.graphics.getHeight();
+	public void loadLevel(String levelPath) {
+		if (_map != null) _map.dispose();
 
-		TiledMap map = new TmxMapLoader().load(_levelPath);
-
-		_tiledStage = new TiledStage(map, LAYER_ACTORS, WORLD_WIDTH, WORLD_WIDTH / width * height, SUBTICKS.values().length, TICK_DURATION);
-		_tilesByReference = new HashMap<String, TiledMapTile>();
-		_tileFramesByTile = new HashMap<TiledMapTile, ArrayList<TiledStageActor.Frame>>();
+		_tilesByReference.clear();
+		_tileFramesByTile.clear();
+		_logicMachine.clear();
 		_playerActor = null;
-		_logicMachine = new LogicMachine();
+
+		if (_map != null) _map.dispose();
+		_map = _tmxMapLoader.load(levelPath);
+		_tiledStage.load(_map);
 
 		Gdx.input.setInputProcessor(_tiledStage);
 
@@ -231,20 +242,22 @@ public class PlayScreen implements Screen {
 			TiledMapTile tile = object.tile();
 			if (tile == null) continue;
 
-			String type = TiledStage.ParseProp(tile.getProperties(), TILE_TYPE, "");
+			String type = TiledStage.ParseProp(tile.getProperties(), TILE_TYPE);
 			TiledStageActor actor = null;
-			if (type.equals(TILE_TYPE_BLOCK)) {
-				actor = spawnBlock(object);
-			} else if (type.equals(TILE_TYPE_MAGNETIC_SOURCE)) {
-				actor = spawnMagneticSource(object);
-			} else if (type.equals(TILE_TYPE_MAGNETIC_FLOOR)) {
-				actor = spawnMagneticFloor(object);
-			} else if (type.equals(TILE_TYPE_PLAYER)) {
-				actor = spawnPlayer(object);
-			} else if (type.equals(TILE_TYPE_BUTTON)) {
-				actor = spawnButton(object);
-			} else if (type.equals(TILE_TYPE_DOOR)) {
-				actor = spawnDoor(object);
+			if (type != null) {
+				if (type.equals(TILE_TYPE_BLOCK)) {
+					actor = spawnBlock(object);
+				} else if (type.equals(TILE_TYPE_MAGNETIC_SOURCE)) {
+					actor = spawnMagneticSource(object);
+				} else if (type.equals(TILE_TYPE_MAGNETIC_FLOOR)) {
+					actor = spawnMagneticFloor(object);
+				} else if (type.equals(TILE_TYPE_PLAYER)) {
+					actor = spawnPlayer(object);
+				} else if (type.equals(TILE_TYPE_BUTTON)) {
+					actor = spawnButton(object);
+				} else if (type.equals(TILE_TYPE_DOOR)) {
+					actor = spawnDoor(object);
+				}
 			}
 
 			if (actor != null && object.name() != null) actor.setName(object.name());
@@ -309,8 +322,7 @@ public class PlayScreen implements Screen {
 		Gdx.gl.glClearColor(0f, 0f, 0f, 1.0f);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-		_tiledStage.draw();
-
+		if (_tiledStage != null) _tiledStage.draw();
 		if (DEBUG_MODE) _fpsLogger.log();
 	}
 
@@ -336,6 +348,7 @@ public class PlayScreen implements Screen {
 
 	@Override
 	public void dispose() {
+		if (_map != null) _map.dispose();
 		_tiledStage.dispose();
 	}
 

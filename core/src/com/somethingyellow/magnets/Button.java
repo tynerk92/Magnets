@@ -1,10 +1,10 @@
 package com.somethingyellow.magnets;
 
-import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.somethingyellow.tiled.TiledStage;
 import com.somethingyellow.tiled.TiledStageActor;
 
 import java.util.HashMap;
+import java.util.Set;
 
 public class Button extends TiledStageActor {
 	public static final String STATE_OFF = "Off";
@@ -26,7 +26,6 @@ public class Button extends TiledStageActor {
 		addState(STATE_OFF);
 
 		// Frame events
-		final Button button = this;
 		getStateFrames(STATE_ONING).setListener(new TiledStageActor.FrameSequenceListener() {
 			@Override
 			public void ended() {
@@ -57,7 +56,6 @@ public class Button extends TiledStageActor {
 				}
 			}
 
-
 		} else if (subtick == PlayScreen.SUBTICKS.GRAPHICS.ordinal()) {
 
 			if (_isOn) {
@@ -80,9 +78,8 @@ public class Button extends TiledStageActor {
 
 	// get/set
 	// ---------
-
 	@Override
-	public int[] SUBTICKS() {
+	public int[] subticks() {
 		return SUBTICKS;
 	}
 }

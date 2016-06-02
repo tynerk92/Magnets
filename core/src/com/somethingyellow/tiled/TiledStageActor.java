@@ -1,7 +1,6 @@
 package com.somethingyellow.tiled;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.tiles.AnimatedTiledMapTile;
 import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
@@ -10,19 +9,22 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.TreeSet;
 
 public abstract class TiledStageActor extends Actor implements Comparable<TiledStageActor> {
-	public static boolean[] BodyArea1x1 = new boolean[]{
+	public static final boolean[] BodyArea1x1 = new boolean[]{
 			true
 	};
+	public static final int[] SUBTICKS = new int[]{0};
+
 	private TiledStage.Coordinate _origin;
+	private LinkedList<TiledStage.Coordinate> _bodyCoordinates;
 	private int _actorDepth;
 	private TiledStage _stage;
-	private boolean _isMoving = false;
+	private int _movingTicks;
 	private boolean[] _bodyArea;
 	private int _bodyWidth;
 	private int _bodyHeight;
@@ -41,14 +43,14 @@ public abstract class TiledStageActor extends Actor implements Comparable<TiledS
 		_bodyHeight = bodyArea.length / bodyWidth;
 		_stage = stage;
 		_states = new TreeSet<String>();
-		_origin = origin;
 		_actorDepth = actorDepth;
 		_stateListeners = new LinkedList<StateListener>();
+		_movingTicks = 0;
 
-		for (TiledStage.Coordinate coordinate : getBodyCoordinates(_origin)) {
+		setOrigin(origin);
+		for (TiledStage.Coordinate coordinate : _bodyCoordinates) {
 			_stage.addActor(this, coordinate);
 		}
-
 		_stage.addActor(this);
 		Vector2 pos = _origin.position();
 		setPosition(pos.x, pos.y);
@@ -56,18 +58,23 @@ public abstract class TiledStageActor extends Actor implements Comparable<TiledS
 
 	@Override
 	public boolean remove() {
-		for (TiledStage.Coordinate coordinate : bodyCoordinates()) {
+		for (TiledStage.Coordinate coordinate : _bodyCoordinates) {
 			_stage.removeActor(this, coordinate);
 		}
 
 		return super.remove();
 	}
 
-	public abstract void act(int tick);
+	public void act() {
+		if (_movingTicks > 0) {
+			_movingTicks--;
+		}
+	}
 
-	public abstract int[] SUBTICKS();
-
+	public abstract void act(int subtick);
 	public abstract boolean bodyCanBeAt(TiledStage.Coordinate coordinate);
+
+	public abstract int[] subticks();
 
 	@Override
 	public void act(float delta) {
@@ -89,36 +96,29 @@ public abstract class TiledStageActor extends Actor implements Comparable<TiledS
 	}
 
 	protected void moveToInstantly(TiledStage.Coordinate targetCoordinate) {
-		for (TiledStage.Coordinate coordinate : getBodyCoordinates(_origin)) {
+		for (TiledStage.Coordinate coordinate : _bodyCoordinates) {
 			_stage.removeActor(this, coordinate);
 		}
-
-		for (TiledStage.Coordinate coordinate : getBodyCoordinates(targetCoordinate)) {
+		setOrigin(targetCoordinate);
+		for (TiledStage.Coordinate coordinate : _bodyCoordinates) {
 			_stage.addActor(this, coordinate);
 		}
-		_origin = targetCoordinate;
 	}
 
-	protected void moveTo(final TiledStage.Coordinate targetCoordinate, final int ticks) {
-		_isMoving = true;
-
+	protected void moveTo(TiledStage.Coordinate targetCoordinate, int ticks) {
+		_movingTicks = ticks;
 		moveToInstantly(targetCoordinate);
-
-		final TiledStageActor actor = this;
 		Vector2 pos = targetCoordinate.position();
-		addAction(Actions.sequence(
-				Actions.moveTo(pos.x, pos.y, ticksToTime(ticks)),
-				Actions.run(new Runnable() {
-						@Override
-						public void run() {
-							actor._isMoving = false;
-						}
-				})
-		));
+		addAction(Actions.moveTo(pos.x, pos.y, ticksToTime(ticks)));
+	}
+
+	private void setOrigin(TiledStage.Coordinate origin) {
+		_origin = origin;
+		_bodyCoordinates = getBodyCoordinates(_origin);
 	}
 
 	protected boolean moveDirection(TiledStage.DIRECTION direction, int ticks) {
-		if (_isMoving) return false;
+		if (_movingTicks > 0) return false;
 
 		TiledStage.Coordinate checkCoordinate;
 
@@ -128,14 +128,14 @@ public abstract class TiledStageActor extends Actor implements Comparable<TiledS
 		if (unitRow != 0) {
 			checkCoordinate = _stage.getCoordinate(_origin.row() + unitRow, _origin.column());
 			if (checkCoordinate == null || !canBeAt(checkCoordinate)) {
-				unitRow = 0;
+				return false;
 			}
 		}
 
 		if (unitCol != 0) {
 			checkCoordinate = _stage.getCoordinate(_origin.row(), _origin.column() + unitCol);
 			if (checkCoordinate == null || !canBeAt(checkCoordinate)) {
-				unitCol = 0;
+				return false;
 			}
 		}
 
@@ -143,12 +143,10 @@ public abstract class TiledStageActor extends Actor implements Comparable<TiledS
 		if (unitRow != 0 && unitCol != 0) {
 			checkCoordinate = _stage.getCoordinate(_origin.row() + unitRow, _origin.column() + unitCol);
 			if (checkCoordinate == null || !canBeAt(checkCoordinate)) {
-				unitRow = 0;
-				unitCol = 0;
+				return false;
 			}
 		}
 
-		if (unitRow == 0 && unitCol == 0) return false;
 		moveTo(_stage.getCoordinate(_origin.row() + unitRow, _origin.column() + unitCol), ticks);
 		return true;
 	}
@@ -163,26 +161,24 @@ public abstract class TiledStageActor extends Actor implements Comparable<TiledS
 		return _origin;
 	}
 
-	public LinkedList<TiledStage.Coordinate> bodyCoordinates() {
-		return getBodyCoordinates(_origin);
+	public TiledStage.Coordinate topLeftBodyCoordinate() {
+		TiledStage.Coordinate topLeft = null;
+		for (TiledStage.Coordinate bodyCoordinate : _bodyCoordinates) {
+			if (topLeft == null || bodyCoordinate.row() > topLeft.row()) { // body coordinate is more top than current topleft coordinate
+				topLeft = bodyCoordinate;
+			} else if (bodyCoordinate.row() == topLeft.row() && // body coordinate is on the same row than current topleft coordinate
+					bodyCoordinate.column() < topLeft.column()) { // but it is more left than current topleft coordinate
+				topLeft = bodyCoordinate;
+			}
+		}
+
+		if (topLeft == null) topLeft = _origin;
+
+		return topLeft;
 	}
 
-	public LinkedList<TextureRegion> textureRegions() {
-		ArrayList<FrameSequence> frameSequenceList = new ArrayList<FrameSequence>(_states.size());
-
-		for (String name : _states) {
-			FrameSequence frames = _animationFrames.get(name);
-			if (frames != null) frameSequenceList.add(frames);
-		}
-
-		Collections.sort(frameSequenceList);
-
-		LinkedList<TextureRegion> textureRegions = new LinkedList<TextureRegion>();
-		for (FrameSequence frameSequence : frameSequenceList) {
-			textureRegions.add(frameSequence.textureRegion());
-		}
-
-		return textureRegions;
+	public LinkedList<TiledStage.Coordinate> bodyCoordinates() {
+		return _bodyCoordinates;
 	}
 
 	public LinkedList<TiledStage.Coordinate> getBodyCoordinates(TiledStage.Coordinate origin) {
@@ -198,6 +194,29 @@ public abstract class TiledStageActor extends Actor implements Comparable<TiledS
 		}
 
 		return coordinates;
+	}
+
+	public LinkedList<TextureRegion> textureRegions() {
+		ArrayList<FrameSequence> frameSequenceList = new ArrayList<FrameSequence>(_states.size());
+
+		for (String name : _states) {
+			FrameSequence frames = _animationFrames.get(name);
+			if (frames != null) frameSequenceList.add(frames);
+		}
+
+		frameSequenceList.sort(new Comparator<FrameSequence>() {
+			@Override
+			public int compare(FrameSequence frameSequence1, FrameSequence frameSequence2) {
+				return frameSequence1._renderDepth - frameSequence2._renderDepth;
+			}
+		});
+
+		LinkedList<TextureRegion> textureRegions = new LinkedList<TextureRegion>();
+		for (FrameSequence frameSequence : frameSequenceList) {
+			textureRegions.add(frameSequence.textureRegion());
+		}
+
+		return textureRegions;
 	}
 
 	public boolean hasState(String state) {
@@ -244,12 +263,7 @@ public abstract class TiledStageActor extends Actor implements Comparable<TiledS
 	}
 
 	public boolean isMoving() {
-		return _isMoving;
-	}
-
-	public TiledStageActor setIsMoving(boolean isMoving) {
-		_isMoving = isMoving;
-		return this;
+		return _movingTicks > 0;
 	}
 
 	public int actorDepth() {
@@ -279,7 +293,22 @@ public abstract class TiledStageActor extends Actor implements Comparable<TiledS
 
 	@Override
 	public int compareTo(TiledStageActor actor) {
-		return (_actorDepth - actor._actorDepth);
+		TiledStage.Coordinate topLeft = topLeftBodyCoordinate();
+		TiledStage.Coordinate actorTopLeft = actor.topLeftBodyCoordinate();
+
+		if (topLeft.row() > actorTopLeft.row()) {
+			return -1;
+		} else if (topLeft.row() < actorTopLeft.row()) {
+			return 1;
+		} else {
+			if (topLeft.column() < actorTopLeft.column()) {
+				return -1;
+			} else if (topLeft.column() > actorTopLeft.column()) {
+				return 1;
+			} else {
+				return 0;
+			}
+		}
 	}
 
 	public interface StateListener {
@@ -310,7 +339,7 @@ public abstract class TiledStageActor extends Actor implements Comparable<TiledS
 		}
 	}
 
-	public static class FrameSequence implements Comparable<FrameSequence> {
+	public static class FrameSequence {
 		private float _time;
 		private ArrayList<Frame> _frames;
 		private int _frameIndex;
@@ -384,11 +413,6 @@ public abstract class TiledStageActor extends Actor implements Comparable<TiledS
 			_time = 0f;
 			_frameIndex = 0;
 			return this;
-		}
-
-		@Override
-		public int compareTo(FrameSequence frameSequence) {
-			return (_renderDepth - frameSequence._renderDepth);
 		}
 	}
 }

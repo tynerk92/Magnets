@@ -12,9 +12,9 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.utils.Disposable;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -22,7 +22,7 @@ import java.util.LinkedList;
 import java.util.Set;
 import java.util.TreeSet;
 
-public class TiledStage extends Stage implements Disposable {
+public class TiledStage extends Stage {
 	public static final float CAMERA_MAX_OFFSET = 2f;
 	public static final float CAMERA_PANNING_SMOOTH_RATIO = 0.1f;
 
@@ -49,24 +49,24 @@ public class TiledStage extends Stage implements Disposable {
 	private HashMap<String, TiledMapTileLayer> _tileLayers;
 	private LinkedList<TiledObject> _objects;
 
-	public TiledStage(TiledMap map, String actorsLayerName, float viewSizeX, float viewSizeY, int maxSubTicks, float tickDuration) {
+	public TiledStage(String actorsLayerName, float viewSizeX, float viewSizeY, int maxSubTicks, float tickDuration) {
 		_viewSizeX = viewSizeX;
 		_viewSizeY = viewSizeY;
 		_actorsLayerName = actorsLayerName;
-		_map = map;
-		_actorsCoordinateCount = new HashMap<TiledStageActor, Integer>();
-		_actorsByName = new HashMap<String, TiledStageActor>();
-		_objects = new LinkedList<TiledObject>();
 		_maxSubTicks = maxSubTicks;
 		_tickTime = 0f;
 		_tickDuration = tickDuration;
 
+		_actorsCoordinateCount = new HashMap<TiledStageActor, Integer>();
+		_actorsByName = new HashMap<String, TiledStageActor>();
+		_tileLayers = new HashMap<String, TiledMapTileLayer>();
+		_objects = new LinkedList<TiledObject>();
 		_subTicksToActors = new ArrayList<HashSet<TiledStageActor>>(_maxSubTicks);
 		for (int i = 0; i < _maxSubTicks; i++) {
 			_subTicksToActors.add(i, new HashSet<TiledStageActor>());
 		}
 
-		initializeMap();
+		_camera = new OrthographicCamera();
 		resetCamera();
 	}
 
@@ -194,7 +194,17 @@ public class TiledStage extends Stage implements Disposable {
 	// visual
 	// -------
 
-	public void initializeMap() {
+	public void load(TiledMap map) {
+		_map = map;
+
+		_actorsCoordinateCount.clear();
+		_actorsByName.clear();
+		_tileLayers.clear();
+		_objects.clear();
+		for (int i = 0; i < _maxSubTicks; i++) {
+			_subTicksToActors.get(i).clear();
+		}
+
 		_mapRenderer = new TiledStageMapRenderer(this, _map, getBatch(), _actorsLayerName);
 		MapProperties props = _map.getProperties();
 		_tileWidth = props.get("tilewidth", Integer.class);
@@ -203,7 +213,6 @@ public class TiledStage extends Stage implements Disposable {
 		_tileColumns = props.get("width", Integer.class);
 
 		_coordinates = new ArrayList<Coordinate>(_tileRows * _tileColumns);
-		_tileLayers = new HashMap<String, TiledMapTileLayer>();
 
 		for (MapLayer layer : _map.getLayers()) {
 			if (layer instanceof TiledMapTileLayer) {
@@ -229,14 +238,23 @@ public class TiledStage extends Stage implements Disposable {
 
 	@Override
 	public void draw() {
+		if (_map == null) return;
+
 		float delta = Gdx.graphics.getDeltaTime();
 
 		_tickTime += delta;
 
 		while (_tickTime >= _tickDuration) {
+
+			for (TiledStageActor actor : _actorsCoordinateCount.keySet()) {
+				actor.act();
+			}
+
 			for (int i = 0; i < _maxSubTicks; i++) {
 				_tempActors.clear();
 				_tempActors.addAll(_subTicksToActors.get(i));
+				Collections.sort(_tempActors);
+
 				for (TiledStageActor actor : _tempActors) {
 					actor.act(i);
 				}
@@ -258,19 +276,6 @@ public class TiledStage extends Stage implements Disposable {
 		// Map
 		_mapRenderer.setView(_camera);
 		_mapRenderer.render();
-	}
-
-	public void resetCamera() {
-		_camera = new OrthographicCamera();
-		_camera.setToOrtho(false, _viewSizeX, _viewSizeY);
-		getViewport().setWorldSize(_viewSizeX, _viewSizeY);
-		getViewport().setCamera(_camera);
-		_camera.update();
-	}
-
-	@Override
-	public void dispose() {
-		_map.dispose();
 	}
 
 	public TiledStageMapRenderer mapRenderer() {
@@ -301,6 +306,13 @@ public class TiledStage extends Stage implements Disposable {
 		return _tickDuration;
 	}
 
+	public void resetCamera() {
+		_camera.setToOrtho(false, _viewSizeX, _viewSizeY);
+		getViewport().setWorldSize(_viewSizeX, _viewSizeY);
+		getViewport().setCamera(_camera);
+		_camera.update();
+	}
+
 	public Coordinate getCoordinate(int tileRow, int tileCol) {
 		if (tileRow >= _tileRows || tileCol >= _tileColumns || tileRow < 0 || tileCol < 0) return null;
 		return _coordinates.get(getCoordinateIndex(tileRow, tileCol));
@@ -317,7 +329,8 @@ public class TiledStage extends Stage implements Disposable {
 			} else {
 				_actorsCoordinateCount.put(actor, 1);
 
-				for (int i : actor.SUBTICKS()) {
+				// Considering what subticks the actors listen to, add to hashmap
+				for (int i : actor.subticks()) {
 					_subTicksToActors.get(i).add(actor);
 				}
 			}
@@ -396,12 +409,12 @@ public class TiledStage extends Stage implements Disposable {
 	public TiledStage setViewSize(float viewSizeX, float viewSizeY) {
 		_viewSizeX = viewSizeX;
 		_viewSizeY = viewSizeY;
-		resetCamera();
 		return this;
 	}
 
 	public TiledStage setCameraFocalActor(TiledStageActor actor) {
 		_cameraFocalActor = actor;
+		_camera.position.set(_cameraFocalActor.position(), 0);
 		return this;
 	}
 
@@ -465,7 +478,6 @@ public class TiledStage extends Stage implements Disposable {
 
 			_cells = new HashMap<String, Cell>(_tileLayers.size());
 			for (String layerName : _tileLayers.keySet()) {
-				TiledMapTileLayer layer = _tileLayers.get(layerName);
 				_cells.put(layerName, new Cell(this, layerName));
 			}
 		}
@@ -563,6 +575,10 @@ public class TiledStage extends Stage implements Disposable {
 			return getPosition(0, 0);
 		}
 
+		public int index() {
+			return getCoordinateIndex(_row, _col);
+		}
+
 		public Vector2 getPosition(float offsetX, float offsetY) {
 			return new Vector2((_col + offsetX) * _tileWidth, (_row + offsetY) * _tileHeight);
 		}
@@ -574,41 +590,44 @@ public class TiledStage extends Stage implements Disposable {
 
 		@Override
 		public int compareTo(Coordinate coordinate) {
-			return getCoordinateIndex(_row, _col) - getCoordinateIndex(coordinate._row, coordinate._col);
+			return -(index() - coordinate.index());
 		}
 	}
 
 	public class Cell {
 		private Coordinate _coordinate;
 		private String _layerName;
+		private TiledMapTileLayer _layer;
+		private TiledMapTileLayer.Cell _cell;
 
 		public Cell(Coordinate coordinate, String layerName) {
 			_coordinate = coordinate;
 			_layerName = layerName;
+			_layer = _tileLayers.get(_layerName);
+			if (_layer != null) {
+				_cell = _layer.getCell(_coordinate._col, _coordinate._row);
+			}
 		}
 
 		public Coordinate coordinate() {
 			return _coordinate;
 		}
 
-		public String layerName() {
-			return _layerName;
+		public TiledMapTileLayer layer() {
+			return _layer;
+		}
+
+		public TiledMapTileLayer.Cell cell() {
+			return _cell;
 		}
 
 		public TiledMapTile tile() {
-			TiledMapTileLayer layer = _tileLayers.get(_layerName);
-			if (layer == null) return null;
-			TiledMapTileLayer.Cell cell = layer.getCell(_coordinate._col, _coordinate._row);
-			if (cell == null) return null;
-			return cell.getTile();
+			if (_cell == null) return null;
+			return _cell.getTile();
 		}
 
 		public Cell removeTile() {
-			TiledMapTileLayer layer = _tileLayers.get(_layerName);
-			if (layer == null) return null;
-			TiledMapTileLayer.Cell cell = layer.getCell(_coordinate._col, _coordinate._row);
-			if (cell == null) return null;
-			cell.setTile(null);
+			if (_cell != null) _cell.setTile(null);
 			return this;
 		}
 	}

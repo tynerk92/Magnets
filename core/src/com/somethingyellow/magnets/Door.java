@@ -1,10 +1,10 @@
 package com.somethingyellow.magnets;
 
-import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.somethingyellow.tiled.TiledStage;
 import com.somethingyellow.tiled.TiledStageActor;
 
 import java.util.HashMap;
+import java.util.Set;
 
 public class Door extends TiledStageActor {
 	public static final String STATE_OPENED = "Opened";
@@ -13,7 +13,6 @@ public class Door extends TiledStageActor {
 	public static final String STATE_CLOSED = "Closed";
 	public static final String ACTION_OPEN = "Open";
 	public static final String ACTION_CLOSE = "Close";
-
 	public static final int[] SUBTICKS = new int[]{
 			PlayScreen.SUBTICKS.GRAPHICS.ordinal()
 	};
@@ -30,7 +29,6 @@ public class Door extends TiledStageActor {
 		addState(STATE_CLOSED);
 
 		// Frame events
-		final Door door = this;
 		getStateFrames(STATE_OPENING).setListener(new TiledStageActor.FrameSequenceListener() {
 			@Override
 			public void ended() {
@@ -107,7 +105,7 @@ public class Door extends TiledStageActor {
 	}
 
 	@Override
-	public int[] SUBTICKS() {
+	public int[] subticks() {
 		return SUBTICKS;
 	}
 }

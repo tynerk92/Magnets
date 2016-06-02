@@ -4,6 +4,7 @@ import com.somethingyellow.tiled.TiledStage;
 import com.somethingyellow.tiled.TiledStageActor;
 
 import java.util.HashMap;
+import java.util.Set;
 import java.util.TreeSet;
 
 public class MagneticSource extends TiledStageActor {
@@ -68,9 +69,8 @@ public class MagneticSource extends TiledStageActor {
 
 	// get/set
 	// ---------
-
 	@Override
-	public int[] SUBTICKS() {
+	public int[] subticks() {
 		return SUBTICKS;
 	}
 }

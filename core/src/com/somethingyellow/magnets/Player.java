@@ -1,31 +1,20 @@
 package com.somethingyellow.magnets;
 
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.somethingyellow.tiled.*;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Set;
 
 public class Player extends PlayerActor {
-	public static final int MOVE_TICKS = 2;
-	public static final int TRY_MOVE_TICKS = 1;
-	public static final float TRY_MOVE_DISTANCE = 3f;
+	public static final int MOVE_TICKS = 3;
 	public static final String STATE_STANDING = "Standing";
 	public static final String STATE_WALKING = "Walking";
-	public static final int PLAYER_PUSH_FORCE = 100;
 	public static final int[] SUBTICKS = new int[]{
-			PlayScreen.SUBTICKS.FORCES.ordinal(),
-			PlayScreen.SUBTICKS.PLAYER_MOVEMENT.ordinal(),
-			PlayScreen.SUBTICKS.GRAPHICS.ordinal()
+			PlayScreen.SUBTICKS.PLAYER_MOVEMENT.ordinal()
 	};
-
-	private boolean _toMoveLeft = false;
-	private boolean _toMoveRight = false;
-	private boolean _toMoveUp = false;
-	private boolean _toMoveDown = false;
 
 	public Player(boolean[] bodyArea, int bodyWidth, HashMap<String, FrameSequence> animationFrames,
 	              TiledStage stage, TiledStage.Coordinate origin, int actorDepth) {
@@ -34,47 +23,32 @@ public class Player extends PlayerActor {
 	}
 
 	@Override
-	public void act(float delta) {
-		super.act(delta);
-		if (isKeyLeftHeld()) _toMoveLeft = true;
-		if (isKeyRightHeld()) _toMoveRight = true;
-		if (isKeyUpHeld()) _toMoveUp = true;
-		if (isKeyDownHeld()) _toMoveDown = true;
-	}
-
-	@Override
 	public void act(int subtick) {
-		if (subtick == PlayScreen.SUBTICKS.FORCES.ordinal()) {
-
-			checkPushes();
-
-		} else if (subtick == PlayScreen.SUBTICKS.PLAYER_MOVEMENT.ordinal()) {
-
-			if (checkMovement()) {
-				if (!hasState(STATE_WALKING)) {
-					addState(STATE_WALKING).removeState(STATE_STANDING);
-				}
-			} else {
-				if (hasState(STATE_WALKING)) {
-					addState(STATE_STANDING).removeState(STATE_WALKING);
+		if (subtick == PlayScreen.SUBTICKS.PLAYER_MOVEMENT.ordinal()) {
+			if (!checkPushes()) {
+				if (checkMovement()) {
+					if (!hasState(STATE_WALKING)) {
+						addState(STATE_WALKING).removeState(STATE_STANDING);
+					}
+				} else {
+					if (hasState(STATE_WALKING)) {
+						addState(STATE_STANDING).removeState(STATE_WALKING);
+					}
 				}
 			}
-
-			_toMoveLeft = _toMoveRight = _toMoveUp = _toMoveDown = false;
-
 		}
 	}
 
 
 	private boolean checkPushes() {
 		if (!isMoving()) {
-			if (_toMoveLeft && !_toMoveRight && !_toMoveUp && !_toMoveDown)
+			if (isKeyLeftHeld() && !isKeyRightHeld() && !isKeyUpHeld() && !isKeyDownHeld())
 				return pushDirection(TiledStage.DIRECTION.WEST);
-			else if (_toMoveRight && !_toMoveLeft && !_toMoveUp && !_toMoveDown)
+			else if (isKeyRightHeld() && !isKeyLeftHeld() && !isKeyUpHeld() && !isKeyDownHeld())
 				return pushDirection(TiledStage.DIRECTION.EAST);
-			else if (_toMoveUp && !_toMoveLeft && !_toMoveRight && !_toMoveDown)
+			else if (isKeyUpHeld() && !isKeyLeftHeld() && !isKeyRightHeld() && !isKeyDownHeld())
 				return pushDirection(TiledStage.DIRECTION.NORTH);
-			else if (_toMoveDown && !_toMoveLeft && !_toMoveRight && !_toMoveUp)
+			else if (isKeyDownHeld() && !isKeyLeftHeld() && !isKeyRightHeld() && !isKeyUpHeld())
 				return pushDirection(TiledStage.DIRECTION.SOUTH);
 		}
 
@@ -83,13 +57,13 @@ public class Player extends PlayerActor {
 
 	private boolean checkMovement() {
 		if (!isMoving()) {
-			if (_toMoveLeft && !_toMoveRight && !_toMoveUp && !_toMoveDown)
+			if (isKeyLeftHeld() && !isKeyRightHeld() && !isKeyUpHeld() && !isKeyDownHeld())
 				return moveDirection(TiledStage.DIRECTION.WEST);
-			else if (_toMoveRight && !_toMoveLeft && !_toMoveUp && !_toMoveDown)
+			else if (isKeyRightHeld() && !isKeyLeftHeld() && !isKeyUpHeld() && !isKeyDownHeld())
 				return moveDirection(TiledStage.DIRECTION.EAST);
-			else if (_toMoveUp && !_toMoveLeft && !_toMoveRight && !_toMoveDown)
+			else if (isKeyUpHeld() && !isKeyLeftHeld() && !isKeyRightHeld() && !isKeyDownHeld())
 				return moveDirection(TiledStage.DIRECTION.NORTH);
-			else if (_toMoveDown && !_toMoveLeft && !_toMoveRight && !_toMoveUp)
+			else if (isKeyDownHeld() && !isKeyLeftHeld() && !isKeyRightHeld() && !isKeyUpHeld())
 				return moveDirection(TiledStage.DIRECTION.SOUTH);
 
 			return false;
@@ -146,8 +120,7 @@ public class Player extends PlayerActor {
 		super.keyDown(event, keycode);
 		switch (keycode) {
 			case Input.Keys.R:
-				Main.PlayScreen.dispose();
-				Main.PlayScreen.show();
+				Main.playScreen.loadLevel(Main.levelPath);
 				break;
 		}
 
@@ -156,9 +129,8 @@ public class Player extends PlayerActor {
 
 	// get/set
 	// ---------
-
 	@Override
-	public int[] SUBTICKS() {
+	public int[] subticks() {
 		return SUBTICKS;
 	}
 }

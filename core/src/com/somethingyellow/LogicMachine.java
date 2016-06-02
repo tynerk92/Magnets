@@ -29,7 +29,7 @@ public class LogicMachine {
 		_predicateIndices = new HashMap<String, Integer>();
 		_expressions = new LinkedList<Expression>();
 		_predicatesByIndex = new ArrayList<String>();
-		resetState();
+		_state = new HashSet<Integer>();
 	}
 
 	public Expression addExpression(String expressionString, Listener listener) {
@@ -48,8 +48,17 @@ public class LogicMachine {
 		return expression;
 	}
 
+	public LogicMachine clear() {
+		_predicateMap.clear();
+		_predicateIndices.clear();
+		_expressions.clear();
+		_predicatesByIndex.clear();
+		resetState();
+		return this;
+	}
+
 	public LogicMachine resetState() {
-		_state = new HashSet<Integer>();
+		_state.clear();
 		return this;
 	}
 
