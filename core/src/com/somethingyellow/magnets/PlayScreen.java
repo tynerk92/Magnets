@@ -32,6 +32,7 @@ public class PlayScreen implements Screen {
 	public static final String TILE_TYPE_BLOCK = "Block";
 	public static final String TILE_TYPE_MAGNETIC_SOURCE = "Magnetic Source";
 	public static final String TILE_TYPE_MAGNETIC_FLOOR = "Magnetic Floor";
+	public static final String TILE_TYPE_OBSTRUCTED_FLOOR = "Obstructed Floor";
 	public static final String TILE_TYPE_DOOR = "Door";
 	public static final String TILE_TYPE_BUTTON = "Button";
 	public static final String TILE_TYPE_WALL = "Wall";
@@ -251,6 +252,8 @@ public class PlayScreen implements Screen {
 					actor = spawnMagneticSource(object);
 				} else if (type.equals(TILE_TYPE_MAGNETIC_FLOOR)) {
 					actor = spawnMagneticFloor(object);
+				} else if (type.equals(TILE_TYPE_OBSTRUCTED_FLOOR)) {
+					actor = spawnObstructedFloor(object);
 				} else if (type.equals(TILE_TYPE_PLAYER)) {
 					actor = spawnPlayer(object);
 				} else if (type.equals(TILE_TYPE_BUTTON)) {
@@ -301,6 +304,11 @@ public class PlayScreen implements Screen {
 
 	public TiledStageActor spawnMagneticFloor(TiledStage.TiledObject object) {
 		return new MagneticFloor(getAnimations(object.tile()), _tiledStage,
+				object.origin(), ExtractActorDepth(object.tile()));
+	}
+
+	public TiledStageActor spawnObstructedFloor(TiledStage.TiledObject object) {
+		return new ObstructedFloor(getAnimations(object.tile()), _tiledStage,
 				object.origin(), ExtractActorDepth(object.tile()));
 	}
 

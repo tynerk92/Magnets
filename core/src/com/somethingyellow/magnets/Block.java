@@ -122,7 +122,8 @@ public class Block extends TiledStageActor {
 		for (TiledStageActor actor : coordinate.actors()) {
 			if (actor == this) continue;
 			if (actor instanceof Player || actor instanceof Block || actor instanceof MagneticSource ||
-					(actor instanceof Door && !((Door) actor).isOpen())) return false;
+					actor instanceof ObstructedFloor || (actor instanceof Door && !((Door) actor).isOpen()))
+				return false;
 		}
 
 		return true;
