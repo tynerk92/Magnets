@@ -26,7 +26,7 @@ public class Player extends PlayerActor {
 		super(bodyArea, bodyWidth, animationFrames, stage, origin, actorDepth);
 		_listener = listener;
 		_zoom = 1f;
-		_moveCommands = new LinkedList<TiledStage.DIRECTION>();
+		_moveCommands = new LinkedList<TiledStage.DIRECTION>(); 
 		addState(STATE_STANDING);
 	}
 
