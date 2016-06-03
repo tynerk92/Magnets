@@ -6,75 +6,49 @@ import com.somethingyellow.tiled.*;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 
 public class Player extends PlayerActor {
 	public static final int MOVE_TICKS = 3;
 	public static final float MIN_ZOOM = 0.5f;
 	public static final float MAX_ZOOM = 1.5f;
 	public static final String STATE_STANDING = "Standing";
-	public static final String STATE_WALKING = "Walking";
 	public static final int[] SUBTICKS = new int[]{
 			PlayScreen.SUBTICKS.PLAYER_MOVEMENT.ordinal()
 	};
 
 	private Listener _listener;
 	private float _zoom;
+	private LinkedList<TiledStage.DIRECTION> _moveCommands;
 
 	public Player(boolean[] bodyArea, int bodyWidth, HashMap<String, FrameSequence> animationFrames,
 	              TiledStage stage, TiledStage.Coordinate origin, int actorDepth, Listener listener) {
 		super(bodyArea, bodyWidth, animationFrames, stage, origin, actorDepth);
 		_listener = listener;
 		_zoom = 1f;
+		_moveCommands = new LinkedList<TiledStage.DIRECTION>(); 
 		addState(STATE_STANDING);
 	}
 
 	@Override
 	public void act(int subtick) {
 		if (subtick == PlayScreen.SUBTICKS.PLAYER_MOVEMENT.ordinal()) {
-			if (!checkPushes()) {
-				if (checkMovement()) {
-					if (!hasState(STATE_WALKING)) {
-						addState(STATE_WALKING).removeState(STATE_STANDING);
+
+			if (!isMoving()) {
+				if (_moveCommands.isEmpty()) {
+					if (isKeyLeftHeld() && !isKeyRightHeld() && !isKeyUpHeld() && !isKeyDownHeld()) {
+						moveDirection(TiledStage.DIRECTION.WEST);
+					} else if (isKeyRightHeld() && !isKeyLeftHeld() && !isKeyUpHeld() && !isKeyDownHeld()) {
+						moveDirection(TiledStage.DIRECTION.EAST);
+					} else if (isKeyUpHeld() && !isKeyLeftHeld() && !isKeyRightHeld() && !isKeyDownHeld()) {
+						moveDirection(TiledStage.DIRECTION.NORTH);
+					} else if (isKeyDownHeld() && !isKeyLeftHeld() && !isKeyRightHeld() && !isKeyUpHeld()) {
+						moveDirection(TiledStage.DIRECTION.SOUTH);
 					}
 				} else {
-					if (hasState(STATE_WALKING)) {
-						addState(STATE_STANDING).removeState(STATE_WALKING);
-					}
+					moveDirection(_moveCommands.removeFirst());
 				}
 			}
-		}
-	}
-
-
-	private boolean checkPushes() {
-		if (!isMoving()) {
-			if (isKeyLeftHeld() && !isKeyRightHeld() && !isKeyUpHeld() && !isKeyDownHeld())
-				return pushDirection(TiledStage.DIRECTION.WEST);
-			else if (isKeyRightHeld() && !isKeyLeftHeld() && !isKeyUpHeld() && !isKeyDownHeld())
-				return pushDirection(TiledStage.DIRECTION.EAST);
-			else if (isKeyUpHeld() && !isKeyLeftHeld() && !isKeyRightHeld() && !isKeyDownHeld())
-				return pushDirection(TiledStage.DIRECTION.NORTH);
-			else if (isKeyDownHeld() && !isKeyLeftHeld() && !isKeyRightHeld() && !isKeyUpHeld())
-				return pushDirection(TiledStage.DIRECTION.SOUTH);
-		}
-
-		return false;
-	}
-
-	private boolean checkMovement() {
-		if (!isMoving()) {
-			if (isKeyLeftHeld() && !isKeyRightHeld() && !isKeyUpHeld() && !isKeyDownHeld())
-				return moveDirection(TiledStage.DIRECTION.WEST);
-			else if (isKeyRightHeld() && !isKeyLeftHeld() && !isKeyUpHeld() && !isKeyDownHeld())
-				return moveDirection(TiledStage.DIRECTION.EAST);
-			else if (isKeyUpHeld() && !isKeyLeftHeld() && !isKeyRightHeld() && !isKeyDownHeld())
-				return moveDirection(TiledStage.DIRECTION.NORTH);
-			else if (isKeyDownHeld() && !isKeyLeftHeld() && !isKeyRightHeld() && !isKeyUpHeld())
-				return moveDirection(TiledStage.DIRECTION.SOUTH);
-
-			return false;
-		} else {
-			return true;
 		}
 	}
 
@@ -104,8 +78,10 @@ public class Player extends PlayerActor {
 		return false;
 	}
 
-	protected boolean moveDirection(TiledStage.DIRECTION direction) {
-		return moveDirection(direction, MOVE_TICKS);
+	protected void moveDirection(TiledStage.DIRECTION direction) {
+		if (!pushDirection(direction)) {
+			moveDirection(direction, MOVE_TICKS);
+		}
 	}
 
 	@Override
@@ -130,6 +106,18 @@ public class Player extends PlayerActor {
 				break;
 			case Input.Keys.ESCAPE:
 				_listener.exitLevel();
+				break;
+			case Input.Keys.UP:
+				_moveCommands.add(TiledStage.DIRECTION.NORTH);
+				break;
+			case Input.Keys.DOWN:
+				_moveCommands.add(TiledStage.DIRECTION.SOUTH);
+				break;
+			case Input.Keys.LEFT:
+				_moveCommands.add(TiledStage.DIRECTION.WEST);
+				break;
+			case Input.Keys.RIGHT:
+				_moveCommands.add(TiledStage.DIRECTION.EAST);
 				break;
 		}
 
