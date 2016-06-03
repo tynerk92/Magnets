@@ -25,18 +25,22 @@ public class Block extends TiledStageActor {
 	private int _forceX;
 	private int _forceY;
 
-	public Block(boolean[] bodyArea, int bodyWidth, HashMap<String, FrameSequence> animationFrames,
-	             TiledStage stage, TiledStage.Coordinate origin, boolean isPushable,
-	             boolean isMagnetisable, int actorDepth) {
-		super(bodyArea, bodyWidth, animationFrames, stage, origin, actorDepth);
+	public void initialize(TiledStage stage, boolean[] bodyArea, int bodyWidth, HashMap<String, FrameSequence> animationFrames,
+	                       TiledStage.Coordinate origin, boolean isPushable, boolean isMagnetisable, int actorDepth) {
+		super.initialize(stage, bodyArea, bodyWidth, animationFrames, origin, actorDepth);
 		_isPushable = isPushable;
 		_isMagnetisable = isMagnetisable;
-		_isMagnetised = false;
-		_forceX = 0;
-		_forceY = 0;
-
 		addState(STATE_DEFAULT);
 	}
+
+	@Override
+	public void reset() {
+		super.reset();
+		_forceX = 0;
+		_forceY = 0;
+		_isMagnetised = false;
+	}
+
 
 	@Override
 	public void act(int subtick) {

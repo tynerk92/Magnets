@@ -17,9 +17,9 @@ public class MagneticSource extends TiledStageActor {
 			PlayScreen.SUBTICKS.FORCES.ordinal()
 	};
 
-	public MagneticSource(HashMap<String, FrameSequence> animationFrames,
-	                      TiledStage stage, TiledStage.Coordinate origin, int actorDepth) {
-		super(TiledStageActor.BodyArea1x1, 1, animationFrames, stage, origin, actorDepth);
+	public void initialize(TiledStage stage, HashMap<String, FrameSequence> animationFrames,
+	                       TiledStage.Coordinate origin, int actorDepth) {
+		super.initialize(stage, TiledStageActor.BodyArea1x1, 1, animationFrames, origin, actorDepth);
 
 		addState(STATE_DEFAULT);
 	}

@@ -28,11 +28,11 @@ public class TiledStage extends Stage {
 
 	private TiledMap _map;
 	private TiledStageMapRenderer _mapRenderer;
-	private OrthographicCamera _camera;
+	private OrthographicCamera _camera = new OrthographicCamera();
 	private TiledStageActor _cameraFocalActor;
 	private TiledStageActor _inputFocalActor;
-	private HashMap<String, TiledStageActor> _actorsByName;
-	private HashMap<TiledStageActor, Integer> _actorsCoordinateCount;
+	private HashMap<String, TiledStageActor> _actorsByName = new HashMap<String, TiledStageActor>();
+	private HashMap<TiledStageActor, Integer> _actorsCoordinateCount = new HashMap<TiledStageActor, Integer>();
 	private ArrayList<HashSet<TiledStageActor>> _subTicksToActors;
 	private ArrayList<TiledStageActor> _tempActors = new ArrayList<TiledStageActor>();
 	private int _tileWidth;
@@ -44,8 +44,8 @@ public class TiledStage extends Stage {
 	private float _tickDuration;
 	private ArrayList<Coordinate> _coordinates;
 	private String _actorsLayerName;
-	private HashMap<String, TiledMapTileLayer> _tileLayers;
-	private LinkedList<TiledObject> _objects;
+	private HashMap<String, TiledMapTileLayer> _tileLayers = new HashMap<String, TiledMapTileLayer>();
+	private LinkedList<TiledObject> _objects = new LinkedList<TiledObject>();
 
 	public TiledStage(String actorsLayerName, float screenWidth, float screenHeight,
 	                  int maxSubTicks, float tickDuration) {
@@ -55,16 +55,11 @@ public class TiledStage extends Stage {
 		_tickTime = 0f;
 		_tickDuration = tickDuration;
 
-		_actorsCoordinateCount = new HashMap<TiledStageActor, Integer>();
-		_actorsByName = new HashMap<String, TiledStageActor>();
-		_tileLayers = new HashMap<String, TiledMapTileLayer>();
-		_objects = new LinkedList<TiledObject>();
 		_subTicksToActors = new ArrayList<HashSet<TiledStageActor>>(_maxSubTicks);
 		for (int i = 0; i < _maxSubTicks; i++) {
 			_subTicksToActors.add(i, new HashSet<TiledStageActor>());
 		}
 
-		_camera = new OrthographicCamera();
 		getViewport().setCamera(_camera);
 		setScreenSize(screenWidth, screenHeight);
 	}

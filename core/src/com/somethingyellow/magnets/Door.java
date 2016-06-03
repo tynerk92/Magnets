@@ -20,12 +20,11 @@ public class Door extends TiledStageActor {
 	private boolean _isOpen; // whether the door IS open
 	private boolean _toOpen; // whether the door SHOULD be open
 
-	public Door(boolean[] bodyArea, int bodyWidth, HashMap<String, FrameSequence> animationFrames,
-	            TiledStage stage, TiledStage.Coordinate origin, int actorDepth, boolean toOpen) {
-		super(bodyArea, bodyWidth, animationFrames, stage, origin, actorDepth);
+	public void initialize(TiledStage stage, boolean[] bodyArea, int bodyWidth, HashMap<String, FrameSequence> animationFrames,
+	                       TiledStage.Coordinate origin, int actorDepth, boolean toOpen) {
+		super.initialize(stage, bodyArea, bodyWidth, animationFrames, origin, actorDepth);
 
 		_toOpen = toOpen;
-		_isOpen = false;
 		addState(STATE_CLOSED);
 
 		// Frame events
@@ -42,6 +41,11 @@ public class Door extends TiledStageActor {
 				addState(STATE_CLOSED).removeState(STATE_CLOSING);
 			}
 		});
+	}
+
+	@Override
+	public void reset() {
+		_isOpen = false;
 	}
 
 	@Override
