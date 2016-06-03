@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="32" height="27" tilewidth="32" tileheight="32" nextobjectid="32">
- <tileset firstgid="1" name="Tileset" tilewidth="96" tileheight="112" tilecount="404" columns="0">
+ <tileset firstgid="1" name="Tileset" tilewidth="96" tileheight="112" tilecount="449" columns="0">
 
   <tile id="0">
    <image width="32" height="32" source="../../Graphics/Floor/Set 1 (Crude)/Floor 01011010.png"/>
@@ -2192,7 +2192,7 @@
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="Type" value="Button"/>
    </properties>
-   <image width="32" height="32" source="../../Graphics/Objects/Button 1 State 1.png"/>
+   <image width="32" height="32" source="../../Graphics/Objects/Doors and Buttons/Button 1 State 1.png"/>
   </tile>
 
   <tile id="273">
@@ -2201,7 +2201,7 @@
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="Type" value="Button"/>
    </properties>
-   <image width="32" height="32" source="../../Graphics/Objects/Button 1 State 2.png"/>
+   <image width="32" height="32" source="../../Graphics/Objects/Doors and Buttons/Button 1 State 2.png"/>
   </tile>
 
   <tile id="274">
@@ -2210,7 +2210,7 @@
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="Type" value="Button"/>
    </properties>
-   <image width="32" height="32" source="../../Graphics/Objects/Button 1 State 3.png"/>
+   <image width="32" height="32" source="../../Graphics/Objects/Doors and Buttons/Button 1 State 3.png"/>
   </tile>
 
   <tile id="275">
@@ -2223,14 +2223,14 @@
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="Type" value="Door"/>
    </properties>
-   <image width="32" height="64" source="../../Graphics/Objects/Door 1 NSEW State 1.png"/>
+   <image width="32" height="64" source="../../Graphics/Objects/Doors and Buttons/Door 1 NSEW State 1.png"/>
   </tile>
 
   <tile id="276">
    <properties>
     <property name="~" value="Door Opening 1"/>
    </properties>
-   <image width="32" height="64" source="../../Graphics/Objects/Door 1 NSEW State 2.png"/>
+   <image width="32" height="64" source="../../Graphics/Objects/Doors and Buttons/Door 1 NSEW State 2.png"/>
    <animation>
     <frame tileid="276" duration="40"/>
     <frame tileid="277" duration="40"/>
@@ -2243,30 +2243,30 @@
   </tile>
 
   <tile id="277">
-   <image width="32" height="64" source="../../Graphics/Objects/Door 1 NSEW State 3.png"/>
+   <image width="32" height="64" source="../../Graphics/Objects/Doors and Buttons/Door 1 NSEW State 3.png"/>
   </tile>
 
   <tile id="278">
-   <image width="32" height="64" source="../../Graphics/Objects/Door 1 NSEW State 4.png"/>
+   <image width="32" height="64" source="../../Graphics/Objects/Doors and Buttons/Door 1 NSEW State 4.png"/>
   </tile>
 
   <tile id="279">
-   <image width="32" height="64" source="../../Graphics/Objects/Door 1 NSEW State 5.png"/>
+   <image width="32" height="64" source="../../Graphics/Objects/Doors and Buttons/Door 1 NSEW State 5.png"/>
   </tile>
 
   <tile id="280">
-   <image width="32" height="64" source="../../Graphics/Objects/Door 1 NSEW State 6.png"/>
+   <image width="32" height="64" source="../../Graphics/Objects/Doors and Buttons/Door 1 NSEW State 6.png"/>
   </tile>
 
   <tile id="281">
-   <image width="32" height="64" source="../../Graphics/Objects/Door 1 NSEW State 7.png"/>
+   <image width="32" height="64" source="../../Graphics/Objects/Doors and Buttons/Door 1 NSEW State 7.png"/>
   </tile>
 
   <tile id="282">
    <properties>
     <property name="~" value="Door Closing 1"/>
    </properties>
-   <image width="32" height="64" source="../../Graphics/Objects/Door 1 NSEW State 8.png"/>
+   <image width="32" height="64" source="../../Graphics/Objects/Doors and Buttons/Door 1 NSEW State 8.png"/>
    <animation>
     <frame tileid="282" duration="40"/>
     <frame tileid="281" duration="40"/>
@@ -2282,11 +2282,11 @@
    <properties>
     <property name="~" value="Door Opened 1"/>
    </properties>
-   <image width="32" height="64" source="../../Graphics/Objects/Door 1 NSEW State 9.png"/>
+   <image width="32" height="64" source="../../Graphics/Objects/Doors and Buttons/Door 1 NSEW State 9.png"/>
   </tile>
 
   <tile id="284">
-   <image width="32" height="64" source="../../Graphics/Objects/Door 1 NSEW Blink State 1.png"/>
+   <image width="32" height="64" source="../../Graphics/Objects/Doors and Buttons/Door 1 NSEW Blink State 1.png"/>
    <animation>
     <frame tileid="284" duration="20"/>
     <frame tileid="285" duration="40"/>
@@ -2308,31 +2308,31 @@
   </tile>
 
   <tile id="285">
-   <image width="32" height="64" source="../../Graphics/Objects/Door 1 NSEW Blink State 2.png"/>
+   <image width="32" height="64" source="../../Graphics/Objects/Doors and Buttons/Door 1 NSEW Blink State 2.png"/>
   </tile>
 
   <tile id="286">
-   <image width="32" height="64" source="../../Graphics/Objects/Door 1 NSEW Blink State 3.png"/>
+   <image width="32" height="64" source="../../Graphics/Objects/Doors and Buttons/Door 1 NSEW Blink State 3.png"/>
   </tile>
 
   <tile id="287">
-   <image width="32" height="64" source="../../Graphics/Objects/Door 1 NSEW Blink State 4.png"/>
+   <image width="32" height="64" source="../../Graphics/Objects/Doors and Buttons/Door 1 NSEW Blink State 4.png"/>
   </tile>
 
   <tile id="288">
-   <image width="32" height="64" source="../../Graphics/Objects/Door 1 NSEW Blink State 5.png"/>
+   <image width="32" height="64" source="../../Graphics/Objects/Doors and Buttons/Door 1 NSEW Blink State 5.png"/>
   </tile>
 
   <tile id="289">
-   <image width="32" height="64" source="../../Graphics/Objects/Door 1 NSEW Blink State 6.png"/>
+   <image width="32" height="64" source="../../Graphics/Objects/Doors and Buttons/Door 1 NSEW Blink State 6.png"/>
   </tile>
 
   <tile id="290">
-   <image width="32" height="64" source="../../Graphics/Objects/Door 1 NSEW Blink State 7.png"/>
+   <image width="32" height="64" source="../../Graphics/Objects/Doors and Buttons/Door 1 NSEW Blink State 7.png"/>
   </tile>
 
   <tile id="291">
-   <image width="32" height="64" source="../../Graphics/Objects/Door 1 NSEW Blink State 8.png"/>
+   <image width="32" height="64" source="../../Graphics/Objects/Doors and Buttons/Door 1 NSEW Blink State 8.png"/>
   </tile>
 
   <tile id="292">
@@ -2344,7 +2344,7 @@
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="Type" value="Button"/>
    </properties>
-   <image width="32" height="32" source="../../Graphics/Objects/Button 2 State 1.png"/>
+   <image width="32" height="32" source="../../Graphics/Objects/Doors and Buttons/Button 2 State 1.png"/>
   </tile>
 
   <tile id="293">
@@ -2353,7 +2353,7 @@
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="Type" value="Button"/>
    </properties>
-   <image width="32" height="32" source="../../Graphics/Objects/Button 2 State 2.png"/>
+   <image width="32" height="32" source="../../Graphics/Objects/Doors and Buttons/Button 2 State 2.png"/>
   </tile>
 
   <tile id="294">
@@ -2362,7 +2362,7 @@
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="Type" value="Button"/>
    </properties>
-   <image width="32" height="32" source="../../Graphics/Objects/Button 2 State 3.png"/>
+   <image width="32" height="32" source="../../Graphics/Objects/Doors and Buttons/Button 2 State 3.png"/>
   </tile>
 
   <tile id="295">
@@ -2375,14 +2375,14 @@
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="Type" value="Door"/>
    </properties>
-   <image width="32" height="64" source="../../Graphics/Objects/Door 2 NSEW State 1.png"/>
+   <image width="32" height="64" source="../../Graphics/Objects/Doors and Buttons/Door 2 NSEW State 1.png"/>
   </tile>
 
   <tile id="296">
    <properties>
     <property name="~" value="Door Opening 2"/>
    </properties>
-   <image width="32" height="64" source="../../Graphics/Objects/Door 2 NSEW State 2.png"/>
+   <image width="32" height="64" source="../../Graphics/Objects/Doors and Buttons/Door 2 NSEW State 2.png"/>
    <animation>
     <frame tileid="296" duration="40"/>
     <frame tileid="297" duration="40"/>
@@ -2395,30 +2395,30 @@
   </tile>
 
   <tile id="297">
-   <image width="32" height="64" source="../../Graphics/Objects/Door 2 NSEW State 3.png"/>
+   <image width="32" height="64" source="../../Graphics/Objects/Doors and Buttons/Door 2 NSEW State 3.png"/>
   </tile>
 
   <tile id="298">
-   <image width="32" height="64" source="../../Graphics/Objects/Door 2 NSEW State 4.png"/>
+   <image width="32" height="64" source="../../Graphics/Objects/Doors and Buttons/Door 2 NSEW State 4.png"/>
   </tile>
 
   <tile id="299">
-   <image width="32" height="64" source="../../Graphics/Objects/Door 2 NSEW State 5.png"/>
+   <image width="32" height="64" source="../../Graphics/Objects/Doors and Buttons/Door 2 NSEW State 5.png"/>
   </tile>
 
   <tile id="300">
-   <image width="32" height="64" source="../../Graphics/Objects/Door 2 NSEW State 6.png"/>
+   <image width="32" height="64" source="../../Graphics/Objects/Doors and Buttons/Door 2 NSEW State 6.png"/>
   </tile>
 
   <tile id="301">
-   <image width="32" height="64" source="../../Graphics/Objects/Door 2 NSEW State 7.png"/>
+   <image width="32" height="64" source="../../Graphics/Objects/Doors and Buttons/Door 2 NSEW State 7.png"/>
   </tile>
 
   <tile id="302">
    <properties>
     <property name="~" value="Door Closing 2"/>
    </properties>
-   <image width="32" height="64" source="../../Graphics/Objects/Door 2 NSEW State 8.png"/>
+   <image width="32" height="64" source="../../Graphics/Objects/Doors and Buttons/Door 2 NSEW State 8.png"/>
    <animation>
     <frame tileid="302" duration="40"/>
     <frame tileid="301" duration="40"/>
@@ -2434,11 +2434,11 @@
    <properties>
     <property name="~" value="Door Opened 2"/>
    </properties>
-   <image width="32" height="64" source="../../Graphics/Objects/Door 2 NSEW State 9.png"/>
+   <image width="32" height="64" source="../../Graphics/Objects/Doors and Buttons/Door 2 NSEW State 9.png"/>
   </tile>
 
   <tile id="304">
-   <image width="32" height="64" source="../../Graphics/Objects/Door 2 NSEW Blink State 1.png"/>
+   <image width="32" height="64" source="../../Graphics/Objects/Doors and Buttons/Door 2 NSEW Blink State 1.png"/>
    <animation>
     <frame tileid="304" duration="20"/>
     <frame tileid="305" duration="40"/>
@@ -2460,146 +2460,645 @@
   </tile>
 
   <tile id="305">
-   <image width="32" height="64" source="../../Graphics/Objects/Door 2 NSEW Blink State 2.png"/>
+   <image width="32" height="64" source="../../Graphics/Objects/Doors and Buttons/Door 2 NSEW Blink State 2.png"/>
   </tile>
 
   <tile id="306">
-   <image width="32" height="64" source="../../Graphics/Objects/Door 2 NSEW Blink State 3.png"/>
+   <image width="32" height="64" source="../../Graphics/Objects/Doors and Buttons/Door 2 NSEW Blink State 3.png"/>
   </tile>
 
   <tile id="307">
-   <image width="32" height="64" source="../../Graphics/Objects/Door 2 NSEW Blink State 4.png"/>
+   <image width="32" height="64" source="../../Graphics/Objects/Doors and Buttons/Door 2 NSEW Blink State 4.png"/>
   </tile>
 
   <tile id="308">
-   <image width="32" height="64" source="../../Graphics/Objects/Door 2 NSEW Blink State 5.png"/>
+   <image width="32" height="64" source="../../Graphics/Objects/Doors and Buttons/Door 2 NSEW Blink State 5.png"/>
   </tile>
 
   <tile id="309">
-   <image width="32" height="64" source="../../Graphics/Objects/Door 2 NSEW Blink State 6.png"/>
+   <image width="32" height="64" source="../../Graphics/Objects/Doors and Buttons/Door 2 NSEW Blink State 6.png"/>
   </tile>
 
   <tile id="310">
-   <image width="32" height="64" source="../../Graphics/Objects/Door 2 NSEW Blink State 7.png"/>
+   <image width="32" height="64" source="../../Graphics/Objects/Doors and Buttons/Door 2 NSEW Blink State 7.png"/>
   </tile>
 
   <tile id="311">
-   <image width="32" height="64" source="../../Graphics/Objects/Door 2 NSEW Blink State 8.png"/>
+   <image width="32" height="64" source="../../Graphics/Objects/Doors and Buttons/Door 2 NSEW Blink State 8.png"/>
   </tile>
 
   <tile id="312">
    <properties>
-    <property name="Frame Depth" type="int" value="1"/>
+    <property name="@Default" value="(this)"/>
+    <property name="Actor Depth" type="int" value="-1"/>
     <property name="Type" value="Obstructed Floor"/>
+    <property name="Elevation" type="int" value="4"/>
    </properties>
-   <image width="32" height="48" source="../../Graphics/Objects/Elevated Ground 1.png"/>
+   <image width="32" height="35" source="../../Graphics/Objects/Elevated Floor/Elevated Floor 01011010.png"/>
   </tile>
 
   <tile id="313">
    <properties>
-    <property name="Frame Depth" type="int" value="1"/>
+    <property name="@Default" value="(this)"/>
+    <property name="Actor Depth" type="int" value="-1"/>
     <property name="Type" value="Obstructed Floor"/>
+    <property name="Elevation" type="int" value="4"/>
    </properties>
-   <image width="32" height="48" source="../../Graphics/Objects/Elevated Ground 2.png"/>
+   <image width="32" height="35" source="../../Graphics/Objects/Elevated Floor/Elevated Floor 01011011.png"/>
   </tile>
 
   <tile id="314">
-   <image width="32" height="48" source="../../Graphics/Objects/Exit Cave Forwards Front State 1.png"/>
-   <animation>
-    <frame tileid="314" duration="80"/>
-    <frame tileid="315" duration="80"/>
-    <frame tileid="316" duration="80"/>
-    <frame tileid="317" duration="80"/>
-    <frame tileid="318" duration="80"/>
-    <frame tileid="318" duration="80"/>
-    <frame tileid="317" duration="80"/>
-    <frame tileid="316" duration="80"/>
-    <frame tileid="315" duration="80"/>
-    <frame tileid="314" duration="80"/>
-   </animation>
+   <properties>
+    <property name="@Default" value="(this)"/>
+    <property name="Actor Depth" type="int" value="-1"/>
+    <property name="Type" value="Obstructed Floor"/>
+    <property name="Elevation" type="int" value="4"/>
+   </properties>
+   <image width="32" height="35" source="../../Graphics/Objects/Elevated Floor/Elevated Floor 01011110.png"/>
   </tile>
 
   <tile id="315">
-   <image width="32" height="48" source="../../Graphics/Objects/Exit Cave Forwards Front State 2.png"/>
+   <properties>
+    <property name="@Default" value="(this)"/>
+    <property name="Actor Depth" type="int" value="-1"/>
+    <property name="Type" value="Obstructed Floor"/>
+    <property name="Elevation" type="int" value="4"/>
+   </properties>
+   <image width="32" height="35" source="../../Graphics/Objects/Elevated Floor/Elevated Floor 01011111.png"/>
   </tile>
 
   <tile id="316">
-   <image width="32" height="48" source="../../Graphics/Objects/Exit Cave Forwards Front State 3.png"/>
+   <properties>
+    <property name="@Default" value="(this)"/>
+    <property name="Actor Depth" type="int" value="-1"/>
+    <property name="Type" value="Obstructed Floor"/>
+    <property name="Elevation" type="int" value="4"/>
+   </properties>
+   <image width="32" height="35" source="../../Graphics/Objects/Elevated Floor/Elevated Floor 01011X0X.png"/>
   </tile>
 
   <tile id="317">
-   <image width="32" height="48" source="../../Graphics/Objects/Exit Cave Forwards Front State 4.png"/>
+   <properties>
+    <property name="@Default" value="(this)"/>
+    <property name="Actor Depth" type="int" value="-1"/>
+    <property name="Type" value="Obstructed Floor"/>
+    <property name="Elevation" type="int" value="4"/>
+   </properties>
+   <image width="32" height="35" source="../../Graphics/Objects/Elevated Floor/Elevated Floor 01111010.png"/>
   </tile>
 
   <tile id="318">
-   <image width="32" height="48" source="../../Graphics/Objects/Exit Cave Forwards Front State 5.png"/>
+   <properties>
+    <property name="@Default" value="(this)"/>
+    <property name="Actor Depth" type="int" value="-1"/>
+    <property name="Type" value="Obstructed Floor"/>
+    <property name="Elevation" type="int" value="4"/>
+   </properties>
+   <image width="32" height="35" source="../../Graphics/Objects/Elevated Floor/Elevated Floor 01111011.png"/>
   </tile>
 
   <tile id="319">
-   <image width="32" height="48" source="../../Graphics/Objects/Exit Cave Down Front State 1.png"/>
-   <animation>
-    <frame tileid="319" duration="80"/>
-    <frame tileid="320" duration="80"/>
-    <frame tileid="321" duration="80"/>
-    <frame tileid="322" duration="80"/>
-    <frame tileid="323" duration="80"/>
-    <frame tileid="323" duration="80"/>
-    <frame tileid="322" duration="80"/>
-    <frame tileid="321" duration="80"/>
-    <frame tileid="320" duration="80"/>
-    <frame tileid="319" duration="80"/>
-   </animation>
+   <properties>
+    <property name="@Default" value="(this)"/>
+    <property name="Actor Depth" type="int" value="-1"/>
+    <property name="Type" value="Obstructed Floor"/>
+    <property name="Elevation" type="int" value="4"/>
+   </properties>
+   <image width="32" height="35" source="../../Graphics/Objects/Elevated Floor/Elevated Floor 01111110.png"/>
   </tile>
 
   <tile id="320">
-   <image width="32" height="48" source="../../Graphics/Objects/Exit Cave Down Front State 2.png"/>
+   <properties>
+    <property name="@Default" value="(this)"/>
+    <property name="Actor Depth" type="int" value="-1"/>
+    <property name="Type" value="Obstructed Floor"/>
+    <property name="Elevation" type="int" value="4"/>
+   </properties>
+   <image width="32" height="35" source="../../Graphics/Objects/Elevated Floor/Elevated Floor 01111111.png"/>
   </tile>
 
   <tile id="321">
-   <image width="32" height="48" source="../../Graphics/Objects/Exit Cave Down Front State 3.png"/>
+   <properties>
+    <property name="@Default" value="(this)"/>
+    <property name="Actor Depth" type="int" value="-1"/>
+    <property name="Type" value="Obstructed Floor"/>
+    <property name="Elevation" type="int" value="4"/>
+   </properties>
+   <image width="32" height="35" source="../../Graphics/Objects/Elevated Floor/Elevated Floor 01111X0X.png"/>
   </tile>
 
   <tile id="322">
-   <image width="32" height="48" source="../../Graphics/Objects/Exit Cave Down Front State 4.png"/>
+   <properties>
+    <property name="@Default" value="(this)"/>
+    <property name="Actor Depth" type="int" value="-1"/>
+    <property name="Type" value="Obstructed Floor"/>
+    <property name="Elevation" type="int" value="4"/>
+   </properties>
+   <image width="32" height="35" source="../../Graphics/Objects/Elevated Floor/Elevated Floor 01X1001X.png"/>
   </tile>
 
   <tile id="323">
-   <image width="32" height="48" source="../../Graphics/Objects/Exit Cave Down Front State 5.png"/>
+   <properties>
+    <property name="@Default" value="(this)"/>
+    <property name="Actor Depth" type="int" value="-1"/>
+    <property name="Type" value="Obstructed Floor"/>
+    <property name="Elevation" type="int" value="4"/>
+   </properties>
+   <image width="32" height="35" source="../../Graphics/Objects/Elevated Floor/Elevated Floor 01X1011X.png"/>
   </tile>
 
   <tile id="324">
-   <image width="32" height="48" source="../../Graphics/Objects/Exit Standard Front State 1.png"/>
-   <animation>
-    <frame tileid="324" duration="80"/>
-    <frame tileid="325" duration="80"/>
-    <frame tileid="326" duration="80"/>
-    <frame tileid="327" duration="80"/>
-    <frame tileid="328" duration="80"/>
-    <frame tileid="328" duration="80"/>
-    <frame tileid="327" duration="80"/>
-    <frame tileid="326" duration="80"/>
-    <frame tileid="325" duration="80"/>
-    <frame tileid="324" duration="80"/>
-   </animation>
+   <properties>
+    <property name="@Default" value="(this)"/>
+    <property name="Actor Depth" type="int" value="-1"/>
+    <property name="Type" value="Obstructed Floor"/>
+    <property name="Elevation" type="int" value="4"/>
+   </properties>
+   <image width="32" height="35" source="../../Graphics/Objects/Elevated Floor/Elevated Floor 01X10X0X.png"/>
   </tile>
 
   <tile id="325">
-   <image width="32" height="48" source="../../Graphics/Objects/Exit Standard Front State 2.png"/>
+   <properties>
+    <property name="@Default" value="(this)"/>
+    <property name="Actor Depth" type="int" value="-1"/>
+    <property name="Type" value="Obstructed Floor"/>
+    <property name="Elevation" type="int" value="4"/>
+   </properties>
+   <image width="32" height="35" source="../../Graphics/Objects/Elevated Floor/Elevated Floor 11011010.png"/>
   </tile>
 
   <tile id="326">
-   <image width="32" height="48" source="../../Graphics/Objects/Exit Standard Front State 3.png"/>
+   <properties>
+    <property name="@Default" value="(this)"/>
+    <property name="Actor Depth" type="int" value="-1"/>
+    <property name="Type" value="Obstructed Floor"/>
+    <property name="Elevation" type="int" value="4"/>
+   </properties>
+   <image width="32" height="35" source="../../Graphics/Objects/Elevated Floor/Elevated Floor 11011011.png"/>
   </tile>
 
   <tile id="327">
-   <image width="32" height="48" source="../../Graphics/Objects/Exit Standard Front State 4.png"/>
+   <properties>
+    <property name="@Default" value="(this)"/>
+    <property name="Actor Depth" type="int" value="-1"/>
+    <property name="Type" value="Obstructed Floor"/>
+    <property name="Elevation" type="int" value="4"/>
+   </properties>
+   <image width="32" height="35" source="../../Graphics/Objects/Elevated Floor/Elevated Floor 11011110.png"/>
   </tile>
 
   <tile id="328">
-   <image width="32" height="48" source="../../Graphics/Objects/Exit Standard Front State 5.png"/>
+   <properties>
+    <property name="@Default" value="(this)"/>
+    <property name="Actor Depth" type="int" value="-1"/>
+    <property name="Type" value="Obstructed Floor"/>
+    <property name="Elevation" type="int" value="4"/>
+   </properties>
+   <image width="32" height="35" source="../../Graphics/Objects/Elevated Floor/Elevated Floor 11011111.png"/>
   </tile>
 
   <tile id="329">
+   <properties>
+    <property name="@Default" value="(this)"/>
+    <property name="Actor Depth" type="int" value="-1"/>
+    <property name="Type" value="Obstructed Floor"/>
+    <property name="Elevation" type="int" value="4"/>
+   </properties>
+   <image width="32" height="35" source="../../Graphics/Objects/Elevated Floor/Elevated Floor 11011X0X.png"/>
+  </tile>
+
+  <tile id="330">
+   <properties>
+    <property name="@Default" value="(this)"/>
+    <property name="Actor Depth" type="int" value="-1"/>
+    <property name="Type" value="Obstructed Floor"/>
+    <property name="Elevation" type="int" value="4"/>
+   </properties>
+   <image width="32" height="35" source="../../Graphics/Objects/Elevated Floor/Elevated Floor 11111010.png"/>
+  </tile>
+
+  <tile id="331">
+   <properties>
+    <property name="@Default" value="(this)"/>
+    <property name="Actor Depth" type="int" value="-1"/>
+    <property name="Type" value="Obstructed Floor"/>
+    <property name="Elevation" type="int" value="4"/>
+   </properties>
+   <image width="32" height="35" source="../../Graphics/Objects/Elevated Floor/Elevated Floor 11111011.png"/>
+  </tile>
+
+  <tile id="332">
+   <properties>
+    <property name="@Default" value="(this)"/>
+    <property name="Actor Depth" type="int" value="-1"/>
+    <property name="Type" value="Obstructed Floor"/>
+    <property name="Elevation" type="int" value="4"/>
+   </properties>
+   <image width="32" height="35" source="../../Graphics/Objects/Elevated Floor/Elevated Floor 11111110.png"/>
+  </tile>
+
+  <tile id="333">
+   <properties>
+    <property name="@Default" value="(this)"/>
+    <property name="Actor Depth" type="int" value="-1"/>
+    <property name="Type" value="Obstructed Floor"/>
+    <property name="Elevation" type="int" value="4"/>
+   </properties>
+   <image width="32" height="35" source="../../Graphics/Objects/Elevated Floor/Elevated Floor 11111111.png"/>
+  </tile>
+
+  <tile id="334">
+   <properties>
+    <property name="@Default" value="(this)"/>
+    <property name="Actor Depth" type="int" value="-1"/>
+    <property name="Type" value="Obstructed Floor"/>
+    <property name="Elevation" type="int" value="4"/>
+   </properties>
+   <image width="32" height="35" source="../../Graphics/Objects/Elevated Floor/Elevated Floor 11111X0X.png"/>
+  </tile>
+
+  <tile id="335">
+   <properties>
+    <property name="@Default" value="(this)"/>
+    <property name="Actor Depth" type="int" value="-1"/>
+    <property name="Type" value="Obstructed Floor"/>
+    <property name="Elevation" type="int" value="4"/>
+   </properties>
+   <image width="32" height="35" source="../../Graphics/Objects/Elevated Floor/Elevated Floor 11X1001X.png"/>
+  </tile>
+
+  <tile id="336">
+   <properties>
+    <property name="@Default" value="(this)"/>
+    <property name="Actor Depth" type="int" value="-1"/>
+    <property name="Type" value="Obstructed Floor"/>
+    <property name="Elevation" type="int" value="4"/>
+   </properties>
+   <image width="32" height="35" source="../../Graphics/Objects/Elevated Floor/Elevated Floor 11X1011X.png"/>
+  </tile>
+
+  <tile id="337">
+   <properties>
+    <property name="@Default" value="(this)"/>
+    <property name="Actor Depth" type="int" value="-1"/>
+    <property name="Type" value="Obstructed Floor"/>
+    <property name="Elevation" type="int" value="4"/>
+   </properties>
+   <image width="32" height="35" source="../../Graphics/Objects/Elevated Floor/Elevated Floor 11X10X0X.png"/>
+  </tile>
+
+  <tile id="338">
+   <properties>
+    <property name="@Default" value="(this)"/>
+    <property name="Actor Depth" type="int" value="-1"/>
+    <property name="Type" value="Obstructed Floor"/>
+    <property name="Elevation" type="int" value="4"/>
+   </properties>
+   <image width="32" height="35" source="../../Graphics/Objects/Elevated Floor/Elevated Floor X0X00X0X.png"/>
+  </tile>
+
+  <tile id="339">
+   <properties>
+    <property name="@Default" value="(this)"/>
+    <property name="Actor Depth" type="int" value="-1"/>
+    <property name="Type" value="Obstructed Floor"/>
+    <property name="Elevation" type="int" value="4"/>
+   </properties>
+   <image width="32" height="35" source="../../Graphics/Objects/Elevated Floor/Elevated Floor X0X00X1X.png"/>
+  </tile>
+
+  <tile id="340">
+   <properties>
+    <property name="@Default" value="(this)"/>
+    <property name="Actor Depth" type="int" value="-1"/>
+    <property name="Type" value="Obstructed Floor"/>
+    <property name="Elevation" type="int" value="4"/>
+   </properties>
+   <image width="32" height="35" source="../../Graphics/Objects/Elevated Floor/Elevated Floor X0X01X0X.png"/>
+  </tile>
+
+  <tile id="341">
+   <properties>
+    <property name="@Default" value="(this)"/>
+    <property name="Actor Depth" type="int" value="-1"/>
+    <property name="Type" value="Obstructed Floor"/>
+    <property name="Elevation" type="int" value="4"/>
+   </properties>
+   <image width="32" height="35" source="../../Graphics/Objects/Elevated Floor/Elevated Floor X0X01X10.png"/>
+  </tile>
+
+  <tile id="342">
+   <properties>
+    <property name="@Default" value="(this)"/>
+    <property name="Actor Depth" type="int" value="-1"/>
+    <property name="Type" value="Obstructed Floor"/>
+    <property name="Elevation" type="int" value="4"/>
+   </properties>
+   <image width="32" height="35" source="../../Graphics/Objects/Elevated Floor/Elevated Floor X0X01X11.png"/>
+  </tile>
+
+  <tile id="343">
+   <properties>
+    <property name="@Default" value="(this)"/>
+    <property name="Actor Depth" type="int" value="-1"/>
+    <property name="Type" value="Obstructed Floor"/>
+    <property name="Elevation" type="int" value="4"/>
+   </properties>
+   <image width="32" height="35" source="../../Graphics/Objects/Elevated Floor/Elevated Floor X0X1001X.png"/>
+  </tile>
+
+  <tile id="344">
+   <properties>
+    <property name="@Default" value="(this)"/>
+    <property name="Actor Depth" type="int" value="-1"/>
+    <property name="Type" value="Obstructed Floor"/>
+    <property name="Elevation" type="int" value="4"/>
+   </properties>
+   <image width="32" height="35" source="../../Graphics/Objects/Elevated Floor/Elevated Floor X0X1011X.png"/>
+  </tile>
+
+  <tile id="345">
+   <properties>
+    <property name="@Default" value="(this)"/>
+    <property name="Actor Depth" type="int" value="-1"/>
+    <property name="Type" value="Obstructed Floor"/>
+    <property name="Elevation" type="int" value="4"/>
+   </properties>
+   <image width="32" height="35" source="../../Graphics/Objects/Elevated Floor/Elevated Floor X0X10X0X.png"/>
+  </tile>
+
+  <tile id="346">
+   <properties>
+    <property name="@Default" value="(this)"/>
+    <property name="Actor Depth" type="int" value="-1"/>
+    <property name="Type" value="Obstructed Floor"/>
+    <property name="Elevation" type="int" value="4"/>
+   </properties>
+   <image width="32" height="35" source="../../Graphics/Objects/Elevated Floor/Elevated Floor X0X11010.png"/>
+  </tile>
+
+  <tile id="347">
+   <properties>
+    <property name="@Default" value="(this)"/>
+    <property name="Actor Depth" type="int" value="-1"/>
+    <property name="Type" value="Obstructed Floor"/>
+    <property name="Elevation" type="int" value="4"/>
+   </properties>
+   <image width="32" height="35" source="../../Graphics/Objects/Elevated Floor/Elevated Floor X0X11011.png"/>
+  </tile>
+
+  <tile id="348">
+   <properties>
+    <property name="@Default" value="(this)"/>
+    <property name="Actor Depth" type="int" value="-1"/>
+    <property name="Type" value="Obstructed Floor"/>
+    <property name="Elevation" type="int" value="4"/>
+   </properties>
+   <image width="32" height="35" source="../../Graphics/Objects/Elevated Floor/Elevated Floor X0X11110.png"/>
+  </tile>
+
+  <tile id="349">
+   <properties>
+    <property name="@Default" value="(this)"/>
+    <property name="Actor Depth" type="int" value="-1"/>
+    <property name="Type" value="Obstructed Floor"/>
+    <property name="Elevation" type="int" value="4"/>
+   </properties>
+   <image width="32" height="35" source="../../Graphics/Objects/Elevated Floor/Elevated Floor X0X11111.png"/>
+  </tile>
+
+  <tile id="350">
+   <properties>
+    <property name="@Default" value="(this)"/>
+    <property name="Actor Depth" type="int" value="-1"/>
+    <property name="Type" value="Obstructed Floor"/>
+    <property name="Elevation" type="int" value="4"/>
+   </properties>
+   <image width="32" height="35" source="../../Graphics/Objects/Elevated Floor/Elevated Floor X0X11X0X.png"/>
+  </tile>
+
+  <tile id="351">
+   <properties>
+    <property name="@Default" value="(this)"/>
+    <property name="Actor Depth" type="int" value="-1"/>
+    <property name="Type" value="Obstructed Floor"/>
+    <property name="Elevation" type="int" value="4"/>
+   </properties>
+   <image width="32" height="35" source="../../Graphics/Objects/Elevated Floor/Elevated Floor X1001X0X.png"/>
+  </tile>
+
+  <tile id="352">
+   <properties>
+    <property name="@Default" value="(this)"/>
+    <property name="Actor Depth" type="int" value="-1"/>
+    <property name="Type" value="Obstructed Floor"/>
+    <property name="Elevation" type="int" value="4"/>
+   </properties>
+   <image width="32" height="35" source="../../Graphics/Objects/Elevated Floor/Elevated Floor X1001X10.png"/>
+  </tile>
+
+  <tile id="353">
+   <properties>
+    <property name="@Default" value="(this)"/>
+    <property name="Actor Depth" type="int" value="-1"/>
+    <property name="Type" value="Obstructed Floor"/>
+    <property name="Elevation" type="int" value="4"/>
+   </properties>
+   <image width="32" height="35" source="../../Graphics/Objects/Elevated Floor/Elevated Floor X1001X11.png"/>
+  </tile>
+
+  <tile id="354">
+   <properties>
+    <property name="@Default" value="(this)"/>
+    <property name="Actor Depth" type="int" value="-1"/>
+    <property name="Type" value="Obstructed Floor"/>
+    <property name="Elevation" type="int" value="4"/>
+   </properties>
+   <image width="32" height="35" source="../../Graphics/Objects/Elevated Floor/Elevated Floor X1101X0X.png"/>
+  </tile>
+
+  <tile id="355">
+   <properties>
+    <property name="@Default" value="(this)"/>
+    <property name="Actor Depth" type="int" value="-1"/>
+    <property name="Type" value="Obstructed Floor"/>
+    <property name="Elevation" type="int" value="4"/>
+   </properties>
+   <image width="32" height="35" source="../../Graphics/Objects/Elevated Floor/Elevated Floor X1101X10.png"/>
+  </tile>
+
+  <tile id="356">
+   <properties>
+    <property name="@Default" value="(this)"/>
+    <property name="Actor Depth" type="int" value="-1"/>
+    <property name="Type" value="Obstructed Floor"/>
+    <property name="Elevation" type="int" value="4"/>
+   </properties>
+   <image width="32" height="35" source="../../Graphics/Objects/Elevated Floor/Elevated Floor X1101X11.png"/>
+  </tile>
+
+  <tile id="357">
+   <properties>
+    <property name="@Default" value="(this)"/>
+    <property name="Actor Depth" type="int" value="-1"/>
+    <property name="Type" value="Obstructed Floor"/>
+    <property name="Elevation" type="int" value="4"/>
+   </properties>
+   <image width="32" height="35" source="../../Graphics/Objects/Elevated Floor/Elevated Floor X1X00X0X.png"/>
+  </tile>
+
+  <tile id="358">
+   <properties>
+    <property name="@Default" value="(this)"/>
+    <property name="Actor Depth" type="int" value="-1"/>
+    <property name="Type" value="Obstructed Floor"/>
+    <property name="Elevation" type="int" value="4"/>
+   </properties>
+   <image width="32" height="35" source="../../Graphics/Objects/Elevated Floor/Elevated Floor X1X00X1X.png"/>
+  </tile>
+
+  <tile id="359">
+   <properties>
+    <property name="Type" value="Exit"/>
+   </properties>
+   <image width="32" height="48" source="../../Graphics/Objects/Exit Cave Forwards Front State 1.png"/>
+   <animation>
+    <frame tileid="359" duration="80"/>
+    <frame tileid="360" duration="80"/>
+    <frame tileid="361" duration="80"/>
+    <frame tileid="362" duration="80"/>
+    <frame tileid="363" duration="80"/>
+    <frame tileid="363" duration="80"/>
+    <frame tileid="362" duration="80"/>
+    <frame tileid="361" duration="80"/>
+    <frame tileid="360" duration="80"/>
+    <frame tileid="359" duration="80"/>
+   </animation>
+  </tile>
+
+  <tile id="360">
+   <properties>
+    <property name="Type" value="Exit"/>
+   </properties>
+   <image width="32" height="48" source="../../Graphics/Objects/Exit Cave Forwards Front State 2.png"/>
+  </tile>
+
+  <tile id="361">
+   <properties>
+    <property name="Type" value="Exit"/>
+   </properties>
+   <image width="32" height="48" source="../../Graphics/Objects/Exit Cave Forwards Front State 3.png"/>
+  </tile>
+
+  <tile id="362">
+   <properties>
+    <property name="Type" value="Exit"/>
+   </properties>
+   <image width="32" height="48" source="../../Graphics/Objects/Exit Cave Forwards Front State 4.png"/>
+  </tile>
+
+  <tile id="363">
+   <properties>
+    <property name="Type" value="Exit"/>
+   </properties>
+   <image width="32" height="48" source="../../Graphics/Objects/Exit Cave Forwards Front State 5.png"/>
+  </tile>
+
+  <tile id="364">
+   <properties>
+    <property name="Type" value="Exit"/>
+   </properties>
+   <image width="32" height="48" source="../../Graphics/Objects/Exit Cave Down Front State 1.png"/>
+   <animation>
+    <frame tileid="364" duration="80"/>
+    <frame tileid="365" duration="80"/>
+    <frame tileid="366" duration="80"/>
+    <frame tileid="367" duration="80"/>
+    <frame tileid="368" duration="80"/>
+    <frame tileid="368" duration="80"/>
+    <frame tileid="367" duration="80"/>
+    <frame tileid="366" duration="80"/>
+    <frame tileid="365" duration="80"/>
+    <frame tileid="364" duration="80"/>
+   </animation>
+  </tile>
+
+  <tile id="365">
+   <properties>
+    <property name="Type" value="Exit"/>
+   </properties>
+   <image width="32" height="48" source="../../Graphics/Objects/Exit Cave Down Front State 2.png"/>
+  </tile>
+
+  <tile id="366">
+   <properties>
+    <property name="Type" value="Exit"/>
+   </properties>
+   <image width="32" height="48" source="../../Graphics/Objects/Exit Cave Down Front State 3.png"/>
+  </tile>
+
+  <tile id="367">
+   <properties>
+    <property name="Type" value="Exit"/>
+   </properties>
+   <image width="32" height="48" source="../../Graphics/Objects/Exit Cave Down Front State 4.png"/>
+  </tile>
+
+  <tile id="368">
+   <properties>
+    <property name="Type" value="Exit"/>
+   </properties>
+   <image width="32" height="48" source="../../Graphics/Objects/Exit Cave Down Front State 5.png"/>
+  </tile>
+
+  <tile id="369">
+   <properties>
+    <property name="Type" value="Exit"/>
+   </properties>
+   <image width="32" height="48" source="../../Graphics/Objects/Exit Standard Front State 1.png"/>
+   <animation>
+    <frame tileid="369" duration="80"/>
+    <frame tileid="370" duration="80"/>
+    <frame tileid="371" duration="80"/>
+    <frame tileid="372" duration="80"/>
+    <frame tileid="373" duration="80"/>
+    <frame tileid="373" duration="80"/>
+    <frame tileid="372" duration="80"/>
+    <frame tileid="371" duration="80"/>
+    <frame tileid="370" duration="80"/>
+    <frame tileid="369" duration="80"/>
+   </animation>
+  </tile>
+
+  <tile id="370">
+   <properties>
+    <property name="Type" value="Exit"/>
+   </properties>
+   <image width="32" height="48" source="../../Graphics/Objects/Exit Standard Front State 2.png"/>
+  </tile>
+
+  <tile id="371">
+   <properties>
+    <property name="Type" value="Exit"/>
+   </properties>
+   <image width="32" height="48" source="../../Graphics/Objects/Exit Standard Front State 3.png"/>
+  </tile>
+
+  <tile id="372">
+   <properties>
+    <property name="Type" value="Exit"/>
+   </properties>
+   <image width="32" height="48" source="../../Graphics/Objects/Exit Standard Front State 4.png"/>
+  </tile>
+
+  <tile id="373">
+   <properties>
+    <property name="Type" value="Exit"/>
+   </properties>
+   <image width="32" height="48" source="../../Graphics/Objects/Exit Standard Front State 5.png"/>
+  </tile>
+
+  <tile id="374">
    <properties>
     <property name="@Default" value="(this)"/>
     <property name="Actor Depth" type="int" value="-1"/>
@@ -2607,46 +3106,46 @@
    </properties>
    <image width="32" height="48" source="../../Graphics/Objects/Magnetic Block North State 1.png"/>
    <animation>
-    <frame tileid="329" duration="160"/>
-    <frame tileid="330" duration="160"/>
-    <frame tileid="331" duration="160"/>
-    <frame tileid="332" duration="160"/>
-    <frame tileid="333" duration="160"/>
-    <frame tileid="334" duration="160"/>
-    <frame tileid="335" duration="160"/>
-    <frame tileid="336" duration="160"/>
+    <frame tileid="374" duration="160"/>
+    <frame tileid="375" duration="160"/>
+    <frame tileid="376" duration="160"/>
+    <frame tileid="377" duration="160"/>
+    <frame tileid="378" duration="160"/>
+    <frame tileid="379" duration="160"/>
+    <frame tileid="380" duration="160"/>
+    <frame tileid="381" duration="160"/>
    </animation>
   </tile>
 
-  <tile id="330">
+  <tile id="375">
    <image width="32" height="48" source="../../Graphics/Objects/Magnetic Block North State 2.png"/>
   </tile>
 
-  <tile id="331">
+  <tile id="376">
    <image width="32" height="48" source="../../Graphics/Objects/Magnetic Block North State 3.png"/>
   </tile>
 
-  <tile id="332">
+  <tile id="377">
    <image width="32" height="48" source="../../Graphics/Objects/Magnetic Block North State 4.png"/>
   </tile>
 
-  <tile id="333">
+  <tile id="378">
    <image width="32" height="48" source="../../Graphics/Objects/Magnetic Block North State 5.png"/>
   </tile>
 
-  <tile id="334">
+  <tile id="379">
    <image width="32" height="48" source="../../Graphics/Objects/Magnetic Block North State 6.png"/>
   </tile>
 
-  <tile id="335">
+  <tile id="380">
    <image width="32" height="48" source="../../Graphics/Objects/Magnetic Block North State 7.png"/>
   </tile>
 
-  <tile id="336">
+  <tile id="381">
    <image width="32" height="48" source="../../Graphics/Objects/Magnetic Block North State 8.png"/>
   </tile>
 
-  <tile id="337">
+  <tile id="382">
    <properties>
     <property name="@Default" value="(this)"/>
     <property name="Actor Depth" type="int" value="-1"/>
@@ -2654,46 +3153,46 @@
    </properties>
    <image width="32" height="48" source="../../Graphics/Objects/Magnetic Block South State 1.png"/>
    <animation>
-    <frame tileid="337" duration="160"/>
-    <frame tileid="338" duration="160"/>
-    <frame tileid="339" duration="160"/>
-    <frame tileid="340" duration="160"/>
-    <frame tileid="341" duration="160"/>
-    <frame tileid="342" duration="160"/>
-    <frame tileid="343" duration="160"/>
-    <frame tileid="344" duration="160"/>
+    <frame tileid="382" duration="160"/>
+    <frame tileid="383" duration="160"/>
+    <frame tileid="384" duration="160"/>
+    <frame tileid="385" duration="160"/>
+    <frame tileid="386" duration="160"/>
+    <frame tileid="387" duration="160"/>
+    <frame tileid="388" duration="160"/>
+    <frame tileid="389" duration="160"/>
    </animation>
   </tile>
 
-  <tile id="338">
+  <tile id="383">
    <image width="32" height="48" source="../../Graphics/Objects/Magnetic Block South State 2.png"/>
   </tile>
 
-  <tile id="339">
+  <tile id="384">
    <image width="32" height="48" source="../../Graphics/Objects/Magnetic Block South State 3.png"/>
   </tile>
 
-  <tile id="340">
+  <tile id="385">
    <image width="32" height="48" source="../../Graphics/Objects/Magnetic Block South State 4.png"/>
   </tile>
 
-  <tile id="341">
+  <tile id="386">
    <image width="32" height="48" source="../../Graphics/Objects/Magnetic Block South State 5.png"/>
   </tile>
 
-  <tile id="342">
+  <tile id="387">
    <image width="32" height="48" source="../../Graphics/Objects/Magnetic Block South State 6.png"/>
   </tile>
 
-  <tile id="343">
+  <tile id="388">
    <image width="32" height="48" source="../../Graphics/Objects/Magnetic Block South State 7.png"/>
   </tile>
 
-  <tile id="344">
+  <tile id="389">
    <image width="32" height="48" source="../../Graphics/Objects/Magnetic Block South State 8.png"/>
   </tile>
 
-  <tile id="345">
+  <tile id="390">
    <properties>
     <property name="@Standing" value="(this)"/>
     <property name="@Walking" value="(this)"/>
@@ -2702,7 +3201,7 @@
    <image width="32" height="48" source="../../Graphics/Objects/Player.png"/>
   </tile>
 
-  <tile id="346">
+  <tile id="391">
    <properties>
     <property name="@Default" value="(this)"/>
     <property name="Actor Depth" type="int" value="-1"/>
@@ -2710,115 +3209,115 @@
    </properties>
    <image width="32" height="32" source="../../Graphics/Objects/Magnetic Floor State 1.png"/>
    <animation>
-    <frame tileid="346" duration="640"/>
-    <frame tileid="347" duration="640"/>
-    <frame tileid="348" duration="640"/>
-    <frame tileid="349" duration="640"/>
-    <frame tileid="350" duration="640"/>
-    <frame tileid="347" duration="640"/>
-    <frame tileid="349" duration="640"/>
-    <frame tileid="346" duration="640"/>
-    <frame tileid="348" duration="640"/>
-    <frame tileid="350" duration="640"/>
-    <frame tileid="348" duration="640"/>
-    <frame tileid="346" duration="640"/>
-    <frame tileid="349" duration="640"/>
-    <frame tileid="347" duration="640"/>
-    <frame tileid="350" duration="640"/>
+    <frame tileid="391" duration="640"/>
+    <frame tileid="392" duration="640"/>
+    <frame tileid="393" duration="640"/>
+    <frame tileid="394" duration="640"/>
+    <frame tileid="395" duration="640"/>
+    <frame tileid="392" duration="640"/>
+    <frame tileid="394" duration="640"/>
+    <frame tileid="391" duration="640"/>
+    <frame tileid="393" duration="640"/>
+    <frame tileid="395" duration="640"/>
+    <frame tileid="393" duration="640"/>
+    <frame tileid="391" duration="640"/>
+    <frame tileid="394" duration="640"/>
+    <frame tileid="392" duration="640"/>
+    <frame tileid="395" duration="640"/>
    </animation>
   </tile>
 
-  <tile id="347">
+  <tile id="392">
    <image width="32" height="32" source="../../Graphics/Objects/Magnetic Floor State 2.png"/>
   </tile>
 
-  <tile id="348">
+  <tile id="393">
    <image width="32" height="32" source="../../Graphics/Objects/Magnetic Floor State 3.png"/>
   </tile>
 
-  <tile id="349">
+  <tile id="394">
    <image width="32" height="32" source="../../Graphics/Objects/Magnetic Floor State 4.png"/>
   </tile>
 
-  <tile id="350">
+  <tile id="395">
    <image width="32" height="32" source="../../Graphics/Objects/Magnetic Floor State 5.png"/>
   </tile>
 
-  <tile id="351">
+  <tile id="396">
    <image width="32" height="48" source="../../Graphics/Objects/Overlay/Magnetized Horizontal State 1.png"/>
    <animation>
-    <frame tileid="351" duration="375"/>
-    <frame tileid="352" duration="375"/>
-    <frame tileid="353" duration="375"/>
-    <frame tileid="354" duration="375"/>
-    <frame tileid="355" duration="375"/>
-    <frame tileid="356" duration="375"/>
-    <frame tileid="357" duration="375"/>
+    <frame tileid="396" duration="375"/>
+    <frame tileid="397" duration="375"/>
+    <frame tileid="398" duration="375"/>
+    <frame tileid="399" duration="375"/>
+    <frame tileid="400" duration="375"/>
+    <frame tileid="401" duration="375"/>
+    <frame tileid="402" duration="375"/>
    </animation>
   </tile>
 
-  <tile id="352">
+  <tile id="397">
    <image width="32" height="48" source="../../Graphics/Objects/Overlay/Magnetized Horizontal State 2.png"/>
   </tile>
 
-  <tile id="353">
+  <tile id="398">
    <image width="32" height="48" source="../../Graphics/Objects/Overlay/Magnetized Horizontal State 3.png"/>
   </tile>
 
-  <tile id="354">
+  <tile id="399">
    <image width="32" height="48" source="../../Graphics/Objects/Overlay/Magnetized Horizontal State 4.png"/>
   </tile>
 
-  <tile id="355">
+  <tile id="400">
    <image width="32" height="48" source="../../Graphics/Objects/Overlay/Magnetized Horizontal State 5.png"/>
   </tile>
 
-  <tile id="356">
+  <tile id="401">
    <image width="32" height="48" source="../../Graphics/Objects/Overlay/Magnetized Horizontal State 6.png"/>
   </tile>
 
-  <tile id="357">
+  <tile id="402">
    <image width="32" height="48" source="../../Graphics/Objects/Overlay/Magnetized Horizontal State 7.png"/>
   </tile>
 
-  <tile id="358">
+  <tile id="403">
    <image width="32" height="48" source="../../Graphics/Objects/Overlay/Magnetized Vertical State 1.png"/>
    <animation>
-    <frame tileid="358" duration="375"/>
-    <frame tileid="359" duration="375"/>
-    <frame tileid="360" duration="375"/>
-    <frame tileid="361" duration="375"/>
-    <frame tileid="362" duration="375"/>
-    <frame tileid="363" duration="375"/>
-    <frame tileid="364" duration="375"/>
+    <frame tileid="403" duration="375"/>
+    <frame tileid="404" duration="375"/>
+    <frame tileid="405" duration="375"/>
+    <frame tileid="406" duration="375"/>
+    <frame tileid="407" duration="375"/>
+    <frame tileid="408" duration="375"/>
+    <frame tileid="409" duration="375"/>
    </animation>
   </tile>
 
-  <tile id="359">
+  <tile id="404">
    <image width="32" height="48" source="../../Graphics/Objects/Overlay/Magnetized Vertical State 2.png"/>
   </tile>
 
-  <tile id="360">
+  <tile id="405">
    <image width="32" height="48" source="../../Graphics/Objects/Overlay/Magnetized Vertical State 3.png"/>
   </tile>
 
-  <tile id="361">
+  <tile id="406">
    <image width="32" height="48" source="../../Graphics/Objects/Overlay/Magnetized Vertical State 4.png"/>
   </tile>
 
-  <tile id="362">
+  <tile id="407">
    <image width="32" height="48" source="../../Graphics/Objects/Overlay/Magnetized Vertical State 5.png"/>
   </tile>
 
-  <tile id="363">
+  <tile id="408">
    <image width="32" height="48" source="../../Graphics/Objects/Overlay/Magnetized Vertical State 6.png"/>
   </tile>
 
-  <tile id="364">
+  <tile id="409">
    <image width="32" height="48" source="../../Graphics/Objects/Overlay/Magnetized Vertical State 7.png"/>
   </tile>
 
-  <tile id="365">
+  <tile id="410">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 1x1 1"/>
@@ -2826,7 +3325,7 @@
    <image width="32" height="48" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 1x1 1.png"/>
   </tile>
 
-  <tile id="366">
+  <tile id="411">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 1x2 1"/>
@@ -2834,7 +3333,7 @@
    <image width="32" height="80" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 1x2 1.png"/>
   </tile>
 
-  <tile id="367">
+  <tile id="412">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 1x3 1"/>
@@ -2842,7 +3341,7 @@
    <image width="32" height="11" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 1x3 1.png"/>
   </tile>
 
-  <tile id="368">
+  <tile id="413">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 2x1 1"/>
@@ -2850,7 +3349,7 @@
    <image width="64" height="48" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 2x1 1.png"/>
   </tile>
 
-  <tile id="369">
+  <tile id="414">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 2x2 1"/>
@@ -2858,7 +3357,7 @@
    <image width="64" height="80" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 2x2 1.png"/>
   </tile>
 
-  <tile id="370">
+  <tile id="415">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 2x2 2"/>
@@ -2866,7 +3365,7 @@
    <image width="64" height="80" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 2x2 2.png"/>
   </tile>
 
-  <tile id="371">
+  <tile id="416">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 2x2 3"/>
@@ -2874,7 +3373,7 @@
    <image width="64" height="80" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 2x2 3.png"/>
   </tile>
 
-  <tile id="372">
+  <tile id="417">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 2x2 4"/>
@@ -2882,7 +3381,7 @@
    <image width="64" height="80" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 2x2 4.png"/>
   </tile>
 
-  <tile id="373">
+  <tile id="418">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 2x2 5"/>
@@ -2890,7 +3389,7 @@
    <image width="64" height="80" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 2x2 5.png"/>
   </tile>
 
-  <tile id="374">
+  <tile id="419">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 2x3 1"/>
@@ -2898,7 +3397,7 @@
    <image width="64" height="112" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 2x3 1.png"/>
   </tile>
 
-  <tile id="375">
+  <tile id="420">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 2x3 2"/>
@@ -2906,7 +3405,7 @@
    <image width="64" height="112" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 2x3 2.png"/>
   </tile>
 
-  <tile id="376">
+  <tile id="421">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 2x3 3"/>
@@ -2914,7 +3413,7 @@
    <image width="64" height="112" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 2x3 3.png"/>
   </tile>
 
-  <tile id="377">
+  <tile id="422">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 2x3 4"/>
@@ -2922,7 +3421,7 @@
    <image width="64" height="112" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 2x3 4.png"/>
   </tile>
 
-  <tile id="378">
+  <tile id="423">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 2x3 5"/>
@@ -2930,7 +3429,7 @@
    <image width="64" height="112" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 2x3 5.png"/>
   </tile>
 
-  <tile id="379">
+  <tile id="424">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 2x3 6"/>
@@ -2938,7 +3437,7 @@
    <image width="64" height="112" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 2x3 6.png"/>
   </tile>
 
-  <tile id="380">
+  <tile id="425">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 2x3 7"/>
@@ -2946,7 +3445,7 @@
    <image width="64" height="112" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 2x3 7.png"/>
   </tile>
 
-  <tile id="381">
+  <tile id="426">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 2x3 8"/>
@@ -2954,7 +3453,7 @@
    <image width="64" height="112" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 2x3 8.png"/>
   </tile>
 
-  <tile id="382">
+  <tile id="427">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 2x3 9"/>
@@ -2962,7 +3461,7 @@
    <image width="64" height="112" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 2x3 9.png"/>
   </tile>
 
-  <tile id="383">
+  <tile id="428">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 2x3 10"/>
@@ -2970,7 +3469,7 @@
    <image width="64" height="112" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 2x3 10.png"/>
   </tile>
 
-  <tile id="384">
+  <tile id="429">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 2x3 11"/>
@@ -2978,7 +3477,7 @@
    <image width="64" height="112" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 2x3 11.png"/>
   </tile>
 
-  <tile id="385">
+  <tile id="430">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 2x3 12"/>
@@ -2986,7 +3485,7 @@
    <image width="64" height="112" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 2x3 12.png"/>
   </tile>
 
-  <tile id="386">
+  <tile id="431">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 2x3 13"/>
@@ -2994,7 +3493,7 @@
    <image width="64" height="112" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 2x3 13.png"/>
   </tile>
 
-  <tile id="387">
+  <tile id="432">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 2x3 14"/>
@@ -3002,7 +3501,7 @@
    <image width="64" height="112" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 2x3 14.png"/>
   </tile>
 
-  <tile id="388">
+  <tile id="433">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 3x1 1"/>
@@ -3010,7 +3509,7 @@
    <image width="96" height="48" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 3x1 1.png"/>
   </tile>
 
-  <tile id="389">
+  <tile id="434">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 3x2 1"/>
@@ -3018,7 +3517,7 @@
    <image width="96" height="80" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 3x2 1.png"/>
   </tile>
 
-  <tile id="390">
+  <tile id="435">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 3x2 2"/>
@@ -3026,7 +3525,7 @@
    <image width="96" height="80" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 3x2 2.png"/>
   </tile>
 
-  <tile id="391">
+  <tile id="436">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 3x2 3"/>
@@ -3034,7 +3533,7 @@
    <image width="96" height="80" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 3x2 3.png"/>
   </tile>
 
-  <tile id="392">
+  <tile id="437">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 3x2 4"/>
@@ -3042,7 +3541,7 @@
    <image width="96" height="80" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 3x2 4.png"/>
   </tile>
 
-  <tile id="393">
+  <tile id="438">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 3x2 5"/>
@@ -3050,7 +3549,7 @@
    <image width="96" height="80" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 3x2 5.png"/>
   </tile>
 
-  <tile id="394">
+  <tile id="439">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 3x2 6"/>
@@ -3058,7 +3557,7 @@
    <image width="96" height="80" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 3x2 6.png"/>
   </tile>
 
-  <tile id="395">
+  <tile id="440">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 3x2 7"/>
@@ -3066,7 +3565,7 @@
    <image width="96" height="80" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 3x2 7.png"/>
   </tile>
 
-  <tile id="396">
+  <tile id="441">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 3x2 8"/>
@@ -3074,7 +3573,7 @@
    <image width="96" height="80" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 3x2 8.png"/>
   </tile>
 
-  <tile id="397">
+  <tile id="442">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 3x2 9"/>
@@ -3082,7 +3581,7 @@
    <image width="96" height="80" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 3x2 9.png"/>
   </tile>
 
-  <tile id="398">
+  <tile id="443">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 3x2 10"/>
@@ -3090,7 +3589,7 @@
    <image width="96" height="80" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 3x2 10.png"/>
   </tile>
 
-  <tile id="399">
+  <tile id="444">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 3x2 11"/>
@@ -3098,7 +3597,7 @@
    <image width="96" height="80" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 3x2 11.png"/>
   </tile>
 
-  <tile id="400">
+  <tile id="445">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 3x2 12"/>
@@ -3106,7 +3605,7 @@
    <image width="96" height="80" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 3x2 12.png"/>
   </tile>
 
-  <tile id="401">
+  <tile id="446">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 3x2 13"/>
@@ -3114,7 +3613,7 @@
    <image width="96" height="80" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 3x2 13.png"/>
   </tile>
 
-  <tile id="402">
+  <tile id="447">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 3x2 14"/>
@@ -3122,7 +3621,7 @@
    <image width="96" height="80" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 3x2 14.png"/>
   </tile>
 
-  <tile id="403">
+  <tile id="448">
    <image width="32" height="32" source="../../Graphics/Ambience/Darker.png"/>
   </tile>
  </tileset>
@@ -3165,23 +3664,23 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,74,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,72,88,0,74,0,75,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,74,0,0,0,0,69,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,65,0,0,0,72,0,69,66,0,76,0,69,0,90,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,66,0,0,75,0,72,72,67,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,74,0,68,75,90,0,0,90,0,68,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,74,0,0,0,72,0,0,0,0,0,66,0,0,72,68,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,67,0,72,0,0,0,0,68,0,70,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,66,0,65,0,0,0,73,0,0,0,0,67,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,68,0,0,67,65,0,0,0,0,0,0,0,0,75,69,65,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,69,0,0,0,0,0,0,70,0,0,66,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,65,0,0,0,68,0,0,88,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,66,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,68,0,69,0,0,71,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,71,0,89,0,0,0,0,71,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,65,0,0,0,0,0,0,0,72,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,65,0,0,0,0,0,0,0,66,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,65,0,0,0,0,71,0,0,0,0,72,0,74,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,76,0,65,0,0,0,66,0,0,68,0,0,68,65,76,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,65,0,0,0,0,68,0,67,76,0,0,0,85,0,0,71,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,65,0,0,0,66,0,74,72,69,72,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,66,0,74,0,0,76,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,72,68,65,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,75,0,0,74,0,0,0,0,0,67,0,0,0,73,65,69,65,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,74,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,68,0,0,0,0,0,90,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,74,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,70,71,0,0,0,91,65,0,92,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,88,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -3273,51 +3772,51 @@
   <object id="14" name="Lo14" gid="239" x="224" y="256" width="64" height="80"/>
   <object id="15" name="Lo15" gid="258" x="448" y="544" width="96" height="48"/>
   <object id="16" name="Lo16" gid="258" x="448" y="672" width="96" height="48"/>
-  <object id="17" name="Ma17" gid="330" x="608" y="160" width="32" height="48"/>
-  <object id="18" name="Ma18" gid="330" x="352" y="224" width="32" height="48"/>
-  <object id="19" name="Ma19" gid="330" x="672" y="224" width="32" height="48"/>
-  <object id="20" name="Ma20" gid="330" x="288" y="256" width="32" height="48"/>
-  <object id="21" name="Ma21" gid="330" x="608" y="352" width="32" height="48"/>
-  <object id="22" name="Ma22" gid="330" x="256" y="384" width="32" height="48"/>
-  <object id="23" name="Ma23" gid="330" x="320" y="448" width="32" height="48"/>
-  <object id="24" name="Ma24" gid="330" x="448" y="448" width="32" height="48"/>
-  <object id="25" name="Ma25" gid="330" x="480" y="608" width="32" height="48"/>
-  <object id="26" name="Ma26" gid="338" x="320" y="224" width="32" height="48"/>
-  <object id="27" name="Ma27" gid="338" x="480" y="224" width="32" height="48"/>
-  <object id="28" name="Ma28" gid="338" x="736" y="288" width="32" height="48"/>
-  <object id="29" name="Ma29" gid="338" x="672" y="416" width="32" height="48"/>
-  <object id="30" name="Ma30" gid="338" x="672" y="608" width="32" height="48"/>
-  <object id="31" name="Ma31" gid="338" x="736" y="672" width="32" height="48"/>
+  <object id="17" name="Ma17" gid="375" x="352" y="224" width="32" height="48"/>
+  <object id="18" name="Ma18" gid="375" x="288" y="256" width="32" height="48"/>
+  <object id="19" name="Ma19" gid="375" x="736" y="288" width="32" height="48"/>
+  <object id="20" name="Ma20" gid="375" x="608" y="352" width="32" height="48"/>
+  <object id="21" name="Ma21" gid="375" x="480" y="608" width="32" height="48"/>
+  <object id="22" name="Ma22" gid="375" x="672" y="608" width="32" height="48"/>
+  <object id="23" name="Ma23" gid="375" x="736" y="672" width="32" height="48"/>
+  <object id="24" name="Ma24" gid="383" x="608" y="160" width="32" height="48"/>
+  <object id="25" name="Ma25" gid="383" x="320" y="224" width="32" height="48"/>
+  <object id="26" name="Ma26" gid="383" x="480" y="224" width="32" height="48"/>
+  <object id="27" name="Ma27" gid="383" x="672" y="224" width="32" height="48"/>
+  <object id="28" name="Ma28" gid="383" x="256" y="384" width="32" height="48"/>
+  <object id="29" name="Ma29" gid="383" x="672" y="416" width="32" height="48"/>
+  <object id="30" name="Ma30" gid="383" x="320" y="448" width="32" height="48"/>
+  <object id="31" name="Ma31" gid="383" x="448" y="448" width="32" height="48"/>
  </objectgroup>
  <layer name="Ambience" width="32" height="27">
   <data encoding="csv">
-404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,
-404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,
-404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,
-404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,
-404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,
-404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,
-404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,
-404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,
-404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,
-404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,
-404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,
-404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,
-404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,
-404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,
-404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,
-404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,
-404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,
-404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,
-404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,
-404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,
-404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,
-404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,
-404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,
-404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,
-404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,
-404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,
-404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404
+449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,
+449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,
+449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,
+449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,
+449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,
+449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,
+449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,
+449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,
+449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,
+449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,
+449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,
+449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,
+449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,
+449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,
+449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,
+449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,
+449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,
+449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,
+449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,
+449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,
+449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,
+449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,
+449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,
+449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,
+449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,
+449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,
+449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449,449
 </data>
  </layer>
 
