@@ -15,10 +15,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
-public class PlayScreen implements Screen {
-	public static final float WORLD_WIDTH = 500f;
+public class PlayScreen implements Screen, Player.Listener {
 	public static final float TICK_DURATION = 0.06f;
 	public static final String LAYER_ACTORS = "Walls and Objects";
+
 	// Tile properties
 	public static final String TILE_TYPE = "Type";
 	public static final String TILE_REFERENCE = "~";
@@ -53,11 +53,14 @@ public class PlayScreen implements Screen {
 	private HashMap<TiledMapTile, ArrayList<TiledStageActor.Frame>> _tileFramesByTile;
 	private LogicMachine _logicMachine;
 	private TmxMapLoader _tmxMapLoader;
+	private String _levelPath;
+	private Listener _listener;
 
 	// Debugging tools
 	private FPSLogger _fpsLogger;
 
-	public PlayScreen() {
+	public PlayScreen(Listener listener) {
+		_listener = listener;
 		_tmxMapLoader = new TmxMapLoader();
 		_fpsLogger = new FPSLogger();
 		_tilesByReference = new HashMap<String, TiledMapTile>();
@@ -160,7 +163,7 @@ public class PlayScreen implements Screen {
 				// Hook action of actor to logicmachine expression
 				LogicMachine.Expression expression = _logicMachine.addExpression(expressionString, new LogicMachine.Listener() {
 					@Override
-					public void changed(boolean isTrue) {
+					public void expressionChanged(boolean isTrue) {
 						if (isTrue) doAction(actor, action);
 					}
 				});
@@ -210,24 +213,22 @@ public class PlayScreen implements Screen {
 	@Override
 	public void show() {
 		if (_tiledStage == null) {
-			_tiledStage = new TiledStage(LAYER_ACTORS, WORLD_WIDTH, WORLD_WIDTH / Gdx.graphics.getWidth() * Gdx.graphics.getHeight(),
-					SUBTICKS.values().length, TICK_DURATION);
+			_tiledStage = new TiledStage(LAYER_ACTORS, Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), SUBTICKS.values().length, TICK_DURATION);
 		}
+
+		Gdx.input.setInputProcessor(_tiledStage);
 	}
 
 	public void loadLevel(String levelPath) {
-		if (_map != null) _map.dispose();
-
+		_levelPath = levelPath;
 		_tilesByReference.clear();
 		_tileFramesByTile.clear();
 		_logicMachine.clear();
 		_playerActor = null;
 
 		if (_map != null) _map.dispose();
-		_map = _tmxMapLoader.load(levelPath);
+		_map = _tmxMapLoader.load(_levelPath);
 		_tiledStage.load(_map);
-
-		Gdx.input.setInputProcessor(_tiledStage);
 
 		Iterator<TiledMapTile> tiles = _tiledStage.tilesIterator();
 		while (tiles.hasNext()) {
@@ -282,7 +283,7 @@ public class PlayScreen implements Screen {
 		// Add player to stage
 		_playerActor = new Player(TiledStageActor.BodyArea1x1, 1,
 				getAnimations(object.tile()),
-				_tiledStage, object.origin(), ExtractActorDepth(object.tile()));
+				_tiledStage, object.origin(), ExtractActorDepth(object.tile()), this);
 
 		_tiledStage.setCameraFocalActor(_playerActor);
 		_tiledStage.setInputFocalActor(_playerActor);
@@ -336,7 +337,7 @@ public class PlayScreen implements Screen {
 
 	@Override
 	public void resize(int width, int height) {
-		_tiledStage.getViewport().update(width, height);
+		_tiledStage.setScreenSize(width, height);
 	}
 
 	@Override
@@ -360,7 +361,26 @@ public class PlayScreen implements Screen {
 		_tiledStage.dispose();
 	}
 
+	@Override
+	public void resetLevel() {
+		loadLevel(_levelPath);
+	}
+
+	@Override
+	public void exitLevel() {
+		_listener.exitLevel();
+	}
+
+	@Override
+	public void setZoom(float zoom) {
+		_tiledStage.setZoom(zoom);
+	}
+
 	public enum SUBTICKS {
 		RESET, BUTTON_PRESSES, MAGNETISATION, FORCES, BLOCK_MOVEMENT, PLAYER_MOVEMENT, GRAPHICS
+	}
+
+	public interface Listener {
+		void exitLevel();
 	}
 }

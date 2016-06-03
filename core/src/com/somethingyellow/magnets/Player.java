@@ -6,19 +6,25 @@ import com.somethingyellow.tiled.*;
 
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Set;
 
 public class Player extends PlayerActor {
 	public static final int MOVE_TICKS = 3;
+	public static final float MIN_ZOOM = 0.5f;
+	public static final float MAX_ZOOM = 1.5f;
 	public static final String STATE_STANDING = "Standing";
 	public static final String STATE_WALKING = "Walking";
 	public static final int[] SUBTICKS = new int[]{
 			PlayScreen.SUBTICKS.PLAYER_MOVEMENT.ordinal()
 	};
 
+	private Listener _listener;
+	private float _zoom;
+
 	public Player(boolean[] bodyArea, int bodyWidth, HashMap<String, FrameSequence> animationFrames,
-	              TiledStage stage, TiledStage.Coordinate origin, int actorDepth) {
+	              TiledStage stage, TiledStage.Coordinate origin, int actorDepth, Listener listener) {
 		super(bodyArea, bodyWidth, animationFrames, stage, origin, actorDepth);
+		_listener = listener;
+		_zoom = 1f;
 		addState(STATE_STANDING);
 	}
 
@@ -116,14 +122,24 @@ public class Player extends PlayerActor {
 	}
 
 	@Override
-	public boolean keyDown(InputEvent event, int keycode) {
+	protected boolean keyDown(InputEvent event, int keycode) {
 		super.keyDown(event, keycode);
 		switch (keycode) {
 			case Input.Keys.R:
-				Main.playScreen.loadLevel(Main.levelPath);
+				_listener.resetLevel();
+				break;
+			case Input.Keys.ESCAPE:
+				_listener.exitLevel();
 				break;
 		}
 
+		return true;
+	}
+
+	protected boolean scrolled(InputEvent event, float x, float y, int amount) {
+		super.scrolled(event, x, y, amount);
+		_zoom = Math.min(Math.max(_zoom + (float) amount / 10, MIN_ZOOM), MAX_ZOOM);
+		_listener.setZoom(_zoom);
 		return true;
 	}
 
@@ -132,5 +148,13 @@ public class Player extends PlayerActor {
 	@Override
 	public int[] subticks() {
 		return SUBTICKS;
+	}
+
+	public interface Listener {
+		void resetLevel();
+
+		void exitLevel();
+
+		void setZoom(float zoom);
 	}
 }

@@ -161,6 +161,10 @@ public abstract class TiledStageActor extends Actor implements Comparable<TiledS
 		return _origin;
 	}
 
+	public Vector2 center() {
+		return new Vector2(position().x + (float) _bodyWidth / 2 * _stage.tileWidth(), position().y + (float) _bodyHeight / 2 * _stage.tileHeight());
+	}
+
 	public TiledStage.Coordinate topLeftBodyCoordinate() {
 		TiledStage.Coordinate topLeft = null;
 		for (TiledStage.Coordinate bodyCoordinate : _bodyCoordinates) {

@@ -27,8 +27,6 @@ public class TiledStage extends Stage {
 	public static final float CAMERA_PANNING_SMOOTH_RATIO = 0.1f;
 
 	private TiledMap _map;
-	private float _viewSizeX;
-	private float _viewSizeY;
 	private TiledStageMapRenderer _mapRenderer;
 	private OrthographicCamera _camera;
 	private TiledStageActor _cameraFocalActor;
@@ -49,9 +47,9 @@ public class TiledStage extends Stage {
 	private HashMap<String, TiledMapTileLayer> _tileLayers;
 	private LinkedList<TiledObject> _objects;
 
-	public TiledStage(String actorsLayerName, float viewSizeX, float viewSizeY, int maxSubTicks, float tickDuration) {
-		_viewSizeX = viewSizeX;
-		_viewSizeY = viewSizeY;
+	public TiledStage(String actorsLayerName, float screenWidth, float screenHeight,
+	                  int maxSubTicks, float tickDuration) {
+
 		_actorsLayerName = actorsLayerName;
 		_maxSubTicks = maxSubTicks;
 		_tickTime = 0f;
@@ -67,7 +65,8 @@ public class TiledStage extends Stage {
 		}
 
 		_camera = new OrthographicCamera();
-		resetCamera();
+		getViewport().setCamera(_camera);
+		setScreenSize(screenWidth, screenHeight);
 	}
 
 	public static boolean ParseBooleanProp(MapProperties props, String propName) {
@@ -267,9 +266,9 @@ public class TiledStage extends Stage {
 
 		// Camera
 		Vector2 camPos = new Vector2(_camera.position.x, _camera.position.y);
-		float camDistFromFocalActor = Math.abs(_cameraFocalActor.position().dst(camPos));
+		float camDistFromFocalActor = Math.abs(_cameraFocalActor.center().dst(camPos));
 		if (camDistFromFocalActor > CAMERA_MAX_OFFSET) {
-			_camera.position.set(camPos.interpolate(_cameraFocalActor.position(), CAMERA_PANNING_SMOOTH_RATIO, Interpolation.linear), 0);
+			_camera.position.set(camPos.interpolate(_cameraFocalActor.center(), CAMERA_PANNING_SMOOTH_RATIO, Interpolation.linear), 0);
 		}
 		_camera.update();
 
@@ -304,13 +303,6 @@ public class TiledStage extends Stage {
 
 	public float tickDuration() {
 		return _tickDuration;
-	}
-
-	public void resetCamera() {
-		_camera.setToOrtho(false, _viewSizeX, _viewSizeY);
-		getViewport().setWorldSize(_viewSizeX, _viewSizeY);
-		getViewport().setCamera(_camera);
-		_camera.update();
 	}
 
 	public Coordinate getCoordinate(int tileRow, int tileCol) {
@@ -406,15 +398,15 @@ public class TiledStage extends Stage {
 		return _objects;
 	}
 
-	public TiledStage setViewSize(float viewSizeX, float viewSizeY) {
-		_viewSizeX = viewSizeX;
-		_viewSizeY = viewSizeY;
+	public TiledStage setScreenSize(float screenWidth, float screenHeight) {
+		_camera.setToOrtho(false, screenWidth, screenHeight);
+		if (_cameraFocalActor != null) _camera.position.set(_cameraFocalActor.center(), 0);
 		return this;
 	}
 
 	public TiledStage setCameraFocalActor(TiledStageActor actor) {
 		_cameraFocalActor = actor;
-		_camera.position.set(_cameraFocalActor.position(), 0);
+		_camera.position.set(_cameraFocalActor.center(), 0);
 		return this;
 	}
 
@@ -422,6 +414,11 @@ public class TiledStage extends Stage {
 		_inputFocalActor = actor;
 		setKeyboardFocus(actor);
 		setScrollFocus(actor);
+		return this;
+	}
+
+	public TiledStage setZoom(float zoom) {
+		_camera.zoom = zoom;
 		return this;
 	}
 

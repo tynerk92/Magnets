@@ -1,7 +1,5 @@
 package com.somethingyellow;
 
-import com.badlogic.gdx.math.Interpolation;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -116,7 +114,7 @@ public class LogicMachine {
 	}
 
 	public interface Listener {
-		void changed(boolean isTrue);
+		void expressionChanged(boolean isTrue);
 	}
 
 	public class Expression {
@@ -161,7 +159,7 @@ public class LogicMachine {
 			_matchString = stringBuilder.toString();
 			_prevValue = false;
 
-			_listener.changed(_prevValue);
+			_listener.expressionChanged(_prevValue);
 		}
 
 
@@ -183,12 +181,12 @@ public class LogicMachine {
 			if (_premisePattern.matcher(matchString).find()) {
 				if (!_prevValue) {
 					_prevValue = true;
-					_listener.changed(_prevValue);
+					_listener.expressionChanged(_prevValue);
 				}
 			} else {
 				if (_prevValue) {
 					_prevValue = false;
-					_listener.changed(_prevValue);
+					_listener.expressionChanged(_prevValue);
 				}
 			}
 		}
@@ -210,7 +208,7 @@ public class LogicMachine {
 		LogicMachine lm = new LogicMachine();
 		lm.addExpression(" ( A            && C ||!B &&   !C)|| D", new Listener() {
 			@Override
-			public void changed(boolean isTrue) {
+			public void expressionChanged(boolean isTrue) {
 				System.out.println(isTrue);
 			}
 		});
