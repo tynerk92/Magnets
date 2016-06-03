@@ -164,7 +164,7 @@ public class TiledStageMapRenderer extends BatchTiledMapRenderer {
 								textureRegion.setRegion(colDiff * _stage.tileWidth(), protrudeHeight + (actor.bodyHeight() - 1 - rowDiff) * _stage.tileHeight(), _stage.tileWidth(), _stage.tileHeight());
 							}
 
-							batch.draw(textureRegion, actor.getX() + _stage.tileWidth() * colDiff, actor.getY() + _stage.tileHeight() * rowDiff);
+							batch.draw(textureRegion, actor.getX() + _stage.tileWidth() * colDiff, actor.getY() + _stage.tileHeight() * rowDiff + actor.getZ());
 						}
 					}
 				}

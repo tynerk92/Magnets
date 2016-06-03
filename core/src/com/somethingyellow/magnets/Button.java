@@ -18,11 +18,10 @@ public class Button extends TiledStageActor {
 
 	private boolean _isOn;
 
-	public Button(boolean[] bodyArea, int bodyWidth, HashMap<String, FrameSequence> animationFrames,
-	              TiledStage stage, TiledStage.Coordinate origin, int actorDepth) {
-		super(bodyArea, bodyWidth, animationFrames, stage, origin, actorDepth);
+	public void initialize(TiledStage stage, boolean[] bodyArea, int bodyWidth, HashMap<String, FrameSequence> animationFrames,
+	                       TiledStage.Coordinate origin) {
+		super.initialize(stage, bodyArea, bodyWidth, animationFrames, origin);
 
-		_isOn = false;
 		addState(STATE_OFF);
 
 		// Frame events
@@ -39,6 +38,12 @@ public class Button extends TiledStageActor {
 				addState(STATE_OFF).removeState(STATE_OFFING);
 			}
 		});
+	}
+
+	@Override
+	public void reset() {
+		super.reset();
+		_isOn = false;
 	}
 
 	@Override

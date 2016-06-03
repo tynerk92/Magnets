@@ -14,12 +14,18 @@ public class MagneticFloor extends TiledStageActor {
 			PlayScreen.SUBTICKS.MAGNETISATION.ordinal()
 	};
 
-	public MagneticFloor(HashMap<String, FrameSequence> animationFrames,
-	                     TiledStage stage, TiledStage.Coordinate origin, int actorDepth) {
-		super(TiledStageActor.BodyArea1x1, 1, animationFrames, stage, origin, actorDepth);
 
+	public void initialize(TiledStage stage, HashMap<String, FrameSequence> animationFrames,
+	                       TiledStage.Coordinate origin) {
+		super.initialize(stage, TiledStageActor.BodyArea1x1, 1, animationFrames, origin);
+	}
+
+	@Override
+	public void reset() {
+		super.reset();
 		addState(STATE_DEFAULT);
 	}
+
 
 	@Override
 	public void act(int subtick) {

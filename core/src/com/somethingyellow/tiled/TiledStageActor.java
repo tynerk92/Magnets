@@ -7,6 +7,7 @@ import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.utils.Pool;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -14,7 +15,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.TreeSet;
 
-public abstract class TiledStageActor extends Actor implements Comparable<TiledStageActor> {
+public abstract class TiledStageActor extends Actor implements Comparable<TiledStageActor>, Pool.Poolable {
 	public static final boolean[] BodyArea1x1 = new boolean[]{
 			true
 	};
@@ -29,23 +30,23 @@ public abstract class TiledStageActor extends Actor implements Comparable<TiledS
 	private int _bodyWidth;
 	private int _bodyHeight;
 	private HashMap<String, FrameSequence> _animationFrames;
-	private TreeSet<String> _states;
-	private LinkedList<StateListener> _stateListeners;
+	private TreeSet<String> _states = new TreeSet<String>();
+	private LinkedList<StateListener> _stateListeners = new LinkedList<StateListener>();
+	private float _z;
 
-	public TiledStageActor(boolean[] bodyArea, int bodyWidth, HashMap<String, FrameSequence> animationFrames,
-	                       TiledStage stage, TiledStage.Coordinate origin, int actorDepth) {
+	protected void initialize(TiledStage stage, boolean[] bodyArea, int bodyWidth, HashMap<String, FrameSequence> animationFrames,
+	                          TiledStage.Coordinate origin) {
 		if (bodyArea.length % bodyWidth != 0)
 			throw new IllegalArgumentException("Length of 'Body Area' should be a multiple of 'Body Width'!");
 
+		_stage = stage;
+		_movingTicks = 0;
+		_z = 0;
 		_bodyArea = bodyArea;
 		_bodyWidth = bodyWidth;
 		_animationFrames = animationFrames;
 		_bodyHeight = bodyArea.length / bodyWidth;
-		_stage = stage;
-		_states = new TreeSet<String>();
-		_actorDepth = actorDepth;
-		_stateListeners = new LinkedList<StateListener>();
-		_movingTicks = 0;
+		_actorDepth = 0;
 
 		setOrigin(origin);
 		for (TiledStage.Coordinate coordinate : _bodyCoordinates) {
@@ -54,6 +55,12 @@ public abstract class TiledStageActor extends Actor implements Comparable<TiledS
 		_stage.addActor(this);
 		Vector2 pos = _origin.position();
 		setPosition(pos.x, pos.y);
+	}
+
+	@Override
+	public void reset() {
+		_states.clear();
+		_stateListeners.clear();
 	}
 
 	@Override
@@ -274,6 +281,11 @@ public abstract class TiledStageActor extends Actor implements Comparable<TiledS
 		return _actorDepth;
 	}
 
+	public TiledStageActor setActorDepth(int actorDepth) {
+		_actorDepth = actorDepth;
+		return this;
+	}
+
 	public int bodyWidth() {
 		return _bodyWidth;
 	}
@@ -284,6 +296,15 @@ public abstract class TiledStageActor extends Actor implements Comparable<TiledS
 
 	public int bodyHeight() {
 		return _bodyHeight;
+	}
+
+	public float getZ() {
+		return _z;
+	}
+
+	public TiledStageActor setZ(float z) {
+		_z = z;
+		return this;
 	}
 
 	@Override
@@ -317,7 +338,6 @@ public abstract class TiledStageActor extends Actor implements Comparable<TiledS
 
 	public interface StateListener {
 		void added(String state);
-
 		void removed(String state);
 	}
 

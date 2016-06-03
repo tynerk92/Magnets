@@ -8,12 +8,14 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 
+import com.badlogic.gdx.utils.Pools;
 import com.somethingyellow.LogicMachine;
 import com.somethingyellow.tiled.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
 
 public class PlayScreen implements Screen, Player.Listener {
 	public static final float TICK_DURATION = 0.06f;
@@ -36,9 +38,11 @@ public class PlayScreen implements Screen, Player.Listener {
 	public static final String TILE_TYPE_DOOR = "Door";
 	public static final String TILE_TYPE_BUTTON = "Button";
 	public static final String TILE_TYPE_WALL = "Wall";
+	public static final String TILE_TYPE_EXIT = "Exit";
 	public static final String TILE_ISPUSHABLE = "IsPushable";
 	public static final String TILE_ISMAGNETISABLE = "IsMagnetisable";
 	public static final String TILE_ISOPEN = "IsOpen";
+	public static final String TILE_ELEVATION = "Elevation";
 	public static final String TILE_BODY_WIDTH = "Body Width";
 	public static final String TILE_BODY_AREA = "Body Area";
 	public static final String TILE_THIS = "(this)";
@@ -48,24 +52,20 @@ public class PlayScreen implements Screen, Player.Listener {
 
 	private TiledStage _tiledStage;
 	private TiledMap _map;
-	private PlayerActor _playerActor;
-	private HashMap<String, TiledMapTile> _tilesByReference;
-	private HashMap<TiledMapTile, ArrayList<TiledStageActor.Frame>> _tileFramesByTile;
-	private LogicMachine _logicMachine;
-	private TmxMapLoader _tmxMapLoader;
+	private Player _playerActor;
+	private HashMap<String, TiledMapTile> _tilesByReference = new HashMap<String, TiledMapTile>();
+	private HashMap<TiledMapTile, ArrayList<TiledStageActor.Frame>> _tileFramesByTile = new HashMap<TiledMapTile, ArrayList<TiledStageActor.Frame>>();
+	private LogicMachine _logicMachine = new LogicMachine();
+	private TmxMapLoader _tmxMapLoader = new TmxMapLoader();
+	private LinkedList<TiledStageActor> _actors = new LinkedList<TiledStageActor>();
 	private String _levelPath;
 	private Listener _listener;
 
 	// Debugging tools
-	private FPSLogger _fpsLogger;
+	private FPSLogger _fpsLogger = new FPSLogger();
 
 	public PlayScreen(Listener listener) {
 		_listener = listener;
-		_tmxMapLoader = new TmxMapLoader();
-		_fpsLogger = new FPSLogger();
-		_tilesByReference = new HashMap<String, TiledMapTile>();
-		_tileFramesByTile = new HashMap<TiledMapTile, ArrayList<TiledStageActor.Frame>>();
-		_logicMachine = new LogicMachine();
 	}
 
 	public static boolean[] ExtractBodyArea(TiledMapTile tile) {
@@ -109,6 +109,10 @@ public class PlayScreen implements Screen, Player.Listener {
 		return TiledStage.ParseIntegerProp(tile.getProperties(), TILE_ACTOR_DEPTH, 0);
 	}
 
+	public static int ExtractElevation(TiledMapTile tile) {
+		return TiledStage.ParseIntegerProp(tile.getProperties(), TILE_ELEVATION, 0);
+	}
+
 	public static boolean ExtractIsOpen(TiledMapTile tile) {
 		return TiledStage.ParseBooleanProp(tile.getProperties(), TILE_ISOPEN, false);
 	}
@@ -142,6 +146,10 @@ public class PlayScreen implements Screen, Player.Listener {
 		}
 
 		return animationFrames;
+	}
+
+	public void processProperties(TiledStageActor actor, TiledMapTile tile) {
+		actor.setActorDepth(ExtractActorDepth(tile));
 	}
 
 	public void processActions(final TiledStageActor actor, TiledStage.TiledObject object) {
@@ -220,13 +228,20 @@ public class PlayScreen implements Screen, Player.Listener {
 	}
 
 	public void loadLevel(String levelPath) {
-		_levelPath = levelPath;
+		// Unload previous level's data
 		_tilesByReference.clear();
 		_tileFramesByTile.clear();
 		_logicMachine.clear();
 		_playerActor = null;
+		for (TiledStageActor actor : _actors) {
+			Pools.free(actor);
+		}
+		_actors.clear();
 
 		if (_map != null) _map.dispose();
+
+		_levelPath = levelPath;
+
 		_map = _tmxMapLoader.load(_levelPath);
 		_tiledStage.load(_map);
 
@@ -264,7 +279,12 @@ public class PlayScreen implements Screen, Player.Listener {
 				}
 			}
 
-			if (actor != null && object.name() != null) actor.setName(object.name());
+			processProperties(actor, tile);
+
+			if (actor != null) {
+				_actors.add(actor);
+				if (object.name() != null) actor.setName(object.name());
+			}
 		}
 
 		for (TiledStage.TiledObject object : _tiledStage.objects()) {
@@ -275,15 +295,19 @@ public class PlayScreen implements Screen, Player.Listener {
 		}
 	}
 
+	public void unload() {
+
+	}
+
 	public TiledStageActor spawnPlayer(TiledStage.TiledObject object) {
 		if (_playerActor != null) {
 			throw new IllegalArgumentException("There should only be 1 player on the tiled map!");
 		}
 
 		// Add player to stage
-		_playerActor = new Player(TiledStageActor.BodyArea1x1, 1,
-				getAnimations(object.tile()),
-				_tiledStage, object.origin(), ExtractActorDepth(object.tile()), this);
+		_playerActor = Pools.get(Player.class).obtain();
+		_playerActor.initialize(_tiledStage, TiledStageActor.BodyArea1x1, 1, getAnimations(object.tile()),
+				object.origin(), this);
 
 		_tiledStage.setCameraFocalActor(_playerActor);
 		_tiledStage.setInputFocalActor(_playerActor);
@@ -292,37 +316,42 @@ public class PlayScreen implements Screen, Player.Listener {
 	}
 
 	public TiledStageActor spawnBlock(TiledStage.TiledObject object) {
-		return new Block(ExtractBodyArea(object.tile()), ExtractBodyWidth(object.tile()),
-				getAnimations(object.tile()),
-				_tiledStage, object.origin(),
-				ExtractIsPushable(object.tile()), ExtractIsMagnetisable(object.tile()), ExtractActorDepth(object.tile()));
+		Block block = Pools.get(Block.class).obtain();
+		block.initialize(_tiledStage, ExtractBodyArea(object.tile()), ExtractBodyWidth(object.tile()),
+				getAnimations(object.tile()), object.origin(), ExtractIsPushable(object.tile()), ExtractIsMagnetisable(object.tile()));
+		return block;
 	}
 
 	public TiledStageActor spawnMagneticSource(TiledStage.TiledObject object) {
-		return new MagneticSource(getAnimations(object.tile()), _tiledStage,
-				object.origin(), ExtractActorDepth(object.tile()));
+		MagneticSource magneticSource = Pools.get(MagneticSource.class).obtain();
+		magneticSource.initialize(_tiledStage, getAnimations(object.tile()), object.origin());
+		return magneticSource;
 	}
 
 	public TiledStageActor spawnMagneticFloor(TiledStage.TiledObject object) {
-		return new MagneticFloor(getAnimations(object.tile()), _tiledStage,
-				object.origin(), ExtractActorDepth(object.tile()));
+		MagneticFloor magneticFloor = Pools.get(MagneticFloor.class).obtain();
+		magneticFloor.initialize(_tiledStage, getAnimations(object.tile()), object.origin());
+		return magneticFloor;
 	}
 
 	public TiledStageActor spawnObstructedFloor(TiledStage.TiledObject object) {
-		return new ObstructedFloor(getAnimations(object.tile()), _tiledStage,
-				object.origin(), ExtractActorDepth(object.tile()));
+		ObstructedFloor obstructedFloor = Pools.get(ObstructedFloor.class).obtain();
+		obstructedFloor.initialize(_tiledStage, getAnimations(object.tile()), object.origin(), ExtractElevation(object.tile()));
+		return obstructedFloor;
 	}
 
 	public TiledStageActor spawnDoor(TiledStage.TiledObject object) {
-		return new Door(ExtractBodyArea(object.tile()), ExtractBodyWidth(object.tile()),
-				getAnimations(object.tile()), _tiledStage,
-				object.origin(), ExtractActorDepth(object.tile()), ExtractIsOpen(object.tile()));
+		Door door = Pools.get(Door.class).obtain();
+		door.initialize(_tiledStage, ExtractBodyArea(object.tile()), ExtractBodyWidth(object.tile()),
+				getAnimations(object.tile()), object.origin(), ExtractIsOpen(object.tile()));
+		return door;
 	}
 
 	public TiledStageActor spawnButton(TiledStage.TiledObject object) {
-		return new Button(ExtractBodyArea(object.tile()), ExtractBodyWidth(object.tile()),
-				getAnimations(object.tile()), _tiledStage,
-				object.origin(), ExtractActorDepth(object.tile()));
+		Button button = Pools.get(Button.class).obtain();
+		button.initialize(_tiledStage, ExtractBodyArea(object.tile()), ExtractBodyWidth(object.tile()),
+				getAnimations(object.tile()), object.origin());
+		return button;
 	}
 
 

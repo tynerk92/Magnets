@@ -11,16 +11,23 @@ import java.util.HashMap;
 
 public abstract class PlayerActor extends TiledStageActor implements EventListener {
 	private static final Vector2 TempCoords = new Vector2();
-	private boolean _isKeyLeftHeld = false;
-	private boolean _isKeyRightHeld = false;
-	private boolean _isKeyUpHeld = false;
-	private boolean _isKeyDownHeld = false;
+	private boolean _isKeyLeftHeld;
+	private boolean _isKeyRightHeld;
+	private boolean _isKeyUpHeld;
+	private boolean _isKeyDownHeld;
 
-
-	public PlayerActor(boolean[] bodyArea, int bodyWidth, HashMap<String, FrameSequence> animationFrames,
-	                   TiledStage stage, TiledStage.Coordinate origin, int actorDepth) {
-		super(bodyArea, bodyWidth, animationFrames, stage, origin, actorDepth);
+	public PlayerActor() {
+		super();
 		addListener(this);
+	}
+
+	@Override
+	public void reset() {
+		super.reset();
+		_isKeyLeftHeld = false;
+		_isKeyRightHeld = false;
+		_isKeyUpHeld = false;
+		_isKeyDownHeld = false;
 	}
 
 	// event listener

@@ -11,23 +11,30 @@ import java.util.LinkedList;
 public class Player extends PlayerActor {
 	public static final int MOVE_TICKS = 3;
 	public static final float MIN_ZOOM = 0.5f;
+	public static final float DEFAULT_ZOOM = 1f;
 	public static final float MAX_ZOOM = 1.5f;
 	public static final String STATE_STANDING = "Standing";
 	public static final int[] SUBTICKS = new int[]{
-			PlayScreen.SUBTICKS.PLAYER_MOVEMENT.ordinal()
+			PlayScreen.SUBTICKS.PLAYER_MOVEMENT.ordinal(),
+			PlayScreen.SUBTICKS.GRAPHICS.ordinal()
 	};
 
 	private Listener _listener;
 	private float _zoom;
-	private LinkedList<TiledStage.DIRECTION> _moveCommands;
+	private LinkedList<TiledStage.DIRECTION> _moveCommands = new LinkedList<TiledStage.DIRECTION>();
 
-	public Player(boolean[] bodyArea, int bodyWidth, HashMap<String, FrameSequence> animationFrames,
-	              TiledStage stage, TiledStage.Coordinate origin, int actorDepth, Listener listener) {
-		super(bodyArea, bodyWidth, animationFrames, stage, origin, actorDepth);
+	public void initialize(TiledStage stage, boolean[] bodyArea, int bodyWidth, HashMap<String, FrameSequence> animationFrames,
+	                       TiledStage.Coordinate origin, Listener listener) {
+		super.initialize(stage, bodyArea, bodyWidth, animationFrames, origin);
 		_listener = listener;
-		_zoom = 1f;
-		_moveCommands = new LinkedList<TiledStage.DIRECTION>(); 
 		addState(STATE_STANDING);
+	}
+
+	@Override
+	public void reset() {
+		super.reset();
+		_zoom = DEFAULT_ZOOM;
+		_moveCommands.clear();
 	}
 
 	@Override
@@ -35,7 +42,9 @@ public class Player extends PlayerActor {
 		if (subtick == PlayScreen.SUBTICKS.PLAYER_MOVEMENT.ordinal()) {
 
 			if (!isMoving()) {
-				if (_moveCommands.isEmpty()) {
+				if (origin().getTileProp(PlayScreen.LAYER_ACTORS, PlayScreen.TILE_TYPE, "").equals(PlayScreen.TILE_TYPE_EXIT)) {
+					_listener.exitLevel();
+				} else if (_moveCommands.isEmpty()) {
 					if (isKeyLeftHeld() && !isKeyRightHeld() && !isKeyUpHeld() && !isKeyDownHeld()) {
 						moveDirection(TiledStage.DIRECTION.WEST);
 					} else if (isKeyRightHeld() && !isKeyLeftHeld() && !isKeyUpHeld() && !isKeyDownHeld()) {
@@ -49,6 +58,18 @@ public class Player extends PlayerActor {
 					moveDirection(_moveCommands.removeFirst());
 				}
 			}
+
+		} else if (subtick == PlayScreen.SUBTICKS.GRAPHICS.ordinal()) {
+
+			setZ(0);
+			for (TiledStageActor actor : origin().actors()) {
+				if (actor instanceof ObstructedFloor) {
+					ObstructedFloor obstructedFloor = (ObstructedFloor) actor;
+					setZ(obstructedFloor.elevation());
+					break;
+				}
+			}
+
 		}
 	}
 
