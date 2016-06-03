@@ -16,8 +16,8 @@ public class MagneticFloor extends TiledStageActor {
 
 
 	public void initialize(TiledStage stage, HashMap<String, FrameSequence> animationFrames,
-	                       TiledStage.Coordinate origin, int actorDepth) {
-		super.initialize(stage, TiledStageActor.BodyArea1x1, 1, animationFrames, origin, actorDepth);
+	                       TiledStage.Coordinate origin) {
+		super.initialize(stage, TiledStageActor.BodyArea1x1, 1, animationFrames, origin);
 	}
 
 	@Override

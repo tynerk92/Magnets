@@ -26,8 +26,8 @@ public class Block extends TiledStageActor {
 	private int _forceY;
 
 	public void initialize(TiledStage stage, boolean[] bodyArea, int bodyWidth, HashMap<String, FrameSequence> animationFrames,
-	                       TiledStage.Coordinate origin, boolean isPushable, boolean isMagnetisable, int actorDepth) {
-		super.initialize(stage, bodyArea, bodyWidth, animationFrames, origin, actorDepth);
+	                       TiledStage.Coordinate origin, boolean isPushable, boolean isMagnetisable) {
+		super.initialize(stage, bodyArea, bodyWidth, animationFrames, origin);
 		_isPushable = isPushable;
 		_isMagnetisable = isMagnetisable;
 		addState(STATE_DEFAULT);

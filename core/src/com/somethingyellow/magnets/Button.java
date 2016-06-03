@@ -19,8 +19,8 @@ public class Button extends TiledStageActor {
 	private boolean _isOn;
 
 	public void initialize(TiledStage stage, boolean[] bodyArea, int bodyWidth, HashMap<String, FrameSequence> animationFrames,
-	                       TiledStage.Coordinate origin, int actorDepth) {
-		super.initialize(stage, bodyArea, bodyWidth, animationFrames, origin, actorDepth);
+	                       TiledStage.Coordinate origin) {
+		super.initialize(stage, bodyArea, bodyWidth, animationFrames, origin);
 
 		addState(STATE_OFF);
 

@@ -21,8 +21,8 @@ public class Door extends TiledStageActor {
 	private boolean _toOpen; // whether the door SHOULD be open
 
 	public void initialize(TiledStage stage, boolean[] bodyArea, int bodyWidth, HashMap<String, FrameSequence> animationFrames,
-	                       TiledStage.Coordinate origin, int actorDepth, boolean toOpen) {
-		super.initialize(stage, bodyArea, bodyWidth, animationFrames, origin, actorDepth);
+	                       TiledStage.Coordinate origin, boolean toOpen) {
+		super.initialize(stage, bodyArea, bodyWidth, animationFrames, origin);
 
 		_toOpen = toOpen;
 		addState(STATE_CLOSED);

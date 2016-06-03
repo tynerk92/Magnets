@@ -15,7 +15,8 @@ public class Player extends PlayerActor {
 	public static final float MAX_ZOOM = 1.5f;
 	public static final String STATE_STANDING = "Standing";
 	public static final int[] SUBTICKS = new int[]{
-			PlayScreen.SUBTICKS.PLAYER_MOVEMENT.ordinal()
+			PlayScreen.SUBTICKS.PLAYER_MOVEMENT.ordinal(),
+			PlayScreen.SUBTICKS.GRAPHICS.ordinal()
 	};
 
 	private Listener _listener;
@@ -23,8 +24,8 @@ public class Player extends PlayerActor {
 	private LinkedList<TiledStage.DIRECTION> _moveCommands = new LinkedList<TiledStage.DIRECTION>();
 
 	public void initialize(TiledStage stage, boolean[] bodyArea, int bodyWidth, HashMap<String, FrameSequence> animationFrames,
-	                       TiledStage.Coordinate origin, int actorDepth, Listener listener) {
-		super.initialize(stage, bodyArea, bodyWidth, animationFrames, origin, actorDepth);
+	                       TiledStage.Coordinate origin, Listener listener) {
+		super.initialize(stage, bodyArea, bodyWidth, animationFrames, origin);
 		_listener = listener;
 		addState(STATE_STANDING);
 	}
@@ -57,6 +58,18 @@ public class Player extends PlayerActor {
 					moveDirection(_moveCommands.removeFirst());
 				}
 			}
+
+		} else if (subtick == PlayScreen.SUBTICKS.GRAPHICS.ordinal()) {
+
+			setZ(0);
+			for (TiledStageActor actor : origin().actors()) {
+				if (actor instanceof ObstructedFloor) {
+					ObstructedFloor obstructedFloor = (ObstructedFloor) actor;
+					setZ(obstructedFloor.elevation());
+					break;
+				}
+			}
+
 		}
 	}
 

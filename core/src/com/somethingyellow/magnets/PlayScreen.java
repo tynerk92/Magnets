@@ -8,7 +8,6 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 
-import com.badlogic.gdx.utils.Pool;
 import com.badlogic.gdx.utils.Pools;
 import com.somethingyellow.LogicMachine;
 import com.somethingyellow.tiled.*;
@@ -43,6 +42,7 @@ public class PlayScreen implements Screen, Player.Listener {
 	public static final String TILE_ISPUSHABLE = "IsPushable";
 	public static final String TILE_ISMAGNETISABLE = "IsMagnetisable";
 	public static final String TILE_ISOPEN = "IsOpen";
+	public static final String TILE_ELEVATION = "Elevation";
 	public static final String TILE_BODY_WIDTH = "Body Width";
 	public static final String TILE_BODY_AREA = "Body Area";
 	public static final String TILE_THIS = "(this)";
@@ -109,6 +109,10 @@ public class PlayScreen implements Screen, Player.Listener {
 		return TiledStage.ParseIntegerProp(tile.getProperties(), TILE_ACTOR_DEPTH, 0);
 	}
 
+	public static int ExtractElevation(TiledMapTile tile) {
+		return TiledStage.ParseIntegerProp(tile.getProperties(), TILE_ELEVATION, 0);
+	}
+
 	public static boolean ExtractIsOpen(TiledMapTile tile) {
 		return TiledStage.ParseBooleanProp(tile.getProperties(), TILE_ISOPEN, false);
 	}
@@ -142,6 +146,10 @@ public class PlayScreen implements Screen, Player.Listener {
 		}
 
 		return animationFrames;
+	}
+
+	public void processProperties(TiledStageActor actor, TiledMapTile tile) {
+		actor.setActorDepth(ExtractActorDepth(tile));
 	}
 
 	public void processActions(final TiledStageActor actor, TiledStage.TiledObject object) {
@@ -271,6 +279,8 @@ public class PlayScreen implements Screen, Player.Listener {
 				}
 			}
 
+			processProperties(actor, tile);
+
 			if (actor != null) {
 				_actors.add(actor);
 				if (object.name() != null) actor.setName(object.name());
@@ -297,7 +307,7 @@ public class PlayScreen implements Screen, Player.Listener {
 		// Add player to stage
 		_playerActor = Pools.get(Player.class).obtain();
 		_playerActor.initialize(_tiledStage, TiledStageActor.BodyArea1x1, 1, getAnimations(object.tile()),
-				object.origin(), ExtractActorDepth(object.tile()), this);
+				object.origin(), this);
 
 		_tiledStage.setCameraFocalActor(_playerActor);
 		_tiledStage.setInputFocalActor(_playerActor);
@@ -308,43 +318,39 @@ public class PlayScreen implements Screen, Player.Listener {
 	public TiledStageActor spawnBlock(TiledStage.TiledObject object) {
 		Block block = Pools.get(Block.class).obtain();
 		block.initialize(_tiledStage, ExtractBodyArea(object.tile()), ExtractBodyWidth(object.tile()),
-				getAnimations(object.tile()), object.origin(),
-				ExtractIsPushable(object.tile()), ExtractIsMagnetisable(object.tile()), ExtractActorDepth(object.tile()));
+				getAnimations(object.tile()), object.origin(), ExtractIsPushable(object.tile()), ExtractIsMagnetisable(object.tile()));
 		return block;
 	}
 
 	public TiledStageActor spawnMagneticSource(TiledStage.TiledObject object) {
 		MagneticSource magneticSource = Pools.get(MagneticSource.class).obtain();
-		magneticSource.initialize(_tiledStage, getAnimations(object.tile()), object.origin(),
-				ExtractActorDepth(object.tile()));
+		magneticSource.initialize(_tiledStage, getAnimations(object.tile()), object.origin());
 		return magneticSource;
 	}
 
 	public TiledStageActor spawnMagneticFloor(TiledStage.TiledObject object) {
 		MagneticFloor magneticFloor = Pools.get(MagneticFloor.class).obtain();
-		magneticFloor.initialize(_tiledStage, getAnimations(object.tile()), object.origin(),
-				ExtractActorDepth(object.tile()));
+		magneticFloor.initialize(_tiledStage, getAnimations(object.tile()), object.origin());
 		return magneticFloor;
 	}
 
 	public TiledStageActor spawnObstructedFloor(TiledStage.TiledObject object) {
 		ObstructedFloor obstructedFloor = Pools.get(ObstructedFloor.class).obtain();
-		obstructedFloor.initialize(_tiledStage, getAnimations(object.tile()), object.origin(),
-				ExtractActorDepth(object.tile()));
+		obstructedFloor.initialize(_tiledStage, getAnimations(object.tile()), object.origin(), ExtractElevation(object.tile()));
 		return obstructedFloor;
 	}
 
 	public TiledStageActor spawnDoor(TiledStage.TiledObject object) {
 		Door door = Pools.get(Door.class).obtain();
 		door.initialize(_tiledStage, ExtractBodyArea(object.tile()), ExtractBodyWidth(object.tile()),
-				getAnimations(object.tile()), object.origin(), ExtractActorDepth(object.tile()), ExtractIsOpen(object.tile()));
+				getAnimations(object.tile()), object.origin(), ExtractIsOpen(object.tile()));
 		return door;
 	}
 
 	public TiledStageActor spawnButton(TiledStage.TiledObject object) {
 		Button button = Pools.get(Button.class).obtain();
 		button.initialize(_tiledStage, ExtractBodyArea(object.tile()), ExtractBodyWidth(object.tile()),
-				getAnimations(object.tile()), object.origin(), ExtractActorDepth(object.tile()));
+				getAnimations(object.tile()), object.origin());
 		return button;
 	}
 

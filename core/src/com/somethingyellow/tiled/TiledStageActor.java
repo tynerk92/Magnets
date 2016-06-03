@@ -32,19 +32,21 @@ public abstract class TiledStageActor extends Actor implements Comparable<TiledS
 	private HashMap<String, FrameSequence> _animationFrames;
 	private TreeSet<String> _states = new TreeSet<String>();
 	private LinkedList<StateListener> _stateListeners = new LinkedList<StateListener>();
+	private float _z;
 
 	protected void initialize(TiledStage stage, boolean[] bodyArea, int bodyWidth, HashMap<String, FrameSequence> animationFrames,
-	                          TiledStage.Coordinate origin, int actorDepth) {
+	                          TiledStage.Coordinate origin) {
 		if (bodyArea.length % bodyWidth != 0)
 			throw new IllegalArgumentException("Length of 'Body Area' should be a multiple of 'Body Width'!");
 
 		_stage = stage;
 		_movingTicks = 0;
+		_z = 0;
 		_bodyArea = bodyArea;
 		_bodyWidth = bodyWidth;
 		_animationFrames = animationFrames;
 		_bodyHeight = bodyArea.length / bodyWidth;
-		_actorDepth = actorDepth;
+		_actorDepth = 0;
 
 		setOrigin(origin);
 		for (TiledStage.Coordinate coordinate : _bodyCoordinates) {
@@ -279,6 +281,11 @@ public abstract class TiledStageActor extends Actor implements Comparable<TiledS
 		return _actorDepth;
 	}
 
+	public TiledStageActor setActorDepth(int actorDepth) {
+		_actorDepth = actorDepth;
+		return this;
+	}
+
 	public int bodyWidth() {
 		return _bodyWidth;
 	}
@@ -289,6 +296,15 @@ public abstract class TiledStageActor extends Actor implements Comparable<TiledS
 
 	public int bodyHeight() {
 		return _bodyHeight;
+	}
+
+	public float getZ() {
+		return _z;
+	}
+
+	public TiledStageActor setZ(float z) {
+		_z = z;
+		return this;
 	}
 
 	@Override
