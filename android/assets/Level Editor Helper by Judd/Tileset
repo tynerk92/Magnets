@@ -13,4 +13,5 @@ Tile Number, Image file, Tile Name, Type, Extended Info
 11, Wall.png, New Tile 11, No Type
 12, Pushable 1.png, New Tile 12, No Type
 13, Pushable 2.png, New Tile 13, No Type
-14, Pushable 3.png, New Tile 14, No Type, 
+14, Pushable 3.png, New Tile 14, No Type
+15, Source Floor.png, New Tile 15, No Type, 

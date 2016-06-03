@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="39" height="25" tilewidth="32" tileheight="32" nextobjectid="27">
- <tileset firstgid="1" name="Tileset" tilewidth="96" tileheight="112" tilecount="380" columns="0">
+ <tileset firstgid="1" name="Tileset" tilewidth="96" tileheight="112" tilecount="404" columns="0">
 
   <tile id="0">
    <image width="32" height="32" source="../../Graphics/Floor/Set 1 (Crude)/Floor 01011010.png"/>
@@ -2217,19 +2217,20 @@
    <properties>
     <property name="@Closed" value="(this)"/>
     <property name="@Closing" value="~Door Closing 1"/>
+    <property name="@Blink" value="~Door Blink 1"/>
     <property name="@Opened" value="~Door Opened 1"/>
     <property name="@Opening" value="~Door Opening 1"/>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="Type" value="Door"/>
    </properties>
-   <image width="32" height="48" source="../../Graphics/Objects/Door 1 NSEW State 1.png"/>
+   <image width="32" height="64" source="../../Graphics/Objects/Door 1 NSEW State 1.png"/>
   </tile>
 
   <tile id="276">
    <properties>
     <property name="~" value="Door Opening 1"/>
    </properties>
-   <image width="32" height="48" source="../../Graphics/Objects/Door 1 NSEW State 2.png"/>
+   <image width="32" height="64" source="../../Graphics/Objects/Door 1 NSEW State 2.png"/>
    <animation>
     <frame tileid="276" duration="40"/>
     <frame tileid="277" duration="40"/>
@@ -2242,30 +2243,30 @@
   </tile>
 
   <tile id="277">
-   <image width="32" height="48" source="../../Graphics/Objects/Door 1 NSEW State 3.png"/>
+   <image width="32" height="64" source="../../Graphics/Objects/Door 1 NSEW State 3.png"/>
   </tile>
 
   <tile id="278">
-   <image width="32" height="48" source="../../Graphics/Objects/Door 1 NSEW State 4.png"/>
+   <image width="32" height="64" source="../../Graphics/Objects/Door 1 NSEW State 4.png"/>
   </tile>
 
   <tile id="279">
-   <image width="32" height="48" source="../../Graphics/Objects/Door 1 NSEW State 5.png"/>
+   <image width="32" height="64" source="../../Graphics/Objects/Door 1 NSEW State 5.png"/>
   </tile>
 
   <tile id="280">
-   <image width="32" height="48" source="../../Graphics/Objects/Door 1 NSEW State 6.png"/>
+   <image width="32" height="64" source="../../Graphics/Objects/Door 1 NSEW State 6.png"/>
   </tile>
 
   <tile id="281">
-   <image width="32" height="48" source="../../Graphics/Objects/Door 1 NSEW State 7.png"/>
+   <image width="32" height="64" source="../../Graphics/Objects/Door 1 NSEW State 7.png"/>
   </tile>
 
   <tile id="282">
    <properties>
     <property name="~" value="Door Closing 1"/>
    </properties>
-   <image width="32" height="48" source="../../Graphics/Objects/Door 1 NSEW State 8.png"/>
+   <image width="32" height="64" source="../../Graphics/Objects/Door 1 NSEW State 8.png"/>
    <animation>
     <frame tileid="282" duration="40"/>
     <frame tileid="281" duration="40"/>
@@ -2281,10 +2282,60 @@
    <properties>
     <property name="~" value="Door Opened 1"/>
    </properties>
-   <image width="32" height="48" source="../../Graphics/Objects/Door 1 NSEW State 9.png"/>
+   <image width="32" height="64" source="../../Graphics/Objects/Door 1 NSEW State 9.png"/>
   </tile>
 
   <tile id="284">
+   <image width="32" height="64" source="../../Graphics/Objects/Door 1 NSEW Blink State 1.png"/>
+   <animation>
+    <frame tileid="284" duration="20"/>
+    <frame tileid="285" duration="40"/>
+    <frame tileid="286" duration="60"/>
+    <frame tileid="287" duration="80"/>
+    <frame tileid="288" duration="100"/>
+    <frame tileid="289" duration="120"/>
+    <frame tileid="290" duration="140"/>
+    <frame tileid="291" duration="160"/>
+    <frame tileid="291" duration="160"/>
+    <frame tileid="290" duration="140"/>
+    <frame tileid="289" duration="120"/>
+    <frame tileid="288" duration="100"/>
+    <frame tileid="287" duration="80"/>
+    <frame tileid="286" duration="60"/>
+    <frame tileid="285" duration="40"/>
+    <frame tileid="284" duration="20"/>
+   </animation>
+  </tile>
+
+  <tile id="285">
+   <image width="32" height="64" source="../../Graphics/Objects/Door 1 NSEW Blink State 2.png"/>
+  </tile>
+
+  <tile id="286">
+   <image width="32" height="64" source="../../Graphics/Objects/Door 1 NSEW Blink State 3.png"/>
+  </tile>
+
+  <tile id="287">
+   <image width="32" height="64" source="../../Graphics/Objects/Door 1 NSEW Blink State 4.png"/>
+  </tile>
+
+  <tile id="288">
+   <image width="32" height="64" source="../../Graphics/Objects/Door 1 NSEW Blink State 5.png"/>
+  </tile>
+
+  <tile id="289">
+   <image width="32" height="64" source="../../Graphics/Objects/Door 1 NSEW Blink State 6.png"/>
+  </tile>
+
+  <tile id="290">
+   <image width="32" height="64" source="../../Graphics/Objects/Door 1 NSEW Blink State 7.png"/>
+  </tile>
+
+  <tile id="291">
+   <image width="32" height="64" source="../../Graphics/Objects/Door 1 NSEW Blink State 8.png"/>
+  </tile>
+
+  <tile id="292">
    <properties>
     <property name="@Off" value="(this)"/>
     <property name="@Offing" value="~Button Pressing 2"/>
@@ -2296,7 +2347,7 @@
    <image width="32" height="32" source="../../Graphics/Objects/Button 2 State 1.png"/>
   </tile>
 
-  <tile id="285">
+  <tile id="293">
    <properties>
     <property name="~" value="Button Pressing 2"/>
     <property name="Actor Depth" type="int" value="-1"/>
@@ -2305,7 +2356,7 @@
    <image width="32" height="32" source="../../Graphics/Objects/Button 2 State 2.png"/>
   </tile>
 
-  <tile id="286">
+  <tile id="294">
    <properties>
     <property name="~" value="Button On 2"/>
     <property name="Actor Depth" type="int" value="-1"/>
@@ -2314,258 +2365,335 @@
    <image width="32" height="32" source="../../Graphics/Objects/Button 2 State 3.png"/>
   </tile>
 
-  <tile id="287">
+  <tile id="295">
    <properties>
     <property name="@Closed" value="(this)"/>
     <property name="@Closing" value="~Door Closing 2"/>
+    <property name="@Blink" value="~Door Blink 2"/>
     <property name="@Opened" value="~Door Opened 2"/>
     <property name="@Opening" value="~Door Opening 2"/>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="Type" value="Door"/>
    </properties>
-   <image width="32" height="48" source="../../Graphics/Objects/Door 2 NSEW State 1.png"/>
-  </tile>
-
-  <tile id="288">
-   <properties>
-    <property name="~" value="Door Opening 2"/>
-   </properties>
-   <image width="32" height="48" source="../../Graphics/Objects/Door 2 NSEW State 2.png"/>
-   <animation>
-    <frame tileid="288" duration="40"/>
-    <frame tileid="289" duration="40"/>
-    <frame tileid="290" duration="40"/>
-    <frame tileid="291" duration="40"/>
-    <frame tileid="292" duration="40"/>
-    <frame tileid="293" duration="40"/>
-    <frame tileid="294" duration="40"/>
-   </animation>
-  </tile>
-
-  <tile id="289">
-   <image width="32" height="48" source="../../Graphics/Objects/Door 2 NSEW State 3.png"/>
-  </tile>
-
-  <tile id="290">
-   <image width="32" height="48" source="../../Graphics/Objects/Door 2 NSEW State 4.png"/>
-  </tile>
-
-  <tile id="291">
-   <image width="32" height="48" source="../../Graphics/Objects/Door 2 NSEW State 5.png"/>
-  </tile>
-
-  <tile id="292">
-   <image width="32" height="48" source="../../Graphics/Objects/Door 2 NSEW State 6.png"/>
-  </tile>
-
-  <tile id="293">
-   <image width="32" height="48" source="../../Graphics/Objects/Door 2 NSEW State 7.png"/>
-  </tile>
-
-  <tile id="294">
-   <properties>
-    <property name="~" value="Door Closing 2"/>
-   </properties>
-   <image width="32" height="48" source="../../Graphics/Objects/Door 2 NSEW State 8.png"/>
-   <animation>
-    <frame tileid="294" duration="40"/>
-    <frame tileid="293" duration="40"/>
-    <frame tileid="292" duration="40"/>
-    <frame tileid="291" duration="40"/>
-    <frame tileid="290" duration="40"/>
-    <frame tileid="289" duration="40"/>
-    <frame tileid="288" duration="40"/>
-   </animation>
-  </tile>
-
-  <tile id="295">
-   <properties>
-    <property name="~" value="Door Opened 2"/>
-   </properties>
-   <image width="32" height="48" source="../../Graphics/Objects/Door 2 NSEW State 9.png"/>
+   <image width="32" height="64" source="../../Graphics/Objects/Door 2 NSEW State 1.png"/>
   </tile>
 
   <tile id="296">
-   <image width="32" height="48" source="../../Graphics/Objects/Exit Cave Forwards Front State 1.png"/>
+   <properties>
+    <property name="~" value="Door Opening 2"/>
+   </properties>
+   <image width="32" height="64" source="../../Graphics/Objects/Door 2 NSEW State 2.png"/>
    <animation>
-    <frame tileid="296" duration="80"/>
-    <frame tileid="297" duration="80"/>
-    <frame tileid="298" duration="80"/>
-    <frame tileid="299" duration="80"/>
-    <frame tileid="300" duration="80"/>
-    <frame tileid="300" duration="80"/>
-    <frame tileid="299" duration="80"/>
-    <frame tileid="298" duration="80"/>
-    <frame tileid="297" duration="80"/>
-    <frame tileid="296" duration="80"/>
+    <frame tileid="296" duration="40"/>
+    <frame tileid="297" duration="40"/>
+    <frame tileid="298" duration="40"/>
+    <frame tileid="299" duration="40"/>
+    <frame tileid="300" duration="40"/>
+    <frame tileid="301" duration="40"/>
+    <frame tileid="302" duration="40"/>
    </animation>
   </tile>
 
   <tile id="297">
-   <image width="32" height="48" source="../../Graphics/Objects/Exit Cave Forwards Front State 2.png"/>
+   <image width="32" height="64" source="../../Graphics/Objects/Door 2 NSEW State 3.png"/>
   </tile>
 
   <tile id="298">
-   <image width="32" height="48" source="../../Graphics/Objects/Exit Cave Forwards Front State 3.png"/>
+   <image width="32" height="64" source="../../Graphics/Objects/Door 2 NSEW State 4.png"/>
   </tile>
 
   <tile id="299">
-   <image width="32" height="48" source="../../Graphics/Objects/Exit Cave Forwards Front State 4.png"/>
+   <image width="32" height="64" source="../../Graphics/Objects/Door 2 NSEW State 5.png"/>
   </tile>
 
   <tile id="300">
-   <image width="32" height="48" source="../../Graphics/Objects/Exit Cave Forwards Front State 5.png"/>
+   <image width="32" height="64" source="../../Graphics/Objects/Door 2 NSEW State 6.png"/>
   </tile>
 
   <tile id="301">
-   <image width="32" height="48" source="../../Graphics/Objects/Exit Cave Down Front State 1.png"/>
-   <animation>
-    <frame tileid="301" duration="80"/>
-    <frame tileid="302" duration="80"/>
-    <frame tileid="303" duration="80"/>
-    <frame tileid="304" duration="80"/>
-    <frame tileid="305" duration="80"/>
-    <frame tileid="305" duration="80"/>
-    <frame tileid="304" duration="80"/>
-    <frame tileid="303" duration="80"/>
-    <frame tileid="302" duration="80"/>
-    <frame tileid="301" duration="80"/>
-   </animation>
+   <image width="32" height="64" source="../../Graphics/Objects/Door 2 NSEW State 7.png"/>
   </tile>
 
   <tile id="302">
-   <image width="32" height="48" source="../../Graphics/Objects/Exit Cave Down Front State 2.png"/>
+   <properties>
+    <property name="~" value="Door Closing 2"/>
+   </properties>
+   <image width="32" height="64" source="../../Graphics/Objects/Door 2 NSEW State 8.png"/>
+   <animation>
+    <frame tileid="302" duration="40"/>
+    <frame tileid="301" duration="40"/>
+    <frame tileid="300" duration="40"/>
+    <frame tileid="299" duration="40"/>
+    <frame tileid="298" duration="40"/>
+    <frame tileid="297" duration="40"/>
+    <frame tileid="296" duration="40"/>
+   </animation>
   </tile>
 
   <tile id="303">
-   <image width="32" height="48" source="../../Graphics/Objects/Exit Cave Down Front State 3.png"/>
+   <properties>
+    <property name="~" value="Door Opened 2"/>
+   </properties>
+   <image width="32" height="64" source="../../Graphics/Objects/Door 2 NSEW State 9.png"/>
   </tile>
 
   <tile id="304">
-   <image width="32" height="48" source="../../Graphics/Objects/Exit Cave Down Front State 4.png"/>
+   <image width="32" height="64" source="../../Graphics/Objects/Door 2 NSEW Blink State 1.png"/>
+   <animation>
+    <frame tileid="304" duration="20"/>
+    <frame tileid="305" duration="40"/>
+    <frame tileid="306" duration="60"/>
+    <frame tileid="307" duration="80"/>
+    <frame tileid="308" duration="100"/>
+    <frame tileid="309" duration="120"/>
+    <frame tileid="310" duration="140"/>
+    <frame tileid="311" duration="160"/>
+    <frame tileid="311" duration="160"/>
+    <frame tileid="310" duration="140"/>
+    <frame tileid="309" duration="120"/>
+    <frame tileid="308" duration="100"/>
+    <frame tileid="307" duration="80"/>
+    <frame tileid="306" duration="60"/>
+    <frame tileid="305" duration="40"/>
+    <frame tileid="304" duration="20"/>
+   </animation>
   </tile>
 
   <tile id="305">
-   <image width="32" height="48" source="../../Graphics/Objects/Exit Cave Down Front State 5.png"/>
+   <image width="32" height="64" source="../../Graphics/Objects/Door 2 NSEW Blink State 2.png"/>
   </tile>
 
   <tile id="306">
-   <image width="32" height="48" source="../../Graphics/Objects/Exit Standard Front State 1.png"/>
-   <animation>
-    <frame tileid="306" duration="80"/>
-    <frame tileid="307" duration="80"/>
-    <frame tileid="308" duration="80"/>
-    <frame tileid="309" duration="80"/>
-    <frame tileid="310" duration="80"/>
-    <frame tileid="310" duration="80"/>
-    <frame tileid="309" duration="80"/>
-    <frame tileid="308" duration="80"/>
-    <frame tileid="307" duration="80"/>
-    <frame tileid="306" duration="80"/>
-   </animation>
+   <image width="32" height="64" source="../../Graphics/Objects/Door 2 NSEW Blink State 3.png"/>
   </tile>
 
   <tile id="307">
-   <image width="32" height="48" source="../../Graphics/Objects/Exit Standard Front State 2.png"/>
+   <image width="32" height="64" source="../../Graphics/Objects/Door 2 NSEW Blink State 4.png"/>
   </tile>
 
   <tile id="308">
-   <image width="32" height="48" source="../../Graphics/Objects/Exit Standard Front State 3.png"/>
+   <image width="32" height="64" source="../../Graphics/Objects/Door 2 NSEW Blink State 5.png"/>
   </tile>
 
   <tile id="309">
-   <image width="32" height="48" source="../../Graphics/Objects/Exit Standard Front State 4.png"/>
+   <image width="32" height="64" source="../../Graphics/Objects/Door 2 NSEW Blink State 6.png"/>
   </tile>
 
   <tile id="310">
-   <image width="32" height="48" source="../../Graphics/Objects/Exit Standard Front State 5.png"/>
+   <image width="32" height="64" source="../../Graphics/Objects/Door 2 NSEW Blink State 7.png"/>
   </tile>
 
   <tile id="311">
-   <properties>
-    <property name="@Default" value="(this)"/>
-    <property name="Actor Depth" type="int" value="-1"/>
-    <property name="Type" value="Magnetic Source"/>
-   </properties>
-   <image width="32" height="48" source="../../Graphics/Objects/Magnet North State 1.png"/>
-   <animation>
-    <frame tileid="311" duration="640"/>
-    <frame tileid="312" duration="640"/>
-    <frame tileid="313" duration="640"/>
-    <frame tileid="314" duration="640"/>
-    <frame tileid="315" duration="640"/>
-    <frame tileid="312" duration="640"/>
-    <frame tileid="314" duration="640"/>
-    <frame tileid="311" duration="640"/>
-    <frame tileid="313" duration="640"/>
-    <frame tileid="315" duration="640"/>
-    <frame tileid="313" duration="640"/>
-    <frame tileid="311" duration="640"/>
-    <frame tileid="314" duration="640"/>
-    <frame tileid="312" duration="640"/>
-    <frame tileid="315" duration="640"/>
-   </animation>
+   <image width="32" height="64" source="../../Graphics/Objects/Door 2 NSEW Blink State 8.png"/>
   </tile>
 
   <tile id="312">
-   <image width="32" height="48" source="../../Graphics/Objects/Magnet North State 2.png"/>
+   <properties>
+    <property name="Frame Depth" type="int" value="1"/>
+    <property name="Type" value="Obstructed Floor"/>
+   </properties>
+   <image width="32" height="48" source="../../Graphics/Objects/Elevated Ground 1.png"/>
   </tile>
 
   <tile id="313">
-   <image width="32" height="48" source="../../Graphics/Objects/Magnet North State 3.png"/>
+   <properties>
+    <property name="Frame Depth" type="int" value="1"/>
+    <property name="Type" value="Obstructed Floor"/>
+   </properties>
+   <image width="32" height="48" source="../../Graphics/Objects/Elevated Ground 2.png"/>
   </tile>
 
   <tile id="314">
-   <image width="32" height="48" source="../../Graphics/Objects/Magnet North State 4.png"/>
+   <image width="32" height="48" source="../../Graphics/Objects/Exit Cave Forwards Front State 1.png"/>
+   <animation>
+    <frame tileid="314" duration="80"/>
+    <frame tileid="315" duration="80"/>
+    <frame tileid="316" duration="80"/>
+    <frame tileid="317" duration="80"/>
+    <frame tileid="318" duration="80"/>
+    <frame tileid="318" duration="80"/>
+    <frame tileid="317" duration="80"/>
+    <frame tileid="316" duration="80"/>
+    <frame tileid="315" duration="80"/>
+    <frame tileid="314" duration="80"/>
+   </animation>
   </tile>
 
   <tile id="315">
-   <image width="32" height="48" source="../../Graphics/Objects/Magnet North State 5.png"/>
+   <image width="32" height="48" source="../../Graphics/Objects/Exit Cave Forwards Front State 2.png"/>
   </tile>
 
   <tile id="316">
+   <image width="32" height="48" source="../../Graphics/Objects/Exit Cave Forwards Front State 3.png"/>
+  </tile>
+
+  <tile id="317">
+   <image width="32" height="48" source="../../Graphics/Objects/Exit Cave Forwards Front State 4.png"/>
+  </tile>
+
+  <tile id="318">
+   <image width="32" height="48" source="../../Graphics/Objects/Exit Cave Forwards Front State 5.png"/>
+  </tile>
+
+  <tile id="319">
+   <image width="32" height="48" source="../../Graphics/Objects/Exit Cave Down Front State 1.png"/>
+   <animation>
+    <frame tileid="319" duration="80"/>
+    <frame tileid="320" duration="80"/>
+    <frame tileid="321" duration="80"/>
+    <frame tileid="322" duration="80"/>
+    <frame tileid="323" duration="80"/>
+    <frame tileid="323" duration="80"/>
+    <frame tileid="322" duration="80"/>
+    <frame tileid="321" duration="80"/>
+    <frame tileid="320" duration="80"/>
+    <frame tileid="319" duration="80"/>
+   </animation>
+  </tile>
+
+  <tile id="320">
+   <image width="32" height="48" source="../../Graphics/Objects/Exit Cave Down Front State 2.png"/>
+  </tile>
+
+  <tile id="321">
+   <image width="32" height="48" source="../../Graphics/Objects/Exit Cave Down Front State 3.png"/>
+  </tile>
+
+  <tile id="322">
+   <image width="32" height="48" source="../../Graphics/Objects/Exit Cave Down Front State 4.png"/>
+  </tile>
+
+  <tile id="323">
+   <image width="32" height="48" source="../../Graphics/Objects/Exit Cave Down Front State 5.png"/>
+  </tile>
+
+  <tile id="324">
+   <image width="32" height="48" source="../../Graphics/Objects/Exit Standard Front State 1.png"/>
+   <animation>
+    <frame tileid="324" duration="80"/>
+    <frame tileid="325" duration="80"/>
+    <frame tileid="326" duration="80"/>
+    <frame tileid="327" duration="80"/>
+    <frame tileid="328" duration="80"/>
+    <frame tileid="328" duration="80"/>
+    <frame tileid="327" duration="80"/>
+    <frame tileid="326" duration="80"/>
+    <frame tileid="325" duration="80"/>
+    <frame tileid="324" duration="80"/>
+   </animation>
+  </tile>
+
+  <tile id="325">
+   <image width="32" height="48" source="../../Graphics/Objects/Exit Standard Front State 2.png"/>
+  </tile>
+
+  <tile id="326">
+   <image width="32" height="48" source="../../Graphics/Objects/Exit Standard Front State 3.png"/>
+  </tile>
+
+  <tile id="327">
+   <image width="32" height="48" source="../../Graphics/Objects/Exit Standard Front State 4.png"/>
+  </tile>
+
+  <tile id="328">
+   <image width="32" height="48" source="../../Graphics/Objects/Exit Standard Front State 5.png"/>
+  </tile>
+
+  <tile id="329">
    <properties>
     <property name="@Default" value="(this)"/>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="Type" value="Magnetic Source"/>
    </properties>
-   <image width="32" height="48" source="../../Graphics/Objects/Magnet South State 1.png"/>
+   <image width="32" height="48" source="../../Graphics/Objects/Magnetic Block North State 1.png"/>
    <animation>
-    <frame tileid="318" duration="640"/>
-    <frame tileid="319" duration="640"/>
-    <frame tileid="320" duration="640"/>
-    <frame tileid="316" duration="640"/>
-    <frame tileid="317" duration="640"/>
-    <frame tileid="319" duration="640"/>
-    <frame tileid="316" duration="640"/>
-    <frame tileid="318" duration="640"/>
-    <frame tileid="320" duration="640"/>
-    <frame tileid="317" duration="640"/>
-    <frame tileid="320" duration="640"/>
-    <frame tileid="318" duration="640"/>
-    <frame tileid="316" duration="640"/>
-    <frame tileid="319" duration="640"/>
-    <frame tileid="317" duration="640"/>
+    <frame tileid="329" duration="160"/>
+    <frame tileid="330" duration="160"/>
+    <frame tileid="331" duration="160"/>
+    <frame tileid="332" duration="160"/>
+    <frame tileid="333" duration="160"/>
+    <frame tileid="334" duration="160"/>
+    <frame tileid="335" duration="160"/>
+    <frame tileid="336" duration="160"/>
    </animation>
   </tile>
 
-  <tile id="317">
-   <image width="32" height="48" source="../../Graphics/Objects/Magnet South State 2.png"/>
+  <tile id="330">
+   <image width="32" height="48" source="../../Graphics/Objects/Magnetic Block North State 2.png"/>
   </tile>
 
-  <tile id="318">
-   <image width="32" height="48" source="../../Graphics/Objects/Magnet South State 3.png"/>
+  <tile id="331">
+   <image width="32" height="48" source="../../Graphics/Objects/Magnetic Block North State 3.png"/>
   </tile>
 
-  <tile id="319">
-   <image width="32" height="48" source="../../Graphics/Objects/Magnet South State 4.png"/>
+  <tile id="332">
+   <image width="32" height="48" source="../../Graphics/Objects/Magnetic Block North State 4.png"/>
   </tile>
 
-  <tile id="320">
-   <image width="32" height="48" source="../../Graphics/Objects/Magnet South State 5.png"/>
+  <tile id="333">
+   <image width="32" height="48" source="../../Graphics/Objects/Magnetic Block North State 5.png"/>
   </tile>
 
-  <tile id="321">
+  <tile id="334">
+   <image width="32" height="48" source="../../Graphics/Objects/Magnetic Block North State 6.png"/>
+  </tile>
+
+  <tile id="335">
+   <image width="32" height="48" source="../../Graphics/Objects/Magnetic Block North State 7.png"/>
+  </tile>
+
+  <tile id="336">
+   <image width="32" height="48" source="../../Graphics/Objects/Magnetic Block North State 8.png"/>
+  </tile>
+
+  <tile id="337">
+   <properties>
+    <property name="@Default" value="(this)"/>
+    <property name="Actor Depth" type="int" value="-1"/>
+    <property name="Type" value="Magnetic Source"/>
+   </properties>
+   <image width="32" height="48" source="../../Graphics/Objects/Magnetic Block South State 1.png"/>
+   <animation>
+    <frame tileid="337" duration="160"/>
+    <frame tileid="338" duration="160"/>
+    <frame tileid="339" duration="160"/>
+    <frame tileid="340" duration="160"/>
+    <frame tileid="341" duration="160"/>
+    <frame tileid="342" duration="160"/>
+    <frame tileid="343" duration="160"/>
+    <frame tileid="344" duration="160"/>
+   </animation>
+  </tile>
+
+  <tile id="338">
+   <image width="32" height="48" source="../../Graphics/Objects/Magnetic Block South State 2.png"/>
+  </tile>
+
+  <tile id="339">
+   <image width="32" height="48" source="../../Graphics/Objects/Magnetic Block South State 3.png"/>
+  </tile>
+
+  <tile id="340">
+   <image width="32" height="48" source="../../Graphics/Objects/Magnetic Block South State 4.png"/>
+  </tile>
+
+  <tile id="341">
+   <image width="32" height="48" source="../../Graphics/Objects/Magnetic Block South State 5.png"/>
+  </tile>
+
+  <tile id="342">
+   <image width="32" height="48" source="../../Graphics/Objects/Magnetic Block South State 6.png"/>
+  </tile>
+
+  <tile id="343">
+   <image width="32" height="48" source="../../Graphics/Objects/Magnetic Block South State 7.png"/>
+  </tile>
+
+  <tile id="344">
+   <image width="32" height="48" source="../../Graphics/Objects/Magnetic Block South State 8.png"/>
+  </tile>
+
+  <tile id="345">
    <properties>
     <property name="@Standing" value="(this)"/>
     <property name="@Walking" value="(this)"/>
@@ -2574,7 +2702,7 @@
    <image width="32" height="48" source="../../Graphics/Objects/Player.png"/>
   </tile>
 
-  <tile id="322">
+  <tile id="346">
    <properties>
     <property name="@Default" value="(this)"/>
     <property name="Actor Depth" type="int" value="-1"/>
@@ -2582,115 +2710,115 @@
    </properties>
    <image width="32" height="32" source="../../Graphics/Objects/Magnetic Floor State 1.png"/>
    <animation>
-    <frame tileid="322" duration="640"/>
-    <frame tileid="323" duration="640"/>
-    <frame tileid="324" duration="640"/>
-    <frame tileid="325" duration="640"/>
-    <frame tileid="326" duration="640"/>
-    <frame tileid="323" duration="640"/>
-    <frame tileid="325" duration="640"/>
-    <frame tileid="322" duration="640"/>
-    <frame tileid="324" duration="640"/>
-    <frame tileid="326" duration="640"/>
-    <frame tileid="324" duration="640"/>
-    <frame tileid="322" duration="640"/>
-    <frame tileid="325" duration="640"/>
-    <frame tileid="323" duration="640"/>
-    <frame tileid="326" duration="640"/>
+    <frame tileid="346" duration="640"/>
+    <frame tileid="347" duration="640"/>
+    <frame tileid="348" duration="640"/>
+    <frame tileid="349" duration="640"/>
+    <frame tileid="350" duration="640"/>
+    <frame tileid="347" duration="640"/>
+    <frame tileid="349" duration="640"/>
+    <frame tileid="346" duration="640"/>
+    <frame tileid="348" duration="640"/>
+    <frame tileid="350" duration="640"/>
+    <frame tileid="348" duration="640"/>
+    <frame tileid="346" duration="640"/>
+    <frame tileid="349" duration="640"/>
+    <frame tileid="347" duration="640"/>
+    <frame tileid="350" duration="640"/>
    </animation>
   </tile>
 
-  <tile id="323">
+  <tile id="347">
    <image width="32" height="32" source="../../Graphics/Objects/Magnetic Floor State 2.png"/>
   </tile>
 
-  <tile id="324">
+  <tile id="348">
    <image width="32" height="32" source="../../Graphics/Objects/Magnetic Floor State 3.png"/>
   </tile>
 
-  <tile id="325">
+  <tile id="349">
    <image width="32" height="32" source="../../Graphics/Objects/Magnetic Floor State 4.png"/>
   </tile>
 
-  <tile id="326">
+  <tile id="350">
    <image width="32" height="32" source="../../Graphics/Objects/Magnetic Floor State 5.png"/>
   </tile>
 
-  <tile id="327">
+  <tile id="351">
    <image width="32" height="48" source="../../Graphics/Objects/Overlay/Magnetized Horizontal State 1.png"/>
    <animation>
-    <frame tileid="327" duration="375"/>
-    <frame tileid="328" duration="375"/>
-    <frame tileid="329" duration="375"/>
-    <frame tileid="330" duration="375"/>
-    <frame tileid="331" duration="375"/>
-    <frame tileid="332" duration="375"/>
-    <frame tileid="333" duration="375"/>
+    <frame tileid="351" duration="375"/>
+    <frame tileid="352" duration="375"/>
+    <frame tileid="353" duration="375"/>
+    <frame tileid="354" duration="375"/>
+    <frame tileid="355" duration="375"/>
+    <frame tileid="356" duration="375"/>
+    <frame tileid="357" duration="375"/>
    </animation>
   </tile>
 
-  <tile id="328">
+  <tile id="352">
    <image width="32" height="48" source="../../Graphics/Objects/Overlay/Magnetized Horizontal State 2.png"/>
   </tile>
 
-  <tile id="329">
+  <tile id="353">
    <image width="32" height="48" source="../../Graphics/Objects/Overlay/Magnetized Horizontal State 3.png"/>
   </tile>
 
-  <tile id="330">
+  <tile id="354">
    <image width="32" height="48" source="../../Graphics/Objects/Overlay/Magnetized Horizontal State 4.png"/>
   </tile>
 
-  <tile id="331">
+  <tile id="355">
    <image width="32" height="48" source="../../Graphics/Objects/Overlay/Magnetized Horizontal State 5.png"/>
   </tile>
 
-  <tile id="332">
+  <tile id="356">
    <image width="32" height="48" source="../../Graphics/Objects/Overlay/Magnetized Horizontal State 6.png"/>
   </tile>
 
-  <tile id="333">
+  <tile id="357">
    <image width="32" height="48" source="../../Graphics/Objects/Overlay/Magnetized Horizontal State 7.png"/>
   </tile>
 
-  <tile id="334">
+  <tile id="358">
    <image width="32" height="48" source="../../Graphics/Objects/Overlay/Magnetized Vertical State 1.png"/>
    <animation>
-    <frame tileid="334" duration="375"/>
-    <frame tileid="335" duration="375"/>
-    <frame tileid="336" duration="375"/>
-    <frame tileid="337" duration="375"/>
-    <frame tileid="338" duration="375"/>
-    <frame tileid="339" duration="375"/>
-    <frame tileid="340" duration="375"/>
+    <frame tileid="358" duration="375"/>
+    <frame tileid="359" duration="375"/>
+    <frame tileid="360" duration="375"/>
+    <frame tileid="361" duration="375"/>
+    <frame tileid="362" duration="375"/>
+    <frame tileid="363" duration="375"/>
+    <frame tileid="364" duration="375"/>
    </animation>
   </tile>
 
-  <tile id="335">
+  <tile id="359">
    <image width="32" height="48" source="../../Graphics/Objects/Overlay/Magnetized Vertical State 2.png"/>
   </tile>
 
-  <tile id="336">
+  <tile id="360">
    <image width="32" height="48" source="../../Graphics/Objects/Overlay/Magnetized Vertical State 3.png"/>
   </tile>
 
-  <tile id="337">
+  <tile id="361">
    <image width="32" height="48" source="../../Graphics/Objects/Overlay/Magnetized Vertical State 4.png"/>
   </tile>
 
-  <tile id="338">
+  <tile id="362">
    <image width="32" height="48" source="../../Graphics/Objects/Overlay/Magnetized Vertical State 5.png"/>
   </tile>
 
-  <tile id="339">
+  <tile id="363">
    <image width="32" height="48" source="../../Graphics/Objects/Overlay/Magnetized Vertical State 6.png"/>
   </tile>
 
-  <tile id="340">
+  <tile id="364">
    <image width="32" height="48" source="../../Graphics/Objects/Overlay/Magnetized Vertical State 7.png"/>
   </tile>
 
-  <tile id="341">
+  <tile id="365">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 1x1 1"/>
@@ -2698,7 +2826,7 @@
    <image width="32" height="48" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 1x1 1.png"/>
   </tile>
 
-  <tile id="342">
+  <tile id="366">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 1x2 1"/>
@@ -2706,7 +2834,7 @@
    <image width="32" height="80" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 1x2 1.png"/>
   </tile>
 
-  <tile id="343">
+  <tile id="367">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 1x3 1"/>
@@ -2714,7 +2842,7 @@
    <image width="32" height="11" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 1x3 1.png"/>
   </tile>
 
-  <tile id="344">
+  <tile id="368">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 2x1 1"/>
@@ -2722,7 +2850,7 @@
    <image width="64" height="48" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 2x1 1.png"/>
   </tile>
 
-  <tile id="345">
+  <tile id="369">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 2x2 1"/>
@@ -2730,7 +2858,7 @@
    <image width="64" height="80" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 2x2 1.png"/>
   </tile>
 
-  <tile id="346">
+  <tile id="370">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 2x2 2"/>
@@ -2738,7 +2866,7 @@
    <image width="64" height="80" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 2x2 2.png"/>
   </tile>
 
-  <tile id="347">
+  <tile id="371">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 2x2 3"/>
@@ -2746,7 +2874,7 @@
    <image width="64" height="80" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 2x2 3.png"/>
   </tile>
 
-  <tile id="348">
+  <tile id="372">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 2x2 4"/>
@@ -2754,7 +2882,7 @@
    <image width="64" height="80" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 2x2 4.png"/>
   </tile>
 
-  <tile id="349">
+  <tile id="373">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 2x2 5"/>
@@ -2762,7 +2890,7 @@
    <image width="64" height="80" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 2x2 5.png"/>
   </tile>
 
-  <tile id="350">
+  <tile id="374">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 2x3 1"/>
@@ -2770,7 +2898,7 @@
    <image width="64" height="112" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 2x3 1.png"/>
   </tile>
 
-  <tile id="351">
+  <tile id="375">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 2x3 2"/>
@@ -2778,7 +2906,7 @@
    <image width="64" height="112" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 2x3 2.png"/>
   </tile>
 
-  <tile id="352">
+  <tile id="376">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 2x3 3"/>
@@ -2786,7 +2914,7 @@
    <image width="64" height="112" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 2x3 3.png"/>
   </tile>
 
-  <tile id="353">
+  <tile id="377">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 2x3 4"/>
@@ -2794,7 +2922,7 @@
    <image width="64" height="112" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 2x3 4.png"/>
   </tile>
 
-  <tile id="354">
+  <tile id="378">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 2x3 5"/>
@@ -2802,7 +2930,7 @@
    <image width="64" height="112" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 2x3 5.png"/>
   </tile>
 
-  <tile id="355">
+  <tile id="379">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 2x3 6"/>
@@ -2810,7 +2938,7 @@
    <image width="64" height="112" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 2x3 6.png"/>
   </tile>
 
-  <tile id="356">
+  <tile id="380">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 2x3 7"/>
@@ -2818,7 +2946,7 @@
    <image width="64" height="112" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 2x3 7.png"/>
   </tile>
 
-  <tile id="357">
+  <tile id="381">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 2x3 8"/>
@@ -2826,7 +2954,7 @@
    <image width="64" height="112" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 2x3 8.png"/>
   </tile>
 
-  <tile id="358">
+  <tile id="382">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 2x3 9"/>
@@ -2834,7 +2962,7 @@
    <image width="64" height="112" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 2x3 9.png"/>
   </tile>
 
-  <tile id="359">
+  <tile id="383">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 2x3 10"/>
@@ -2842,7 +2970,7 @@
    <image width="64" height="112" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 2x3 10.png"/>
   </tile>
 
-  <tile id="360">
+  <tile id="384">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 2x3 11"/>
@@ -2850,7 +2978,7 @@
    <image width="64" height="112" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 2x3 11.png"/>
   </tile>
 
-  <tile id="361">
+  <tile id="385">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 2x3 12"/>
@@ -2858,7 +2986,7 @@
    <image width="64" height="112" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 2x3 12.png"/>
   </tile>
 
-  <tile id="362">
+  <tile id="386">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 2x3 13"/>
@@ -2866,7 +2994,7 @@
    <image width="64" height="112" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 2x3 13.png"/>
   </tile>
 
-  <tile id="363">
+  <tile id="387">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 2x3 14"/>
@@ -2874,7 +3002,7 @@
    <image width="64" height="112" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 2x3 14.png"/>
   </tile>
 
-  <tile id="364">
+  <tile id="388">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 3x1 1"/>
@@ -2882,7 +3010,7 @@
    <image width="96" height="48" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 3x1 1.png"/>
   </tile>
 
-  <tile id="365">
+  <tile id="389">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 3x2 1"/>
@@ -2890,7 +3018,7 @@
    <image width="96" height="80" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 3x2 1.png"/>
   </tile>
 
-  <tile id="366">
+  <tile id="390">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 3x2 2"/>
@@ -2898,7 +3026,7 @@
    <image width="96" height="80" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 3x2 2.png"/>
   </tile>
 
-  <tile id="367">
+  <tile id="391">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 3x2 3"/>
@@ -2906,7 +3034,7 @@
    <image width="96" height="80" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 3x2 3.png"/>
   </tile>
 
-  <tile id="368">
+  <tile id="392">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 3x2 4"/>
@@ -2914,7 +3042,7 @@
    <image width="96" height="80" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 3x2 4.png"/>
   </tile>
 
-  <tile id="369">
+  <tile id="393">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 3x2 5"/>
@@ -2922,7 +3050,7 @@
    <image width="96" height="80" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 3x2 5.png"/>
   </tile>
 
-  <tile id="370">
+  <tile id="394">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 3x2 6"/>
@@ -2930,7 +3058,7 @@
    <image width="96" height="80" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 3x2 6.png"/>
   </tile>
 
-  <tile id="371">
+  <tile id="395">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 3x2 7"/>
@@ -2938,7 +3066,7 @@
    <image width="96" height="80" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 3x2 7.png"/>
   </tile>
 
-  <tile id="372">
+  <tile id="396">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 3x2 8"/>
@@ -2946,7 +3074,7 @@
    <image width="96" height="80" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 3x2 8.png"/>
   </tile>
 
-  <tile id="373">
+  <tile id="397">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 3x2 9"/>
@@ -2954,7 +3082,7 @@
    <image width="96" height="80" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 3x2 9.png"/>
   </tile>
 
-  <tile id="374">
+  <tile id="398">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 3x2 10"/>
@@ -2962,7 +3090,7 @@
    <image width="96" height="80" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 3x2 10.png"/>
   </tile>
 
-  <tile id="375">
+  <tile id="399">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 3x2 11"/>
@@ -2970,7 +3098,7 @@
    <image width="96" height="80" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 3x2 11.png"/>
   </tile>
 
-  <tile id="376">
+  <tile id="400">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 3x2 12"/>
@@ -2978,7 +3106,7 @@
    <image width="96" height="80" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 3x2 12.png"/>
   </tile>
 
-  <tile id="377">
+  <tile id="401">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 3x2 13"/>
@@ -2986,7 +3114,7 @@
    <image width="96" height="80" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 3x2 13.png"/>
   </tile>
 
-  <tile id="378">
+  <tile id="402">
    <properties>
     <property name="Actor Depth" type="int" value="-1"/>
     <property name="~" value="Magnetic Overlay Lodestone 3x2 14"/>
@@ -2994,7 +3122,7 @@
    <image width="96" height="80" source="../../Graphics/Objects/Overlay/Magnetic Overlay Lodestone 3x2 14.png"/>
   </tile>
 
-  <tile id="379">
+  <tile id="403">
    <image width="32" height="32" source="../../Graphics/Ambience/Darker.png"/>
   </tile>
  </tileset>
@@ -3035,20 +3163,20 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,75,67,65,90,0,76,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,68,0,0,0,0,0,72,0,0,0,70,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,69,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,72,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,66,0,0,0,0,0,0,0,0,0,0,0,70,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,71,0,0,67,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,68,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,69,0,0,0,69,0,0,0,0,0,76,0,0,0,0,0,0,0,0,0,68,0,69,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,72,0,0,0,0,0,69,0,73,0,0,0,70,0,0,0,74,0,71,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,73,0,0,0,0,0,0,0,73,0,71,0,0,0,71,0,0,0,85,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,92,0,73,0,0,0,0,0,92,0,0,0,0,0,0,68,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,68,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,68,0,0,0,0,0,67,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,67,0,72,0,72,0,0,0,69,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,65,0,0,0,0,0,66,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,71,0,0,0,0,0,68,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,71,75,76,0,0,75,70,68,0,0,0,0,65,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,66,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,71,0,0,72,0,0,0,74,0,0,91,0,0,0,0,72,71,0,0,0,0,0,0,74,0,76,0,0,0,0,0,0,0,0,
+0,0,0,0,0,75,0,67,0,0,0,0,72,0,0,65,0,0,0,0,0,0,0,68,0,0,0,0,0,0,70,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,65,0,0,0,0,0,0,0,0,0,65,0,0,0,0,0,0,0,0,0,69,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,88,0,0,0,0,0,71,0,0,0,0,0,65,0,65,0,68,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,68,0,75,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,86,0,0,0,0,74,0,0,0,0,0,0,72,0,75,0,0,0,0,0,0,0,0,71,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,72,0,0,0,0,68,0,0,0,0,0,68,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,70,0,0,0,0,0,70,0,0,0,74,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,67,0,0,0,0,0,68,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,75,0,71,0,0,0,73,0,67,0,0,0,65,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -3120,9 +3248,9 @@
  </layer>
 
  <objectgroup name="Objects">
-  <object id="0" name="Ex0" gid="302" x="1024" y="512" width="32" height="48"/>
-  <object id="1" name="Lo1" gid="195" x="992" y="512" width="32" height="48"/>
-  <object id="2" name="Lo2" gid="195" x="992" y="576" width="32" height="48"/>
+  <object id="0" name="Ex0" gid="315" x="1024" y="512" width="32" height="48"/>
+  <object id="1" name="Lo1" gid="195" x="992" y="576" width="32" height="48"/>
+  <object id="2" name="Lo2" gid="197" x="992" y="512" width="32" height="48"/>
   <object id="3" name="Lo3" gid="198" x="416" y="608" width="32" height="80"/>
   <object id="4" name="Lo4" gid="198" x="608" y="608" width="32" height="80"/>
   <object id="5" name="Lo5" gid="199" x="384" y="256" width="32" height="112"/>
@@ -3145,36 +3273,36 @@
   <object id="22" name="Lo22" gid="229" x="544" y="320" width="96" height="80"/>
   <object id="23" name="Lo23" gid="229" x="704" y="320" width="96" height="80"/>
   <object id="24" name="Lo24" gid="229" x="800" y="320" width="96" height="80"/>
-  <object id="25" name="Ma25" gid="317" x="256" y="576" width="32" height="48"/>
-  <object id="26" name="Pl26" gid="322" x="320" y="448" width="32" height="48"/>
+  <object id="25" name="Ma25" gid="330" x="256" y="576" width="32" height="48"/>
+  <object id="26" name="Pl26" gid="346" x="320" y="448" width="32" height="48"/>
  </objectgroup>
  <layer name="Ambience" width="39" height="25">
   <data encoding="csv">
-380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,
-380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,
-380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,
-380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,
-380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,
-380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,
-380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,
-380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,
-380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,
-380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,
-380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,
-380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,
-380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,
-380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,
-380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,
-380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,
-380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,
-380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,
-380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,
-380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,
-380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,
-380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,
-380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,
-380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,
-380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380,380
+404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,
+404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,
+404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,
+404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,
+404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,
+404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,
+404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,
+404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,
+404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,
+404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,
+404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,
+404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,
+404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,
+404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,
+404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,
+404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,
+404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,
+404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,
+404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,
+404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,
+404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,
+404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,
+404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,
+404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,
+404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404
 </data>
  </layer>
 
