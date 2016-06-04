@@ -27,9 +27,19 @@ public class TextToTmx {
 	private int nameCount;
 	
 	private String chooseATheme = "Underground"; // "City"
-	private String validObjects = "bBfFsemM";
-	private String nonObjects   = "T";
+	private String validObjects = "bBfFsmME";
+	private String nonObjects   = "Te";
 	private String lodestoneSymbols ="xyzXYZ";
+	private String[] neighbourCodes = new String[] {"01011010", "01011011", "01011110", "01011111", "01011X0X", 
+													"01111010", "01111011", "01111110", "01111111", "01111X0X", 
+													"01X1001X", "01X1011X", "01X10X0X", "11011010", "11011011", 
+													"11011110", "11011111", "11011X0X", "11111010", "11111011", 
+													"11111110", "11111111", "11111X0X", "11X1001X", "11X1011X", 
+													"11X10X0X", "X0X00X0X", "X0X00X1X", "X0X01X0X", "X0X01X10", 
+													"X0X01X11", "X0X1001X", "X0X1011X", "X0X10X0X", "X0X11010", 
+													"X0X11011", "X0X11110", "X0X11111", "X0X11X0X", "X1001X0X", 
+													"X1001X10", "X1001X11", "X1101X0X", "X1101X10", "X1101X11", 
+													"X1X00X0X", "X1X00X1X"};
 	
 	private int rows, cols;
 	
@@ -345,30 +355,93 @@ public class TextToTmx {
 				new Block ("../../Graphics/Objects/Lodestone (Unpushable) 3x2 12 - 3 111011.png",     "Lodestone (Unpushable) 3x2 12",       new int[] {96, 80}),
 				new Block ("../../Graphics/Objects/Lodestone (Unpushable) 3x2 13 - 3 110111.png",     "Lodestone (Unpushable) 3x2 13",       new int[] {96, 80}),
 				new Block ("../../Graphics/Objects/Lodestone (Unpushable) 3x2 14 - 3 011111.png",     "Lodestone (Unpushable) 3x2 14",       new int[] {96, 80}),
-				new Block ("../../Graphics/Objects/Button 1 State 1.png",                             "Button 1 State 1",                    new int[] {32, 32}),
-				new Block ("../../Graphics/Objects/Button 1 State 2.png",                             "Button 1 State 2",                    new int[] {32, 32}),
-				new Block ("../../Graphics/Objects/Button 1 State 3.png",                             "Button 1 State 3",                    new int[] {32, 32}),
-				new Block ("../../Graphics/Objects/Door 1 NSEW State 1.png",                   "Door 1 NSEW State 1",          new int[] {32, 48}),
-				new Block ("../../Graphics/Objects/Door 1 NSEW State 2.png",                   "Door 1 NSEW State 2",          new int[] {32, 48}),
-				new Block ("../../Graphics/Objects/Door 1 NSEW State 3.png",                   "Door 1 NSEW State 3",          new int[] {32, 48}),
-				new Block ("../../Graphics/Objects/Door 1 NSEW State 4.png",                   "Door 1 NSEW State 4",          new int[] {32, 48}),
-				new Block ("../../Graphics/Objects/Door 1 NSEW State 5.png",                   "Door 1 NSEW State 5",          new int[] {32, 48}),
-				new Block ("../../Graphics/Objects/Door 1 NSEW State 6.png",                   "Door 1 NSEW State 6",          new int[] {32, 48}),
-				new Block ("../../Graphics/Objects/Door 1 NSEW State 7.png",                   "Door 1 NSEW State 7",          new int[] {32, 48}),
-				new Block ("../../Graphics/Objects/Door 1 NSEW State 8.png",                   "Door 1 NSEW State 8",          new int[] {32, 48}),
-				new Block ("../../Graphics/Objects/Door 1 NSEW State 9.png",                   "Door 1 NSEW State 9",          new int[] {32, 48}),
-				new Block ("../../Graphics/Objects/Button 2 State 1.png",                             "Button 2 State 1",                    new int[] {32, 32}),
-				new Block ("../../Graphics/Objects/Button 2 State 2.png",                             "Button 2 State 2",                    new int[] {32, 32}),
-				new Block ("../../Graphics/Objects/Button 2 State 3.png",                             "Button 2 State 3",                    new int[] {32, 32}),
-				new Block ("../../Graphics/Objects/Door 2 NSEW State 1.png",                   "Door 2 NSEW State 1",          new int[] {32, 48}),
-				new Block ("../../Graphics/Objects/Door 2 NSEW State 2.png",                   "Door 2 NSEW State 2",          new int[] {32, 48}),
-				new Block ("../../Graphics/Objects/Door 2 NSEW State 3.png",                   "Door 2 NSEW State 3",          new int[] {32, 48}),
-				new Block ("../../Graphics/Objects/Door 2 NSEW State 4.png",                   "Door 2 NSEW State 4",          new int[] {32, 48}),
-				new Block ("../../Graphics/Objects/Door 2 NSEW State 5.png",                   "Door 2 NSEW State 5",          new int[] {32, 48}),
-				new Block ("../../Graphics/Objects/Door 2 NSEW State 6.png",                   "Door 2 NSEW State 6",          new int[] {32, 48}),
-				new Block ("../../Graphics/Objects/Door 2 NSEW State 7.png",                   "Door 2 NSEW State 7",          new int[] {32, 48}),
-				new Block ("../../Graphics/Objects/Door 2 NSEW State 8.png",                   "Door 2 NSEW State 8",          new int[] {32, 48}),
-				new Block ("../../Graphics/Objects/Door 2 NSEW State 9.png",                   "Door 2 NSEW State 9",          new int[] {32, 48}),
+				new Block ("../../Graphics/Objects/Doors and Buttons/Button 1 State 1.png",           "Button 1 State 1",                    new int[] {32, 32}),
+				new Block ("../../Graphics/Objects/Doors and Buttons/Button 1 State 2.png",           "Button 1 State 2",                    new int[] {32, 32}),
+				new Block ("../../Graphics/Objects/Doors and Buttons/Button 1 State 3.png",           "Button 1 State 3",                    new int[] {32, 32}),
+				new Block ("../../Graphics/Objects/Doors and Buttons/Door 1 NSEW State 1.png",        "Door 1 NSEW State 1",                 new int[] {32, 64}),
+				new Block ("../../Graphics/Objects/Doors and Buttons/Door 1 NSEW State 2.png",        "Door 1 NSEW State 2",                 new int[] {32, 64}),
+				new Block ("../../Graphics/Objects/Doors and Buttons/Door 1 NSEW State 3.png",        "Door 1 NSEW State 3",                 new int[] {32, 64}),
+				new Block ("../../Graphics/Objects/Doors and Buttons/Door 1 NSEW State 4.png",        "Door 1 NSEW State 4",                 new int[] {32, 64}),
+				new Block ("../../Graphics/Objects/Doors and Buttons/Door 1 NSEW State 5.png",        "Door 1 NSEW State 5",                 new int[] {32, 64}),
+				new Block ("../../Graphics/Objects/Doors and Buttons/Door 1 NSEW State 6.png",        "Door 1 NSEW State 6",                 new int[] {32, 64}),
+				new Block ("../../Graphics/Objects/Doors and Buttons/Door 1 NSEW State 7.png",        "Door 1 NSEW State 7",                 new int[] {32, 64}),
+				new Block ("../../Graphics/Objects/Doors and Buttons/Door 1 NSEW State 8.png",        "Door 1 NSEW State 8",                 new int[] {32, 64}),
+				new Block ("../../Graphics/Objects/Doors and Buttons/Door 1 NSEW State 9.png",        "Door 1 NSEW State 9",                 new int[] {32, 64}),
+				new Block ("../../Graphics/Objects/Doors and Buttons/Door 1 NSEW Blink State 1.png",  "Door 1 NSEW Blink State 1",           new int[] {32, 64}),
+				new Block ("../../Graphics/Objects/Doors and Buttons/Door 1 NSEW Blink State 2.png",  "Door 1 NSEW Blink State 2",           new int[] {32, 64}),
+				new Block ("../../Graphics/Objects/Doors and Buttons/Door 1 NSEW Blink State 3.png",  "Door 1 NSEW Blink State 3",           new int[] {32, 64}),
+				new Block ("../../Graphics/Objects/Doors and Buttons/Door 1 NSEW Blink State 4.png",  "Door 1 NSEW Blink State 4",           new int[] {32, 64}),
+				new Block ("../../Graphics/Objects/Doors and Buttons/Door 1 NSEW Blink State 5.png",  "Door 1 NSEW Blink State 5",           new int[] {32, 64}),
+				new Block ("../../Graphics/Objects/Doors and Buttons/Door 1 NSEW Blink State 6.png",  "Door 1 NSEW Blink State 6",           new int[] {32, 64}),
+				new Block ("../../Graphics/Objects/Doors and Buttons/Door 1 NSEW Blink State 7.png",  "Door 1 NSEW Blink State 7",           new int[] {32, 64}),
+				new Block ("../../Graphics/Objects/Doors and Buttons/Door 1 NSEW Blink State 8.png",  "Door 1 NSEW Blink State 8",           new int[] {32, 64}),
+				new Block ("../../Graphics/Objects/Doors and Buttons/Button 2 State 1.png",           "Button 2 State 1",                    new int[] {32, 32}),
+				new Block ("../../Graphics/Objects/Doors and Buttons/Button 2 State 2.png",           "Button 2 State 2",                    new int[] {32, 32}),
+				new Block ("../../Graphics/Objects/Doors and Buttons/Button 2 State 3.png",           "Button 2 State 3",                    new int[] {32, 32}),
+				new Block ("../../Graphics/Objects/Doors and Buttons/Door 2 NSEW State 1.png",        "Door 2 NSEW State 1",                 new int[] {32, 64}),
+				new Block ("../../Graphics/Objects/Doors and Buttons/Door 2 NSEW State 2.png",        "Door 2 NSEW State 2",                 new int[] {32, 64}),
+				new Block ("../../Graphics/Objects/Doors and Buttons/Door 2 NSEW State 3.png",        "Door 2 NSEW State 3",                 new int[] {32, 64}),
+				new Block ("../../Graphics/Objects/Doors and Buttons/Door 2 NSEW State 4.png",        "Door 2 NSEW State 4",                 new int[] {32, 64}),
+				new Block ("../../Graphics/Objects/Doors and Buttons/Door 2 NSEW State 5.png",        "Door 2 NSEW State 5",                 new int[] {32, 64}),
+				new Block ("../../Graphics/Objects/Doors and Buttons/Door 2 NSEW State 6.png",        "Door 2 NSEW State 6",                 new int[] {32, 64}),
+				new Block ("../../Graphics/Objects/Doors and Buttons/Door 2 NSEW State 7.png",        "Door 2 NSEW State 7",                 new int[] {32, 64}),
+				new Block ("../../Graphics/Objects/Doors and Buttons/Door 2 NSEW State 8.png",        "Door 2 NSEW State 8",                 new int[] {32, 64}),
+				new Block ("../../Graphics/Objects/Doors and Buttons/Door 2 NSEW State 9.png",        "Door 2 NSEW State 9",                 new int[] {32, 64}),
+				new Block ("../../Graphics/Objects/Doors and Buttons/Door 2 NSEW Blink State 1.png",  "Door 2 NSEW Blink State 1",           new int[] {32, 64}),
+				new Block ("../../Graphics/Objects/Doors and Buttons/Door 2 NSEW Blink State 2.png",  "Door 2 NSEW Blink State 2",           new int[] {32, 64}),
+				new Block ("../../Graphics/Objects/Doors and Buttons/Door 2 NSEW Blink State 3.png",  "Door 2 NSEW Blink State 3",           new int[] {32, 64}),
+				new Block ("../../Graphics/Objects/Doors and Buttons/Door 2 NSEW Blink State 4.png",  "Door 2 NSEW Blink State 4",           new int[] {32, 64}),
+				new Block ("../../Graphics/Objects/Doors and Buttons/Door 2 NSEW Blink State 5.png",  "Door 2 NSEW Blink State 5",           new int[] {32, 64}),
+				new Block ("../../Graphics/Objects/Doors and Buttons/Door 2 NSEW Blink State 6.png",  "Door 2 NSEW Blink State 6",           new int[] {32, 64}),
+				new Block ("../../Graphics/Objects/Doors and Buttons/Door 2 NSEW Blink State 7.png",  "Door 2 NSEW Blink State 7",           new int[] {32, 64}),
+				new Block ("../../Graphics/Objects/Doors and Buttons/Door 2 NSEW Blink State 8.png",  "Door 2 NSEW Blink State 8",           new int[] {32, 64}),
+				new Block ("../../Graphics/Objects/Elevated Floor/Elevated Floor 01011010.png",     "Elevated Floor 01011010",            new int[] {32, 35}),
+				new Block ("../../Graphics/Objects/Elevated Floor/Elevated Floor 01011011.png",     "Elevated Floor 01011011",            new int[] {32, 35}),
+				new Block ("../../Graphics/Objects/Elevated Floor/Elevated Floor 01011110.png",     "Elevated Floor 01011110",            new int[] {32, 35}),
+				new Block ("../../Graphics/Objects/Elevated Floor/Elevated Floor 01011111.png",     "Elevated Floor 01011111",            new int[] {32, 35}),
+				new Block ("../../Graphics/Objects/Elevated Floor/Elevated Floor 01011X0X.png",     "Elevated Floor 01011X0X",            new int[] {32, 35}),
+				new Block ("../../Graphics/Objects/Elevated Floor/Elevated Floor 01111010.png",     "Elevated Floor 01111010",            new int[] {32, 35}),
+				new Block ("../../Graphics/Objects/Elevated Floor/Elevated Floor 01111011.png",     "Elevated Floor 01111011",            new int[] {32, 35}),
+				new Block ("../../Graphics/Objects/Elevated Floor/Elevated Floor 01111110.png",     "Elevated Floor 01111110",            new int[] {32, 35}),
+				new Block ("../../Graphics/Objects/Elevated Floor/Elevated Floor 01111111.png",     "Elevated Floor 01111111",            new int[] {32, 35}),
+				new Block ("../../Graphics/Objects/Elevated Floor/Elevated Floor 01111X0X.png",     "Elevated Floor 01111X0X",            new int[] {32, 35}),
+				new Block ("../../Graphics/Objects/Elevated Floor/Elevated Floor 01X1001X.png",     "Elevated Floor 01X1001X",            new int[] {32, 35}),
+				new Block ("../../Graphics/Objects/Elevated Floor/Elevated Floor 01X1011X.png",     "Elevated Floor 01X1011X",            new int[] {32, 35}),
+				new Block ("../../Graphics/Objects/Elevated Floor/Elevated Floor 01X10X0X.png",     "Elevated Floor 01X10X0X",            new int[] {32, 35}),
+				new Block ("../../Graphics/Objects/Elevated Floor/Elevated Floor 11011010.png",     "Elevated Floor 11011010",            new int[] {32, 35}),
+				new Block ("../../Graphics/Objects/Elevated Floor/Elevated Floor 11011011.png",     "Elevated Floor 11011011",            new int[] {32, 35}),
+				new Block ("../../Graphics/Objects/Elevated Floor/Elevated Floor 11011110.png",     "Elevated Floor 11011110",            new int[] {32, 35}),
+				new Block ("../../Graphics/Objects/Elevated Floor/Elevated Floor 11011111.png",     "Elevated Floor 11011111",            new int[] {32, 35}),
+				new Block ("../../Graphics/Objects/Elevated Floor/Elevated Floor 11011X0X.png",     "Elevated Floor 11011X0X",            new int[] {32, 35}),
+				new Block ("../../Graphics/Objects/Elevated Floor/Elevated Floor 11111010.png",     "Elevated Floor 11111010",            new int[] {32, 35}),
+				new Block ("../../Graphics/Objects/Elevated Floor/Elevated Floor 11111011.png",     "Elevated Floor 11111011",            new int[] {32, 35}),
+				new Block ("../../Graphics/Objects/Elevated Floor/Elevated Floor 11111110.png",     "Elevated Floor 11111110",            new int[] {32, 35}),
+				new Block ("../../Graphics/Objects/Elevated Floor/Elevated Floor 11111111.png",     "Elevated Floor 11111111",            new int[] {32, 35}),
+				new Block ("../../Graphics/Objects/Elevated Floor/Elevated Floor 11111X0X.png",     "Elevated Floor 11111X0X",            new int[] {32, 35}),
+				new Block ("../../Graphics/Objects/Elevated Floor/Elevated Floor 11X1001X.png",     "Elevated Floor 11X1001X",            new int[] {32, 35}),
+				new Block ("../../Graphics/Objects/Elevated Floor/Elevated Floor 11X1011X.png",     "Elevated Floor 11X1011X",            new int[] {32, 35}),
+				new Block ("../../Graphics/Objects/Elevated Floor/Elevated Floor 11X10X0X.png",     "Elevated Floor 11X10X0X",            new int[] {32, 35}),
+				new Block ("../../Graphics/Objects/Elevated Floor/Elevated Floor X0X00X0X.png",     "Elevated Floor X0X00X0X",            new int[] {32, 35}),
+				new Block ("../../Graphics/Objects/Elevated Floor/Elevated Floor X0X00X1X.png",     "Elevated Floor X0X00X1X",            new int[] {32, 35}),
+				new Block ("../../Graphics/Objects/Elevated Floor/Elevated Floor X0X01X0X.png",     "Elevated Floor X0X01X0X",            new int[] {32, 35}),
+				new Block ("../../Graphics/Objects/Elevated Floor/Elevated Floor X0X01X10.png",     "Elevated Floor X0X01X10",            new int[] {32, 35}),
+				new Block ("../../Graphics/Objects/Elevated Floor/Elevated Floor X0X01X11.png",     "Elevated Floor X0X01X11",            new int[] {32, 35}),
+				new Block ("../../Graphics/Objects/Elevated Floor/Elevated Floor X0X1001X.png",     "Elevated Floor X0X1001X",            new int[] {32, 35}),
+				new Block ("../../Graphics/Objects/Elevated Floor/Elevated Floor X0X1011X.png",     "Elevated Floor X0X1011X",            new int[] {32, 35}),
+				new Block ("../../Graphics/Objects/Elevated Floor/Elevated Floor X0X10X0X.png",     "Elevated Floor X0X10X0X",            new int[] {32, 35}),
+				new Block ("../../Graphics/Objects/Elevated Floor/Elevated Floor X0X11010.png",     "Elevated Floor X0X11010",            new int[] {32, 35}),
+				new Block ("../../Graphics/Objects/Elevated Floor/Elevated Floor X0X11011.png",     "Elevated Floor X0X11011",            new int[] {32, 35}),
+				new Block ("../../Graphics/Objects/Elevated Floor/Elevated Floor X0X11110.png",     "Elevated Floor X0X11110",            new int[] {32, 35}),
+				new Block ("../../Graphics/Objects/Elevated Floor/Elevated Floor X0X11111.png",     "Elevated Floor X0X11111",            new int[] {40, 35}),
+				new Block ("../../Graphics/Objects/Elevated Floor/Elevated Floor X0X11X0X.png",     "Elevated Floor X0X11X0X",            new int[] {32, 35}),
+				new Block ("../../Graphics/Objects/Elevated Floor/Elevated Floor X1001X0X.png",     "Elevated Floor X1001X0X",            new int[] {32, 35}),
+				new Block ("../../Graphics/Objects/Elevated Floor/Elevated Floor X1001X10.png",     "Elevated Floor X1001X10",            new int[] {32, 35}),
+				new Block ("../../Graphics/Objects/Elevated Floor/Elevated Floor X1001X11.png",     "Elevated Floor X1001X11",            new int[] {32, 35}),
+				new Block ("../../Graphics/Objects/Elevated Floor/Elevated Floor X1101X0X.png",     "Elevated Floor X1101X0X",            new int[] {32, 35}),
+				new Block ("../../Graphics/Objects/Elevated Floor/Elevated Floor X1101X10.png",     "Elevated Floor X1101X10",            new int[] {32, 35}),
+				new Block ("../../Graphics/Objects/Elevated Floor/Elevated Floor X1101X11.png",     "Elevated Floor X1101X11",            new int[] {32, 35}),
+				new Block ("../../Graphics/Objects/Elevated Floor/Elevated Floor X1X00X0X.png",     "Elevated Floor X1X00X0X",            new int[] {32, 35}),
+				new Block ("../../Graphics/Objects/Elevated Floor/Elevated Floor X1X00X1X.png",     "Elevated Floor X1X00X1X",            new int[] {32, 35}),
 				new Block ("../../Graphics/Objects/Exit Cave Forwards Front State 1.png",             "Exit Cave Forwards Front State 1",    new int[] {32, 48}),
 				new Block ("../../Graphics/Objects/Exit Cave Forwards Front State 2.png",             "Exit Cave Forwards Front State 2",    new int[] {32, 48}),
 				new Block ("../../Graphics/Objects/Exit Cave Forwards Front State 3.png",             "Exit Cave Forwards Front State 3",    new int[] {32, 48}),
@@ -384,16 +457,22 @@ public class TextToTmx {
 				new Block ("../../Graphics/Objects/Exit Standard Front State 3.png",                  "Exit Standard Front State 3",         new int[] {32, 48}),
 				new Block ("../../Graphics/Objects/Exit Standard Front State 4.png",                  "Exit Standard Front State 4",         new int[] {32, 48}),
 				new Block ("../../Graphics/Objects/Exit Standard Front State 5.png",                  "Exit Standard Front State 5",         new int[] {32, 48}),
-				new Block ("../../Graphics/Objects/Magnet North State 1.png",                         "Magnet North State 1",                new int[] {32, 48}),
-				new Block ("../../Graphics/Objects/Magnet North State 2.png",                         "Magnet North State 2",                new int[] {32, 48}),
-				new Block ("../../Graphics/Objects/Magnet North State 3.png",                         "Magnet North State 3",                new int[] {32, 48}),
-				new Block ("../../Graphics/Objects/Magnet North State 4.png",                         "Magnet North State 4",                new int[] {32, 48}),
-				new Block ("../../Graphics/Objects/Magnet North State 5.png",                         "Magnet North State 5",                new int[] {32, 48}),
-				new Block ("../../Graphics/Objects/Magnet South State 1.png",                         "Magnet South State 1",                new int[] {32, 48}),
-				new Block ("../../Graphics/Objects/Magnet South State 2.png",                         "Magnet South State 2",                new int[] {32, 48}),
-				new Block ("../../Graphics/Objects/Magnet South State 3.png",                         "Magnet South State 3",                new int[] {32, 48}),
-				new Block ("../../Graphics/Objects/Magnet South State 4.png",                         "Magnet South State 4",                new int[] {32, 48}),
-				new Block ("../../Graphics/Objects/Magnet South State 5.png",                         "Magnet South State 5",                new int[] {32, 48}),
+				new Block ("../../Graphics/Objects/Magnetic Block North State 1.png",                 "Magnetic Block North State 1",        new int[] {32, 48}),
+				new Block ("../../Graphics/Objects/Magnetic Block North State 2.png",                 "Magnetic Block North State 2",        new int[] {32, 48}),
+				new Block ("../../Graphics/Objects/Magnetic Block North State 3.png",                 "Magnetic Block North State 3",        new int[] {32, 48}),
+				new Block ("../../Graphics/Objects/Magnetic Block North State 4.png",                 "Magnetic Block North State 4",        new int[] {32, 48}),
+				new Block ("../../Graphics/Objects/Magnetic Block North State 5.png",                 "Magnetic Block North State 5",        new int[] {32, 48}),
+				new Block ("../../Graphics/Objects/Magnetic Block North State 6.png",                 "Magnetic Block North State 6",        new int[] {32, 48}),
+				new Block ("../../Graphics/Objects/Magnetic Block North State 7.png",                 "Magnetic Block North State 7",        new int[] {32, 48}),
+				new Block ("../../Graphics/Objects/Magnetic Block North State 8.png",                 "Magnetic Block North State 8",        new int[] {32, 48}),
+				new Block ("../../Graphics/Objects/Magnetic Block South State 1.png",                 "Magnetic Block South State 1",        new int[] {32, 48}),
+				new Block ("../../Graphics/Objects/Magnetic Block South State 2.png",                 "Magnetic Block South State 2",        new int[] {32, 48}),
+				new Block ("../../Graphics/Objects/Magnetic Block South State 3.png",                 "Magnetic Block South State 3",        new int[] {32, 48}),
+				new Block ("../../Graphics/Objects/Magnetic Block South State 4.png",                 "Magnetic Block South State 4",        new int[] {32, 48}),
+				new Block ("../../Graphics/Objects/Magnetic Block South State 5.png",                 "Magnetic Block South State 5",        new int[] {32, 48}),
+				new Block ("../../Graphics/Objects/Magnetic Block South State 6.png",                 "Magnetic Block South State 6",        new int[] {32, 48}),
+				new Block ("../../Graphics/Objects/Magnetic Block South State 7.png",                 "Magnetic Block South State 7",        new int[] {32, 48}),
+				new Block ("../../Graphics/Objects/Magnetic Block South State 8.png",                 "Magnetic Block South State 8",        new int[] {32, 48}),
 				new Block ("../../Graphics/Objects/Player.png",                                       "Player",                              new int[] {32, 48}),
 				new Block ("../../Graphics/Objects/Magnetic Floor State 1.png",                       "Magnetic Floor State 1",              new int[] {32, 32}),
 				new Block ("../../Graphics/Objects/Magnetic Floor State 2.png",                       "Magnetic Floor State 2",              new int[] {32, 32}),
@@ -524,19 +603,26 @@ public class TextToTmx {
 	            				"   </properties>\n";
 					
 	            } else if (Blocks[n].name.contains("Door")) {
-		            	
+		            boolean isBlink = Blocks[n].name.contains("Blink");
+	            	
 	        		// Naming convention!!!
 	            	String[] a 		= Blocks[n].name.split(" ");
 	            	int totalFrames = 9;
 	            	int whichSet = Integer.parseInt(a[1]);
-	            	int whichFrame 	= Integer.parseInt(a[4]);
+	            	int whichFrame 	= Integer.parseInt(a[(isBlink ? 5 : 4)]);
 	            	//String whichSides = a[2];
 	            	
-	            	if (whichFrame == 1) {
+	            	if (isBlink) {
+	            		/*graphicsCode +=  
+	            				"   <properties>\n" + 
+	            				"    <property name=\"~\" value=\"Door Blink " + whichSet + "\"/>\n" + 
+	            				"   </properties>\n";*/
+	            	} else if (whichFrame == 1) {
 	            		graphicsCode +=  
 	            				"   <properties>\n" + 
 	            				"    <property name=\"@Closed\" value=\"(this)\"/>\n" + 
 	            				"    <property name=\"@Closing\" value=\"~Door Closing " + whichSet + "\"/>\n" + 
+	            				"    <property name=\"@Blink\" value=\"~Door Blink " + whichSet + "\"/>\n" +
 	            				"    <property name=\"@Opened\" value=\"~Door Opened " + whichSet + "\"/>\n" + 
 	            				"    <property name=\"@Opening\" value=\"~Door Opening " + whichSet + "\"/>\n" + 
 	            				"    <property name=\"Actor Depth\" type=\"int\" value=\"-1\"/>\n" + 
@@ -581,7 +667,7 @@ public class TextToTmx {
 							"    <property name=\"Type\" value=\"Block\"/>\n" +
 							"   </properties>\n";
 	
-	            } else if (Blocks[n].name.contains("Magnet ") && Blocks[n].name.contains("State 1")) {
+	            } else if (Blocks[n].name.contains("Magnetic Block ") && Blocks[n].name.contains("State 1")) {
 	            	graphicsCode += 
 	            			"   <properties>\n" +
 							"    <property name=\"@Default\" value=\"(this)\"/>\n" + 
@@ -611,14 +697,28 @@ public class TextToTmx {
 							"    <property name=\"Frame Depth\" type=\"int\" value=\"1\"/>\n" + 
 							"    <property name=\"~\" value=\"" + Blocks[n].name + "\"/>\n" +
 							"   </properties>\n";
-				} 
+					
+				} else if (Blocks[n].dir.contains("Elevated Floor ")) {
+					graphicsCode += 
+							"   <properties>\n" +
+							"    <property name=\"@Default\" value=\"(this)\"/>\n" + 
+							"    <property name=\"Actor Depth\" type=\"int\" value=\"-1\"/>\n" + 
+							"    <property name=\"Type\" value=\"Obstructed Floor\"/>\n" +
+							"    <property name=\"Elevation\" type=\"int\" value=\"4\"/>\n" + 
+							"   </properties>\n";
+				} else if (Blocks[n].dir.contains("Exit")) {
+					graphicsCode += 
+							"   <properties>\n" +
+							"    <property name=\"Type\" value=\"Exit\"/>\n" +
+							"   </properties>\n";
+				}
 	
 	            graphicsCode += "   <image width=\"" + Blocks[n].dimensions[0] + "\" height=\"" + Blocks[n].dimensions[1] + "\" source=\"" + Blocks[n].dir + "\"/>\n";
 				
 				// Gives a animaation to each of the magnetic areas. All of them will be starting at different
 				// states but following the same pattern.
 				
-				if ((Blocks[n].name.contains("Magnet ") || Blocks[n].name.contains("Magnetic Floor")) && Blocks[n].name.contains("State 1")) {
+				if (Blocks[n].name.contains("Magnetic Floor State 1")) {
 					
 					int numFrames	= 5;
 					int interval 	= 640;
@@ -629,6 +729,32 @@ public class TextToTmx {
 						for (int i = 0; i < numFrames; i++) 
 							graphicsCode += "    <frame tileid=\"" + (n + (i * j + i + j + delay) % numFrames) + "\" duration=\"" + interval + "\"/>\n";
 					graphicsCode += "   </animation>\n";
+
+				} else if (Blocks[n].name.contains("Magnetic Block ") && Blocks[n].name.contains("State 1")) {
+					
+					int numFrames	= 8;
+					int interval 	= 160;
+						
+					graphicsCode += "   <animation>\n";
+					for (int i = 0; i < numFrames; i++) 
+						graphicsCode += "    <frame tileid=\"" + (n + i) + "\" duration=\"" + interval + "\"/>\n";
+					graphicsCode += "   </animation>\n";
+					
+				} else if (Blocks[n].name.contains("Blink State")) {
+					int numFrames = 8;
+					int intervalmul = 20;
+					
+					String[] a = Blocks[n].name.split(" ");
+					int whichFrame 	= Integer.parseInt(a[5]);
+					
+					if (whichFrame == 1) {
+						graphicsCode += "   <animation>\n";
+						for (int i = 0; i < numFrames; i++) 		
+							graphicsCode += "    <frame tileid=\"" + (n + i) + "\" duration=\"" + intervalmul * (i + 1) + "\"/>\n";
+						for (int i = numFrames - 1; i >= 0; i--)  	
+							graphicsCode += "    <frame tileid=\"" + (n + i) + "\" duration=\"" + intervalmul * (i + 1) + "\"/>\n";
+						graphicsCode += "   </animation>\n";
+					}
 					
 				} else if (Blocks[n].name.contains("Door ")) {
 					
@@ -652,10 +778,8 @@ public class TextToTmx {
 					}
 					
 				} else if (Blocks[n].name.contains("Exit") && Blocks[n].name.contains("State 1")) {
-					
 					int numFrames 	= 5;
 					int interval 	= 80;
-					
 					graphicsCode += "   <animation>\n";
 					for (int i = 0; i < numFrames; i++) 		
 						graphicsCode += "    <frame tileid=\"" + (n + i) + "\" duration=\"" + interval + "\"/>\n";
@@ -673,8 +797,7 @@ public class TextToTmx {
 					for (int i = 0; i < numFrames; i++) 
 						graphicsCode += "    <frame tileid=\"" + (n + i) + "\" duration=\"" + interval + "\"/>\n";
 					graphicsCode += "   </animation>\n";
-				}
-				
+				} 
 				graphicsCode += "  </tile>\n";
 			}
 			
@@ -785,24 +908,12 @@ public class TextToTmx {
 				
 				// Detects a wall
 				if (currentTile.equals("█")) {
-					
 					// Refer the the function for details
 					String wallNeighbours = getNeighbours(i, j, "█", data, false);
 					
 					// All the possible 8 neighbours of a tile. Refer to getNeighbours function for explanation of 
 					// the purpose of 0, 1 and X
-					for (String code: new String[] {
-							"01011010", "01011011", "01011110", "01011111", "01011X0X", 
-							"01111010", "01111011", "01111110", "01111111", "01111X0X", 
-							"01X1001X", "01X1011X", "01X10X0X", "11011010", "11011011", 
-							"11011110", "11011111", "11011X0X", "11111010", "11111011", 
-							"11111110", "11111111", "11111X0X", "11X1001X", "11X1011X", 
-							"11X10X0X", "X0X00X0X", "X0X00X1X", "X0X01X0X", "X0X01X10", 
-							"X0X01X11", "X0X1001X", "X0X1011X", "X0X10X0X", "X0X11010", 
-							"X0X11011", "X0X11110", "X0X11111", "X0X11X0X", "X1001X0X", 
-							"X1001X10", "X1001X11", "X1101X0X", "X1101X10", "X1101X11", 
-							"X1X00X0X", "X1X00X1X"}) {
-						
+					for (String code: neighbourCodes) {
 						// Refer the the function for details
 						if (compareWithDontCares(wallNeighbours, code)) {
 							WallsAndObjects[i - 1][j - 1] = nameToID.get("Set " + whichWallSet + " Wall " + code);
@@ -811,6 +922,19 @@ public class TextToTmx {
 					
 					Ambience[i - 1][j - 1] = nameToID.get("Darker");
 				
+				// Elevated Floors needs to be processed by the same style as walls and floors
+				} else if (currentTile.equals("E")) {
+					// Refer the the function for details
+					String wallNeighbours = getNeighbours(i, j, "█E", data, false);
+					for (String code: neighbourCodes) {
+						// Refer the the function for details
+						if (compareWithDontCares(wallNeighbours, code)) {
+							Objects.add(new Object("Elevated Floor " + code, "prop", i, j));
+						}
+					}
+					
+					Ambience[i - 1][j - 1] = nameToID.get("Darker");
+					
 				// Not a wall
 				} else {
 					
@@ -822,16 +946,16 @@ public class TextToTmx {
 					
 					switch (currentTile) {
 						case "b": objname = "Button 1 State 1"; 			break;
-						case "B": objname = "Door 1 NSEW State 1"; 	break;
+						case "B": objname = "Door 1 NSEW State 1"; 			break;
 						
 						case "f": objname = "Button 2 State 1";				break;
-						case "F": objname = "Door 2 NSEW State 1"; 	break;
+						case "F": objname = "Door 2 NSEW State 1"; 			break;
 						
 						// The starting point / the player
 						case "s": objname = "Player"; numPlayers++;			break;
 						
 						// Randomly placing either North or South magnets first, since repulsion is not done.
-						case "M": objname = "Magnet " + (Math.random() < 0.5 ? "North" : "South") + " State 1"; 	break;
+						case "M": objname = "Magnetic Block " + (Math.random() < 0.5 ? "North" : "South") + " State 1"; 	break;
 						
 						// Magnetic Floor. A tile that does passive magnetization. Does not pull or push any block that is not on top of it,
 						case "m": objname = "Magnetic Floor State 1"; 		break;
@@ -878,26 +1002,15 @@ public class TextToTmx {
 					
 					// Floor Tiles
 
-					if (" es".contains(currentTile)) {
+					if (" esE".contains(currentTile)) {
 						// Refer the the function for details
-						// Also, all objects except exit and player have a depressed floor at the start
+						// Also, all objects except exit, player and elevated ground have a depressed floor at the start
 						String floorNeighbours = getNeighbours(i, j, " es", data, false);
 						//String floorNeighbours = getNeighbours(i, j, "█", data, true);
 
 						// All the possible 8 neighbours of a tile. Refer to getNeighbours function for explanation of 
 						// the purpose of 0, 1 and X
-						for (String code: new String[] {
-								"01011010", "01011011", "01011110", "01011111", "01011X0X", 
-								"01111010", "01111011", "01111110", "01111111", "01111X0X", 
-								"01X1001X", "01X1011X", "01X10X0X", "11011010", "11011011", 
-								"11011110", "11011111", "11011X0X", "11111010", "11111011", 
-								"11111110", "11111111", "11111X0X", "11X1001X", "11X1011X", 
-								"11X10X0X", "X0X00X0X", "X0X00X1X", "X0X01X0X", "X0X01X10", 
-								"X0X01X11", "X0X1001X", "X0X1011X", "X0X10X0X", "X0X11010", 
-								"X0X11011", "X0X11110", "X0X11111", "X0X11X0X", "X1001X0X", 
-								"X1001X10", "X1001X11", "X1101X0X", "X1101X10", "X1101X11", 
-								"X1X00X0X", "X1X00X1X"}) {
-
+						for (String code: neighbourCodes) {
 							// Refer the the function for details
 							if (compareWithDontCares(floorNeighbours, code)) 	Floor[i - 1][j - 1] = nameToID.get("Set 1 Floor " + code);
 						}
@@ -1286,11 +1399,14 @@ public class TextToTmx {
 				buttonsNOT2.add("NOT #" + currName + "@On");
 			}
 			
+			int xoffset = (object.name.contains("Elevated Floor") ? (32 - width) / 2 : 0);
+			if (object.name.contains("X0X11111")) System.out.println(object.block.dimensions[0]);
+			
 			layers += 
 					"  <object id=\"" + n++ + 
 					(object.name.equals("") ? "" : "\" name=\"" + currName) +
 					"\" gid=\"" + (nameToID.get(object.name.split(" \\([0-9a-z]+\\)$")[0]) + 1) + 
-					"\" x=\"" + ((object.j - 1) * 32) + 
+					"\" x=\"" + ((object.j - 1) * 32 + xoffset) + 
 					"\" y=\"" + ((object.i) * 32) + 
 					"\" width=\"" + width + 
 					"\" height=\"" + height + 

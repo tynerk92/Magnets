@@ -1,20 +1,21 @@
-﻿Lock
+﻿Lock (Solvable)
 ███████████████████████████████
 ███████                 ███████
-███████ █x█x█ █x█x█ █x█ ███████
-███████ █x█x█ █x█x█ █x█ ███████
-███████ █x█x█ █x█x█ █x█ ███████
-██    xxx     yyy  yyyxxx    ██
-██    x x     y y  y yx x    ██
+███████ █x█x█x█x█x█x█x█ ███████
+███████ █x█x█x█x█x█x█x█ ███████
+███████ █x█x█x█x█x█x█x█ ███████
+██xxx xxx     yyy  yyyxxx    ██
+██x x x x     y y  y yx x    ██
 ███ █ █ █ █ █ █ █ █ █ █ █ █ ███
 ███ █ █ █ █ █ █ █ █ █ █ █ █ ███
 ███ █ █ █ █ █ █ █ █ █ █ █ █ ███
-██ x x sy yx x x x   x x  x x██
-██ xxx  yyyxxx xxx   xxx  xxx██
-█████████ █ █ █ █ █ █ ██████ye█
+██ x x sy yx x x x   x x     ██
+██ xxx  yyyxxx xxx   xxx     ██
+█████████ █ █ █ █ █ █ ██████Xe█
+█████████ █ █ █ █ █ █ ██████X██
 █████████ █ █ █ █ █ █ ██████ ██
-█████Mxxx x xxx x yyy yyyxxxy██
-██████████x██x██x███y█y████████
+█████MXYX X X X X X X YXYXYXY██
+██████████X█X█X█X█X█X█Y████████
 ███████████████████████████████
 
 Cascade (Solvable)
@@ -55,7 +56,7 @@ Roundabout (Solvable)
 ██████bb████████
 ████████████████
 
-Hookline
+Hookline (Solvable)
 ████████████████████
 ██████  x ██████████
 █████     █████   ██
@@ -102,15 +103,15 @@ Back and Forth (Solvable)
 ███████████████   █████
 ███████████████████████
 
-Equilibrium
+Equilibrium (Solvable)
 ███████████████
 ████e █████████
 ████  █████████
-████BB█████████
+██  BB█████████
 ██ x  x████████
 ██    x████████
 █M     xx █M█M█
-██  ██E██ █b█b█
+██ ███E██ █b█b█
 ██x  s        █
 ██      x █████
 ██  MM█████████
