@@ -75,6 +75,30 @@ What would happen 3
 █             s                         █
 █████████████████████████████████████████
 
+What would happen 4
+█████████████████████████████████████████
+█                               Y  e    █
+█                               Y       █
+█XY  XY  XY  XY  XY  XY  XY  XY  XY  XY █
+█  XY  XY  XY  XY  XY  XY  XY  XY  XY  X█
+█XY  XY  XY  XY  XY  XY  XY  XY  XY  XY █
+█  XY  XY  XY  XY  XY  XY  XY  XY  XY  X█
+█XY  XY  XY  XY  XY  XY  XY  XY  XY  XY █
+█  XY  XY  XY  XY  XY  XY  XY  XY  XY  X█
+█XY  XY  XY  XY  XY  XY  XY  XY  XY  XY █
+█  XY  XY  XY  XY  XY  XY  XY  XY  XY  X█
+█XY  XY  XY  XY  XY  XY  XY  XY  XY  XY █
+█  XY  XY  XY  XY  XY  XY  XY  XY  XY  X█
+█XY  XY  XY  XY  XY  XY  XY  XY  XY  XY █
+█  XY  XY  XY  XY  XY  XY  XY  XY  XY  X█
+█XY  XY  XY  XY  XY  XY  XY  XY  XY  XY █
+█  XY  XY  XY  XY   Y  XY  XY  XY  XY  X█
+█XY  XY  XY  XY  XY   Y  XY  XY  XY  XY █
+█  XY  XY  XY  XY   Y  XY  XY  XY  XY  X█
+█          x  s    mm  x                █
+█                                       █
+█████████████████████████████████████████
+
 Test Cases
 ██████████████████████████
 █  M     M e██ M     M  ██
@@ -102,7 +126,7 @@ Test Cases
 █        xx █  MM       ██
 ██████████████████████████
 
-Test cases
+Test cases 2
 ████████████████████████
 ████  YY █     █M XX ███
 ████  Y  █     █    X███
@@ -111,12 +135,12 @@ Test cases
 ████     █     █    M███
 ████████████████████████
 ████     █     █M XX ███
-████ M X █ YY  █    X███
+████ M X █ YYs █    X███
 ████     █   Y █  M X███
 ████ X M █ M Y █     ███
 ████     █     █     ███
 ████████████████████████
-██████████ XXX █  XX ███
+██████e███ XXX █  XX ███
 ██████████X   X█    X███
 ██████████X M X█  M X███
 ██████████X   X█     ███
@@ -125,7 +149,7 @@ Test cases
 
 Wake me up when there is repulsion
 ████████████████████
-████████    ████████
+████████  e ████████
 ████████M██M████████
 █████  M x  M  █████
 ████   █X██X█   ████
@@ -133,7 +157,7 @@ Wake me up when there is repulsion
 ███  ██XXY XX██  ███
 ███M██X██Y ██X██M███
 █ M XXX█    █XXX M █
-█ █x██YY      ██ █ █
+█ █x██YY s    ██ █ █
 █ █ ██      YY██x█ █
 █ M XXX█    █XXX M █
 ███M██X██ Y██X██M███
