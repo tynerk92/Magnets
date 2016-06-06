@@ -23,8 +23,9 @@ import java.util.Set;
 import java.util.TreeSet;
 
 public class TiledStage extends Stage {
-	public static final float CAMERA_MAX_OFFSET = 2f;
 	public static final float CAMERA_PANNING_SMOOTH_RATIO = 0.1f;
+	public static final float CAMERA_ZOOM_SMOOTH_RATIO = 0.1f;
+	public static final float CAMERA_ZOOM_DEFAULT = 1f;
 
 	private TiledMap _map;
 	private TiledStageMapRenderer _mapRenderer;
@@ -43,6 +44,7 @@ public class TiledStage extends Stage {
 	private int _maxSubTicks;
 	private float _tickTime;
 	private float _tickDuration;
+	private float _cameraZoom;
 	private ArrayList<Coordinate> _coordinates;
 	private String _bodiesLayerName;
 	private HashMap<String, TiledMapTileLayer> _tileLayers = new HashMap<String, TiledMapTileLayer>();
@@ -54,6 +56,7 @@ public class TiledStage extends Stage {
 		_bodiesLayerName = bodiesLayerName;
 		_maxSubTicks = maxSubTicks;
 		_tickTime = 0f;
+		_cameraZoom = CAMERA_ZOOM_DEFAULT;
 		_tickDuration = tickDuration;
 
 		_subTicksToActors = new ArrayList<HashSet<TiledStageActor>>(_maxSubTicks);
@@ -265,10 +268,8 @@ public class TiledStage extends Stage {
 
 		// Camera
 		Vector2 camPos = new Vector2(_camera.position.x, _camera.position.y);
-		float camDistFromFocalActor = Math.abs(_cameraFocalActor.center().dst(camPos));
-		if (camDistFromFocalActor > CAMERA_MAX_OFFSET) {
-			_camera.position.set(camPos.interpolate(_cameraFocalActor.center(), CAMERA_PANNING_SMOOTH_RATIO, Interpolation.linear), 0);
-		}
+		_camera.position.set(camPos.interpolate(_cameraFocalActor.center(), CAMERA_PANNING_SMOOTH_RATIO, Interpolation.linear), 0);
+		_camera.zoom += (_cameraZoom - _camera.zoom) * CAMERA_ZOOM_SMOOTH_RATIO;
 		_camera.update();
 
 		// Map
@@ -402,7 +403,7 @@ public class TiledStage extends Stage {
 	}
 
 	public void setZoom(float zoom) {
-		_camera.zoom = zoom;
+		_cameraZoom = zoom;
 	}
 
 	public enum DIRECTION {

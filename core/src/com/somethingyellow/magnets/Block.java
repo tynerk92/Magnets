@@ -74,9 +74,7 @@ public class Block extends TiledStageActor {
 									TiledStage.DIRECTION direction = bodyCoordinate.getDirectionFrom(coordinate);
 									if (direction == null) continue;
 
-									block.applyForce(direction, MAGNETISED_ATTRACTION_STRENGTH);
-
-									_tempAttractionData.add(Arrays.asList((Object) block, bodyCoordinate, coordinate));
+									block.attract(direction, coordinate, MAGNETISED_ATTRACTION_STRENGTH);
 								}
 							}
 						}
@@ -99,36 +97,33 @@ public class Block extends TiledStageActor {
 
 		} else if (subtick == PlayScreen.SUBTICKS.GRAPHICS.ordinal()) {
 
-			for (final List<Object> attractionData : _tempAttractionData) {
-				Block block = (Block) attractionData.get(0);
-				if (block.isMoving())
-					continue; // if block was moving now, means it could be attracted, abandon showing of attraction visual
+			if (!isMoving()) {  // if block was moving now, means it could be attracted, abandon showing of attraction visual
+				for (final List<Object> attractionData : _tempAttractionData) {
+					TiledStageVisual visual;
+					if (_magneticAttractionVisual.containsKey(attractionData)) {
+						visual = _magneticAttractionVisual.get(attractionData);
+					} else {
+						TiledStage.DIRECTION attractionDirection = (TiledStage.DIRECTION) attractionData.get(0);
+						TiledStage.Coordinate bodyCoordinate = (TiledStage.Coordinate) attractionData.get(1);
 
-				TiledStageVisual visual;
-				if (_magneticAttractionVisual.containsKey(attractionData)) {
-					visual = _magneticAttractionVisual.get(attractionData);
-				} else {
-					TiledStage.Coordinate bodyCoordinate = (TiledStage.Coordinate) attractionData.get(1);
-					TiledStage.Coordinate coordinate = (TiledStage.Coordinate) attractionData.get(2);
-					TiledStage.DIRECTION attractionDirection = bodyCoordinate.getDirectionFrom(coordinate);
+						TiledStage.Coordinate visualCoordinate = bodyCoordinate.getAdjacentCoordinate(attractionDirection);
+						if (visualCoordinate == null) continue;
 
-					TiledStage.Coordinate visualCoordinate = bodyCoordinate.getAdjacentCoordinate(TiledStage.ReverseDirection(attractionDirection));
-					if (visualCoordinate == null) continue;
+						visual = _actionListener.spawnMagneticAttractionVisual(visualCoordinate, attractionDirection);
+						if (visual == null) continue;
 
-					visual = _actionListener.spawnMagneticAttractionVisual(visualCoordinate, attractionDirection);
-					if (visual == null) continue;
+						_magneticAttractionVisual.put(attractionData, visual);
 
-					_magneticAttractionVisual.put(attractionData, visual);
+						visual.addListener(new TiledStageBody.Listener() {
+							@Override
+							public void removed() {
+								_magneticAttractionVisual.remove(attractionData);
+							}
+						});
+					}
 
-					visual.addListener(new TiledStageBody.Listener() {
-						@Override
-						public void removed() {
-							_magneticAttractionVisual.remove(attractionData);
-						}
-					});
+					visual.setDuration(MOVE_TICKS + 1);
 				}
-
-				visual.setDuration(1);
 			}
 
 			_tempAttractionData.clear();
@@ -138,6 +133,14 @@ public class Block extends TiledStageActor {
 	public void applyForce(TiledStage.DIRECTION direction, int magnitude) {
 		_forceX += TiledStage.GetUnitColumn(direction) * magnitude;
 		_forceY += TiledStage.GetUnitRow(direction) * magnitude;
+	}
+
+	public void attract(TiledStage.DIRECTION direction, TiledStage.Coordinate bodyCoordinate, int magnitude) {
+		if (!bodyCoordinates().contains(bodyCoordinate)) return;
+
+		applyForce(direction, magnitude);
+
+		_tempAttractionData.add(Arrays.asList((Object) direction, bodyCoordinate));
 	}
 
 	public void magnetise() {

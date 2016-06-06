@@ -95,15 +95,19 @@ public abstract class TiledStagePlayer extends TiledStageActor implements EventL
 	protected boolean keyDown(InputEvent event, int keycode) {
 		switch (keycode) {
 			case Input.Keys.LEFT:
+			case Input.Keys.A:
 				_isKeyLeftHeld = true;
 				break;
 			case Input.Keys.RIGHT:
+			case Input.Keys.D:
 				_isKeyRightHeld = true;
 				break;
 			case Input.Keys.UP:
+			case Input.Keys.W:
 				_isKeyUpHeld = true;
 				break;
 			case Input.Keys.DOWN:
+			case Input.Keys.S:
 				_isKeyDownHeld = true;
 				break;
 		}

@@ -128,17 +128,21 @@ public class Player extends TiledStagePlayer {
 			case Input.Keys.ESCAPE:
 				_actionListener.exitLevel();
 				break;
-			case Input.Keys.UP:
-				_moveCommands.add(TiledStage.DIRECTION.NORTH);
-				break;
-			case Input.Keys.DOWN:
-				_moveCommands.add(TiledStage.DIRECTION.SOUTH);
-				break;
 			case Input.Keys.LEFT:
+			case Input.Keys.A:
 				_moveCommands.add(TiledStage.DIRECTION.WEST);
 				break;
 			case Input.Keys.RIGHT:
+			case Input.Keys.D:
 				_moveCommands.add(TiledStage.DIRECTION.EAST);
+				break;
+			case Input.Keys.UP:
+			case Input.Keys.W:
+				_moveCommands.add(TiledStage.DIRECTION.NORTH);
+				break;
+			case Input.Keys.DOWN:
+			case Input.Keys.S:
+				_moveCommands.add(TiledStage.DIRECTION.SOUTH);
 				break;
 		}
 
