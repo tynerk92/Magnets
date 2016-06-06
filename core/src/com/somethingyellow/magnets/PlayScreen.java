@@ -17,13 +17,15 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-public class PlayScreen implements Screen, Player.Listener {
+public class PlayScreen implements Screen, Player.ActionListener, Block.ActionListener, MagneticSource.ActionListener {
 	public static final float TICK_DURATION = 0.06f;
 	public static final String LAYER_ACTORS = "Walls and Objects";
 
 	// Tile properties
 	public static final String TILE_TYPE = "Type";
 	public static final String TILE_REFERENCE = "~";
+	public static final String TILE_REFERENCE_MAGNETIC_ATTRACTION_HORIZONTAL = "Magnetic Attraction Horizontal";
+	public static final String TILE_REFERENCE_MAGNETIC_ATTRACTION_VERTICAL = "Magnetic Attraction Vertical";
 	public static final String TILE_STATE = "@";
 	public static final String TILE_NAME = "#";
 	public static final String TILE_ACTION = "+";
@@ -45,27 +47,25 @@ public class PlayScreen implements Screen, Player.Listener {
 	public static final String TILE_ELEVATION = "Elevation";
 	public static final String TILE_BODY_WIDTH = "Body Width";
 	public static final String TILE_BODY_AREA = "Body Area";
-	public static final String TILE_THIS = "(this)";
-	public static final String TILE_ACTOR_DEPTH = "Actor Depth";
-	public static final String TILE_FRAME_DEPTH = "Frame Depth";
+	public static final String TILE_RENDER_DEPTH = "Render Depth";
 	public boolean DEBUG_MODE = false;
 
 	private TiledStage _tiledStage;
 	private TiledMap _map;
-	private Player _playerActor;
+	private Player _player;
 	private HashMap<String, TiledMapTile> _tilesByReference = new HashMap<String, TiledMapTile>();
 	private HashMap<TiledMapTile, ArrayList<TiledStageActor.Frame>> _tileFramesByTile = new HashMap<TiledMapTile, ArrayList<TiledStageActor.Frame>>();
 	private LogicMachine _logicMachine = new LogicMachine();
 	private TmxMapLoader _tmxMapLoader = new TmxMapLoader();
-	private LinkedList<TiledStageActor> _actors = new LinkedList<TiledStageActor>();
+	private LinkedList<TiledStageBody> _bodies = new LinkedList<TiledStageBody>();
 	private String _levelPath;
-	private Listener _listener;
+	private ActionListener _actionListener;
 
 	// Debugging tools
 	private FPSLogger _fpsLogger = new FPSLogger();
 
-	public PlayScreen(Listener listener) {
-		_listener = listener;
+	public PlayScreen(ActionListener actionListener) {
+		_actionListener = actionListener;
 	}
 
 	public static boolean[] ExtractBodyArea(TiledMapTile tile) {
@@ -101,12 +101,8 @@ public class PlayScreen implements Screen, Player.Listener {
 		return TiledStage.ParseBooleanProp(tile.getProperties(), TILE_ISMAGNETISABLE, false);
 	}
 
-	public static int ExtractFrameDepth(TiledMapTile tile) {
-		return TiledStage.ParseIntegerProp(tile.getProperties(), TILE_FRAME_DEPTH, 0);
-	}
-
-	public static int ExtractActorDepth(TiledMapTile tile) {
-		return TiledStage.ParseIntegerProp(tile.getProperties(), TILE_ACTOR_DEPTH, 0);
+	public static int ExtractRenderDepth(TiledMapTile tile) {
+		return TiledStage.ParseIntegerProp(tile.getProperties(), TILE_RENDER_DEPTH, 0);
 	}
 
 	public static int ExtractElevation(TiledMapTile tile) {
@@ -121,38 +117,41 @@ public class PlayScreen implements Screen, Player.Listener {
 		HashMap<String, TiledStageActor.FrameSequence> animationFrames = new HashMap<String, TiledStageActor.FrameSequence>();
 		Iterator<String> props = tile.getProperties().getKeys();
 
+		animationFrames.put(TiledStageBody.STATE_DEFAULT, getFrameSequence(tile));
+
 		while (props.hasNext()) {
 			String prop = props.next();
 
 			if (prop.indexOf(TILE_STATE) == 0) {
-				TiledMapTile animationTile = tile;
-
 				String reference = TiledStage.ParseProp(tile.getProperties(), prop);
-				if (!reference.equals(TILE_THIS)) {
-					if (reference.indexOf(TILE_REFERENCE) == 0) {
-						animationTile = _tilesByReference.get(reference.substring(TILE_REFERENCE.length()));
+
+				if (reference.indexOf(TILE_REFERENCE) == 0) {
+					TiledMapTile animationTile = _tilesByReference.get(reference.substring(TILE_REFERENCE.length()));
+					if (animationTile != null) {
+						animationFrames.put(prop.substring(TILE_STATE.length()), getFrameSequence(animationTile));
 					} else {
-						throw new IllegalArgumentException("Property '" + prop + "' should either be '" + TILE_THIS + "' or '" + TILE_REFERENCE + "tileReference'!");
+						throw new IllegalArgumentException("Property '" + prop + "' should '" + TILE_REFERENCE + "tileReference' to a valid tile!");
 					}
 				}
-
-				if (!_tileFramesByTile.containsKey(animationTile)) {
-					_tileFramesByTile.put(animationTile, TiledStageActor.FrameSequence.TileToFrames(animationTile, _tiledStage.tickDuration()));
-				}
-
-				animationFrames.put(prop.substring(TILE_STATE.length()),
-						new TiledStageActor.FrameSequence(_tileFramesByTile.get(animationTile), ExtractFrameDepth(tile)));
 			}
 		}
 
 		return animationFrames;
 	}
 
-	public void processProperties(TiledStageActor actor, TiledMapTile tile) {
-		actor.setActorDepth(ExtractActorDepth(tile));
+	public TiledStageBody.FrameSequence getFrameSequence(TiledMapTile tile) {
+		if (!_tileFramesByTile.containsKey(tile)) {
+			_tileFramesByTile.put(tile, TiledStageActor.FrameSequence.TileToFrames(tile, _tiledStage.tickDuration()));
+		}
+
+		return new TiledStageActor.FrameSequence(_tileFramesByTile.get(tile), ExtractRenderDepth(tile));
 	}
 
-	public void processActions(final TiledStageActor actor, TiledStage.TiledObject object) {
+	public void processProperties(TiledStageBody body, TiledMapTile tile) {
+		body.setRenderDepth(ExtractRenderDepth(tile));
+	}
+
+	public void processActions(final TiledStageBody body, TiledStage.TiledObject object) {
 		Iterator<String> props = object.properties().getKeys();
 		while (props.hasNext()) {
 			String prop = props.next();
@@ -161,7 +160,7 @@ public class PlayScreen implements Screen, Player.Listener {
 				final String action = prop.substring(TILE_ACTION.length());
 
 				String expressionString = TiledStage.ParseProp(object.properties(), prop);
-				final String actionName = TILE_NAME + actor.getName() + TILE_ACTION + action;
+				final String actionName = TILE_NAME + body.getName() + TILE_ACTION + action;
 
 				// Replace and/or/not and add statement to logicmachine
 				expressionString = expressionString.replace(TILE_EXPRESSION_AND, LogicMachine.TERM_AND).
@@ -172,7 +171,7 @@ public class PlayScreen implements Screen, Player.Listener {
 				LogicMachine.Expression expression = _logicMachine.addExpression(expressionString, new LogicMachine.Listener() {
 					@Override
 					public void expressionChanged(boolean isTrue) {
-						if (isTrue) doAction(actor, action);
+						if (isTrue) doAction(body, action);
 					}
 				});
 
@@ -186,19 +185,19 @@ public class PlayScreen implements Screen, Player.Listener {
 					if (parts.length != 2)
 						throw new IllegalArgumentException("Property '" + prop + "' should be a valid expression! Predicate " + predicate + " should point to the actor's state.");
 
-					TiledStageActor predActor = _tiledStage.getActor(parts[0]);
-					if (predActor == null)
+					TiledStageBody predBody = _tiledStage.getBody(parts[0]);
+					if (predBody == null)
 						throw new IllegalArgumentException("Property '" + prop + "' should be a valid expression! Predicate " + predicate + " should point a non-null actor.");
 
 					final String predState = parts[1];
-					predActor.addStateListener(new TiledStageActor.StateListener() {
+					predBody.addListener(new TiledStageBody.Listener() {
 						@Override
-						public void added(String state) {
+						public void stateAdded(String state) {
 							if (state.equals(predState)) _logicMachine.set(predicate, true);
 						}
 
 						@Override
-						public void removed(String state) {
+						public void stateRemoved(String state) {
 							if (state.equals(predState)) _logicMachine.set(predicate, false);
 						}
 					});
@@ -207,9 +206,9 @@ public class PlayScreen implements Screen, Player.Listener {
 		}
 	}
 
-	public void doAction(TiledStageActor actor, String action) {
-		if (actor instanceof Door) {
-			Door door = (Door) actor;
+	public void doAction(TiledStageBody body, String action) {
+		if (body instanceof Door) {
+			Door door = (Door) body;
 			if (action.equals(Door.ACTION_OPEN)) {
 				door.open();
 			} else if (action.equals(Door.ACTION_CLOSE)) {
@@ -228,17 +227,7 @@ public class PlayScreen implements Screen, Player.Listener {
 	}
 
 	public void loadLevel(String levelPath) {
-		// Unload previous level's data
-		_tilesByReference.clear();
-		_tileFramesByTile.clear();
-		_logicMachine.clear();
-		_playerActor = null;
-		for (TiledStageActor actor : _actors) {
-			Pools.free(actor);
-		}
-		_actors.clear();
-
-		if (_map != null) _map.dispose();
+		if (_map != null) unloadLevel();
 
 		_levelPath = levelPath;
 
@@ -260,100 +249,146 @@ public class PlayScreen implements Screen, Player.Listener {
 			if (tile == null) continue;
 
 			String type = TiledStage.ParseProp(tile.getProperties(), TILE_TYPE);
-			TiledStageActor actor = null;
-			if (type != null) {
-				if (type.equals(TILE_TYPE_BLOCK)) {
-					actor = spawnBlock(object);
-				} else if (type.equals(TILE_TYPE_MAGNETIC_SOURCE)) {
-					actor = spawnMagneticSource(object);
-				} else if (type.equals(TILE_TYPE_MAGNETIC_FLOOR)) {
-					actor = spawnMagneticFloor(object);
-				} else if (type.equals(TILE_TYPE_OBSTRUCTED_FLOOR)) {
-					actor = spawnObstructedFloor(object);
-				} else if (type.equals(TILE_TYPE_PLAYER)) {
-					actor = spawnPlayer(object);
-				} else if (type.equals(TILE_TYPE_BUTTON)) {
-					actor = spawnButton(object);
-				} else if (type.equals(TILE_TYPE_DOOR)) {
-					actor = spawnDoor(object);
-				}
+			TiledStageBody body = null;
+			if (type == null) continue;
+
+			if (type.equals(TILE_TYPE_BLOCK)) {
+				body = createBlock(object);
+			} else if (type.equals(TILE_TYPE_MAGNETIC_SOURCE)) {
+				body = createMagneticSource(object);
+			} else if (type.equals(TILE_TYPE_MAGNETIC_FLOOR)) {
+				body = createMagneticFloor(object);
+			} else if (type.equals(TILE_TYPE_OBSTRUCTED_FLOOR)) {
+				body = createObstructedFloor(object);
+			} else if (type.equals(TILE_TYPE_PLAYER)) {
+				body = createPlayer(object);
+			} else if (type.equals(TILE_TYPE_BUTTON)) {
+				body = createButton(object);
+			} else if (type.equals(TILE_TYPE_DOOR)) {
+				body = createDoor(object);
 			}
 
-			processProperties(actor, tile);
+			if (body == null) continue;
 
-			if (actor != null) {
-				_actors.add(actor);
-				if (object.name() != null) actor.setName(object.name());
-			}
+			addBody(body, tile);
+			if (object.name() != null) body.setName(object.name());
 		}
 
 		for (TiledStage.TiledObject object : _tiledStage.objects()) {
-			TiledStageActor actor = _tiledStage.getActor(object.name());
-			if (actor == null) continue;
+			TiledStageBody body = _tiledStage.getBody(object.name());
 
-			processActions(actor, object);
+			if (body == null) continue;
+
+			processActions(body, object);
 		}
 	}
 
-	public void unload() {
+	public void unloadLevel() {
+		_tilesByReference.clear();
+		_tileFramesByTile.clear();
+		_logicMachine.clear();
+		_player = null;
+		for (TiledStageBody body : _bodies.toArray(new TiledStageBody[_bodies.size()])) {
+			body.remove();
+		}
+		_bodies.clear();
 
+		_map.dispose();
+		_map = null;
 	}
 
-	public TiledStageActor spawnPlayer(TiledStage.TiledObject object) {
-		if (_playerActor != null) {
+	public TiledStageBody createPlayer(TiledStage.TiledObject object) {
+		if (_player != null) {
 			throw new IllegalArgumentException("There should only be 1 player on the tiled map!");
 		}
 
 		// Add player to stage
-		_playerActor = Pools.get(Player.class).obtain();
-		_playerActor.initialize(_tiledStage, TiledStageActor.BodyArea1x1, 1, getAnimations(object.tile()),
-				object.origin(), this);
+		_player = Pools.get(Player.class).obtain();
+		_player.initialize(TiledStageActor.BodyArea1x1, 1, getAnimations(object.tile()), object.origin(), this);
 
-		_tiledStage.setCameraFocalActor(_playerActor);
-		_tiledStage.setInputFocalActor(_playerActor);
+		_tiledStage.setCameraFocalActor(_player);
+		_tiledStage.setInputFocalActor(_player);
 
-		return _playerActor;
+		return _player;
 	}
 
-	public TiledStageActor spawnBlock(TiledStage.TiledObject object) {
+	public TiledStageBody createBlock(TiledStage.TiledObject object) {
 		Block block = Pools.get(Block.class).obtain();
-		block.initialize(_tiledStage, ExtractBodyArea(object.tile()), ExtractBodyWidth(object.tile()),
-				getAnimations(object.tile()), object.origin(), ExtractIsPushable(object.tile()), ExtractIsMagnetisable(object.tile()));
+		block.initialize(ExtractBodyArea(object.tile()), ExtractBodyWidth(object.tile()),
+				getAnimations(object.tile()), object.origin(), ExtractIsPushable(object.tile()), ExtractIsMagnetisable(object.tile()), this);
 		return block;
 	}
 
-	public TiledStageActor spawnMagneticSource(TiledStage.TiledObject object) {
+	public TiledStageBody createMagneticSource(TiledStage.TiledObject object) {
 		MagneticSource magneticSource = Pools.get(MagneticSource.class).obtain();
-		magneticSource.initialize(_tiledStage, getAnimations(object.tile()), object.origin());
+		magneticSource.initialize(getAnimations(object.tile()), object.origin(), this);
 		return magneticSource;
 	}
 
-	public TiledStageActor spawnMagneticFloor(TiledStage.TiledObject object) {
+	public TiledStageBody createMagneticFloor(TiledStage.TiledObject object) {
 		MagneticFloor magneticFloor = Pools.get(MagneticFloor.class).obtain();
-		magneticFloor.initialize(_tiledStage, getAnimations(object.tile()), object.origin());
+		magneticFloor.initialize(getAnimations(object.tile()), object.origin());
 		return magneticFloor;
 	}
 
-	public TiledStageActor spawnObstructedFloor(TiledStage.TiledObject object) {
+	public TiledStageBody createObstructedFloor(TiledStage.TiledObject object) {
 		ObstructedFloor obstructedFloor = Pools.get(ObstructedFloor.class).obtain();
-		obstructedFloor.initialize(_tiledStage, getAnimations(object.tile()), object.origin(), ExtractElevation(object.tile()));
+		obstructedFloor.initialize(getAnimations(object.tile()), object.origin(), ExtractElevation(object.tile()));
 		return obstructedFloor;
 	}
 
-	public TiledStageActor spawnDoor(TiledStage.TiledObject object) {
+	public TiledStageBody createDoor(TiledStage.TiledObject object) {
 		Door door = Pools.get(Door.class).obtain();
-		door.initialize(_tiledStage, ExtractBodyArea(object.tile()), ExtractBodyWidth(object.tile()),
+		door.initialize(ExtractBodyArea(object.tile()), ExtractBodyWidth(object.tile()),
 				getAnimations(object.tile()), object.origin(), ExtractIsOpen(object.tile()));
 		return door;
 	}
 
-	public TiledStageActor spawnButton(TiledStage.TiledObject object) {
+	public TiledStageBody createButton(TiledStage.TiledObject object) {
 		Button button = Pools.get(Button.class).obtain();
-		button.initialize(_tiledStage, ExtractBodyArea(object.tile()), ExtractBodyWidth(object.tile()),
+		button.initialize(ExtractBodyArea(object.tile()), ExtractBodyWidth(object.tile()),
 				getAnimations(object.tile()), object.origin());
 		return button;
 	}
 
+	public void addBody(final TiledStageBody body, TiledMapTile tile) {
+		processProperties(body, tile);
+
+		_tiledStage.addBody(body);
+		_bodies.add(body);
+
+		body.addListener(new TiledStageBody.Listener() {
+			@Override
+			public void removed() {
+				_bodies.remove(body);
+			}
+		});
+	}
+
+	@Override
+	public TiledStageVisual spawnMagneticAttractionVisual(TiledStage.Coordinate coordinate, TiledStage.DIRECTION direction) {
+		TiledStageVisual visual = Pools.get(TiledStageVisual.class).obtain();
+
+		TiledMapTile bodyTile = null;
+		switch (direction) {
+			case NORTH:
+			case SOUTH:
+				bodyTile = _tilesByReference.get(TILE_REFERENCE_MAGNETIC_ATTRACTION_VERTICAL);
+				break;
+			case EAST:
+			case WEST:
+				bodyTile = _tilesByReference.get(TILE_REFERENCE_MAGNETIC_ATTRACTION_HORIZONTAL);
+				break;
+		}
+
+		if (bodyTile != null) {
+			visual.initialize(TiledStageBody.BodyArea1x1, 1, getFrameSequence(bodyTile), coordinate);
+			addBody(visual, bodyTile);
+			return visual;
+		} else {
+			return null;
+		}
+	}
 
 	@Override
 	public void render(float delta) {
@@ -397,7 +432,8 @@ public class PlayScreen implements Screen, Player.Listener {
 
 	@Override
 	public void exitLevel() {
-		_listener.exitLevel();
+		_actionListener.exitLevel();
+
 	}
 
 	@Override
@@ -409,7 +445,7 @@ public class PlayScreen implements Screen, Player.Listener {
 		RESET, BUTTON_PRESSES, MAGNETISATION, FORCES, BLOCK_MOVEMENT, PLAYER_MOVEMENT, GRAPHICS
 	}
 
-	public interface Listener {
+	public interface ActionListener {
 		void exitLevel();
 	}
 }

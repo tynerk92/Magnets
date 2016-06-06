@@ -26,10 +26,10 @@ public class LevelSelectScreen implements Screen {
 
 	private SpriteBatch _spriteBatch;
 	private Stage _stage;
-	private Listener _listener;
+	private ActionListener _listener;
 
-	public LevelSelectScreen(Listener listener) {
-		_listener = listener;
+	public LevelSelectScreen(ActionListener actionListener) {
+		_listener = actionListener;
 	}
 
 	@Override
@@ -135,7 +135,7 @@ public class LevelSelectScreen implements Screen {
 
 	}
 
-	public interface Listener {
+	public interface ActionListener {
 		void startLevel(String levelPath);
 	}
 }

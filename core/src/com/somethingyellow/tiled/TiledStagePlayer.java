@@ -9,21 +9,23 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 
 import java.util.HashMap;
 
-public abstract class PlayerActor extends TiledStageActor implements EventListener {
+public abstract class TiledStagePlayer extends TiledStageActor implements EventListener {
 	private static final Vector2 TempCoords = new Vector2();
 	private boolean _isKeyLeftHeld;
 	private boolean _isKeyRightHeld;
 	private boolean _isKeyUpHeld;
 	private boolean _isKeyDownHeld;
 
-	public PlayerActor() {
+	public TiledStagePlayer() {
 		super();
 		addListener(this);
 	}
 
+
 	@Override
-	public void reset() {
-		super.reset();
+	public void initialize(boolean[] bodyArea, int bodyWidth, HashMap<String, FrameSequence> animationFrames,
+	                       TiledStage.Coordinate origin) {
+		super.initialize(bodyArea, bodyWidth, animationFrames, origin);
 		_isKeyLeftHeld = false;
 		_isKeyRightHeld = false;
 		_isKeyUpHeld = false;

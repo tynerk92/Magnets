@@ -2,7 +2,7 @@ package com.somethingyellow.magnets;
 
 import com.badlogic.gdx.Game;
 
-public class Main extends Game implements LevelSelectScreen.Listener, PlayScreen.Listener {
+public class Main extends Game implements LevelSelectScreen.ActionListener, PlayScreen.ActionListener {
 	public static PlayScreen playScreen;
 	public static LevelSelectScreen levelSelectScreen;
 

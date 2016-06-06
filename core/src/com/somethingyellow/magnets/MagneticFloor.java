@@ -8,24 +8,16 @@ import java.util.Set;
 import java.util.TreeSet;
 
 public class MagneticFloor extends TiledStageActor {
-	public static final String STATE_DEFAULT = "Default";
 	public static final int MAGNETISE_RANGE = 0;
 	public static final int[] SUBTICKS = new int[]{
 			PlayScreen.SUBTICKS.MAGNETISATION.ordinal()
 	};
 
 
-	public void initialize(TiledStage stage, HashMap<String, FrameSequence> animationFrames,
+	public void initialize(HashMap<String, FrameSequence> animationFrames,
 	                       TiledStage.Coordinate origin) {
-		super.initialize(stage, TiledStageActor.BodyArea1x1, 1, animationFrames, origin);
+		super.initialize(TiledStageActor.BodyArea1x1, 1, animationFrames, origin);
 	}
-
-	@Override
-	public void reset() {
-		super.reset();
-		addState(STATE_DEFAULT);
-	}
-
 
 	@Override
 	public void act(int subtick) {

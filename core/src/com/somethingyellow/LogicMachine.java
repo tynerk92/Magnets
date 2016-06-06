@@ -46,33 +46,29 @@ public class LogicMachine {
 		return expression;
 	}
 
-	public LogicMachine clear() {
+	public void clear() {
 		_predicateMap.clear();
 		_predicateIndices.clear();
 		_expressions.clear();
 		_predicatesByIndex.clear();
 		resetState();
-		return this;
 	}
 
-	public LogicMachine resetState() {
+	public void resetState() {
 		_state.clear();
-		return this;
 	}
 
-	public LogicMachine set(String name) {
-		return set(name, true);
+	public void set(String name) {
+		set(name, true);
 	}
 
-	public LogicMachine set(String name, boolean isTrue) {
+	public void set(String name, boolean isTrue) {
 		int index = getPredicateIndex(name);
 		if (isTrue) {
 			if (setPredicateTrue(index)) reason(index);
 		} else {
 			if (setPredicateFalse(index)) reason(index);
 		}
-
-		return this;
 	}
 
 	public boolean get(String name) {
@@ -206,7 +202,7 @@ public class LogicMachine {
 	/*
 	public static void main(String[] args) {
 		LogicMachine lm = new LogicMachine();
-		lm.addExpression(" ( A            && C ||!B &&   !C)|| D", new Listener() {
+		lm.addExpression(" ( A            && C ||!B &&   !C)|| D", new ActionListener() {
 			@Override
 			public void expressionChanged(boolean isTrue) {
 				System.out.println(isTrue);

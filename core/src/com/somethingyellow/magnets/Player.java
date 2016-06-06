@@ -8,32 +8,32 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 
-public class Player extends PlayerActor {
+public class Player extends TiledStagePlayer {
 	public static final int MOVE_TICKS = 3;
-	public static final float MIN_ZOOM = 0.5f;
-	public static final float DEFAULT_ZOOM = 1f;
-	public static final float MAX_ZOOM = 1.5f;
-	public static final String STATE_STANDING = "Standing";
+	public static final float ZOOM_MIN = 0.5f;
+	public static final float ZOOOM_DEFAULT = 0.9f;
+	public static final float ZOOM_MAX = 1.5f;
 	public static final int[] SUBTICKS = new int[]{
 			PlayScreen.SUBTICKS.PLAYER_MOVEMENT.ordinal(),
 			PlayScreen.SUBTICKS.GRAPHICS.ordinal()
 	};
 
-	private Listener _listener;
+	private ActionListener _actionListener;
 	private float _zoom;
 	private LinkedList<TiledStage.DIRECTION> _moveCommands = new LinkedList<TiledStage.DIRECTION>();
 
-	public void initialize(TiledStage stage, boolean[] bodyArea, int bodyWidth, HashMap<String, FrameSequence> animationFrames,
-	                       TiledStage.Coordinate origin, Listener listener) {
-		super.initialize(stage, bodyArea, bodyWidth, animationFrames, origin);
-		_listener = listener;
-		addState(STATE_STANDING);
+	public void initialize(boolean[] bodyArea, int bodyWidth, HashMap<String, FrameSequence> animationFrames,
+	                       TiledStage.Coordinate origin, ActionListener actionListener) {
+		super.initialize(bodyArea, bodyWidth, animationFrames, origin);
+		_actionListener = actionListener;
+
+		_zoom = ZOOOM_DEFAULT;
+		_actionListener.setZoom(_zoom);
 	}
 
 	@Override
 	public void reset() {
 		super.reset();
-		_zoom = DEFAULT_ZOOM;
 		_moveCommands.clear();
 	}
 
@@ -43,7 +43,7 @@ public class Player extends PlayerActor {
 
 			if (!isMoving()) {
 				if (origin().getTileProp(PlayScreen.LAYER_ACTORS, PlayScreen.TILE_TYPE, "").equals(PlayScreen.TILE_TYPE_EXIT)) {
-					_listener.exitLevel();
+					_actionListener.exitLevel();
 				} else if (_moveCommands.isEmpty()) {
 					if (isKeyLeftHeld() && !isKeyRightHeld() && !isKeyUpHeld() && !isKeyDownHeld()) {
 						moveDirection(TiledStage.DIRECTION.WEST);
@@ -84,12 +84,12 @@ public class Player extends PlayerActor {
 
 				if (block.isPushable()) {
 					TiledStage.Coordinate origin = origin();
-					moveToInstantly(targetCoordinate);
+					setOrigin(targetCoordinate);
 					if (block.push(direction)) { // if block can really move to its pushed position (not considering actor)
-						moveToInstantly(origin);
+						setOrigin(origin);
 						moveDirection(direction);
 					} else {
-						moveToInstantly(origin);
+						setOrigin(origin);
 					}
 				}
 
@@ -123,10 +123,10 @@ public class Player extends PlayerActor {
 		super.keyDown(event, keycode);
 		switch (keycode) {
 			case Input.Keys.R:
-				_listener.resetLevel();
+				_actionListener.resetLevel();
 				break;
 			case Input.Keys.ESCAPE:
-				_listener.exitLevel();
+				_actionListener.exitLevel();
 				break;
 			case Input.Keys.UP:
 				_moveCommands.add(TiledStage.DIRECTION.NORTH);
@@ -147,8 +147,8 @@ public class Player extends PlayerActor {
 
 	protected boolean scrolled(InputEvent event, float x, float y, int amount) {
 		super.scrolled(event, x, y, amount);
-		_zoom = Math.min(Math.max(_zoom + (float) amount / 10, MIN_ZOOM), MAX_ZOOM);
-		_listener.setZoom(_zoom);
+		_zoom = Math.min(Math.max(_zoom + (float) amount / 10, ZOOM_MIN), ZOOM_MAX);
+		_actionListener.setZoom(_zoom);
 		return true;
 	}
 
@@ -159,7 +159,7 @@ public class Player extends PlayerActor {
 		return SUBTICKS;
 	}
 
-	public interface Listener {
+	public interface ActionListener {
 		void resetLevel();
 
 		void exitLevel();

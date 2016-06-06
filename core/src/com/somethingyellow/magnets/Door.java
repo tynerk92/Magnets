@@ -10,7 +10,6 @@ public class Door extends TiledStageActor {
 	public static final String STATE_OPENED = "Opened";
 	public static final String STATE_OPENING = "Opening";
 	public static final String STATE_CLOSING = "Closing";
-	public static final String STATE_CLOSED = "Closed";
 	public static final String ACTION_OPEN = "Open";
 	public static final String ACTION_CLOSE = "Close";
 	public static final int[] SUBTICKS = new int[]{
@@ -20,32 +19,29 @@ public class Door extends TiledStageActor {
 	private boolean _isOpen; // whether the door IS open
 	private boolean _toOpen; // whether the door SHOULD be open
 
-	public void initialize(TiledStage stage, boolean[] bodyArea, int bodyWidth, HashMap<String, FrameSequence> animationFrames,
+	public void initialize(boolean[] bodyArea, int bodyWidth, HashMap<String, FrameSequence> animationFrames,
 	                       TiledStage.Coordinate origin, boolean toOpen) {
-		super.initialize(stage, bodyArea, bodyWidth, animationFrames, origin);
+		super.initialize(bodyArea, bodyWidth, animationFrames, origin);
 
 		_toOpen = toOpen;
-		addState(STATE_CLOSED);
+		_isOpen = false;
 
 		// Frame events
 		getStateFrames(STATE_OPENING).setListener(new TiledStageActor.FrameSequenceListener() {
 			@Override
 			public void ended() {
-				addState(STATE_OPENED).removeState(STATE_OPENING);
+				addState(STATE_OPENED);
+				removeState(STATE_OPENING);
 			}
 		});
 
 		getStateFrames(STATE_CLOSING).setListener(new TiledStageActor.FrameSequenceListener() {
 			@Override
 			public void ended() {
-				addState(STATE_CLOSED).removeState(STATE_CLOSING);
+				addState(STATE_DEFAULT);
+				removeState(STATE_CLOSING);
 			}
 		});
-	}
-
-	@Override
-	public void reset() {
-		_isOpen = false;
 	}
 
 	@Override
@@ -76,12 +72,14 @@ public class Door extends TiledStageActor {
 
 
 			if (_isOpen) {
-				if (hasState(STATE_CLOSED)) {
-					addState(STATE_OPENING).removeState(STATE_CLOSED);
+				if (hasState(STATE_DEFAULT)) {
+					addState(STATE_OPENING);
+					removeState(STATE_DEFAULT);
 				}
 			} else {
 				if (hasState(STATE_OPENED)) {
-					addState(STATE_CLOSING).removeState(STATE_OPENED);
+					addState(STATE_CLOSING);
+					removeState(STATE_OPENED);
 				}
 			}
 

@@ -31,8 +31,9 @@ public class TiledStage extends Stage {
 	private OrthographicCamera _camera = new OrthographicCamera();
 	private TiledStageActor _cameraFocalActor;
 	private TiledStageActor _inputFocalActor;
-	private HashMap<String, TiledStageActor> _actorsByName = new HashMap<String, TiledStageActor>();
-	private HashMap<TiledStageActor, Integer> _actorsCoordinateCount = new HashMap<TiledStageActor, Integer>();
+	private HashMap<String, TiledStageBody> _bodiesByName = new HashMap<String, TiledStageBody>();
+	private ArrayList<TiledStageBody> _tempBodies = new ArrayList<TiledStageBody>();
+	private HashSet<TiledStageBody> _bodies = new HashSet<TiledStageBody>();
 	private ArrayList<HashSet<TiledStageActor>> _subTicksToActors;
 	private ArrayList<TiledStageActor> _tempActors = new ArrayList<TiledStageActor>();
 	private int _tileWidth;
@@ -43,14 +44,14 @@ public class TiledStage extends Stage {
 	private float _tickTime;
 	private float _tickDuration;
 	private ArrayList<Coordinate> _coordinates;
-	private String _actorsLayerName;
+	private String _bodiesLayerName;
 	private HashMap<String, TiledMapTileLayer> _tileLayers = new HashMap<String, TiledMapTileLayer>();
 	private LinkedList<TiledObject> _objects = new LinkedList<TiledObject>();
 
-	public TiledStage(String actorsLayerName, float screenWidth, float screenHeight,
+	public TiledStage(String bodiesLayerName, float screenWidth, float screenHeight,
 	                  int maxSubTicks, float tickDuration) {
 
-		_actorsLayerName = actorsLayerName;
+		_bodiesLayerName = bodiesLayerName;
 		_maxSubTicks = maxSubTicks;
 		_tickTime = 0f;
 		_tickDuration = tickDuration;
@@ -191,15 +192,16 @@ public class TiledStage extends Stage {
 	public void load(TiledMap map) {
 		_map = map;
 
-		_actorsCoordinateCount.clear();
-		_actorsByName.clear();
+		_bodies.clear();
+		_tempBodies.clear();
+		_bodiesByName.clear();
 		_tileLayers.clear();
 		_objects.clear();
 		for (int i = 0; i < _maxSubTicks; i++) {
 			_subTicksToActors.get(i).clear();
 		}
 
-		_mapRenderer = new TiledStageMapRenderer(this, _map, getBatch(), _actorsLayerName);
+		_mapRenderer = new TiledStageMapRenderer(this, _map, getBatch(), _bodiesLayerName);
 		MapProperties props = _map.getProperties();
 		_tileWidth = props.get("tilewidth", Integer.class);
 		_tileHeight = props.get("tileheight", Integer.class);
@@ -240,8 +242,10 @@ public class TiledStage extends Stage {
 
 		while (_tickTime >= _tickDuration) {
 
-			for (TiledStageActor actor : _actorsCoordinateCount.keySet()) {
-				actor.act();
+			_tempBodies.clear();
+			_tempBodies.addAll(_bodies);
+			for (TiledStageBody body : _tempBodies) {
+				body.act();
 			}
 
 			for (int i = 0; i < _maxSubTicks; i++) {
@@ -309,46 +313,34 @@ public class TiledStage extends Stage {
 		return getCoordinate(Math.floorDiv((int) y, _tileHeight), Math.floorDiv((int) x, _tileWidth));
 	}
 
-	public TiledStage addActor(TiledStageActor actor, Coordinate coordinate) {
-		if (coordinate.addActor(actor)) {
-			if (_actorsCoordinateCount.containsKey(actor)) {
-				_actorsCoordinateCount.put(actor, _actorsCoordinateCount.get(actor));
-			} else {
-				_actorsCoordinateCount.put(actor, 1);
+	public void addBody(TiledStageBody body) {
+		super.addActor(body);
+		_bodies.add(body);
 
-				// Considering what subticks the actors listen to, add to hashmap
-				for (int i : actor.subticks()) {
-					_subTicksToActors.get(i).add(actor);
-				}
+		if (body instanceof TiledStageActor) {
+			TiledStageActor actor = (TiledStageActor) body;
+			// Considering what subticks the bodies listen to, add to hashmap
+			for (int i : actor.subticks()) {
+				_subTicksToActors.get(i).add(actor);
 			}
 		}
-		return this;
 	}
 
-	public TiledStage removeActor(TiledStageActor actor, Coordinate coordinate) {
-		if (coordinate.removeActor(actor)) {
-			if (_actorsCoordinateCount.containsKey(actor)) {
-				if (_actorsCoordinateCount.get(actor) == 1) {
-					_actorsCoordinateCount.remove(actor);
+	public void removeBody(TiledStageBody body) {
+		_bodies.remove(body);
 
-					for (HashSet<TiledStageActor> actors : _subTicksToActors) {
-						if (actors.contains(actor)) actors.remove(actor);
-					}
-				} else {
-					_actorsCoordinateCount.put(actor, _actorsCoordinateCount.get(actor) - 1);
-				}
-			}
+		for (HashSet<TiledStageActor> actors : _subTicksToActors) {
+			if (body instanceof TiledStageActor) actors.remove(body);
 		}
-		return this;
 	}
 
-	public TiledStageActor getActor(String name) {
-		// Search through actors in coordinate system if not memoized
+	public TiledStageBody getBody(String name) {
+		// Search through bodies in coordinate system if not memoized
 		// If found, memoize actor by name
-		if (!_actorsByName.containsKey(name)) {
-			for (TiledStageActor actor : _actorsCoordinateCount.keySet()) {
-				if (actor.getName() != null && actor.getName().equals(name)) {
-					_actorsByName.put(name, actor);
+		if (!_bodiesByName.containsKey(name)) {
+			for (TiledStageBody body : _bodies) {
+				if (body.getName() != null && body.getName().equals(name)) {
+					_bodiesByName.put(name, body);
 					break;
 				}
 			}
@@ -356,12 +348,12 @@ public class TiledStage extends Stage {
 
 		// Check if actor exists in coordinate system
 		// If not, remove it from hashmap of names
-		TiledStageActor actor = _actorsByName.get(name);
-		if (actor == null || !_actorsCoordinateCount.containsKey(actor)) {
-			_actorsByName.remove(name);
+		TiledStageBody body = _bodiesByName.get(name);
+		if (body == null || !_bodies.contains(body)) {
+			_bodiesByName.remove(name);
 			return null;
 		} else {
-			return _actorsByName.get(name);
+			return body;
 		}
 	}
 
@@ -385,36 +377,32 @@ public class TiledStage extends Stage {
 		return new TilesIterator();
 	}
 
-	public Set<TiledStageActor> actors() {
-		return _actorsCoordinateCount.keySet();
+	public Set<TiledStageBody> bodies() {
+		return _bodies;
 	}
 
 	public LinkedList<TiledObject> objects() {
 		return _objects;
 	}
 
-	public TiledStage setScreenSize(float screenWidth, float screenHeight) {
+	public void setScreenSize(float screenWidth, float screenHeight) {
 		_camera.setToOrtho(false, screenWidth, screenHeight);
 		if (_cameraFocalActor != null) _camera.position.set(_cameraFocalActor.center(), 0);
-		return this;
 	}
 
-	public TiledStage setCameraFocalActor(TiledStageActor actor) {
+	public void setCameraFocalActor(TiledStageActor actor) {
 		_cameraFocalActor = actor;
 		_camera.position.set(_cameraFocalActor.center(), 0);
-		return this;
 	}
 
-	public TiledStage setInputFocalActor(TiledStageActor actor) {
+	public void setInputFocalActor(TiledStageActor actor) {
 		_inputFocalActor = actor;
 		setKeyboardFocus(actor);
 		setScrollFocus(actor);
-		return this;
 	}
 
-	public TiledStage setZoom(float zoom) {
+	public void setZoom(float zoom) {
 		_camera.zoom = zoom;
-		return this;
 	}
 
 	public enum DIRECTION {
@@ -456,9 +444,9 @@ public class TiledStage extends Stage {
 		}
 	}
 
-
 	public class Coordinate implements Comparable<Coordinate> {
-		private HashSet<TiledStageActor> _actors;
+		private HashSet<TiledStageBody> _bodies = new HashSet<TiledStageBody>();
+		private HashSet<TiledStageActor> _actors = new HashSet<TiledStageActor>();
 		private int _row;
 		private int _col;
 		private HashMap<String, Cell> _cells;
@@ -466,7 +454,6 @@ public class TiledStage extends Stage {
 		public Coordinate(int row, int col) {
 			_row = row;
 			_col = col;
-			_actors = new HashSet<TiledStageActor>();
 
 			_cells = new HashMap<String, Cell>(_tileLayers.size());
 			for (String layerName : _tileLayers.keySet()) {
@@ -478,12 +465,20 @@ public class TiledStage extends Stage {
 			return _actors;
 		}
 
-		private boolean addActor(TiledStageActor actor) {
-			return _actors.add(actor);
+		public TiledStage stage() {
+			return TiledStage.this;
 		}
 
-		private boolean removeActor(TiledStageActor actor) {
-			return _actors.remove(actor);
+		public void add(TiledStageBody body) {
+			_bodies.add(body);
+			if (body instanceof TiledStageActor) {
+				_actors.add((TiledStageActor) body);
+			}
+		}
+
+		public void remove(TiledStageBody body) {
+			_bodies.remove(body);
+			if (body instanceof TiledStageActor) _actors.remove(body);
 		}
 
 		public DIRECTION getDirectionFrom(Coordinate sourceCoordinate) {
@@ -503,6 +498,31 @@ public class TiledStage extends Stage {
 				return (Math.abs(targetCoordinate._row - _row) <= range && targetCoordinate._col == _col) ||
 						(Math.abs(targetCoordinate._col - _col) <= range && targetCoordinate._row == _row);
 			}
+		}
+
+		public TreeSet<Coordinate> getCoordinatesAtRange(int range, boolean includeDiagonally) {
+			TreeSet<Coordinate> coordinates = new TreeSet<Coordinate>();
+			Coordinate coordinate;
+
+			if (includeDiagonally) {
+				for (int r = _row - range; r <= _row + range; r += 2 * range) {
+					for (int c = _col - range; c <= _col + range; c += 2 * range) {
+						coordinate = getCoordinate(r, c);
+						if (coordinate != null) coordinates.add(coordinate);
+					}
+				}
+			} else {
+				for (int r = _row - range; r <= _row + range; r += 2 * range) {
+					coordinate = getCoordinate(r, _col);
+					if (coordinate != null) coordinates.add(coordinate);
+				}
+				for (int c = _col - range; c <= _col + range; c += 2 * range) {
+					coordinate = getCoordinate(_row, c);
+					if (coordinate != null) coordinates.add(coordinate);
+				}
+			}
+
+			return coordinates;
 		}
 
 		public TreeSet<Coordinate> getCoordinatesInRange(int range, boolean includeDiagonally) {
@@ -577,7 +597,7 @@ public class TiledStage extends Stage {
 
 		@Override
 		public String toString() {
-			return "(" + _row + ", " + _col + ") with actors: " + _actors.toString();
+			return "(" + _row + ", " + _col + ") with bodies: " + _bodies.toString();
 		}
 
 		@Override
@@ -618,9 +638,8 @@ public class TiledStage extends Stage {
 			return _cell.getTile();
 		}
 
-		public Cell removeTile() {
+		public void removeTile() {
 			if (_cell != null) _cell.setTile(null);
-			return this;
 		}
 	}
 

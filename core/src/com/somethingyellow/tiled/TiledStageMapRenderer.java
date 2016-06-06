@@ -9,11 +9,8 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.renderers.BatchTiledMapRenderer;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.LinkedList;
 
 import static com.badlogic.gdx.graphics.g2d.Batch.C1;
@@ -39,38 +36,38 @@ import static com.badlogic.gdx.graphics.g2d.Batch.Y4;
 
 public class TiledStageMapRenderer extends BatchTiledMapRenderer {
 	private TiledStage _stage;
-	private String _actorsLayerName;
-	private ArrayList<HashSet<TiledStageActor>> _actorsOnCoordinates;
-	private ArrayList<TiledStageActor> _tempActors = new ArrayList<TiledStageActor>();
+	private String _bodiesLayerName;
+	private ArrayList<HashSet<TiledStageBody>> _bodiesOnCoordinates;
+	private ArrayList<TiledStageBody> _tempBodies = new ArrayList<TiledStageBody>();
 
-	public TiledStageMapRenderer(TiledStage stage, TiledMap map, String actorsLayerName) {
+	public TiledStageMapRenderer(TiledStage stage, TiledMap map, String bodiesLayerName) {
 		super(map);
 		_stage = stage;
-		_actorsLayerName = actorsLayerName;
+		_bodiesLayerName = bodiesLayerName;
 	}
 
-	public TiledStageMapRenderer(TiledStage stage, TiledMap map, Batch batch, String actorsLayerName) {
+	public TiledStageMapRenderer(TiledStage stage, TiledMap map, Batch batch, String bodiesLayerName) {
 		super(map, batch);
 		_stage = stage;
-		_actorsLayerName = actorsLayerName;
+		_bodiesLayerName = bodiesLayerName;
 	}
 
-	public TiledStageMapRenderer(TiledStage stage, TiledMap map, float unitScale, String actorsLayerName) {
+	public TiledStageMapRenderer(TiledStage stage, TiledMap map, float unitScale, String bodiesLayerName) {
 		super(map, unitScale);
 		_stage = stage;
-		_actorsLayerName = actorsLayerName;
+		_bodiesLayerName = bodiesLayerName;
 	}
 
-	public TiledStageMapRenderer(TiledStage stage, TiledMap map, float unitScale, Batch batch, String actorsLayerName) {
+	public TiledStageMapRenderer(TiledStage stage, TiledMap map, float unitScale, Batch batch, String bodiesLayerName) {
 		super(map, unitScale, batch);
 		_stage = stage;
-		_actorsLayerName = actorsLayerName;
+		_bodiesLayerName = bodiesLayerName;
 	}
 
 	private void initialize() {
-		_actorsOnCoordinates = new ArrayList<HashSet<TiledStageActor>>(_stage.tileRows() * _stage.tileColumns());
+		_bodiesOnCoordinates = new ArrayList<HashSet<TiledStageBody>>(_stage.tileRows() * _stage.tileColumns());
 		for (int i = 0; i < _stage.tileRows() * _stage.tileColumns(); i++) {
-			_actorsOnCoordinates.add(i, new HashSet<TiledStageActor>());
+			_bodiesOnCoordinates.add(i, new HashSet<TiledStageBody>());
 		}
 	}
 
@@ -100,75 +97,13 @@ public class TiledStageMapRenderer extends BatchTiledMapRenderer {
 		LinkedList<TiledStage.Coordinate> bodyCoordinates;
 
 		boolean isActorsLayer = false;
-		if (layer.getName().equals(_actorsLayerName)) {
-			updateActorsOnCoordinates();
+		if (layer.getName().equals(_bodiesLayerName)) {
+			updateBodiesOnCoordinates();
 			isActorsLayer = true;
 		}
 
 		for (int row = row2; row >= row1; row--) {
 			float x = xStart;
-
-			if (isActorsLayer) {
-
-				_tempActors.clear();
-				for (int col = col1; col <= col2; col++) {
-					for (TiledStageActor actor : _actorsOnCoordinates.get(row * _stage.tileColumns() + col)) {
-						_tempActors.add(actor);
-					}
-				}
-				_tempActors.sort(new Comparator<TiledStageActor>() {
-					@Override
-					public int compare(TiledStageActor actor1, TiledStageActor actor2) {
-						return actor1.actorDepth() - actor2.actorDepth();
-					}
-				});
-
-				// In ascending actor depth
-				for (TiledStageActor actor : _tempActors) {
-					TiledStage.Coordinate renderOrigin = getRenderOrigin(actor);
-					bodyCoordinates = actor.getBodyCoordinates(renderOrigin);
-
-					for (TiledStage.Coordinate coordinate : bodyCoordinates) {
-						if (coordinate.row() != row) continue;
-
-						// if there is some actor on both this and the above coordinate on the same layer with a higher actor depth
-						// or the actor's body also exists in the above coordinate, do not render protrusion
-						boolean ifRenderProtrusion = true;
-
-						int aboveIndex = (coordinate.row() + 1) * _stage.tileColumns() + coordinate.column();
-						if (aboveIndex >= 0 && aboveIndex < _actorsOnCoordinates.size()) {
-							HashSet<TiledStageActor> aboveActors = _actorsOnCoordinates.get(aboveIndex);
-							int index = coordinate.row() * _stage.tileColumns() + coordinate.column();
-							for (TiledStageActor aboveActor : aboveActors) {
-								if ((aboveActor.actorDepth() > actor.actorDepth() && _actorsOnCoordinates.get(index).contains(aboveActor)) ||
-										aboveActor == actor) {
-									ifRenderProtrusion = false;
-									break;
-								}
-							}
-						}
-
-						textureRegions = actor.textureRegions();
-						int rowDiff = coordinate.row() - renderOrigin.row();
-						int colDiff = coordinate.column() - renderOrigin.column();
-
-						for (TextureRegion textureRegion : textureRegions) {
-							int protrudeHeight = textureRegion.getTexture().getHeight() - actor.bodyHeight() * _stage.tileHeight();
-							if (ifRenderProtrusion) {
-								if (rowDiff == actor.bodyHeight() - 1) {
-									textureRegion.setRegion(colDiff * _stage.tileWidth(), 0, _stage.tileWidth(), protrudeHeight + _stage.tileHeight());
-								} else {
-									textureRegion.setRegion(colDiff * _stage.tileWidth(), protrudeHeight + (actor.bodyHeight() - 2 - rowDiff) * _stage.tileHeight(), _stage.tileWidth(), _stage.tileHeight() * 2);
-								}
-							} else {
-								textureRegion.setRegion(colDiff * _stage.tileWidth(), protrudeHeight + (actor.bodyHeight() - 1 - rowDiff) * _stage.tileHeight(), _stage.tileWidth(), _stage.tileHeight());
-							}
-
-							batch.draw(textureRegion, actor.getX() + _stage.tileWidth() * colDiff, actor.getY() + _stage.tileHeight() * rowDiff + actor.getZ());
-						}
-					}
-				}
-			}
 
 			for (int col = col1; col <= col2; col++) {
 				final TiledMapTileLayer.Cell cell = layer.getCell(col, row);
@@ -288,27 +223,89 @@ public class TiledStageMapRenderer extends BatchTiledMapRenderer {
 				x += layerTileWidth;
 			}
 
+			if (isActorsLayer) {
+
+				_tempBodies.clear();
+				for (int col = col1; col <= col2; col++) {
+					for (TiledStageBody body : _bodiesOnCoordinates.get(row * _stage.tileColumns() + col)) {
+						_tempBodies.add(body);
+					}
+				}
+				_tempBodies.sort(new Comparator<TiledStageBody>() {
+					@Override
+					public int compare(TiledStageBody body1, TiledStageBody body2) {
+						return body1.renderDepth() - body2.renderDepth();
+					}
+				});
+
+				// In ascending actor depth
+				for (TiledStageBody body : _tempBodies) {
+					TiledStage.Coordinate renderOrigin = getRenderOrigin(body);
+					bodyCoordinates = body.getBodyCoordinates(renderOrigin);
+
+					for (TiledStage.Coordinate coordinate : bodyCoordinates) {
+						if (coordinate.row() != row) continue;
+
+						// if there is some body on both this and the above coordinate on the same layer with a higher body depth
+						// or the body's body also exists in the above coordinate, do not render protrusion
+						boolean ifRenderProtrusion = true;
+
+						int aboveIndex = (coordinate.row() + 1) * _stage.tileColumns() + coordinate.column();
+						if (aboveIndex >= 0 && aboveIndex < _bodiesOnCoordinates.size()) {
+							HashSet<TiledStageBody> aboveActors = _bodiesOnCoordinates.get(aboveIndex);
+							int index = coordinate.row() * _stage.tileColumns() + coordinate.column();
+							for (TiledStageBody aboveBody : aboveActors) {
+								if ((aboveBody.renderDepth() > body.renderDepth() && _bodiesOnCoordinates.get(index).contains(aboveBody)) ||
+										aboveBody == body) {
+									ifRenderProtrusion = false;
+									break;
+								}
+							}
+						}
+
+						textureRegions = body.textureRegions();
+						int rowDiff = coordinate.row() - renderOrigin.row();
+						int colDiff = coordinate.column() - renderOrigin.column();
+
+						for (TextureRegion textureRegion : textureRegions) {
+							int protrudeHeight = textureRegion.getTexture().getHeight() - body.bodyHeight() * _stage.tileHeight();
+							if (ifRenderProtrusion) {
+								if (rowDiff == body.bodyHeight() - 1) {
+									textureRegion.setRegion(colDiff * _stage.tileWidth(), 0, _stage.tileWidth(), protrudeHeight + _stage.tileHeight());
+								} else {
+									textureRegion.setRegion(colDiff * _stage.tileWidth(), protrudeHeight + (body.bodyHeight() - 2 - rowDiff) * _stage.tileHeight(), _stage.tileWidth(), _stage.tileHeight() * 2);
+								}
+							} else {
+								textureRegion.setRegion(colDiff * _stage.tileWidth(), protrudeHeight + (body.bodyHeight() - 1 - rowDiff) * _stage.tileHeight(), _stage.tileWidth(), _stage.tileHeight());
+							}
+
+							batch.draw(textureRegion, body.getX() + _stage.tileWidth() * colDiff, body.getY() + _stage.tileHeight() * rowDiff + body.getZ());
+						}
+					}
+				}
+			}
+
 			y -= layerTileHeight;
 		}
 	}
 
-	private void updateActorsOnCoordinates() {
-		if (_actorsOnCoordinates == null) initialize();
+	private void updateBodiesOnCoordinates() {
+		if (_bodiesOnCoordinates == null) initialize();
 
-		// Clear previous rows of actors
+		// Clear previous rows of bodies
 		for (int i = 0; i < _stage.tileRows() * _stage.tileColumns(); i++) {
-			_actorsOnCoordinates.get(i).clear();
+			_bodiesOnCoordinates.get(i).clear();
 		}
 
-		for (TiledStageActor actor : _stage.actors()) {
-			for (TiledStage.Coordinate bodyCoordinate : actor.getBodyCoordinates(getRenderOrigin(actor))) {
-				_actorsOnCoordinates.get(bodyCoordinate.row() * _stage.tileColumns() + bodyCoordinate.column()).add(actor);
+		for (TiledStageBody body : _stage.bodies()) {
+			for (TiledStage.Coordinate bodyCoordinate : body.getBodyCoordinates(getRenderOrigin(body))) {
+				_bodiesOnCoordinates.get(bodyCoordinate.row() * _stage.tileColumns() + bodyCoordinate.column()).add(body);
 			}
 		}
 	}
 
-	private TiledStage.Coordinate getRenderOrigin(TiledStageActor actor) {
-		TiledStage.Coordinate renderOrigin = _stage.getCoordinateAt(actor.getX(), actor.getY());
-		return (renderOrigin == null) ? actor.origin() : renderOrigin;
+	private TiledStage.Coordinate getRenderOrigin(TiledStageBody body) {
+		TiledStage.Coordinate renderOrigin = _stage.getCoordinateAt(body.getX(), body.getY());
+		return (renderOrigin == null) ? body.origin() : renderOrigin;
 	}
 }

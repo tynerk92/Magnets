@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.Set;
 
 public class Button extends TiledStageActor {
-	public static final String STATE_OFF = "Off";
 	public static final String STATE_ON = "On";
 	public static final String STATE_OFFING = "Offing";
 	public static final String STATE_ONING = "Oning";
@@ -18,32 +17,28 @@ public class Button extends TiledStageActor {
 
 	private boolean _isOn;
 
-	public void initialize(TiledStage stage, boolean[] bodyArea, int bodyWidth, HashMap<String, FrameSequence> animationFrames,
+	public void initialize(boolean[] bodyArea, int bodyWidth, HashMap<String, FrameSequence> animationFrames,
 	                       TiledStage.Coordinate origin) {
-		super.initialize(stage, bodyArea, bodyWidth, animationFrames, origin);
+		super.initialize(bodyArea, bodyWidth, animationFrames, origin);
 
-		addState(STATE_OFF);
+		_isOn = false;
 
 		// Frame events
 		getStateFrames(STATE_ONING).setListener(new TiledStageActor.FrameSequenceListener() {
 			@Override
 			public void ended() {
-				addState(STATE_ON).removeState(STATE_ONING);
+				addState(STATE_ON);
+				removeState(STATE_ONING);
 			}
 		});
 
 		getStateFrames(STATE_OFFING).setListener(new TiledStageActor.FrameSequenceListener() {
 			@Override
 			public void ended() {
-				addState(STATE_OFF).removeState(STATE_OFFING);
+				addState(STATE_DEFAULT);
+				removeState(STATE_OFFING);
 			}
 		});
-	}
-
-	@Override
-	public void reset() {
-		super.reset();
-		_isOn = false;
 	}
 
 	@Override
@@ -64,12 +59,14 @@ public class Button extends TiledStageActor {
 		} else if (subtick == PlayScreen.SUBTICKS.GRAPHICS.ordinal()) {
 
 			if (_isOn) {
-				if (hasState(STATE_OFF)) {
-					addState(STATE_ONING).removeState(STATE_OFF);
+				if (hasState(STATE_DEFAULT)) {
+					addState(STATE_ONING);
+					removeState(STATE_DEFAULT);
 				}
 			} else {
 				if (hasState(STATE_ON)) {
-					addState(STATE_OFFING).removeState(STATE_ON);
+					addState(STATE_OFFING);
+					removeState(STATE_ON);
 				}
 			}
 
