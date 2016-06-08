@@ -84,12 +84,13 @@ public class TiledStageMapRenderer extends BatchTiledMapRenderer {
 					"varying vec2 v_texCoord;\n" +
 					"\n" +
 					"uniform sampler2D u_texture; // diffuse map\n" +
+					"uniform float intensity;\n" +
 					"\n" +
 					"void main() {\n" +
 					"\tgl_FragColor = v_color * texture2D(u_texture, v_texCoord);\n" +
 					"\n" +
 					"    if (gl_FragColor[3] > 0.0) {\n" +
-					"        gl_FragColor = vec4(0.0, 0.0, 0.0, 0.5);\n" +
+					"        gl_FragColor = vec4(0.0, 0.0, 0.0, intensity);\n" +
 					"    }\n" +
 					"}\n";
 	public static final String VERTEX_SHADER =
@@ -112,6 +113,7 @@ public class TiledStageMapRenderer extends BatchTiledMapRenderer {
 	public static String layerNameBodies = "Bodies";
 	public static String layerNameShadows = "Shadows";
 	public static float shadowHeight = 0.2f;
+	public static float shadowIntensity = 0.1f;
 
 	private TiledStage _stage;
 	private ShaderProgram _lightingShaderProgram = new ShaderProgram(VERTEX_SHADER, LIGHTING_FRAGMENT_SHADER);
@@ -203,6 +205,10 @@ public class TiledStageMapRenderer extends BatchTiledMapRenderer {
 		_lightingShaderProgram.end();
 		_frameBuffer.getColorBufferTexture().bind(1);
 		_blackTexture.bind(0);
+
+		_shadowShaderProgram.begin();
+		_shadowShaderProgram.setUniformf("intensity", shadowIntensity);
+		_shadowShaderProgram.end();
 
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);

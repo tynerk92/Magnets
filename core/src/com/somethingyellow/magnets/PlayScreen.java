@@ -51,6 +51,7 @@ public class PlayScreen implements Screen, Player.ActionListener, Lodestone.Acti
 		TiledStageMapRenderer.layerNameBodies = Config.LAYER_NAME_ACTORS;
 		TiledStageMapRenderer.layerNameShadows = Config.LAYER_NAME_SHADOWS;
 		TiledStageMapRenderer.shadowHeight = Config.MAP_SHADOW_HEIGHT;
+		TiledStageMapRenderer.shadowIntensity = Config.MAP_SHADOW_INTENSITY;
 	}
 
 	public static boolean[] ExtractBodyArea(TiledMapTile tile) {
@@ -207,7 +208,6 @@ public class PlayScreen implements Screen, Player.ActionListener, Lodestone.Acti
 				final String action = prop.substring(Config.TILE_PREFIX_ACTION.length());
 
 				String expressionString = TiledStage.ParseProp(object.properties(), prop);
-				final String actionName = Config.TILE_PREFIX_NAME + body.getName() + Config.TILE_PREFIX_ACTION + action;
 
 				// Replace and/or/not and add statement to logicmachine
 				expressionString = expressionString.replace(Config.TILE_EXPRESSION_AND, LogicMachine.TERM_AND).

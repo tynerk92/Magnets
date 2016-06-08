@@ -12,6 +12,7 @@ public class Config {
 	public static final float MAP_AMBIENT_COLOR_GREEN_DEFAULT = 0.6f;
 	public static final float MAP_AMBIENT_COLOR_BLUE_DEFAULT = 0.6f;
 	public static final float MAP_SHADOW_HEIGHT = 0.2f;
+	public static final float MAP_SHADOW_INTENSITY = 0.25f;
 
 	// Player properties
 	public static final int PLAYER_MOVE_TICKS = 3;
