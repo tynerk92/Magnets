@@ -67,7 +67,7 @@ public class TiledStage extends Stage {
 		getViewport().setCamera(_camera);
 	}
 
-	public static boolean ParseBooleanProp(MapProperties props, String propName) {
+	public static Boolean ParseBooleanProp(MapProperties props, String propName) {
 		Object propObject = props.get(propName);
 		return Boolean.parseBoolean(propObject.toString());
 	}
@@ -78,8 +78,9 @@ public class TiledStage extends Stage {
 		return Boolean.parseBoolean(propObject.toString());
 	}
 
-	public static int ParseIntegerProp(MapProperties props, String propName) {
+	public static Integer ParseIntegerProp(MapProperties props, String propName) {
 		Object propObject = props.get(propName);
+		if (propObject == null) return null;
 		if (propObject instanceof Float) {
 			return Math.round((Float) propObject);
 		} else {
@@ -97,8 +98,9 @@ public class TiledStage extends Stage {
 		}
 	}
 
-	public static float ParseFloatProp(MapProperties props, String propName) {
+	public static Float ParseFloatProp(MapProperties props, String propName) {
 		Object propObject = props.get(propName);
+		if (propObject == null) return null;
 		if (propObject instanceof Float) {
 			return (Float) propObject;
 		} else {
@@ -108,10 +110,10 @@ public class TiledStage extends Stage {
 
 	public static float ParseFloatProp(MapProperties props, String propName, float defaultValue) {
 		Object propObject = props.get(propName);
+		if (propObject == null) return defaultValue;
 		if (propObject instanceof Float) {
 			return (Float) propObject;
 		} else {
-			if (propObject == null) return defaultValue;
 			return Float.parseFloat(propObject.toString());
 		}
 	}
@@ -230,7 +232,7 @@ public class TiledStage extends Stage {
 		_inputFocalActor = null;
 
 		if (_mapRenderer != null) _mapRenderer.dispose();
-		_mapRenderer = new TiledStageMapRenderer(this, _map, getBatch(), _bodiesLayerName);
+		_mapRenderer = new TiledStageMapRenderer(this, _map, getBatch());
 		MapProperties props = _map.getProperties();
 		_tileWidth = props.get("tilewidth", Integer.class);
 		_tileHeight = props.get("tileheight", Integer.class);
@@ -464,12 +466,12 @@ public class TiledStage extends Stage {
 			_object = object;
 
 			// Determine origin of object relative to coordinate system
-			int x = ParseIntegerProp(_object.getProperties(), "x");
-			int y = ParseIntegerProp(_object.getProperties(), "y") + ParseIntegerProp(_object.getProperties(), "height");
+			int x = ParseIntegerProp(_object.getProperties(), "x", 0);
+			int y = ParseIntegerProp(_object.getProperties(), "y", 0) + ParseIntegerProp(_object.getProperties(), "height", 0);
 			_origin = getCoordinateAt(x, y);
 
 			// get tile defined by "gid" property of object
-			int gid = ParseIntegerProp(_object.getProperties(), "gid");
+			int gid = ParseIntegerProp(_object.getProperties(), "gid", 0);
 			_tile = _map.getTileSets().getTile(gid);
 		}
 
@@ -509,6 +511,10 @@ public class TiledStage extends Stage {
 
 		public HashSet<TiledStageActor> actors() {
 			return _actors;
+		}
+
+		public HashSet<TiledStageBody> bodies() {
+			return _bodies;
 		}
 
 		public TiledStage stage() {

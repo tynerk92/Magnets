@@ -39,7 +39,7 @@ public class Player extends TiledStagePlayer {
 		if (subtick == PlayScreen.SUBTICKS.PLAYER_MOVEMENT.ordinal()) {
 
 			if (!isMoving()) {
-				if (origin().getTileProp(Config.ACTORS_LAYER_NAME, Config.TILE_TYPE, "").equals(Config.TILE_TYPE_EXIT)) {
+				if (origin().getTileProp(Config.LAYER_NAME_ACTORS, Config.TILE_TYPE, "").equals(Config.TILE_TYPE_EXIT)) {
 					_actionListener.exitLevel();
 				} else if (_moveCommands.isEmpty()) {
 					if (isKeyLeftHeld() && !isKeyRightHeld() && !isKeyUpHeld() && !isKeyDownHeld()) {
@@ -104,7 +104,7 @@ public class Player extends TiledStagePlayer {
 
 	@Override
 	public boolean bodyCanBeAt(TiledStage.Coordinate coordinate) {
-		if (coordinate.getTileProp(Config.ACTORS_LAYER_NAME, Config.TILE_TYPE, "").equals(Config.TILE_TYPE_WALL))
+		if (coordinate.getTileProp(Config.LAYER_NAME_ACTORS, Config.TILE_TYPE, "").equals(Config.TILE_TYPE_WALL))
 			return false;
 		for (TiledStageActor actor : coordinate.actors()) {
 			if (actor == this) continue;

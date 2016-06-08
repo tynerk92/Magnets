@@ -176,7 +176,7 @@ public class Lodestone extends TiledStageActor {
 
 	@Override
 	public boolean bodyCanBeAt(TiledStage.Coordinate coordinate) {
-		if (coordinate.getTileProp(Config.ACTORS_LAYER_NAME, Config.TILE_TYPE, "").equals(Config.TILE_TYPE_WALL))
+		if (coordinate.getTileProp(Config.LAYER_NAME_ACTORS, Config.TILE_TYPE, "").equals(Config.TILE_TYPE_WALL))
 			return false;
 		for (TiledStageActor actor : coordinate.actors()) {
 			if (actor == this) continue;

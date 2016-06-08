@@ -9,6 +9,8 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 
+import com.badlogic.gdx.maps.tiled.tiles.AnimatedTiledMapTile;
+import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
 import com.badlogic.gdx.utils.Pools;
 import com.somethingyellow.LogicMachine;
 import com.somethingyellow.tiled.*;
@@ -26,7 +28,6 @@ public class PlayScreen implements Screen, Player.ActionListener, Lodestone.Acti
 	private TiledMap _map;
 	private Player _player;
 	private HashMap<String, TiledMapTile> _tilesByReference = new HashMap<String, TiledMapTile>();
-	private HashMap<TiledMapTile, ArrayList<TiledStageActor.Frame>> _tileFramesByTile = new HashMap<TiledMapTile, ArrayList<TiledStageActor.Frame>>();
 	private LogicMachine _logicMachine = new LogicMachine();
 	private TmxMapLoader _tmxMapLoader = new TmxMapLoader();
 	private LinkedList<TiledStageBody> _bodies = new LinkedList<TiledStageBody>();
@@ -47,6 +48,9 @@ public class PlayScreen implements Screen, Player.ActionListener, Lodestone.Acti
 		TiledStageMapRenderer.ambientColorRedDefault = Config.MAP_AMBIENT_COLOR_RED_DEFAULT;
 		TiledStageMapRenderer.ambientColorGreenDefault = Config.MAP_AMBIENT_COLOR_GREEN_DEFAULT;
 		TiledStageMapRenderer.ambientColorBlueDefault = Config.MAP_AMBIENT_COLOR_BLUE_DEFAULT;
+		TiledStageMapRenderer.layerNameBodies = Config.LAYER_NAME_ACTORS;
+		TiledStageMapRenderer.layerNameShadows = Config.LAYER_NAME_SHADOWS;
+		TiledStageMapRenderer.shadowHeight = Config.MAP_SHADOW_HEIGHT;
 	}
 
 	public static boolean[] ExtractBodyArea(TiledMapTile tile) {
@@ -145,16 +149,30 @@ public class PlayScreen implements Screen, Player.ActionListener, Lodestone.Acti
 	}
 
 	public TiledStageBody.FrameSequence getFrameSequence(TiledMapTile tile) {
-		if (!_tileFramesByTile.containsKey(tile)) {
-			_tileFramesByTile.put(tile, TiledStageActor.FrameSequence.TileToFrames(tile, _tiledStage.tickDuration()));
+		ArrayList<TiledStageBody.Frame> frames;
+
+		if (tile instanceof AnimatedTiledMapTile) {
+			AnimatedTiledMapTile animatedTile = (AnimatedTiledMapTile) tile;
+			frames = new ArrayList<TiledStageBody.Frame>(animatedTile.getFrameTiles().length);
+			int[] intervals = animatedTile.getAnimationIntervals();
+			StaticTiledMapTile[] staticTiles = animatedTile.getFrameTiles();
+
+			for (int i = 0; i < staticTiles.length; i++) {
+				frames.add(i, new TiledStageBody.Frame(staticTiles[i].getTextureRegion(), (float) intervals[i] / 1000, ExtractRenderDepth(animatedTile)));
+			}
+		} else if (tile instanceof StaticTiledMapTile) {
+			frames = new ArrayList<TiledStageBody.Frame>(1);
+			frames.add(new TiledStageBody.Frame(tile.getTextureRegion(), Config.GAME_TICK_DURATION, ExtractRenderDepth(tile)));
+		} else {
+			frames = new ArrayList<TiledStageBody.Frame>();
 		}
 
-		return new TiledStageActor.FrameSequence(_tileFramesByTile.get(tile), ExtractRenderDepth(tile));
+		return new TiledStageActor.FrameSequence(frames);
 	}
 
 	public void processProperties(TiledStageBody body, TiledMapTile tile) {
-		body.setRenderDepth(ExtractRenderDepth(tile));
 
+		// Light source
 		final TiledStageLightSource lightSource = getLightSource(tile);
 		if (lightSource != null) {
 			addLightSource(lightSource);
@@ -170,6 +188,13 @@ public class PlayScreen implements Screen, Player.ActionListener, Lodestone.Acti
 					lightSource.remove();
 				}
 			});
+		}
+
+		// Shadow
+		Integer shadowDisplacementY = TiledStage.ParseIntegerProp(tile.getProperties(), Config.TILE_SHADOW_DISPLACEMENT_Y);
+		if (shadowDisplacementY != null) {
+			body.setHasShadow(true);
+			body.setShadowDisplacementY(shadowDisplacementY);
 		}
 	}
 
@@ -242,7 +267,7 @@ public class PlayScreen implements Screen, Player.ActionListener, Lodestone.Acti
 	@Override
 	public void show() {
 		if (_tiledStage == null) {
-			_tiledStage = new TiledStage(Config.ACTORS_LAYER_NAME, SUBTICKS.values().length, Config.GAME_TICK_DURATION);
+			_tiledStage = new TiledStage(Config.LAYER_NAME_ACTORS, SUBTICKS.values().length, Config.GAME_TICK_DURATION);
 		}
 
 		Gdx.input.setInputProcessor(_tiledStage);
@@ -307,7 +332,6 @@ public class PlayScreen implements Screen, Player.ActionListener, Lodestone.Acti
 
 	public void unloadLevel() {
 		_tilesByReference.clear();
-		_tileFramesByTile.clear();
 		_logicMachine.clear();
 		_player = null;
 		for (TiledStageBody body : _bodies.toArray(new TiledStageBody[_bodies.size()])) {

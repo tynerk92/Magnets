@@ -3,13 +3,15 @@ package com.somethingyellow.magnets;
 public class Config {
 	// Game configuration
 	public static final float GAME_TICK_DURATION = 0.06f;
-	public static final String ACTORS_LAYER_NAME = "Walls and Objects";
+	public static final String LAYER_NAME_ACTORS = "Walls and Objects";
+	public static final String LAYER_NAME_SHADOWS = "Shadows";
 	public static final float CAMERA_PANNING_SMOOTH_RATIO = 0.1f;
 	public static final float CAMERA_ZOOM_SMOOTH_RATIO = 0.1f;
 	public static final float CAMERA_ZOOM_DEFAULT = 2f;
 	public static final float MAP_AMBIENT_COLOR_RED_DEFAULT = 0.6f;
 	public static final float MAP_AMBIENT_COLOR_GREEN_DEFAULT = 0.6f;
 	public static final float MAP_AMBIENT_COLOR_BLUE_DEFAULT = 0.6f;
+	public static final float MAP_SHADOW_HEIGHT = 0.2f;
 
 	// Player properties
 	public static final int PLAYER_MOVE_TICKS = 3;
@@ -72,4 +74,5 @@ public class Config {
 	public static final String TILE_LIGHTING_INTENSITY = "Lighting Intensity";
 	public static final String TILE_LIGHTING_DISPLACEMENT_X = "Lighting Displacement X";
 	public static final String TILE_LIGHTING_DISPLACEMENT_Y = "Lighting Displacement Y";
+	public static final String TILE_SHADOW_DISPLACEMENT_Y = "Shadow Displacement Y";
 }

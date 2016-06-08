@@ -16,6 +16,7 @@ import com.badlogic.gdx.maps.tiled.renderers.BatchTiledMapRenderer;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 
@@ -49,83 +50,106 @@ public class TiledStageMapRenderer extends BatchTiledMapRenderer {
 					"    #define LOWP\n" +
 					"#endif\n" +
 					"\n" +
-					"varying LOWP vec4 vColor;\n" +
-					"varying vec2 vTexCoord;\n" +
+					"varying LOWP vec4 v_color;\n" +
+					"varying vec2 v_texCoord;\n" +
 					"\n" +
-					"//texture samplers\n" +
-					"uniform sampler2D u_texture; //diffuse map\n" +
-					"uniform sampler2D u_lightmap;   //light map\n" +
+					"// texture samplers\n" +
+					"uniform sampler2D u_texture; // diffuse map\n" +
+					"uniform sampler2D u_lightmap;   // light map\n" +
 					"\n" +
-					"//additional parameters for the shader\n" +
-					"uniform vec2 resolution; //resolution of screen\n" +
-					"uniform LOWP vec4 ambientColor; //ambient RGB, alpha channel is intensity\n" +
+					"// additional parameters for the shader\n" +
+					"uniform vec2 resolution; // resolution of screen\n" +
+					"uniform LOWP vec4 ambientColor; // ambient RGB, alpha channel is intensity\n" +
 					"\n" +
 					"void main() {\n" +
-					"\tvec4 diffuseColor = texture2D(u_texture, vTexCoord);\n" +
-					"\tvec2 lighCoord = (gl_FragCoord.xy / resolution.xy);\n" +
-					"\tvec4 light = texture2D(u_lightmap, lighCoord);\n" +
+					"\tvec4 diffuseColor = texture2D(u_texture, v_texCoord);\n" +
+					"\tvec2 lightCoord = (gl_FragCoord.xy / resolution.xy);\n" +
+					"\tvec4 light = texture2D(u_lightmap, lightCoord);\n" +
 					"\n" +
 					"\tvec3 ambient = ambientColor.rgb * ambientColor.a;\n" +
 					"\tvec3 intensity = ambient + light.rgb;\n" +
 					" \tvec3 finalColor = diffuseColor.rgb * intensity;\n" +
 					"\n" +
-					"\tgl_FragColor = vColor * vec4(finalColor, diffuseColor.a);\n" +
+					"\tgl_FragColor = v_color * vec4(finalColor, diffuseColor.a);\n" +
 					"}\n";
-	public static final String LIGHTING_VERTEX_SHADER =
+	public static final String SHADOW_FRAGMENT_SHADER =
+			"#ifdef GL_ES\n" +
+					"    #define LOWP lowp\n" +
+					"    precision mediump float;\n" +
+					"#else\n" +
+					"    #define LOWP\n" +
+					"#endif\n" +
+					"\n" +
+					"varying LOWP vec4 v_color;\n" +
+					"varying vec2 v_texCoord;\n" +
+					"\n" +
+					"uniform sampler2D u_texture; // diffuse map\n" +
+					"\n" +
+					"void main() {\n" +
+					"\tgl_FragColor = v_color * texture2D(u_texture, v_texCoord);\n" +
+					"\n" +
+					"    if (gl_FragColor[3] > 0.0) {\n" +
+					"        gl_FragColor = vec4(0.0, 0.0, 0.0, 0.5);\n" +
+					"    }\n" +
+					"}\n";
+	public static final String VERTEX_SHADER =
 			"attribute vec4 a_position;\n" +
 					"attribute vec4 a_color;\n" +
 					"attribute vec2 a_texCoord0;\n" +
 					"uniform mat4 u_projTrans;\n" +
-					"varying vec4 vColor;\n" +
-					"varying vec2 vTexCoord;\n" +
+					"varying vec4 v_color;\n" +
+					"varying vec2 v_texCoord;\n" +
 					"\n" +
 					"void main() {\n" +
-					"\tvColor = a_color;\n" +
-					"\tvTexCoord = a_texCoord0;\n" +
+					"\tv_color = a_color;\n" +
+					"\tv_color.a = v_color.a * (255.0/254.0);\n" +
+					"\tv_texCoord = a_texCoord0;\n" +
 					"\tgl_Position = u_projTrans * a_position;\n" +
 					"}";
 	public static float ambientColorGreenDefault = 1f;
 	public static float ambientColorRedDefault = 1f;
 	public static float ambientColorBlueDefault = 1f;
+	public static String layerNameBodies = "Bodies";
+	public static String layerNameShadows = "Shadows";
+	public static float shadowHeight = 0.2f;
+
 	private TiledStage _stage;
-	private String _bodiesLayerName;
-	private ShaderProgram _lightingShaderProgram = new ShaderProgram(LIGHTING_VERTEX_SHADER, LIGHTING_FRAGMENT_SHADER);
-	private ArrayList<HashSet<TiledStageBody>> _bodiesOnCoordinates;
-	private ArrayList<TiledStageBody> _tempBodies = new ArrayList<TiledStageBody>();
+	private ShaderProgram _lightingShaderProgram = new ShaderProgram(VERTEX_SHADER, LIGHTING_FRAGMENT_SHADER);
+	private ShaderProgram _shadowShaderProgram = new ShaderProgram(VERTEX_SHADER, SHADOW_FRAGMENT_SHADER);
+	private ArrayList<HashSet<TiledStageBody.Frame>> _framesOnCoordinates;
+	private HashMap<TiledStageBody.Frame, TiledStageBody> _framesToBodies = new HashMap<TiledStageBody.Frame, TiledStageBody>();
+	private ArrayList<TiledStageBody.Frame> _tempFramesArray = new ArrayList<TiledStageBody.Frame>();
 	private FrameBuffer _frameBuffer;
 	private Texture _blackTexture;
 	private float _ambientColorRed = ambientColorRedDefault;
 	private float _ambientColorGreen = ambientColorGreenDefault;
 	private float _ambientColorBlue = ambientColorBlueDefault;
 
-	public TiledStageMapRenderer(TiledStage stage, TiledMap map, String bodiesLayerName) {
+	public TiledStageMapRenderer(TiledStage stage, TiledMap map) {
 		super(map);
 		_stage = stage;
-		_bodiesLayerName = bodiesLayerName;
 	}
 
-	public TiledStageMapRenderer(TiledStage stage, TiledMap map, Batch batch, String bodiesLayerName) {
+	public TiledStageMapRenderer(TiledStage stage, TiledMap map, Batch batch) {
 		super(map, batch);
+		System.out.println(_shadowShaderProgram.getLog());
 		_stage = stage;
-		_bodiesLayerName = bodiesLayerName;
 	}
 
-	public TiledStageMapRenderer(TiledStage stage, TiledMap map, float unitScale, String bodiesLayerName) {
+	public TiledStageMapRenderer(TiledStage stage, TiledMap map, float unitScale) {
 		super(map, unitScale);
 		_stage = stage;
-		_bodiesLayerName = bodiesLayerName;
 	}
 
-	public TiledStageMapRenderer(TiledStage stage, TiledMap map, float unitScale, Batch batch, String bodiesLayerName) {
+	public TiledStageMapRenderer(TiledStage stage, TiledMap map, float unitScale, Batch batch) {
 		super(map, unitScale, batch);
 		_stage = stage;
-		_bodiesLayerName = bodiesLayerName;
 	}
 
 	public void initialize(int screenWidth, int screenHeight) {
-		_bodiesOnCoordinates = new ArrayList<HashSet<TiledStageBody>>(_stage.tileRows() * _stage.tileColumns());
-		for (int i = 0; i < _stage.tileRows() * _stage.tileColumns(); i++) {
-			_bodiesOnCoordinates.add(i, new HashSet<TiledStageBody>());
+		_framesOnCoordinates = new ArrayList<HashSet<TiledStageBody.Frame>>(_stage.tileRows());
+		for (int i = 0; i < _stage.tileRows(); i++) {
+			_framesOnCoordinates.add(i, new HashSet<TiledStageBody.Frame>());
 		}
 
 		Pixmap blackPixmap = new Pixmap(1, 1, Pixmap.Format.RGBA8888);
@@ -154,6 +178,9 @@ public class TiledStageMapRenderer extends BatchTiledMapRenderer {
 
 	@Override
 	public void render() {
+		// Process frames' data
+		updateFramesData();
+
 		// Prepare shader based on light sources
 		_frameBuffer.begin();
 		batch.setShader(null);
@@ -174,18 +201,19 @@ public class TiledStageMapRenderer extends BatchTiledMapRenderer {
 		_lightingShaderProgram.setUniformf("ambientColor", _ambientColorRed, _ambientColorGreen, _ambientColorBlue, 1f);
 		_lightingShaderProgram.setUniformf("resolution", _frameBuffer.getWidth(), _frameBuffer.getHeight());
 		_lightingShaderProgram.end();
+		_frameBuffer.getColorBufferTexture().bind(1);
+		_blackTexture.bind(0);
 
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		batch.setShader(_lightingShaderProgram);
-		_frameBuffer.getColorBufferTexture().bind(1);
-		_blackTexture.bind(0);
 
 		super.render();
 	}
 
 	@Override
 	public void renderTileLayer(TiledMapTileLayer layer) {
+
+		batch.setShader(_lightingShaderProgram);
 
 		// Draw tiled map
 		final Color batchColor = batch.getColor();
@@ -207,13 +235,8 @@ public class TiledStageMapRenderer extends BatchTiledMapRenderer {
 		float xStart = col1 * layerTileWidth;
 		final float[] vertices = this.vertices;
 
-		ArrayList<TiledStageActor> actors;
-		LinkedList<TextureRegion> textureRegions;
-		LinkedList<TiledStage.Coordinate> bodyCoordinates;
-
 		boolean isActorsLayer = false;
-		if (layer.getName().equals(_bodiesLayerName)) {
-			updateBodiesOnCoordinates();
+		if (layer.getName().equals(layerNameBodies)) {
 			isActorsLayer = true;
 		}
 
@@ -338,81 +361,109 @@ public class TiledStageMapRenderer extends BatchTiledMapRenderer {
 				x += layerTileWidth;
 			}
 
-			if (isActorsLayer) {
-
-				_tempBodies.clear();
-				for (int col = col1; col <= col2; col++) {
-					for (TiledStageBody body : _bodiesOnCoordinates.get(row * _stage.tileColumns() + col)) {
-						_tempBodies.add(body);
-					}
-				}
-				_tempBodies.sort(new Comparator<TiledStageBody>() {
-					@Override
-					public int compare(TiledStageBody body1, TiledStageBody body2) {
-						return body1.renderDepth() - body2.renderDepth();
-					}
-				});
-
-				// In ascending actor depth
-				for (TiledStageBody body : _tempBodies) {
-					TiledStage.Coordinate renderOrigin = getRenderOrigin(body);
-					bodyCoordinates = body.getBodyCoordinates(renderOrigin);
-
-					for (TiledStage.Coordinate coordinate : bodyCoordinates) {
-						if (coordinate.row() != row) continue;
-
-						// if there is some body on both this and the above coordinate on the same layer with a higher body depth
-						// or the body's body also exists in the above coordinate, do not render protrusion
-						boolean ifRenderProtrusion = true;
-
-						int aboveIndex = (coordinate.row() + 1) * _stage.tileColumns() + coordinate.column();
-						if (aboveIndex >= 0 && aboveIndex < _bodiesOnCoordinates.size()) {
-							HashSet<TiledStageBody> aboveActors = _bodiesOnCoordinates.get(aboveIndex);
-							int index = coordinate.row() * _stage.tileColumns() + coordinate.column();
-							for (TiledStageBody aboveBody : aboveActors) {
-								if ((aboveBody.renderDepth() > body.renderDepth() && _bodiesOnCoordinates.get(index).contains(aboveBody)) ||
-										aboveBody == body) {
-									ifRenderProtrusion = false;
-									break;
-								}
-							}
-						}
-
-						textureRegions = body.textureRegions();
-						int rowDiff = coordinate.row() - renderOrigin.row();
-						int colDiff = coordinate.column() - renderOrigin.column();
-
-						for (TextureRegion textureRegion : textureRegions) {
-							int protrudeHeight = textureRegion.getTexture().getHeight() - body.bodyHeight() * _stage.tileHeight();
-							if (ifRenderProtrusion) {
-								if (rowDiff == body.bodyHeight() - 1) {
-									textureRegion.setRegion(colDiff * _stage.tileWidth(), 0, _stage.tileWidth(), protrudeHeight + _stage.tileHeight());
-								} else {
-									textureRegion.setRegion(colDiff * _stage.tileWidth(), protrudeHeight + (body.bodyHeight() - 2 - rowDiff) * _stage.tileHeight(), _stage.tileWidth(), _stage.tileHeight() * 2);
-								}
-							} else {
-								textureRegion.setRegion(colDiff * _stage.tileWidth(), protrudeHeight + (body.bodyHeight() - 1 - rowDiff) * _stage.tileHeight(), _stage.tileWidth(), _stage.tileHeight());
-							}
-
-							batch.draw(textureRegion, body.getX() + _stage.tileWidth() * colDiff, body.getY() + _stage.tileHeight() * rowDiff + body.getZ());
-						}
-					}
-				}
-			}
+			if (isActorsLayer) drawActorsOnRow(row, false);
 
 			y -= layerTileHeight;
 		}
-	}
 
-	private void updateBodiesOnCoordinates() {
-		// Clear previous rows of bodies
-		for (int i = 0; i < _stage.tileRows() * _stage.tileColumns(); i++) {
-			_bodiesOnCoordinates.get(i).clear();
+		if (layer.getName().equals(layerNameShadows)) {
+			batch.setShader(_shadowShaderProgram);
+
+			for (int row = 0; row < _stage.tileRows(); row++) {
+				drawActorsOnRow(row, true);
+			}
 		}
 
+		batch.setShader(null);
+	}
+
+	private void drawActorsOnRow(int row, boolean isShadow) {
+		_tempFramesArray.clear();
+		_tempFramesArray.addAll(_framesOnCoordinates.get(row));
+
+		if (!isShadow) {
+			_tempFramesArray.sort(new Comparator<TiledStageBody.Frame>() {
+				@Override
+				public int compare(TiledStageBody.Frame frame1, TiledStageBody.Frame frame2) {
+					return frame1.renderDepth() - frame2.renderDepth();
+				}
+			});
+		}
+
+		// In ascending render depth
+		for (TiledStageBody.Frame frame : _tempFramesArray) {
+			TiledStageBody body = _framesToBodies.get(frame);
+
+			if (isShadow && !body.hasShadow()) continue;
+
+			TiledStage.Coordinate renderOrigin = getRenderOrigin(body);
+			LinkedList<TiledStage.Coordinate> bodyCoordinates = body.getBodyCoordinates(renderOrigin);
+
+			int rowDiff = (body.bodyHeight() - 1) - (row - renderOrigin.row());
+
+			for (TiledStage.Coordinate bodyCoordinate : bodyCoordinates) {
+				if (bodyCoordinate.row() != row) continue;
+
+				int colDiff = bodyCoordinate.column() - renderOrigin.column();
+
+				int topProtrusion = frame.height() - body.bodyHeight() * _stage.tileHeight();
+				int leftProtrusion = (frame.width() - body.bodyWidth() * _stage.tileWidth()) / 2;
+				int top = topProtrusion + rowDiff * _stage.tileHeight();
+				int left = leftProtrusion + colDiff * _stage.tileWidth();
+				int bottom = top + _stage.tileHeight();
+				int right = left + _stage.tileWidth();
+
+				int r = row + 1;
+				TiledStage.Coordinate aboveCoordinate;
+				loop:
+				while ((aboveCoordinate = _stage.getCoordinate(r, bodyCoordinate.column())) != null && top > 0) {
+					if (bodyCoordinates.contains(aboveCoordinate)) break;
+
+					// if there is some body on both this and the above coordinate on the same layer with a frame of a higher render depth
+					for (TiledStageBody aboveBody : aboveCoordinate.bodies()) {
+						if (bodyCoordinate.bodies().contains(aboveBody)) {
+							for (TiledStageBody.Frame aboveBodyFrame : aboveBody.frames()) {
+								if (aboveBodyFrame.renderDepth() > frame.renderDepth()) break loop;
+							}
+						}
+					}
+
+					top = Math.max(0, top - _stage.tileHeight());
+					r++;
+				}
+
+				if (colDiff == 0) left -= leftProtrusion;
+				if (colDiff == body.bodyWidth() - 1) right += leftProtrusion;
+
+				TextureRegion textureRegion = frame.getTextureRegionAt(left, top, right, bottom);
+
+				if (isShadow) {
+					batch.draw(textureRegion, body.getX() + _stage.tileWidth() * colDiff - leftProtrusion,
+							body.getY() + _stage.tileHeight() * ((body.bodyHeight() - 1) - rowDiff) + body.getZ(),
+							frame.width() / 2, body.shadowDisplacementY(), textureRegion.getRegionWidth(), textureRegion.getRegionHeight(), 1f, -shadowHeight, 0f);
+				} else {
+					batch.draw(textureRegion, body.getX() + _stage.tileWidth() * colDiff - leftProtrusion,
+							body.getY() + _stage.tileHeight() * ((body.bodyHeight() - 1) - rowDiff) + body.getZ());
+				}
+			}
+		}
+	}
+
+	private void updateFramesData() {
+		// Clear previous rows of bodies
+		for (int i = 0; i < _stage.tileRows(); i++) {
+			_framesOnCoordinates.get(i).clear();
+		}
+
+		_framesToBodies.clear();
+
 		for (TiledStageBody body : _stage.bodies()) {
-			for (TiledStage.Coordinate bodyCoordinate : body.getBodyCoordinates(getRenderOrigin(body))) {
-				_bodiesOnCoordinates.get(bodyCoordinate.row() * _stage.tileColumns() + bodyCoordinate.column()).add(body);
+			TiledStage.Coordinate renderOrigin = getRenderOrigin(body);
+			for (int r = 0; r < body.bodyHeight(); r++) {
+				for (TiledStageBody.Frame frame : body.frames()) {
+					_framesToBodies.put(frame, body);
+					_framesOnCoordinates.get(renderOrigin.row() + r).add(frame);
+				}
 			}
 		}
 	}
