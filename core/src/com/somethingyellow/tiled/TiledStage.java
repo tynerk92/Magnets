@@ -23,9 +23,9 @@ import java.util.Set;
 import java.util.TreeSet;
 
 public class TiledStage extends Stage {
-	public static final float CAMERA_PANNING_SMOOTH_RATIO = 0.1f;
-	public static final float CAMERA_ZOOM_SMOOTH_RATIO = 0.1f;
-	public static final float CAMERA_ZOOM_DEFAULT = 1f;
+	public static float cameraPanningSmoothRatio = 0.1f;
+	public static float cameraZoomSmoothRatio = 0.1f;
+	public static float cameraZoomDefault = 1f;
 
 	private TiledMap _map;
 	private TiledStageMapRenderer _mapRenderer;
@@ -35,6 +35,7 @@ public class TiledStage extends Stage {
 	private HashMap<String, TiledStageBody> _bodiesByName = new HashMap<String, TiledStageBody>();
 	private ArrayList<TiledStageBody> _tempBodies = new ArrayList<TiledStageBody>();
 	private HashSet<TiledStageBody> _bodies = new HashSet<TiledStageBody>();
+	private HashSet<TiledStageLightSource> _lightSources = new HashSet<TiledStageLightSource>();
 	private ArrayList<HashSet<TiledStageActor>> _subTicksToActors;
 	private ArrayList<TiledStageActor> _tempActors = new ArrayList<TiledStageActor>();
 	private int _tileWidth;
@@ -50,13 +51,12 @@ public class TiledStage extends Stage {
 	private HashMap<String, TiledMapTileLayer> _tileLayers = new HashMap<String, TiledMapTileLayer>();
 	private LinkedList<TiledObject> _objects = new LinkedList<TiledObject>();
 
-	public TiledStage(String bodiesLayerName, float screenWidth, float screenHeight,
-	                  int maxSubTicks, float tickDuration) {
+	public TiledStage(String bodiesLayerName, int maxSubTicks, float tickDuration) {
 
 		_bodiesLayerName = bodiesLayerName;
 		_maxSubTicks = maxSubTicks;
 		_tickTime = 0f;
-		_cameraZoom = CAMERA_ZOOM_DEFAULT;
+		_cameraZoom = cameraZoomDefault;
 		_tickDuration = tickDuration;
 
 		_subTicksToActors = new ArrayList<HashSet<TiledStageActor>>(_maxSubTicks);
@@ -65,7 +65,6 @@ public class TiledStage extends Stage {
 		}
 
 		getViewport().setCamera(_camera);
-		setScreenSize(screenWidth, screenHeight);
 	}
 
 	public static boolean ParseBooleanProp(MapProperties props, String propName) {
@@ -95,6 +94,25 @@ public class TiledStage extends Stage {
 		} else {
 			if (propObject == null) return defaultValue;
 			return Integer.parseInt(propObject.toString());
+		}
+	}
+
+	public static float ParseFloatProp(MapProperties props, String propName) {
+		Object propObject = props.get(propName);
+		if (propObject instanceof Float) {
+			return (Float) propObject;
+		} else {
+			return Float.parseFloat(propObject.toString());
+		}
+	}
+
+	public static float ParseFloatProp(MapProperties props, String propName, float defaultValue) {
+		Object propObject = props.get(propName);
+		if (propObject instanceof Float) {
+			return (Float) propObject;
+		} else {
+			if (propObject == null) return defaultValue;
+			return Float.parseFloat(propObject.toString());
 		}
 	}
 
@@ -192,18 +210,26 @@ public class TiledStage extends Stage {
 	// visual
 	// -------
 
-	public void load(TiledMap map) {
+	public void load(TiledMap map, int screenWidth, int screenHeight) {
 		_map = map;
 
 		_bodies.clear();
 		_tempBodies.clear();
 		_bodiesByName.clear();
 		_tileLayers.clear();
+		_tempActors.clear();
 		_objects.clear();
 		for (int i = 0; i < _maxSubTicks; i++) {
 			_subTicksToActors.get(i).clear();
 		}
+		for (TiledStageLightSource lightSource : _lightSources) {
+			lightSource.dispose();
+		}
+		_lightSources.clear();
+		_cameraFocalActor = null;
+		_inputFocalActor = null;
 
+		if (_mapRenderer != null) _mapRenderer.dispose();
 		_mapRenderer = new TiledStageMapRenderer(this, _map, getBatch(), _bodiesLayerName);
 		MapProperties props = _map.getProperties();
 		_tileWidth = props.get("tilewidth", Integer.class);
@@ -230,6 +256,9 @@ public class TiledStage extends Stage {
 				_objects.add(new TiledObject(object));
 			}
 		}
+
+		_mapRenderer.initialize(screenWidth, screenHeight);
+		setScreenSize(screenWidth, screenHeight);
 	}
 
 	// get/set
@@ -268,8 +297,8 @@ public class TiledStage extends Stage {
 
 		// Camera
 		Vector2 camPos = new Vector2(_camera.position.x, _camera.position.y);
-		_camera.position.set(camPos.interpolate(_cameraFocalActor.center(), CAMERA_PANNING_SMOOTH_RATIO, Interpolation.linear), 0);
-		_camera.zoom += (_cameraZoom - _camera.zoom) * CAMERA_ZOOM_SMOOTH_RATIO;
+		_camera.position.set(camPos.interpolate(_cameraFocalActor.center(), cameraPanningSmoothRatio, Interpolation.linear), 0);
+		_camera.zoom += (_cameraZoom - _camera.zoom) * cameraZoomSmoothRatio;
 		_camera.update();
 
 		// Map
@@ -327,12 +356,23 @@ public class TiledStage extends Stage {
 		}
 	}
 
+	public void addLightSource(TiledStageLightSource lightSource) {
+		super.addActor(lightSource);
+		_lightSources.add(lightSource);
+	}
+
 	public void removeBody(TiledStageBody body) {
 		_bodies.remove(body);
 
 		for (HashSet<TiledStageActor> actors : _subTicksToActors) {
 			if (body instanceof TiledStageActor) actors.remove(body);
 		}
+	}
+
+	public void removeLightSource(TiledStageLightSource lightSource) {
+		lightSource.dispose();
+		_lightSources.remove(lightSource);
+		lightSource.remove();
 	}
 
 	public TiledStageBody getBody(String name) {
@@ -382,13 +422,18 @@ public class TiledStage extends Stage {
 		return _bodies;
 	}
 
+	public Set<TiledStageLightSource> lightSources() {
+		return _lightSources;
+	}
+
 	public LinkedList<TiledObject> objects() {
 		return _objects;
 	}
 
-	public void setScreenSize(float screenWidth, float screenHeight) {
+	public void setScreenSize(int screenWidth, int screenHeight) {
 		_camera.setToOrtho(false, screenWidth, screenHeight);
 		if (_cameraFocalActor != null) _camera.position.set(_cameraFocalActor.center(), 0);
+		if (_mapRenderer != null) _mapRenderer.setScreenSize(screenWidth, screenHeight);
 	}
 
 	public void setCameraFocalActor(TiledStageActor actor) {
@@ -562,6 +607,10 @@ public class TiledStage extends Stage {
 
 		public int column() {
 			return _col;
+		}
+
+		public OrthographicCamera camera() {
+			return _camera;
 		}
 
 		public Cell getCell(String layerName) {

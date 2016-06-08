@@ -1,8 +1,14 @@
 package com.somethingyellow.tiled;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.glutils.FrameBuffer;
+import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
@@ -35,10 +41,62 @@ import static com.badlogic.gdx.graphics.g2d.Batch.Y3;
 import static com.badlogic.gdx.graphics.g2d.Batch.Y4;
 
 public class TiledStageMapRenderer extends BatchTiledMapRenderer {
+	public static final String LIGHTING_FRAGMENT_SHADER =
+			"#ifdef GL_ES\n" +
+					"    #define LOWP lowp\n" +
+					"    precision mediump float;\n" +
+					"#else\n" +
+					"    #define LOWP\n" +
+					"#endif\n" +
+					"\n" +
+					"varying LOWP vec4 vColor;\n" +
+					"varying vec2 vTexCoord;\n" +
+					"\n" +
+					"//texture samplers\n" +
+					"uniform sampler2D u_texture; //diffuse map\n" +
+					"uniform sampler2D u_lightmap;   //light map\n" +
+					"\n" +
+					"//additional parameters for the shader\n" +
+					"uniform vec2 resolution; //resolution of screen\n" +
+					"uniform LOWP vec4 ambientColor; //ambient RGB, alpha channel is intensity\n" +
+					"\n" +
+					"void main() {\n" +
+					"\tvec4 diffuseColor = texture2D(u_texture, vTexCoord);\n" +
+					"\tvec2 lighCoord = (gl_FragCoord.xy / resolution.xy);\n" +
+					"\tvec4 light = texture2D(u_lightmap, lighCoord);\n" +
+					"\n" +
+					"\tvec3 ambient = ambientColor.rgb * ambientColor.a;\n" +
+					"\tvec3 intensity = ambient + light.rgb;\n" +
+					" \tvec3 finalColor = diffuseColor.rgb * intensity;\n" +
+					"\n" +
+					"\tgl_FragColor = vColor * vec4(finalColor, diffuseColor.a);\n" +
+					"}\n";
+	public static final String LIGHTING_VERTEX_SHADER =
+			"attribute vec4 a_position;\n" +
+					"attribute vec4 a_color;\n" +
+					"attribute vec2 a_texCoord0;\n" +
+					"uniform mat4 u_projTrans;\n" +
+					"varying vec4 vColor;\n" +
+					"varying vec2 vTexCoord;\n" +
+					"\n" +
+					"void main() {\n" +
+					"\tvColor = a_color;\n" +
+					"\tvTexCoord = a_texCoord0;\n" +
+					"\tgl_Position = u_projTrans * a_position;\n" +
+					"}";
+	public static float ambientColorGreenDefault = 1f;
+	public static float ambientColorRedDefault = 1f;
+	public static float ambientColorBlueDefault = 1f;
 	private TiledStage _stage;
 	private String _bodiesLayerName;
+	private ShaderProgram _lightingShaderProgram = new ShaderProgram(LIGHTING_VERTEX_SHADER, LIGHTING_FRAGMENT_SHADER);
 	private ArrayList<HashSet<TiledStageBody>> _bodiesOnCoordinates;
 	private ArrayList<TiledStageBody> _tempBodies = new ArrayList<TiledStageBody>();
+	private FrameBuffer _frameBuffer;
+	private Texture _blackTexture;
+	private float _ambientColorRed = ambientColorRedDefault;
+	private float _ambientColorGreen = ambientColorGreenDefault;
+	private float _ambientColorBlue = ambientColorBlueDefault;
 
 	public TiledStageMapRenderer(TiledStage stage, TiledMap map, String bodiesLayerName) {
 		super(map);
@@ -64,15 +122,72 @@ public class TiledStageMapRenderer extends BatchTiledMapRenderer {
 		_bodiesLayerName = bodiesLayerName;
 	}
 
-	private void initialize() {
+	public void initialize(int screenWidth, int screenHeight) {
 		_bodiesOnCoordinates = new ArrayList<HashSet<TiledStageBody>>(_stage.tileRows() * _stage.tileColumns());
 		for (int i = 0; i < _stage.tileRows() * _stage.tileColumns(); i++) {
 			_bodiesOnCoordinates.add(i, new HashSet<TiledStageBody>());
 		}
+
+		Pixmap blackPixmap = new Pixmap(1, 1, Pixmap.Format.RGBA8888);
+		blackPixmap.setColor(Color.BLACK);
+		blackPixmap.fill();
+		_blackTexture = new Texture(blackPixmap);
+		blackPixmap.dispose();
+
+		setScreenSize(screenWidth, screenHeight);
+	}
+
+	public void setScreenSize(int screenWidth, int screenHeight) {
+		if (_frameBuffer != null) {
+			if (_frameBuffer.getWidth() == screenWidth && _frameBuffer.getHeight() == screenHeight)
+				return;
+			_frameBuffer.dispose();
+		}
+		_frameBuffer = new FrameBuffer(Pixmap.Format.RGBA8888, screenWidth, screenHeight, false);
+	}
+
+	public void setAmbientColor(float red, float green, float blue) {
+		_ambientColorBlue = blue;
+		_ambientColorGreen = green;
+		_ambientColorRed = red;
+	}
+
+	@Override
+	public void render() {
+		// Prepare shader based on light sources
+		_frameBuffer.begin();
+		batch.setShader(null);
+		Gdx.gl.glClearColor(0, 0, 0, 1);
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		batch.begin();
+		for (TiledStageLightSource lightSource : _stage.lightSources()) {
+			batch.setColor(1, 1, 1, lightSource.intensity());
+			batch.draw(lightSource.texture(), lightSource.renderX(), lightSource.renderY(),
+					lightSource.getWidth(), lightSource.getHeight());
+		}
+		batch.end();
+		batch.setColor(Color.WHITE);
+		_frameBuffer.end();
+
+		_lightingShaderProgram.begin();
+		_lightingShaderProgram.setUniformi("u_lightmap", 1);
+		_lightingShaderProgram.setUniformf("ambientColor", _ambientColorRed, _ambientColorGreen, _ambientColorBlue, 1f);
+		_lightingShaderProgram.setUniformf("resolution", _frameBuffer.getWidth(), _frameBuffer.getHeight());
+		_lightingShaderProgram.end();
+
+		Gdx.gl.glClearColor(0, 0, 0, 1);
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		batch.setShader(_lightingShaderProgram);
+		_frameBuffer.getColorBufferTexture().bind(1);
+		_blackTexture.bind(0);
+
+		super.render();
 	}
 
 	@Override
 	public void renderTileLayer(TiledMapTileLayer layer) {
+
+		// Draw tiled map
 		final Color batchColor = batch.getColor();
 		final float color = Color.toFloatBits(batchColor.r, batchColor.g, batchColor.b, batchColor.a * layer.getOpacity());
 
@@ -290,8 +405,6 @@ public class TiledStageMapRenderer extends BatchTiledMapRenderer {
 	}
 
 	private void updateBodiesOnCoordinates() {
-		if (_bodiesOnCoordinates == null) initialize();
-
 		// Clear previous rows of bodies
 		for (int i = 0; i < _stage.tileRows() * _stage.tileColumns(); i++) {
 			_bodiesOnCoordinates.get(i).clear();
@@ -307,5 +420,12 @@ public class TiledStageMapRenderer extends BatchTiledMapRenderer {
 	private TiledStage.Coordinate getRenderOrigin(TiledStageBody body) {
 		TiledStage.Coordinate renderOrigin = _stage.getCoordinateAt(body.getX(), body.getY());
 		return (renderOrigin == null) ? body.origin() : renderOrigin;
+	}
+
+	@Override
+	public void dispose() {
+		super.dispose();
+		_blackTexture.dispose();
+		_frameBuffer.dispose();
 	}
 }

@@ -4,12 +4,8 @@ import com.somethingyellow.tiled.TiledStage;
 import com.somethingyellow.tiled.TiledStageActor;
 
 import java.util.HashMap;
-import java.util.Set;
 
 public class Button extends TiledStageActor {
-	public static final String STATE_ON = "On";
-	public static final String STATE_OFFING = "Offing";
-	public static final String STATE_ONING = "Oning";
 	public static final int[] SUBTICKS = new int[]{
 			PlayScreen.SUBTICKS.BUTTON_PRESSES.ordinal(),
 			PlayScreen.SUBTICKS.GRAPHICS.ordinal()
@@ -24,19 +20,19 @@ public class Button extends TiledStageActor {
 		_isOn = false;
 
 		// Frame events
-		getStateFrames(STATE_ONING).setListener(new TiledStageActor.FrameSequenceListener() {
+		getStateFrames(Config.BUTTON_STATE_ONING).setListener(new TiledStageActor.FrameSequenceListener() {
 			@Override
 			public void ended() {
-				addState(STATE_ON);
-				removeState(STATE_ONING);
+				addState(Config.BUTTON_STATE_ON);
+				removeState(Config.BUTTON_STATE_ONING);
 			}
 		});
 
-		getStateFrames(STATE_OFFING).setListener(new TiledStageActor.FrameSequenceListener() {
+		getStateFrames(Config.BUTTON_STATE_OFFING).setListener(new TiledStageActor.FrameSequenceListener() {
 			@Override
 			public void ended() {
 				addState(STATE_DEFAULT);
-				removeState(STATE_OFFING);
+				removeState(Config.BUTTON_STATE_OFFING);
 			}
 		});
 	}
@@ -49,7 +45,7 @@ public class Button extends TiledStageActor {
 			loop:
 			for (TiledStage.Coordinate bodyCoordinate : bodyCoordinates()) {
 				for (TiledStageActor actor : bodyCoordinate.actors()) {
-					if (actor instanceof Player || actor instanceof Block) {
+					if (actor instanceof Player || actor instanceof Lodestone) {
 						_isOn = true;
 						break loop;
 					}
@@ -60,13 +56,13 @@ public class Button extends TiledStageActor {
 
 			if (_isOn) {
 				if (hasState(STATE_DEFAULT)) {
-					addState(STATE_ONING);
+					addState(Config.BUTTON_STATE_ONING);
 					removeState(STATE_DEFAULT);
 				}
 			} else {
-				if (hasState(STATE_ON)) {
-					addState(STATE_OFFING);
-					removeState(STATE_ON);
+				if (hasState(Config.BUTTON_STATE_ON)) {
+					addState(Config.BUTTON_STATE_OFFING);
+					removeState(Config.BUTTON_STATE_ON);
 				}
 			}
 

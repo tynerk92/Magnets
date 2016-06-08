@@ -7,12 +7,11 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Block extends TiledStageActor {
-	public static final int MOVE_TICKS = 3;
-	public static final String STATE_MAGNETISED = "Magnetised";
+public class Lodestone extends TiledStageActor {
 	public static final int MAGNETISED_ATTRACTION_RANGE = 2;
 	public static final int MAGNETISED_MAGNETISE_RANGE = 1;
 	public static final int MAGNETISED_ATTRACTION_STRENGTH = 1;
+
 	public static final int[] SUBTICKS = new int[]{
 			PlayScreen.SUBTICKS.RESET.ordinal(),
 			PlayScreen.SUBTICKS.FORCES.ordinal(),
@@ -67,23 +66,25 @@ public class Block extends TiledStageActor {
 						for (TiledStage.Coordinate coordinate : bodyCoordinate.getCoordinatesAtRange(MAGNETISED_ATTRACTION_RANGE, false)) {
 							for (TiledStageActor actor : coordinate.actors()) {
 								if (actor == this) continue;
-								if (actor instanceof Block) {
-									Block block = (Block) actor;
-									if (block.isMagnetised() || block.isMoving()) continue;
+								if (actor instanceof Lodestone) {
+									Lodestone lodestone = (Lodestone) actor;
+									if (lodestone.isMagnetised() || lodestone.isMoving()) continue;
 
 									TiledStage.DIRECTION direction = bodyCoordinate.getDirectionFrom(coordinate);
 									if (direction == null) continue;
 
-									block.attract(direction, coordinate, MAGNETISED_ATTRACTION_STRENGTH);
+									lodestone.attract(direction, coordinate, MAGNETISED_ATTRACTION_STRENGTH);
 								}
 							}
 						}
 
 					}
 				}
-				if (!hasState(STATE_MAGNETISED)) addState(STATE_MAGNETISED);
+				if (!hasState(Config.LODESTONE_STATE_MAGNETISED))
+					addState(Config.LODESTONE_STATE_MAGNETISED);
 			} else {
-				if (hasState(STATE_MAGNETISED)) removeState(STATE_MAGNETISED);
+				if (hasState(Config.LODESTONE_STATE_MAGNETISED))
+					removeState(Config.LODESTONE_STATE_MAGNETISED);
 			}
 
 
@@ -91,13 +92,13 @@ public class Block extends TiledStageActor {
 
 			if (!isMoving()) {
 				if (_forceX != 0 || _forceY != 0) {
-					moveDirection(TiledStage.GetDirection(_forceY, _forceX), MOVE_TICKS);
+					moveDirection(TiledStage.GetDirection(_forceY, _forceX), Config.LODESTONE_MOVE_TICKS);
 				}
 			}
 
 		} else if (subtick == PlayScreen.SUBTICKS.GRAPHICS.ordinal()) {
 
-			if (!isMoving()) {  // if block was moving now, means it could be attracted, abandon showing of attraction visual
+			if (!isMoving()) {
 				for (final List<Object> attractionData : _tempAttractionData) {
 					TiledStageVisual visual;
 					if (_magneticAttractionVisual.containsKey(attractionData)) {
@@ -122,7 +123,7 @@ public class Block extends TiledStageActor {
 						});
 					}
 
-					visual.setDuration(MOVE_TICKS + 1);
+					visual.setDuration(Config.LODESTONE_MOVE_TICKS + 1);
 				}
 			}
 
@@ -155,9 +156,9 @@ public class Block extends TiledStageActor {
 				for (TiledStage.Coordinate coordinate : bodyCoordinate.getCoordinatesInRange(MAGNETISED_MAGNETISE_RANGE, false)) {
 					for (TiledStageActor actor : coordinate.actors()) {
 						if (actor == this) continue;
-						if (actor instanceof Block) {
-							Block block = (Block) actor;
-							if (!block.isMagnetised()) block.magnetise();
+						if (actor instanceof Lodestone) {
+							Lodestone lodestone = (Lodestone) actor;
+							if (!lodestone.isMagnetised()) lodestone.magnetise();
 						}
 					}
 				}
@@ -170,16 +171,16 @@ public class Block extends TiledStageActor {
 	}
 
 	public boolean push(TiledStage.DIRECTION direction) {
-		return moveDirection(direction, MOVE_TICKS);
+		return moveDirection(direction, Config.LODESTONE_MOVE_TICKS);
 	}
 
 	@Override
 	public boolean bodyCanBeAt(TiledStage.Coordinate coordinate) {
-		if (coordinate.getTileProp(PlayScreen.LAYER_ACTORS, PlayScreen.TILE_TYPE, "").equals(PlayScreen.TILE_TYPE_WALL))
+		if (coordinate.getTileProp(Config.ACTORS_LAYER_NAME, Config.TILE_TYPE, "").equals(Config.TILE_TYPE_WALL))
 			return false;
 		for (TiledStageActor actor : coordinate.actors()) {
 			if (actor == this) continue;
-			if (actor instanceof Player || actor instanceof Block || actor instanceof MagneticSource ||
+			if (actor instanceof Player || actor instanceof Lodestone || actor instanceof MagneticSource ||
 					actor instanceof ObstructedFloor || (actor instanceof Door && !((Door) actor).isOpen()))
 				return false;
 		}

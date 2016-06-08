@@ -26,6 +26,7 @@ public class LevelSelectScreen implements Screen {
 
 	private SpriteBatch _spriteBatch;
 	private Stage _stage;
+	private Skin _skin;
 	private ActionListener _listener;
 
 	public LevelSelectScreen(ActionListener actionListener) {
@@ -39,19 +40,20 @@ public class LevelSelectScreen implements Screen {
 			_spriteBatch = new SpriteBatch();
 
 			// Preparing skin
-			Skin skin = new Skin();
+			_skin = new Skin();
 			Pixmap pixmap = new Pixmap(1, 1, Pixmap.Format.RGBA8888);
 			pixmap.setColor(Color.WHITE);
 			pixmap.fill();
-			skin.add("white", new Texture(pixmap));
-			skin.add("default", new BitmapFont());
+			_skin.add("white", new Texture(pixmap));
+			_skin.add("default", new BitmapFont());
+			pixmap.dispose();
 
 			// Preparing button styling
 			TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
-			textButtonStyle.up = skin.newDrawable("white", Color.DARK_GRAY);
-			textButtonStyle.down = skin.newDrawable("white", Color.YELLOW);
-			textButtonStyle.font = skin.getFont("default");
-			skin.add("default", textButtonStyle);
+			textButtonStyle.up = _skin.newDrawable("white", Color.DARK_GRAY);
+			textButtonStyle.down = _skin.newDrawable("white", Color.YELLOW);
+			textButtonStyle.font = _skin.getFont("default");
+			_skin.add("default", textButtonStyle);
 
 			// Creating a table to contain buttons for each level
 			Table containerTable = new Table();
@@ -132,7 +134,9 @@ public class LevelSelectScreen implements Screen {
 
 	@Override
 	public void dispose() {
-
+		_skin.dispose();
+		_spriteBatch.dispose();
+		_stage.dispose();
 	}
 
 	public interface ActionListener {

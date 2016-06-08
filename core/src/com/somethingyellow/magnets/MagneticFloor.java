@@ -4,7 +4,6 @@ import com.somethingyellow.tiled.TiledStage;
 import com.somethingyellow.tiled.TiledStageActor;
 
 import java.util.HashMap;
-import java.util.Set;
 import java.util.TreeSet;
 
 public class MagneticFloor extends TiledStageActor {
@@ -27,9 +26,9 @@ public class MagneticFloor extends TiledStageActor {
 			for (TiledStage.Coordinate coordinate : magnetiseCoodinates) {
 				for (TiledStageActor actor : coordinate.actors()) {
 					if (actor == this) continue;
-					if (actor instanceof Block) {
-						Block block = (Block) actor;
-						block.magnetise();
+					if (actor instanceof Lodestone) {
+						Lodestone lodestone = (Lodestone) actor;
+						lodestone.magnetise();
 					}
 				}
 			}

@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
@@ -17,37 +18,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-public class PlayScreen implements Screen, Player.ActionListener, Block.ActionListener, MagneticSource.ActionListener {
-	public static final float TICK_DURATION = 0.06f;
-	public static final String LAYER_ACTORS = "Walls and Objects";
+public class PlayScreen implements Screen, Player.ActionListener, Lodestone.ActionListener, MagneticSource.ActionListener {
 
-	// Tile properties
-	public static final String TILE_TYPE = "Type";
-	public static final String TILE_REFERENCE = "~";
-	public static final String TILE_REFERENCE_MAGNETIC_ATTRACTION_HORIZONTAL = "Magnetic Attraction Horizontal";
-	public static final String TILE_REFERENCE_MAGNETIC_ATTRACTION_VERTICAL = "Magnetic Attraction Vertical";
-	public static final String TILE_STATE = "@";
-	public static final String TILE_NAME = "#";
-	public static final String TILE_ACTION = "+";
-	public static final String TILE_EXPRESSION_AND = "AND";
-	public static final String TILE_EXPRESSION_OR = "OR";
-	public static final String TILE_EXPRESSION_NOT = "NOT";
-	public static final String TILE_TYPE_PLAYER = "Player";
-	public static final String TILE_TYPE_BLOCK = "Block";
-	public static final String TILE_TYPE_MAGNETIC_SOURCE = "Magnetic Source";
-	public static final String TILE_TYPE_MAGNETIC_FLOOR = "Magnetic Floor";
-	public static final String TILE_TYPE_OBSTRUCTED_FLOOR = "Obstructed Floor";
-	public static final String TILE_TYPE_DOOR = "Door";
-	public static final String TILE_TYPE_BUTTON = "Button";
-	public static final String TILE_TYPE_WALL = "Wall";
-	public static final String TILE_TYPE_EXIT = "Exit";
-	public static final String TILE_ISPUSHABLE = "IsPushable";
-	public static final String TILE_ISMAGNETISABLE = "IsMagnetisable";
-	public static final String TILE_ISOPEN = "IsOpen";
-	public static final String TILE_ELEVATION = "Elevation";
-	public static final String TILE_BODY_WIDTH = "Body Width";
-	public static final String TILE_BODY_AREA = "Body Area";
-	public static final String TILE_RENDER_DEPTH = "Render Depth";
 	public boolean DEBUG_MODE = false;
 
 	private TiledStage _tiledStage;
@@ -58,6 +30,7 @@ public class PlayScreen implements Screen, Player.ActionListener, Block.ActionLi
 	private LogicMachine _logicMachine = new LogicMachine();
 	private TmxMapLoader _tmxMapLoader = new TmxMapLoader();
 	private LinkedList<TiledStageBody> _bodies = new LinkedList<TiledStageBody>();
+	private LinkedList<TiledStageLightSource> _lightSources = new LinkedList<TiledStageLightSource>();
 	private String _levelPath;
 	private ActionListener _actionListener;
 
@@ -66,10 +39,18 @@ public class PlayScreen implements Screen, Player.ActionListener, Block.ActionLi
 
 	public PlayScreen(ActionListener actionListener) {
 		_actionListener = actionListener;
+
+		// Default settings of classes based on Config
+		TiledStage.cameraZoomDefault = Config.CAMERA_ZOOM_DEFAULT;
+		TiledStage.cameraPanningSmoothRatio = Config.CAMERA_PANNING_SMOOTH_RATIO;
+		TiledStage.cameraZoomSmoothRatio = Config.CAMERA_ZOOM_SMOOTH_RATIO;
+		TiledStageMapRenderer.ambientColorRedDefault = Config.MAP_AMBIENT_COLOR_RED_DEFAULT;
+		TiledStageMapRenderer.ambientColorGreenDefault = Config.MAP_AMBIENT_COLOR_GREEN_DEFAULT;
+		TiledStageMapRenderer.ambientColorBlueDefault = Config.MAP_AMBIENT_COLOR_BLUE_DEFAULT;
 	}
 
 	public static boolean[] ExtractBodyArea(TiledMapTile tile) {
-		String bodyArea = TiledStage.ParseProp(tile.getProperties(), TILE_BODY_AREA);
+		String bodyArea = TiledStage.ParseProp(tile.getProperties(), Config.TILE_BODY_AREA);
 		if (bodyArea == null) return TiledStageActor.BodyArea1x1;
 
 		boolean[] area = new boolean[bodyArea.length()];
@@ -90,27 +71,51 @@ public class PlayScreen implements Screen, Player.ActionListener, Block.ActionLi
 	}
 
 	public static int ExtractBodyWidth(TiledMapTile tile) {
-		return TiledStage.ParseIntegerProp(tile.getProperties(), TILE_BODY_WIDTH, 1);
+		return TiledStage.ParseIntegerProp(tile.getProperties(), Config.TILE_BODY_WIDTH, 1);
 	}
 
 	public static boolean ExtractIsPushable(TiledMapTile tile) {
-		return TiledStage.ParseBooleanProp(tile.getProperties(), TILE_ISPUSHABLE, false);
+		return TiledStage.ParseBooleanProp(tile.getProperties(), Config.TILE_ISPUSHABLE, false);
 	}
 
 	public static boolean ExtractIsMagnetisable(TiledMapTile tile) {
-		return TiledStage.ParseBooleanProp(tile.getProperties(), TILE_ISMAGNETISABLE, false);
+		return TiledStage.ParseBooleanProp(tile.getProperties(), Config.TILE_ISMAGNETISABLE, false);
 	}
 
 	public static int ExtractRenderDepth(TiledMapTile tile) {
-		return TiledStage.ParseIntegerProp(tile.getProperties(), TILE_RENDER_DEPTH, 0);
+		return TiledStage.ParseIntegerProp(tile.getProperties(), Config.TILE_RENDER_DEPTH, 0);
 	}
 
 	public static int ExtractElevation(TiledMapTile tile) {
-		return TiledStage.ParseIntegerProp(tile.getProperties(), TILE_ELEVATION, 0);
+		return TiledStage.ParseIntegerProp(tile.getProperties(), Config.TILE_ELEVATION, 0);
 	}
 
 	public static boolean ExtractIsOpen(TiledMapTile tile) {
-		return TiledStage.ParseBooleanProp(tile.getProperties(), TILE_ISOPEN, false);
+		return TiledStage.ParseBooleanProp(tile.getProperties(), Config.TILE_ISOPEN, false);
+	}
+
+	public TiledStageLightSource getLightSource(TiledMapTile tile) {
+		String lightingImagePath = TiledStage.ParseProp(tile.getProperties(), Config.TILE_LIGHTING_IMAGE_PATH);
+		if (lightingImagePath == null) return null; // no light source
+
+		Texture lightingTexture = new Texture(Gdx.files.internal(lightingImagePath));
+
+		float sizeX = TiledStage.ParseFloatProp(tile.getProperties(), Config.TILE_LIGHTING_WIDTH, 0f);
+		float sizeY = TiledStage.ParseFloatProp(tile.getProperties(), Config.TILE_LIGHTING_HEIGHT, 0f);
+
+		if (sizeX == 0f || sizeY == 0f)
+			throw new IllegalArgumentException("`Width` and `Height` of lighting must be defined!");
+
+		float intensity = TiledStage.ParseFloatProp(tile.getProperties(), Config.TILE_LIGHTING_INTENSITY, 1f);
+		float displacementX = TiledStage.ParseIntegerProp(tile.getProperties(), Config.TILE_LIGHTING_DISPLACEMENT_X, 0);
+		float displacementY = TiledStage.ParseIntegerProp(tile.getProperties(), Config.TILE_LIGHTING_DISPLACEMENT_Y, 0);
+
+		TiledStageLightSource lightSource = Pools.obtain(TiledStageLightSource.class);
+		lightSource.initialize(lightingTexture);
+		lightSource.setIntensity(intensity);
+		lightSource.setSize(sizeX, sizeY);
+		lightSource.setRenderDisplacement(sizeX / 2 - displacementX, sizeY / 2 - displacementY);
+		return lightSource;
 	}
 
 	public HashMap<String, TiledStageActor.FrameSequence> getAnimations(TiledMapTile tile) {
@@ -122,15 +127,15 @@ public class PlayScreen implements Screen, Player.ActionListener, Block.ActionLi
 		while (props.hasNext()) {
 			String prop = props.next();
 
-			if (prop.indexOf(TILE_STATE) == 0) {
+			if (prop.indexOf(Config.TILE_PREFIX_STATE) == 0) {
 				String reference = TiledStage.ParseProp(tile.getProperties(), prop);
 
-				if (reference.indexOf(TILE_REFERENCE) == 0) {
-					TiledMapTile animationTile = _tilesByReference.get(reference.substring(TILE_REFERENCE.length()));
+				if (reference.indexOf(Config.TILE_PREFIX_REFERENCE) == 0) {
+					TiledMapTile animationTile = _tilesByReference.get(reference.substring(Config.TILE_PREFIX_REFERENCE.length()));
 					if (animationTile != null) {
-						animationFrames.put(prop.substring(TILE_STATE.length()), getFrameSequence(animationTile));
+						animationFrames.put(prop.substring(Config.TILE_PREFIX_STATE.length()), getFrameSequence(animationTile));
 					} else {
-						throw new IllegalArgumentException("Property '" + prop + "' should '" + TILE_REFERENCE + "tileReference' to a valid tile!");
+						throw new IllegalArgumentException("Property '" + prop + "' should '" + Config.TILE_PREFIX_REFERENCE + "tileReference' to a valid tile!");
 					}
 				}
 			}
@@ -149,6 +154,23 @@ public class PlayScreen implements Screen, Player.ActionListener, Block.ActionLi
 
 	public void processProperties(TiledStageBody body, TiledMapTile tile) {
 		body.setRenderDepth(ExtractRenderDepth(tile));
+
+		final TiledStageLightSource lightSource = getLightSource(tile);
+		if (lightSource != null) {
+			addLightSource(lightSource);
+			lightSource.setPosition(body.getX(), body.getY());
+			body.addListener(new TiledStageBody.Listener() {
+				@Override
+				public void positionChanged(float x, float y) {
+					lightSource.setPosition(x, y);
+				}
+
+				@Override
+				public void removed() {
+					lightSource.remove();
+				}
+			});
+		}
 	}
 
 	public void processActions(final TiledStageBody body, TiledStage.TiledObject object) {
@@ -156,16 +178,16 @@ public class PlayScreen implements Screen, Player.ActionListener, Block.ActionLi
 		while (props.hasNext()) {
 			String prop = props.next();
 
-			if (prop.indexOf(TILE_ACTION) == 0) {
-				final String action = prop.substring(TILE_ACTION.length());
+			if (prop.indexOf(Config.TILE_PREFIX_ACTION) == 0) {
+				final String action = prop.substring(Config.TILE_PREFIX_ACTION.length());
 
 				String expressionString = TiledStage.ParseProp(object.properties(), prop);
-				final String actionName = TILE_NAME + body.getName() + TILE_ACTION + action;
+				final String actionName = Config.TILE_PREFIX_NAME + body.getName() + Config.TILE_PREFIX_ACTION + action;
 
 				// Replace and/or/not and add statement to logicmachine
-				expressionString = expressionString.replace(TILE_EXPRESSION_AND, LogicMachine.TERM_AND).
-						replace(TILE_EXPRESSION_OR, LogicMachine.TERM_OR).
-						replace(TILE_EXPRESSION_NOT, LogicMachine.TERM_NOT);
+				expressionString = expressionString.replace(Config.TILE_EXPRESSION_AND, LogicMachine.TERM_AND).
+						replace(Config.TILE_EXPRESSION_OR, LogicMachine.TERM_OR).
+						replace(Config.TILE_EXPRESSION_NOT, LogicMachine.TERM_NOT);
 
 				// Hook action of actor to logicmachine expression
 				LogicMachine.Expression expression = _logicMachine.addExpression(expressionString, new LogicMachine.Listener() {
@@ -177,11 +199,11 @@ public class PlayScreen implements Screen, Player.ActionListener, Block.ActionLi
 
 				// Hook premises of actor states to actor
 				for (final String predicate : expression.premises()) {
-					if (predicate.indexOf(TILE_NAME) != 0) {
+					if (predicate.indexOf(Config.TILE_PREFIX_NAME) != 0) {
 						throw new IllegalArgumentException("Property '" + prop + "' should be a valid expression! Predicate " + predicate + " should be prefixed with an actor's name.");
 					}
 
-					String[] parts = predicate.substring(TILE_NAME.length()).split(TILE_STATE);
+					String[] parts = predicate.substring(Config.TILE_PREFIX_NAME.length()).split(Config.TILE_PREFIX_STATE);
 					if (parts.length != 2)
 						throw new IllegalArgumentException("Property '" + prop + "' should be a valid expression! Predicate " + predicate + " should point to the actor's state.");
 
@@ -209,9 +231,9 @@ public class PlayScreen implements Screen, Player.ActionListener, Block.ActionLi
 	public void doAction(TiledStageBody body, String action) {
 		if (body instanceof Door) {
 			Door door = (Door) body;
-			if (action.equals(Door.ACTION_OPEN)) {
+			if (action.equals(Config.DOOR_ACTION_OPEN)) {
 				door.open();
-			} else if (action.equals(Door.ACTION_CLOSE)) {
+			} else if (action.equals(Config.DOOR_ACTION_CLOSE)) {
 				door.close();
 			}
 		}
@@ -220,7 +242,7 @@ public class PlayScreen implements Screen, Player.ActionListener, Block.ActionLi
 	@Override
 	public void show() {
 		if (_tiledStage == null) {
-			_tiledStage = new TiledStage(LAYER_ACTORS, Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), SUBTICKS.values().length, TICK_DURATION);
+			_tiledStage = new TiledStage(Config.ACTORS_LAYER_NAME, SUBTICKS.values().length, Config.GAME_TICK_DURATION);
 		}
 
 		Gdx.input.setInputProcessor(_tiledStage);
@@ -232,13 +254,13 @@ public class PlayScreen implements Screen, Player.ActionListener, Block.ActionLi
 		_levelPath = levelPath;
 
 		_map = _tmxMapLoader.load(_levelPath);
-		_tiledStage.load(_map);
+		_tiledStage.load(_map, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
 		Iterator<TiledMapTile> tiles = _tiledStage.tilesIterator();
 		while (tiles.hasNext()) {
 			TiledMapTile tile = tiles.next();
 
-			String reference = TiledStage.ParseProp(tile.getProperties(), TILE_REFERENCE);
+			String reference = TiledStage.ParseProp(tile.getProperties(), Config.TILE_PREFIX_REFERENCE);
 			if (reference != null) {
 				_tilesByReference.put(reference, tile);
 			}
@@ -248,23 +270,23 @@ public class PlayScreen implements Screen, Player.ActionListener, Block.ActionLi
 			TiledMapTile tile = object.tile();
 			if (tile == null) continue;
 
-			String type = TiledStage.ParseProp(tile.getProperties(), TILE_TYPE);
+			String type = TiledStage.ParseProp(tile.getProperties(), Config.TILE_TYPE);
 			TiledStageBody body = null;
 			if (type == null) continue;
 
-			if (type.equals(TILE_TYPE_BLOCK)) {
+			if (type.equals(Config.TILE_TYPE_LODESTONE)) {
 				body = createBlock(object);
-			} else if (type.equals(TILE_TYPE_MAGNETIC_SOURCE)) {
+			} else if (type.equals(Config.TILE_TYPE_MAGNETIC_SOURCE)) {
 				body = createMagneticSource(object);
-			} else if (type.equals(TILE_TYPE_MAGNETIC_FLOOR)) {
+			} else if (type.equals(Config.TILE_TYPE_MAGNETIC_FLOOR)) {
 				body = createMagneticFloor(object);
-			} else if (type.equals(TILE_TYPE_OBSTRUCTED_FLOOR)) {
+			} else if (type.equals(Config.TILE_TYPE_OBSTRUCTED_FLOOR)) {
 				body = createObstructedFloor(object);
-			} else if (type.equals(TILE_TYPE_PLAYER)) {
+			} else if (type.equals(Config.TILE_TYPE_PLAYER)) {
 				body = createPlayer(object);
-			} else if (type.equals(TILE_TYPE_BUTTON)) {
+			} else if (type.equals(Config.TILE_TYPE_BUTTON)) {
 				body = createButton(object);
-			} else if (type.equals(TILE_TYPE_DOOR)) {
+			} else if (type.equals(Config.TILE_TYPE_DOOR)) {
 				body = createDoor(object);
 			}
 
@@ -293,6 +315,11 @@ public class PlayScreen implements Screen, Player.ActionListener, Block.ActionLi
 		}
 		_bodies.clear();
 
+		for (TiledStageLightSource lightSource : _lightSources.toArray(new TiledStageLightSource[_lightSources.size()])) {
+			lightSource.remove();
+		}
+		_lightSources.clear();
+
 		_map.dispose();
 		_map = null;
 	}
@@ -313,10 +340,10 @@ public class PlayScreen implements Screen, Player.ActionListener, Block.ActionLi
 	}
 
 	public TiledStageBody createBlock(TiledStage.TiledObject object) {
-		Block block = Pools.get(Block.class).obtain();
-		block.initialize(ExtractBodyArea(object.tile()), ExtractBodyWidth(object.tile()),
+		Lodestone lodestone = Pools.get(Lodestone.class).obtain();
+		lodestone.initialize(ExtractBodyArea(object.tile()), ExtractBodyWidth(object.tile()),
 				getAnimations(object.tile()), object.origin(), ExtractIsPushable(object.tile()), ExtractIsMagnetisable(object.tile()), this);
-		return block;
+		return lodestone;
 	}
 
 	public TiledStageBody createMagneticSource(TiledStage.TiledObject object) {
@@ -365,6 +392,18 @@ public class PlayScreen implements Screen, Player.ActionListener, Block.ActionLi
 		});
 	}
 
+	public void addLightSource(final TiledStageLightSource lightSource) {
+		_tiledStage.addLightSource(lightSource);
+		_lightSources.add(lightSource);
+
+		lightSource.addListener(new TiledStageLightSource.Listener() {
+			@Override
+			public void removed() {
+				_lightSources.remove(lightSource);
+			}
+		});
+	}
+
 	@Override
 	public TiledStageVisual spawnMagneticAttractionVisual(TiledStage.Coordinate coordinate, TiledStage.DIRECTION direction) {
 		TiledStageVisual visual = Pools.get(TiledStageVisual.class).obtain();
@@ -373,11 +412,11 @@ public class PlayScreen implements Screen, Player.ActionListener, Block.ActionLi
 		switch (direction) {
 			case NORTH:
 			case SOUTH:
-				bodyTile = _tilesByReference.get(TILE_REFERENCE_MAGNETIC_ATTRACTION_VERTICAL);
+				bodyTile = _tilesByReference.get(Config.TILE_REFERENCE_MAGNETIC_ATTRACTION_VERTICAL);
 				break;
 			case EAST:
 			case WEST:
-				bodyTile = _tilesByReference.get(TILE_REFERENCE_MAGNETIC_ATTRACTION_HORIZONTAL);
+				bodyTile = _tilesByReference.get(Config.TILE_REFERENCE_MAGNETIC_ATTRACTION_HORIZONTAL);
 				break;
 		}
 
@@ -433,7 +472,6 @@ public class PlayScreen implements Screen, Player.ActionListener, Block.ActionLi
 	@Override
 	public void exitLevel() {
 		_actionListener.exitLevel();
-
 	}
 
 	@Override

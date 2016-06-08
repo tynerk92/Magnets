@@ -45,10 +45,6 @@ public abstract class TiledStageActor extends TiledStageBody {
 		setOrigin(targetCoordinate);
 		Vector2 pos = targetCoordinate.position();
 		addAction(Actions.moveTo(pos.x, pos.y, ticksToTime(ticks)));
-
-		for (TiledStageBody.Listener listener : listeners()) {
-			if (listener instanceof Listener) ((Listener) listener).moved(origin, targetCoordinate);
-		}
 	}
 
 	protected boolean moveDirection(TiledStage.DIRECTION direction, int ticks) {
@@ -93,10 +89,6 @@ public abstract class TiledStageActor extends TiledStageBody {
 	// ---------
 
 	public abstract static class Listener extends TiledStageBody.Listener {
-		public void moved(TiledStage.Coordinate from, TiledStage.Coordinate to) {
-		}
 
-		public void movedDirection(TiledStage.DIRECTION direction) {
-		}
 	}
 }

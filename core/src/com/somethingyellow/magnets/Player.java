@@ -9,10 +9,7 @@ import java.util.HashSet;
 import java.util.LinkedList;
 
 public class Player extends TiledStagePlayer {
-	public static final int MOVE_TICKS = 3;
-	public static final float ZOOM_MIN = 0.5f;
-	public static final float ZOOOM_DEFAULT = 0.9f;
-	public static final float ZOOM_MAX = 1.5f;
+
 	public static final int[] SUBTICKS = new int[]{
 			PlayScreen.SUBTICKS.PLAYER_MOVEMENT.ordinal(),
 			PlayScreen.SUBTICKS.GRAPHICS.ordinal()
@@ -27,7 +24,7 @@ public class Player extends TiledStagePlayer {
 		super.initialize(bodyArea, bodyWidth, animationFrames, origin);
 		_actionListener = actionListener;
 
-		_zoom = ZOOOM_DEFAULT;
+		_zoom = Config.PLAYER_ZOOOM_DEFAULT;
 		_actionListener.setZoom(_zoom);
 	}
 
@@ -42,7 +39,7 @@ public class Player extends TiledStagePlayer {
 		if (subtick == PlayScreen.SUBTICKS.PLAYER_MOVEMENT.ordinal()) {
 
 			if (!isMoving()) {
-				if (origin().getTileProp(PlayScreen.LAYER_ACTORS, PlayScreen.TILE_TYPE, "").equals(PlayScreen.TILE_TYPE_EXIT)) {
+				if (origin().getTileProp(Config.ACTORS_LAYER_NAME, Config.TILE_TYPE, "").equals(Config.TILE_TYPE_EXIT)) {
 					_actionListener.exitLevel();
 				} else if (_moveCommands.isEmpty()) {
 					if (isKeyLeftHeld() && !isKeyRightHeld() && !isKeyUpHeld() && !isKeyDownHeld()) {
@@ -79,13 +76,13 @@ public class Player extends TiledStagePlayer {
 		if (targetCoordinate == null) return false;
 		HashSet<TiledStageActor> actors = targetCoordinate.actors();
 		for (TiledStageActor actor : actors) {
-			if (actor instanceof Block) {
-				Block block = (Block) actor;
+			if (actor instanceof Lodestone) {
+				Lodestone lodestone = (Lodestone) actor;
 
-				if (block.isPushable()) {
+				if (lodestone.isPushable()) {
 					TiledStage.Coordinate origin = origin();
 					setOrigin(targetCoordinate);
-					if (block.push(direction)) { // if block can really move to its pushed position (not considering actor)
+					if (lodestone.push(direction)) { // if lodestone can really move to its pushed position (not considering actor)
 						setOrigin(origin);
 						moveDirection(direction);
 					} else {
@@ -101,17 +98,17 @@ public class Player extends TiledStagePlayer {
 
 	protected void moveDirection(TiledStage.DIRECTION direction) {
 		if (!pushDirection(direction)) {
-			moveDirection(direction, MOVE_TICKS);
+			moveDirection(direction, Config.PLAYER_MOVE_TICKS);
 		}
 	}
 
 	@Override
 	public boolean bodyCanBeAt(TiledStage.Coordinate coordinate) {
-		if (coordinate.getTileProp(PlayScreen.LAYER_ACTORS, PlayScreen.TILE_TYPE, "").equals(PlayScreen.TILE_TYPE_WALL))
+		if (coordinate.getTileProp(Config.ACTORS_LAYER_NAME, Config.TILE_TYPE, "").equals(Config.TILE_TYPE_WALL))
 			return false;
 		for (TiledStageActor actor : coordinate.actors()) {
 			if (actor == this) continue;
-			if (actor instanceof  Player || actor instanceof  Block || actor instanceof  MagneticSource ||
+			if (actor instanceof Player || actor instanceof Lodestone || actor instanceof MagneticSource ||
 					(actor instanceof Door && !((Door)actor).isOpen())) return false;
 		}
 
@@ -151,7 +148,7 @@ public class Player extends TiledStagePlayer {
 
 	protected boolean scrolled(InputEvent event, float x, float y, int amount) {
 		super.scrolled(event, x, y, amount);
-		_zoom = Math.min(Math.max(_zoom + (float) amount / 10, ZOOM_MIN), ZOOM_MAX);
+		_zoom = Math.min(Math.max(_zoom + (float) amount / 10, Config.PLAYER_ZOOM_MIN), Config.PLAYER_ZOOM_MAX);
 		_actionListener.setZoom(_zoom);
 		return true;
 	}

@@ -105,7 +105,7 @@ public abstract class TiledStageBody extends Actor implements Comparable<TiledSt
 	}
 
 	public Vector2 center() {
-		return new Vector2(position().x + (float) _bodyWidth / 2 * stage().tileWidth(), position().y + (float) _bodyHeight / 2 * stage().tileHeight());
+		return new Vector2(getX() + (float) _bodyWidth / 2 * stage().tileWidth(), getY() + (float) _bodyHeight / 2 * stage().tileHeight());
 	}
 
 	public TiledStage.Coordinate topLeftBodyCoordinate() {
@@ -215,10 +215,6 @@ public abstract class TiledStageBody extends Actor implements Comparable<TiledSt
 		return _tempListeners;
 	}
 
-	public Vector2 position() {
-		return new Vector2(getX(), getY());
-	}
-
 	public int renderDepth() {
 		return _renderDepth;
 	}
@@ -275,6 +271,13 @@ public abstract class TiledStageBody extends Actor implements Comparable<TiledSt
 		}
 	}
 
+	@Override
+	public void positionChanged() {
+		for (Listener listener : _listeners) {
+			listener.positionChanged(getX(), getY());
+		}
+	}
+
 	public interface FrameSequenceListener {
 		void ended(); // frame sequence just finished playing (will continue in loop)
 	}
@@ -287,6 +290,9 @@ public abstract class TiledStageBody extends Actor implements Comparable<TiledSt
 		}
 
 		public void removed() {
+		}
+
+		public void positionChanged(float x, float y) {
 		}
 	}
 

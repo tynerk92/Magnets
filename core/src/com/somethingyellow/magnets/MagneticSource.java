@@ -33,9 +33,9 @@ public class MagneticSource extends TiledStageActor {
 				for (TiledStage.Coordinate coordinate : bodyCoordinate.getCoordinatesInRange(MAGNETISE_RANGE, false)) {
 					for (TiledStageActor actor : coordinate.actors()) {
 						if (actor == this) continue;
-						if (actor instanceof Block) {
-							Block block = (Block) actor;
-							if (!block.isMagnetised()) block.magnetise();
+						if (actor instanceof Lodestone) {
+							Lodestone lodestone = (Lodestone) actor;
+							if (!lodestone.isMagnetised()) lodestone.magnetise();
 						}
 					}
 				}
@@ -50,14 +50,14 @@ public class MagneticSource extends TiledStageActor {
 				for (TiledStage.Coordinate coordinate : bodyCoordinate.getCoordinatesAtRange(ATTRACTION_RANGE, false)) {
 					for (TiledStageActor actor : coordinate.actors()) {
 						if (actor == this) continue;
-						if (actor instanceof Block) {
-							Block block = (Block) actor;
-							if (block.isMagnetised() || block.isMoving()) continue;
+						if (actor instanceof Lodestone) {
+							Lodestone lodestone = (Lodestone) actor;
+							if (lodestone.isMagnetised() || lodestone.isMoving()) continue;
 
 							TiledStage.DIRECTION direction = bodyCoordinate.getDirectionFrom(coordinate);
 							if (direction == null) continue;
 
-							block.attract(direction, coordinate, ATTRACTION_STRENGTH);
+							lodestone.attract(direction, coordinate, ATTRACTION_STRENGTH);
 						}
 					}
 				}

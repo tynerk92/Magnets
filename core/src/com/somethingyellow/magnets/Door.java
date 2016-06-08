@@ -4,14 +4,8 @@ import com.somethingyellow.tiled.TiledStage;
 import com.somethingyellow.tiled.TiledStageActor;
 
 import java.util.HashMap;
-import java.util.Set;
 
 public class Door extends TiledStageActor {
-	public static final String STATE_OPENED = "Opened";
-	public static final String STATE_OPENING = "Opening";
-	public static final String STATE_CLOSING = "Closing";
-	public static final String ACTION_OPEN = "Open";
-	public static final String ACTION_CLOSE = "Close";
 	public static final int[] SUBTICKS = new int[]{
 			PlayScreen.SUBTICKS.GRAPHICS.ordinal()
 	};
@@ -27,19 +21,19 @@ public class Door extends TiledStageActor {
 		_isOpen = false;
 
 		// Frame events
-		getStateFrames(STATE_OPENING).setListener(new TiledStageActor.FrameSequenceListener() {
+		getStateFrames(Config.DOOR_STATE_OPENING).setListener(new TiledStageActor.FrameSequenceListener() {
 			@Override
 			public void ended() {
-				addState(STATE_OPENED);
-				removeState(STATE_OPENING);
+				addState(Config.DOOR_STATE_OPENED);
+				removeState(Config.DOOR_STATE_OPENING);
 			}
 		});
 
-		getStateFrames(STATE_CLOSING).setListener(new TiledStageActor.FrameSequenceListener() {
+		getStateFrames(Config.DOOR_STATE_CLOSING).setListener(new TiledStageActor.FrameSequenceListener() {
 			@Override
 			public void ended() {
 				addState(STATE_DEFAULT);
-				removeState(STATE_CLOSING);
+				removeState(Config.DOOR_STATE_CLOSING);
 			}
 		});
 	}
@@ -58,7 +52,7 @@ public class Door extends TiledStageActor {
 				loop:
 				for (TiledStage.Coordinate bodyCoordinate : bodyCoordinates()) {
 					for (TiledStageActor actor : bodyCoordinate.actors()) {
-						if (actor instanceof Block || actor instanceof Player) {
+						if (actor instanceof Lodestone || actor instanceof Player) {
 							ifBlocked = true;
 							break loop;
 						}
@@ -73,13 +67,13 @@ public class Door extends TiledStageActor {
 
 			if (_isOpen) {
 				if (hasState(STATE_DEFAULT)) {
-					addState(STATE_OPENING);
+					addState(Config.DOOR_STATE_OPENING);
 					removeState(STATE_DEFAULT);
 				}
 			} else {
-				if (hasState(STATE_OPENED)) {
-					addState(STATE_CLOSING);
-					removeState(STATE_OPENED);
+				if (hasState(Config.DOOR_STATE_OPENED)) {
+					addState(Config.DOOR_STATE_CLOSING);
+					removeState(Config.DOOR_STATE_OPENED);
 				}
 			}
 
