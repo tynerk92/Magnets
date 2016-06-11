@@ -137,6 +137,7 @@ public class TextToTmx {
 		int[][] FloorDeco		 = new int[rows][cols];
 		int[][] WallDeco		 = new int[rows][cols];
 		int[][] Collision	     = new int[rows][cols];
+		int[][] Shadows			 = new int[rows][cols];
 		// Determines if the collision layer should be created
 		Boolean hasCollision = false;
 		// Extra 2 rows and cols as required by the wall scanning algorithm
@@ -147,6 +148,7 @@ public class TextToTmx {
 		for (int[] row: WallDeco) 			Arrays.fill(row, 0);
 		for (int[] row: Walls) 				Arrays.fill(row, 0);
 		for (int[] row: Collision) 			Arrays.fill(row, 0);
+		for (int[] row: Shadows)			Arrays.fill(row, 0);
 		
 		for (int y = 0; y < rows - bufferWalls * 2; y++) {
 			for (int x = 0; x < cols - bufferWalls * 2; x++) {
@@ -250,6 +252,7 @@ public class TextToTmx {
 		
 		LayersInfo += writeGenericLayer("Floor", Floor);
 		LayersInfo += writeGenericLayer("Floor Decoration", FloorDeco);
+		LayersInfo += writeGenericLayer("Shadows", Shadows);
 		LayersInfo += writeGenericLayer("Wall Decoration", FloorDeco);
 		LayersInfo += writeGenericLayer("Walls and Objects", Walls);
 		if (hasCollision) LayersInfo += writeGenericLayer("Collision", Collision);
@@ -357,7 +360,7 @@ public class TextToTmx {
 		// Create the level in the stated directory
 		if (!wroteTileSet) writeTileSet();
 		writeLayersInfo(dir, levelcode);
-		writeLevelInfo(rows, cols, nameCount);
+		writeLevelInfo(cols, rows, nameCount);
 		
 		String finalTmx = LevelInfo + "\n" + TileSetInfo + " </tileset>\n" + PuzzleInfo + LayersInfo + ObjectsInfo + "</map>";
 		LevelInfo = ""; PuzzleInfo = ""; LayersInfo = ""; ObjectsInfo = "";
