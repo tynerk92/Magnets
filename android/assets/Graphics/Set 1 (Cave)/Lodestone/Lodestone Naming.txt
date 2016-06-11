@@ -1,0 +1,1 @@
+<Width>x<height> <Numbering within the set of equal width and height> <Area code>
