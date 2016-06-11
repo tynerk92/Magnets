@@ -1,21 +1,23 @@
 package com.somethingyellow.magnets;
 
+import com.somethingyellow.graphics.AnimationDef;
 import com.somethingyellow.tiled.TiledStage;
 import com.somethingyellow.tiled.TiledStageActor;
 
-import java.util.HashMap;
+import java.util.Map;
 import java.util.TreeSet;
 
 public class MagneticFloor extends TiledStageActor {
+
 	public static final int MAGNETISE_RANGE = 0;
 	public static final int[] SUBTICKS = new int[]{
 			PlayScreen.SUBTICKS.MAGNETISATION.ordinal()
 	};
 
+	public void initialize(Map<String, AnimationDef> animationDefs, TiledStage.Coordinate origin) {
+		super.initialize(animationDefs, TiledStageActor.BodyArea1x1, 1, origin);
 
-	public void initialize(HashMap<String, FrameSequence> animationFrames,
-	                       TiledStage.Coordinate origin) {
-		super.initialize(TiledStageActor.BodyArea1x1, 1, animationFrames, origin);
+		showAnimation(Config.AnimationFloor);
 	}
 
 	@Override
@@ -45,5 +47,9 @@ public class MagneticFloor extends TiledStageActor {
 	@Override
 	public int[] subticks() {
 		return SUBTICKS;
+	}
+
+	public static class Config {
+		public static String AnimationFloor = "Floor";
 	}
 }

@@ -2,11 +2,12 @@ package com.somethingyellow.magnets;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.somethingyellow.graphics.AnimationDef;
 import com.somethingyellow.tiled.*;
 
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.Map;
 
 public class Player extends TiledStagePlayer {
 
@@ -14,18 +15,17 @@ public class Player extends TiledStagePlayer {
 			PlayScreen.SUBTICKS.PLAYER_MOVEMENT.ordinal(),
 			PlayScreen.SUBTICKS.GRAPHICS.ordinal()
 	};
-
-	private ActionListener _actionListener;
+	private Commands _commands;
 	private float _zoom;
 	private LinkedList<TiledStage.DIRECTION> _moveCommands = new LinkedList<TiledStage.DIRECTION>();
 
-	public void initialize(boolean[] bodyArea, int bodyWidth, HashMap<String, FrameSequence> animationFrames,
-	                       TiledStage.Coordinate origin, ActionListener actionListener) {
-		super.initialize(bodyArea, bodyWidth, animationFrames, origin);
-		_actionListener = actionListener;
+	public void initialize(Map<String, AnimationDef> animationDefs, boolean[] bodyArea, int bodyWidth, TiledStage.Coordinate origin, Commands commands) {
+		super.initialize(animationDefs, bodyArea, bodyWidth, origin);
+		_commands = commands;
 
-		_zoom = Config.PLAYER_ZOOOM_DEFAULT;
-		_actionListener.setZoom(_zoom);
+		_zoom = Config.ZoomDefault;
+		_commands.setZoom(_zoom);
+		showAnimation(Config.AnimationStanding);
 	}
 
 	@Override
@@ -39,8 +39,8 @@ public class Player extends TiledStagePlayer {
 		if (subtick == PlayScreen.SUBTICKS.PLAYER_MOVEMENT.ordinal()) {
 
 			if (!isMoving()) {
-				if (origin().getTileProp(Config.LAYER_NAME_ACTORS, Config.TILE_TYPE, "").equals(Config.TILE_TYPE_EXIT)) {
-					_actionListener.exitLevel();
+				if (_commands.isExit(origin())) {
+					_commands.exitLevel();
 				} else if (_moveCommands.isEmpty()) {
 					if (isKeyLeftHeld() && !isKeyRightHeld() && !isKeyUpHeld() && !isKeyDownHeld()) {
 						moveDirection(TiledStage.DIRECTION.WEST);
@@ -98,18 +98,18 @@ public class Player extends TiledStagePlayer {
 
 	protected void moveDirection(TiledStage.DIRECTION direction) {
 		if (!pushDirection(direction)) {
-			moveDirection(direction, Config.PLAYER_MOVE_TICKS);
+			moveDirection(direction, Config.MoveTicks);
 		}
 	}
 
 	@Override
 	public boolean bodyCanBeAt(TiledStage.Coordinate coordinate) {
-		if (coordinate.getTileProp(Config.LAYER_NAME_ACTORS, Config.TILE_TYPE, "").equals(Config.TILE_TYPE_WALL))
-			return false;
+		if (_commands.isWall(coordinate)) return false;
+
 		for (TiledStageActor actor : coordinate.actors()) {
 			if (actor == this) continue;
 			if (actor instanceof Player || actor instanceof Lodestone || actor instanceof MagneticSource ||
-					(actor instanceof Door && !((Door)actor).isOpen())) return false;
+					(actor instanceof Door && !((Door) actor).isOpen())) return false;
 		}
 
 		return true;
@@ -120,10 +120,10 @@ public class Player extends TiledStagePlayer {
 		super.keyDown(event, keycode);
 		switch (keycode) {
 			case Input.Keys.R:
-				_actionListener.resetLevel();
+				_commands.resetLevel();
 				break;
 			case Input.Keys.ESCAPE:
-				_actionListener.exitLevel();
+				_commands.exitLevel();
 				break;
 			case Input.Keys.LEFT:
 			case Input.Keys.A:
@@ -148,8 +148,8 @@ public class Player extends TiledStagePlayer {
 
 	protected boolean scrolled(InputEvent event, float x, float y, int amount) {
 		super.scrolled(event, x, y, amount);
-		_zoom = Math.min(Math.max(_zoom + (float) amount / 10, Config.PLAYER_ZOOM_MIN), Config.PLAYER_ZOOM_MAX);
-		_actionListener.setZoom(_zoom);
+		_zoom = Math.min(Math.max(_zoom + (float) amount / 10, Config.ZoomMin), Config.ZoomMax);
+		_commands.setZoom(_zoom);
 		return true;
 	}
 
@@ -160,11 +160,22 @@ public class Player extends TiledStagePlayer {
 		return SUBTICKS;
 	}
 
-	public interface ActionListener {
+	public interface Commands {
+		boolean isWall(TiledStage.Coordinate coordinate);
+
+		boolean isExit(TiledStage.Coordinate coordinate);
 		void resetLevel();
 
 		void exitLevel();
 
 		void setZoom(float zoom);
+	}
+
+	public static class Config {
+		public static int MoveTicks = 3;
+		public static float ZoomMin = 0.5f;
+		public static float ZoomMax = 1.5f;
+		public static float ZoomDefault = 0.8f;
+		public static String AnimationStanding = "Standing";
 	}
 }

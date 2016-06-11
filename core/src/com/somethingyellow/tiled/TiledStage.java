@@ -8,7 +8,6 @@ import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
-import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -23,9 +22,6 @@ import java.util.Set;
 import java.util.TreeSet;
 
 public class TiledStage extends Stage {
-	public static float cameraPanningSmoothRatio = 0.1f;
-	public static float cameraZoomSmoothRatio = 0.1f;
-	public static float cameraZoomDefault = 1f;
 
 	private TiledMap _map;
 	private TiledStageMapRenderer _mapRenderer;
@@ -48,15 +44,16 @@ public class TiledStage extends Stage {
 	private float _cameraZoom;
 	private ArrayList<Coordinate> _coordinates;
 	private String _bodiesLayerName;
+	private String _shadowsLayerName;
 	private HashMap<String, TiledMapTileLayer> _tileLayers = new HashMap<String, TiledMapTileLayer>();
 	private LinkedList<TiledObject> _objects = new LinkedList<TiledObject>();
 
-	public TiledStage(String bodiesLayerName, int maxSubTicks, float tickDuration) {
-
+	public TiledStage(String bodiesLayerName, String shadowsLayerName, int maxSubTicks, float tickDuration) {
 		_bodiesLayerName = bodiesLayerName;
+		_shadowsLayerName = shadowsLayerName;
 		_maxSubTicks = maxSubTicks;
 		_tickTime = 0f;
-		_cameraZoom = cameraZoomDefault;
+		_cameraZoom = Config.CameraZoomDefault;
 		_tickDuration = tickDuration;
 
 		_subTicksToActors = new ArrayList<HashSet<TiledStageActor>>(_maxSubTicks);
@@ -209,9 +206,6 @@ public class TiledStage extends Stage {
 		return 0;
 	}
 
-	// visual
-	// -------
-
 	public void load(TiledMap map, int screenWidth, int screenHeight) {
 		_map = map;
 
@@ -232,7 +226,7 @@ public class TiledStage extends Stage {
 		_inputFocalActor = null;
 
 		if (_mapRenderer != null) _mapRenderer.dispose();
-		_mapRenderer = new TiledStageMapRenderer(this, _map, getBatch());
+		_mapRenderer = new TiledStageMapRenderer(this, _map, _bodiesLayerName, _shadowsLayerName);
 		MapProperties props = _map.getProperties();
 		_tileWidth = props.get("tilewidth", Integer.class);
 		_tileHeight = props.get("tileheight", Integer.class);
@@ -263,8 +257,8 @@ public class TiledStage extends Stage {
 		setScreenSize(screenWidth, screenHeight);
 	}
 
-	// get/set
-	// --------
+	// visual
+	// -------
 
 	@Override
 	public void draw() {
@@ -299,14 +293,17 @@ public class TiledStage extends Stage {
 
 		// Camera
 		Vector2 camPos = new Vector2(_camera.position.x, _camera.position.y);
-		_camera.position.set(camPos.interpolate(_cameraFocalActor.center(), cameraPanningSmoothRatio, Interpolation.linear), 0);
-		_camera.zoom += (_cameraZoom - _camera.zoom) * cameraZoomSmoothRatio;
+		_camera.position.set(camPos.interpolate(_cameraFocalActor.center(), Config.CameraPanningSmoothRatio, Interpolation.linear), 0);
+		_camera.zoom += (_cameraZoom - _camera.zoom) * Config.CameraZoomSmoothRatio;
 		_camera.update();
 
 		// Map
 		_mapRenderer.setView(_camera);
 		_mapRenderer.render();
 	}
+
+	// get/set
+	// --------
 
 	public TiledStageMapRenderer mapRenderer() {
 		return _mapRenderer;
@@ -416,10 +413,6 @@ public class TiledStage extends Stage {
 		return new CellsIterator(layerName);
 	}
 
-	public Iterator<TiledMapTile> tilesIterator() {
-		return new TilesIterator();
-	}
-
 	public Set<TiledStageBody> bodies() {
 		return _bodies;
 	}
@@ -455,6 +448,12 @@ public class TiledStage extends Stage {
 
 	public enum DIRECTION {
 		WEST, EAST, NORTH, SOUTH, NORTH_WEST, NORTH_EAST, SOUTH_WEST, SOUTH_EAST
+	}
+
+	public static class Config {
+		public static float CameraPanningSmoothRatio = 0.1f;
+		public static float CameraZoomSmoothRatio = 0.1f;
+		public static float CameraZoomDefault = 1f;
 	}
 
 	public class TiledObject {
@@ -752,29 +751,6 @@ public class TiledStage extends Stage {
 				_cellsIterator = _coordinatesIterator.next().cells().values().iterator();
 
 			return cell;
-		}
-	}
-
-	private class TilesIterator implements Iterator<TiledMapTile> {
-		private Iterator<TiledMapTileSet> _tilesetsIterator = _map.getTileSets().iterator();
-		private Iterator<TiledMapTile> _tilesIterator;
-
-		public TilesIterator() {
-			if (_tilesetsIterator.hasNext()) _tilesIterator = _tilesetsIterator.next().iterator();
-		}
-
-		@Override
-		public boolean hasNext() {
-			return (_tilesIterator != null && _tilesIterator.hasNext());
-		}
-
-		@Override
-		public TiledMapTile next() {
-			TiledMapTile tile = _tilesIterator.next();
-			if (!_tilesIterator.hasNext() && _tilesetsIterator.hasNext())
-				_tilesIterator = _tilesetsIterator.next().iterator();
-
-			return tile;
 		}
 	}
 }

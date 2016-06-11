@@ -1,20 +1,20 @@
 package com.somethingyellow.magnets;
 
+import com.somethingyellow.graphics.AnimationDef;
 import com.somethingyellow.tiled.TiledStage;
 import com.somethingyellow.tiled.TiledStageActor;
 
-import java.util.HashMap;
-import java.util.TreeSet;
+import java.util.Map;
 
 public class ObstructedFloor extends TiledStageActor {
 
 	private int _elevation;
 
-	public void initialize(HashMap<String, FrameSequence> animationFrames,
-	                       TiledStage.Coordinate origin, int elevation) {
-		super.initialize(TiledStageActor.BodyArea1x1, 1, animationFrames, origin);
+	public void initialize(Map<String, AnimationDef> animationDefs, TiledStage.Coordinate origin, int elevation) {
+		super.initialize(animationDefs, TiledStageActor.BodyArea1x1, 1, origin);
 
 		_elevation = elevation;
+		showAnimation(Config.AnimationFloor);
 	}
 
 	@Override
@@ -35,5 +35,9 @@ public class ObstructedFloor extends TiledStageActor {
 	@Override
 	public int[] subticks() {
 		return SUBTICKS;
+	}
+
+	public static class Config {
+		public static String AnimationFloor = "Floor";
 	}
 }

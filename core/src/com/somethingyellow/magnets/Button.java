@@ -1,46 +1,51 @@
 package com.somethingyellow.magnets;
 
+import com.somethingyellow.graphics.AnimatedActor;
+import com.somethingyellow.graphics.Animation;
+import com.somethingyellow.graphics.AnimationDef;
 import com.somethingyellow.tiled.TiledStage;
 import com.somethingyellow.tiled.TiledStageActor;
 
-import java.util.HashMap;
+import java.util.Map;
 
 public class Button extends TiledStageActor {
+
 	public static final int[] SUBTICKS = new int[]{
 			PlayScreen.SUBTICKS.BUTTON_PRESSES.ordinal(),
 			PlayScreen.SUBTICKS.GRAPHICS.ordinal()
 	};
-
 	private boolean _isOn;
 
-	public void initialize(boolean[] bodyArea, int bodyWidth, HashMap<String, FrameSequence> animationFrames,
-	                       TiledStage.Coordinate origin) {
-		super.initialize(bodyArea, bodyWidth, animationFrames, origin);
+	public void initialize(Map<String, AnimationDef> animationDefs, boolean[] bodyArea, int bodyWidth, TiledStage.Coordinate origin) {
+		super.initialize(animationDefs, bodyArea, bodyWidth, origin);
 
 		_isOn = false;
 
-		// Frame events
-		getStateFrames(Config.BUTTON_STATE_ONING).setListener(new TiledStageActor.FrameSequenceListener() {
+		setTransition(Config.AnimationOning, Config.AnimationOn);
+		setTransition(Config.AnimationOffing, Config.AnimationOff);
+		addListener(new AnimatedActor.Listener() {
 			@Override
-			public void ended() {
-				addState(Config.BUTTON_STATE_ON);
-				removeState(Config.BUTTON_STATE_ONING);
+			public void animationShown(AnimatedActor actor, Animation animation) {
+				if (animation.tag().equals(Config.AnimationOn)) {
+					addState(Config.StateOn);
+					removeState(Config.StateOff);
+				}
 			}
-		});
 
-		getStateFrames(Config.BUTTON_STATE_OFFING).setListener(new TiledStageActor.FrameSequenceListener() {
 			@Override
-			public void ended() {
-				addState(STATE_DEFAULT);
-				removeState(Config.BUTTON_STATE_OFFING);
+			public void animationHidden(AnimatedActor actor, Animation animation) {
+				if (animation.tag().equals(Config.AnimationOn)) {
+					addState(Config.StateOff);
+					removeState(Config.StateOn);
+				}
 			}
 		});
+		showAnimation(Config.AnimationOff);
 	}
 
 	@Override
 	public void act(int subtick) {
 		if (subtick == PlayScreen.SUBTICKS.BUTTON_PRESSES.ordinal()) {
-
 			_isOn = false;
 			loop:
 			for (TiledStage.Coordinate bodyCoordinate : bodyCoordinates()) {
@@ -55,17 +60,16 @@ public class Button extends TiledStageActor {
 		} else if (subtick == PlayScreen.SUBTICKS.GRAPHICS.ordinal()) {
 
 			if (_isOn) {
-				if (hasState(STATE_DEFAULT)) {
-					addState(Config.BUTTON_STATE_ONING);
-					removeState(STATE_DEFAULT);
+				if (isAnimationActive(Config.AnimationOff)) {
+					showAnimation(Config.AnimationOning);
+					hideAnimation(Config.AnimationOff);
 				}
 			} else {
-				if (hasState(Config.BUTTON_STATE_ON)) {
-					addState(Config.BUTTON_STATE_OFFING);
-					removeState(Config.BUTTON_STATE_ON);
+				if (isAnimationActive(Config.AnimationOn)) {
+					showAnimation(Config.AnimationOffing);
+					hideAnimation(Config.AnimationOn);
 				}
 			}
-
 		}
 	}
 
@@ -79,5 +83,14 @@ public class Button extends TiledStageActor {
 	@Override
 	public int[] subticks() {
 		return SUBTICKS;
+	}
+
+	public static class Config {
+		public static String AnimationOning = "Oning";
+		public static String AnimationOn = "On";
+		public static String AnimationOffing = "Offing";
+		public static String AnimationOff = "Off";
+		public static String StateOn = "On";
+		public static String StateOff = "Off";
 	}
 }

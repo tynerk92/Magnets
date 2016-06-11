@@ -1,41 +1,48 @@
 package com.somethingyellow.magnets;
 
+import com.somethingyellow.graphics.AnimatedActor;
+import com.somethingyellow.graphics.Animation;
+import com.somethingyellow.graphics.AnimationDef;
 import com.somethingyellow.tiled.TiledStage;
 import com.somethingyellow.tiled.TiledStageActor;
 
-import java.util.HashMap;
+import java.util.Map;
 
 public class Door extends TiledStageActor {
+
 	public static final int[] SUBTICKS = new int[]{
 			PlayScreen.SUBTICKS.GRAPHICS.ordinal()
 	};
-
 	private boolean _isOpen; // whether the door IS open
 	private boolean _toOpen; // whether the door SHOULD be open
 
-	public void initialize(boolean[] bodyArea, int bodyWidth, HashMap<String, FrameSequence> animationFrames,
-	                       TiledStage.Coordinate origin, boolean toOpen) {
-		super.initialize(bodyArea, bodyWidth, animationFrames, origin);
+	public void initialize(Map<String, AnimationDef> animationDefs, boolean[] bodyArea, int bodyWidth, TiledStage.Coordinate origin, boolean toOpen) {
+		super.initialize(animationDefs, bodyArea, bodyWidth, origin);
 
 		_toOpen = toOpen;
 		_isOpen = false;
 
-		// Frame events
-		getStateFrames(Config.DOOR_STATE_OPENING).setListener(new TiledStageActor.FrameSequenceListener() {
+		setTransition(Config.AnimationOpening, Config.AnimationOpened);
+		setTransition(Config.AnimationClosing, Config.AnimationClosed);
+		addListener(new AnimatedActor.Listener() {
 			@Override
-			public void ended() {
-				addState(Config.DOOR_STATE_OPENED);
-				removeState(Config.DOOR_STATE_OPENING);
+			public void animationShown(AnimatedActor actor, Animation animation) {
+				if (animation.tag().equals(Config.AnimationOpened)) {
+					addState(Config.StateOpened);
+					removeState(Config.StateClosed);
+				}
+			}
+
+			@Override
+			public void animationHidden(AnimatedActor actor, Animation animation) {
+				if (animation.tag().equals(Config.AnimationOpened)) {
+					addState(Config.StateClosed);
+					removeState(Config.StateOpened);
+				}
 			}
 		});
 
-		getStateFrames(Config.DOOR_STATE_CLOSING).setListener(new TiledStageActor.FrameSequenceListener() {
-			@Override
-			public void ended() {
-				addState(STATE_DEFAULT);
-				removeState(Config.DOOR_STATE_CLOSING);
-			}
-		});
+		showAnimation(Config.AnimationClosed);
 	}
 
 	@Override
@@ -66,17 +73,16 @@ public class Door extends TiledStageActor {
 
 
 			if (_isOpen) {
-				if (hasState(STATE_DEFAULT)) {
-					addState(Config.DOOR_STATE_OPENING);
-					removeState(STATE_DEFAULT);
+				if (isAnimationActive(Config.AnimationClosed)) {
+					showAnimation(Config.AnimationOpening);
+					hideAnimation(Config.AnimationClosed);
 				}
 			} else {
-				if (hasState(Config.DOOR_STATE_OPENED)) {
-					addState(Config.DOOR_STATE_CLOSING);
-					removeState(Config.DOOR_STATE_OPENED);
+				if (isAnimationActive(Config.AnimationOpened)) {
+					showAnimation(Config.AnimationClosing);
+					hideAnimation(Config.AnimationOpened);
 				}
 			}
-
 		}
 	}
 
@@ -93,15 +99,24 @@ public class Door extends TiledStageActor {
 		return true;
 	}
 
-	// get/set
-	// ---------
-
 	public boolean isOpen() {
 		return _isOpen;
 	}
 
+	// get/set
+	// ---------
+
 	@Override
 	public int[] subticks() {
 		return SUBTICKS;
+	}
+
+	public static class Config {
+		public static String AnimationOpening = "Opening";
+		public static String AnimationOpened = "Opened";
+		public static String AnimationClosing = "Closing";
+		public static String AnimationClosed = "Closed";
+		public static String StateOpened = "Opened";
+		public static String StateClosed = "Closed";
 	}
 }

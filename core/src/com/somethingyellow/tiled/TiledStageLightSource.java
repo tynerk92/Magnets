@@ -58,7 +58,7 @@ public class TiledStageLightSource extends Actor implements Pool.Poolable, Dispo
 	@Override
 	public boolean remove() {
 		for (Listener listener : _listeners) {
-			listener.removed();
+			listener.removed(this);
 		}
 
 		Pools.free(this);
@@ -76,7 +76,7 @@ public class TiledStageLightSource extends Actor implements Pool.Poolable, Dispo
 	}
 
 	public abstract static class Listener {
-		public void removed() {
+		public void removed(TiledStageLightSource lightSource) {
 		}
 	}
 }

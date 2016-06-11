@@ -1,12 +1,13 @@
 package com.somethingyellow.magnets;
 
+import com.somethingyellow.graphics.AnimationDef;
 import com.somethingyellow.tiled.TiledStage;
 import com.somethingyellow.tiled.TiledStageActor;
-import com.somethingyellow.tiled.TiledStageVisual;
 
-import java.util.HashMap;
+import java.util.Map;
 
 public class MagneticSource extends TiledStageActor {
+
 	public static final int MAGNETISE_RANGE = 1;
 	public static final int ATTRACTION_RANGE = 2;
 	public static final int ATTRACTION_STRENGTH = 1;
@@ -15,12 +16,10 @@ public class MagneticSource extends TiledStageActor {
 			PlayScreen.SUBTICKS.FORCES.ordinal()
 	};
 
-	private ActionListener _actionListener;
+	public void initialize(Map<String, AnimationDef> animationDefs, TiledStage.Coordinate origin) {
+		super.initialize(animationDefs, TiledStageActor.BodyArea1x1, 1, origin);
 
-	public void initialize(HashMap<String, FrameSequence> animationFrames, TiledStage.Coordinate origin, ActionListener actionListener) {
-		super.initialize(TiledStageActor.BodyArea1x1, 1, animationFrames, origin);
-
-		_actionListener = actionListener;
+		showAnimation(Config.AnimationSource);
 	}
 
 	@Override
@@ -77,7 +76,7 @@ public class MagneticSource extends TiledStageActor {
 		return SUBTICKS;
 	}
 
-	public interface ActionListener {
-		TiledStageVisual spawnMagneticAttractionVisual(TiledStage.Coordinate coordinate, TiledStage.DIRECTION direction);
+	public static class Config {
+		public static String AnimationSource = "Source";
 	}
 }

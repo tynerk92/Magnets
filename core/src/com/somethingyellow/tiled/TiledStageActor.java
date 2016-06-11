@@ -2,18 +2,18 @@ package com.somethingyellow.tiled;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.somethingyellow.graphics.AnimationDef;
 
-import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
 
 public abstract class TiledStageActor extends TiledStageBody {
 	public static final int[] SUBTICKS = new int[]{0};
 
 	private int _movingTicks;
 
-	protected void initialize(boolean[] bodyArea, int bodyWidth, HashMap<String, FrameSequence> animationFrames,
-	                          TiledStage.Coordinate origin) {
-		super.initialize(bodyArea, bodyWidth, animationFrames, origin);
+	public void initialize(Map<String, AnimationDef> animationDefs, boolean[] bodyArea, int bodyWidth, TiledStage.Coordinate origin) {
+		super.initialize(animationDefs, bodyArea, bodyWidth, origin);
 		_movingTicks = 0;
 	}
 
@@ -89,6 +89,5 @@ public abstract class TiledStageActor extends TiledStageBody {
 	// ---------
 
 	public abstract static class Listener extends TiledStageBody.Listener {
-
 	}
 }

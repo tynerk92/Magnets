@@ -6,8 +6,9 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Event;
 import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.somethingyellow.graphics.AnimationDef;
 
-import java.util.HashMap;
+import java.util.Map;
 
 public abstract class TiledStagePlayer extends TiledStageActor implements EventListener {
 	private static final Vector2 TempCoords = new Vector2();
@@ -21,11 +22,9 @@ public abstract class TiledStagePlayer extends TiledStageActor implements EventL
 		addListener(this);
 	}
 
-
 	@Override
-	public void initialize(boolean[] bodyArea, int bodyWidth, HashMap<String, FrameSequence> animationFrames,
-	                       TiledStage.Coordinate origin) {
-		super.initialize(bodyArea, bodyWidth, animationFrames, origin);
+	public void initialize(Map<String, AnimationDef> animationDefs, boolean[] bodyArea, int bodyWidth, TiledStage.Coordinate origin) {
+		super.initialize(animationDefs, bodyArea, bodyWidth, origin);
 		_isKeyLeftHeld = false;
 		_isKeyRightHeld = false;
 		_isKeyUpHeld = false;

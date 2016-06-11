@@ -1,38 +1,31 @@
 package com.somethingyellow.tiled;
 
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.utils.Pool;
-import com.badlogic.gdx.utils.Pools;
+import com.somethingyellow.graphics.AnimatedActor;
+import com.somethingyellow.graphics.AnimationDef;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 import java.util.TreeSet;
 
-public abstract class TiledStageBody extends Actor implements Comparable<TiledStageBody>, Pool.Poolable {
+public abstract class TiledStageBody extends AnimatedActor implements Comparable<TiledStageBody> {
 	public static final boolean[] BodyArea1x1 = new boolean[]{
 			true
 	};
-	public static final String STATE_DEFAULT = "Default";
-
+	public TreeSet<String> _states = new TreeSet();
 	private TiledStage.Coordinate _origin;
 	private LinkedList<TiledStage.Coordinate> _bodyCoordinates = new LinkedList<TiledStage.Coordinate>();
-	private LinkedList<Frame> _tempFrames = new LinkedList<Frame>();
 	private boolean[] _bodyArea;
 	private int _bodyWidth;
 	private int _bodyHeight;
 	private boolean _hasShadow;
 	private int _shadowDisplacementY;
-	private HashMap<String, FrameSequence> _animationFrames;
-	private TreeSet<String> _states = new TreeSet<String>();
-	private LinkedList<Listener> _listeners = new LinkedList<Listener>();
-	private LinkedList<Listener> _tempListeners = new LinkedList<Listener>();
 	private float _z;
 
-	protected void initialize(boolean[] bodyArea, int bodyWidth, HashMap<String, FrameSequence> animationFrames,
-	                          TiledStage.Coordinate origin) {
+	public void initialize(Map<String, AnimationDef> animationDefs, boolean[] bodyArea, int bodyWidth, TiledStage.Coordinate origin) {
+		super.initialize(animationDefs);
+
 		if (bodyArea.length % bodyWidth != 0)
 			throw new IllegalArgumentException("Length of 'Body Area' should be a multiple of 'Body Width'!");
 
@@ -41,19 +34,11 @@ public abstract class TiledStageBody extends Actor implements Comparable<TiledSt
 		_shadowDisplacementY = 0;
 		_bodyArea = bodyArea;
 		_bodyWidth = bodyWidth;
-		_animationFrames = animationFrames;
 		_bodyHeight = bodyArea.length / bodyWidth;
 
 		setOrigin(origin);
 		Vector2 pos = _origin.position();
 		setPosition(pos.x, pos.y);
-		addState(STATE_DEFAULT);
-	}
-
-	@Override
-	public void reset() {
-		_states.clear();
-		_listeners.clear();
 	}
 
 	@Override
@@ -66,21 +51,18 @@ public abstract class TiledStageBody extends Actor implements Comparable<TiledSt
 			coordinate.remove(this);
 		}
 
-		for (Listener listener : _listeners) {
-			listener.removed();
-		}
-
-		Pools.free(this);
 		_origin = null;
 
 		return super.remove();
 	}
 
 	public void act() {
-		for (String state : _states) {
-			FrameSequence frames = _animationFrames.get(state);
-			if (frames != null) frames.update(stage().tickDuration());
-		}
+	}
+
+	@Override
+	public void reset() {
+		super.reset();
+		_states.clear();
 	}
 
 	protected void setOrigin(TiledStage.Coordinate origin) {
@@ -92,6 +74,10 @@ public abstract class TiledStageBody extends Actor implements Comparable<TiledSt
 		for (TiledStage.Coordinate coordinate : _bodyCoordinates) {
 			coordinate.add(this);
 		}
+	}
+
+	public boolean getBodyAreaAt(int bodyRow, int bodyColumn) {
+		return _bodyArea[bodyRow * _bodyWidth + bodyColumn];
 	}
 
 	// get/set
@@ -140,64 +126,28 @@ public abstract class TiledStageBody extends Actor implements Comparable<TiledSt
 		return tempBodyCoordinates;
 	}
 
-	public LinkedList<Frame> frames() {
-		_tempFrames.clear();
+	public void addState(String state) {
+		if (!_states.contains(state)) {
+			_states.add(state);
 
-		for (String name : _states) {
-			FrameSequence frames = _animationFrames.get(name);
-			if (frames != null) _tempFrames.add(frames.frame());
+			for (AnimatedActor.Listener listener : listeners()) {
+				if (listener instanceof Listener) ((Listener) listener).stateAdded(this, state);
+			}
 		}
-
-		return _tempFrames;
 	}
 
 	public boolean hasState(String state) {
 		return _states.contains(state);
 	}
 
-	public void addState(String state) {
-		if (!_states.contains(state)) {
-			_states.add(state);
-			FrameSequence frames = _animationFrames.get(state);
-			if (frames != null) frames.reset();
-
-			for (Listener listener : _listeners) {
-				listener.stateAdded(state);
-			}
-		}
-	}
-
 	public void removeState(String state) {
 		if (_states.contains(state)) {
 			_states.remove(state);
 
-			for (Listener listener : _listeners) {
-				listener.stateRemoved(state);
+			for (AnimatedActor.Listener listener : listeners()) {
+				if (listener instanceof Listener) ((Listener) listener).stateRemoved(this, state);
 			}
 		}
-
-		if (_states.isEmpty()) {
-			_states.add(STATE_DEFAULT);
-		}
-	}
-
-	public FrameSequence getStateFrames(String state) {
-		return _animationFrames.get(state);
-	}
-
-	public Listener addListener(Listener listener) {
-		_listeners.add(listener);
-		return listener;
-	}
-
-	public void removeListener(Listener listener) {
-		_listeners.remove(listener);
-	}
-
-	public LinkedList<Listener> listeners() {
-		_tempListeners.clear();
-		_tempListeners.addAll(_listeners);
-		return _tempListeners;
 	}
 
 	public int bodyWidth() {
@@ -266,116 +216,20 @@ public abstract class TiledStageBody extends Actor implements Comparable<TiledSt
 
 	@Override
 	public void positionChanged() {
-		for (Listener listener : _listeners) {
-			listener.positionChanged(getX(), getY());
+		for (AnimatedActor.Listener listener : listeners()) {
+			if (listener instanceof Listener) ((Listener) listener).positionChanged(this);
 		}
 	}
 
-	public interface FrameSequenceListener {
-		void ended(); // frame sequence just finished playing (will continue in loop)
-	}
-
-	public abstract static class Listener {
-		public void stateAdded(String state) {
+	public abstract static class Listener extends AnimatedActor.Listener {
+		public void positionChanged(TiledStageBody body) {
 		}
 
-		public void stateRemoved(String state) {
+		public void stateAdded(TiledStageBody body, String state) {
 		}
 
-		public void removed() {
-		}
+		public void stateRemoved(TiledStageBody body, String state) {
 
-		public void positionChanged(float x, float y) {
-		}
-	}
-
-	public static class Frame {
-		private TextureRegion _textureRegion;
-		private float _duration;
-		private int _renderDepth;
-
-		public Frame(TextureRegion textureRegion, float duration, int renderDepth) {
-			_textureRegion = textureRegion;
-			_duration = duration;
-			_renderDepth = renderDepth;
-		}
-
-		public TextureRegion getTextureRegionAt(int left, int top, int right, int bottom) {
-			return new TextureRegion(_textureRegion, left, top, right - left, bottom - top);
-		}
-
-		public int height() {
-			return _textureRegion.getRegionHeight();
-		}
-
-		public int width() {
-			return _textureRegion.getRegionWidth();
-		}
-
-		public int renderDepth() {
-			return _renderDepth;
-		}
-
-		public float duration() {
-			return _duration;
-		}
-	}
-
-	public static class FrameSequence {
-		private float _time;
-		private ArrayList<Frame> _frames;
-		private int _frameIndex;
-		private float _duration;
-		private FrameSequenceListener _listener;
-
-		public FrameSequence(ArrayList<Frame> frames) {
-			_time = 0f;
-			_frameIndex = 0;
-			_frames = frames;
-
-			_duration = 0f;
-			for (Frame frame : _frames) {
-				_duration += frame._duration;
-			}
-		}
-
-		public FrameSequenceListener listener() {
-			return _listener;
-		}
-
-		public void setListener(FrameSequenceListener listener) {
-			_listener = listener;
-		}
-
-		public void removeListener() {
-			_listener = null;
-		}
-
-		public void update(float timeDelta) {
-			_time += timeDelta;
-			while (_time > _frames.get(_frameIndex)._duration) {
-				_time -= _frames.get(_frameIndex)._duration;
-
-				if (_frameIndex < _frames.size() - 1) {
-					_frameIndex++;
-				} else {
-					if (_listener != null) _listener.ended();
-					_frameIndex = 0;
-				}
-			}
-		}
-
-		public float duration() {
-			return _duration;
-		}
-
-		public Frame frame() {
-			return _frames.get(_frameIndex);
-		}
-
-		public void reset() {
-			_time = 0f;
-			_frameIndex = 0;
 		}
 	}
 }

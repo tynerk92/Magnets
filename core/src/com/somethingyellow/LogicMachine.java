@@ -202,7 +202,7 @@ public class LogicMachine {
 	/*
 	public static void main(String[] args) {
 		LogicMachine lm = new LogicMachine();
-		lm.addExpression(" ( A            && C ||!B &&   !C)|| D", new ActionListener() {
+		lm.addExpression(" ( A            && C ||!B &&   !C)|| D", new Commands() {
 			@Override
 			public void expressionChanged(boolean isTrue) {
 				System.out.println(isTrue);

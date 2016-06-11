@@ -7,57 +7,42 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
-import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 
-import com.badlogic.gdx.maps.tiled.tiles.AnimatedTiledMapTile;
-import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
+import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 import com.badlogic.gdx.utils.Pools;
 import com.somethingyellow.LogicMachine;
+import com.somethingyellow.graphics.AnimatedActor;
+import com.somethingyellow.graphics.AnimationDef;
 import com.somethingyellow.tiled.*;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-public class PlayScreen implements Screen, Player.ActionListener, Lodestone.ActionListener, MagneticSource.ActionListener {
+public class PlayScreen implements Screen, Player.Commands, Lodestone.Commands {
 
 	public boolean DEBUG_MODE = false;
-
 	private TiledStage _tiledStage;
 	private TiledMap _map;
+	private TiledMap _animationsMap;
+	private HashMap<String, TiledMapTile> _tilesByType = new HashMap<String, TiledMapTile>();
 	private Player _player;
-	private HashMap<String, TiledMapTile> _tilesByReference = new HashMap<String, TiledMapTile>();
 	private LogicMachine _logicMachine = new LogicMachine();
-	private TmxMapLoader _tmxMapLoader = new TmxMapLoader();
+	private HashMap<String, AnimationDef> _animationDefs;
+	private HashMap<String, AnimationDef> _tempAnimationDefs = new HashMap<String, AnimationDef>();
 	private LinkedList<TiledStageBody> _bodies = new LinkedList<TiledStageBody>();
 	private LinkedList<TiledStageLightSource> _lightSources = new LinkedList<TiledStageLightSource>();
 	private String _levelPath;
-	private ActionListener _actionListener;
-
+	private Commands _commands;
 	// Debugging tools
 	private FPSLogger _fpsLogger = new FPSLogger();
 
-	public PlayScreen(ActionListener actionListener) {
-		_actionListener = actionListener;
-
-		// Default settings of classes based on Config
-		TiledStage.cameraZoomDefault = Config.CAMERA_ZOOM_DEFAULT;
-		TiledStage.cameraPanningSmoothRatio = Config.CAMERA_PANNING_SMOOTH_RATIO;
-		TiledStage.cameraZoomSmoothRatio = Config.CAMERA_ZOOM_SMOOTH_RATIO;
-		TiledStageMapRenderer.ambientColorRedDefault = Config.MAP_AMBIENT_COLOR_RED_DEFAULT;
-		TiledStageMapRenderer.ambientColorGreenDefault = Config.MAP_AMBIENT_COLOR_GREEN_DEFAULT;
-		TiledStageMapRenderer.ambientColorBlueDefault = Config.MAP_AMBIENT_COLOR_BLUE_DEFAULT;
-		TiledStageMapRenderer.layerNameBodies = Config.LAYER_NAME_ACTORS;
-		TiledStageMapRenderer.layerNameShadows = Config.LAYER_NAME_SHADOWS;
-		TiledStageMapRenderer.shadowHeight = Config.MAP_SHADOW_HEIGHT;
-		TiledStageMapRenderer.shadowIntensity = Config.MAP_SHADOW_INTENSITY;
+	public PlayScreen(Commands commands) {
+		_commands = commands;
 	}
 
-	public static boolean[] ExtractBodyArea(TiledMapTile tile) {
-		String bodyArea = TiledStage.ParseProp(tile.getProperties(), Config.TILE_BODY_AREA);
-		if (bodyArea == null) return TiledStageActor.BodyArea1x1;
-
+	public static boolean[] StringToBodyArea(String bodyArea, boolean[] defaultBodyArea) {
+		if (bodyArea == null) return defaultBodyArea;
 		boolean[] area = new boolean[bodyArea.length()];
 		for (int i = 0; i < bodyArea.length(); i++) {
 			switch (bodyArea.charAt(i)) {
@@ -71,49 +56,24 @@ public class PlayScreen implements Screen, Player.ActionListener, Lodestone.Acti
 					throw new IllegalArgumentException("'Body Area' should only contain '0's and '1's!");
 			}
 		}
-
 		return area;
 	}
 
-	public static int ExtractBodyWidth(TiledMapTile tile) {
-		return TiledStage.ParseIntegerProp(tile.getProperties(), Config.TILE_BODY_WIDTH, 1);
-	}
-
-	public static boolean ExtractIsPushable(TiledMapTile tile) {
-		return TiledStage.ParseBooleanProp(tile.getProperties(), Config.TILE_ISPUSHABLE, false);
-	}
-
-	public static boolean ExtractIsMagnetisable(TiledMapTile tile) {
-		return TiledStage.ParseBooleanProp(tile.getProperties(), Config.TILE_ISMAGNETISABLE, false);
-	}
-
-	public static int ExtractRenderDepth(TiledMapTile tile) {
-		return TiledStage.ParseIntegerProp(tile.getProperties(), Config.TILE_RENDER_DEPTH, 0);
-	}
-
-	public static int ExtractElevation(TiledMapTile tile) {
-		return TiledStage.ParseIntegerProp(tile.getProperties(), Config.TILE_ELEVATION, 0);
-	}
-
-	public static boolean ExtractIsOpen(TiledMapTile tile) {
-		return TiledStage.ParseBooleanProp(tile.getProperties(), Config.TILE_ISOPEN, false);
-	}
-
 	public TiledStageLightSource getLightSource(TiledMapTile tile) {
-		String lightingImagePath = TiledStage.ParseProp(tile.getProperties(), Config.TILE_LIGHTING_IMAGE_PATH);
+		String lightingImagePath = TiledStage.ParseProp(tile.getProperties(), Config.TMX.Tiles.LightingImagePathProp);
 		if (lightingImagePath == null) return null; // no light source
 
 		Texture lightingTexture = new Texture(Gdx.files.internal(lightingImagePath));
 
-		float sizeX = TiledStage.ParseFloatProp(tile.getProperties(), Config.TILE_LIGHTING_WIDTH, 0f);
-		float sizeY = TiledStage.ParseFloatProp(tile.getProperties(), Config.TILE_LIGHTING_HEIGHT, 0f);
+		float sizeX = TiledStage.ParseFloatProp(tile.getProperties(), Config.TMX.Tiles.LightingWidthProp, 0f);
+		float sizeY = TiledStage.ParseFloatProp(tile.getProperties(), Config.TMX.Tiles.LightingHeightProp, 0f);
 
 		if (sizeX == 0f || sizeY == 0f)
 			throw new IllegalArgumentException("`Width` and `Height` of lighting must be defined!");
 
-		float intensity = TiledStage.ParseFloatProp(tile.getProperties(), Config.TILE_LIGHTING_INTENSITY, 1f);
-		float displacementX = TiledStage.ParseIntegerProp(tile.getProperties(), Config.TILE_LIGHTING_DISPLACEMENT_X, 0);
-		float displacementY = TiledStage.ParseIntegerProp(tile.getProperties(), Config.TILE_LIGHTING_DISPLACEMENT_Y, 0);
+		float intensity = TiledStage.ParseFloatProp(tile.getProperties(), Config.TMX.Tiles.LightingIntensityProp, 1f);
+		float displacementX = TiledStage.ParseIntegerProp(tile.getProperties(), Config.TMX.Tiles.LightingDisplacementXProp, 0);
+		float displacementY = TiledStage.ParseIntegerProp(tile.getProperties(), Config.TMX.Tiles.LightingDisplacementYProp, 0);
 
 		TiledStageLightSource lightSource = Pools.obtain(TiledStageLightSource.class);
 		lightSource.initialize(lightingTexture);
@@ -123,56 +83,27 @@ public class PlayScreen implements Screen, Player.ActionListener, Lodestone.Acti
 		return lightSource;
 	}
 
-	public HashMap<String, TiledStageActor.FrameSequence> getAnimations(TiledMapTile tile) {
-		HashMap<String, TiledStageActor.FrameSequence> animationFrames = new HashMap<String, TiledStageActor.FrameSequence>();
+	public HashMap<String, AnimationDef> getAnimationDefs(TiledMapTile tile) {
+		_tempAnimationDefs.clear();
 		Iterator<String> props = tile.getProperties().getKeys();
-
-		animationFrames.put(TiledStageBody.STATE_DEFAULT, getFrameSequence(tile));
 
 		while (props.hasNext()) {
 			String prop = props.next();
 
-			if (prop.indexOf(Config.TILE_PREFIX_STATE) == 0) {
-				String reference = TiledStage.ParseProp(tile.getProperties(), prop);
+			if (prop.indexOf(Config.TMX.Tiles.AnimationPropPrefix) == 0) {
+				String animationName = TiledStage.ParseProp(tile.getProperties(), prop);
+				if (!_animationDefs.containsKey(animationName))
+					throw new IllegalArgumentException("Property '" + prop + "' pointing to missing animation!");
 
-				if (reference.indexOf(Config.TILE_PREFIX_REFERENCE) == 0) {
-					TiledMapTile animationTile = _tilesByReference.get(reference.substring(Config.TILE_PREFIX_REFERENCE.length()));
-					if (animationTile != null) {
-						animationFrames.put(prop.substring(Config.TILE_PREFIX_STATE.length()), getFrameSequence(animationTile));
-					} else {
-						throw new IllegalArgumentException("Property '" + prop + "' should '" + Config.TILE_PREFIX_REFERENCE + "tileReference' to a valid tile!");
-					}
-				}
+				AnimationDef animationDef = _animationDefs.get(animationName);
+				_tempAnimationDefs.put(prop.substring(Config.TMX.Tiles.AnimationPropPrefix.length()), animationDef);
 			}
 		}
 
-		return animationFrames;
-	}
-
-	public TiledStageBody.FrameSequence getFrameSequence(TiledMapTile tile) {
-		ArrayList<TiledStageBody.Frame> frames;
-
-		if (tile instanceof AnimatedTiledMapTile) {
-			AnimatedTiledMapTile animatedTile = (AnimatedTiledMapTile) tile;
-			frames = new ArrayList<TiledStageBody.Frame>(animatedTile.getFrameTiles().length);
-			int[] intervals = animatedTile.getAnimationIntervals();
-			StaticTiledMapTile[] staticTiles = animatedTile.getFrameTiles();
-
-			for (int i = 0; i < staticTiles.length; i++) {
-				frames.add(i, new TiledStageBody.Frame(staticTiles[i].getTextureRegion(), (float) intervals[i] / 1000, ExtractRenderDepth(animatedTile)));
-			}
-		} else if (tile instanceof StaticTiledMapTile) {
-			frames = new ArrayList<TiledStageBody.Frame>(1);
-			frames.add(new TiledStageBody.Frame(tile.getTextureRegion(), Config.GAME_TICK_DURATION, ExtractRenderDepth(tile)));
-		} else {
-			frames = new ArrayList<TiledStageBody.Frame>();
-		}
-
-		return new TiledStageActor.FrameSequence(frames);
+		return _tempAnimationDefs;
 	}
 
 	public void processProperties(TiledStageBody body, TiledMapTile tile) {
-
 		// Light source
 		final TiledStageLightSource lightSource = getLightSource(tile);
 		if (lightSource != null) {
@@ -180,19 +111,19 @@ public class PlayScreen implements Screen, Player.ActionListener, Lodestone.Acti
 			lightSource.setPosition(body.getX(), body.getY());
 			body.addListener(new TiledStageBody.Listener() {
 				@Override
-				public void positionChanged(float x, float y) {
-					lightSource.setPosition(x, y);
+				public void positionChanged(TiledStageBody body) {
+					lightSource.setPosition(body.getX(), body.getY());
 				}
 
 				@Override
-				public void removed() {
-					lightSource.remove();
+				public void removed(AnimatedActor actor) {
+					actor.remove();
 				}
 			});
 		}
 
 		// Shadow
-		Integer shadowDisplacementY = TiledStage.ParseIntegerProp(tile.getProperties(), Config.TILE_SHADOW_DISPLACEMENT_Y);
+		Integer shadowDisplacementY = TiledStage.ParseIntegerProp(tile.getProperties(), Config.TMX.Tiles.ShadowDisplacementYProp);
 		if (shadowDisplacementY != null) {
 			body.setHasShadow(true);
 			body.setShadowDisplacementY(shadowDisplacementY);
@@ -204,31 +135,33 @@ public class PlayScreen implements Screen, Player.ActionListener, Lodestone.Acti
 		while (props.hasNext()) {
 			String prop = props.next();
 
-			if (prop.indexOf(Config.TILE_PREFIX_ACTION) == 0) {
-				final String action = prop.substring(Config.TILE_PREFIX_ACTION.length());
+			if (prop.indexOf(Config.TMX.Objects.ActionPrefixIdentifier) == 0) {
+				final String action = prop.substring(Config.TMX.Objects.ActionPrefixIdentifier.length());
 
 				String expressionString = TiledStage.ParseProp(object.properties(), prop);
 
 				// Replace and/or/not and add statement to logicmachine
-				expressionString = expressionString.replace(Config.TILE_EXPRESSION_AND, LogicMachine.TERM_AND).
-						replace(Config.TILE_EXPRESSION_OR, LogicMachine.TERM_OR).
-						replace(Config.TILE_EXPRESSION_NOT, LogicMachine.TERM_NOT);
+				expressionString = expressionString.replace(Config.TMX.Objects.LogicExpressionAnd, LogicMachine.TERM_AND).
+						replace(Config.TMX.Objects.LogicExpressionOr, LogicMachine.TERM_OR).
+						replace(Config.TMX.Objects.LogicExpressionNot, LogicMachine.TERM_NOT);
 
 				// Hook action of actor to logicmachine expression
 				LogicMachine.Expression expression = _logicMachine.addExpression(expressionString, new LogicMachine.Listener() {
 					@Override
 					public void expressionChanged(boolean isTrue) {
-						if (isTrue) doAction(body, action);
+						if (isTrue) {
+							doAction(body, action);
+						}
 					}
 				});
 
 				// Hook premises of actor states to actor
 				for (final String predicate : expression.premises()) {
-					if (predicate.indexOf(Config.TILE_PREFIX_NAME) != 0) {
+					if (predicate.indexOf(Config.TMX.Objects.NamePrefixIdentifier) != 0) {
 						throw new IllegalArgumentException("Property '" + prop + "' should be a valid expression! Predicate " + predicate + " should be prefixed with an actor's name.");
 					}
 
-					String[] parts = predicate.substring(Config.TILE_PREFIX_NAME.length()).split(Config.TILE_PREFIX_STATE);
+					String[] parts = predicate.substring(Config.TMX.Objects.NamePrefixIdentifier.length()).split(Config.TMX.Objects.StatePrefixIdentifier);
 					if (parts.length != 2)
 						throw new IllegalArgumentException("Property '" + prop + "' should be a valid expression! Predicate " + predicate + " should point to the actor's state.");
 
@@ -237,14 +170,15 @@ public class PlayScreen implements Screen, Player.ActionListener, Lodestone.Acti
 						throw new IllegalArgumentException("Property '" + prop + "' should be a valid expression! Predicate " + predicate + " should point a non-null actor.");
 
 					final String predState = parts[1];
+
 					predBody.addListener(new TiledStageBody.Listener() {
 						@Override
-						public void stateAdded(String state) {
+						public void stateAdded(TiledStageBody body, String state) {
 							if (state.equals(predState)) _logicMachine.set(predicate, true);
 						}
 
 						@Override
-						public void stateRemoved(String state) {
+						public void stateRemoved(TiledStageBody body, String state) {
 							if (state.equals(predState)) _logicMachine.set(predicate, false);
 						}
 					});
@@ -256,9 +190,9 @@ public class PlayScreen implements Screen, Player.ActionListener, Lodestone.Acti
 	public void doAction(TiledStageBody body, String action) {
 		if (body instanceof Door) {
 			Door door = (Door) body;
-			if (action.equals(Config.DOOR_ACTION_OPEN)) {
+			if (action.equals(Config.TMX.Tiles.Door.Actions.Open)) {
 				door.open();
-			} else if (action.equals(Config.DOOR_ACTION_CLOSE)) {
+			} else if (action.equals(Config.TMX.Tiles.Door.Actions.Close)) {
 				door.close();
 			}
 		}
@@ -267,7 +201,12 @@ public class PlayScreen implements Screen, Player.ActionListener, Lodestone.Acti
 	@Override
 	public void show() {
 		if (_tiledStage == null) {
-			_tiledStage = new TiledStage(Config.LAYER_NAME_ACTORS, SUBTICKS.values().length, Config.GAME_TICK_DURATION);
+			_tiledStage = new TiledStage(Config.GameLayerWalls, Config.GameLayerShadows, SUBTICKS.values().length, Config.GameTickDuration);
+		}
+
+		if (_animationsMap == null) {
+			_animationsMap = _commands.loadMap(Config.GameAnimationsTMXPath);
+			_animationDefs = _commands.loadAnimations(_animationsMap, Config.GameTickDuration);
 		}
 
 		Gdx.input.setInputProcessor(_tiledStage);
@@ -275,63 +214,132 @@ public class PlayScreen implements Screen, Player.ActionListener, Lodestone.Acti
 
 	public void loadLevel(String levelPath) {
 		if (_map != null) unloadLevel();
-
 		_levelPath = levelPath;
 
-		_map = _tmxMapLoader.load(_levelPath);
+		_map = _commands.loadMap(_levelPath);
 		_tiledStage.load(_map, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
-		Iterator<TiledMapTile> tiles = _tiledStage.tilesIterator();
-		while (tiles.hasNext()) {
-			TiledMapTile tile = tiles.next();
+		// Saving first instance of each tile type in tileset
+		_tilesByType.clear();
+		for (TiledMapTileSet tileset : _map.getTileSets()) {
+			Iterator<TiledMapTile> iterator = tileset.iterator();
 
-			String reference = TiledStage.ParseProp(tile.getProperties(), Config.TILE_PREFIX_REFERENCE);
-			if (reference != null) {
-				_tilesByReference.put(reference, tile);
+			while (iterator.hasNext()) {
+				TiledMapTile tile = iterator.next();
+				String type = TiledStage.ParseProp(tile.getProperties(), Config.TMX.Tiles.TypeProp);
+				if (type != null && !_tilesByType.containsKey(type)) {
+					_tilesByType.put(type, tile);
+				}
 			}
 		}
 
+		// Spawning objects
 		for (TiledStage.TiledObject object : _tiledStage.objects()) {
 			TiledMapTile tile = object.tile();
 			if (tile == null) continue;
-
-			String type = TiledStage.ParseProp(tile.getProperties(), Config.TILE_TYPE);
-			TiledStageBody body = null;
-			if (type == null) continue;
-
-			if (type.equals(Config.TILE_TYPE_LODESTONE)) {
-				body = createBlock(object);
-			} else if (type.equals(Config.TILE_TYPE_MAGNETIC_SOURCE)) {
-				body = createMagneticSource(object);
-			} else if (type.equals(Config.TILE_TYPE_MAGNETIC_FLOOR)) {
-				body = createMagneticFloor(object);
-			} else if (type.equals(Config.TILE_TYPE_OBSTRUCTED_FLOOR)) {
-				body = createObstructedFloor(object);
-			} else if (type.equals(Config.TILE_TYPE_PLAYER)) {
-				body = createPlayer(object);
-			} else if (type.equals(Config.TILE_TYPE_BUTTON)) {
-				body = createButton(object);
-			} else if (type.equals(Config.TILE_TYPE_DOOR)) {
-				body = createDoor(object);
-			}
-
-			if (body == null) continue;
-
-			addBody(body, tile);
+			TiledStageBody body = spawnBody(tile, object.origin());
 			if (object.name() != null) body.setName(object.name());
 		}
 
 		for (TiledStage.TiledObject object : _tiledStage.objects()) {
 			TiledStageBody body = _tiledStage.getBody(object.name());
-
 			if (body == null) continue;
-
 			processActions(body, object);
 		}
 	}
 
+	public TiledStageBody spawnBody(TiledMapTile tile, TiledStage.Coordinate origin) {
+		String type = TiledStage.ParseProp(tile.getProperties(), Config.TMX.Tiles.TypeProp);
+		if (type == null)
+			throw new IllegalArgumentException("Property '" + Config.TMX.Tiles.TypeProp + "' not found!");
+
+		TiledStageBody body = null;
+
+		if (type.equals(Config.TMX.Tiles.Types.MagneticField)) {
+
+			MagneticField magneticField = Pools.get(MagneticField.class).obtain();
+			magneticField.initialize(getAnimationDefs(tile), origin);
+			body = magneticField;
+
+		} else if (type.equals(Config.TMX.Tiles.Types.Lodestone)) {
+
+			Lodestone lodestone = Pools.get(Lodestone.class).obtain();
+			lodestone.initialize(
+					getAnimationDefs(tile),
+					StringToBodyArea(TiledStage.ParseProp(tile.getProperties(), Config.TMX.Tiles.Lodestone.BodyAreaProp), TiledStageBody.BodyArea1x1),
+					TiledStage.ParseIntegerProp(tile.getProperties(), Config.TMX.Tiles.Lodestone.BodyWidthProp, 1),
+					origin,
+					TiledStage.ParseBooleanProp(tile.getProperties(), Config.TMX.Tiles.Lodestone.IsPushableProp, false),
+					TiledStage.ParseBooleanProp(tile.getProperties(), Config.TMX.Tiles.Lodestone.IsMagnetisableProp, false), this);
+			body = lodestone;
+
+		} else if (type.equals(Config.TMX.Tiles.Types.MagneticSource)) {
+
+			MagneticSource magneticSource = Pools.get(MagneticSource.class).obtain();
+			magneticSource.initialize(getAnimationDefs(tile), origin);
+			body = magneticSource;
+
+		} else if (type.equals(Config.TMX.Tiles.Types.MagneticFloor)) {
+
+			MagneticFloor magneticFloor = Pools.get(MagneticFloor.class).obtain();
+			magneticFloor.initialize(getAnimationDefs(tile), origin);
+			body = magneticFloor;
+
+		} else if (type.equals(Config.TMX.Tiles.Types.ObstructedFloor)) {
+
+			ObstructedFloor obstructedFloor = Pools.get(ObstructedFloor.class).obtain();
+			obstructedFloor.initialize(
+					getAnimationDefs(tile),
+					origin,
+					TiledStage.ParseIntegerProp(tile.getProperties(), Config.TMX.Tiles.ObstructedFloor.ElevationProp, 0)
+			);
+			body = obstructedFloor;
+
+		} else if (type.equals(Config.TMX.Tiles.Types.Player)) {
+
+			if (_player != null) {
+				throw new IllegalArgumentException("There should only be 1 player on the tiled map!");
+			}
+
+			_player = Pools.get(Player.class).obtain();
+			_player.initialize(getAnimationDefs(tile), TiledStageActor.BodyArea1x1, 1, origin, this);
+
+			_tiledStage.setCameraFocalActor(_player);
+			_tiledStage.setInputFocalActor(_player);
+			body = _player;
+
+		} else if (type.equals(Config.TMX.Tiles.Types.Button)) {
+
+			Button button = Pools.get(Button.class).obtain();
+			button.initialize(
+					getAnimationDefs(tile),
+					StringToBodyArea(TiledStage.ParseProp(tile.getProperties(), Config.TMX.Tiles.Button.BodyAreaProp), TiledStageBody.BodyArea1x1),
+					TiledStage.ParseIntegerProp(tile.getProperties(), Config.TMX.Tiles.Button.BodyWidthProp, 1),
+					origin
+			);
+			body = button;
+
+		} else if (type.equals(Config.TMX.Tiles.Types.Door)) {
+
+			Door door = Pools.get(Door.class).obtain();
+			door.initialize(
+					getAnimationDefs(tile),
+					StringToBodyArea(TiledStage.ParseProp(tile.getProperties(), Config.TMX.Tiles.Door.BodyAreaProp), TiledStageBody.BodyArea1x1),
+					TiledStage.ParseIntegerProp(tile.getProperties(), Config.TMX.Tiles.Door.BodyWidthProp, 1),
+					origin,
+					TiledStage.ParseBooleanProp(tile.getProperties(), Config.TMX.Tiles.Door.IsOpenProp, false)
+			);
+			body = door;
+
+		}
+
+		if (body == null) throw new IllegalArgumentException("Invalid type: '" + type + "'!");
+
+		addBody(body, tile);
+		return body;
+	}
+
 	public void unloadLevel() {
-		_tilesByReference.clear();
 		_logicMachine.clear();
 		_player = null;
 		for (TiledStageBody body : _bodies.toArray(new TiledStageBody[_bodies.size()])) {
@@ -348,61 +356,7 @@ public class PlayScreen implements Screen, Player.ActionListener, Lodestone.Acti
 		_map = null;
 	}
 
-	public TiledStageBody createPlayer(TiledStage.TiledObject object) {
-		if (_player != null) {
-			throw new IllegalArgumentException("There should only be 1 player on the tiled map!");
-		}
-
-		// Add player to stage
-		_player = Pools.get(Player.class).obtain();
-		_player.initialize(TiledStageActor.BodyArea1x1, 1, getAnimations(object.tile()), object.origin(), this);
-
-		_tiledStage.setCameraFocalActor(_player);
-		_tiledStage.setInputFocalActor(_player);
-
-		return _player;
-	}
-
-	public TiledStageBody createBlock(TiledStage.TiledObject object) {
-		Lodestone lodestone = Pools.get(Lodestone.class).obtain();
-		lodestone.initialize(ExtractBodyArea(object.tile()), ExtractBodyWidth(object.tile()),
-				getAnimations(object.tile()), object.origin(), ExtractIsPushable(object.tile()), ExtractIsMagnetisable(object.tile()), this);
-		return lodestone;
-	}
-
-	public TiledStageBody createMagneticSource(TiledStage.TiledObject object) {
-		MagneticSource magneticSource = Pools.get(MagneticSource.class).obtain();
-		magneticSource.initialize(getAnimations(object.tile()), object.origin(), this);
-		return magneticSource;
-	}
-
-	public TiledStageBody createMagneticFloor(TiledStage.TiledObject object) {
-		MagneticFloor magneticFloor = Pools.get(MagneticFloor.class).obtain();
-		magneticFloor.initialize(getAnimations(object.tile()), object.origin());
-		return magneticFloor;
-	}
-
-	public TiledStageBody createObstructedFloor(TiledStage.TiledObject object) {
-		ObstructedFloor obstructedFloor = Pools.get(ObstructedFloor.class).obtain();
-		obstructedFloor.initialize(getAnimations(object.tile()), object.origin(), ExtractElevation(object.tile()));
-		return obstructedFloor;
-	}
-
-	public TiledStageBody createDoor(TiledStage.TiledObject object) {
-		Door door = Pools.get(Door.class).obtain();
-		door.initialize(ExtractBodyArea(object.tile()), ExtractBodyWidth(object.tile()),
-				getAnimations(object.tile()), object.origin(), ExtractIsOpen(object.tile()));
-		return door;
-	}
-
-	public TiledStageBody createButton(TiledStage.TiledObject object) {
-		Button button = Pools.get(Button.class).obtain();
-		button.initialize(ExtractBodyArea(object.tile()), ExtractBodyWidth(object.tile()),
-				getAnimations(object.tile()), object.origin());
-		return button;
-	}
-
-	public void addBody(final TiledStageBody body, TiledMapTile tile) {
+	public void addBody(TiledStageBody body, TiledMapTile tile) {
 		processProperties(body, tile);
 
 		_tiledStage.addBody(body);
@@ -410,47 +364,27 @@ public class PlayScreen implements Screen, Player.ActionListener, Lodestone.Acti
 
 		body.addListener(new TiledStageBody.Listener() {
 			@Override
-			public void removed() {
-				_bodies.remove(body);
+			public void removed(AnimatedActor actor) {
+				_bodies.remove(actor);
 			}
 		});
 	}
 
-	public void addLightSource(final TiledStageLightSource lightSource) {
+	public void addLightSource(TiledStageLightSource lightSource) {
 		_tiledStage.addLightSource(lightSource);
 		_lightSources.add(lightSource);
 
 		lightSource.addListener(new TiledStageLightSource.Listener() {
 			@Override
-			public void removed() {
+			public void removed(TiledStageLightSource lightSource) {
 				_lightSources.remove(lightSource);
 			}
 		});
 	}
 
 	@Override
-	public TiledStageVisual spawnMagneticAttractionVisual(TiledStage.Coordinate coordinate, TiledStage.DIRECTION direction) {
-		TiledStageVisual visual = Pools.get(TiledStageVisual.class).obtain();
-
-		TiledMapTile bodyTile = null;
-		switch (direction) {
-			case NORTH:
-			case SOUTH:
-				bodyTile = _tilesByReference.get(Config.TILE_REFERENCE_MAGNETIC_ATTRACTION_VERTICAL);
-				break;
-			case EAST:
-			case WEST:
-				bodyTile = _tilesByReference.get(Config.TILE_REFERENCE_MAGNETIC_ATTRACTION_HORIZONTAL);
-				break;
-		}
-
-		if (bodyTile != null) {
-			visual.initialize(TiledStageBody.BodyArea1x1, 1, getFrameSequence(bodyTile), coordinate);
-			addBody(visual, bodyTile);
-			return visual;
-		} else {
-			return null;
-		}
+	public MagneticField spawnMagneticField(TiledStage.Coordinate coordinate) {
+		return (MagneticField) spawnBody(_tilesByType.get(Config.TMX.Tiles.Types.MagneticField), coordinate);
 	}
 
 	@Override
@@ -485,7 +419,21 @@ public class PlayScreen implements Screen, Player.ActionListener, Lodestone.Acti
 	@Override
 	public void dispose() {
 		if (_map != null) _map.dispose();
+		if (_animationsMap != null) {
+			_animationDefs.clear();
+			_animationsMap.dispose();
+		}
 		_tiledStage.dispose();
+	}
+
+	@Override
+	public boolean isWall(TiledStage.Coordinate coordinate) {
+		return coordinate.getTileProp(Config.GameLayerWalls, Config.TMX.Tiles.TypeProp, "").equals(Config.TMX.Tiles.Types.Wall);
+	}
+
+	@Override
+	public boolean isExit(TiledStage.Coordinate coordinate) {
+		return coordinate.getTileProp(Config.GameLayerWalls, Config.TMX.Tiles.TypeProp, "").equals(Config.TMX.Tiles.Types.Exit);
 	}
 
 	@Override
@@ -495,7 +443,8 @@ public class PlayScreen implements Screen, Player.ActionListener, Lodestone.Acti
 
 	@Override
 	public void exitLevel() {
-		_actionListener.exitLevel();
+		unloadLevel();
+		_commands.exitLevel();
 	}
 
 	@Override
@@ -507,7 +456,81 @@ public class PlayScreen implements Screen, Player.ActionListener, Lodestone.Acti
 		RESET, BUTTON_PRESSES, MAGNETISATION, FORCES, BLOCK_MOVEMENT, PLAYER_MOVEMENT, GRAPHICS
 	}
 
-	public interface ActionListener {
+	public interface Commands {
 		void exitLevel();
+
+		TiledMap loadMap(String mapFilePath);
+
+		HashMap<String, AnimationDef> loadAnimations(TiledMap map, float defaultDuration);
+	}
+
+	public static class Config {
+		public static float GameTickDuration = 0.06f;
+		public static String GameAnimationsTMXPath = "";
+		public static String GameLayerWalls = "Bodies";
+		public static String GameLayerShadows = "Shadows";
+
+		public static class TMX {
+			public static class Tiles {
+				public static String TypeProp = "Type";
+				public static String LightingImagePathProp = "Lighting Image Path";
+				public static String LightingWidthProp = "Lighting Width";
+				public static String LightingHeightProp = "Lighting Height";
+				public static String LightingIntensityProp = "Lighting Intensity";
+				public static String LightingDisplacementXProp = "Lighting Displacement X";
+				public static String LightingDisplacementYProp = "Lighting Displacement Y";
+				public static String ShadowDisplacementYProp = "Shadow Displacement Y";
+				public static String AnimationPropPrefix = "~";
+
+				public static class Types {
+					public static String Lodestone = "Block";
+					public static String Door = "Door";
+					public static String Player = "Player";
+					public static String MagneticSource = "Magnetic Source";
+					public static String MagneticFloor = "Magnetic Floor";
+					public static String ObstructedFloor = "Obstructed Floor";
+					public static String MagneticField = "Magnetic Field";
+					public static String Button = "Button";
+					public static String Wall = "Wall";
+					public static String Exit = "Exit";
+				}
+
+				public static class Door {
+					public static String IsOpenProp = "IsOpen";
+					public static String BodyWidthProp = "Body Width";
+					public static String BodyAreaProp = "Body Area";
+
+					public static class Actions {
+						public static String Open = "Open";
+						public static String Close = "Close";
+					}
+				}
+
+				public static class Button {
+					public static String BodyWidthProp = "Body Width";
+					public static String BodyAreaProp = "Body Area";
+				}
+
+				public static class Lodestone {
+					public static String IsPushableProp = "IsPushable";
+					public static String IsMagnetisableProp = "IsMagnetisable";
+					public static String BodyWidthProp = "Body Width";
+					public static String BodyAreaProp = "Body Area";
+				}
+
+				public static class ObstructedFloor {
+					public static String ElevationProp = "Elevation";
+				}
+			}
+
+			public static class Objects {
+				public static String NamePrefixIdentifier = "#";
+				public static String ActionPrefixIdentifier = "+";
+				public static String StatePrefixIdentifier = "@";
+				public static String LogicExpressionAnd = "AND";
+				public static String LogicExpressionOr = "OR";
+				public static String LogicExpressionNot = "NOT";
+			}
+		}
 	}
 }

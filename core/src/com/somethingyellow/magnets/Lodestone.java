@@ -1,49 +1,50 @@
 package com.somethingyellow.magnets;
 
+import com.somethingyellow.graphics.AnimatedActor;
+import com.somethingyellow.graphics.AnimationDef;
 import com.somethingyellow.tiled.*;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 public class Lodestone extends TiledStageActor {
+
 	public static final int MAGNETISED_ATTRACTION_RANGE = 2;
 	public static final int MAGNETISED_MAGNETISE_RANGE = 1;
 	public static final int MAGNETISED_ATTRACTION_STRENGTH = 1;
-
 	public static final int[] SUBTICKS = new int[]{
 			PlayScreen.SUBTICKS.RESET.ordinal(),
 			PlayScreen.SUBTICKS.FORCES.ordinal(),
 			PlayScreen.SUBTICKS.BLOCK_MOVEMENT.ordinal(),
 			PlayScreen.SUBTICKS.GRAPHICS.ordinal()
 	};
-
 	private boolean _isPushable;
 	private boolean _isMagnetisable;
 	private boolean _isMagnetised;
 	private int _forceX;
 	private int _forceY;
-	private ActionListener _actionListener;
+	private Commands _commands;
 	private LinkedList<List<Object>> _tempAttractionData = new LinkedList<List<Object>>();
-	private HashMap<List<Object>, TiledStageVisual> _magneticAttractionVisual = new HashMap<List<Object>, TiledStageVisual>();
 
-	public void initialize(boolean[] bodyArea, int bodyWidth, HashMap<String, FrameSequence> animationFrames,
-	                       TiledStage.Coordinate origin, boolean isPushable, boolean isMagnetisable, ActionListener actionListener) {
-		super.initialize(bodyArea, bodyWidth, animationFrames, origin);
+	public void initialize(Map<String, AnimationDef> animationDefs, boolean[] bodyArea, int bodyWidth, TiledStage.Coordinate origin,
+	                       boolean isPushable, boolean isMagnetisable, Commands commands) {
+		super.initialize(animationDefs, bodyArea, bodyWidth, origin);
 
 		_isPushable = isPushable;
 		_isMagnetisable = isMagnetisable;
-		_actionListener = actionListener;
+		_commands = commands;
 		_forceX = 0;
 		_forceY = 0;
 		_isMagnetised = false;
+		showAnimation(Config.AnimationLodestone);
 	}
 
 	@Override
 	public void reset() {
 		super.reset();
-		_magneticAttractionVisual.clear();
 		_tempAttractionData.clear();
 	}
 
@@ -80,11 +81,10 @@ public class Lodestone extends TiledStageActor {
 
 					}
 				}
-				if (!hasState(Config.LODESTONE_STATE_MAGNETISED))
-					addState(Config.LODESTONE_STATE_MAGNETISED);
+
+				showAnimation(Config.AnimationMagnetisedOverlay);
 			} else {
-				if (hasState(Config.LODESTONE_STATE_MAGNETISED))
-					removeState(Config.LODESTONE_STATE_MAGNETISED);
+				hideAnimation(Config.AnimationMagnetisedOverlay);
 			}
 
 
@@ -92,38 +92,37 @@ public class Lodestone extends TiledStageActor {
 
 			if (!isMoving()) {
 				if (_forceX != 0 || _forceY != 0) {
-					moveDirection(TiledStage.GetDirection(_forceY, _forceX), Config.LODESTONE_MOVE_TICKS);
+					moveDirection(TiledStage.GetDirection(_forceY, _forceX), Config.MoveTicks);
 				}
 			}
 
 		} else if (subtick == PlayScreen.SUBTICKS.GRAPHICS.ordinal()) {
 
 			if (!isMoving()) {
+				// Didn't move - show magnetic attraction
 				for (final List<Object> attractionData : _tempAttractionData) {
-					TiledStageVisual visual;
-					if (_magneticAttractionVisual.containsKey(attractionData)) {
-						visual = _magneticAttractionVisual.get(attractionData);
-					} else {
-						TiledStage.DIRECTION attractionDirection = (TiledStage.DIRECTION) attractionData.get(0);
-						TiledStage.Coordinate bodyCoordinate = (TiledStage.Coordinate) attractionData.get(1);
 
-						TiledStage.Coordinate visualCoordinate = bodyCoordinate.getAdjacentCoordinate(attractionDirection);
-						if (visualCoordinate == null) continue;
+					TiledStage.DIRECTION attractionDirection = (TiledStage.DIRECTION) attractionData.get(0);
+					TiledStage.Coordinate bodyCoordinate = (TiledStage.Coordinate) attractionData.get(1);
 
-						visual = _actionListener.spawnMagneticAttractionVisual(visualCoordinate, attractionDirection);
-						if (visual == null) continue;
+					TiledStage.Coordinate visualCoordinate = bodyCoordinate.getAdjacentCoordinate(attractionDirection);
+					if (visualCoordinate == null) continue;
 
-						_magneticAttractionVisual.put(attractionData, visual);
-
-						visual.addListener(new TiledStageBody.Listener() {
-							@Override
-							public void removed() {
-								_magneticAttractionVisual.remove(attractionData);
-							}
-						});
+					// Find if there is already a magnetic field in visualCoordinate
+					MagneticField magneticField = null;
+					for (TiledStageBody body : visualCoordinate.bodies()) {
+						if (body instanceof MagneticField) {
+							magneticField = (MagneticField) body;
+							break;
+						}
 					}
 
-					visual.setDuration(Config.LODESTONE_MOVE_TICKS + 1);
+					// If no magnetic field existing, spawn one
+					if (magneticField == null) {
+						magneticField = _commands.spawnMagneticField(visualCoordinate);
+					}
+
+					// TODO: Code magnetic field logic
 				}
 			}
 
@@ -163,7 +162,7 @@ public class Lodestone extends TiledStageActor {
 					}
 				}
 
-				for (TiledStageBody.Listener listener : listeners()) {
+				for (AnimatedActor.Listener listener : listeners()) {
 					if (listener instanceof Listener) ((Listener) listener).magnetised();
 				}
 			}
@@ -171,13 +170,12 @@ public class Lodestone extends TiledStageActor {
 	}
 
 	public boolean push(TiledStage.DIRECTION direction) {
-		return moveDirection(direction, Config.LODESTONE_MOVE_TICKS);
+		return moveDirection(direction, Config.MoveTicks);
 	}
 
 	@Override
 	public boolean bodyCanBeAt(TiledStage.Coordinate coordinate) {
-		if (coordinate.getTileProp(Config.LAYER_NAME_ACTORS, Config.TILE_TYPE, "").equals(Config.TILE_TYPE_WALL))
-			return false;
+		if (_commands.isWall(coordinate)) return false;
 		for (TiledStageActor actor : coordinate.actors()) {
 			if (actor == this) continue;
 			if (actor instanceof Player || actor instanceof Lodestone || actor instanceof MagneticSource ||
@@ -196,19 +194,27 @@ public class Lodestone extends TiledStageActor {
 		return _isMagnetisable;
 	}
 
-	// get/set
-	// ---------
-
 	public boolean isMagnetised() {
 		return _isMagnetised;
 	}
+
+	// get/set
+	// ---------
 
 	public int[] subticks() {
 		return SUBTICKS;
 	}
 
-	public interface ActionListener {
-		TiledStageVisual spawnMagneticAttractionVisual(TiledStage.Coordinate coordinate, TiledStage.DIRECTION direction);
+	public interface Commands {
+		boolean isWall(TiledStage.Coordinate coordinate);
+
+		MagneticField spawnMagneticField(TiledStage.Coordinate coordinate);
+	}
+
+	public static class Config {
+		public static int MoveTicks = 3;
+		public static String AnimationLodestone = "Lodestone";
+		public static String AnimationMagnetisedOverlay = "Magnetised Overlay";
 	}
 
 	public abstract static class Listener extends TiledStageActor.Listener {
