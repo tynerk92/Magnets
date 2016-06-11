@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="18" height="18" tilewidth="32" tileheight="32" nextobjectid="226">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="18" height="18" tilewidth="32" tileheight="32" nextobjectid="225">
  <tileset firstgid="1" name="Tileset" tilewidth="96" tileheight="112" tilecount="399" columns="0">
 
   <tile id="0">
@@ -77,13 +77,13 @@
    <properties>
     <property name="~" value="Door Opening 1"/>
    <animation>
-    <frame tileid="7" duration="20"/>
-    <frame tileid="8" duration="40"/>
-    <frame tileid="9" duration="60"/>
-    <frame tileid="10" duration="100"/>
-    <frame tileid="11" duration="60"/>
-    <frame tileid="12" duration="40"/>
-    <frame tileid="13" duration="20"/>
+    <frame tileid="7" duration="40"/>
+    <frame tileid="8" duration="80"/>
+    <frame tileid="9" duration="120"/>
+    <frame tileid="10" duration="200"/>
+    <frame tileid="11" duration="120"/>
+    <frame tileid="12" duration="80"/>
+    <frame tileid="13" duration="40"/>
    </animation>
    </properties>
    <image width="32" height="64" source="../../Graphics/Set 1 (Cave)/Door/1 2_9.png"/>
@@ -123,13 +123,13 @@
    <properties>
     <property name="~" value="Door Closing 1"/>
    <animation>
-    <frame tileid="13" duration="20"/>
-    <frame tileid="12" duration="40"/>
-    <frame tileid="11" duration="60"/>
-    <frame tileid="10" duration="100"/>
-    <frame tileid="9" duration="60"/>
-    <frame tileid="8" duration="40"/>
-    <frame tileid="7" duration="20"/>
+    <frame tileid="13" duration="40"/>
+    <frame tileid="12" duration="80"/>
+    <frame tileid="11" duration="120"/>
+    <frame tileid="10" duration="200"/>
+    <frame tileid="9" duration="120"/>
+    <frame tileid="8" duration="80"/>
+    <frame tileid="7" duration="40"/>
    </animation>
    </properties>
    <image width="32" height="64" source="../../Graphics/Set 1 (Cave)/Door/1 8_9.png"/>
@@ -212,13 +212,13 @@
    <properties>
     <property name="~" value="Door Opening 2"/>
    <animation>
-    <frame tileid="24" duration="20"/>
-    <frame tileid="25" duration="40"/>
-    <frame tileid="26" duration="60"/>
-    <frame tileid="27" duration="100"/>
-    <frame tileid="28" duration="60"/>
-    <frame tileid="29" duration="40"/>
-    <frame tileid="30" duration="20"/>
+    <frame tileid="24" duration="40"/>
+    <frame tileid="25" duration="80"/>
+    <frame tileid="26" duration="120"/>
+    <frame tileid="27" duration="200"/>
+    <frame tileid="28" duration="120"/>
+    <frame tileid="29" duration="80"/>
+    <frame tileid="30" duration="40"/>
    </animation>
    </properties>
    <image width="32" height="48" source="../../Graphics/Set 1 (Cave)/Door/2 2_9.png"/>
@@ -258,13 +258,13 @@
    <properties>
     <property name="~" value="Door Closing 2"/>
    <animation>
-    <frame tileid="30" duration="20"/>
-    <frame tileid="29" duration="40"/>
-    <frame tileid="28" duration="60"/>
-    <frame tileid="27" duration="100"/>
-    <frame tileid="26" duration="60"/>
-    <frame tileid="25" duration="40"/>
-    <frame tileid="24" duration="20"/>
+    <frame tileid="30" duration="40"/>
+    <frame tileid="29" duration="80"/>
+    <frame tileid="28" duration="120"/>
+    <frame tileid="27" duration="200"/>
+    <frame tileid="26" duration="120"/>
+    <frame tileid="25" duration="80"/>
+    <frame tileid="24" duration="40"/>
    </animation>
    </properties>
    <image width="32" height="48" source="../../Graphics/Set 1 (Cave)/Door/2 8_9.png"/>
@@ -3526,13 +3526,13 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,129,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,132,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,135,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,129,0,124,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,139,0,131,0,0,0,0,0,0,0,
-0,0,0,0,0,127,0,126,0,134,127,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,124,134,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,135,0,133,0,130,132,135,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -3572,13 +3572,13 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,129,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,132,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,135,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,129,0,124,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,139,0,131,0,0,0,0,0,0,0,
-0,0,0,0,0,127,0,126,0,134,127,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,124,134,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,135,0,133,0,130,132,135,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -3595,7 +3595,7 @@
 374,374,374,374,374,374,374,374,374,374,374,374,374,374,374,374,374,374,
 374,374,374,374,374,374,374,374,374,374,374,374,374,374,374,374,374,374,
 374,374,374,374,373,375,375,375,375,375,372,374,374,374,374,374,374,374,
-374,374,374,374,377,88,0,0,0,0,397,374,374,374,374,374,374,374,
+374,374,374,374,377,93,0,0,0,0,397,374,374,374,374,374,374,374,
 374,374,374,374,369,390,389,391,386,0,397,374,374,374,374,374,374,374,
 374,374,374,374,374,374,377,0,0,0,395,372,374,374,374,374,374,374,
 374,374,374,374,374,374,377,0,0,0,0,395,375,372,374,374,374,374,
@@ -3612,23 +3612,23 @@
  </layer>
 
  <objectgroup name="Objects">
-  <object id="0" name="Butt 214" gid="4" x="384" y="320" width="32" height="32"/>
-  <object id="1" name="Butt 215" gid="4" x="192" y="352" width="32" height="32"/>
-  <object id="2" name="Butt 216" gid="4" x="384" y="384" width="32" height="32"/>
-  <object id="3" name="Door 217" gid="24" x="224" y="192" width="32" height="48">
+  <object id="0" name="Butt 213" gid="4" x="384" y="320" width="32" height="32"/>
+  <object id="1" name="Butt 214" gid="4" x="192" y="352" width="32" height="32"/>
+  <object id="2" name="Butt 215" gid="4" x="384" y="384" width="32" height="32"/>
+  <object id="3" name="Door 216" gid="24" x="224" y="192" width="32" height="48">
    <properties>
-    <property name="+Close" value="NOT #Butt 214@On OR NOT #Butt 215@On OR NOT #Butt 216@On"/>
-    <property name="+Open" value="#Butt 214@On AND #Butt 215@On AND #Butt 216@On"/>
-    <property name="+Blink" value="#Butt 214@On OR #Butt 215@On OR #Butt 216@On"/>
+    <property name="+Close" value="NOT #Butt 213@On OR NOT #Butt 214@On OR NOT #Butt 215@On"/>
+    <property name="+Open" value="#Butt 213@On AND #Butt 214@On AND #Butt 215@On"/>
+    <property name="+Blink" value="#Butt 213@On OR #Butt 214@On OR #Butt 215@On"/>
    </properties>
   </object>
-  <object id="4" name="Magn 218" gid="342" x="288" y="416" width="32" height="50"/>
-  <object id="5" name="Play 219" gid="352" x="288" y="352" width="32" height="48"/>
-  <object id="6" name="Push 220" gid="226" x="288" y="224" width="32" height="48"/>
-  <object id="7" name="Push 221" gid="226" x="256" y="288" width="32" height="48"/>
-  <object id="8" name="Push 222" gid="226" x="288" y="288" width="32" height="48"/>
-  <object id="9" name="Unpu 223" gid="278" x="288" y="192" width="32" height="48"/>
-  <object id="10" name="Unpu 224" gid="278" x="288" y="256" width="32" height="48"/>
-  <object id="11" name="Unpu 225" gid="278" x="288" y="320" width="32" height="48"/>
+  <object id="4" name="Magn 217" gid="332" x="288" y="416" width="32" height="50"/>
+  <object id="5" name="Play 218" gid="352" x="288" y="352" width="32" height="48"/>
+  <object id="6" name="Push 219" gid="226" x="288" y="224" width="32" height="48"/>
+  <object id="7" name="Push 220" gid="226" x="256" y="288" width="32" height="48"/>
+  <object id="8" name="Push 221" gid="226" x="288" y="288" width="32" height="48"/>
+  <object id="9" name="Unpu 222" gid="278" x="288" y="192" width="32" height="48"/>
+  <object id="10" name="Unpu 223" gid="278" x="288" y="256" width="32" height="48"/>
+  <object id="11" name="Unpu 224" gid="278" x="288" y="320" width="32" height="48"/>
  </objectgroup>
 </map>

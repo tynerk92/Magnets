@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="15" height="22" tilewidth="32" tileheight="32" nextobjectid="328">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="15" height="22" tilewidth="32" tileheight="32" nextobjectid="327">
  <tileset firstgid="1" name="Tileset" tilewidth="96" tileheight="112" tilecount="399" columns="0">
 
   <tile id="0">
@@ -77,13 +77,13 @@
    <properties>
     <property name="~" value="Door Opening 1"/>
    <animation>
-    <frame tileid="7" duration="20"/>
-    <frame tileid="8" duration="40"/>
-    <frame tileid="9" duration="60"/>
-    <frame tileid="10" duration="100"/>
-    <frame tileid="11" duration="60"/>
-    <frame tileid="12" duration="40"/>
-    <frame tileid="13" duration="20"/>
+    <frame tileid="7" duration="40"/>
+    <frame tileid="8" duration="80"/>
+    <frame tileid="9" duration="120"/>
+    <frame tileid="10" duration="200"/>
+    <frame tileid="11" duration="120"/>
+    <frame tileid="12" duration="80"/>
+    <frame tileid="13" duration="40"/>
    </animation>
    </properties>
    <image width="32" height="64" source="../../Graphics/Set 1 (Cave)/Door/1 2_9.png"/>
@@ -123,13 +123,13 @@
    <properties>
     <property name="~" value="Door Closing 1"/>
    <animation>
-    <frame tileid="13" duration="20"/>
-    <frame tileid="12" duration="40"/>
-    <frame tileid="11" duration="60"/>
-    <frame tileid="10" duration="100"/>
-    <frame tileid="9" duration="60"/>
-    <frame tileid="8" duration="40"/>
-    <frame tileid="7" duration="20"/>
+    <frame tileid="13" duration="40"/>
+    <frame tileid="12" duration="80"/>
+    <frame tileid="11" duration="120"/>
+    <frame tileid="10" duration="200"/>
+    <frame tileid="9" duration="120"/>
+    <frame tileid="8" duration="80"/>
+    <frame tileid="7" duration="40"/>
    </animation>
    </properties>
    <image width="32" height="64" source="../../Graphics/Set 1 (Cave)/Door/1 8_9.png"/>
@@ -212,13 +212,13 @@
    <properties>
     <property name="~" value="Door Opening 2"/>
    <animation>
-    <frame tileid="24" duration="20"/>
-    <frame tileid="25" duration="40"/>
-    <frame tileid="26" duration="60"/>
-    <frame tileid="27" duration="100"/>
-    <frame tileid="28" duration="60"/>
-    <frame tileid="29" duration="40"/>
-    <frame tileid="30" duration="20"/>
+    <frame tileid="24" duration="40"/>
+    <frame tileid="25" duration="80"/>
+    <frame tileid="26" duration="120"/>
+    <frame tileid="27" duration="200"/>
+    <frame tileid="28" duration="120"/>
+    <frame tileid="29" duration="80"/>
+    <frame tileid="30" duration="40"/>
    </animation>
    </properties>
    <image width="32" height="48" source="../../Graphics/Set 1 (Cave)/Door/2 2_9.png"/>
@@ -258,13 +258,13 @@
    <properties>
     <property name="~" value="Door Closing 2"/>
    <animation>
-    <frame tileid="30" duration="20"/>
-    <frame tileid="29" duration="40"/>
-    <frame tileid="28" duration="60"/>
-    <frame tileid="27" duration="100"/>
-    <frame tileid="26" duration="60"/>
-    <frame tileid="25" duration="40"/>
-    <frame tileid="24" duration="20"/>
+    <frame tileid="30" duration="40"/>
+    <frame tileid="29" duration="80"/>
+    <frame tileid="28" duration="120"/>
+    <frame tileid="27" duration="200"/>
+    <frame tileid="26" duration="120"/>
+    <frame tileid="25" duration="80"/>
+    <frame tileid="24" duration="40"/>
    </animation>
    </properties>
    <image width="32" height="48" source="../../Graphics/Set 1 (Cave)/Door/2 8_9.png"/>
@@ -3530,18 +3530,18 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,132,0,133,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,132,0,130,0,0,0,0,0,0,
-0,0,0,0,0,0,126,0,138,124,0,0,0,0,0,
-0,0,0,0,0,132,0,0,0,133,0,0,0,0,0,
-0,0,0,0,0,0,127,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,127,0,0,0,0,0,0,0,
-0,0,0,0,0,126,127,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,135,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,132,0,0,0,0,0,0,0,
+0,0,0,0,0,0,132,0,0,135,0,0,0,0,0,
+0,0,0,0,0,0,0,132,0,0,0,0,0,0,0,
+0,0,0,0,0,125,129,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -3584,18 +3584,18 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,132,0,133,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,132,0,130,0,0,0,0,0,0,
-0,0,0,0,0,0,126,0,138,124,0,0,0,0,0,
-0,0,0,0,0,132,0,0,0,133,0,0,0,0,0,
-0,0,0,0,0,0,127,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,127,0,0,0,0,0,0,0,
-0,0,0,0,0,126,127,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,135,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,132,0,0,0,0,0,0,0,
+0,0,0,0,0,0,132,0,0,135,0,0,0,0,0,
+0,0,0,0,0,0,0,132,0,0,0,0,0,0,0,
+0,0,0,0,0,125,129,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -3611,7 +3611,7 @@
 374,374,374,374,374,374,374,374,374,374,374,374,374,374,374,
 374,374,374,374,374,374,374,374,374,374,374,374,374,374,374,
 374,374,374,374,374,373,375,375,375,372,374,374,374,374,374,
-374,374,374,374,374,377,0,93,0,397,374,374,374,374,374,
+374,374,374,374,374,377,0,88,0,397,374,374,374,374,374,
 374,374,374,374,374,377,0,0,0,397,374,374,374,374,374,
 374,374,374,374,374,369,385,0,383,361,374,374,374,374,374,
 374,374,374,374,374,374,377,0,397,374,374,374,374,374,374,
@@ -3632,12 +3632,12 @@
  </layer>
 
  <objectgroup name="Objects">
-  <object id="0" name="Magn 321" gid="327" x="224" y="480" width="32" height="32"/>
-  <object id="1" name="Play 322" gid="352" x="224" y="384" width="32" height="48"/>
-  <object id="2" name="Push 323" gid="226" x="192" y="448" width="32" height="48"/>
-  <object id="3" name="Push 324" gid="226" x="256" y="448" width="32" height="48"/>
-  <object id="4" name="Push 325" gid="226" x="192" y="512" width="32" height="48"/>
-  <object id="5" name="Push 326" gid="226" x="256" y="512" width="32" height="48"/>
-  <object id="6" name="Push 327" gid="231" x="224" y="320" width="32" height="112"/>
+  <object id="0" name="Magn 320" gid="327" x="224" y="480" width="32" height="32"/>
+  <object id="1" name="Play 321" gid="352" x="224" y="384" width="32" height="48"/>
+  <object id="2" name="Push 322" gid="226" x="192" y="448" width="32" height="48"/>
+  <object id="3" name="Push 323" gid="226" x="256" y="448" width="32" height="48"/>
+  <object id="4" name="Push 324" gid="226" x="192" y="512" width="32" height="48"/>
+  <object id="5" name="Push 325" gid="226" x="256" y="512" width="32" height="48"/>
+  <object id="6" name="Push 326" gid="231" x="224" y="320" width="32" height="112"/>
  </objectgroup>
 </map>
