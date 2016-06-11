@@ -11,7 +11,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Hashtable;
 import java.util.List;
-import java.util.Map.Entry;
 import java.util.Random;
 
 
@@ -21,29 +20,28 @@ public class TextToTmx {
 	private static final String[] Levels = new String[] { "Easy Levels Pack", "Medium Levels Pack", "Hard Levels Pack", "Weird Levels Pack"};
 	
 	private Random random = new Random();
-	private int whichWallSet;
+	private int whichWallSet = 2;
 	private TileSetGenerator tsGen = new TileSetGenerator();
 	private String[] neighbourCodes = tsGen.neighbourCodes;
 	
-	
-	
 	// Text representation of the level
-	public static final String button1 = "b", door1 = "B", 
-								button2 = "f", door2 = "F", 
-								player = "s", 
-								magnetfloor = "m",
-								magnetsource = "M", 
-								elevatedfloor = "E", 
-								exit = "e";
+	public static final String button1 = "b";
+	public static final String door1 = "B";
+	public static final String button2 = "f";
+	public static final String door2 = "F";
+	public static final String player = "s";
+	public static final String magnetfloor = "m";
+	public static final String magnetsource = "M"; 
+	public static final String elevatedfloor = "E"; 
+	public static final String exit = "e";
 	
-	public static final String wall = "█", 
-								bigtree = "b", 
-								lodestoneSymbols = "xyzXYZ";
+	public static final String wall = "█";
+	public static final String bigtree = "b"; 
+	public static final String lodestoneSymbols = "xyzXYZ";
 	
 	public static final String noOutline = " " + player + exit;
-	
-	public static final String validObjects = button1 + door1 + button2 + door2 + player + magnetfloor + magnetsource + exit + elevatedfloor,
-								nonObjects   = bigtree + wall;
+	public static final String validObjects = button1 + door1 + button2 + door2 + player + magnetfloor + magnetsource + elevatedfloor;
+	public static final String nonObjects = bigtree + wall + exit;
 	
 
 	public static Boolean wroteTileSet = false;
@@ -55,12 +53,10 @@ public class TextToTmx {
 	
 	private void writeTileSet() {
 		// This part is the same for any level, hence it should only be executed once.
-		if (!wroteTileSet) {
-			TileSetInfo = tsGen.generateTileSet(mainAssetsDirectory + "Graphics/Set 1 (Cave)");
-			tilelist = tsGen.getList();
-			nameToTileID = tsGen.getTable();
-			wroteTileSet = true;
-		}
+		TileSetInfo = tsGen.generateTileSet(mainAssetsDirectory + "Graphics/Set 1 (Cave)");
+		tilelist = tsGen.getList();
+		nameToTileID = tsGen.getTable();
+		wroteTileSet = true;
 	}
 	
 	private void writeLevelInfo(int cols, int rows, int lastobjectID) {
@@ -139,6 +135,7 @@ public class TextToTmx {
 		int[][] Walls  			 = new int[rows][cols];
 		int[][] Floor            = new int[rows][cols];
 		int[][] FloorDeco		 = new int[rows][cols];
+		int[][] WallDeco		 = new int[rows][cols];
 		int[][] Collision	     = new int[rows][cols];
 		// Determines if the collision layer should be created
 		Boolean hasCollision = false;
@@ -147,7 +144,7 @@ public class TextToTmx {
 		// Initialize all the layers
 		for (String[] row: data) 			Arrays.fill(row, wall);
 		for (int[] row: Floor) 				Arrays.fill(row, 0);
-		for (int[] row: FloorDeco) 			Arrays.fill(row, 0);
+		for (int[] row: WallDeco) 			Arrays.fill(row, 0);
 		for (int[] row: Walls) 				Arrays.fill(row, 0);
 		for (int[] row: Collision) 			Arrays.fill(row, 0);
 		
@@ -253,6 +250,7 @@ public class TextToTmx {
 		
 		LayersInfo += writeGenericLayer("Floor", Floor);
 		LayersInfo += writeGenericLayer("Floor Decoration", FloorDeco);
+		LayersInfo += writeGenericLayer("Wall Decoration", FloorDeco);
 		LayersInfo += writeGenericLayer("Walls and Objects", Walls);
 		if (hasCollision) LayersInfo += writeGenericLayer("Collision", Collision);
 		
@@ -306,14 +304,6 @@ public class TextToTmx {
 					"  </object>\n";
 			}
 		} ObjectsInfo += " </objectgroup>\n";
-		
-		////////////////////////////////////////////////////////////////////////////////////
-		
-		//writer.println(LayersInfo);
-		
-		//writer.println("</map>");
-		//writer.flush();
-		//writer.close();
 	}
 	
 	private String writeGenericLayer(String name, int[][] arr) {
@@ -365,11 +355,12 @@ public class TextToTmx {
 	
 	public void writeLevel(String dir, String levelcode) {
 		// Create the level in the stated directory
-		writeTileSet();
+		if (!wroteTileSet) writeTileSet();
 		writeLayersInfo(dir, levelcode);
 		writeLevelInfo(rows, cols, nameCount);
 		
 		String finalTmx = LevelInfo + "\n" + TileSetInfo + " </tileset>\n" + PuzzleInfo + LayersInfo + ObjectsInfo + "</map>";
+		LevelInfo = ""; PuzzleInfo = ""; LayersInfo = ""; ObjectsInfo = "";
 		
 		File file = new File(dir + name + ".tmx");
 		file.getParentFile().mkdirs();
@@ -377,6 +368,8 @@ public class TextToTmx {
 		try {
 			writer = new PrintWriter(file, "UTF-8");
 			writer.println(finalTmx);
+			writer.flush();
+			writer.close();
 		} catch (FileNotFoundException | UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}

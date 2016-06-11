@@ -46,8 +46,8 @@ public class TileSetGenerator {
 	private final int[] MagneticFloorInte = new int[] { 32, 32, 32, 32, 32 };
 	
 	// Num MagneticSource frames = 8;
-	private final int[] MagneticSourceAnim = new int[] { 0, 1, 2, 3, 4, 5, 6, 7 };
-	private final int[] MagneticSourceInte = new int[] { 8, 8, 8, 8, 8, 8, 8, 8 };
+	private final int[] MagneticSourceAnim = new int[] {  0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+	private final int[] MagneticSourceInte = new int[] { 40, 2, 2, 2, 2, 4, 4, 6, 6, 8 };
 	
 	// Num DoorBlink frames = 8;
 	private final int[] DoorBlinkAnim = new int[] { 0, 1, 2, 3, 4, 5,  6,  7,  6, 5, 4, 3, 2, 1, 0 };
@@ -224,11 +224,12 @@ public class TileSetGenerator {
 							whichSet 	= Integer.parseInt(data[0]);
 							whichFrame 	= Integer.parseInt(data[1]);
 							numButtonFrames = totalFrames;
-							if (whichFrame == 1) 						info += property("@off", "(this)") + 
-																				property("@Offing", "~Button Pressing " + whichSet) + 
-																				property("@On", "~Button On " + whichSet) + 
-																				property("@Oning", "~Button Pressing " + whichSet) + 
-														            			property("Render Depth", "int", "-1") + 
+							info += property("Render Depth", "int", "-1");
+							if (whichFrame == 1) 						info += property("~", "Button Off") + 
+																				property("~Off", "Button Off") + 
+																				property("~Offing", "Button Pressing " + whichSet) + 
+																				property("~On", "Button On " + whichSet) + 
+																				property("~Oning", "Button Pressing " + whichSet) + 
 																				property("Type", "Button");
 			            	else if (whichFrame < totalFrames) 			info += property("~", "Button Pressing " + whichSet);
 			            	else 										info += property("~", "Button On " + whichSet);
@@ -248,25 +249,28 @@ public class TileSetGenerator {
 								else 									info += image(width, height, source);
 							} else {
 								numDoorTransitionFrames = totalFrames;
-								if (whichFrame == 1) 					info += property("@Closed", "(this)") + 
-																				property("@Closing", "~Door Closing " + whichSet) + 
-																				property("@Blink", "~Door Blink " + whichSet) + 
-																				property("@Opened", "~Door Opened " + whichSet) + 
-																				property("@Opening", "~Door Opening " + whichSet) +
-																				property("Render Depth", "int", "-1") + 
+								if (whichFrame == 1) 					info += property("~", "Door Closed " + whichSet) + 
+																				property("~Closed", "Door Closed " + whichSet) + 
+																				property("~Closing", "Door Closing " + whichSet) + 
+																				property("~Blink", "Door Blink " + whichSet) + 
+																				property("~Opened", "Door Opened " + whichSet) + 
+																				property("~Opening", "Door Opening " + whichSet) +
 																				property("Type", "Door");
 								else if (whichFrame == 2) 				info += property("~", "Door Opening " + whichSet) +
 																				animation(DoorTransitionAnim, DoorTransitionInte, IntervalMultiplier, false);
 								else if (whichFrame < totalFrames - 1) 	{}
 								else if (whichFrame == totalFrames - 1) info += property("~", "Door Closing " + whichSet) + 
 																				animation(DoorTransitionAnim, DoorTransitionInte, IntervalMultiplier, true);
-								else 									info += property("~", "Door Opened " + whichSet);
+								else 									info += property("~", "Door Opened " + whichSet) + 
+																				property("Render Depth", "int", "-1");
 								info = enclose("properties", info) + image(width, height, source);
 							} break;
 						case "Elevated Floor":
 							info = enclose("properties", 
-											property("Render Depth", "int", "-1") + 
+											property("~", "Obstructed Floor") +
+											property("~Floor", "Obstructed Floor") +
 											property("Type", "Obstructed Floor") + 
+											property("Render Depth", "int", "-1") + 
 											property("Elevation", "int", "4")) + 
 									image(width, height, source); break;
 						case "Exit":
@@ -275,7 +279,6 @@ public class TileSetGenerator {
 							numExitFrames = Integer.parseInt(data[data.length - 1]);
 							if (whichFrame == 1)
 								info = enclose("properties", 
-												property("Render Depth", "int", "-1") + 
 												property("Type", "Exit")) + 
 										image(width, height, source) + 
 										animation(ExitAnim, ExitInte, IntervalMultiplier, false);
@@ -298,12 +301,13 @@ public class TileSetGenerator {
 							lodestoneNameToOffsetArray.put(name, new int[] { lodeheight - 1, area.indexOf("1") });
 							// <Width>x<height> <Numbering within the set of equal width and height> <Area code>
 							info = enclose("properties", 
-											property("@Magnetised", "~Magnetized Overlay " + dimensions + " " + tag) + 
+											property("~", (pushable ? "Pushable" : "Unpushable") + " " + name) + 
+											property("~Lodestone", (pushable ? "Pushable" : "Unpushable") + " " + name) + 
+											property("~Magnetised Overlay", "Magnetised Overlay " + dimensions + " " + tag) + 
 											property("Body Area", area) + 
 											property("Body Width", "int", "" + lodewidth) + 
 											property("IsMagnetisable", "bool", "true") + 
 											property("IsPushable", "bool", pushable + "") + 
-											property("Render Depth", "int", "1") + 
 											property("Type", "Block")) + 
 									image(width, height, source); break;
 						case "Magnetic Attraction":
@@ -312,7 +316,6 @@ public class TileSetGenerator {
 							numMagneticAttractionFrames = Integer.parseInt(data[data.length - 1]);
 							if (whichFrame == 1)
 								info = enclose("properties", 
-												property("Render Depth", "int", "-1") + 
 												property("Type", "Magnetic Attraction " + data[0])) + 
 										image(width, height, source) + 
 										animation(MagneticAttractAnim, MagneticAttractInte, IntervalMultiplier, false); 
@@ -325,8 +328,10 @@ public class TileSetGenerator {
 							numMagneticFloorFrames = Integer.parseInt(data[data.length - 1]);
 							if (whichFrame == 1) {
 								info = enclose("properties", 
-												property("Render Depth", "int", "-1") + 
-												property("Type", "Magnetic Floor")) + 
+												property("~", "Magnetic Floor") + 
+												property("~Floor", "Magnetic Floor") + 
+												property("Render Depth", "int", "-1")) + 
+												property("Type", "Magnetic Floor") + 
 										image(width, height, source) + 
 										animation(MagneticFloorAnim, MagneticFloorInte, IntervalMultiplier, false);
 							} else 
@@ -340,7 +345,8 @@ public class TileSetGenerator {
 							else 							numMagneticSourceSouthFrames = Integer.parseInt(data[data.length - 1]);
 							if (whichFrame == 1)
 								info = enclose("properties", 
-												property("Render Depth", "int", "-1") + 
+												property("~", "Magnetic Source") +
+												property("~Source", "Magnetic Source") +
 												property("Type", "Magnetic Source")) + 
 										image(width, height, source) + 
 										animation(MagneticSourceAnim, MagneticSourceInte, IntervalMultiplier, false); 
@@ -349,23 +355,27 @@ public class TileSetGenerator {
 							break;
 						case "Magnetized Overlay":
 							info = enclose("properties", 
-											property("Render Depth", "int", "2") + 
-											property("~", "Magnetized Overlay " + name)) + 
+											property("~", "Magnetised Overlay " + name) + 
+											property("Render Depth", "int", "2")) + 
 									image(width, height, source); break;
+						case "Wall Overlays":
 						case "Floor Overlays":
 						case "Floor": 
 							info = image(width, height, source); break;
 						case "Player":
 							info = enclose("properties", 
+											property("~", "Player Standing") +
 											property("Type", "Player") + 
-											property("@Standing", "(this)") + 
-											property("@Walking", "(this)")) + 
+											property("~Standing", "Player Standing")) + 
 									image(width, height, source); break;
 						case "Wall": 
 							info = enclose("properties", 
 											property("Type", "Wall")) + 
 									image(width, height, source); break;
-						default:
+						case "Test":
+							// Ignore. This is for painting purposes only
+							break;
+						default: System.out.println(name);
 							
 					}
 					info = tile(info);

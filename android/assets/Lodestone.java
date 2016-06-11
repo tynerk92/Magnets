@@ -1,7 +1,0 @@
-
-public class Lodestone {
-
-	Lodestone() {
-	}
-	
-}

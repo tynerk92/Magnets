@@ -36,7 +36,7 @@ public class Config {
 		// Door.Config
 
 		// PlayScreen.Config
-		PlayScreen.Config.GameAnimationsTMXPath = "Animations/Game.tmx";
+		PlayScreen.Config.GameAnimationsTMXPath = "Levels/Easy Levels Pack/Errands (Solvable).tmx";
 		PlayScreen.Config.GameLayerWalls = "Walls and Objects";
 
 		// TiledStage.Config

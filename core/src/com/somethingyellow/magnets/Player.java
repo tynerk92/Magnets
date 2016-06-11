@@ -37,7 +37,7 @@ public class Player extends TiledStagePlayer {
 	@Override
 	public void act(int subtick) {
 		if (subtick == PlayScreen.SUBTICKS.PLAYER_MOVEMENT.ordinal()) {
-
+			System.out.println(getY());
 			if (!isMoving()) {
 				if (_commands.isExit(origin())) {
 					_commands.exitLevel();
