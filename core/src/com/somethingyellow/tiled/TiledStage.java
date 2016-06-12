@@ -8,9 +8,11 @@ import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
+import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.somethingyellow.Listeners;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -27,7 +29,6 @@ public class TiledStage extends Stage {
 	private TiledStageMapRenderer _mapRenderer;
 	private OrthographicCamera _camera = new OrthographicCamera();
 	private TiledStageActor _cameraFocalActor;
-	private TiledStageActor _inputFocalActor;
 	private HashMap<String, TiledStageBody> _bodiesByName = new HashMap<String, TiledStageBody>();
 	private ArrayList<TiledStageBody> _tempBodies = new ArrayList<TiledStageBody>();
 	private HashSet<TiledStageBody> _bodies = new HashSet<TiledStageBody>();
@@ -47,13 +48,15 @@ public class TiledStage extends Stage {
 	private String _shadowsLayerName;
 	private HashMap<String, TiledMapTileLayer> _tileLayers = new HashMap<String, TiledMapTileLayer>();
 	private LinkedList<TiledObject> _objects = new LinkedList<TiledObject>();
+	private Listeners<Listener> _listeners = new Listeners<Listener>();
+	private boolean _isPaused = true;
 
 	public TiledStage(String bodiesLayerName, String shadowsLayerName, int maxSubTicks, float tickDuration) {
 		_bodiesLayerName = bodiesLayerName;
 		_shadowsLayerName = shadowsLayerName;
 		_maxSubTicks = maxSubTicks;
 		_tickTime = 0f;
-		_cameraZoom = Config.CameraZoomDefault;
+		_cameraZoom = 1f;
 		_tickDuration = tickDuration;
 
 		_subTicksToActors = new ArrayList<HashSet<TiledStageActor>>(_maxSubTicks);
@@ -206,32 +209,25 @@ public class TiledStage extends Stage {
 		return 0;
 	}
 
-	public void load(TiledMap map, int screenWidth, int screenHeight) {
+	public Listeners<Listener> listeners() {
+		return _listeners;
+	}
+
+	public boolean isLoaded() {
+		return _map != null;
+	}
+
+	public void load(TiledMap map, int screenWidth, int screenHeight, float cameraZoom) {
+		if (isLoaded()) unload();
+
 		_map = map;
-
-		_bodies.clear();
-		_tempBodies.clear();
-		_bodiesByName.clear();
-		_tileLayers.clear();
-		_tempActors.clear();
-		_objects.clear();
-		for (int i = 0; i < _maxSubTicks; i++) {
-			_subTicksToActors.get(i).clear();
-		}
-		for (TiledStageLightSource lightSource : _lightSources) {
-			lightSource.dispose();
-		}
-		_lightSources.clear();
-		_cameraFocalActor = null;
-		_inputFocalActor = null;
-
-		if (_mapRenderer != null) _mapRenderer.dispose();
 		_mapRenderer = new TiledStageMapRenderer(this, _map, _bodiesLayerName, _shadowsLayerName);
 		MapProperties props = _map.getProperties();
 		_tileWidth = props.get("tilewidth", Integer.class);
 		_tileHeight = props.get("tileheight", Integer.class);
 		_tileRows = props.get("height", Integer.class);
 		_tileColumns = props.get("width", Integer.class);
+		_cameraZoom = cameraZoom;
 
 		_coordinates = new ArrayList<Coordinate>(_tileRows * _tileColumns);
 
@@ -255,6 +251,31 @@ public class TiledStage extends Stage {
 
 		_mapRenderer.initialize(screenWidth, screenHeight);
 		setScreenSize(screenWidth, screenHeight);
+
+		_isPaused = false;
+	}
+
+	public void unload() {
+		_bodies.clear();
+		_tempBodies.clear();
+		_bodiesByName.clear();
+		_tileLayers.clear();
+		_tempActors.clear();
+		_objects.clear();
+		for (int i = 0; i < _maxSubTicks; i++) {
+			_subTicksToActors.get(i).clear();
+		}
+		for (TiledStageLightSource lightSource : _lightSources) {
+			lightSource.dispose();
+		}
+		_lightSources.clear();
+		_cameraFocalActor = null;
+
+		_mapRenderer.dispose();
+		_mapRenderer = null;
+		_map.dispose();
+		_isPaused = true;
+		_map = null;
 	}
 
 	// visual
@@ -264,28 +285,16 @@ public class TiledStage extends Stage {
 	public void draw() {
 		if (_map == null) return;
 
+		for (Listener listener : _listeners) {
+			listener.beforeDraw(this);
+		}
+
 		float delta = Gdx.graphics.getDeltaTime();
 
 		_tickTime += delta;
 
 		while (_tickTime >= _tickDuration) {
-
-			_tempBodies.clear();
-			_tempBodies.addAll(_bodies);
-			for (TiledStageBody body : _tempBodies) {
-				body.act();
-			}
-
-			for (int i = 0; i < _maxSubTicks; i++) {
-				_tempActors.clear();
-				_tempActors.addAll(_subTicksToActors.get(i));
-				Collections.sort(_tempActors);
-
-				for (TiledStageActor actor : _tempActors) {
-					actor.act(i);
-				}
-			}
-
+			if (!_isPaused) tick();
 			_tickTime -= _tickDuration;
 		}
 
@@ -293,17 +302,46 @@ public class TiledStage extends Stage {
 
 		// Camera
 		Vector2 camPos = new Vector2(_camera.position.x, _camera.position.y);
-		_camera.position.set(camPos.interpolate(_cameraFocalActor.center(), Config.CameraPanningSmoothRatio, Interpolation.linear), 0);
+		if (_cameraFocalActor != null) {
+			_camera.position.set(camPos.interpolate(_cameraFocalActor.center(), Config.CameraPanningSmoothRatio, Interpolation.linear), 0);
+		}
 		_camera.zoom += (_cameraZoom - _camera.zoom) * Config.CameraZoomSmoothRatio;
 		_camera.update();
 
 		// Map
 		_mapRenderer.setView(_camera);
 		_mapRenderer.render();
+
+		for (Listener listener : _listeners) {
+			listener.drawn(this);
+		}
 	}
 
-	// get/set
-	// --------
+	private void tick() {
+		for (Listener listener : _listeners) {
+			listener.beforeTick(this);
+		}
+
+		_tempBodies.clear();
+		_tempBodies.addAll(_bodies);
+		for (TiledStageBody body : _tempBodies) {
+			body.act();
+		}
+
+		for (int i = 0; i < _maxSubTicks; i++) {
+			_tempActors.clear();
+			_tempActors.addAll(_subTicksToActors.get(i));
+			Collections.sort(_tempActors);
+
+			for (TiledStageActor actor : _tempActors) {
+				actor.act(i);
+			}
+		}
+
+		for (Listener listener : _listeners) {
+			listener.ticked(this);
+		}
+	}
 
 	public TiledStageMapRenderer mapRenderer() {
 		return _mapRenderer;
@@ -331,6 +369,14 @@ public class TiledStage extends Stage {
 
 	public float tickDuration() {
 		return _tickDuration;
+	}
+
+	public boolean isPaused() {
+		return _isPaused;
+	}
+
+	public void setIsPaused(boolean isPaused) {
+		_isPaused = isPaused;
 	}
 
 	public Coordinate getCoordinate(int tileRow, int tileCol) {
@@ -436,14 +482,12 @@ public class TiledStage extends Stage {
 		_camera.position.set(_cameraFocalActor.center(), 0);
 	}
 
-	public void setInputFocalActor(TiledStageActor actor) {
-		_inputFocalActor = actor;
-		setKeyboardFocus(actor);
-		setScrollFocus(actor);
-	}
-
 	public void setZoom(float zoom) {
 		_cameraZoom = zoom;
+	}
+
+	public Iterator<TiledMapTile> tilesIterator() {
+		return new TilesIterator();
 	}
 
 	public enum DIRECTION {
@@ -453,7 +497,20 @@ public class TiledStage extends Stage {
 	public static class Config {
 		public static float CameraPanningSmoothRatio = 0.1f;
 		public static float CameraZoomSmoothRatio = 0.1f;
-		public static float CameraZoomDefault = 1f;
+	}
+
+	public abstract static class Listener {
+		public void beforeDraw(TiledStage tileStage) {
+		}
+
+		public void beforeTick(TiledStage tiledStage) {
+		}
+
+		public void ticked(TiledStage tiledStage) {
+		}
+
+		public void drawn(TiledStage tiledStage) {
+		}
 	}
 
 	public class TiledObject {
@@ -652,7 +709,7 @@ public class TiledStage extends Stage {
 
 		@Override
 		public String toString() {
-			return "(" + _row + ", " + _col + ") with bodies: " + _bodies.toString();
+			return "(" + _row + ", " + _col + ")";
 		}
 
 		@Override
@@ -751,6 +808,29 @@ public class TiledStage extends Stage {
 				_cellsIterator = _coordinatesIterator.next().cells().values().iterator();
 
 			return cell;
+		}
+	}
+
+	private class TilesIterator implements Iterator<TiledMapTile> {
+		private Iterator<TiledMapTileSet> _tilesetsIterator = _map.getTileSets().iterator();
+		private Iterator<TiledMapTile> _tilesIterator;
+
+		public TilesIterator() {
+			if (_tilesetsIterator.hasNext()) _tilesIterator = _tilesetsIterator.next().iterator();
+		}
+
+		@Override
+		public boolean hasNext() {
+			return (_tilesIterator != null && _tilesIterator.hasNext());
+		}
+
+		@Override
+		public TiledMapTile next() {
+			TiledMapTile tile = _tilesIterator.next();
+			if (!_tilesIterator.hasNext() && _tilesetsIterator.hasNext())
+				_tilesIterator = _tilesetsIterator.next().iterator();
+
+			return tile;
 		}
 	}
 }

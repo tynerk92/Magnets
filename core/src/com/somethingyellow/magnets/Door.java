@@ -24,20 +24,20 @@ public class Door extends TiledStageActor {
 
 		setTransition(Config.AnimationOpening, Config.AnimationOpened);
 		setTransition(Config.AnimationClosing, Config.AnimationClosed);
-		addListener(new AnimatedActor.Listener() {
+		listeners().add(new AnimatedActor.Listener() {
 			@Override
 			public void animationShown(AnimatedActor actor, Animation animation) {
 				if (animation.tag().equals(Config.AnimationOpened)) {
-					addState(Config.StateOpened);
-					removeState(Config.StateClosed);
+					addStatus(Config.StateOpened);
+					removeStatus(Config.StateClosed);
 				}
 			}
 
 			@Override
 			public void animationHidden(AnimatedActor actor, Animation animation) {
 				if (animation.tag().equals(Config.AnimationOpened)) {
-					addState(Config.StateClosed);
-					removeState(Config.StateOpened);
+					addStatus(Config.StateClosed);
+					removeStatus(Config.StateOpened);
 				}
 			}
 		});

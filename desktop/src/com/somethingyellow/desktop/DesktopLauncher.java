@@ -2,14 +2,16 @@ package com.somethingyellow.desktop;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-// import com.badlogic.gdx.tools.texturepacker.TexturePacker;
-import com.somethingyellow.magnets.Config;
 import com.somethingyellow.magnets.Main;
 
 public class DesktopLauncher {
+    public static final int WINDOW_WIDTH = 500;
+    public static final int WINDOW_HEIGHT = 500;
+
     public static void main(String[] arg) {
         LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-        Config.Configure();
+        config.width = WINDOW_WIDTH;
+        config.height = WINDOW_HEIGHT;
         new LwjglApplication(new Main(), config);
     }
 }

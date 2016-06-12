@@ -5,11 +5,11 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Pool;
 import com.badlogic.gdx.utils.Pools;
+import com.somethingyellow.Listeners;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -17,12 +17,12 @@ public class AnimatedActor extends Actor implements Animation.Listener, Pool.Poo
 	private HashMap<String, Animation> _animations = new HashMap<String, Animation>();
 	private ArrayList<Animation> _animationsArray = new ArrayList<Animation>();
 	private ArrayList<Sprite> _tempSpritesArray = new ArrayList<Sprite>();
-	private LinkedList<Listener> _listeners = new LinkedList<Listener>();
-	private LinkedList<Listener> _tempListeners = new LinkedList<Listener>();
+	private Listeners<Listener> _listeners = new Listeners<Listener>();
 
 	public void initialize(Map<String, AnimationDef> animationDefs) {
 		for (String tag : animationDefs.keySet()) {
 			Animation animation = animationDefs.get(tag).instantiate(tag, this);
+			animation.hide();
 			_animations.put(animation.tag(), animation);
 			_animationsArray.add(animation);
 		}
@@ -39,7 +39,7 @@ public class AnimatedActor extends Actor implements Animation.Listener, Pool.Poo
 			throw new IllegalArgumentException("`toTag` doesn't exist!");
 		}
 
-		addListener(new Listener() {
+		_listeners.add(new Listener() {
 			@Override
 			public void animationEnded(AnimatedActor actor, Animation animation) {
 				if (animation.tag().equals(fromTag)) {
@@ -63,9 +63,9 @@ public class AnimatedActor extends Actor implements Animation.Listener, Pool.Poo
 	public void reset() {
 		_animations.clear();
 		_listeners.clear();
-		_tempListeners.clear();
 		_animationsArray.clear();
 		_tempSpritesArray.clear();
+		clearActions();
 	}
 
 	@Override
@@ -79,21 +79,9 @@ public class AnimatedActor extends Actor implements Animation.Listener, Pool.Poo
 		return super.remove();
 	}
 
-	public Listener addListener(Listener listener) {
-		_listeners.add(listener);
-		return listener;
+	public Listeners<Listener> listeners() {
+		return _listeners;
 	}
-
-	public void removeListener(Listener listener) {
-		_listeners.remove(listener);
-	}
-
-	public LinkedList<Listener> listeners() {
-		_tempListeners.clear();
-		_tempListeners.addAll(_listeners);
-		return _tempListeners;
-	}
-
 
 	@Override
 	public void draw(Batch batch, float parentAlpha) {

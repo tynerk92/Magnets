@@ -1,11 +1,11 @@
 package com.somethingyellow.tiled;
 
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.somethingyellow.graphics.AnimatedActor;
 import com.somethingyellow.graphics.AnimationDef;
 
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 import java.util.TreeSet;
 
@@ -13,7 +13,7 @@ public abstract class TiledStageBody extends AnimatedActor implements Comparable
 	public static final boolean[] BodyArea1x1 = new boolean[]{
 			true
 	};
-	public TreeSet<String> _states = new TreeSet();
+	public TreeSet<String> _statuses = new TreeSet();
 	private TiledStage.Coordinate _origin;
 	private LinkedList<TiledStage.Coordinate> _bodyCoordinates = new LinkedList<TiledStage.Coordinate>();
 	private boolean[] _bodyArea;
@@ -22,6 +22,7 @@ public abstract class TiledStageBody extends AnimatedActor implements Comparable
 	private boolean _hasShadow;
 	private int _shadowDisplacementY;
 	private float _z;
+	private int _movingTicks;
 
 	public void initialize(Map<String, AnimationDef> animationDefs, boolean[] bodyArea, int bodyWidth, TiledStage.Coordinate origin) {
 		super.initialize(animationDefs);
@@ -32,6 +33,7 @@ public abstract class TiledStageBody extends AnimatedActor implements Comparable
 		_z = 0;
 		_hasShadow = false;
 		_shadowDisplacementY = 0;
+		_movingTicks = 0;
 		_bodyArea = bodyArea;
 		_bodyWidth = bodyWidth;
 		_bodyHeight = bodyArea.length / bodyWidth;
@@ -57,12 +59,32 @@ public abstract class TiledStageBody extends AnimatedActor implements Comparable
 	}
 
 	public void act() {
+		if (_movingTicks > 0) {
+			_movingTicks--;
+		}
+	}
+
+	public void moveTo(TiledStage.Coordinate targetCoordinate, int ticks) {
+		if (targetCoordinate == _origin) return;
+
+		_movingTicks = ticks;
+		setOrigin(targetCoordinate);
+		Vector2 pos = targetCoordinate.position();
+		addAction(Actions.moveTo(pos.x, pos.y, ticksToTime(ticks)));
+
+		for (AnimatedActor.Listener listener : listeners()) {
+			if (listener instanceof Listener) ((Listener) listener).stateChanged(this);
+		}
+	}
+
+	public boolean isMoving() {
+		return _movingTicks > 0;
 	}
 
 	@Override
 	public void reset() {
 		super.reset();
-		_states.clear();
+		_statuses.clear();
 	}
 
 	protected void setOrigin(TiledStage.Coordinate origin) {
@@ -126,26 +148,32 @@ public abstract class TiledStageBody extends AnimatedActor implements Comparable
 		return tempBodyCoordinates;
 	}
 
-	public void addState(String state) {
-		if (!_states.contains(state)) {
-			_states.add(state);
+	public void addStatus(String status) {
+		if (!_statuses.contains(status)) {
+			_statuses.add(status);
 
 			for (AnimatedActor.Listener listener : listeners()) {
-				if (listener instanceof Listener) ((Listener) listener).stateAdded(this, state);
+				if (listener instanceof Listener) {
+					((Listener) listener).statusAdded(this, status);
+					((Listener) listener).stateChanged(this);
+				}
 			}
 		}
 	}
 
-	public boolean hasState(String state) {
-		return _states.contains(state);
+	public boolean hasStatus(String status) {
+		return _statuses.contains(status);
 	}
 
-	public void removeState(String state) {
-		if (_states.contains(state)) {
-			_states.remove(state);
+	public void removeStatus(String status) {
+		if (_statuses.contains(status)) {
+			_statuses.remove(status);
 
 			for (AnimatedActor.Listener listener : listeners()) {
-				if (listener instanceof Listener) ((Listener) listener).stateRemoved(this, state);
+				if (listener instanceof Listener) {
+					((Listener) listener).statusRemoved(this, status);
+					((Listener) listener).stateChanged(this);
+				}
 			}
 		}
 	}
@@ -180,6 +208,10 @@ public abstract class TiledStageBody extends AnimatedActor implements Comparable
 
 	public int shadowDisplacementY() {
 		return _shadowDisplacementY;
+	}
+
+	public State getState() {
+		return new State();
 	}
 
 	public void setShadowDisplacementY(int displacementY) {
@@ -225,11 +257,41 @@ public abstract class TiledStageBody extends AnimatedActor implements Comparable
 		public void positionChanged(TiledStageBody body) {
 		}
 
-		public void stateAdded(TiledStageBody body, String state) {
+		public void statusAdded(TiledStageBody body, String status) {
 		}
 
-		public void stateRemoved(TiledStageBody body, String state) {
+		public void statusRemoved(TiledStageBody body, String status) {
+		}
 
+		public void stateChanged(TiledStageBody body) {
+		}
+	}
+
+	public class State {
+		private TiledStage.Coordinate _origin;
+		private TreeSet<String> _statuses;
+
+		private State() {
+			_origin = TiledStageBody.this._origin;
+			_statuses = new TreeSet<String>(TiledStageBody.this._statuses);
+		}
+
+		public TiledStageBody body() {
+			return TiledStageBody.this;
+		}
+
+		public void restore() {
+			setOrigin(_origin);
+			Vector2 pos = _origin.position();
+			addAction(Actions.moveTo(pos.x, pos.y, 0.1f));
+
+			TiledStageBody.this._statuses.clear();
+			TiledStageBody.this._statuses.addAll(_statuses);
+		}
+
+		@Override
+		public String toString() {
+			return getName() + " @ " + _origin.toString() + " with statuses " + _statuses.toString();
 		}
 	}
 }

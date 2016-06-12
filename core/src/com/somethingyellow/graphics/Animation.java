@@ -20,8 +20,8 @@ public class Animation implements Comparable<Animation> {
 		_time = 0f;
 		_tag = tag;
 		_frameIndex = 0;
-		_alpha = 0f;
-		_isActive = false;
+		_alpha = 1f;
+		_isActive = true;
 		_frames = frames;
 		_zIndex = zIndex;
 
@@ -29,6 +29,10 @@ public class Animation implements Comparable<Animation> {
 		for (Frame frame : _frames) {
 			_duration += frame.duration();
 		}
+	}
+
+	public Animation(ArrayList<Frame> frames, int zIndex) {
+		this(null, frames, zIndex);
 	}
 
 	public Animation(String tag, ArrayList<Frame> frames, int zIndex, Listener listener) {

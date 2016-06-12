@@ -23,20 +23,20 @@ public class Button extends TiledStageActor {
 
 		setTransition(Config.AnimationOning, Config.AnimationOn);
 		setTransition(Config.AnimationOffing, Config.AnimationOff);
-		addListener(new AnimatedActor.Listener() {
+		listeners().add(new AnimatedActor.Listener() {
 			@Override
 			public void animationShown(AnimatedActor actor, Animation animation) {
 				if (animation.tag().equals(Config.AnimationOn)) {
-					addState(Config.StateOn);
-					removeState(Config.StateOff);
+					addStatus(Config.StateOn);
+					removeStatus(Config.StateOff);
 				}
 			}
 
 			@Override
 			public void animationHidden(AnimatedActor actor, Animation animation) {
 				if (animation.tag().equals(Config.AnimationOn)) {
-					addState(Config.StateOff);
-					removeState(Config.StateOn);
+					addStatus(Config.StateOff);
+					removeStatus(Config.StateOn);
 				}
 			}
 		});

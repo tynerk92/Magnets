@@ -350,7 +350,6 @@ public class TiledStageMapRenderer extends BatchTiledMapRenderer {
 	}
 
 	private void drawBodiesByRow(int row) {
-
 		for (int col = 0; col < _stage.tileColumns(); col++) {
 			HashSet<Animation> animations = _animationsByCoordinates.get(row * _stage.tileColumns() + col);
 			// Sort sprites by z index
@@ -359,52 +358,72 @@ public class TiledStageMapRenderer extends BatchTiledMapRenderer {
 			_tempAnimationsArray.addAll(animations);
 			Collections.sort(_tempAnimationsArray);
 
-			// If bodies do not exist in current coordinate,
-			// render them on top of others (must be in front and blocking)
 			for (Animation animation : _tempAnimationsArray) {
 				TiledStageBody body = _animationsToBodies.get(animation);
-				if (!body.getBodyCoordinates(getRenderOrigin(body)).contains(_stage.getCoordinate(row, col))) {
-					_tempAnimationsArray2.add(animation);
+				Sprite sprite = getSprite(body, animation, row, col);
+
+				int leftProtrusion = (animation.frame().width() - (body.bodyWidth() * _stage.tileWidth())) / 2;
+				int topProtrusion = animation.frame().height() - (body.bodyHeight() * _stage.tileHeight());
+
+				// Find relative coordinate within body
+				int bodyRow = Math.floorDiv(sprite.getRegionY() - topProtrusion, _stage.tileHeight());
+				int bodyCol = Math.floorDiv(sprite.getRegionX() - leftProtrusion, _stage.tileWidth());
+				if (bodyCol < 0) bodyCol = 0;
+				if (bodyCol >= body.bodyWidth()) bodyCol = body.bodyWidth() - 1;
+
+				if (bodyRow < 0 || !body.getBodyAreaAt(bodyRow, bodyCol)) {
+					for (int r = Math.max(0, bodyRow + 1); r < body.bodyHeight(); r ++) {
+						if (body.getBodyAreaAt(r, bodyCol)) {
+							_tempAnimationsArray2.add(animation);
+							break;
+						}
+					}
 				}
-			}
-			_tempAnimationsArray.addAll(_tempAnimationsArray2);
-
-			for (Animation animation : _tempAnimationsArray) {
-				TiledStageBody body = _animationsToBodies.get(animation);
-				Sprite sprite = animation.getSprite();
-				int x = col * _stage.tileWidth();
-				int y = (row + 1) * _stage.tileHeight();
-
-				int regionTop = sprite.getRegionHeight() - (y - (int) body.getY());
-				int regionLeft = x - (int) body.getX();
-				int regionWidth = _stage.tileWidth();
-				int regionHeight = _stage.tileHeight();
-
-				if (regionTop < 0) {
-					regionHeight -= -regionTop;
-					regionTop = 0;
-				} else if (regionTop + regionHeight > sprite.getRegionHeight()) {
-					int diff = (regionTop + regionHeight) - sprite.getRegionHeight();
-					regionHeight -= diff;
-					y += diff;
-				}
-
-				if (regionLeft < 0) {
-					regionWidth -= -regionLeft;
-					x += -regionLeft;
-					regionLeft = 0;
-				} else if (regionLeft + regionWidth > sprite.getRegionWidth()) {
-					int diff = (regionLeft + regionWidth) - sprite.getRegionWidth();
-					regionWidth -= diff;
-				}
-
-				sprite.setRegion(regionLeft, regionTop, regionWidth, regionHeight);
-				sprite.setSize(sprite.getRegionWidth(), sprite.getRegionHeight());
-				sprite.setPosition(x, y - _stage.tileHeight());
 
 				sprite.draw(batch);
 			}
+
+			for (Animation animation : _tempAnimationsArray2) {
+				TiledStageBody body = _animationsToBodies.get(animation);
+				getSprite(body, animation, row, col).draw(batch);
+			}
 		}
+	}
+
+	private Sprite getSprite(TiledStageBody body, Animation animation, int row, int col) {
+		Sprite sprite = animation.getSprite();
+		int x = col * _stage.tileWidth();
+		int y = (row + 1) * _stage.tileHeight();
+		int leftProtrusion = (sprite.getRegionWidth() - (body.bodyWidth() * _stage.tileWidth())) / 2;
+
+		int regionTop = sprite.getRegionHeight() - (y - (int) body.getY());
+		int regionLeft = x - (int) body.getX() + leftProtrusion;
+		int regionWidth = _stage.tileWidth();
+		int regionHeight = _stage.tileHeight();
+
+		if (regionTop < 0) {
+			regionHeight -= -regionTop;
+			regionTop = 0;
+		} else if (regionTop + regionHeight > sprite.getRegionHeight()) {
+			int diff = (regionTop + regionHeight) - sprite.getRegionHeight();
+			regionHeight -= diff;
+			y += diff;
+		}
+
+		if (regionLeft < 0) {
+			regionWidth -= -regionLeft;
+			x += -regionLeft;
+			regionLeft = 0;
+		} else if (regionLeft + regionWidth > sprite.getRegionWidth()) {
+			int diff = (regionLeft + regionWidth) - sprite.getRegionWidth();
+			regionWidth -= diff;
+		}
+
+		sprite.setRegion(regionLeft, regionTop, regionWidth, regionHeight);
+		sprite.setSize(sprite.getRegionWidth(), sprite.getRegionHeight());
+		sprite.setPosition(x - leftProtrusion, y - _stage.tileHeight());
+
+		return sprite;
 	}
 
 	private void drawShadows() {
@@ -438,9 +457,9 @@ public class TiledStageMapRenderer extends BatchTiledMapRenderer {
 				float bottom = body.getY();
 				float right = left + animation.frame().width() - 1;
 				float top = bottom + animation.frame().height() - 1;
-				TiledStage.Coordinate bottomLeft = _stage.getCoordinateAt(left, bottom);
-				TiledStage.Coordinate topRight = _stage.getCoordinateAt(right, top);
-
+				int leftProtrusion = (animation.frame().width() - (body.bodyWidth() * _stage.tileWidth())) / 2;
+				TiledStage.Coordinate bottomLeft = _stage.getCoordinateAt(left - leftProtrusion, bottom);
+				TiledStage.Coordinate topRight = _stage.getCoordinateAt(right - leftProtrusion, top);
 				for (int row = bottomLeft.row(); row <= topRight.row(); row++) {
 					for (int col = bottomLeft.column(); col <= topRight.column(); col++) {
 						_animationsByCoordinates.get(row * _stage.tileColumns() + col).add(animation);
@@ -455,11 +474,6 @@ public class TiledStageMapRenderer extends BatchTiledMapRenderer {
 		}
 	}
 
-	private TiledStage.Coordinate getRenderOrigin(TiledStageBody body) {
-		TiledStage.Coordinate renderOrigin = _stage.getCoordinateAt(body.getX(), body.getY());
-		return (renderOrigin == null) ? body.origin() : renderOrigin;
-	}
-
 	@Override
 	public void dispose() {
 		super.dispose();
@@ -468,9 +482,9 @@ public class TiledStageMapRenderer extends BatchTiledMapRenderer {
 	}
 
 	public static class Config {
-		public static float AmbientColorGreenDefault = 0.8f;
-		public static float AmbientColorRedDefault = 0.8f;
-		public static float AmbientColorBlueDefault = 0.8f;
+		public static float AmbientColorGreenDefault = 0.7f;
+		public static float AmbientColorRedDefault = 0.7f;
+		public static float AmbientColorBlueDefault = 0.7f;
 		public static float ShadowHeight = 0.2f;
 		public static float ShadowIntensity = 0.5f;
 	}

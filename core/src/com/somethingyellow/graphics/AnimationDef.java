@@ -11,6 +11,10 @@ public class AnimationDef {
 		_zIndex = zIndex;
 	}
 
+	public Animation instantiate() {
+		return new Animation(_frames, _zIndex);
+	}
+
 	public Animation instantiate(String tag) {
 		return new Animation(tag, _frames, _zIndex);
 	}
