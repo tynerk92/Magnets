@@ -624,6 +624,10 @@ public class PlayScreen implements Screen, Player.Commands, Lodestone.Commands {
 				_toUndo = false;
 			}
 
+			// Unpause game when movement keys are pressed
+			if (_tiledStage.isPaused() && (_controller.isKeyLeftHeld() || _controller.isKeyRightHeld() ||
+					_controller.isKeyUpHeld() || _controller.isKeyDownHeld())) unpauseLevel();
+
 			_stateChangedInTick.clear();
 		}
 
@@ -722,8 +726,11 @@ public class PlayScreen implements Screen, Player.Commands, Lodestone.Commands {
 		public void keyPressed(Controller controller, int keycode) {
 			switch (keycode) {
 				case Input.Keys.P:
-					if (_tiledStage.isPaused()) unpauseLevel();
-					else pauseLevel();
+					if (_tiledStage.isPaused()) {
+						unpauseLevel();
+					} else {
+						pauseLevel();
+					}
 					break;
 			}
 
