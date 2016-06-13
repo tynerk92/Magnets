@@ -26,20 +26,22 @@ public class GameConfig {
 		// Main.Config
 
 		// LevelSelectScreen.Config
-		LevelSelectScreen.Config.FolderPath = "Levels/Demo";
+		//LevelSelectScreen.Config.FolderPath = "Levels";
+		LevelSelectScreen.Config.FolderPath = "Demo Levels";
+		//LevelSelectScreen.Config.IfSearch = true;
 		LevelSelectScreen.Config.Levels = new String[]{
-				"Buttons (Easy).tmx",
-				"Cascade (Hard).tmx",
-				"Hookline (Hard).tmx",
-				"Interspersing (Easy).tmx",
-				"Offering (Easy).tmx",
-				"Roundabout (Hard).tmx",
-				"Suction (Medium).tmx",
-				"Trio (Medium).tmx"
+				"(Easy) Buttons.tmx",
+				"(Easy) Interspersing.tmx",
+				"(Easy) Offering.tmx",
+				"(Medium) Suction.tmx",
+				"(Medium) Trio.tmx",
+				"(Medium) Cascade.tmx",
+				"(Medium) Chain.tmx",
+				"(Hard) Roundabout.tmx",
 		};
 
 		// PlayScreen.Config
-		PlayScreen.Config.GameAnimationsTMXPath = "Levels/Animations/Game.tmx";
+		PlayScreen.Config.GameAnimationsTMXPath = "Animations/(Easy) \uFEFFPushing.tmx";
 		PlayScreen.Config.GameLayerWalls = "Walls and Objects";
 		PlayScreen.Config.AnimationPauseOverlay = "Pause Overlay";
 
