@@ -14,12 +14,9 @@ public class Button extends TiledStageActor {
 			PlayScreen.SUBTICKS.BUTTON_PRESSES.ordinal(),
 			PlayScreen.SUBTICKS.GRAPHICS.ordinal()
 	};
-	private boolean _isOn;
 
 	public void initialize(Map<String, AnimationDef> animationDefs, boolean[] bodyArea, int bodyWidth, TiledStage.Coordinate origin) {
 		super.initialize(animationDefs, bodyArea, bodyWidth, origin);
-
-		_isOn = false;
 
 		setTransition(Config.AnimationOning, Config.AnimationOn);
 		setTransition(Config.AnimationOffing, Config.AnimationOff);
@@ -27,39 +24,41 @@ public class Button extends TiledStageActor {
 			@Override
 			public void animationShown(AnimatedActor actor, Animation animation) {
 				if (animation.tag().equals(Config.AnimationOn)) {
-					addStatus(Config.StateOn);
-					removeStatus(Config.StateOff);
+					addStatus(Config.StatusOn);
+					removeStatus(Config.StatusOff);
 				}
 			}
 
 			@Override
 			public void animationHidden(AnimatedActor actor, Animation animation) {
 				if (animation.tag().equals(Config.AnimationOn)) {
-					addStatus(Config.StateOff);
-					removeStatus(Config.StateOn);
+					addStatus(Config.StatusOff);
+					removeStatus(Config.StatusOn);
 				}
 			}
 		});
+		addStatus(Config.StatusOff);
 		showAnimation(Config.AnimationOff);
 	}
 
 	@Override
 	public void act(int subtick) {
 		if (subtick == PlayScreen.SUBTICKS.BUTTON_PRESSES.ordinal()) {
-			_isOn = false;
+			boolean isOn = false;
 			loop:
 			for (TiledStage.Coordinate bodyCoordinate : bodyCoordinates()) {
 				for (TiledStageActor actor : bodyCoordinate.actors()) {
 					if (actor instanceof Player || actor instanceof Lodestone) {
-						_isOn = true;
+						isOn = true;
 						break loop;
 					}
 				}
 			}
+			setStatus(Config.StatusPressed, isOn);
 
 		} else if (subtick == PlayScreen.SUBTICKS.GRAPHICS.ordinal()) {
 
-			if (_isOn) {
+			if (hasStatus(Config.StatusPressed)) {
 				if (isAnimationActive(Config.AnimationOff)) {
 					showAnimation(Config.AnimationOning);
 					hideAnimation(Config.AnimationOff);
@@ -90,7 +89,8 @@ public class Button extends TiledStageActor {
 		public static String AnimationOn = "On";
 		public static String AnimationOffing = "Offing";
 		public static String AnimationOff = "Off";
-		public static String StateOn = "On";
-		public static String StateOff = "Off";
+		public static String StatusOn = "On"; // When button shows animation `On`
+		public static String StatusOff = "Off"; // When buttons hides animation `On`
+		public static String StatusPressed = "Pressed"; // When something is on top
 	}
 }

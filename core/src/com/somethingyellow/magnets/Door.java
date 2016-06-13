@@ -13,14 +13,9 @@ public class Door extends TiledStageActor {
 	public static final int[] SUBTICKS = new int[]{
 			PlayScreen.SUBTICKS.GRAPHICS.ordinal()
 	};
-	private boolean _isOpen; // whether the door IS open
-	private boolean _toOpen; // whether the door SHOULD be open
 
 	public void initialize(Map<String, AnimationDef> animationDefs, boolean[] bodyArea, int bodyWidth, TiledStage.Coordinate origin, boolean toOpen) {
 		super.initialize(animationDefs, bodyArea, bodyWidth, origin);
-
-		_toOpen = toOpen;
-		_isOpen = false;
 
 		setTransition(Config.AnimationOpening, Config.AnimationOpened);
 		setTransition(Config.AnimationClosing, Config.AnimationClosed);
@@ -28,20 +23,22 @@ public class Door extends TiledStageActor {
 			@Override
 			public void animationShown(AnimatedActor actor, Animation animation) {
 				if (animation.tag().equals(Config.AnimationOpened)) {
-					addStatus(Config.StateOpened);
-					removeStatus(Config.StateClosed);
+					addStatus(Config.StatusOpened);
+					removeStatus(Config.StatusClosed);
 				}
 			}
 
 			@Override
 			public void animationHidden(AnimatedActor actor, Animation animation) {
 				if (animation.tag().equals(Config.AnimationOpened)) {
-					addStatus(Config.StateClosed);
-					removeStatus(Config.StateOpened);
+					addStatus(Config.StatusClosed);
+					removeStatus(Config.StatusOpened);
 				}
 			}
 		});
 
+		setStatus(Config.StatusToOpen, toOpen);
+		addStatus(Config.StatusClosed);
 		showAnimation(Config.AnimationClosed);
 	}
 
@@ -49,49 +46,41 @@ public class Door extends TiledStageActor {
 	public void act(int subtick) {
 		if (subtick == PlayScreen.SUBTICKS.GRAPHICS.ordinal()) {
 
-			if (_toOpen && !_isOpen) {
-				_isOpen = true;
-
-			} else if (!_toOpen && _isOpen) {
-				// Check if blocked by anything to prevent it from opening
-				boolean ifBlocked = false;
-
-				loop:
-				for (TiledStage.Coordinate bodyCoordinate : bodyCoordinates()) {
-					for (TiledStageActor actor : bodyCoordinate.actors()) {
-						if (actor instanceof Lodestone || actor instanceof Player) {
-							ifBlocked = true;
-							break loop;
-						}
-					}
-				}
-
-				if (!ifBlocked) {
-					_isOpen = false;
-				}
-			}
-
-
-			if (_isOpen) {
+			if (hasStatus(Config.StatusToOpen)) {
 				if (isAnimationActive(Config.AnimationClosed)) {
 					showAnimation(Config.AnimationOpening);
 					hideAnimation(Config.AnimationClosed);
 				}
-			} else {
+			} else { // To close the door
 				if (isAnimationActive(Config.AnimationOpened)) {
-					showAnimation(Config.AnimationClosing);
-					hideAnimation(Config.AnimationOpened);
+					// Check if blocked by anything to prevent it from closing
+					boolean ifBlocked = false;
+
+					loop:
+					for (TiledStage.Coordinate bodyCoordinate : bodyCoordinates()) {
+						for (TiledStageActor actor : bodyCoordinate.actors()) {
+							if (actor instanceof Lodestone || actor instanceof Player) {
+								ifBlocked = true;
+								break loop;
+							}
+						}
+					}
+
+					if (!ifBlocked) {
+						showAnimation(Config.AnimationClosing);
+						hideAnimation(Config.AnimationOpened);
+					}
 				}
 			}
 		}
 	}
 
 	public void open() {
-		_toOpen = true;
+		setStatus(Config.StatusToOpen, true);
 	}
 
 	public void close() {
-		_toOpen = false;
+		setStatus(Config.StatusToOpen, false);
 	}
 
 	@Override
@@ -100,7 +89,7 @@ public class Door extends TiledStageActor {
 	}
 
 	public boolean isOpen() {
-		return _isOpen;
+		return hasStatus(Config.StatusOpened);
 	}
 
 	// get/set
@@ -116,7 +105,8 @@ public class Door extends TiledStageActor {
 		public static String AnimationOpened = "Opened";
 		public static String AnimationClosing = "Closing";
 		public static String AnimationClosed = "Closed";
-		public static String StateOpened = "Opened";
-		public static String StateClosed = "Closed";
+		public static String StatusOpened = "Opened"; // When door shows `Opened` animation
+		public static String StatusClosed = "Closed"; // When door hides `Opened` animation
+		public static String StatusToOpen = "ToOpen"; // When door is to open, before considering any objects on top
 	}
 }

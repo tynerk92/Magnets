@@ -20,10 +20,7 @@ import java.util.Map;
 
 public class Controller implements InputProcessor {
 	private static final Vector2 TempCoords = new Vector2();
-	private boolean _isKeyLeftHeld = false;
-	private boolean _isKeyRightHeld = false;
-	private boolean _isKeyUpHeld = false;
-	private boolean _isKeyDownHeld = false;
+	private boolean[] _keysHeld = new boolean[256];
 	private float _zoom;
 	private Listeners<Listener> _listeners = new Listeners<Listener>();
 
@@ -36,48 +33,58 @@ public class Controller implements InputProcessor {
 	}
 
 	public boolean isKeyLeftHeld() {
-		return _isKeyLeftHeld;
+		return _keysHeld[Input.Keys.LEFT] || _keysHeld[Input.Keys.A];
 	}
 
 	public boolean isKeyRightHeld() {
-		return _isKeyRightHeld;
+		return _keysHeld[Input.Keys.RIGHT] || _keysHeld[Input.Keys.D];
 	}
 
 	public boolean isKeyUpHeld() {
-		return _isKeyUpHeld;
+		return _keysHeld[Input.Keys.UP] || _keysHeld[Input.Keys.W];
 	}
 
 	public boolean isKeyDownHeld() {
-		return _isKeyDownHeld;
+		return _keysHeld[Input.Keys.DOWN] || _keysHeld[Input.Keys.S];
+	}
+
+	public boolean isKeyCtrlHeld() {
+		return _keysHeld[Input.Keys.CONTROL_LEFT] || _keysHeld[Input.Keys.CONTROL_RIGHT];
+	}
+
+	public boolean isKeyHeld(int keycode) {
+		return _keysHeld[keycode];
 	}
 
 	@Override
 	public boolean keyDown(int keycode) {
+		_keysHeld[keycode] = true;
+
+		for (Listener listener : _listeners) {
+			listener.keyPressed(this, keycode);
+		}
+
 		switch (keycode) {
 			case Input.Keys.LEFT:
 			case Input.Keys.A:
-				_isKeyLeftHeld = true;
 				for (Listener listener : _listeners) {
 					listener.keyLeftPressed(this);
 				}
 				break;
 			case Input.Keys.RIGHT:
 			case Input.Keys.D:
-				_isKeyRightHeld = true;
 				for (Listener listener : _listeners) {
 					listener.keyRightPressed(this);
 				}
 				break;
 			case Input.Keys.UP:
 			case Input.Keys.W:
-				_isKeyUpHeld = true;
 				for (Listener listener : _listeners) {
 					listener.keyUpPressed(this);
 				}
 				break;
 			case Input.Keys.DOWN:
 			case Input.Keys.S:
-				_isKeyDownHeld = true;
 				for (Listener listener : _listeners) {
 					listener.keyDownPressed(this);
 				}
@@ -87,21 +94,6 @@ public class Controller implements InputProcessor {
 					listener.keyEscapePressed(this);
 				}
 				break;
-			case Input.Keys.R:
-				for (Listener listener : _listeners) {
-					listener.keyRPressed(this);
-				}
-				break;
-			case Input.Keys.P:
-				for (Listener listener : _listeners) {
-					listener.keyPPressed(this);
-				}
-				break;
-			case Input.Keys.BACKSPACE:
-				for (Listener listener : _listeners) {
-					listener.keyBackSpacePressed(this);
-				}
-				break;
 		}
 
 		return true;
@@ -109,25 +101,7 @@ public class Controller implements InputProcessor {
 
 	@Override
 	public boolean keyUp(int keycode) {
-		switch (keycode) {
-			case Input.Keys.LEFT:
-			case Input.Keys.A:
-				_isKeyLeftHeld = false;
-				break;
-			case Input.Keys.RIGHT:
-			case Input.Keys.D:
-				_isKeyRightHeld = false;
-				break;
-			case Input.Keys.UP:
-			case Input.Keys.W:
-				_isKeyUpHeld = false;
-				break;
-			case Input.Keys.DOWN:
-			case Input.Keys.S:
-				_isKeyDownHeld = false;
-				break;
-		}
-
+		_keysHeld[keycode] = false;
 		return true;
 	}
 
@@ -136,10 +110,9 @@ public class Controller implements InputProcessor {
 	}
 
 	public void reset() {
-		_isKeyDownHeld = false;
-		_isKeyLeftHeld = false;
-		_isKeyRightHeld = false;
-		_isKeyUpHeld = false;
+		for (int i = 0; i < _keysHeld.length; i++) {
+			_keysHeld[i] = false;
+		}
 		_zoom = Config.ZoomDefault;
 	}
 
@@ -196,13 +169,7 @@ public class Controller implements InputProcessor {
 		public void keyEscapePressed(Controller controller) {
 		}
 
-		public void keyRPressed(Controller controller) {
-		}
-
-		public void keyPPressed(Controller controller) {
-		}
-
-		public void keyBackSpacePressed(Controller controller) {
+		public void keyPressed(Controller controller, int keycode) {
 		}
 	}
 

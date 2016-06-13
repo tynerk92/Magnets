@@ -1,6 +1,7 @@
 package com.somethingyellow.magnets;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -45,6 +46,7 @@ public class PlayScreen implements Screen, Player.Commands, Lodestone.Commands {
 	private HashSet<TiledStageBody> _stateChangedInTick = new HashSet<TiledStageBody>();
 	private boolean _toUndo = false;
 	private boolean _toEnd = false;
+	private int _playerMovesCount = 0;
 	private SpriteBatch _UISpriteBatch;
 	private Animation _pauseOverlayAnimation;
 	private Commands _commands;
@@ -269,6 +271,8 @@ public class PlayScreen implements Screen, Player.Commands, Lodestone.Commands {
 			states.put(body, body.getState());
 		}
 		_statesHistory.add(states);
+
+		_playerMovesCount = 0;
 	}
 
 	public void unloadLevel() {
@@ -420,6 +424,8 @@ public class PlayScreen implements Screen, Player.Commands, Lodestone.Commands {
 
 		// UI
 		_UISpriteBatch.begin();
+
+		// Pause screen
 		if (_tiledStage.isPaused()) {
 			Sprite sprite = _pauseOverlayAnimation.getSprite();
 			sprite.setPosition(0, 0);
@@ -428,6 +434,12 @@ public class PlayScreen implements Screen, Player.Commands, Lodestone.Commands {
 			pausedText.setPosition(10, 10);
 			pausedText.draw(_UISpriteBatch, 1f);
 		}
+
+		// Player moves counter
+		Label playerMovesText = new Label(String.valueOf(_playerMovesCount), _skin);
+		playerMovesText.setPosition(Gdx.graphics.getWidth() - playerMovesText.getWidth() - 10, 10);
+		playerMovesText.draw(_UISpriteBatch, 1f);
+
 		_UISpriteBatch.end();
 	}
 
@@ -438,12 +450,12 @@ public class PlayScreen implements Screen, Player.Commands, Lodestone.Commands {
 
 	@Override
 	public void pause() {
-
+		pauseLevel();
 	}
 
 	@Override
 	public void resume() {
-
+		unpauseLevel();
 	}
 
 	@Override
@@ -510,13 +522,14 @@ public class PlayScreen implements Screen, Player.Commands, Lodestone.Commands {
 		public static String GameLayerWalls = "Bodies";
 		public static String GameLayerShadows = "Shadows";
 		public static String AnimationPauseOverlay = "";
+		public static float GameUndoTicks = GameTickDuration;
 		public static String PausedText = "CONTROLS:\n" +
 				"'WASD' or arrow keys to move.\n" +
-				"Scroll mouse to zoom.\n" +
+				"Scroll mouse to zoom in and out.\n" +
 				"'Esc' to exit level.\n" +
 				"'P' to toggle pause.\n" +
-				"'R' to reset level.\n" +
-				"'Backspace' to undo a game tick.";
+				"'Ctrl + R' to reset level.\n" +
+				"'Ctrl + Z' to undo a game tick.";
 
 		public static class TMX {
 			public static class Tiles {
@@ -584,8 +597,8 @@ public class PlayScreen implements Screen, Player.Commands, Lodestone.Commands {
 
 	public class TiledStageListener extends TiledStage.Listener {
 		@Override
-		public void beforeDraw(TiledStage stage) {
-			if (_toUndo) {
+		public void beforeTick(TiledStage stage) {
+			if (_controller.isKeyCtrlHeld() && _controller.isKeyHeld(Input.Keys.Z)) {
 				if (_statesHistory.size() > 1) { // Cannot invalidate first state
 					HashMap<TiledStageBody, TiledStageBody.State> states = _statesHistory.removeLast(); // states that are invalidated
 
@@ -595,40 +608,49 @@ public class PlayScreen implements Screen, Player.Commands, Lodestone.Commands {
 						while (index >= 0) {
 							HashMap<TiledStageBody, TiledStageBody.State> prevStates = _statesHistory.get(index);
 							if (prevStates.containsKey(body)) {
-								prevStates.get(body).restore();
+								prevStates.get(body).restore(Config.GameUndoTicks);
 								break;
 							} else {
 								index--;
 							}
 						}
+
+						// Decrease player moves counter (just for development)
+						if (body == _player) _playerMovesCount--;
 					}
 
 					if (!_tiledStage.isPaused()) pauseLevel();
 				}
 				_toUndo = false;
 			}
-		}
 
-		@Override
-		public void beforeTick(TiledStage stage) {
 			_stateChangedInTick.clear();
 		}
 
 		@Override
 		public void ticked(TiledStage stage) {
 			if (!_player.isMoving()) {
+				TiledStage.DIRECTION direction = null;
 				if (_moveQueue.isEmpty()) {
-					if (_controller.isKeyLeftHeld() && !_controller.isKeyRightHeld() && !_controller.isKeyUpHeld() && !_controller.isKeyDownHeld()) {
-						_player.moveDirection(TiledStage.DIRECTION.WEST);
-					} else if (_controller.isKeyRightHeld() && !_controller.isKeyLeftHeld() && !_controller.isKeyUpHeld() && !_controller.isKeyDownHeld()) {
-						_player.moveDirection(TiledStage.DIRECTION.EAST);
-					} else if (_controller.isKeyUpHeld() && !_controller.isKeyLeftHeld() && !_controller.isKeyRightHeld() && !_controller.isKeyDownHeld()) {
-						_player.moveDirection(TiledStage.DIRECTION.NORTH);
-					} else if (_controller.isKeyDownHeld() && !_controller.isKeyLeftHeld() && !_controller.isKeyRightHeld() && !_controller.isKeyUpHeld()) {
-						_player.moveDirection(TiledStage.DIRECTION.SOUTH);
+					if (_controller.isKeyLeftHeld() && !_controller.isKeyRightHeld() &&
+							!_controller.isKeyUpHeld() && !_controller.isKeyDownHeld()) {
+						direction = TiledStage.DIRECTION.WEST;
+					} else if (_controller.isKeyRightHeld() && !_controller.isKeyLeftHeld() &&
+							!_controller.isKeyUpHeld() && !_controller.isKeyDownHeld()) {
+						direction = TiledStage.DIRECTION.EAST;
+					} else if (_controller.isKeyUpHeld() && !_controller.isKeyLeftHeld() &&
+							!_controller.isKeyRightHeld() && !_controller.isKeyDownHeld()) {
+						direction = TiledStage.DIRECTION.NORTH;
+					} else if (_controller.isKeyDownHeld() && !_controller.isKeyLeftHeld() &&
+							!_controller.isKeyRightHeld() && !_controller.isKeyUpHeld()) {
+						direction = TiledStage.DIRECTION.SOUTH;
 					}
 				} else {
-					_player.moveDirection(_moveQueue.removeFirst());
+					direction = _moveQueue.removeFirst();
+				}
+
+				if (direction != null) {
+					if (_player.moveDirection(direction)) _playerMovesCount++;
 				}
 			}
 
@@ -697,19 +719,21 @@ public class PlayScreen implements Screen, Player.Commands, Lodestone.Commands {
 		}
 
 		@Override
-		public void keyRPressed(Controller controller) {
-			resetLevel();
-		}
+		public void keyPressed(Controller controller, int keycode) {
+			switch (keycode) {
+				case Input.Keys.P:
+					if (_tiledStage.isPaused()) unpauseLevel();
+					else pauseLevel();
+					break;
+			}
 
-		@Override
-		public void keyPPressed(Controller controller) {
-			if (_tiledStage.isPaused()) unpauseLevel();
-			else pauseLevel();
-		}
-
-		@Override
-		public void keyBackSpacePressed(Controller controller) {
-			_toUndo = true;
+			if (controller.isKeyCtrlHeld()) {
+				switch (keycode) {
+					case Input.Keys.R:
+						resetLevel();
+						break;
+				}
+			}
 		}
 	}
 }

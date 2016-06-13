@@ -294,6 +294,9 @@ public class TiledStage extends Stage {
 		_tickTime += delta;
 
 		while (_tickTime >= _tickDuration) {
+			for (Listener listener : _listeners) {
+				listener.beforeTick(this);
+			}
 			if (!_isPaused) tick();
 			_tickTime -= _tickDuration;
 		}
@@ -318,10 +321,6 @@ public class TiledStage extends Stage {
 	}
 
 	private void tick() {
-		for (Listener listener : _listeners) {
-			listener.beforeTick(this);
-		}
-
 		_tempBodies.clear();
 		_tempBodies.addAll(_bodies);
 		for (TiledStageBody body : _tempBodies) {

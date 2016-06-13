@@ -13,7 +13,8 @@ public abstract class TiledStageBody extends AnimatedActor implements Comparable
 	public static final boolean[] BodyArea1x1 = new boolean[]{
 			true
 	};
-	public TreeSet<String> _statuses = new TreeSet();
+	public TreeSet<String> _statuses = new TreeSet<String>();
+	private TreeSet<String> _tempStatuses = new TreeSet<String>();
 	private TiledStage.Coordinate _origin;
 	private LinkedList<TiledStage.Coordinate> _bodyCoordinates = new LinkedList<TiledStage.Coordinate>();
 	private boolean[] _bodyArea;
@@ -161,6 +162,11 @@ public abstract class TiledStageBody extends AnimatedActor implements Comparable
 		}
 	}
 
+	public void setStatus(String status, boolean ifHas) {
+		if (ifHas) addStatus(status);
+		else removeStatus(status);
+	}
+
 	public boolean hasStatus(String status) {
 		return _statuses.contains(status);
 	}
@@ -281,12 +287,25 @@ public abstract class TiledStageBody extends AnimatedActor implements Comparable
 		}
 
 		public void restore() {
+			restore(0f);
+		}
+
+		public void restore(float time) {
 			setOrigin(_origin);
 			Vector2 pos = _origin.position();
-			addAction(Actions.moveTo(pos.x, pos.y, 0.1f));
+			addAction(Actions.moveTo(pos.x, pos.y, time));
 
-			TiledStageBody.this._statuses.clear();
-			TiledStageBody.this._statuses.addAll(_statuses);
+			// Check statuses
+			for (String status : _statuses) {
+				TiledStageBody.this.addStatus(status);
+			}
+			_tempStatuses.clear();
+			for (String status : TiledStageBody.this._statuses) {
+				if (!_statuses.contains(status)) _tempStatuses.add(status);
+			}
+			for (String status : _tempStatuses) {
+				TiledStageBody.this.removeStatus(status);
+			}
 		}
 
 		@Override

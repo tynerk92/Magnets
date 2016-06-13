@@ -81,12 +81,7 @@ public class Lodestone extends TiledStageActor {
 
 					}
 				}
-
-				showAnimation(Config.AnimationMagnetisedOverlay);
-			} else {
-				hideAnimation(Config.AnimationMagnetisedOverlay);
 			}
-
 
 		} else if (subtick == PlayScreen.SUBTICKS.BLOCK_MOVEMENT.ordinal()) {
 
@@ -123,6 +118,13 @@ public class Lodestone extends TiledStageActor {
 					}
 
 					// TODO: Code magnetic field logic
+				}
+
+				setStatus(Config.StatusMagnetised, _isMagnetised);
+				if (hasStatus(Config.StatusMagnetised)) {
+					showAnimation(Config.AnimationMagnetisedOverlay);
+				} else {
+					hideAnimation(Config.AnimationMagnetisedOverlay);
 				}
 			}
 
@@ -215,6 +217,7 @@ public class Lodestone extends TiledStageActor {
 		public static int MoveTicks = 3;
 		public static String AnimationLodestone = "Lodestone";
 		public static String AnimationMagnetisedOverlay = "Magnetised Overlay";
+		public static String StatusMagnetised = "Magnetised";
 	}
 
 	public abstract static class Listener extends TiledStageActor.Listener {
