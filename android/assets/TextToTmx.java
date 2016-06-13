@@ -1,6 +1,8 @@
 
 import java.io.File;
+import java.io.FileFilter;
 import java.io.FileNotFoundException;
+import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
@@ -16,13 +18,15 @@ import java.util.Random;
 
 public class TextToTmx {
 	
-	private static final String mainAssetsDirectory = "D:/Dropbox/Magnets/android/assets/";
-	private static final String[] Levels = new String[] { "Easy Levels Pack", "Medium Levels Pack", "Hard Levels Pack", "Weird Levels Pack"};
+	final static List<String> demoLevels = Arrays.asList(new String[] { "Buttons", "Interspersing", "Offering", "Hookline", "Roundabout", "Cascade", "Suction", "Trio" });
+	final static String mainAssetsDirectory = "D:/Dropbox/Magnets/android/assets/";
+	private static final String[] Levels = new String[] { "Easy Levels Pack", "Medium Levels Pack", "Hard Levels Pack", "Experimental Levels Pack"};
 	
 	private Random random = new Random();
 	private int whichWallSet = 2;
 	private TileSetGenerator tsGen = new TileSetGenerator();
 	private String[] neighbourCodes = tsGen.neighbourCodes;
+	// private String[] adjacentsCodes = tsGen.adjacentsCodes;
 	
 	// Text representation of the level
 	public static final String button1 = "b";
@@ -36,37 +40,67 @@ public class TextToTmx {
 	public static final String exit = "e";
 	
 	public static final String wall = "█";
-	public static final String bigtree = "b"; 
+	public static final String bigtree = "T"; 
 	public static final String lodestoneSymbols = "xyzXYZ";
 	
 	public static final String noOutline = " " + player + exit;
-	public static final String validObjects = button1 + door1 + button2 + door2 + player + magnetfloor + magnetsource + elevatedfloor;
-	public static final String nonObjects = bigtree + wall + exit;
+	public static final String validObjects = button1 + door1 + button2 + door2 + player + magnetfloor + magnetsource + elevatedfloor + exit;
+	public static final String nonObjects = bigtree + wall;
 	
 
 	public static Boolean wroteTileSet = false;
 	// These 4 Info must be printed out in this order to complete
-	public static String LevelInfo = "", TileSetInfo = "", PuzzleInfo = "", LayersInfo = "", ObjectsInfo = "";
+	public static String LevelInfo = "";
+	public String TileSetInfo = "";
+	public static String PuzzleInfo = "";
+	public static String LayersInfo = "";
+	public static String ObjectsInfo = "";
 	
 	public static ArrayList<Tile> tilelist;
 	public static Hashtable<String, Integer> nameToTileID;
 	
+	static FileFilter directoryFilter = new FileFilter() {
+		public boolean accept(File file) {
+			return file.isDirectory();
+		}
+	};
+	
+	private static File searchForFolder(File parentDirectory, String filename) {
+	    File[] files = parentDirectory.listFiles(directoryFilter);
+	    List<File> directories = new ArrayList<File>(files.length);
+	    for (File file : files) {
+	        if (file.getName().equals(filename)) return file;
+	        else if (file.isDirectory())  		 directories.add(file);
+	    }
+	    for (File directory : directories) {
+	        File file = searchForFolder(directory, filename);
+	        if (file != null) return file;
+	    }
+	    return null;
+	}
+	
 	private void writeTileSet() {
 		// This part is the same for any level, hence it should only be executed once.
-		TileSetInfo = tsGen.generateTileSet(mainAssetsDirectory + "Graphics/Set 1 (Cave)");
+		String fullGraphicsSetPath = searchForFolder(new File(mainAssetsDirectory), "Set 1 (Cave)").getPath();
+		String fullLevelsPath = searchForFolder(new File(mainAssetsDirectory), "Levels").getPath();
+		String relativeLevelPath = (fullLevelsPath.substring(mainAssetsDirectory.length(), fullLevelsPath.length())).replaceAll("\\\\", "/");
+		String relativeGraphicsSetPath = fullGraphicsSetPath.substring(mainAssetsDirectory.length(), fullGraphicsSetPath.length()).replaceAll("\\\\", "/");
+		int depthLevelFolder = relativeLevelPath.length() - relativeLevelPath.replaceAll("/", " ").length() + 1;
+		String upHowManyLevels = "";
+		for (int i = 0; i < depthLevelFolder; i++) upHowManyLevels += "../";
+		//System.out.println(relativeLevelPath);
+		//System.out.println(relativeGraphicsSetPath);
+		//System.out.println(upHowManyLevels + "Graphics/Set 1 (Cave)");
+		TileSetInfo += tsGen.generateTileSet(mainAssetsDirectory, upHowManyLevels, relativeGraphicsSetPath);
 		tilelist = tsGen.getList();
 		nameToTileID = tsGen.getTable();
 		wroteTileSet = true;
 	}
 	
 	private void writeLevelInfo(int cols, int rows, int lastobjectID) {
-		int tilesetSize = tsGen.getTileCount();
-		int maxWidth = tsGen.getMaxWidth();
-		int maxHeight = tsGen.getMaxHeight();
 		// The only varying part between every level. The dimensions of the levels and lastobjectid changes. 
 		LevelInfo = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + 
-				"<map version=\"1.0\" orientation=\"orthogonal\" renderorder=\"right-down\" width=\"" + cols + "\" height=\"" + rows + "\" tilewidth=\"32\" tileheight=\"32\" nextobjectid=\"" + lastobjectID + "\">\n" + 
-				" <tileset firstgid=\"1\" name=\"Tileset\" tilewidth=\"" + maxWidth + "\" tileheight=\"" + maxHeight + "\" tilecount=\"" + tilesetSize + "\" columns=\"0\">";
+				"<map version=\"1.0\" orientation=\"orthogonal\" renderorder=\"right-down\" width=\"" + cols + "\" height=\"" + rows + "\" tilewidth=\"32\" tileheight=\"32\" nextobjectid=\"" + lastobjectID + "\">\n";
 	}
 	
 	
@@ -135,7 +169,8 @@ public class TextToTmx {
 		int[][] Walls  			 = new int[rows][cols];
 		int[][] Floor            = new int[rows][cols];
 		int[][] FloorDeco		 = new int[rows][cols];
-		int[][] WallDeco		 = new int[rows][cols];
+		int[][] WallDeco1		 = new int[rows][cols];
+		int[][] WallDeco2		 = new int[rows][cols];
 		int[][] Collision	     = new int[rows][cols];
 		int[][] Shadows			 = new int[rows][cols];
 		// Determines if the collision layer should be created
@@ -145,7 +180,8 @@ public class TextToTmx {
 		// Initialize all the layers
 		for (String[] row: data) 			Arrays.fill(row, wall);
 		for (int[] row: Floor) 				Arrays.fill(row, 0);
-		for (int[] row: WallDeco) 			Arrays.fill(row, 0);
+		for (int[] row: WallDeco1) 			Arrays.fill(row, 0);
+		for (int[] row: WallDeco2) 			Arrays.fill(row, 0);
 		for (int[] row: Walls) 				Arrays.fill(row, 0);
 		for (int[] row: Collision) 			Arrays.fill(row, 0);
 		for (int[] row: Shadows)			Arrays.fill(row, 0);
@@ -160,6 +196,7 @@ public class TextToTmx {
 		for (int y = 1; y < rows + 1; y++) {
 			for (int x = 1; x < cols + 1; x++) {
 				String currentTile = data[y][x];
+				// String belowTile = data[y + 1][x];
 				String wallNeighbours;
 				String objname = "";
 				int ioffset = 0, joffset = 0;
@@ -171,10 +208,17 @@ public class TextToTmx {
 						// the purpose of 0, 1 and X
 						for (String code: neighbourCodes) {
 							if (compareWithDontCares(wallNeighbours, code)) {
+								/*// Uncomment when you are ready to introduce springs
+								if (code.endsWith("X0X") && Math.random() < 0.3 && !belowTile.equals("e")) {
+									int chosenFrame = random.nextInt(tsGen.numSpringFrames) + 1;
+									int chosenSet = random.nextInt(2) + 1;
+									WallDeco1[y - 1][x - 1] = nameToTileID.get("Wall Overlays Spring " + chosenSet + " " + chosenFrame + "_" + tsGen.numSpringFrames);
+									WallDeco2[y][x - 1] 	= nameToTileID.get("Wall Overlays Splash " + chosenSet + " " + chosenFrame + "_" + tsGen.numSplashFrames);
+									WallDeco1[y][x - 1]     = nameToTileID.get("Wall Overlays Puddle " + chosenSet);
+								}*/
 								Walls[y - 1][x - 1] = nameToTileID.get("Wall " + code); break;
 							}
 						} break;
-						
 						
 					case elevatedfloor: 
 						// Elevated Floors needs to be processed by the same style as walls and floors
@@ -188,21 +232,31 @@ public class TextToTmx {
 								break;
 							}
 						} break;
+						
+					case magnetfloor:
+						// Magnetic Floors are tiled at about the same way as elevated floor / floor / wall, but are only considering
+						// the adjacents. Hence there are only 16 variations as opposed to 47-48
+						Objects.add(tsGen.createObject("Magnetic Floor 01_" + tsGen.numMagneticFloorFrames, x, y));
+						
+						// Tileable version
+						/*wallNeighbours = getNeighbours(y, x, magnetfloor, data, false);
+						for (String code: adjacentsCodes) {
+							if (compareWithDontCares(wallNeighbours, code)) {
+								Objects.add(tsGen.createObject("Magnetic Floor " + code, x, y));
+								break;
+							}
+						} */break;
 					default:
 						switch (currentTile) {
-							case button1: 		objname = "Button 1 1_" + tsGen.numButtonFrames; 			break;
-							case door1: 		objname = "Door 1 1_" + tsGen.numDoorTransitionFrames; 		break;
-							case button2: 		objname = "Button 2 1_" + tsGen.numButtonFrames;			break;
-							case door2: 		objname = "Door 2 1_" + tsGen.numDoorTransitionFrames; 		break;
-							case player: 		objname = "Player Idle"; 									break;
-							// Randomly placing either North or South magnets first, since repulsion is not done.
-							case magnetsource:	objname = "Magnetic Source " + 
-														(Math.random() < 0.5 ? 	"North 01_" + tsGen.numMagneticSourceNorthFrames : 
-																			   	"South 01_" + tsGen.numMagneticSourceSouthFrames); 	break;
-							// Magnetic Floor. A tile that does passive magnetization. Does not pull or push any block that is not on top of it,
-							case magnetfloor: 	objname = "Magnetic Floor 1 1_" + tsGen.numMagneticFloorFrames; 	break;
-							case exit: 			objname = "Exit " + (Math.random() < 0.5 ? 	"Down Front 1_5" : 
-																							"Forwards Front 1_5"); break;
+							case button1: 		objname = "Button 1 1_" + tsGen.numButtonFrames; 						break;
+							case door1: 		objname = "Door 1 1_" + tsGen.numDoorTransitionFrames; 					break;
+							case button2: 		objname = "Button 2 1_" + tsGen.numButtonFrames;						break;
+							case door2: 		objname = "Door 2 1_" + tsGen.numDoorTransitionFrames; 					break;
+							case player: 		objname = "Player Idle"; 												break;
+							case magnetsource:	objname = "Magnetic Source " + "01_" + tsGen.numMagneticSourceFrames; 	break;
+							case exit: 			objname = "Exit " + (Math.random() < 0.5 ? 	"Down Front" : 
+																							"Forwards Front"); 
+												Walls[y - 1 + ioffset][x - 1 + joffset] = nameToTileID.get("Exit Arrow 1_" + tsGen.numExitFrames); break;
 							default: 
 								if (!(lodestoneSymbols + " ").contains(currentTile)) System.out.println("Warning: \'" + currentTile + "\' is not defined");
 						}
@@ -237,7 +291,7 @@ public class TextToTmx {
 							if (Math.random() < 0.7) 		FloorDeco[y - 1][x - 1] = nameToTileID.get("Floor Overlays Debris " + (random.nextInt(8) + 1));
 							else if (Math.random() < 0.25)  FloorDeco[y - 1][x - 1] = nameToTileID.get("Floor Overlays Depression " + (random.nextInt(8) + 1));
 							else if (whichWallSet == 1) 	FloorDeco[y - 1][x - 1] = nameToTileID.get("Floor Overlays Grey Scratches " + (random.nextInt(8) + 1));
-							else if (whichWallSet == 2) 	FloorDeco[y - 1][x - 1] = nameToTileID.get("Floor Overlays Blue Scratches " + (random.nextInt(4) + 1));
+							//else if (whichWallSet == 2) 	FloorDeco[y - 1][x - 1] = nameToTileID.get("Floor Overlays Blue Scratches " + (random.nextInt(4) + 1));
 						}
 				}
 				
@@ -253,8 +307,9 @@ public class TextToTmx {
 		LayersInfo += writeGenericLayer("Floor", Floor);
 		LayersInfo += writeGenericLayer("Floor Decoration", FloorDeco);
 		LayersInfo += writeGenericLayer("Shadows", Shadows);
-		LayersInfo += writeGenericLayer("Wall Decoration", FloorDeco);
 		LayersInfo += writeGenericLayer("Walls and Objects", Walls);
+		LayersInfo += writeGenericLayer("Wall Decoration 1", WallDeco1);
+		LayersInfo += writeGenericLayer("Wall Decoration 2", WallDeco2);
 		if (hasCollision) LayersInfo += writeGenericLayer("Collision", Collision);
 		
 		// Objects Layer
@@ -344,9 +399,6 @@ public class TextToTmx {
 	
 	/**
 	 * Uses the concept of dontcares from circuit logic to compare binary strings
-	 * @param input
-	 * @param condition
-	 * @return
 	 */
 	public boolean compareWithDontCares(String input, String condition) {
 		if (input.length() != condition.length()) throw new IllegalArgumentException("Strings does not match in length");
@@ -356,16 +408,29 @@ public class TextToTmx {
 		} return true;
 	}
 	
-	public void writeLevel(String dir, String levelcode) {
+	boolean wroteToAnimationsFolder = false;
+	public void writeLevel(String dir, String levelcode, String difficulty) {
 		// Create the level in the stated directory
 		if (!wroteTileSet) writeTileSet();
 		writeLayersInfo(dir, levelcode);
 		writeLevelInfo(cols, rows, nameCount);
 		
-		String finalTmx = LevelInfo + "\n" + TileSetInfo + " </tileset>\n" + PuzzleInfo + LayersInfo + ObjectsInfo + "</map>";
+		String finalTmx = LevelInfo + TileSetInfo + PuzzleInfo + LayersInfo + ObjectsInfo + "</map>";
+		// Reset all those varying info
 		LevelInfo = ""; PuzzleInfo = ""; LayersInfo = ""; ObjectsInfo = "";
 		
-		File file = new File(dir + name + ".tmx");
+		if (demoLevels.contains(name.split(" ")[0])) {
+			writeToFile(mainAssetsDirectory + "Demo Levels/", "(" + difficulty + ") " + name.split(" ")[0], finalTmx, "tmx");
+		}
+		if (!wroteToAnimationsFolder) {
+			wroteToAnimationsFolder = true;
+			writeToFile(mainAssetsDirectory + "Animations/", "(" + difficulty + ") " + name.split(" ")[0], finalTmx, "tmx");
+		}
+		writeToFile(dir, "(" + difficulty + ") " + name, finalTmx, "tmx");
+	}
+	
+	public void writeToFile(String dir, String name, String finalTmx, String type) {
+		File file = new File(dir + name + "." + type);
 		file.getParentFile().mkdirs();
 		PrintWriter writer;
 		try {
@@ -379,14 +444,25 @@ public class TextToTmx {
 	}
 	
 	public static void main(String[] args) throws IOException {
+		
+		FilenameFilter Tmx = new FilenameFilter() {
+		    public boolean accept(File dir, String name) {
+		        return name.toLowerCase().endsWith(".tmx");
+		    }
+		};
+		
+		File[] files = new File(mainAssetsDirectory + "Levels").listFiles(Tmx);
+		for (File file : files) file.delete();
+		
 		TextToTmx prog = new TextToTmx();
 		for (String pack: Levels) {
 			System.out.println("\n" + pack + ": \n");
 			String content = new String(Files.readAllBytes(Paths.get(mainAssetsDirectory + "Levels/" + pack + ".txt")));
+			String difficulty = pack.split(" ")[0];
 			for (String levelcode: content.split("\\r\\n\\r\\n")) {
-				prog.writeLevel(mainAssetsDirectory + "Levels/" + pack + "/", levelcode);
+				prog.writeLevel(mainAssetsDirectory + "Levels/", levelcode, difficulty);
 			}
-		}
-		System.out.println(prog.errorMSG);
+		} System.out.println(prog.errorMSG);
+		prog.writeToFile(mainAssetsDirectory + "Animations/", "Tileset", "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + prog.TileSetInfo, "tsx");
 	}
 }

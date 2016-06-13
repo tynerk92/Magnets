@@ -1,0 +1,183 @@
+﻿What would happen 1
+███████████████████████████████
+██████████M████████████████████
+██    x               x   e  ██
+██    x               x      ██
+██  X   X X X X X X X X X X  ██
+██ X X X X X X X X X X X X X ██
+██  X X X X X X X X X X X X  ██
+██ X X X X X X X X X X X X X ██
+██  X X X X X X X X X X X X  ██
+██ X X X X X X X X X X X   X ██
+██                       x   ██
+██   s                   x   ██
+████████████████M██████████████
+███████████████████████████████
+
+What would happen 2
+███████████████████████████████
+███████████████████████████████
+██    x   m           x   e  ██
+██    x               x      ██
+██  X   X X X X X X X X X X  ██
+██  X   X X X X X X X X X X  ██
+██ X X X X X X X X X X X X X ██
+██ X X X X X X X X X X X X X ██
+██  X X X X X X X X X X X X  ██
+██  X X X X X X X X X X X X  ██
+██ X X X X X X X X X X X X X ██
+██ X X X X X X X X X X X X X ██
+██  X X X X X X X X X X X X  ██
+██  X X X X X X X X X X X X  ██
+██ X X X X X X X X X X X X X ██
+██ X X X X X X X X X X X X X ██
+██  X X X X X X X X X X X X  ██
+██  X X X X X X X X X X X X  ██
+██ X X X X X X X X X X X X X ██
+██ X X X X X X X X X X X X X ██
+██  X X X X X X X X X X X X  ██
+██  X X X X X X X X X X X X  ██
+██ X X X X X X X X X X X   X ██
+██ X X X X X X X X X X X   X ██
+██                       x   ██
+██   s         m         x   ██
+███████████████████████████████
+
+What would happen 3
+█████████████████████████████████████████
+█        xx   m                 Y  e    █
+█                               Y       █
+█  XX XX XX XX XX XX XX XX XX XX XX XX  █
+█  X  X  X  X  X  X  X  X  X  X  X  X   █
+█XX XX XX XX XX XX XX XX XX XX XX XX XX █
+█X  X  X  X  X  X  X  X  X  X  X  X  X  █
+█ XX XX XX XX XX XX XX XX XX XX XX XX XX█
+█ X  X  X  X  X  X  X  X  X  X  X  X  X █
+█  XX XX XX XX XX XX XX XX XX XX XX XX  █
+█  X  X  X  X  X  X  X  X  X  X  X  X   █
+█XX XX XX XX XX XX XX XX XX XX XX XX XX █
+█X  X  X  X  X  X  X  X  X  X  X  X  X  █
+█ XX XX XX XX XX XX XX XX XX XX XX XX XX█
+█ X  X  X  X  X  X  X  X  X  X  X  X  X █
+█  XX XX XX XX XX XX XX XX XX XX XX XX  █
+█  X  X  X  X  X  X  X  X  X  X  X  X   █
+█XX XX XX XX XX XX XX XX XX XX XX XX XX █
+█X  X  X  X  X  X  X  X  X  X  X  X  X  █
+█ XX XX XX XX XX XX XX XX XX XX XX XX XX█
+█ X  X  X  X  X  X  X  X  X  X  X  X  X █
+█  XX XX XX XX XX XX XX XX XX XX XX XX  █
+█  X  X  X  X  X  X  X  X  X  X  X  X   █
+█XX XX XX XX XX XX XX XX XX XX XX XX XX █
+█X  X  X  X  X  X  X  X  X  X  X  X  X  █
+█ XX XX XX XX XX XX XX XX XX XX XX XX XX█
+█ X  X  X  X  X  X  X  X  X  X  X  X  X █
+█                 m    xx               █
+█             s                         █
+█████████████████████████████████████████
+
+What would happen 4
+█████████████████████████████████████████
+█                               Y  e    █
+█                               Y       █
+█XY  XY  XY  XY  XY  XY  XY  XY  XY  XY █
+█  XY  XY  XY  XY  XY  XY  XY  XY  XY  X█
+█XY  XY  XY  XY  XY  XY  XY  XY  XY  XY █
+█  XY  XY  XY  XY  XY  XY  XY  XY  XY  X█
+█XY  XY  XY  XY  XY  XY  XY  XY  XY  XY █
+█  XY  XY  XY  XY  XY  XY  XY  XY  XY  X█
+█XY  XY  XY  XY  XY  XY  XY  XY  XY  XY █
+█  XY  XY  XY  XY  XY  XY  XY  XY  XY  X█
+█XY  XY  XY  XY  XY  XY  XY  XY  XY  XY █
+█  XY  XY  XY  XY  XY  XY  XY  XY  XY  X█
+█XY  XY  XY  XY  XY  XY  XY  XY  XY  XY █
+█  XY  XY  XY  XY  XY  XY  XY  XY  XY  X█
+█XY  XY  XY  XY  XY  XY  XY  XY  XY  XY █
+█  XY  XY  XY  XY   Y  XY  XY  XY  XY  X█
+█XY  XY  XY  XY  XY   Y  XY  XY  XY  XY █
+█  XY  XY  XY  XY   Y  XY  XY  XY  XY  X█
+█          x  s    mm  x                █
+█                                       █
+█████████████████████████████████████████
+
+Test Cases
+██████████████████████████
+█  M     M e██ M     M  ██
+█     █     ██  Y █     ██
+█  x M█  x M█xx  M█M X M██
+█     █     █ x   █     ██
+█  M  █     █     █  M  ██
+█ █████████ █ █████████ ██
+█  M  ██ M  █     █  M  ██
+█   X ██    █ M x █ M M ██
+█  x M█ xx M█     █  x  ██
+█     █  x  █ x M █ xxx ██
+█                       ██
+███████████ s ████████████
+█xxx          MMM    M  ██
+█x    █     █       M M ██
+█M y M█yX   █ xxx MM y M██
+█    x█yy   █ x x M yyy M█
+█  xxx█y M x█      M   M██
+█ █████████x█ MMM   MMM ██
+█  MM █  M x█  MMM y    ██
+█     █     █    M yyy M██
+█M xy █  x  █M yy M     ██
+█M yy █  xX █      MMM  ██
+█        xx █  MM       ██
+██████████████████████████
+
+Test cases 2
+████████████████████████
+████  YY █     █M XX ███
+████  Y  █     █    X███
+████YY MM█X M  █  M X███
+████Y M  █     █     ███
+████     █     █    M███
+████████████████████████
+████     █     █M XX ███
+████ M X █ YYs █    X███
+████     █   Y █  M X███
+████ X M █ M Y █     ███
+████     █     █     ███
+████████████████████████
+██████e███ XXX █  XX ███
+██████████X   X█    X███
+██████████X M X█  M X███
+██████████X   X█     ███
+██████████ XXX █    M███
+████████████████████████
+
+Magnetic Floor Test
+████████████████████████
+███████████m████████████
+██████████m m███████████
+██████████m s e█████████
+███████████ mm██████████
+████████████m███████████
+████████████████████████
+████████████████████████
+████████████████████████
+████████████████████████
+████████████████████████
+
+Wake me up when there is repulsion
+████████████████████
+████████  e ████████
+████████M██M████████
+█████  M x  M  █████
+████   █X██X█   ████
+███   ██X██X██   ███
+███  ██XXY XX██  ███
+███M██X██Y ██X██M███
+█ M XXX█    █XXX M █
+█ █x██YY s    ██ █ █
+█ █ ██      YY██x█ █
+█ M XXX█    █XXX M █
+███M██X██ Y██X██M███
+███  ██XX YXX██  ███
+███   ██X██X██   ███
+████   █X██X█   ████
+█████  M  x M  █████
+████████M██M████████
+████████    ████████
+████████████████████
