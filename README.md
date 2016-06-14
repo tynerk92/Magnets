@@ -15,3 +15,7 @@ We are using Android Studio + libgdx to develop the game, which uses Gradle. Fol
 3. Download and install `git` on your system.
 4. Clone our Github project on your system by running `git clone https://github.com/nginyc/Magnets`.
 5. Navigate to the root directory of our project (run `cd Magnets`) and run `gradlew desktop:run`.
+
+# Deploying on Desktop
+1. Navigate to the root directory of our project (run `cd Magnets`) and run `gradlew desktop:dist`.
+2. The deployed, independent `.jar` file is in the `desktop/build/libs' folder.
