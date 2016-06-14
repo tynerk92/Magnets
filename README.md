@@ -18,4 +18,4 @@ We are using Android Studio + libgdx to develop the game, which uses Gradle. Fol
 
 # Deploying on Desktop
 1. Navigate to the root directory of our project (run `cd Magnets`) and run `gradlew desktop:dist`.
-2. The deployed, independent `.jar` file is in the `desktop/build/libs' folder.
+2. The deployed, independent `.jar` file is in the `desktop/build/libs` folder.
