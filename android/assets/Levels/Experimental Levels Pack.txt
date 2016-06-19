@@ -1,105 +1,4 @@
-﻿What would happen 1
-███████████████████████████████
-██████████M████████████████████
-██    x               x   e  ██
-██    x               x      ██
-██  X   X X X X X X X X X X  ██
-██ X X X X X X X X X X X X X ██
-██  X X X X X X X X X X X X  ██
-██ X X X X X X X X X X X X X ██
-██  X X X X X X X X X X X X  ██
-██ X X X X X X X X X X X   X ██
-██                       x   ██
-██   s                   x   ██
-████████████████M██████████████
-███████████████████████████████
-
-What would happen 2
-███████████████████████████████
-███████████████████████████████
-██    x   m           x   e  ██
-██    x               x      ██
-██  X   X X X X X X X X X X  ██
-██  X   X X X X X X X X X X  ██
-██ X X X X X X X X X X X X X ██
-██ X X X X X X X X X X X X X ██
-██  X X X X X X X X X X X X  ██
-██  X X X X X X X X X X X X  ██
-██ X X X X X X X X X X X X X ██
-██ X X X X X X X X X X X X X ██
-██  X X X X X X X X X X X X  ██
-██  X X X X X X X X X X X X  ██
-██ X X X X X X X X X X X X X ██
-██ X X X X X X X X X X X X X ██
-██  X X X X X X X X X X X X  ██
-██  X X X X X X X X X X X X  ██
-██ X X X X X X X X X X X X X ██
-██ X X X X X X X X X X X X X ██
-██  X X X X X X X X X X X X  ██
-██  X X X X X X X X X X X X  ██
-██ X X X X X X X X X X X   X ██
-██ X X X X X X X X X X X   X ██
-██                       x   ██
-██   s         m         x   ██
-███████████████████████████████
-
-What would happen 3
-█████████████████████████████████████████
-█        xx   m                 Y  e    █
-█                               Y       █
-█  XX XX XX XX XX XX XX XX XX XX XX XX  █
-█  X  X  X  X  X  X  X  X  X  X  X  X   █
-█XX XX XX XX XX XX XX XX XX XX XX XX XX █
-█X  X  X  X  X  X  X  X  X  X  X  X  X  █
-█ XX XX XX XX XX XX XX XX XX XX XX XX XX█
-█ X  X  X  X  X  X  X  X  X  X  X  X  X █
-█  XX XX XX XX XX XX XX XX XX XX XX XX  █
-█  X  X  X  X  X  X  X  X  X  X  X  X   █
-█XX XX XX XX XX XX XX XX XX XX XX XX XX █
-█X  X  X  X  X  X  X  X  X  X  X  X  X  █
-█ XX XX XX XX XX XX XX XX XX XX XX XX XX█
-█ X  X  X  X  X  X  X  X  X  X  X  X  X █
-█  XX XX XX XX XX XX XX XX XX XX XX XX  █
-█  X  X  X  X  X  X  X  X  X  X  X  X   █
-█XX XX XX XX XX XX XX XX XX XX XX XX XX █
-█X  X  X  X  X  X  X  X  X  X  X  X  X  █
-█ XX XX XX XX XX XX XX XX XX XX XX XX XX█
-█ X  X  X  X  X  X  X  X  X  X  X  X  X █
-█  XX XX XX XX XX XX XX XX XX XX XX XX  █
-█  X  X  X  X  X  X  X  X  X  X  X  X   █
-█XX XX XX XX XX XX XX XX XX XX XX XX XX █
-█X  X  X  X  X  X  X  X  X  X  X  X  X  █
-█ XX XX XX XX XX XX XX XX XX XX XX XX XX█
-█ X  X  X  X  X  X  X  X  X  X  X  X  X █
-█                 m    xx               █
-█             s                         █
-█████████████████████████████████████████
-
-What would happen 4
-█████████████████████████████████████████
-█                               Y  e    █
-█                               Y       █
-█XY  XY  XY  XY  XY  XY  XY  XY  XY  XY █
-█  XY  XY  XY  XY  XY  XY  XY  XY  XY  X█
-█XY  XY  XY  XY  XY  XY  XY  XY  XY  XY █
-█  XY  XY  XY  XY  XY  XY  XY  XY  XY  X█
-█XY  XY  XY  XY  XY  XY  XY  XY  XY  XY █
-█  XY  XY  XY  XY  XY  XY  XY  XY  XY  X█
-█XY  XY  XY  XY  XY  XY  XY  XY  XY  XY █
-█  XY  XY  XY  XY  XY  XY  XY  XY  XY  X█
-█XY  XY  XY  XY  XY  XY  XY  XY  XY  XY █
-█  XY  XY  XY  XY  XY  XY  XY  XY  XY  X█
-█XY  XY  XY  XY  XY  XY  XY  XY  XY  XY █
-█  XY  XY  XY  XY  XY  XY  XY  XY  XY  X█
-█XY  XY  XY  XY  XY  XY  XY  XY  XY  XY █
-█  XY  XY  XY  XY   Y  XY  XY  XY  XY  X█
-█XY  XY  XY  XY  XY   Y  XY  XY  XY  XY █
-█  XY  XY  XY  XY   Y  XY  XY  XY  XY  X█
-█          x  s    mm  x                █
-█                                       █
-█████████████████████████████████████████
-
-Test Cases
+﻿Test Cases
 ██████████████████████████
 █  M     M e██ M     M  ██
 █     █     ██  Y █     ██
@@ -147,19 +46,6 @@ Test cases 2
 ██████████ XXX █    M███
 ████████████████████████
 
-Magnetic Floor Test
-████████████████████████
-███████████m████████████
-██████████m m███████████
-██████████m s e█████████
-███████████ mm██████████
-████████████m███████████
-████████████████████████
-████████████████████████
-████████████████████████
-████████████████████████
-████████████████████████
-
 Wake me up when there is repulsion
 ████████████████████
 ████████  e ████████
@@ -181,3 +67,37 @@ Wake me up when there is repulsion
 ████████M██M████████
 ████████    ████████
 ████████████████████
+
+Dance Party
+██████████████████
+██████████████████
+██████████████████
+██████████████████
+████MX█████ e  ███
+███MX xx       ███
+███   xx       ███
+████    X  s   ███
+█████  MX     XM██
+██████ X X   X X██
+██████    X  X  ██
+███MX X  XMXX   ██
+██MX  X   XMXX  ██
+██    X  █████████
+██X    ███████████
+█MX   X███████████
+███  XM███████████
+████ █████████████
+██████████████████
+██████████████████
+
+Exits Test
+██████████████████
+██████████████████
+█████  e    ██████
+█████       ██████
+█████e   e  ██████
+█████       ██████
+█████  s   e██████
+█████   e   ██████
+██████████████████
+██████████████████

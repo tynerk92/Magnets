@@ -18,9 +18,9 @@ import java.util.Random;
 
 public class TextToTmx {
 	
-	final static List<String> demoLevels = Arrays.asList(new String[] { "Buttons", "Interspersing", "Offering", "Hookline", "Roundabout", "Cascade", "Suction", "Trio" });
+	final static List<String> demoLevels = Arrays.asList(new String[] { "Buttons", "Collider", "Interspersing", "Offering", "Chain", "Roundabout", "Cascade", "Suction", "Trio", "Dependencies" });
 	final static String mainAssetsDirectory = "D:/Dropbox/Magnets/android/assets/";
-	private static final String[] Levels = new String[] { "Easy Levels Pack", "Medium Levels Pack", "Hard Levels Pack", "Experimental Levels Pack"};
+	private static final String[] Levels = new String[] { "Bonus Levels Pack", "Introductory Levels Pack", "Easy Levels Pack", "Medium Levels Pack", "Hard Levels Pack", "Experimental Levels Pack"};
 	
 	private Random random = new Random();
 	private int whichWallSet = 2;
@@ -51,7 +51,7 @@ public class TextToTmx {
 	public static Boolean wroteTileSet = false;
 	// These 4 Info must be printed out in this order to complete
 	public static String LevelInfo = "";
-	public String TileSetInfo = "";
+	public static String TileSetInfo = "";
 	public static String PuzzleInfo = "";
 	public static String LayersInfo = "";
 	public static String ObjectsInfo = "";
@@ -100,7 +100,7 @@ public class TextToTmx {
 	private void writeLevelInfo(int cols, int rows, int lastobjectID) {
 		// The only varying part between every level. The dimensions of the levels and lastobjectid changes. 
 		LevelInfo = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + 
-				"<map version=\"1.0\" orientation=\"orthogonal\" renderorder=\"right-down\" width=\"" + cols + "\" height=\"" + rows + "\" tilewidth=\"32\" tileheight=\"32\" nextobjectid=\"" + lastobjectID + "\">\n";
+				    "<map version=\"1.0\" orientation=\"orthogonal\" renderorder=\"right-down\" width=\"" + cols + "\" height=\"" + rows + "\" tilewidth=\"32\" tileheight=\"32\" nextobjectid=\"" + lastobjectID + "\">\n";
 	}
 	
 	
@@ -117,12 +117,11 @@ public class TextToTmx {
 		if (name.isEmpty() || name.contains(wall)) throw new IllegalArgumentException("Formatting is screwed up in " + dir);
 		int numPlayers = level.length() - level.replace(player, "").length();
 		int numExits = level.length() - level.replace(exit, "").length();
-		if (numPlayers != 1 && numExits != 1) {
+		if (numPlayers != 1 || numExits == 0) {
 			valid = false;
 			if (numPlayers == 0) 		errorMSG += "No players present. ";
 			if (numPlayers > 1) 		errorMSG += "Multiple players are detected. ";
 			if (numExits == 0) 			errorMSG += "No exits detected. ";
-			if (numExits > 1) 			errorMSG += "Multiple exits detected. ";
 		}
 		
 		levelLines = level.split("\r\n");
@@ -143,18 +142,22 @@ public class TextToTmx {
 			if (cols < 3) 			errorMSG += "Cols < 3. ";
 			valid = false;
 		}
-		if (!errorMSG.equals("")) 	errorMSG += dir.split("Levels/")[1] + "[" + name + "].tmx\n";
+		if (!errorMSG.equals("")) {
+			System.err.println(errorMSG + name + ".tmx");
+			errorMSG = "";
+		}
 		return valid;
 	}
 	
 	public static int bufferWalls = 4;
 	private int nameCount = 0;
+	private String[] directions = new String[] { "Up", "Left", "Right", "Down" };
+	public boolean skipGeneration = false;
 	public void writeLayersInfo(String dir, String text) {
 		
 		List<Object> Objects = new ArrayList<Object>();
 		
 		if (!valid(dir, text)) {
-			System.err.println("Skipped Generation of <" + name + "> because it is invalid");
 			return;
 		} else {
 			System.out.println("Generating : " + name + ".tmx\t");
@@ -254,9 +257,29 @@ public class TextToTmx {
 							case door2: 		objname = "Door 2 1_" + tsGen.numDoorTransitionFrames; 					break;
 							case player: 		objname = "Player Idle"; 												break;
 							case magnetsource:	objname = "Magnetic Source " + "01_" + tsGen.numMagneticSourceFrames; 	break;
-							case exit: 			objname = "Exit " + (Math.random() < 0.5 ? 	"Down Front" : 
-																							"Forwards Front"); 
-												Walls[y - 1 + ioffset][x - 1 + joffset] = nameToTileID.get("Exit Arrow 1_" + tsGen.numExitFrames); break;
+							case exit: 			if (!data[y - 1][x].equals(wall)) {
+													objname = "Exit Down";
+													// Up Left Right Down
+													/*
+													String yo = "0" + (data[y][x + 1].equals(wall) ? "1" : "") + 
+																	  (data[y][x - 1].equals(wall) ? "2" : "") + 
+																	  (data[y - 1][x].equals(wall) ? "3" : "");
+													String chosenDirection = directions[Integer.parseInt("" + yo.charAt(random.nextInt(yo.length())))];
+													switch (chosenDirection) {
+														case "Up": 
+															Walls[y + ioffset][x - 1 + joffset] = nameToTileID.get("Exit Arrow " + chosenDirection + " 1_" + tsGen.numExitFrames); break;
+														case "Left": 
+															Walls[y - 1 + ioffset][x + joffset] = nameToTileID.get("Exit Arrow " + chosenDirection + " 1_" + tsGen.numExitFrames); break;
+														case "Right": 
+															Walls[y - 1 + ioffset][x - 2+ joffset] = nameToTileID.get("Exit Arrow " + chosenDirection + " 1_" + tsGen.numExitFrames); break;
+														case "Down": 
+															Walls[y - 2+ ioffset][x - 1 + joffset] = nameToTileID.get("Exit Arrow " + chosenDirection + " 1_" + tsGen.numExitFrames); break;
+													}*/
+												} else {
+													objname = "Exit Front " + (Math.random() < 0.5 ? 	"Down" : 
+																										"Forwards"); 
+													Walls[y - 1 + ioffset][x - 1 + joffset] = nameToTileID.get("Exit Arrow Up 1_" + tsGen.numExitFrames); 
+												} System.out.println(objname);break;
 							default: 
 								if (!(lodestoneSymbols + " ").contains(currentTile)) System.out.println("Warning: \'" + currentTile + "\' is not defined");
 						}
@@ -298,7 +321,7 @@ public class TextToTmx {
 			}
 		}
 		
-		LodestoneDetector ld = new LodestoneDetector(data, tsGen.lodestoneAreas);
+		LodestoneDetector ld = new LodestoneDetector(data);
 		//for (String code : tsGen.genLodestoneCodes()) System.out.println(code);
 		ld.addLodestones(Objects, tsGen);
 		
@@ -343,38 +366,36 @@ public class TextToTmx {
 			
 			if (object.name.startsWith("Door")) {
 				int whichSet = Integer.parseInt(object.name.split(" ")[1]);
-				String open = "", close = "", blink = "";
+				String open = "", close = "";
 				if (whichSet == 1) {
 					open += String.join(" AND ", buttons1.toArray(new String[buttons1.size()]));
-					blink += String.join(" OR ", buttons1.toArray(new String[buttons1.size()]));
 					close += String.join(" OR ", buttonsNOT1.toArray(new String[buttons1.size()]));
 				} else if (whichSet == 2) {
 					open += String.join(" AND ", buttons2.toArray(new String[buttons2.size()]));
-					blink += String.join(" OR ", buttons2.toArray(new String[buttons2.size()]));
 					close += String.join(" OR ", buttonsNOT2.toArray(new String[buttons1.size()]));
 				}
 				ObjectsInfo += 
 					"   <properties>\n" + 
 					"    <property name=\"+Close\" value=\"" + close + "\"/>\n" +
 					"    <property name=\"+Open\" value=\"" + open + "\"/>\n" + 
-					"    <property name=\"+Blink\" value=\"" + blink + "\"/>\n" + 
 					"   </properties>\n" + 
 					"  </object>\n";
 			}
 		} ObjectsInfo += " </objectgroup>\n";
+		nameCount = 0;
 	}
 	
 	private String writeGenericLayer(String name, int[][] arr) {
-		String write = 	" <layer name=\"" + name + "\" width=\"" + cols + "\" height=\"" + rows + "\">\n" + 
-						"  <data encoding=\"csv\">\n";
+		StringBuilder write = new StringBuilder(" <layer name=\"" + name + "\" width=\"" + cols + "\" height=\"" + rows + "\">\n" + 
+											    "  <data encoding=\"csv\">\n");
 		for (int y = 0; y < rows; y++) {
 			for (int x = 0; x < cols; x++) {
-				write += (arr[y][x]);
-				if (y != rows - 1 || x != cols - 1) write += ",";
-			} write += "\n";
-		} write += "</data>\n" + 
-					" </layer>\n\n";
-		return write;
+				write.append((arr[y][x]));
+				if (y != rows - 1 || x != cols - 1) write.append(",");
+			} write.append("\n");
+		} write.append("</data>\n" + 
+					   " </layer>\n\n");
+		return write.toString();
 	}
 	
 	/**
@@ -413,6 +434,10 @@ public class TextToTmx {
 		// Create the level in the stated directory
 		if (!wroteTileSet) writeTileSet();
 		writeLayersInfo(dir, levelcode);
+		if (skipGeneration) {
+			skipGeneration = false;
+			return;
+		}
 		writeLevelInfo(cols, rows, nameCount);
 		
 		String finalTmx = LevelInfo + TileSetInfo + PuzzleInfo + LayersInfo + ObjectsInfo + "</map>";
@@ -444,7 +469,6 @@ public class TextToTmx {
 	}
 	
 	public static void main(String[] args) throws IOException {
-		
 		FilenameFilter Tmx = new FilenameFilter() {
 		    public boolean accept(File dir, String name) {
 		        return name.toLowerCase().endsWith(".tmx");
@@ -463,6 +487,6 @@ public class TextToTmx {
 				prog.writeLevel(mainAssetsDirectory + "Levels/", levelcode, difficulty);
 			}
 		} System.out.println(prog.errorMSG);
-		prog.writeToFile(mainAssetsDirectory + "Animations/", "Tileset", "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + prog.TileSetInfo, "tsx");
+		prog.writeToFile(mainAssetsDirectory + "Animations/", "Tileset", "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + TextToTmx.TileSetInfo, "tsx");
 	}
 }

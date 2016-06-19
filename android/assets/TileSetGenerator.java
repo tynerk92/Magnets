@@ -35,7 +35,6 @@ public class TileSetGenerator {
 	private boolean generated = false;
 	public int numButtonFrames = 1;
 	public int numDoorTransitionFrames = 1;
-	public int numDoorBlinkFrames = 1;
 	public int numExitFrames = 1;
 	public int numMagneticSourceFrames = 1;
 	public int numMagneticFloorFrames = 1;
@@ -54,10 +53,6 @@ public class TileSetGenerator {
 	// Num MagneticSource frames = 10;
 	private final int[] MagneticSourceAnim = new int[] {  0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 	private final int[] MagneticSourceInte = new int[] { 40, 2, 2, 2, 2, 4, 4, 6, 6, 8 };
-	
-	// Num DoorBlink frames = 8;
-	private final int[] DoorBlinkAnim = new int[] {  0, 1, 2, 3, 4, 5,  6,  7,  6, 5, 4, 3, 2, 1};
-	private final int[] DoorBlinkInte = new int[] { 32, 8, 8, 8, 8, 8, 16, 32, 16, 8, 8, 8, 8, 8 };
 	
 	// Num DoorTransition frames = 7; // Excluding open and closed
 	private final int[] DoorTransitionAnim = new int[] { 0, 1, 2,  3, 4, 5, 6 };
@@ -129,11 +124,30 @@ public class TileSetGenerator {
 		return getTile(name).createObject(x, y);
 	}
 	
-	public int tallest = -1, widest = -1;
+	public String fixArea(int height, int width, String area) {
+		if (height < 3 || width < 3) return area; 
+		StringBuilder sb = new StringBuilder(area);
+		for (int y = 0; y < height; y++) {
+			for (int x = 0; x < width; x++) {
+				String neighbours = "" + ((x == 0) ? "" : area.charAt(y * height + x - 1)) + 
+										 ((x == width - 1) ? "" : area.charAt(y * height + x + 1)) + 
+										 ((y == 0) ? "" : area.charAt((y - 1) * height + x)) + 
+										 ((y == height - 1) ? "" : area.charAt((y + 1) * height + x));
+				
+				if (!neighbours.contains("1")) sb.setCharAt(y * height + x, 'X');
+			}
+		}
+		return sb.toString();
+	}
+	
+	public int tallest, widest;
+	public boolean done = false;
+	public int fullWidth;
 	public ArrayList<String> genLodestoneCodes() {
+		if (done) return lodestoneCodes;
 		if (lodestoneAreas.isEmpty()) throw new IllegalArgumentException("lodestoneAreas is empty");
 		
-		ArrayList<String> lodestoneCodes = new ArrayList<String>();
+		lodestoneCodes = new ArrayList<String>();
 		
 		for (String area : lodestoneAreas) {
 			int height = Integer.parseInt(area.split(" - ")[0]);
@@ -146,13 +160,15 @@ public class TileSetGenerator {
 		//    *****   (3 x 3)		*******		(3 x 4)
 		//    *****  				*******
 		
-		int fullWidth = widest * 2 - 1;
+		int count = 0;
+		fullWidth = widest * 2 - 1;
 		for (String area : lodestoneAreas) {
 			String[][] code = new String[tallest][fullWidth];
 			for (String[] row : code) Arrays.fill(row, "?");
 			int width = Integer.parseInt(area.split(" - ")[0]);
 			int height = area.split(" - ")[1].length() / width;
 			area = area.split(" - ")[1];
+			area = fixArea(height, width, area);
 			int offset = area.indexOf("1");
 			
 			// System.out.println(area + ", height = " + height + ", width = " + width + ", xoffset = " + (-offset) + ", yoffset = " + (height - 1));
@@ -186,8 +202,11 @@ public class TileSetGenerator {
 			for (String[] row : code) {
 				for (String col : row) {
 					cod += col;
-				} 
-			}
+				}
+			} 
+			cod = "XX" + cod.substring(2);
+			// System.out.println(lodestoneNames.get(count++) + " " + cod);
+			
 			lodestoneCodes.add(cod);
 		}
 		
@@ -195,6 +214,7 @@ public class TileSetGenerator {
 			lodestoneCodeToNameArray.put(lodestoneCodes.get(i), lodestoneNames.get(i));
 		}
 		
+		done = true;
 		return lodestoneCodes;
 	}
 	
@@ -235,7 +255,6 @@ public class TileSetGenerator {
 					int totalFrames = 0, 
 						whichSet = 0, 
 						whichFrame = 0;
-					boolean isBlink = false;
 					
 					switch (type) {
 						case "Button": 
@@ -260,50 +279,34 @@ public class TileSetGenerator {
 							totalFrames = Integer.parseInt(data[data.length - 1]);
 							whichSet 	= Integer.parseInt(data[0]);
 							whichFrame 	= Integer.parseInt(data[data.length - 2]);
-							isBlink = data[1].equals("Blink");
-							if (isBlink) {
-								numDoorBlinkFrames = totalFrames;
-								if (whichFrame == 1) 					info += enclose("properties", property("~", "Door Blink " + whichSet)) + 
-																				image(width, height, source) + 
-																				animation(DoorBlinkAnim, DoorBlinkInte, IntervalMultiplier, false);
-								else 									info += image(width, height, source);
-							} else {
-								numDoorTransitionFrames = totalFrames;
-								if (whichFrame == 1) 					info += property("~", "Door Closed " + whichSet) + 
-																				property("~Closed", "Door Closed " + whichSet) + 
-																				property("~Closing", "Door Closing " + whichSet) + 
-																				property("~Blink", "Door Blink " + whichSet) + 
-																				property("~Opened", "Door Opened " + whichSet) + 
-																				property("~Opening", "Door Opening " + whichSet) +
-																				property("Type", "Door");
-								else if (whichFrame == 2) 				info += property("~", "Door Opening " + whichSet) +
-																				animation(DoorTransitionAnim, DoorTransitionInte, IntervalMultiplier, false);
-								else if (whichFrame < totalFrames - 1) 	{}
-								else if (whichFrame == totalFrames - 1) info += property("~", "Door Closing " + whichSet) + 
-																				animation(DoorTransitionAnim, DoorTransitionInte, IntervalMultiplier, true);
-								else 									info += property("~", "Door Opened " + whichSet) + 
-																				property("Render Depth", "int", "-1");
-								info = enclose("properties", info) + image(width, height, source);
-							} break;
+							numDoorTransitionFrames = totalFrames;
+							if (whichFrame == 1) 					info += property("~", "Door Closed " + whichSet) + 
+									property("~Closed", "Door Closed " + whichSet) + 
+									property("~Closing", "Door Closing " + whichSet) + 
+									property("~Opened", "Door Opened " + whichSet) + 
+									property("~Opening", "Door Opening " + whichSet) +
+									property("Type", "Door");
+							else if (whichFrame == 2) 				info += property("~", "Door Opening " + whichSet) +
+									animation(DoorTransitionAnim, DoorTransitionInte, IntervalMultiplier, false);
+							else if (whichFrame < totalFrames - 1) 	{}
+							else if (whichFrame == totalFrames - 1) info += property("~", "Door Closing " + whichSet) + 
+									animation(DoorTransitionAnim, DoorTransitionInte, IntervalMultiplier, true);
+							else 									info += property("~", "Door Opened " + whichSet) + 
+									property("Render Depth", "int", "-1");
+							info = enclose("properties", info) + image(width, height, source);
+							break;
 						case "Elevated Floor":
 							info = enclose("properties", 
 											property("~", type) +
 											property("~Floor", type) +
-											property("Type", type) + 
+											property("Type", "Obstructed Floor") + 
 											property("Render Depth", "int", "-1") + 
 											property("Elevation", "int", "4")) + 
 									image(width, height, source); break;
 						case "Exit":
 							data = name.split("[ _]");
 							boolean isArrow = data[0].equals("Arrow");
-							if (!isArrow)
-								info = enclose("properties", 
-												property("~", type) +
-												property("~Exit", type) +
-												property("Type", type) + 
-												property("Render Depth", "int", "-1")) + 
-									   	image(width, height, source);
-							else {
+							if (isArrow) {
 								whichFrame = Integer.parseInt(data[data.length - 2]);
 								if (whichFrame == 1) {
 									numExitFrames = Integer.parseInt(data[data.length - 1]);
@@ -311,6 +314,13 @@ public class TileSetGenerator {
 											animation(ExitAnim, ExitInte, IntervalMultiplier, false); 
 								} else
 									info = image(width, height, source); 
+							} else {
+								info = enclose("properties", 
+										property("~", type) +
+										property("~Exit", type) +
+										property("Type", type) + 
+										property("Render Depth", "int", "-1")) + 
+							   	image(width, height, source);
 							} break;
 						case "Pushable": 
 						case "Unpushable": 
@@ -319,13 +329,17 @@ public class TileSetGenerator {
 							String dimensions = data[0];
 							String tag = data[1];
 							String area = data[2];
+							name = name.replaceAll("X", "0");
+							area = area.replaceAll("X", "0");
 							lodestoneAreas.add(dimensions.split("x")[0] + " - " + area);
 							lodestoneNames.add(name);
 							int lodewidth = Integer.parseInt(dimensions.split("x")[0]);
 							int lodeheight = Integer.parseInt(dimensions.split("x")[1]);
-
+							
 							// System.out.println(name + " area: " + area + ", yoffset: " + (lodeheight - 1) + ", xoffset: " + (area.indexOf("1")));
 							lodestoneNameToOffsetArray.put(name, new int[] { lodeheight - 1, area.indexOf("1") });
+
+							
 							// <Width>x<height> <Numbering within the set of equal width and height> <Area code>
 							info = enclose("properties", 
 											property("~", type + " " + name) + 
@@ -359,7 +373,13 @@ public class TileSetGenerator {
 												property("~", type + " " + name) + 
 												property("~Floor", type + " " + name) + 
 												property("Render Depth", "int", "-1") + 
-												property("Type", type)) + 
+												property("Type", type) + 
+												property("Lighting Displacement X", 16) + 
+												property("Lighting Displacement Y", 16) + 
+												property("Lighting Height", 100) + 
+												property("Lighting Width", 100) + 
+												property("Lighting Image Path", relativeGraphicsSetPath + "/Lighting/Point Source.png") + 
+												property("Lighting Intensity", 0.5)) + 
 										image(width, height, source) + 
 										animation(MagneticFloorAnim, MagneticFloorInte, IntervalMultiplier, false);
 							else 
@@ -373,7 +393,13 @@ public class TileSetGenerator {
 								info = enclose("properties", 
 												property("~", type) +
 												property("~Source", type) +
-												property("Type", type)) + 
+												property("Type", type) + 
+												property("Lighting Displacement X", 16) + 
+												property("Lighting Displacement Y", 16) + 
+												property("Lighting Height", 100) + 
+												property("Lighting Width", 100) + 
+												property("Lighting Image Path", relativeGraphicsSetPath + "/Lighting/Point Source.png") + 
+												property("Lighting Intensity", 0.5)) + 
 										image(width, height, source) + 
 										animation(MagneticSourceAnim, MagneticSourceInte, IntervalMultiplier, false); 
 							else 

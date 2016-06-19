@@ -40,9 +40,8 @@ public class LodestoneDetector {
 	
 	public String[][] data;
 	public int[][] output;
-	public ArrayList<Object> lodestones = new ArrayList<Object>();
 	
-	LodestoneDetector(String[][] data, ArrayList<String> lodestoneAreas) {
+	LodestoneDetector(String[][] data) {
 		this.data = data;
 		this.checked = new Integer[data.length][data[0].length];
 		this.output = new int[data.length][data[0].length];
@@ -73,7 +72,7 @@ public class LodestoneDetector {
 	 * @return
 	 */
 	private Integer[][] checked;
-	public int bufferWalls = TextToTmx.bufferWalls;
+	public static int bufferWalls = TextToTmx.bufferWalls;
 	public void addLodestones(List<Object> Objects, TileSetGenerator tsGen) {
 		ArrayList<String> lodestoneCodes = tsGen.genLodestoneCodes();
 		//System.out.println(arrayToString(data, true));
@@ -83,7 +82,8 @@ public class LodestoneDetector {
 				if (checked[y][x] == 0) {
 					// Value is important. Remember when i said that we are using multiple characters to represent lodestones.
 					String value = data[y][x];
-					if (TextToTmx.lodestoneSymbols.contains(value)) {					// Contains a portion of a lodestone
+					if (TextToTmx.lodestoneSymbols.contains(value)) {					
+						// Contains a portion of a lodestone
 						// This string array is a representation of all the neighbours *. 
 						for (String code: lodestoneCodes) {
 							if (compareWithDontCares(getNeighbours(value, y, x, tsGen.tallest, tsGen.widest), code)) {
@@ -93,13 +93,15 @@ public class LodestoneDetector {
 								int xoffset = offsets[1];
 								int yoffset = offsets[0];
 								Objects.add(tsGen.createObject(objectname, x - xoffset, y + yoffset));
+								// Mark all the squares that it covers as visited.
 								for (int i = 0; i < tsGen.tallest; i++) {
 									for (int j = -tsGen.widest + 1; j < tsGen.widest; j++) {
 										if (code.charAt(i * (tsGen.widest * 2 - 1) + j + tsGen.widest - 1) == "1".charAt(0)) {
 											checked[i + y][j + x] = 1;
 										}
 									}
-								} break;
+								}
+								break;
 							}
 						}
 					}
@@ -119,12 +121,7 @@ public class LodestoneDetector {
 		return arrayToString(out, false);
 	}
 	
-	/**
-	 * Uses the concept of dontcares from circuit logic to compare binary strings
-	 * @param input
-	 * @param condition
-	 * @return
-	 */
+	// Uses the concept of dontcares from circuit logic to compare binary strings
 	public boolean compareWithDontCares(String input, String condition) {
 		if (input.length() != condition.length()) throw new IllegalArgumentException("Strings does not match in length " + input + ": " + input.length() + " vs " + condition + ": " + condition.length());
 		for (int y = 0; y < condition.length(); y++) {
@@ -133,6 +130,7 @@ public class LodestoneDetector {
 		} return true;
 	}
 	
+	// Converts an array of whatever to a string. Meant for single character / int / strings of single length only
 	public <T> String arrayToString(T[][] arr, boolean breaks) {
 		String out = "";
 		for (T[] row : arr) {
