@@ -13,7 +13,7 @@ public class LogicMachine {
 	public static final String TERM_AND = "AND";
 	public static final String TERM_OR = "OR";
 	public static final String TERM_NOT = "NOT";
-	public static final int MAX_PREDICATES = 26;
+	public static final int MAX_PREDICATES = 50;
 	public static final String DELIMITER = "`";
 
 	private LinkedList<Expression> _expressions;

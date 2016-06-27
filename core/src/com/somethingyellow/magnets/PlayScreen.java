@@ -24,6 +24,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Stack;
 
 public class PlayScreen implements Screen, Player.Commands, Lodestone.Commands {
 
@@ -51,6 +52,8 @@ public class PlayScreen implements Screen, Player.Commands, Lodestone.Commands {
 	private Animation _pauseOverlayAnimation;
 	private Commands _commands;
 	private Skin _skin;
+
+	private Stack<String> solution = new Stack<String>();
 
 	public PlayScreen(Skin skin, Commands commands) {
 		_skin = skin;
@@ -478,6 +481,7 @@ public class PlayScreen implements Screen, Player.Commands, Lodestone.Commands {
 	}
 
 	public void resetLevel() {
+		solution = new Stack<String>();
 		unloadLevel();
 		loadLevel(_levelPath);
 	}
@@ -492,6 +496,10 @@ public class PlayScreen implements Screen, Player.Commands, Lodestone.Commands {
 
 	public void exitLevel() {
 		unloadLevel();
+		System.out.println("Ended");
+		for (String dir : solution) System.out.print(dir + " ");
+		System.out.print(" (" + solution.size() + ")\n");
+		solution = new Stack<String>();
 		_commands.exitLevel();
 	}
 
@@ -616,9 +624,11 @@ public class PlayScreen implements Screen, Player.Commands, Lodestone.Commands {
 						}
 
 						// Decrease player moves counter (just for development)
-						if (body == _player) _playerMovesCount--;
+						if (body == _player) {
+							solution.pop();
+							_playerMovesCount--;
+						}
 					}
-
 					if (!_tiledStage.isPaused()) pauseLevel();
 				}
 				_toUndo = false;
@@ -654,7 +664,10 @@ public class PlayScreen implements Screen, Player.Commands, Lodestone.Commands {
 				}
 
 				if (direction != null) {
-					if (_player.moveDirection(direction)) _playerMovesCount++;
+					if (_player.moveDirection(direction)) {
+						solution.add(direction.toString());
+						_playerMovesCount++;
+					}
 				}
 			}
 

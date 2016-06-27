@@ -41,8 +41,17 @@ public class LodestoneDetector {
 	public String[][] data;
 	public int[][] output;
 	
-	LodestoneDetector(String[][] data) {
+	LodestoneDetector(String[][] data, String[][] data2, boolean hasSecondLayer) {
 		this.data = data;
+		if (hasSecondLayer) {
+			for (int j = 0; j < this.data.length; j++) {
+				for (int i = 0; i < this.data[0].length; i++) {
+					if (TextToTmx.lodestoneSymbols.contains(data2[j][i])) {
+						this.data[j][i] = data2[j][i];
+					}
+				}
+			}
+		}
 		this.checked = new Integer[data.length][data[0].length];
 		this.output = new int[data.length][data[0].length];
 		for (Integer[] row: checked) Arrays.fill(row, 0);

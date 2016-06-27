@@ -174,8 +174,8 @@ public class Controller implements InputProcessor {
 	}
 
 	public static class Config {
-		public static float ZoomMin = 0.5f;
-		public static float ZoomMax = 1.5f;
+		public static float ZoomMin = 0.4f;
+		public static float ZoomMax = 2.0f;
 		public static float ZoomDefault = 0.75f;
 	}
 }

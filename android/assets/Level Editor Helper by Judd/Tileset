@@ -15,4 +15,6 @@ Tile Number, Image file, Tile Name, Type, Extended Info
 13, Pushable 2.png, New Tile 13, No Type
 14, Pushable 3.png, New Tile 14, No Type
 15, Source Floor.png, New Tile 15, No Type
-16, Elevated Floor.png, New Tile 16, No Type, 
+16, Elevated Floor.png, New Tile 16, No Type
+17, Door 2 Open.png, New Tile 17, No Type
+18, Door 1 Open.png, New Tile 18, No Type

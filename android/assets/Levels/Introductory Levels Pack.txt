@@ -1,0 +1,209 @@
+Exploration
+██████████████████████████████████████████████
+██████████████████████████ ███████████████████
+████████████████     █████ ███████████████████
+████████████████  s                ███████████
+████████████████     █████████ ██ ████████████
+██████████████████████████████ ██ ██ █████████
+█████████████████████████████████    █████████
+█████████████████████████████████ █ ██████████
+██████████████████████████████    █ ██████████
+███████████████████████████████████   ████████
+████████████████████████████████    █ ████████
+████████████████████████████████  █   ████████
+████████████████████████████████████ █████████
+████████████████████████████████████ ████    █
+████████████████████████████████████ ████ ████
+████████████████████████████████████      ████
+██████████████████████████████   █ █ ██ █ ████
+██████████████████████████████     █ ██ █ ████
+██████████████████████████████   █ █ ██ █ ████
+██████████████████████████████████  X     ████
+████████████████████████████████████ ████ ████
+████████████████████████████████████      ████
+████████████████████████████████████ █ ███████
+██████████████████████████████████████ ███████
+██████████████████████████████████████ ███████
+██████████████████████████████████████ ███████
+██████████████████████████████████████ ███████
+██████████████████████████████████████ ███████
+██████████████████████████████████████ ███████
+██████████████████████████████████████ ███████
+██████████████████████████████ ███████ ███████
+██████████████████████████████ ███████ ███████
+█████████████████████████   ██ ██   ██ ███████
+█████████████████████████        x      ██████
+█████████████████████████   ██ ██   ██████████
+██████████████████████████████ ███████████████
+█████████████████████████   ██ ██   ██████████
+█████████████████████████          x █████████
+█████████████████████████   ██ ██ x   ████████
+██████████████████████████████ ███     ███████
+██████████████████████████████ ████   x ██████
+████████████████████████████████████ x  ██████
+█████████████████████████████████████   ██████
+██████████████████████████████████████ ███████
+█ X X X X ████████████████████████████ ███████
+█X X   X X█████   ████████████████████ ███████
+█ x     x █████ ██████████████████████ ███████
+█ x     x       █████████████████████   ██████
+█X X   X X█████ ████████████████████    ██████
+█ X X X X █████ ███████████████████xy   ██████
+█████ █████████E██████████████████   y ███████
+█████ █████████E x   ██ █████████    x████████
+█████ █████████yyy                   █████████
+█████ █████████      █████ ██████   ██████████
+█████ ████████████████████ ███████████████████
+█████   ██████████████████ ███████████████████
+████  █ ██████████████████ ███████████████████
+█████   █████████████████   ██████████████████
+█████ ██████████████████ EEE █████████████████
+█████ █████████████████  ExE  ████████████████
+█████ ██████████████████ EEE █████████████████
+█████ ███████████████████   ██████████████████
+█████ ████████████████████ ███████████████████
+█████ ████  ██████████████████████████████████
+█████ ████   █████████████████████████████████
+█████ ████  ██████████████████████████████████
+█████ ████  ██████████████████████████████████
+████   xx         ████████████████████████████
+████    x   █████ ████████████████████████████
+█████████████████    █████████████████████████
+████████████████████ █████████████████████████
+████████████████████ █████████████████████████
+████████████████████ █████████████████████████
+████████████████████ █ █████████████ e ███████
+████████████████████   █████████████   ███████
+██████████████████████  █████████████ ████████
+███████████████████████ ████████████   ███████
+███████████████████████ ██XXX████████ ████████
+███████████████████████ ██XXX█XX█████ ████████
+███████████████████████   XXX█XX█X███ ████████
+█████████████████████████             ████████
+██████████████████████████xxx█xx█x████████████
+██████████████████████████xxx█xx██████████████
+██████████████████████████xxx█████████████████
+██████████████████████████████████████████████
+Solution :
+EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST SOUTH SOUTH SOUTH EAST EAST SOUTH SOUTH SOUTH SOUTH SOUTH EAST SOUTH SOUTH SOUTH SOUTH EAST EAST EAST EAST EAST SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH WEST WEST WEST SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH WEST WEST WEST WEST WEST WEST WEST WEST WEST EAST SOUTH SOUTH SOUTH SOUTH EAST EAST EAST EAST EAST SOUTH SOUTH SOUTH EAST EAST EAST SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH WEST WEST WEST SOUTH WEST WEST SOUTH WEST WEST WEST WEST WEST WEST WEST WEST WEST WEST WEST WEST WEST WEST WEST NORTH WEST SOUTH WEST WEST NORTH NORTH NORTH NORTH NORTH WEST WEST WEST WEST WEST WEST WEST WEST WEST WEST SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH EAST EAST EAST EAST EAST NORTH NORTH SOUTH EAST EAST EAST EAST EAST EAST EAST SOUTH SOUTH EAST EAST EAST SOUTH SOUTH SOUTH SOUTH SOUTH EAST EAST SOUTH EAST SOUTH SOUTH SOUTH SOUTH EAST EAST SOUTH EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST NORTH NORTH NORTH NORTH NORTH NORTH NORTH  (209)
+
+Strange Attraction
+████████████████████████████████████████
+█m x████   ████   ████   ████   ████████
+█  x     mx        ███          █  █  ██
+█  x████   ████   ████   ████   ████████
+██ ██████x██████ ██████ ██████ █████████
+██ ██████y██████ ██████ ██████ █████████
+██ ██████x██████ ██████ ██████ █████████
+██x██████y██████x██████ ██████ █████████
+█   ████ x ████   ████   ████   █████ ██
+█ m          █X m  x       █M   M█    ██
+█xxx████   ████   ████   ████   ██████ █
+█████████x██████X██████ ██████ ██████ ██
+██ ██████x█████████████ ██████ ██████ ██
+█████████x██████ ██████ ██████x██████ ██
+██e██████ ████████████████████ █████████
+█   ████   ████   ████   ████   ████   █
+█          ██ █   y      M█            M
+█   ████   ████   ████   ████   ████   █
+██ ██████ ██████ ██████ █████████████ ██
+█████████ ██████ ██████ ██████ ██████ ██
+██ ██████ ██████ ██████ █████████████ ██
+██ ██████ ██████ ██████ ██████ ██████ ██
+█Mm ███X   x███   ████   ████   ████ x █
+█ █m███x m X ██ s  █   M               █
+█ M ███X   x███   ████   ████   ████   █
+████████████████████████████████████████
+Solution :
+NORTH NORTH NORTH NORTH NORTH NORTH NORTH EAST EAST EAST EAST EAST EAST EAST SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH EAST SOUTH EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST NORTH NORTH NORTH NORTH NORTH NORTH NORTH WEST WEST WEST WEST WEST WEST WEST NORTH NORTH NORTH NORTH NORTH NORTH NORTH NORTH NORTH NORTH NORTH NORTH NORTH NORTH WEST WEST WEST WEST WEST WEST WEST SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH WEST WEST WEST WEST WEST WEST NORTH WEST NORTH NORTH NORTH NORTH NORTH NORTH WEST WEST WEST WEST WEST WEST NORTH WEST WEST SOUTH WEST WEST WEST WEST WEST WEST SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH EAST SOUTH EAST EAST EAST EAST EAST EAST SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH WEST WEST WEST WEST WEST WEST WEST NORTH NORTH  (137)
+
+Offering
+██████████████████████████████████████████████
+███████████████████████████████YXYZXY█████████
+███████████████████████████████X████ █████████
+███████████████████████████████Y████X█████████
+█████   ███████████████████████X████Y█████████
+████   x  █████████████████████Y████X█████████
+███        ████████████████████X████Y█████████
+██         ████████████████████Y████X█████████
+██         ████████████████████X████Y█████████
+██        █████████████████████Z████X█████████
+█ X      █████████████████████ZZZ███Y█████████
+█       █████████████████████XXEXX██X█████████
+█       █████████████████████XEMEX██Y█████████
+█x       ████████████████████XX XX██X█████████
+██       X█████████████████████ ████Y█████████
+██       ██████████████████████ ████X█████████
+██       █████████████     ████ ████Y█████ e █
+██        ███████████            EEEXEEEEE   █
+███       ██████████       ███   █████████   █
+███        ████████       ████████████████████
+███         █████         ████████████████████
+██X                       ████████████████████
+█     X                  █████████████████████
+█               s      ███████████████████████
+█     ██              ████████████████████████
+█  X ████              ███████████████████████
+██ X███████x             █████████████████████
+██████████████              X ████████████████
+██████████████████             ███████████████
+████████████████████            ██████████████
+█████████████████████           ██████████████
+██████████████████████          ██████████████
+███████████████████████        ███████████████
+███████████████████████        ███████████████
+████████████████████████ X   x████████████████
+████████████████████████    ██████████████████
+██████████████████████████████████████████████
+Solution :
+WEST WEST WEST WEST WEST WEST WEST WEST NORTH NORTH NORTH NORTH NORTH NORTH NORTH NORTH WEST NORTH NORTH NORTH NORTH NORTH NORTH NORTH NORTH NORTH WEST NORTH NORTH EAST SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH WEST SOUTH EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST SOUTH EAST NORTH NORTH NORTH NORTH WEST NORTH EAST EAST EAST EAST EAST EAST EAST EAST SOUTH EAST NORTH NORTH NORTH SOUTH SOUTH EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST NORTH  (100)
+
+Pushing Forward
+██████████████████████████████████████████
+██   ████████████Z██████Z█████████████ e █
+█     ██████ZX███X██████Z█████████████   █
+█  x   X████ZYX██XY████YY███████Y█████   █
+█      X   XZYX YXY██X█XY █MMMMMXMM████B██
+█      X             X█ YX█        ███   █
+██   s  mmmmmmmmmmmmmmmmmmm        mmm b █
+██     X███████         Z██        ███   █
+███    X███████YXYX Y█YXZ██MMMXMMMM███████
+█████  X███████Y█YX███YX██████X███████████
+█████████████████YX████X██████████████████
+██████████████████████████████████████████
+Solution :
+NORTH NORTH NORTH NORTH WEST WEST SOUTH SOUTH SOUTH WEST SOUTH EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST NORTH EAST NORTH NORTH NORTH NORTH  (53)
+
+Buttons
+███████████████
+████   █   ████
+███ b       ███
+███    x    Be█
+███    X    ███
+████ xXMXx ████
+███    X    ███
+█s     x    ███
+███       b ███
+████   █   ████
+███████████████
+Solution :
+EAST EAST EAST EAST NORTH NORTH NORTH NORTH NORTH EAST EAST EAST SOUTH WEST WEST WEST SOUTH WEST NORTH EAST EAST EAST EAST EAST SOUTH SOUTH SOUTH SOUTH SOUTH WEST WEST WEST NORTH EAST EAST EAST NORTH EAST SOUTH NORTH NORTH NORTH NORTH EAST EAST EAST  (46)
+
+Maze
+█████████████████
+█YYYYXYYZeZXZYXX█
+█X   Z  B Zb   X█
+█Y X Z XXYYY X Y█
+█Y X X Y   X Z Y█
+█X X   Y s Y Z X█
+█X   Z X   Y Z Y█
+█Y X Z XX XY   X█
+█Y X X       ZYX█
+█Y   ZXZ ZZY X Y█
+█X X    x      X█
+█X XZZXZ ZZZ Z X█
+█X             Y█
+█YXYYXXYXYXYYXYX█
+█████████████████
+Solution :
+SOUTH SOUTH SOUTH EAST EAST EAST SOUTH SOUTH SOUTH SOUTH WEST WEST WEST WEST NORTH NORTH NORTH SOUTH WEST WEST WEST WEST NORTH NORTH NORTH NORTH NORTH EAST EAST SOUTH SOUTH SOUTH EAST EAST EAST EAST EAST WEST WEST WEST SOUTH SOUTH EAST EAST EAST EAST NORTH NORTH NORTH NORTH NORTH NORTH NORTH SOUTH SOUTH SOUTH SOUTH EAST EAST NORTH NORTH NORTH NORTH NORTH WEST WEST SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH WEST WEST WEST WEST WEST WEST NORTH NORTH NORTH NORTH NORTH NORTH EAST EAST EAST NORTH  (88)
