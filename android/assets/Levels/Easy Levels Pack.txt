@@ -42,17 +42,17 @@ Dependencies
 ███████████████
 ███████ ███e███
 ███████ ███ ███
-█   ██ s █    █
+█   ▒█ s █    █
 █ ██ █ █ █ ██ █
-█ █  xx   █ █ █
-█         xx  █
+█ █  xx   ▒ █ █
+█▒▒       xx  █
 ███       xx███
 █         xx  █
 █ █         █ █
 █ xx       x  █
 ███x       x███
 █  x       x  █
-█ █ xxx xxx██ █
+█ █▒xxx xxx██ █
 █ ██x█x█x█ ██ █
 █    █   █    █
 ███████████████
@@ -205,3 +205,16 @@ Open Sesame
 ████████████████████████
 Solution :
 SOUTH SOUTH SOUTH SOUTH WEST WEST SOUTH SOUTH EAST EAST NORTH NORTH NORTH NORTH NORTH NORTH NORTH NORTH NORTH WEST WEST SOUTH SOUTH WEST WEST WEST WEST WEST WEST EAST EAST EAST EAST EAST SOUTH SOUTH EAST EAST EAST EAST EAST EAST NORTH NORTH EAST EAST EAST EAST EAST EAST WEST WEST WEST WEST WEST NORTH NORTH WEST WEST WEST NORTH NORTH NORTH WEST WEST WEST NORTH NORTH NORTH NORTH EAST EAST  (72)
+
+Rings
+█████████████████
+█e  █████b  █████
+█ █B█████ █ █████
+█ B  b█s x x  ███
+███ █ █ █ █ █ ███
+███  x x  █b  B █
+█████ █ █████B█ █
+█████  b█████  e█
+█████████████████
+Solution :
+EAST EAST NORTH NORTH EAST EAST SOUTH SOUTH SOUTH NORTH WEST WEST SOUTH SOUTH WEST WEST NORTH NORTH EAST WEST SOUTH SOUTH EAST EAST NORTH NORTH NORTH SOUTH WEST WEST SOUTH SOUTH SOUTH SOUTH WEST WEST NORTH NORTH NORTH SOUTH EAST EAST NORTH NORTH EAST EAST SOUTH SOUTH WEST EAST NORTH NORTH WEST WEST SOUTH SOUTH SOUTH NORTH WEST WEST WEST WEST NORTH NORTH NORTH NORTH WEST WEST  (68)

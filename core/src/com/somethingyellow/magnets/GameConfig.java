@@ -26,15 +26,15 @@ public class GameConfig {
 		// Main.Config
 
 		// LevelSelectScreen.Config
-		//LevelSelectScreen.Config.FolderPath = "Levels";
-		LevelSelectScreen.Config.FolderPath = "Demo Levels";
+		LevelSelectScreen.Config.FolderPath = "Levels";
+		//LevelSelectScreen.Config.FolderPath = "Demo Levels";
 		//LevelSelectScreen.Config.IfSearch = true;
-		/*
+
 		LevelSelectScreen.Config.Levels = new String[]{
-				"(Introductory) Exploration (Solvable - 209).tmx",
+				"(Introductory) Exploration (Solvable - 283).tmx",
 				"(Introductory) Strange Attraction (Solvable - 137).tmx",
 				"(Introductory) Offering (Solvable - 100).tmx",
-				"(Introductory) Pushing Forward (Solvable - 53).tmx",
+				"(Introductory) Pushing Forward (Solvable - 47).tmx",
 				"(Introductory) Buttons (Solvable - 46).tmx",
 				"(Introductory) Maze (Solvable - 88).tmx",
 				"(Easy) Puzzle for ants (Solvable - 11).tmx",
@@ -47,6 +47,7 @@ public class GameConfig {
 				"(Easy) Loop (Solvable - 104).tmx",
 				"(Easy) Winding Path (Solvable - 79).tmx",
 				"(Easy) Open Sesame (Solvable - 72).tmx",
+				"(Easy) Rings (Solvable - 68).tmx",
 				"(Medium) Detours (Solvable - 214).tmx",
 				"(Medium) Toggle (Solvable - 106).tmx",
 				"(Medium) Chain (Solvable - 45).tmx",
@@ -62,6 +63,10 @@ public class GameConfig {
 				"(Medium) Chute (Solvable - 67).tmx",
 				"(Medium) Sliding Puzzle (Solvable - 132).tmx",
 				"(Medium) Traps (Solvable - 108).tmx",
+				"(Medium) Quad (Solvable - 182).tmx",
+				"(Medium) Tetra (Solvable - 51).tmx",
+				"(Medium) Penta (Solvable - 87).tmx",
+				"(Medium) Hexa (Solvable - 57).tmx",
 				"(Hard) Lock (Solvable - 288).tmx",
 				"(Hard) Roundabout (Solvable - 175).tmx",
 				"(Hard) Hookline (Solvable - 647).tmx",
@@ -76,7 +81,8 @@ public class GameConfig {
 				"(Hard) Shuriken (Solvable - 417).tmx",
 				"(Hard) Arranging (Solvable - 359).tmx",
 				"(Hard) Distraction (Solvable - 130).tmx",
-				"(Hard) Unblock.tmx",
+				"(Hard) Unblock (WIP).tmx",
+				"(Hard) Cave in (Solvable - 66).tmx",
 				"(Bonus) Which One (Solvable - 30).tmx",
 				"(Bonus) Which One 2 (Solvable - 30).tmx",
 				"(Bonus) Which One 3 (Solvable - 25).tmx",
@@ -91,26 +97,27 @@ public class GameConfig {
 				"(Experimental) Wake me up when there is repulsion.tmx",
 				"(Experimental) Exits Test.tmx",
 				"(Experimental) Elevated Floor Test.tmx",
-				"(Experimental) Diagonal Test.tmx"
+				"(Experimental) Diagonal Test.tmx",
+				"(Experimental) Unexpected Behaviour.tmx"
 		};
-		*/
+		/*
 		LevelSelectScreen.Config.Levels = new String[]{
-				"(Introductory) Exploration (Solvable - 209).tmx",
-				"(Introductory) Strange Attraction (Solvable - 137).tmx",
-				"(Introductory) Offering (Solvable - 100).tmx",
-				"(Introductory) Pushing Forward (Solvable - 53).tmx",
-				"(Introductory) Buttons (Solvable - 46).tmx",
-				"(Introductory) Maze (Solvable - 88).tmx",
-				"(Easy) Puzzle for ants (Solvable - 11).tmx",
-				"(Easy) Blockade (Solvable - 28).tmx",
-				"(Easy) Interspersing (Solvable - 35).tmx",
-				"(Easy) Open Sesame (Solvable - 72).tmx",
-				"(Medium) Toggle (Solvable - 106).tmx",
-				"(Medium) Chain (Solvable - 45).tmx",
-				"(Medium) Trio (Solvable - 47).tmx",
-				"(Medium) Suction (Solvable - 50).tmx",
-				"(Hard) Roundabout (Solvable - 175).tmx"
-		};
+				"(Introductory) Exploration.tmx",
+				"(Introductory) Strange Attraction.tmx",
+				"(Introductory) Offering.tmx",
+				"(Introductory) Pushing Forward.tmx",
+				"(Introductory) Buttons.tmx",
+				"(Introductory) Maze.tmx",
+				"(Easy) Puzzle for ants.tmx",
+				"(Easy) Blockade.tmx",
+				"(Easy) Interspersing.tmx",
+				"(Easy) Open Sesame.tmx",
+				"(Medium) Suction.tmx",
+				"(Medium) Chain.tmx",
+				"(Medium) Trio.tmx",
+				"(Medium) Toggle.tmx",
+				"(Hard) Roundabout.tmx"
+		};*/
 
 		// PlayScreen.Config
 		PlayScreen.Config.GameAnimationsTMXPath = "Animations/(Introductory) Amateur (Solvable - 64).tmx";

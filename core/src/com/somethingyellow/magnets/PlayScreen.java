@@ -439,9 +439,9 @@ public class PlayScreen implements Screen, Player.Commands, Lodestone.Commands {
 		}
 
 		// Player moves counter
-		Label playerMovesText = new Label(String.valueOf(_playerMovesCount), _skin);
-		playerMovesText.setPosition(Gdx.graphics.getWidth() - playerMovesText.getWidth() - 10, 10);
-		playerMovesText.draw(_UISpriteBatch, 1f);
+		//Label playerMovesText = new Label(String.valueOf(_playerMovesCount), _skin);
+		//playerMovesText.setPosition(Gdx.graphics.getWidth() - playerMovesText.getWidth() - 10, 10);
+		//playerMovesText.draw(_UISpriteBatch, 1f);
 
 		_UISpriteBatch.end();
 	}

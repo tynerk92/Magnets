@@ -30,6 +30,7 @@ public class TextToTmx {
 																		"Open Sesame",
 																		"Chain", 
 																		"Roundabout", 
+																		"Toggle",
 																		"Cascade", 
 																		"Suction", 
 																		"Trio" });
@@ -62,6 +63,8 @@ public class TextToTmx {
 	
 	public static final String wall = "█";
 	public static final String bigtree = "T"; 
+	public static final String stalagmite = "▒";
+	public static final String boulder = "@";
 	public static final String lodestoneSymbols = "xyzXYZ";
 	
 	public static final String noOutline = " " + player + exit;
@@ -232,16 +235,34 @@ public class TextToTmx {
 			}
 		}
 		
-		// Second Layer should only be comprised only of lodestones
-		// Processing walls and floors and other objects
+		/*
+		// Place boulders and staglamites randomly over a wall with at least 1 
+		String adjacents;
 		for (int y = 1; y < rows + 1; y++) {
 			for (int x = 1; x < cols + 1; x++) {
-				String currentTile = data[y][x];
+				if (data[y][x].equals(wall)) {
+					adjacents = getAdjacents(y, x, wall, data, false);
+					if (adjacents.contains("0")) {
+						if (Math.random() < 0.05 * countOccurrences(adjacents, "0")) {
+							data[y][x] = Math.random() < 0.5 ? "▒" : "@";
+						}
+					}
+				}
+			}
+		}*/
+		
+		// Second Layer should only be comprised only of lodestones
+		// Processing walls and floors and other objects
+		String currentTile;
+		String wallNeighbours;
+		String objname = "";
+		int ioffset, joffset;
+		for (int y = 1; y < rows + 1; y++) {
+			for (int x = 1; x < cols + 1; x++) {
+				currentTile = data[y][x];
 				// String belowTile = data[y + 1][x];
-				String wallNeighbours;
-				String objname = "";
-				int ioffset = 0, joffset = 0;
-
+				ioffset = 0;
+				joffset = 0;
 				switch (currentTile) {
 					case "": break;
 					case wall: 
@@ -262,7 +283,13 @@ public class TextToTmx {
 								Walls[y - 1][x - 1] = nameToTileID.get("Wall " + code); break;
 							}
 						} break;
-
+						
+					case stalagmite: 
+						Walls[y - 1][x - 1] = nameToTileID.get("Wall Stalagmites"); break;
+					
+					case boulder:
+						Walls[y - 1][x - 1] = nameToTileID.get("Wall Boulder"); break;
+						
 					case elevatedfloor: 
 						// Elevated Floors needs to be processed by the same style as walls and floors
 						// Also, two things will be placed for each elevated floor - a graphic (that extends beyond the normal boundaries due to the way its drawn)
@@ -298,6 +325,7 @@ public class TextToTmx {
 						case door2open: 	objname = "Door 2 " + tsGen.numDoorTransitionFrames + "_" + tsGen.numDoorTransitionFrames; 	break;
 						case player: 		objname = "Player Idle"; 																	break;
 						case magnetsource:	objname = "Magnetic Source " + "01_" + tsGen.numMagneticSourceFrames; 						break;
+						//case boulder: 		objname = "Boulder"; break;
 						case exit: if (!data[y - 1][x].equals(wall)) {
 							// If the exit is a pit, arrows can point from any direction.
 							objname = "Exit Down";
@@ -481,6 +509,22 @@ public class TextToTmx {
 				(block.contains(arr[y + 1][x - 1]) ? trueVal : falseVal) +
 				(block.contains(arr[y + 1][x    ]) ? trueVal : falseVal) +
 				(block.contains(arr[y + 1][x + 1]) ? trueVal : falseVal);
+	}
+	
+	/**
+	 * Returns the 4 neighbours of a block
+	 * 
+	 *   1 
+	 *  2 3
+	 *   4 
+	 */
+	private String getAdjacents(int y, int x, String block, String[][] arr, boolean flip) {
+		int trueVal = flip ? 0 : 1;
+		int falseVal = 1 - trueVal;
+		return  (block.contains(arr[y - 1][x    ]) ? trueVal : falseVal) + "" +
+				(block.contains(arr[y    ][x - 1]) ? trueVal : falseVal) +
+				(block.contains(arr[y    ][x + 1]) ? trueVal : falseVal) +
+				(block.contains(arr[y + 1][x    ]) ? trueVal : falseVal);
 	}
 	
 	/**

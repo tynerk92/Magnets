@@ -412,3 +412,32 @@ Unblock (WIP)
                                               
                                               
 Solution :
+
+Cave in
+████████████████
+██████████e█████
+██████████ █████
+█████████  █████
+█████████  █████
+█████████   ████
+█████████    ███
+████████      ██
+████████      ██
+███████    ZZxX█
+█████YYzzzxxZ X█
+█████Y y xx█Z ██
+███ YY yz XX xx█
+██YX Z yzzXzz x█
+█XXXxZZ  yX yyy█
+█yyxx   yy  xYy█
+█y█zzxx X xx   █
+██yz  xX   xyXy█
+█ z y  zyy Xxxy█
+██xXyYYxy XXXxX█
+███M XY  yyX██M█
+█████XY y y█████
+█████M█Xy M█████
+███████XsX██████
+████████████████
+Solution :
+NORTH EAST NORTH WEST NORTH NORTH EAST NORTH EAST NORTH NORTH WEST SOUTH SOUTH WEST WEST WEST NORTH WEST WEST SOUTH WEST WEST EAST NORTH NORTH EAST EAST EAST SOUTH WEST EAST EAST EAST NORTH WEST NORTH NORTH EAST NORTH WEST NORTH NORTH NORTH EAST SOUTH SOUTH EAST EAST EAST EAST EAST NORTH NORTH NORTH NORTH WEST WEST WEST NORTH NORTH NORTH NORTH NORTH NORTH NORTH  (66)
