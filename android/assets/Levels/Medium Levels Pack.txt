@@ -329,7 +329,7 @@ Penta
 Solution :
 NORTH WEST WEST SOUTH NORTH WEST EAST SOUTH EAST WEST NORTH WEST NORTH WEST WEST WEST SOUTH SOUTH EAST EAST EAST WEST NORTH EAST NORTH WEST WEST EAST SOUTH EAST EAST EAST SOUTH SOUTH EAST NORTH EAST NORTH WEST WEST WEST WEST SOUTH EAST NORTH EAST EAST SOUTH SOUTH WEST NORTH EAST NORTH WEST WEST SOUTH WEST WEST WEST EAST EAST EAST EAST SOUTH WEST WEST WEST NORTH NORTH EAST NORTH WEST SOUTH SOUTH SOUTH EAST NORTH NORTH EAST EAST SOUTH EAST NORTH NORTH NORTH WEST NORTH  (87)
 
-Hexa
+Flask
 ████████
 ███ee███
 ███BB███
@@ -342,3 +342,76 @@ Hexa
 ████████
 Solution :
 NORTH WEST NORTH WEST EAST EAST EAST WEST WEST WEST NORTH NORTH NORTH EAST EAST EAST SOUTH EAST SOUTH SOUTH NORTH NORTH WEST WEST WEST SOUTH WEST NORTH SOUTH EAST SOUTH SOUTH EAST SOUTH WEST NORTH NORTH WEST NORTH NORTH EAST EAST SOUTH EAST WEST SOUTH SOUTH EAST SOUTH WEST NORTH NORTH NORTH NORTH NORTH NORTH NORTH  (57)
+
+Conveyor Belt
+████████████████████
+███  █████  ███Be███
+█   xx    xx █  ████
+█  bb████bbm     ███
+███     mbb████bb  █
+████  █ xxs   xx   █
+███eB███  █████  ███
+████████████████████
+Solution :
+WEST SOUTH WEST NORTH EAST EAST EAST EAST EAST EAST EAST SOUTH EAST NORTH EAST EAST NORTH WEST SOUTH WEST WEST WEST WEST WEST WEST WEST NORTH NORTH WEST NORTH WEST WEST WEST WEST WEST NORTH WEST SOUTH EAST SOUTH SOUTH EAST EAST EAST EAST WEST WEST WEST WEST NORTH NORTH WEST WEST WEST SOUTH EAST NORTH EAST EAST EAST EAST EAST EAST EAST SOUTH EAST EAST EAST NORTH WEST NORTH WEST SOUTH EAST EAST SOUTH EAST EAST EAST NORTH NORTH EAST  (82)
+
+Hedges
+█████████████████████████████████████████████████
+█  █████   ███   ███ █  ████   ████ ████ M ███ e█
+█ s █ █    █ █ █ █ █ x  █ █ xM █ █ M █ █ y   █  █
+█   █x  yM  x█ x █y  M   x█     x█ x █x  x  x█  █
+█ Mxy █    █y  M  x█ x  █y  Mx █y  y  y█ y █y  X█
+█   █ ██   █ █   █ █ █  █ █   ██ █ x █ █ M █ █ X█
+█████████████████████████████████████████████████
+Solution :
+SOUTH WEST SOUTH SOUTH EAST EAST NORTH NORTH SOUTH EAST EAST NORTH EAST EAST NORTH EAST SOUTH WEST SOUTH EAST EAST SOUTH EAST NORTH NORTH NORTH SOUTH EAST EAST SOUTH EAST EAST NORTH EAST WEST NORTH NORTH EAST EAST SOUTH SOUTH WEST WEST SOUTH SOUTH EAST EAST NORTH NORTH SOUTH EAST EAST NORTH EAST EAST SOUTH EAST EAST SOUTH EAST NORTH WEST WEST WEST NORTH NORTH EAST EAST NORTH EAST SOUTH SOUTH SOUTH NORTH EAST EAST SOUTH EAST EAST SOUTH EAST EAST NORTH SOUTH WEST WEST NORTH NORTH EAST EAST EAST NORTH NORTH WEST WEST SOUTH WEST SOUTH EAST WEST SOUTH SOUTH EAST EAST NORTH EAST NORTH NORTH SOUTH EAST EAST SOUTH EAST EAST EAST EAST SOUTH NORTH NORTH SOUTH EAST EAST NORTH EAST EAST SOUTH EAST WEST NORTH NORTH EAST SOUTH NORTH EAST EAST EAST SOUTH SOUTH EAST EAST NORTH NORTH NORTH EAST  (144)
+
+T Junctions
+█████████████████████████████████████████████████
+██████                  e                  ██████
+██████B█████B█████B█████B█████B█████B█████B██████
+██████x█████x█████x█████x█████x█████x█████x██████
+█████   ███   ███   ███   ███   ███   ███   █████
+█bx x m x x m x x m x x m x x m x x m x x m x xb█
+█████   ███   ███   ███   ███   ███   ███   █████
+██████x█████x█████x█████x█████x█████x█████x██████
+██████ █████ █████ █████ █████ █████ █████ ██████
+██████x█████x█████ █████x█████x█████x█████x██████
+█████   ███   ████ ████   ███   ███   ███   █████
+████x m x x m x       x m x x m x x m x x m x████
+█████   ███   █████████   ███   ███   ███   █████
+██████x█████x███████████x█████x█████x█████x██████
+██████ █████ ███████████ █████ █████ █████ ██████
+██████x█████x█████x█████x█████x█████x█████x██████
+█████   ███   ███   ███   ███   ███   ███   █████
+████x m x x m x x m x x m x x m x x m x x m x xb█
+█████   ███   ███   ███   ███   ███   ███   █████
+██████x█████x█████x█████x█████x█████x█████x██████
+██████ █████ █████ █████ █████ █████ █████ ██████
+██████x█████x█████x█████x█████x█████x█████x██████
+█████   ███   ███   ███   ███   ███   ███   █████
+█bx x m x x m x x m x x m x x m x x m x x m x xb█
+█████   ███   ███   ███   ███   ███   ███   █████
+██████x█████x█████x█████x█████x█████x█████x██████
+██████ █████ ███████████ █████ █████ █████ ██████
+██████x█████x███████████ █████ █████x█████x██████
+█████   ███   ██████████ █████ ████   ███   █████
+█bx x m x x m x          █████    x m x x m x████
+█████   ███   ██████████ █████ ████   ███   █████
+██████x█████x███████████ █████ █████x█████x██████
+██████ █████ ███████████ █████ █████ █████ ██████
+██████x█████x█████x█████x█████x█████x█████x██████
+█████   ███   ███   ███   ███   ███   ███   █████
+████x m x x m x x m x x m x x m x x m x x m x xb█
+█████   ███   ███   ███   ███   ███   ███   █████
+██████x█████x█████x█████x█████x█████x█████x██████
+██████ █████ █████ █████ █████ █████ █████ ██████
+██████x█████x█████x█████x█████x█████x█████x██████
+█████   ███   ███   ███   ███   ███   ███   █████
+█bx x m x x m x x m x x m x x m x x m x x m x xb█
+█████   ███   ███   ███   ███   ███   ███   █████
+██████x█████x█████x█████x█████x█████x█████x██████
+██████ █████ █████ █████ █████████████████ ██████
+██████                  s                  ██████
+█████████████████████████████████████████████████
+Solution :

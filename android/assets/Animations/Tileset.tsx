@@ -754,7 +754,9 @@
   </tile>
 
   <tile id="72">
-   <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Exit/Arrow Down 1_10.png"/>
+   <properties>
+    <property name="Render Depth" type="int" value="-1"/>
+   </properties>
    <animation>
     <frame tileid="72" duration="120"/>
     <frame tileid="73" duration="100"/>
@@ -773,6 +775,7 @@
     <frame tileid="74" duration="100"/>
     <frame tileid="73" duration="100"/>
    </animation>
+   <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Exit/Arrow Down 1_10.png"/>
   </tile>
 
   <tile id="73">
@@ -812,7 +815,9 @@
   </tile>
 
   <tile id="82">
-   <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Exit/Arrow Left 1_10.png"/>
+   <properties>
+    <property name="Render Depth" type="int" value="-1"/>
+   </properties>
    <animation>
     <frame tileid="82" duration="120"/>
     <frame tileid="83" duration="100"/>
@@ -831,6 +836,7 @@
     <frame tileid="84" duration="100"/>
     <frame tileid="83" duration="100"/>
    </animation>
+   <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Exit/Arrow Left 1_10.png"/>
   </tile>
 
   <tile id="83">
@@ -870,7 +876,9 @@
   </tile>
 
   <tile id="92">
-   <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Exit/Arrow Right 1_10.png"/>
+   <properties>
+    <property name="Render Depth" type="int" value="-1"/>
+   </properties>
    <animation>
     <frame tileid="92" duration="120"/>
     <frame tileid="93" duration="100"/>
@@ -889,6 +897,7 @@
     <frame tileid="94" duration="100"/>
     <frame tileid="93" duration="100"/>
    </animation>
+   <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Exit/Arrow Right 1_10.png"/>
   </tile>
 
   <tile id="93">
@@ -928,7 +937,9 @@
   </tile>
 
   <tile id="102">
-   <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Exit/Arrow Up 1_10.png"/>
+   <properties>
+    <property name="Render Depth" type="int" value="-1"/>
+   </properties>
    <animation>
     <frame tileid="102" duration="120"/>
     <frame tileid="103" duration="100"/>
@@ -947,6 +958,7 @@
     <frame tileid="104" duration="100"/>
     <frame tileid="103" duration="100"/>
    </animation>
+   <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Exit/Arrow Up 1_10.png"/>
   </tile>
 
   <tile id="103">
