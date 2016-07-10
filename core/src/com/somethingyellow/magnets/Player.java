@@ -1,33 +1,35 @@
 package com.somethingyellow.magnets;
 
 import com.somethingyellow.graphics.AnimationDef;
-import com.somethingyellow.tiled.*;
+import com.somethingyellow.tiled.TiledStage;
+import com.somethingyellow.tiled.TiledStageActor;
 
 import java.util.HashSet;
 import java.util.Map;
 
 public class Player extends TiledStageActor {
 
-	public static final int[] SUBTICKS = new int[]{
+	public static final int[] SUBTICKS_STATIC = new int[]{
 			PlayScreen.SUBTICKS.GRAPHICS.ordinal()
 	};
 	private Commands _commands;
 
 	public void initialize(Map<String, AnimationDef> animationDefs, boolean[] bodyArea, int bodyWidth, TiledStage.Coordinate origin, Commands commands) {
 		super.initialize(animationDefs, bodyArea, bodyWidth, origin);
+		SUBTICKS = SUBTICKS_STATIC;
 		_commands = commands;
 
 		showAnimation(Config.AnimationStanding);
 	}
 
 	@Override
-	public void act(int subtick) {
+	public void tick(int subtick) {
 		if (subtick == PlayScreen.SUBTICKS.GRAPHICS.ordinal()) {
 
 			setZ(0);
 
 			for (TiledStage.Coordinate bodyCoordinate : bodyCoordinates()) {
-				for (TiledStageBody body : bodyCoordinate.bodies()) {
+				for (TiledStageActor body : bodyCoordinate.actors()) {
 					if (body instanceof ObstructedFloor) {
 
 						ObstructedFloor obstructedFloor = (ObstructedFloor) body;
@@ -74,7 +76,7 @@ public class Player extends TiledStageActor {
 
 	@Override
 	public boolean bodyCanBeAt(TiledStage.Coordinate coordinate) {
-		if (_commands.isWall(coordinate)) return false;
+		if (coordinate.isWall()) return false;
 
 		for (TiledStageActor actor : coordinate.actors()) {
 			if (actor == this) continue;
@@ -85,15 +87,7 @@ public class Player extends TiledStageActor {
 		return true;
 	}
 
-	// get/set
-	// ---------
-	@Override
-	public int[] subticks() {
-		return SUBTICKS;
-	}
-
 	public interface Commands {
-		boolean isWall(TiledStage.Coordinate coordinate);
 		void endLevel();
 	}
 

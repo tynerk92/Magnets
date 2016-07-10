@@ -2,10 +2,10 @@ package com.somethingyellow.magnets;
 
 import com.somethingyellow.graphics.AnimatedActor;
 import com.somethingyellow.graphics.AnimationDef;
-import com.somethingyellow.tiled.*;
+import com.somethingyellow.tiled.TiledStage;
+import com.somethingyellow.tiled.TiledStageActor;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -15,7 +15,7 @@ public class Lodestone extends TiledStageActor {
 	public static final int MAGNETISED_ATTRACTION_RANGE = 2;
 	public static final int MAGNETISED_MAGNETISE_RANGE = 1;
 	public static final int MAGNETISED_ATTRACTION_STRENGTH = 1;
-	public static final int[] SUBTICKS = new int[]{
+	public static final int[] SUBTICKS_STATIC = new int[]{
 			PlayScreen.SUBTICKS.RESET.ordinal(),
 			PlayScreen.SUBTICKS.FORCES.ordinal(),
 			PlayScreen.SUBTICKS.BLOCK_MOVEMENT.ordinal(),
@@ -32,6 +32,7 @@ public class Lodestone extends TiledStageActor {
 	public void initialize(Map<String, AnimationDef> animationDefs, boolean[] bodyArea, int bodyWidth, TiledStage.Coordinate origin,
 	                       boolean isPushable, boolean isMagnetisable, Commands commands) {
 		super.initialize(animationDefs, bodyArea, bodyWidth, origin);
+		SUBTICKS = SUBTICKS_STATIC;
 
 		_isPushable = isPushable;
 		_isMagnetisable = isMagnetisable;
@@ -49,7 +50,7 @@ public class Lodestone extends TiledStageActor {
 	}
 
 	@Override
-	public void act(int subtick) {
+	public void tick(int subtick) {
 		if (subtick == PlayScreen.SUBTICKS.RESET.ordinal()) {
 
 			if (!isMoving()) {
@@ -105,7 +106,7 @@ public class Lodestone extends TiledStageActor {
 
 					// Find if there is already a magnetic field in visualCoordinate
 					MagneticField magneticField = null;
-					for (TiledStageBody body : visualCoordinate.bodies()) {
+					for (TiledStageActor body : visualCoordinate.actors()) {
 						if (body instanceof MagneticField) {
 							magneticField = (MagneticField) body;
 							break;
@@ -177,7 +178,8 @@ public class Lodestone extends TiledStageActor {
 
 	@Override
 	public boolean bodyCanBeAt(TiledStage.Coordinate coordinate) {
-		if (_commands.isWall(coordinate)) return false;
+		if (coordinate.isWall()) return false;
+
 		for (TiledStageActor actor : coordinate.actors()) {
 			if (actor == this) continue;
 			if (actor instanceof Player || actor instanceof Lodestone || actor instanceof MagneticSource ||
@@ -200,16 +202,7 @@ public class Lodestone extends TiledStageActor {
 		return _isMagnetised;
 	}
 
-	// get/set
-	// ---------
-
-	public int[] subticks() {
-		return SUBTICKS;
-	}
-
 	public interface Commands {
-		boolean isWall(TiledStage.Coordinate coordinate);
-
 		MagneticField spawnMagneticField(TiledStage.Coordinate coordinate);
 	}
 

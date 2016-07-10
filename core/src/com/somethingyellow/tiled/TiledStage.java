@@ -6,13 +6,14 @@ import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.somethingyellow.Listeners;
+import com.somethingyellow.utility.ObjectList;
+import com.somethingyellow.utility.TiledMapHelper;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -23,18 +24,22 @@ import java.util.LinkedList;
 import java.util.Set;
 import java.util.TreeSet;
 
-public class TiledStage extends Stage {
+/**
+ * Represents a stage with a tiled coordinate system
+ * Tightly coupled with TiledStageActor, TiledStageLightSource, TiledStageMapRenderer
+ * Delegates rendering of actors and map to TiledStageMapRenderer
+ */
 
+public class TiledStage extends Stage {
 	private TiledMap _map;
 	private TiledStageMapRenderer _mapRenderer;
 	private OrthographicCamera _camera = new OrthographicCamera();
 	private TiledStageActor _cameraFocalActor;
-	private HashMap<String, TiledStageBody> _bodiesByName = new HashMap<String, TiledStageBody>();
-	private ArrayList<TiledStageBody> _tempBodies = new ArrayList<TiledStageBody>();
-	private HashSet<TiledStageBody> _bodies = new HashSet<TiledStageBody>();
+	private HashMap<String, TiledStageActor> _actorsByName = new HashMap<String, TiledStageActor>();
 	private HashSet<TiledStageLightSource> _lightSources = new HashSet<TiledStageLightSource>();
 	private ArrayList<HashSet<TiledStageActor>> _subTicksToActors;
-	private ArrayList<TiledStageActor> _tempActors = new ArrayList<TiledStageActor>();
+	private HashSet<TiledStageActor> _actors = new HashSet<TiledStageActor>();
+	private LinkedList<TiledStageActor> _tempActors = new LinkedList<TiledStageActor>();
 	private int _tileWidth;
 	private int _tileHeight;
 	private int _tileRows;
@@ -43,21 +48,19 @@ public class TiledStage extends Stage {
 	private float _tickTime;
 	private float _tickDuration;
 	private float _cameraZoom;
+	private Commands _commands;
+	private TiledMapTileLayer _wallLayer;
 	private ArrayList<Coordinate> _coordinates;
-	private String _bodiesLayerName;
-	private String _shadowsLayerName;
 	private HashMap<String, TiledMapTileLayer> _tileLayers = new HashMap<String, TiledMapTileLayer>();
-	private LinkedList<TiledObject> _objects = new LinkedList<TiledObject>();
-	private Listeners<Listener> _listeners = new Listeners<Listener>();
+	private ObjectList<Listener> _listeners = new ObjectList<Listener>();
 	private boolean _isPaused = true;
 
-	public TiledStage(String bodiesLayerName, String shadowsLayerName, int maxSubTicks, float tickDuration) {
-		_bodiesLayerName = bodiesLayerName;
-		_shadowsLayerName = shadowsLayerName;
+	public TiledStage(int maxSubTicks, float tickDuration, Commands commands) {
 		_maxSubTicks = maxSubTicks;
 		_tickTime = 0f;
 		_cameraZoom = 1f;
 		_tickDuration = tickDuration;
+		_commands = commands;
 
 		_subTicksToActors = new ArrayList<HashSet<TiledStageActor>>(_maxSubTicks);
 		for (int i = 0; i < _maxSubTicks; i++) {
@@ -65,69 +68,6 @@ public class TiledStage extends Stage {
 		}
 
 		getViewport().setCamera(_camera);
-	}
-
-	public static Boolean ParseBooleanProp(MapProperties props, String propName) {
-		Object propObject = props.get(propName);
-		return Boolean.parseBoolean(propObject.toString());
-	}
-
-	public static boolean ParseBooleanProp(MapProperties props, String propName, boolean defaultValue) {
-		Object propObject = props.get(propName);
-		if (propObject == null) return defaultValue;
-		return Boolean.parseBoolean(propObject.toString());
-	}
-
-	public static Integer ParseIntegerProp(MapProperties props, String propName) {
-		Object propObject = props.get(propName);
-		if (propObject == null) return null;
-		if (propObject instanceof Float) {
-			return Math.round((Float) propObject);
-		} else {
-			return Integer.parseInt(propObject.toString());
-		}
-	}
-
-	public static int ParseIntegerProp(MapProperties props, String propName, int defaultValue) {
-		Object propObject = props.get(propName);
-		if (propObject instanceof Float) {
-			return Math.round((Float) propObject);
-		} else {
-			if (propObject == null) return defaultValue;
-			return Integer.parseInt(propObject.toString());
-		}
-	}
-
-	public static Float ParseFloatProp(MapProperties props, String propName) {
-		Object propObject = props.get(propName);
-		if (propObject == null) return null;
-		if (propObject instanceof Float) {
-			return (Float) propObject;
-		} else {
-			return Float.parseFloat(propObject.toString());
-		}
-	}
-
-	public static float ParseFloatProp(MapProperties props, String propName, float defaultValue) {
-		Object propObject = props.get(propName);
-		if (propObject == null) return defaultValue;
-		if (propObject instanceof Float) {
-			return (Float) propObject;
-		} else {
-			return Float.parseFloat(propObject.toString());
-		}
-	}
-
-	public static String ParseProp(MapProperties props, String propName) {
-		Object propObject = props.get(propName);
-		if (propObject == null) return null;
-		return propObject.toString();
-	}
-
-	public static String ParseProp(MapProperties props, String propName, String defaultValue) {
-		Object propObject = props.get(propName);
-		if (propObject == null) return defaultValue;
-		return propObject.toString();
 	}
 
 	public static DIRECTION ReverseDirection(DIRECTION direction) {
@@ -209,7 +149,7 @@ public class TiledStage extends Stage {
 		return 0;
 	}
 
-	public Listeners<Listener> listeners() {
+	public ObjectList<Listener> listeners() {
 		return _listeners;
 	}
 
@@ -217,35 +157,63 @@ public class TiledStage extends Stage {
 		return _map != null;
 	}
 
-	public void load(TiledMap map, int screenWidth, int screenHeight, float cameraZoom) {
+	/**
+	 * Loads a TiledMap, unloading if it is still loaded
+	 *
+	 * @param map
+	 * @param screenWidth
+	 * @param screenHeight
+	 * @param cameraZoom    Initial zoom ratio of camera
+	 * @param wallLayerName Name of the "wall" layer in the map
+	 */
+
+	public void load(TiledMap map, int screenWidth, int screenHeight, float cameraZoom,
+	                 String wallLayerName) {
 		if (isLoaded()) unload();
 
 		_map = map;
-		_mapRenderer = new TiledStageMapRenderer(this, _map, _bodiesLayerName, _shadowsLayerName);
+		_mapRenderer = new TiledStageMapRenderer(this);
 		MapProperties props = _map.getProperties();
 		_tileWidth = props.get("tilewidth", Integer.class);
 		_tileHeight = props.get("tileheight", Integer.class);
 		_tileRows = props.get("height", Integer.class);
 		_tileColumns = props.get("width", Integer.class);
 		_cameraZoom = cameraZoom;
-
+		_wallLayer = null;
 		_coordinates = new ArrayList<Coordinate>(_tileRows * _tileColumns);
 
+		// Iterate through layers
 		for (MapLayer layer : _map.getLayers()) {
 			if (layer instanceof TiledMapTileLayer) {
-				_tileLayers.put(layer.getName(), (TiledMapTileLayer) layer);
+				TiledMapTileLayer tileLayer = (TiledMapTileLayer) layer;
+				_tileLayers.put(layer.getName(), tileLayer);
+				if (tileLayer.getName().equals(wallLayerName)) _wallLayer = tileLayer;
 			}
 		}
 
+		// Create Coordinates
 		for (int r = 0; r < _tileRows; r++) {
 			for (int c = 0; c < _tileColumns; c++) {
 				_coordinates.add(new Coordinate(r, c));
 			}
 		}
 
+		// Iterate through objects
 		for (MapLayer layer : _map.getLayers()) {
 			for (MapObject object : layer.getObjects()) {
-				_objects.add(new TiledObject(object));
+
+				// Determine origin of object relative to coordinate system
+				int x = TiledMapHelper.ParseIntegerProp(object.getProperties(), "x", 0);
+				int y = TiledMapHelper.ParseIntegerProp(object.getProperties(), "y", 0)
+						+ TiledMapHelper.ParseIntegerProp(object.getProperties(), "height", 0);
+				Coordinate origin = getCoordinateAt(x, y);
+
+				// get tile defined by "gid" property of object
+				int gid = TiledMapHelper.ParseIntegerProp(object.getProperties(), "gid", 0);
+				TiledMapTile tile = _map.getTileSets().getTile(gid);
+
+				_commands.spawnObject(origin, tile, object.getName(), object.getProperties());
+
 			}
 		}
 
@@ -256,12 +224,10 @@ public class TiledStage extends Stage {
 	}
 
 	public void unload() {
-		_bodies.clear();
-		_tempBodies.clear();
-		_bodiesByName.clear();
-		_tileLayers.clear();
+		_actorsByName.clear();
 		_tempActors.clear();
-		_objects.clear();
+		_tileLayers.clear();
+		_actors.clear();
 		for (int i = 0; i < _maxSubTicks; i++) {
 			_subTicksToActors.get(i).clear();
 		}
@@ -277,9 +243,6 @@ public class TiledStage extends Stage {
 		_isPaused = true;
 		_map = null;
 	}
-
-	// visual
-	// -------
 
 	@Override
 	public void draw() {
@@ -321,19 +284,17 @@ public class TiledStage extends Stage {
 	}
 
 	private void tick() {
-		_tempBodies.clear();
-		_tempBodies.addAll(_bodies);
-		for (TiledStageBody body : _tempBodies) {
-			body.act();
-		}
+		_tempActors.clear();
+		_tempActors.addAll(_actors);
+		for (TiledStageActor actor : _tempActors) actor.tick();
 
-		for (int i = 0; i < _maxSubTicks; i++) {
+		for (int i = 0; i < _maxSubTicks; i ++) {
 			_tempActors.clear();
 			_tempActors.addAll(_subTicksToActors.get(i));
 			Collections.sort(_tempActors);
 
 			for (TiledStageActor actor : _tempActors) {
-				actor.act(i);
+				actor.tick(i);
 			}
 		}
 
@@ -342,8 +303,8 @@ public class TiledStage extends Stage {
 		}
 	}
 
-	public TiledStageMapRenderer mapRenderer() {
-		return _mapRenderer;
+	public Set<TiledStageActor> actors() {
+		return _actors;
 	}
 
 	public TiledMap map() {
@@ -370,6 +331,9 @@ public class TiledStage extends Stage {
 		return _tickDuration;
 	}
 
+	public TiledMapTileLayer wallLayer() {
+		return _wallLayer; }
+
 	public boolean isPaused() {
 		return _isPaused;
 	}
@@ -387,16 +351,13 @@ public class TiledStage extends Stage {
 		return getCoordinate(Math.floorDiv((int) y, _tileHeight), Math.floorDiv((int) x, _tileWidth));
 	}
 
-	public void addBody(TiledStageBody body) {
-		super.addActor(body);
-		_bodies.add(body);
+	public void addActor(TiledStageActor actor) {
+		super.addActor(actor);
+		_actors.add(actor);
 
-		if (body instanceof TiledStageActor) {
-			TiledStageActor actor = (TiledStageActor) body;
-			// Considering what subticks the bodies listen to, add to hashmap
-			for (int i : actor.subticks()) {
-				_subTicksToActors.get(i).add(actor);
-			}
+		// Considering what subticks the bodies listen to, add to hashmap
+		for (int i : actor.SUBTICKS) {
+			_subTicksToActors.get(i).add(actor);
 		}
 	}
 
@@ -405,11 +366,11 @@ public class TiledStage extends Stage {
 		_lightSources.add(lightSource);
 	}
 
-	public void removeBody(TiledStageBody body) {
-		_bodies.remove(body);
+	public void removeActor(TiledStageActor actor) {
+		_actors.remove(actor);
 
 		for (HashSet<TiledStageActor> actors : _subTicksToActors) {
-			if (body instanceof TiledStageActor) actors.remove(body);
+			actors.remove(actor);
 		}
 	}
 
@@ -419,13 +380,13 @@ public class TiledStage extends Stage {
 		lightSource.remove();
 	}
 
-	public TiledStageBody getBody(String name) {
-		// Search through bodies in coordinate system if not memoized
+	public TiledStageActor getActorByName(String name) {
+		// Search through actors in coordinate system if not memoized
 		// If found, memoize actor by name
-		if (!_bodiesByName.containsKey(name)) {
-			for (TiledStageBody body : _bodies) {
-				if (body.getName() != null && body.getName().equals(name)) {
-					_bodiesByName.put(name, body);
+		if (!_actorsByName.containsKey(name)) {
+			for (TiledStageActor actor : _actors) {
+				if (actor.getName() != null && actor.getName().equals(name)) {
+					_actorsByName.put(name, actor);
 					break;
 				}
 			}
@@ -433,12 +394,12 @@ public class TiledStage extends Stage {
 
 		// Check if actor exists in coordinate system
 		// If not, remove it from hashmap of names
-		TiledStageBody body = _bodiesByName.get(name);
-		if (body == null || !_bodies.contains(body)) {
-			_bodiesByName.remove(name);
+		TiledStageActor actor = _actorsByName.get(name);
+		if (actor == null || !_actors.contains(actor)) {
+			_actorsByName.remove(name);
 			return null;
 		} else {
-			return body;
+			return actor;
 		}
 	}
 
@@ -446,28 +407,8 @@ public class TiledStage extends Stage {
 		return tileRow * _tileColumns + tileCol;
 	}
 
-	public HashMap<String, TiledMapTileLayer> tileLayers() {
-		return _tileLayers;
-	}
-
-	public Iterator<Cell> cellsIterator() {
-		return new CellsIterator();
-	}
-
-	public Iterator<Cell> getCells(String layerName) {
-		return new CellsIterator(layerName);
-	}
-
-	public Set<TiledStageBody> bodies() {
-		return _bodies;
-	}
-
 	public Set<TiledStageLightSource> lightSources() {
 		return _lightSources;
-	}
-
-	public LinkedList<TiledObject> objects() {
-		return _objects;
 	}
 
 	public void setScreenSize(int screenWidth, int screenHeight) {
@@ -493,6 +434,10 @@ public class TiledStage extends Stage {
 		WEST, EAST, NORTH, SOUTH, NORTH_WEST, NORTH_EAST, SOUTH_WEST, SOUTH_EAST
 	}
 
+	public interface Commands {
+		void spawnObject(Coordinate origin, TiledMapTile tile, String name, MapProperties properties);
+	}
+
 	public static class Config {
 		public static float CameraPanningSmoothRatio = 0.1f;
 		public static float CameraZoomSmoothRatio = 0.1f;
@@ -512,43 +457,7 @@ public class TiledStage extends Stage {
 		}
 	}
 
-	public class TiledObject {
-		private Coordinate _origin;
-		private TiledMapTile _tile;
-		private MapObject _object;
-
-		private TiledObject(MapObject object) {
-			_object = object;
-
-			// Determine origin of object relative to coordinate system
-			int x = ParseIntegerProp(_object.getProperties(), "x", 0);
-			int y = ParseIntegerProp(_object.getProperties(), "y", 0) + ParseIntegerProp(_object.getProperties(), "height", 0);
-			_origin = getCoordinateAt(x, y);
-
-			// get tile defined by "gid" property of object
-			int gid = ParseIntegerProp(_object.getProperties(), "gid", 0);
-			_tile = _map.getTileSets().getTile(gid);
-		}
-
-		public Coordinate origin() {
-			return _origin;
-		}
-
-		public TiledMapTile tile() {
-			return _tile;
-		}
-
-		public String name() {
-			return _object.getName();
-		}
-
-		public MapProperties properties() {
-			return _object.getProperties();
-		}
-	}
-
 	public class Coordinate implements Comparable<Coordinate> {
-		private HashSet<TiledStageBody> _bodies = new HashSet<TiledStageBody>();
 		private HashSet<TiledStageActor> _actors = new HashSet<TiledStageActor>();
 		private int _row;
 		private int _col;
@@ -568,24 +477,16 @@ public class TiledStage extends Stage {
 			return _actors;
 		}
 
-		public HashSet<TiledStageBody> bodies() {
-			return _bodies;
-		}
-
 		public TiledStage stage() {
 			return TiledStage.this;
 		}
 
-		public void add(TiledStageBody body) {
-			_bodies.add(body);
-			if (body instanceof TiledStageActor) {
-				_actors.add((TiledStageActor) body);
-			}
+		public void add(TiledStageActor actor) {
+			_actors.add(actor);
 		}
 
-		public void remove(TiledStageBody body) {
-			_bodies.remove(body);
-			if (body instanceof TiledStageActor) _actors.remove(body);
+		public void remove(TiledStageActor actor) {
+			_actors.remove(actor);
 		}
 
 		public DIRECTION getDirectionFrom(Coordinate sourceCoordinate) {
@@ -670,9 +571,8 @@ public class TiledStage extends Stage {
 			return _col;
 		}
 
-		public OrthographicCamera camera() {
-			return _camera;
-		}
+		public boolean isWall() {
+			return _wallLayer.getCell(_col, _row) != null; }
 
 		public Cell getCell(String layerName) {
 			return _cells.get(layerName);
@@ -691,7 +591,7 @@ public class TiledStage extends Stage {
 		public String getTileProp(String layerName, String propName, String defaultValue) {
 			TiledMapTile tile = getTile(layerName);
 			if (tile == null) return defaultValue;
-			return ParseProp(tile.getProperties(), propName, defaultValue);
+			return TiledMapHelper.ParseProp(tile.getProperties(), propName, defaultValue);
 		}
 
 		public Vector2 position() {

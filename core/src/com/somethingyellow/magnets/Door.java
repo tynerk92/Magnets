@@ -10,12 +10,13 @@ import java.util.Map;
 
 public class Door extends TiledStageActor {
 
-	public static final int[] SUBTICKS = new int[]{
+	public static final int[] SUBTICKS_STATIC = new int[]{
 			PlayScreen.SUBTICKS.GRAPHICS.ordinal()
 	};
 
 	public void initialize(Map<String, AnimationDef> animationDefs, boolean[] bodyArea, int bodyWidth, TiledStage.Coordinate origin, boolean toOpen) {
 		super.initialize(animationDefs, bodyArea, bodyWidth, origin);
+		SUBTICKS = SUBTICKS_STATIC;
 
 		setTransition(Config.AnimationOpening, Config.AnimationOpened);
 		setTransition(Config.AnimationClosing, Config.AnimationClosed);
@@ -43,7 +44,7 @@ public class Door extends TiledStageActor {
 	}
 
 	@Override
-	public void act(int subtick) {
+	public void tick(int subtick) {
 		if (subtick == PlayScreen.SUBTICKS.GRAPHICS.ordinal()) {
 
 			if (hasStatus(Config.StatusToOpen)) {
@@ -90,14 +91,6 @@ public class Door extends TiledStageActor {
 
 	public boolean isOpen() {
 		return hasStatus(Config.StatusOpened);
-	}
-
-	// get/set
-	// ---------
-
-	@Override
-	public int[] subticks() {
-		return SUBTICKS;
 	}
 
 	public static class Config {

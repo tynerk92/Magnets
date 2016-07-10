@@ -1,22 +1,46 @@
 package com.somethingyellow.graphics;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.somethingyellow.utility.ObjectList;
 
-import java.util.ArrayList;
+/**
+ * Represents an animation
+ * Stores an array of AnimationFrame, an associated z-index, an associated String tag
+ * To call update() to advance timer
+ * Manages its animation timer and getSprite() returns the correct AnimationFrame Sprite for that timing
+ * When the animation ends, it loops
+ * At the start, it is shown
+ */
 
 public class Animation implements Comparable<Animation> {
 	private float _time;
 	private String _tag;
-	private ArrayList<Frame> _frames;
+	private AnimationFrame[] _frames;
 	private int _frameIndex;
 	private int _zIndex;
 
 	private float _duration;
 	private float _alpha;
 	private boolean _isActive;
-	private Listener _listener;
+	private ObjectList<Listener> _listeners;
 
-	public Animation(String tag, ArrayList<Frame> frames, int zIndex) {
+	public Animation(AnimationDef def) {
+		this(def, null);
+	}
+
+	public Animation(AnimationDef def, String tag) {
+		this(def.frames(), def.zIndex(), tag);
+	}
+
+	public Animation(AnimationFrame[] frames) {
+		this(frames, 0);
+	}
+
+	public Animation(AnimationFrame[] frames, int zIndex) {
+		this(frames, zIndex, null);
+	}
+
+	public Animation(AnimationFrame[] frames, int zIndex, String tag) {
 		_time = 0f;
 		_tag = tag;
 		_frameIndex = 0;
@@ -26,31 +50,24 @@ public class Animation implements Comparable<Animation> {
 		_zIndex = zIndex;
 
 		_duration = 0f;
-		for (Frame frame : _frames) {
+		for (AnimationFrame frame : _frames) {
 			_duration += frame.duration();
 		}
-	}
 
-	public Animation(ArrayList<Frame> frames, int zIndex) {
-		this(null, frames, zIndex);
-	}
-
-	public Animation(String tag, ArrayList<Frame> frames, int zIndex, Listener listener) {
-		this(tag, frames, zIndex);
-		_listener = listener;
+		_listeners = new ObjectList<Listener>();
 	}
 
 	public void update(float timeDelta) {
 		if (_alpha <= 0) return;
 
 		_time += timeDelta;
-		while (_time > _frames.get(_frameIndex).duration()) {
-			_time -= _frames.get(_frameIndex).duration();
+		while (_time > _frames[_frameIndex].duration()) {
+			_time -= _frames[_frameIndex].duration();
 
-			if (_frameIndex < _frames.size() - 1) {
+			if (_frameIndex < _frames.length - 1) {
 				_frameIndex++;
 			} else {
-				if (_listener != null) _listener.animationEnded(this);
+				for (Listener listener : _listeners) listener.animationEnded(this);
 				_frameIndex = 0;
 			}
 		}
@@ -76,8 +93,8 @@ public class Animation implements Comparable<Animation> {
 		_alpha = 0f;
 	}
 
-	public Frame frame() {
-		return _frames.get(_frameIndex);
+	public AnimationFrame frame() {
+		return _frames[_frameIndex];
 	}
 
 	public int zIndex() {
@@ -100,12 +117,20 @@ public class Animation implements Comparable<Animation> {
 		return _isActive;
 	}
 
+	public ObjectList<Listener> listeners() {
+		return _listeners;
+	}
+
 	@Override
 	public int compareTo(Animation animation) {
 		return _zIndex - animation._zIndex;
 	}
 
-	public interface Listener {
-		void animationEnded(Animation animation);
+	public static abstract class Listener {
+		/**
+		 * When the animation ends (after which it will loop)
+		 */
+		public void animationEnded(Animation animation) {
+		}
 	}
 }

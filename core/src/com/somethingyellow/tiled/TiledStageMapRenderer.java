@@ -3,22 +3,27 @@ package com.somethingyellow.tiled;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
-import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
-import com.badlogic.gdx.maps.tiled.renderers.BatchTiledMapRenderer;
+import com.badlogic.gdx.maps.tiled.tiles.AnimatedTiledMapTile;
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.utils.Disposable;
 import com.somethingyellow.graphics.Animation;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 
 import static com.badlogic.gdx.graphics.g2d.Batch.C1;
 import static com.badlogic.gdx.graphics.g2d.Batch.C2;
@@ -41,8 +46,17 @@ import static com.badlogic.gdx.graphics.g2d.Batch.Y2;
 import static com.badlogic.gdx.graphics.g2d.Batch.Y3;
 import static com.badlogic.gdx.graphics.g2d.Batch.Y4;
 
-public class TiledStageMapRenderer extends BatchTiledMapRenderer {
+/**
+ * Map renderer for TiledStage
+ * Manages rendering of TiledStageActors and TiledStageLightSources in TiledStage
+ * Renders TiledStageActors within "wall" layer of TiledStage, in pseudo-3D
+ * (Actors in foremost rows are rendered on top of actors behind)
+ * For exclusive use in TiledStage
+ * Image and object layers are ignored during rendering
+ * Draws on Batch of TiledStage
+ */
 
+public class TiledStageMapRenderer implements Disposable {
 	public static final String LIGHTING_FRAGMENT_SHADER =
 			"#ifdef GL_ES\n" +
 					"    #define LOWP lowp\n" +
@@ -87,48 +101,45 @@ public class TiledStageMapRenderer extends BatchTiledMapRenderer {
 					"\tv_texCoord = a_texCoord0;\n" +
 					"\tgl_Position = u_projTrans * a_position;\n" +
 					"}";
+	private static final int NUM_VERTICES = 20;
+	private float _vertices[] = new float[NUM_VERTICES];
+	private Batch _batch;
+	private Rectangle _viewBounds = new Rectangle();
 	private TiledStage _stage;
 	private ShaderProgram _lightingShaderProgram = new ShaderProgram(VERTEX_SHADER, LIGHTING_FRAGMENT_SHADER);
 	private ArrayList<HashSet<Animation>> _animationsByCoordinates;
-	private HashMap<Animation, TiledStageBody> _animationsToBodies = new HashMap<Animation, TiledStageBody>();
+	private HashMap<Animation, TiledStageActor> _animationToActors = new HashMap<Animation, TiledStageActor>();
 	private ArrayList<Animation> _tempAnimationsArray = new ArrayList<Animation>();
 	private ArrayList<Animation> _tempAnimationsArray2 = new ArrayList<Animation>();
-	private int _bodyAnimationMinZIndex;
-	private int _bodyAnimationMaxZIndex;
 	private FrameBuffer _frameBuffer;
 	private Texture _blackTexture;
 	private float _ambientColorRed;
 	private float _ambientColorGreen;
 	private float _ambientColorBlue;
-	private String _layerNameBodies;
-	private String _layerNameShadows;
+	private TiledMapTileLayer[] _tileLayers;
 
-	public TiledStageMapRenderer(TiledStage stage, TiledMap map, String layerNameBodies, String layerNameShadows) {
-		super(map, stage.getBatch());
+	public TiledStageMapRenderer(TiledStage stage) {
 		_stage = stage;
-		_ambientColorRed = Config.AmbientColorRedDefault;
-		_ambientColorGreen = Config.AmbientColorGreenDefault;
-		_ambientColorBlue = Config.AmbientColorBlueDefault;
-		_layerNameBodies = layerNameBodies;
-		_layerNameShadows = layerNameShadows;
-	}
+		_batch = _stage.getBatch();
 
-	public TiledStageMapRenderer(TiledStage stage, TiledMap map, String layerNameBodies, String layerNameShadows, float unitScale) {
-		super(map, unitScale, stage.getBatch());
-		_stage = stage;
-		_ambientColorRed = Config.AmbientColorRedDefault;
-		_ambientColorGreen = Config.AmbientColorGreenDefault;
-		_ambientColorBlue = Config.AmbientColorBlueDefault;
-		_layerNameBodies = layerNameBodies;
-		_layerNameShadows = layerNameShadows;
+		LinkedList<TiledMapTileLayer> layers = new LinkedList<TiledMapTileLayer>();
+		for (MapLayer layer : stage.map().getLayers()) {
+			if (layer instanceof TiledMapTileLayer) layers.add((TiledMapTileLayer) layer);
+		}
+		_tileLayers = layers.toArray(new TiledMapTileLayer[layers.size()]);
 	}
 
 	public void initialize(int screenWidth, int screenHeight) {
+		_ambientColorRed = Config.AmbientColorRedDefault;
+		_ambientColorGreen = Config.AmbientColorGreenDefault;
+		_ambientColorBlue = Config.AmbientColorBlueDefault;
+
 		_animationsByCoordinates = new ArrayList<HashSet<Animation>>(_stage.tileRows() * _stage.tileColumns());
 		for (int i = 0; i < _stage.tileRows() * _stage.tileColumns(); i++) {
 			_animationsByCoordinates.add(i, new HashSet<Animation>());
 		}
 
+		// Prepare black texture for shadows
 		Pixmap blackPixmap = new Pixmap(1, 1, Pixmap.Format.RGBA8888);
 		blackPixmap.setColor(Color.BLACK);
 		blackPixmap.fill();
@@ -136,6 +147,13 @@ public class TiledStageMapRenderer extends BatchTiledMapRenderer {
 		blackPixmap.dispose();
 
 		setScreenSize(screenWidth, screenHeight);
+	}
+
+	public void setView(OrthographicCamera camera) {
+		_stage.getBatch().setProjectionMatrix(camera.combined);
+		float width = camera.viewportWidth * camera.zoom;
+		float height = camera.viewportHeight * camera.zoom;
+		_viewBounds.set(camera.position.x - width / 2, camera.position.y - height / 2, width, height);
 	}
 
 	public void setScreenSize(int screenWidth, int screenHeight) {
@@ -153,24 +171,42 @@ public class TiledStageMapRenderer extends BatchTiledMapRenderer {
 		_ambientColorRed = red;
 	}
 
-	@Override
 	public void render() {
 		// Process animations' data
-		updateBodiesData();
+		updateActorsData();
 
 		// Prepare shader based on light sources
-		_frameBuffer.begin();
-		batch.setShader(null);
+		prepareLightingShader();
+
+		// Render layers
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		batch.begin();
+
+		AnimatedTiledMapTile.updateAnimationBaseTime();
+		_batch.begin();
+		for (TiledMapTileLayer layer : _tileLayers) {
+			for (int row = layer.getHeight() - 1; row >= 0; row--) {
+				drawLayerByRow(layer, row);
+				if (layer == _stage.wallLayer()) drawActorsByRow(row);
+			}
+		}
+
+		_batch.end();
+	}
+
+	private void prepareLightingShader() {
+		_frameBuffer.begin();
+		_batch.setShader(null);
+		Gdx.gl.glClearColor(0, 0, 0, 1);
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		_batch.begin();
 		for (TiledStageLightSource lightSource : _stage.lightSources()) {
-			batch.setColor(1, 1, 1, lightSource.intensity());
-			batch.draw(lightSource.texture(), lightSource.renderX(), lightSource.renderY(),
+			_batch.setColor(1, 1, 1, lightSource.intensity());
+			_batch.draw(lightSource.texture(), lightSource.renderX(), lightSource.renderY(),
 					lightSource.getWidth(), lightSource.getHeight());
 		}
-		batch.end();
-		batch.setColor(Color.WHITE);
+		_batch.end();
+		_batch.setColor(Color.WHITE);
 		_frameBuffer.end();
 
 		_lightingShaderProgram.begin();
@@ -180,178 +216,149 @@ public class TiledStageMapRenderer extends BatchTiledMapRenderer {
 		_lightingShaderProgram.end();
 		_frameBuffer.getColorBufferTexture().bind(1);
 		_blackTexture.bind(0);
-
-		Gdx.gl.glClearColor(0, 0, 0, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
-		super.render();
+		_batch.setShader(_lightingShaderProgram);
 	}
 
-	@Override
-	public void renderTileLayer(TiledMapTileLayer layer) {
-		batch.setShader(_lightingShaderProgram);
+	private void drawLayerByRow(TiledMapTileLayer layer, int row) {
+		float layerTileWidth = layer.getTileWidth();
+		float layerTileHeight = layer.getTileHeight();
 
-		// Draw tiled map
-		final Color batchColor = batch.getColor();
-		final float color = Color.toFloatBits(batchColor.r, batchColor.g, batchColor.b, batchColor.a * layer.getOpacity());
+		int row1 = Math.max(0, (int) (_viewBounds.y / layerTileHeight) - 1);
+		int row2 = Math.min(layer.getHeight(), (int) ((_viewBounds.y + _viewBounds.height + layerTileHeight) / layerTileHeight)) - 1;
+		if (row < row1 || row > row2) return; // no need to draw row: out of viewbounds
 
-		final int layerWidth = layer.getWidth();
-		final int layerHeight = layer.getHeight();
+		Color batchColor = _batch.getColor();
+		float color = Color.toFloatBits(batchColor.r, batchColor.g, batchColor.b, batchColor.a * layer.getOpacity());
 
-		final float layerTileWidth = layer.getTileWidth() * unitScale;
-		final float layerTileHeight = layer.getTileHeight() * unitScale;
+		float y = row * layer.getTileHeight();
 
-		final int col1 = Math.max(0, (int) (viewBounds.x / layerTileWidth));
-		final int col2 = Math.min(layerWidth, (int) ((viewBounds.x + viewBounds.width + layerTileWidth) / layerTileWidth)) - 1;
+		int col1 = Math.max(0, (int) (_viewBounds.x / layerTileWidth));
+		int col2 = Math.min(layer.getWidth(), (int) ((_viewBounds.x + _viewBounds.width + layerTileWidth) / layerTileWidth)) - 1;
 
-		final int row1 = Math.max(0, (int) (viewBounds.y / layerTileHeight) - 1);
-		final int row2 = Math.min(layerHeight, (int) ((viewBounds.y + viewBounds.height + layerTileHeight) / layerTileHeight)) - 1;
+		float x = col1 * layerTileWidth;
+		for (int col = col1; col <= col2; col++) {
+			TiledMapTileLayer.Cell cell = layer.getCell(col, row);
 
-		float y = row2 * layerTileHeight;
-		float xStart = col1 * layerTileWidth;
-		final float[] vertices = this.vertices;
+			if (cell != null) {
+				TiledMapTile tile = cell.getTile();
 
-		boolean isBodiesLayer = false;
-		if (layer.getName().equals(_layerNameBodies)) {
-			isBodiesLayer = true;
-		}
+				if (tile != null) {
+					boolean flipX = cell.getFlipHorizontally();
+					boolean flipY = cell.getFlipVertically();
+					int rotations = cell.getRotation();
 
-		for (int row = row2; row >= row1; row--) {
-			float x = xStart;
+					TextureRegion region = tile.getTextureRegion();
 
-			for (int col = col1; col <= col2; col++) {
-				final TiledMapTileLayer.Cell cell = layer.getCell(col, row);
+					float x1 = x + tile.getOffsetX();
+					float y1 = y + tile.getOffsetY();
+					float x2 = x1 + region.getRegionWidth();
+					float y2 = y1 + region.getRegionHeight();
 
-				if (cell != null) {
-					final TiledMapTile tile = cell.getTile();
+					float u1 = region.getU();
+					float v1 = region.getV2();
+					float u2 = region.getU2();
+					float v2 = region.getV();
 
-					if (tile != null) {
-						final boolean flipX = cell.getFlipHorizontally();
-						final boolean flipY = cell.getFlipVertically();
-						final int rotations = cell.getRotation();
+					_vertices[X1] = x1;
+					_vertices[Y1] = y1;
+					_vertices[C1] = color;
+					_vertices[U1] = u1;
+					_vertices[V1] = v1;
 
-						TextureRegion region = tile.getTextureRegion();
+					_vertices[X2] = x1;
+					_vertices[Y2] = y2;
+					_vertices[C2] = color;
+					_vertices[U2] = u1;
+					_vertices[V2] = v2;
 
-						float x1 = x + tile.getOffsetX() * unitScale;
-						float y1 = y + tile.getOffsetY() * unitScale;
-						float x2 = x1 + region.getRegionWidth() * unitScale;
-						float y2 = y1 + region.getRegionHeight() * unitScale;
+					_vertices[X3] = x2;
+					_vertices[Y3] = y2;
+					_vertices[C3] = color;
+					_vertices[U3] = u2;
+					_vertices[V3] = v2;
 
-						float u1 = region.getU();
-						float v1 = region.getV2();
-						float u2 = region.getU2();
-						float v2 = region.getV();
+					_vertices[X4] = x2;
+					_vertices[Y4] = y1;
+					_vertices[C4] = color;
+					_vertices[U4] = u2;
+					_vertices[V4] = v1;
 
-						vertices[X1] = x1;
-						vertices[Y1] = y1;
-						vertices[C1] = color;
-						vertices[U1] = u1;
-						vertices[V1] = v1;
+					if (flipX) {
+						float temp = _vertices[U1];
+						_vertices[U1] = _vertices[U3];
+						_vertices[U3] = temp;
+						temp = _vertices[U2];
+						_vertices[U2] = _vertices[U4];
+						_vertices[U4] = temp;
+					}
+					if (flipY) {
+						float temp = _vertices[V1];
+						_vertices[V1] = _vertices[V3];
+						_vertices[V3] = temp;
+						temp = _vertices[V2];
+						_vertices[V2] = _vertices[V4];
+						_vertices[V4] = temp;
+					}
+					if (rotations != 0) {
+						switch (rotations) {
+							case TiledMapTileLayer.Cell.ROTATE_90: {
+								float tempV = _vertices[V1];
+								_vertices[V1] = _vertices[V2];
+								_vertices[V2] = _vertices[V3];
+								_vertices[V3] = _vertices[V4];
+								_vertices[V4] = tempV;
 
-						vertices[X2] = x1;
-						vertices[Y2] = y2;
-						vertices[C2] = color;
-						vertices[U2] = u1;
-						vertices[V2] = v2;
+								float tempU = _vertices[U1];
+								_vertices[U1] = _vertices[U2];
+								_vertices[U2] = _vertices[U3];
+								_vertices[U3] = _vertices[U4];
+								_vertices[U4] = tempU;
+								break;
+							}
+							case TiledMapTileLayer.Cell.ROTATE_180: {
+								float tempU = _vertices[U1];
+								_vertices[U1] = _vertices[U3];
+								_vertices[U3] = tempU;
+								tempU = _vertices[U2];
+								_vertices[U2] = _vertices[U4];
+								_vertices[U4] = tempU;
+								float tempV = _vertices[V1];
+								_vertices[V1] = _vertices[V3];
+								_vertices[V3] = tempV;
+								tempV = _vertices[V2];
+								_vertices[V2] = _vertices[V4];
+								_vertices[V4] = tempV;
+								break;
+							}
+							case TiledMapTileLayer.Cell.ROTATE_270: {
+								float tempV = _vertices[V1];
+								_vertices[V1] = _vertices[V4];
+								_vertices[V4] = _vertices[V3];
+								_vertices[V3] = _vertices[V2];
+								_vertices[V2] = tempV;
 
-						vertices[X3] = x2;
-						vertices[Y3] = y2;
-						vertices[C3] = color;
-						vertices[U3] = u2;
-						vertices[V3] = v2;
-
-						vertices[X4] = x2;
-						vertices[Y4] = y1;
-						vertices[C4] = color;
-						vertices[U4] = u2;
-						vertices[V4] = v1;
-
-						if (flipX) {
-							float temp = vertices[U1];
-							vertices[U1] = vertices[U3];
-							vertices[U3] = temp;
-							temp = vertices[U2];
-							vertices[U2] = vertices[U4];
-							vertices[U4] = temp;
-						}
-						if (flipY) {
-							float temp = vertices[V1];
-							vertices[V1] = vertices[V3];
-							vertices[V3] = temp;
-							temp = vertices[V2];
-							vertices[V2] = vertices[V4];
-							vertices[V4] = temp;
-						}
-						if (rotations != 0) {
-							switch (rotations) {
-								case TiledMapTileLayer.Cell.ROTATE_90: {
-									float tempV = vertices[V1];
-									vertices[V1] = vertices[V2];
-									vertices[V2] = vertices[V3];
-									vertices[V3] = vertices[V4];
-									vertices[V4] = tempV;
-
-									float tempU = vertices[U1];
-									vertices[U1] = vertices[U2];
-									vertices[U2] = vertices[U3];
-									vertices[U3] = vertices[U4];
-									vertices[U4] = tempU;
-									break;
-								}
-								case TiledMapTileLayer.Cell.ROTATE_180: {
-									float tempU = vertices[U1];
-									vertices[U1] = vertices[U3];
-									vertices[U3] = tempU;
-									tempU = vertices[U2];
-									vertices[U2] = vertices[U4];
-									vertices[U4] = tempU;
-									float tempV = vertices[V1];
-									vertices[V1] = vertices[V3];
-									vertices[V3] = tempV;
-									tempV = vertices[V2];
-									vertices[V2] = vertices[V4];
-									vertices[V4] = tempV;
-									break;
-								}
-								case TiledMapTileLayer.Cell.ROTATE_270: {
-									float tempV = vertices[V1];
-									vertices[V1] = vertices[V4];
-									vertices[V4] = vertices[V3];
-									vertices[V3] = vertices[V2];
-									vertices[V2] = tempV;
-
-									float tempU = vertices[U1];
-									vertices[U1] = vertices[U4];
-									vertices[U4] = vertices[U3];
-									vertices[U3] = vertices[U2];
-									vertices[U2] = tempU;
-									break;
-								}
+								float tempU = _vertices[U1];
+								_vertices[U1] = _vertices[U4];
+								_vertices[U4] = _vertices[U3];
+								_vertices[U3] = _vertices[U2];
+								_vertices[U2] = tempU;
+								break;
 							}
 						}
-
-						batch.draw(region.getTexture(), vertices, 0, NUM_VERTICES);
 					}
-				}
 
-				x += layerTileWidth;
+					_batch.draw(region.getTexture(), _vertices, 0, NUM_VERTICES);
+				}
 			}
 
-			if (isBodiesLayer) drawBodiesByRow(row);
-
-			y -= layerTileHeight;
+			x += layerTileWidth;
 		}
-
-		if (layer.getName().equals(_layerNameShadows)) {
-			drawShadows();
-		}
-
-		batch.setShader(null);
 	}
 
-	private void drawBodiesByRow(int row) {
+	private void drawActorsByRow(int row) {
 		for (int col = 0; col < _stage.tileColumns(); col++) {
 			HashSet<Animation> animations = _animationsByCoordinates.get(row * _stage.tileColumns() + col);
+
 			// Sort sprites by z index
 			_tempAnimationsArray.clear();
 			_tempAnimationsArray2.clear();
@@ -359,38 +366,39 @@ public class TiledStageMapRenderer extends BatchTiledMapRenderer {
 			Collections.sort(_tempAnimationsArray);
 
 			for (Animation animation : _tempAnimationsArray) {
-				TiledStageBody body = _animationsToBodies.get(animation);
-				Sprite sprite = getSprite(body, animation, row, col);
+				TiledStageActor actor = _animationToActors.get(animation);
+				Sprite sprite = getSprite(actor, animation, row, col);
 
-				int leftProtrusion = (animation.frame().width() - (body.bodyWidth() * _stage.tileWidth())) / 2;
-				int topProtrusion = animation.frame().height() - (body.bodyHeight() * _stage.tileHeight());
+				int leftProtrusion = (animation.frame().width() - (actor.bodyWidth() * _stage.tileWidth())) / 2;
+				int topProtrusion = animation.frame().height() - (actor.bodyHeight() * _stage.tileHeight());
 
-				// Find relative coordinate within body
+				// Find relative coordinate within actor
 				int bodyRow = Math.floorDiv(sprite.getRegionY() - topProtrusion, _stage.tileHeight());
 				int bodyCol = Math.floorDiv(sprite.getRegionX() - leftProtrusion, _stage.tileWidth());
 				if (bodyCol < 0) bodyCol = 0;
-				if (bodyCol >= body.bodyWidth()) bodyCol = body.bodyWidth() - 1;
+				if (bodyCol >= actor.bodyWidth()) bodyCol = actor.bodyWidth() - 1;
 
-				if (bodyRow < 0 || !body.getBodyAreaAt(bodyRow, bodyCol)) {
-					for (int r = Math.max(0, bodyRow + 1); r < body.bodyHeight(); r ++) {
-						if (body.getBodyAreaAt(r, bodyCol)) {
+				if (bodyRow < 0 || !actor.getBodyAreaAt(bodyRow, bodyCol)) {
+					for (int r = Math.max(0, bodyRow + 1); r < actor.bodyHeight(); r++) {
+						if (actor.getBodyAreaAt(r, bodyCol)) {
 							_tempAnimationsArray2.add(animation);
 							break;
 						}
 					}
 				}
 
-				sprite.draw(batch);
+				if (sprite.getBoundingRectangle().overlaps(_viewBounds)) sprite.draw(_batch);
 			}
 
 			for (Animation animation : _tempAnimationsArray2) {
-				TiledStageBody body = _animationsToBodies.get(animation);
-				getSprite(body, animation, row, col).draw(batch);
+				TiledStageActor actor = _animationToActors.get(animation);
+				Sprite sprite = getSprite(actor, animation, row, col);
+				if (sprite.getBoundingRectangle().overlaps(_viewBounds)) sprite.draw(_batch);
 			}
 		}
 	}
 
-	private Sprite getSprite(TiledStageBody body, Animation animation, int row, int col) {
+	private Sprite getSprite(TiledStageActor body, Animation animation, int row, int col) {
 		Sprite sprite = animation.getSprite();
 		int x = col * _stage.tileWidth();
 		int y = (row + 1) * _stage.tileHeight();
@@ -426,38 +434,21 @@ public class TiledStageMapRenderer extends BatchTiledMapRenderer {
 		return sprite;
 	}
 
-	private void drawShadows() {
-		for (TiledStageBody body : _stage.bodies()) {
-			if (!body.hasShadow()) continue;
-			for (Animation animation : body.animations()) {
-				if (animation.alpha() <= 0) continue;
-				Sprite sprite = animation.getSprite();
-				sprite.setPosition(body.getX(), body.getY());
-				sprite.setOrigin(sprite.getWidth() / 2, body.shadowDisplacementY());
-				sprite.setScale(1f, -Config.ShadowHeight);
-				sprite.setColor(0, 0, 0, Config.ShadowIntensity);
-				sprite.draw(batch);
-			}
-		}
-	}
-
-	private void updateBodiesData() {
+	private void updateActorsData() {
 		// Clear previous rows of bodies
 		for (HashSet<Animation> set : _animationsByCoordinates) {
 			set.clear();
 		}
 
-		_animationsToBodies.clear();
+		_animationToActors.clear();
 
-		_bodyAnimationMinZIndex = Integer.MAX_VALUE;
-		_bodyAnimationMaxZIndex = Integer.MIN_VALUE;
-		for (TiledStageBody body : _stage.bodies()) {
-			for (Animation animation : body.animations()) {
-				float left = body.getX();
-				float bottom = body.getY();
+		for (TiledStageActor actor : _stage.actors()) {
+			for (Animation animation : actor.animations()) {
+				float left = actor.getX();
+				float bottom = actor.getY();
 				float right = left + animation.frame().width() - 1;
 				float top = bottom + animation.frame().height() - 1;
-				int leftProtrusion = (animation.frame().width() - (body.bodyWidth() * _stage.tileWidth())) / 2;
+				int leftProtrusion = (animation.frame().width() - (actor.bodyWidth() * _stage.tileWidth())) / 2;
 				TiledStage.Coordinate bottomLeft = _stage.getCoordinateAt(left - leftProtrusion, bottom);
 				TiledStage.Coordinate topRight = _stage.getCoordinateAt(right - leftProtrusion, top);
 				for (int row = bottomLeft.row(); row <= topRight.row(); row++) {
@@ -466,17 +457,13 @@ public class TiledStageMapRenderer extends BatchTiledMapRenderer {
 					}
 				}
 
-				_animationsToBodies.put(animation, body);
+				_animationToActors.put(animation, actor);
 			}
-
-			_bodyAnimationMinZIndex = Math.min(_bodyAnimationMinZIndex, body.minZIndex());
-			_bodyAnimationMaxZIndex = Math.max(_bodyAnimationMaxZIndex, body.maxZIndex());
 		}
 	}
 
 	@Override
 	public void dispose() {
-		super.dispose();
 		_blackTexture.dispose();
 		_frameBuffer.dispose();
 	}
@@ -485,7 +472,5 @@ public class TiledStageMapRenderer extends BatchTiledMapRenderer {
 		public static float AmbientColorGreenDefault = 0.7f;
 		public static float AmbientColorRedDefault = 0.7f;
 		public static float AmbientColorBlueDefault = 0.7f;
-		public static float ShadowHeight = 0.2f;
-		public static float ShadowIntensity = 0.5f;
 	}
 }

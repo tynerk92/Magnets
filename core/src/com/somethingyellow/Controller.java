@@ -2,27 +2,14 @@ package com.somethingyellow;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.utils.Pool;
-import com.badlogic.gdx.utils.Pools;
-import com.somethingyellow.graphics.Animation;
-import com.somethingyellow.graphics.AnimationDef;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import com.somethingyellow.utility.ObjectList;
 
 public class Controller implements InputProcessor {
 	private static final Vector2 TempCoords = new Vector2();
 	private boolean[] _keysHeld = new boolean[256];
 	private float _zoom;
-	private Listeners<Listener> _listeners = new Listeners<Listener>();
+	private ObjectList<Listener> _listeners = new ObjectList<Listener>();
 
 	public Controller() {
 		_zoom = Config.ZoomDefault;
@@ -105,7 +92,7 @@ public class Controller implements InputProcessor {
 		return true;
 	}
 
-	public Listeners<Listener> listeners() {
+	public ObjectList<Listener> listeners() {
 		return _listeners;
 	}
 

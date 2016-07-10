@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Pool;
 import com.badlogic.gdx.utils.Pools;
-import com.somethingyellow.Listeners;
+import com.somethingyellow.utility.ObjectList;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -13,23 +13,49 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class AnimatedActor extends Actor implements Animation.Listener, Pool.Poolable {
-	private HashMap<String, Animation> _animations = new HashMap<String, Animation>();
-	private ArrayList<Animation> _animationsArray = new ArrayList<Animation>();
-	private ArrayList<Sprite> _tempSpritesArray = new ArrayList<Sprite>();
-	private Listeners<Listener> _listeners = new Listeners<Listener>();
+/**
+ * Represents an Poolable libgdx Actor displayed with set of animations
+ * Stores a Map of String tag -> Animation
+ * To call initialize() to initialize the object
+ * Animations are hidden at the start
+ * Animation Map cannot be modified after initialization
+ * animations() and draw() returns/renders animations in z-index order
+ * remove() frees itself from Pools
+ */
 
-	public void initialize(Map<String, AnimationDef> animationDefs) {
-		for (String tag : animationDefs.keySet()) {
-			Animation animation = animationDefs.get(tag).instantiate(tag, this);
+public class AnimatedActor extends Actor implements Pool.Poolable {
+	private HashMap<String, Animation> _animations = new HashMap<String, Animation>(); // For access by tag
+	private ArrayList<Animation> _animationsArray = new ArrayList<Animation>(); // For ordering by z-index
+	private AnimationListener _animationListener = new AnimationListener();
+	private ObjectList<Listener> _listeners = new ObjectList<Listener>();
+
+	public void initialize(Map<String, AnimationDef> defs) {
+		for (String tag : defs.keySet()) {
+			Animation animation = new Animation(defs.get(tag), tag);
+			animation.listeners().add(_animationListener);
 			animation.hide();
 			_animations.put(animation.tag(), animation);
 			_animationsArray.add(animation);
 		}
+
+		// Sort animations by z-index
 		Collections.sort(_animationsArray);
 	}
 
-	public AnimatedActor setTransition(final String fromTag, final String toTag) {
+	@Override
+	public void reset() {
+		_animations.clear();
+		_listeners.clear();
+		_animationsArray.clear();
+		clearActions();
+	}
+
+	/**
+	 * Convenience method that configures:
+	 * When Animation `fromTag` ends, Animation`toTag` is shown and `fromTag` is hidden
+	 */
+
+	protected void setTransition(final String fromTag, final String toTag) {
 		Animation animation = _animations.get(fromTag);
 		if (animation == null) {
 			throw new IllegalArgumentException("`fromTag` doesn't exist!");
@@ -48,24 +74,6 @@ public class AnimatedActor extends Actor implements Animation.Listener, Pool.Poo
 				}
 			}
 		});
-
-		return this;
-	}
-
-	@Override
-	public void animationEnded(Animation animation) {
-		for (Listener listener : _listeners) {
-			listener.animationEnded(this, animation);
-		}
-	}
-
-	@Override
-	public void reset() {
-		_animations.clear();
-		_listeners.clear();
-		_animationsArray.clear();
-		_tempSpritesArray.clear();
-		clearActions();
 	}
 
 	@Override
@@ -79,7 +87,7 @@ public class AnimatedActor extends Actor implements Animation.Listener, Pool.Poo
 		return super.remove();
 	}
 
-	public Listeners<Listener> listeners() {
+	public ObjectList<Listener> listeners() {
 		return _listeners;
 	}
 
@@ -92,89 +100,68 @@ public class AnimatedActor extends Actor implements Animation.Listener, Pool.Poo
 		}
 	}
 
-	public int minZIndex() {
-		int i = 0;
-		while (_animationsArray.size() > i) {
-			if (_animationsArray.get(i).alpha() > 0) return _animationsArray.get(i).zIndex();
-			i++;
-		}
-		return 0;
-	}
-
-	public int maxZIndex() {
-		int i = _animationsArray.size() - 1;
-		while (i >= 0) {
-			if (_animationsArray.get(i).alpha() > 0) return _animationsArray.get(i).zIndex();
-			i--;
-		}
-		return 0;
-	}
-
-	public List<Animation> animations() {
+	protected List<Animation> animations() {
 		return _animationsArray;
-	}
-
-	public List<Sprite> spritesAtZIndex(int zIndex) {
-		_tempSpritesArray.clear();
-		for (Animation animation : _animationsArray) {
-			if (zIndex < animation.zIndex()) continue;
-			if (zIndex > animation.zIndex()) break;
-			Sprite sprite = animation.getSprite();
-			sprite.setPosition(getX(), getY());
-			_tempSpritesArray.add(sprite);
-		}
-		return _tempSpritesArray;
 	}
 
 	@Override
 	public void act(float timeDelta) {
 		super.act(timeDelta);
 
-		for (Animation animation : _animations.values()) {
-			animation.update(timeDelta);
-		}
+		for (Animation animation : _animationsArray) animation.update(timeDelta);
 	}
 
-	public void hideAnimation(String tag) {
+	protected void hideAnimation(String tag) {
 		Animation animation = _animations.get(tag);
-		if (animation != null) {
-			animation.hide();
-			for (Listener listener : _listeners) {
-				listener.animationHidden(this, animation);
-			}
-		}
+		if (animation == null) throw new IllegalArgumentException("Animation '" + tag + "' not found!");
+
+		animation.hide();
+		for (Listener listener : _listeners) listener.animationHidden(this, animation);
 	}
 
-	public void showAnimation(String tag) {
+	protected void showAnimation(String tag) {
 		Animation animation = _animations.get(tag);
-		if (animation != null) {
-			animation.show();
-			for (Listener listener : _listeners) {
-				listener.animationShown(this, animation);
-			}
-		}
+		if (animation == null) throw new IllegalArgumentException("Animation '" + tag + "' not found!");
+
+		animation.show();
+		for (Listener listener : _listeners) listener.animationShown(this, animation);
 	}
 
-	public boolean isAnimationActive(String tag) {
+	protected boolean isAnimationActive(String tag) {
 		Animation animation = _animations.get(tag);
 		return (animation == null) ? false : animation.isActive();
 	}
 
-	public Animation getAnimation(String tag) {
-		return _animations.get(tag);
-	}
-
-	public abstract static class Listener {
+	public static abstract class Listener {
+		/**
+		 * When one of its animation ends (after which it loops)
+		 */
 		public void animationEnded(AnimatedActor actor, Animation animation) {
 		}
 
+		/**
+		 * When one of its animation is shown
+		 */
 		public void animationShown(AnimatedActor actor, Animation animation) {
 		}
 
+		/**
+		 * When one of its animation is hidden
+		 */
 		public void animationHidden(AnimatedActor actor, Animation animation) {
 		}
 
+		/**
+		 * When this is removed
+		 */
 		public void removed(AnimatedActor actor) {
+		}
+	}
+
+	private class AnimationListener extends Animation.Listener {
+		@Override
+		public void animationEnded(Animation animation) {
+			for (Listener listener : _listeners) listener.animationEnded(AnimatedActor.this, animation);
 		}
 	}
 }

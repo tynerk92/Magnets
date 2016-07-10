@@ -10,18 +10,19 @@ import java.util.TreeSet;
 public class MagneticFloor extends TiledStageActor {
 
 	public static final int MAGNETISE_RANGE = 0;
-	public static final int[] SUBTICKS = new int[]{
+	public static final int[] SUBTICKS_STATIC = new int[]{
 			PlayScreen.SUBTICKS.MAGNETISATION.ordinal()
 	};
 
 	public void initialize(Map<String, AnimationDef> animationDefs, TiledStage.Coordinate origin) {
 		super.initialize(animationDefs, TiledStageActor.BodyArea1x1, 1, origin);
+		SUBTICKS = SUBTICKS_STATIC;
 
 		showAnimation(Config.AnimationFloor);
 	}
 
 	@Override
-	public void act(int subtick) {
+	public void tick(int subtick) {
 		if (subtick == PlayScreen.SUBTICKS.MAGNETISATION.ordinal()) {
 
 			TreeSet<TiledStage.Coordinate> magnetiseCoodinates = origin().getCoordinatesInRange(MAGNETISE_RANGE, false);
@@ -40,13 +41,6 @@ public class MagneticFloor extends TiledStageActor {
 	@Override
 	public boolean bodyCanBeAt(TiledStage.Coordinate coordinate) {
 		return true;
-	}
-
-	// get/set
-	// ---------
-	@Override
-	public int[] subticks() {
-		return SUBTICKS;
 	}
 
 	public static class Config {

@@ -16,10 +16,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.somethingyellow.graphics.AnimationDef;
-import com.somethingyellow.graphics.Frame;
-import com.somethingyellow.tiled.TiledStage;
+import com.somethingyellow.graphics.AnimationFrame;
+import com.somethingyellow.utility.TiledMapHelper;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -33,23 +32,22 @@ public class Main extends Game implements LevelSelectScreen.Commands, PlayScreen
 		GameConfig.Configure();
 	}
 
-	public static ArrayList<Frame> ExtractFrames(TiledMapTile tile, float defaultDuration) {
-		ArrayList<Frame> frames;
+	public static AnimationFrame[] ExtractFrames(TiledMapTile tile, float defaultDuration) {
+		AnimationFrame[] frames;
 
 		if (tile instanceof AnimatedTiledMapTile) {
 			AnimatedTiledMapTile animatedTile = (AnimatedTiledMapTile) tile;
-			frames = new ArrayList<Frame>(animatedTile.getFrameTiles().length);
+			frames = new AnimationFrame[animatedTile.getFrameTiles().length];
 			int[] intervals = animatedTile.getAnimationIntervals();
 			StaticTiledMapTile[] staticTiles = animatedTile.getFrameTiles();
 
 			for (int i = 0; i < staticTiles.length; i++) {
-				frames.add(i, new Frame(new Sprite(staticTiles[i].getTextureRegion()), (float) intervals[i] / 1000));
+				frames[i] = new AnimationFrame(new Sprite(staticTiles[i].getTextureRegion()), (float) intervals[i] / 1000);
 			}
 		} else if (tile instanceof StaticTiledMapTile) {
-			frames = new ArrayList<Frame>(1);
-			frames.add(new Frame(new Sprite(tile.getTextureRegion()), defaultDuration));
+			frames = new AnimationFrame[]{new AnimationFrame(new Sprite(tile.getTextureRegion()), defaultDuration)};
 		} else {
-			frames = new ArrayList<Frame>();
+			frames = new AnimationFrame[0];
 		}
 
 		return frames;
@@ -108,9 +106,9 @@ public class Main extends Game implements LevelSelectScreen.Commands, PlayScreen
 
 			while (iterator.hasNext()) {
 				TiledMapTile tile = iterator.next();
-				String name = TiledStage.ParseProp(tile.getProperties(), Config.TMX.AnimationProp);
+				String name = TiledMapHelper.ParseProp(tile.getProperties(), Config.TMX.AnimationProp);
 				if (name == null) continue;
-				int zIndex = TiledStage.ParseIntegerProp(tile.getProperties(), Config.TMX.Animation.ZIndexProp, 0);
+				int zIndex = TiledMapHelper.ParseIntegerProp(tile.getProperties(), Config.TMX.Animation.ZIndexProp, 0);
 				animationDefs.put(name, new AnimationDef(ExtractFrames(tile, defaultDuration), zIndex));
 			}
 		}

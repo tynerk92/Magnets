@@ -1,25 +1,28 @@
 package com.somethingyellow.graphics;
 
-import java.util.ArrayList;
+/**
+ * Template for an Animation
+ * Stores an ArrayList of AnimationFrame and an associated z-index for the animation
+ */
 
 public class AnimationDef {
-	private ArrayList<Frame> _frames;
+	private AnimationFrame[] _frames;
 	private int _zIndex;
 
-	public AnimationDef(ArrayList<Frame> frames, int zIndex) {
+	public AnimationDef(AnimationFrame[] frames) {
+		this(frames, 0);
+	}
+
+	public AnimationDef(AnimationFrame[] frames, int zIndex) {
 		_frames = frames;
 		_zIndex = zIndex;
 	}
 
-	public Animation instantiate() {
-		return new Animation(_frames, _zIndex);
+	public AnimationFrame[] frames() {
+		return _frames;
 	}
 
-	public Animation instantiate(String tag) {
-		return new Animation(tag, _frames, _zIndex);
-	}
-
-	public Animation instantiate(String tag, Animation.Listener listener) {
-		return new Animation(tag, _frames, _zIndex, listener);
+	public int zIndex() {
+		return _zIndex;
 	}
 }

@@ -1,7 +1,5 @@
 package com.somethingyellow.magnets;
 
-import java.util.logging.Level;
-
 public class GameConfig {
 
 	public static void Configure() {
@@ -129,8 +127,8 @@ public class GameConfig {
 		};*/
 
 		// PlayScreen.Config
-		PlayScreen.Config.GameAnimationsTMXPath = "Animations/(Introductory) Amateur (Solvable - 64).tmx";
-		PlayScreen.Config.GameLayerWalls = "Walls and Objects";
+		PlayScreen.Config.GameAnimationsTMXPath = "Animations/(Introductory) Exploration (Solvable - 283).tmx";
+		PlayScreen.Config.GameWallLayer = "Walls and Objects";
 		PlayScreen.Config.AnimationPauseOverlay = "Pause Overlay";
 
 		// Controller.Config
