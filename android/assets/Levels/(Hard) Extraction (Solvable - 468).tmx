@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="26" height="18" tilewidth="32" tileheight="32" nextobjectid="0">
- <tileset firstgid="1" name="Tileset" tilewidth="800" tileheight="600" tilecount="450" columns="0">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="39" height="15" tilewidth="32" tileheight="32" nextobjectid="0">
+ <tileset firstgid="1" name="Tileset" tilewidth="800" tileheight="600" tilecount="451" columns="0">
   <tile id="0">
    <properties>
     <property name="Render Depth" type="int" value="-1"/>
@@ -1125,7 +1125,7 @@
   </tile>
 
   <tile id="142">
-   <image width="32" height="34" source="../Graphics/Set 1 (Cave)/Floor/Floor Overlays/Debris 2.png"/>
+   <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Floor/Floor Overlays/Debris 2.png"/>
   </tile>
 
   <tile id="143">
@@ -1133,11 +1133,11 @@
   </tile>
 
   <tile id="144">
-   <image width="34" height="32" source="../Graphics/Set 1 (Cave)/Floor/Floor Overlays/Debris 4.png"/>
+   <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Floor/Floor Overlays/Debris 4.png"/>
   </tile>
 
   <tile id="145">
-   <image width="32" height="35" source="../Graphics/Set 1 (Cave)/Floor/Floor Overlays/Debris 5.png"/>
+   <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Floor/Floor Overlays/Debris 5.png"/>
   </tile>
 
   <tile id="146">
@@ -3660,514 +3660,537 @@
     <property name="Lighting Width" value="200"/>
     <property name="Lighting Image Path" value="Graphics/Set 1 (Cave)/Lighting/Point Source White.png"/>
     <property name="Lighting Intensity" value="0.4"/>
-    <property name="Shadow Displacement Y" value="16"/>
+   </properties>
+   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/corny.png"/>
+  </tile>
+
+  <tile id="401">
+   <properties>
+    <property name="~" value="Player Standing"/>
+    <property name="Type" value="Player"/>
+    <property name="~Standing" value="Player Standing"/>
+    <property name="Lighting Displacement X" value="16"/>
+    <property name="Lighting Displacement Y" value="24"/>
+    <property name="Lighting Height" value="200"/>
+    <property name="Lighting Width" value="200"/>
+    <property name="Lighting Image Path" value="Graphics/Set 1 (Cave)/Lighting/Point Source White.png"/>
+    <property name="Lighting Intensity" value="0.4"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Idle.png"/>
   </tile>
 
-  <tile id="401">
+  <tile id="402">
    <properties>
     <property name="~" value="Pause Overlay"/>
    </properties>
    <image width="800" height="600" source="../Graphics/Set 1 (Cave)/UI/Pause Overlay.png"/>
   </tile>
 
-  <tile id="402">
+  <tile id="403">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/01011010.png"/>
   </tile>
 
-  <tile id="403">
+  <tile id="404">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/01011011.png"/>
   </tile>
 
-  <tile id="404">
+  <tile id="405">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/01011110.png"/>
   </tile>
 
-  <tile id="405">
+  <tile id="406">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/01011111.png"/>
   </tile>
 
-  <tile id="406">
+  <tile id="407">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/01011X0X.png"/>
   </tile>
 
-  <tile id="407">
+  <tile id="408">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/01111010.png"/>
   </tile>
 
-  <tile id="408">
+  <tile id="409">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/01111011.png"/>
   </tile>
 
-  <tile id="409">
+  <tile id="410">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/01111110.png"/>
   </tile>
 
-  <tile id="410">
+  <tile id="411">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/01111111.png"/>
   </tile>
 
-  <tile id="411">
+  <tile id="412">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/01111X0X.png"/>
   </tile>
 
-  <tile id="412">
+  <tile id="413">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/01X1001X.png"/>
   </tile>
 
-  <tile id="413">
+  <tile id="414">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/01X1011X.png"/>
   </tile>
 
-  <tile id="414">
+  <tile id="415">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/01X10X0X.png"/>
   </tile>
 
-  <tile id="415">
+  <tile id="416">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/11011010.png"/>
   </tile>
 
-  <tile id="416">
+  <tile id="417">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/11011011.png"/>
   </tile>
 
-  <tile id="417">
+  <tile id="418">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/11011110.png"/>
   </tile>
 
-  <tile id="418">
+  <tile id="419">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/11011111.png"/>
   </tile>
 
-  <tile id="419">
+  <tile id="420">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/11011X0X.png"/>
   </tile>
 
-  <tile id="420">
+  <tile id="421">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/11111010.png"/>
   </tile>
 
-  <tile id="421">
+  <tile id="422">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/11111011.png"/>
   </tile>
 
-  <tile id="422">
+  <tile id="423">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/11111110.png"/>
   </tile>
 
-  <tile id="423">
+  <tile id="424">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/11111111.png"/>
   </tile>
 
-  <tile id="424">
+  <tile id="425">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/11111X0X.png"/>
   </tile>
 
-  <tile id="425">
+  <tile id="426">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/11X1001X.png"/>
   </tile>
 
-  <tile id="426">
+  <tile id="427">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/11X1011X.png"/>
   </tile>
 
-  <tile id="427">
+  <tile id="428">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/11X10X0X.png"/>
   </tile>
 
-  <tile id="428">
+  <tile id="429">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/Boulder.png"/>
   </tile>
 
-  <tile id="429">
+  <tile id="430">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/Stalagmites.png"/>
   </tile>
 
-  <tile id="430">
+  <tile id="431">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X0X00X0X.png"/>
   </tile>
 
-  <tile id="431">
+  <tile id="432">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X0X00X1X.png"/>
   </tile>
 
-  <tile id="432">
+  <tile id="433">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X0X01X0X.png"/>
   </tile>
 
-  <tile id="433">
+  <tile id="434">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X0X01X10.png"/>
   </tile>
 
-  <tile id="434">
+  <tile id="435">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X0X01X11.png"/>
   </tile>
 
-  <tile id="435">
+  <tile id="436">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X0X1001X.png"/>
   </tile>
 
-  <tile id="436">
+  <tile id="437">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X0X1011X.png"/>
   </tile>
 
-  <tile id="437">
+  <tile id="438">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X0X10X0X.png"/>
   </tile>
 
-  <tile id="438">
+  <tile id="439">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X0X11010.png"/>
   </tile>
 
-  <tile id="439">
+  <tile id="440">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X0X11011.png"/>
   </tile>
 
-  <tile id="440">
+  <tile id="441">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X0X11110.png"/>
   </tile>
 
-  <tile id="441">
+  <tile id="442">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X0X11111.png"/>
   </tile>
 
-  <tile id="442">
+  <tile id="443">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X0X11X0X.png"/>
   </tile>
 
-  <tile id="443">
+  <tile id="444">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X1001X0X.png"/>
   </tile>
 
-  <tile id="444">
+  <tile id="445">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X1001X10.png"/>
   </tile>
 
-  <tile id="445">
+  <tile id="446">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X1001X11.png"/>
   </tile>
 
-  <tile id="446">
+  <tile id="447">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X1101X0X.png"/>
   </tile>
 
-  <tile id="447">
+  <tile id="448">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X1101X10.png"/>
   </tile>
 
-  <tile id="448">
+  <tile id="449">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X1101X11.png"/>
   </tile>
 
-  <tile id="449">
+  <tile id="450">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X1X00X0X.png"/>
   </tile>
 
-  <tile id="450">
+  <tile id="451">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X1X00X1X.png"/>
   </tile>
  </tileset>
- <layer name="Floor" width="26" height="18">
+ <layer name="Floor" width="39" height="15">
   <data encoding="csv">
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,168,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,171,173,0,169,176,119,173,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,183,129,174,0,183,134,141,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,187,0,0,0,187,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,170,120,172,0,170,120,172,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,187,0,180,175,128,0,187,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,186,0,0,186,0,169,128,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,166,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,166,166,166,0,0,167,166,166,169,174,0,170,174,166,169,172,0,171,173,0,170,174,0,171,178,178,178,173,0,0,0,0,0,
+0,0,0,0,0,166,171,178,173,166,0,0,0,168,0,166,0,187,0,166,0,187,0,185,140,0,187,166,0,185,137,137,137,140,0,0,0,0,0,
+0,0,0,0,0,166,185,137,140,166,169,175,179,120,179,172,166,181,174,166,169,126,166,185,140,0,181,174,166,185,137,137,137,140,0,0,0,0,0,
+0,0,0,0,0,166,183,138,141,166,0,187,166,166,166,186,0,187,0,166,166,187,0,184,141,0,187,166,0,185,137,137,137,140,0,0,0,0,0,
+0,0,0,0,0,0,166,166,166,0,0,186,166,169,174,0,0,180,179,179,179,128,0,186,0,169,120,174,0,183,138,138,138,141,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,166,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
 
- <layer name="Floor Decoration" width="26" height="18">
+ <layer name="Floor Decoration" width="39" height="15">
   <data encoding="csv">
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,149,0,0,147,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,142,152,0,0,152,144,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,142,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,147,0,0,0,142,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,145,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,155,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,144,0,0,0,0,0,143,148,0,0,0,0,147,148,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,145,0,156,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,147,0,0,143,0,0,0,143,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,142,0,147,0,0,0,0,0,0,0,0,0,0,149,0,0,147,0,0,0,143,112,0,143,0,0,0,0,0,
+0,0,0,0,0,0,146,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,149,0,0,0,0,0,147,0,0,143,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,145,0,0,0,0,0,0,142,0,0,0,0,0,0,0,144,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
 
- <layer name="Shadows" width="26" height="18">
+ <layer name="Shadows" width="39" height="15">
   <data encoding="csv">
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
 
- <layer name="Walls and Objects" width="26" height="18">
+ <layer name="Walls and Objects" width="39" height="15">
   <data encoding="csv">
-424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,
-424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,
-424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,
-424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,
-424,424,424,424,424,424,424,424,424,424,424,424,424,423,425,422,424,424,424,424,424,424,424,424,424,424,
-424,424,424,424,424,424,424,424,423,425,425,425,425,428,0,447,422,424,424,424,424,424,424,424,424,424,
-424,424,424,424,424,424,424,424,427,0,0,0,0,0,0,0,449,424,424,424,424,424,424,424,424,424,
-424,424,424,424,424,424,424,424,427,0,0,0,0,0,0,0,449,424,424,424,424,424,424,424,424,424,
-424,424,424,424,424,424,424,424,427,0,0,0,0,0,0,0,449,424,424,424,424,424,424,424,424,424,
-424,424,424,424,424,424,424,424,427,0,0,0,0,0,0,0,449,424,424,424,424,424,424,424,424,424,
-424,424,424,424,424,424,424,424,427,0,0,0,0,0,0,0,449,424,424,424,424,424,424,424,424,424,
-424,424,424,424,424,424,424,424,427,0,0,0,0,0,0,0,449,424,424,424,424,424,424,424,424,424,
-424,424,424,424,424,424,424,424,419,442,442,442,442,442,442,442,411,424,424,424,424,424,424,424,424,424,
-424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,
-424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,
-424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,
-424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,
-424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424
+425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,
+425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,
+425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,
+425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,424,426,423,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,
+425,425,425,425,425,424,426,426,426,423,424,426,426,426,426,426,422,426,429,0,448,426,422,426,426,422,426,426,422,426,426,426,426,426,423,425,425,425,425,
+425,425,425,425,424,429,0,0,0,448,427,0,0,0,0,0,452,0,0,0,0,0,452,0,0,451,0,0,452,0,0,0,0,0,450,425,425,425,425,
+425,425,425,425,428,0,0,0,0,0,451,0,432,0,432,0,451,0,432,0,432,0,451,0,0,0,0,0,451,0,0,0,0,0,450,425,425,425,425,
+425,425,425,425,428,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,432,0,0,0,0,0,0,0,0,450,425,425,425,425,
+425,425,425,425,428,0,0,0,0,0,433,0,0,0,0,0,433,0,0,0,0,0,433,0,0,0,0,0,433,0,0,0,0,0,450,425,425,425,425,
+425,425,425,425,420,438,0,0,0,436,415,0,0,0,0,0,452,0,0,0,0,0,452,0,433,0,0,0,452,0,0,0,0,0,450,425,425,425,425,
+425,425,425,425,425,420,443,443,443,412,420,438,0,436,443,443,407,443,443,443,443,443,407,443,407,443,443,443,407,443,443,443,443,443,412,425,425,425,425,
+425,425,425,425,425,425,425,425,425,425,425,420,443,412,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,
+425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,
+425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,
+425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425
 </data>
  </layer>
 
- <layer name="Wall Decoration 1" width="26" height="18">
+ <layer name="Wall Decoration 1" width="39" height="15">
   <data encoding="csv">
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,103,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,73,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
 
- <layer name="Wall Decoration 2" width="26" height="18">
+ <layer name="Wall Decoration 2" width="39" height="15">
   <data encoding="csv">
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,115,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
 
  <objectgroup name="Objects">
-  <object id="0" name="Elev 0" gid="25" x="384" y="288" width="32" height="35"/>
-  <object id="1" name="Elev 1" gid="51" x="352" y="224" width="32" height="37"/>
-  <object id="2" name="Elev 2" gid="51" x="288" y="288" width="32" height="37"/>
-  <object id="3" name="Elev 3" gid="51" x="480" y="288" width="32" height="37"/>
-  <object id="4" name="Elev 4" gid="51" x="448" y="352" width="32" height="37"/>
-  <object id="5" name="Elev 5" gid="51" x="416" y="384" width="32" height="37"/>
-  <object id="6" name="Elev 6" gid="52" x="384" y="256" width="32" height="35"/>
-  <object id="7" name="Elev 7" gid="52" x="320" y="352" width="32" height="35"/>
-  <object id="8" name="Elev 8" gid="53" x="352" y="288" width="32" height="35"/>
-  <object id="9" name="Elev 9" gid="58" x="416" y="288" width="32" height="35"/>
-  <object id="10" name="Elev 10" gid="58" x="352" y="384" width="32" height="35"/>
-  <object id="11" name="Elev 11" gid="64" x="320" y="384" width="32" height="35"/>
-  <object id="12" name="Elev 12" gid="70" x="384" y="320" width="32" height="35"/>
-  <object id="13" name="Exit 13" gid="113" x="448" y="192" width="32" height="32"/>
-  <object id="14" name="Play 14" gid="401" x="448" y="320" width="32" height="48"/>
+  <object id="0" name="Butt0" gid="1" x="192" y="192" width="32" height="32"/>
+  <object id="1" name="Butt1" gid="1" x="224" y="192" width="32" height="32"/>
+  <object id="2" name="Butt2" gid="1" x="256" y="192" width="32" height="32"/>
+  <object id="3" name="Butt3" gid="1" x="160" y="224" width="32" height="32"/>
+  <object id="4" name="Butt4" gid="1" x="288" y="224" width="32" height="32"/>
+  <object id="5" name="Butt5" gid="1" x="160" y="256" width="32" height="32"/>
+  <object id="6" name="Butt6" gid="1" x="288" y="256" width="32" height="32"/>
+  <object id="7" name="Butt7" gid="1" x="160" y="288" width="32" height="32"/>
+  <object id="8" name="Butt8" gid="1" x="288" y="288" width="32" height="32"/>
+  <object id="9" name="Butt9" gid="1" x="192" y="320" width="32" height="32"/>
+  <object id="10" name="Butt10" gid="1" x="224" y="320" width="32" height="32"/>
+  <object id="11" name="Butt11" gid="1" x="256" y="320" width="32" height="32"/>
+  <object id="12" name="Door12" gid="7" x="896" y="256" width="32" height="64">
+   <properties>
+    <property name="+Close" value="NOT(#{Butt0_On} AND #{Butt1_On} AND #{Butt2_On} AND #{Butt3_On} AND #{Butt4_On} AND #{Butt5_On} AND #{Butt6_On} AND #{Butt7_On} AND #{Butt8_On} AND #{Butt9_On} AND #{Butt10_On} AND #{Butt11_On})"/>
+    <property name="+Open" value="#{Butt0_On} AND #{Butt1_On} AND #{Butt2_On} AND #{Butt3_On} AND #{Butt4_On} AND #{Butt5_On} AND #{Butt6_On} AND #{Butt7_On} AND #{Butt8_On} AND #{Butt9_On} AND #{Butt10_On} AND #{Butt11_On}"/>
+   </properties>
+  </object>
+  <object id="13" name="Exit13" gid="113" x="992" y="256" width="32" height="32"/>
+  <object id="14" name="Magn14" gid="381" x="352" y="224" width="32" height="32"/>
+  <object id="15" name="Magn15" gid="381" x="800" y="224" width="32" height="32"/>
+  <object id="16" name="Magn16" gid="381" x="576" y="288" width="32" height="32"/>
+  <object id="17" name="Magn17" gid="381" x="800" y="288" width="32" height="32"/>
+  <object id="18" name="Magn18" gid="381" x="480" y="320" width="32" height="32"/>
+  <object id="19" name="Magn19" gid="391" x="608" y="160" width="32" height="50"/>
+  <object id="20" name="Magn20" gid="391" x="384" y="352" width="32" height="50"/>
+  <object id="21" name="Play21" gid="402" x="224" y="256" width="32" height="48"/>
+  <object id="22" name="Push22" gid="262" x="384" y="192" width="32" height="48"/>
+  <object id="23" name="Push23" gid="262" x="416" y="192" width="32" height="48"/>
+  <object id="24" name="Push24" gid="262" x="608" y="192" width="32" height="48"/>
+  <object id="25" name="Push25" gid="262" x="480" y="224" width="32" height="48"/>
+  <object id="26" name="Push26" gid="262" x="864" y="224" width="32" height="48"/>
+  <object id="27" name="Push27" gid="262" x="512" y="256" width="32" height="48"/>
+  <object id="28" name="Push28" gid="262" x="704" y="256" width="32" height="48"/>
+  <object id="29" name="Push29" gid="262" x="384" y="288" width="32" height="48"/>
+  <object id="30" name="Push30" gid="262" x="416" y="288" width="32" height="48"/>
+  <object id="31" name="Push31" gid="262" x="448" y="288" width="32" height="48"/>
+  <object id="32" name="Push32" gid="262" x="608" y="288" width="32" height="48"/>
+  <object id="33" name="Push33" gid="262" x="640" y="288" width="32" height="48"/>
+  <object id="34" name="Push34" gid="262" x="864" y="288" width="32" height="48"/>
+  <object id="35" name="Push35" gid="262" x="384" y="320" width="32" height="48"/>
+  <object id="36" name="Push36" gid="266" x="608" y="256" width="32" height="80"/>
  </objectgroup>
 </map>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="45" height="21" tilewidth="32" tileheight="32" nextobjectid="0">
- <tileset firstgid="1" name="Tileset" tilewidth="800" tileheight="600" tilecount="450" columns="0">
+ <tileset firstgid="1" name="Tileset" tilewidth="800" tileheight="600" tilecount="451" columns="0">
   <tile id="0">
    <properties>
     <property name="Render Depth" type="int" value="-1"/>
@@ -1125,7 +1125,7 @@
   </tile>
 
   <tile id="142">
-   <image width="32" height="34" source="../Graphics/Set 1 (Cave)/Floor/Floor Overlays/Debris 2.png"/>
+   <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Floor/Floor Overlays/Debris 2.png"/>
   </tile>
 
   <tile id="143">
@@ -1133,11 +1133,11 @@
   </tile>
 
   <tile id="144">
-   <image width="34" height="32" source="../Graphics/Set 1 (Cave)/Floor/Floor Overlays/Debris 4.png"/>
+   <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Floor/Floor Overlays/Debris 4.png"/>
   </tile>
 
   <tile id="145">
-   <image width="32" height="35" source="../Graphics/Set 1 (Cave)/Floor/Floor Overlays/Debris 5.png"/>
+   <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Floor/Floor Overlays/Debris 5.png"/>
   </tile>
 
   <tile id="146">
@@ -3660,355 +3660,369 @@
     <property name="Lighting Width" value="200"/>
     <property name="Lighting Image Path" value="Graphics/Set 1 (Cave)/Lighting/Point Source White.png"/>
     <property name="Lighting Intensity" value="0.4"/>
-    <property name="Shadow Displacement Y" value="16"/>
+   </properties>
+   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/corny.png"/>
+  </tile>
+
+  <tile id="401">
+   <properties>
+    <property name="~" value="Player Standing"/>
+    <property name="Type" value="Player"/>
+    <property name="~Standing" value="Player Standing"/>
+    <property name="Lighting Displacement X" value="16"/>
+    <property name="Lighting Displacement Y" value="24"/>
+    <property name="Lighting Height" value="200"/>
+    <property name="Lighting Width" value="200"/>
+    <property name="Lighting Image Path" value="Graphics/Set 1 (Cave)/Lighting/Point Source White.png"/>
+    <property name="Lighting Intensity" value="0.4"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Idle.png"/>
   </tile>
 
-  <tile id="401">
+  <tile id="402">
    <properties>
     <property name="~" value="Pause Overlay"/>
    </properties>
    <image width="800" height="600" source="../Graphics/Set 1 (Cave)/UI/Pause Overlay.png"/>
   </tile>
 
-  <tile id="402">
+  <tile id="403">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/01011010.png"/>
   </tile>
 
-  <tile id="403">
+  <tile id="404">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/01011011.png"/>
   </tile>
 
-  <tile id="404">
+  <tile id="405">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/01011110.png"/>
   </tile>
 
-  <tile id="405">
+  <tile id="406">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/01011111.png"/>
   </tile>
 
-  <tile id="406">
+  <tile id="407">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/01011X0X.png"/>
   </tile>
 
-  <tile id="407">
+  <tile id="408">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/01111010.png"/>
   </tile>
 
-  <tile id="408">
+  <tile id="409">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/01111011.png"/>
   </tile>
 
-  <tile id="409">
+  <tile id="410">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/01111110.png"/>
   </tile>
 
-  <tile id="410">
+  <tile id="411">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/01111111.png"/>
   </tile>
 
-  <tile id="411">
+  <tile id="412">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/01111X0X.png"/>
   </tile>
 
-  <tile id="412">
+  <tile id="413">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/01X1001X.png"/>
   </tile>
 
-  <tile id="413">
+  <tile id="414">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/01X1011X.png"/>
   </tile>
 
-  <tile id="414">
+  <tile id="415">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/01X10X0X.png"/>
   </tile>
 
-  <tile id="415">
+  <tile id="416">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/11011010.png"/>
   </tile>
 
-  <tile id="416">
+  <tile id="417">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/11011011.png"/>
   </tile>
 
-  <tile id="417">
+  <tile id="418">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/11011110.png"/>
   </tile>
 
-  <tile id="418">
+  <tile id="419">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/11011111.png"/>
   </tile>
 
-  <tile id="419">
+  <tile id="420">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/11011X0X.png"/>
   </tile>
 
-  <tile id="420">
+  <tile id="421">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/11111010.png"/>
   </tile>
 
-  <tile id="421">
+  <tile id="422">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/11111011.png"/>
   </tile>
 
-  <tile id="422">
+  <tile id="423">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/11111110.png"/>
   </tile>
 
-  <tile id="423">
+  <tile id="424">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/11111111.png"/>
   </tile>
 
-  <tile id="424">
+  <tile id="425">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/11111X0X.png"/>
   </tile>
 
-  <tile id="425">
+  <tile id="426">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/11X1001X.png"/>
   </tile>
 
-  <tile id="426">
+  <tile id="427">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/11X1011X.png"/>
   </tile>
 
-  <tile id="427">
+  <tile id="428">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/11X10X0X.png"/>
   </tile>
 
-  <tile id="428">
+  <tile id="429">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/Boulder.png"/>
   </tile>
 
-  <tile id="429">
+  <tile id="430">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/Stalagmites.png"/>
   </tile>
 
-  <tile id="430">
+  <tile id="431">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X0X00X0X.png"/>
   </tile>
 
-  <tile id="431">
+  <tile id="432">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X0X00X1X.png"/>
   </tile>
 
-  <tile id="432">
+  <tile id="433">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X0X01X0X.png"/>
   </tile>
 
-  <tile id="433">
+  <tile id="434">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X0X01X10.png"/>
   </tile>
 
-  <tile id="434">
+  <tile id="435">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X0X01X11.png"/>
   </tile>
 
-  <tile id="435">
+  <tile id="436">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X0X1001X.png"/>
   </tile>
 
-  <tile id="436">
+  <tile id="437">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X0X1011X.png"/>
   </tile>
 
-  <tile id="437">
+  <tile id="438">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X0X10X0X.png"/>
   </tile>
 
-  <tile id="438">
+  <tile id="439">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X0X11010.png"/>
   </tile>
 
-  <tile id="439">
+  <tile id="440">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X0X11011.png"/>
   </tile>
 
-  <tile id="440">
+  <tile id="441">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X0X11110.png"/>
   </tile>
 
-  <tile id="441">
+  <tile id="442">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X0X11111.png"/>
   </tile>
 
-  <tile id="442">
+  <tile id="443">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X0X11X0X.png"/>
   </tile>
 
-  <tile id="443">
+  <tile id="444">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X1001X0X.png"/>
   </tile>
 
-  <tile id="444">
+  <tile id="445">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X1001X10.png"/>
   </tile>
 
-  <tile id="445">
+  <tile id="446">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X1001X11.png"/>
   </tile>
 
-  <tile id="446">
+  <tile id="447">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X1101X0X.png"/>
   </tile>
 
-  <tile id="447">
+  <tile id="448">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X1101X10.png"/>
   </tile>
 
-  <tile id="448">
+  <tile id="449">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X1101X11.png"/>
   </tile>
 
-  <tile id="449">
+  <tile id="450">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X1X00X0X.png"/>
   </tile>
 
-  <tile id="450">
+  <tile id="451">
    <properties>
     <property name="Type" value="Wall"/>
    </properties>
@@ -4048,15 +4062,15 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,149,0,0,0,0,0,0,0,0,0,0,0,145,0,0,0,0,0,142,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,142,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,142,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,146,0,0,143,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,146,0,0,143,0,0,145,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,142,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,143,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,148,0,0,0,0,0,0,0,0,0,0,0,0,0,145,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,144,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,144,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,144,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,149,0,0,143,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,145,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,147,0,0,144,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -4095,27 +4109,27 @@
 
  <layer name="Walls and Objects" width="45" height="21">
   <data encoding="csv">
-424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,
-424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,
-424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,
-424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,
-424,424,424,424,423,425,421,425,421,425,421,425,425,425,425,425,425,425,425,425,421,425,425,425,425,425,425,425,421,425,425,425,425,425,421,425,421,425,421,425,422,424,424,424,424,
-424,424,424,424,427,0,451,0,450,0,450,0,0,0,0,0,0,0,0,0,451,0,0,0,0,0,0,0,451,0,0,0,0,0,450,0,450,0,450,0,449,424,424,424,424,
-424,424,424,424,418,443,413,0,0,0,0,0,431,0,431,0,431,0,431,0,451,0,432,0,432,0,431,0,450,0,431,0,432,0,0,0,0,0,0,0,449,424,424,424,424,
-424,424,424,424,427,0,451,0,432,0,432,0,0,0,0,0,0,0,0,0,450,0,450,0,451,0,0,0,0,0,0,0,451,0,431,0,431,0,431,0,449,424,424,424,424,
-424,424,424,424,427,0,451,0,451,0,450,0,431,0,431,0,432,0,432,0,0,0,0,0,450,0,431,0,431,0,431,0,450,0,0,0,0,0,0,0,449,424,424,424,424,
-424,424,424,424,427,0,450,0,451,0,0,0,0,0,0,0,450,0,450,0,431,0,432,0,0,0,0,0,0,0,0,0,0,0,432,0,432,0,433,443,409,424,424,424,424,
-424,424,424,424,427,0,0,0,451,0,432,0,432,0,432,0,0,0,0,0,0,0,451,0,432,0,432,0,432,0,432,0,432,0,451,0,451,0,0,0,449,424,424,424,424,
-424,424,424,424,418,443,436,0,451,0,451,0,450,0,450,0,431,0,431,0,432,0,451,0,451,0,451,0,451,0,451,0,450,0,450,0,450,0,434,443,409,424,424,424,424,
-424,424,424,424,427,0,451,0,451,0,451,0,0,0,0,0,0,0,0,0,450,0,450,0,450,0,451,0,451,0,451,0,0,0,0,0,0,0,451,0,449,424,424,424,424,
-424,424,424,424,427,0,451,0,450,0,450,0,431,0,432,0,432,0,432,0,0,0,0,0,0,0,451,0,450,0,450,0,431,0,432,0,432,0,451,0,449,424,424,424,424,
-424,424,424,424,427,0,451,0,0,0,0,0,0,0,451,0,451,0,451,0,432,0,432,0,432,0,451,0,0,0,0,0,0,0,451,0,451,0,451,0,449,424,424,424,424,
-424,424,424,424,427,0,451,0,432,0,432,0,432,0,451,0,451,0,451,0,451,0,451,0,451,0,451,0,432,0,432,0,432,0,451,0,451,0,451,0,449,424,424,424,424,
-424,424,424,424,419,442,406,442,406,442,406,442,406,442,406,442,406,442,406,442,406,442,406,442,406,442,406,442,406,442,406,442,406,442,406,442,406,442,406,442,411,424,424,424,424,
-424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,
-424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,
-424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,
-424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424,424
+425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,
+425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,
+425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,
+425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,
+425,425,425,425,424,426,422,426,422,426,422,426,426,426,426,426,426,426,426,426,422,426,426,426,426,426,426,426,422,426,426,426,426,426,422,426,422,426,422,426,423,425,425,425,425,
+425,425,425,425,428,0,452,0,451,0,451,0,0,0,0,0,0,0,0,0,452,0,0,0,0,0,0,0,452,0,0,0,0,0,451,0,451,0,451,0,450,425,425,425,425,
+425,425,425,425,419,444,414,0,0,0,0,0,432,0,432,0,432,0,432,0,452,0,433,0,433,0,432,0,451,0,432,0,433,0,0,0,0,0,0,0,450,425,425,425,425,
+425,425,425,425,428,0,452,0,433,0,433,0,0,0,0,0,0,0,0,0,451,0,451,0,452,0,0,0,0,0,0,0,452,0,432,0,432,0,432,0,450,425,425,425,425,
+425,425,425,425,428,0,452,0,452,0,451,0,432,0,432,0,433,0,433,0,0,0,0,0,451,0,432,0,432,0,432,0,451,0,0,0,0,0,0,0,450,425,425,425,425,
+425,425,425,425,428,0,451,0,452,0,0,0,0,0,0,0,451,0,451,0,432,0,433,0,0,0,0,0,0,0,0,0,0,0,433,0,433,0,434,444,410,425,425,425,425,
+425,425,425,425,428,0,0,0,452,0,433,0,433,0,433,0,0,0,0,0,0,0,452,0,433,0,433,0,433,0,433,0,433,0,452,0,452,0,0,0,450,425,425,425,425,
+425,425,425,425,419,444,437,0,452,0,452,0,451,0,451,0,432,0,432,0,433,0,452,0,452,0,452,0,452,0,452,0,451,0,451,0,451,0,435,444,410,425,425,425,425,
+425,425,425,425,428,0,452,0,452,0,452,0,0,0,0,0,0,0,0,0,451,0,451,0,451,0,452,0,452,0,452,0,0,0,0,0,0,0,452,0,450,425,425,425,425,
+425,425,425,425,428,0,452,0,451,0,451,0,432,0,433,0,433,0,433,0,0,0,0,0,0,0,452,0,451,0,451,0,432,0,433,0,433,0,452,0,450,425,425,425,425,
+425,425,425,425,428,0,452,0,0,0,0,0,0,0,452,0,452,0,452,0,433,0,433,0,433,0,452,0,0,0,0,0,0,0,452,0,452,0,452,0,450,425,425,425,425,
+425,425,425,425,428,0,452,0,433,0,433,0,433,0,452,0,452,0,452,0,452,0,452,0,452,0,452,0,433,0,433,0,433,0,452,0,452,0,452,0,450,425,425,425,425,
+425,425,425,425,420,443,407,443,407,443,407,443,407,443,407,443,407,443,407,443,407,443,407,443,407,443,407,443,407,443,407,443,407,443,407,443,407,443,407,443,412,425,425,425,425,
+425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,
+425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,
+425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,
+425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425,425
 </data>
  </layer>
 
@@ -4153,7 +4167,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,114,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,115,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -4172,242 +4186,242 @@
  </layer>
 
  <objectgroup name="Objects">
-  <object id="0" name="Butt 0" gid="1" x="1248" y="352" width="32" height="32"/>
-  <object id="1" name="Butt 1" gid="4" x="448" y="192" width="32" height="32"/>
-  <object id="2" name="Butt 2" gid="4" x="512" y="192" width="32" height="32"/>
-  <object id="3" name="Butt 3" gid="4" x="704" y="192" width="32" height="32"/>
-  <object id="4" name="Butt 4" gid="4" x="768" y="192" width="32" height="32"/>
-  <object id="5" name="Butt 5" gid="4" x="960" y="192" width="32" height="32"/>
-  <object id="6" name="Butt 6" gid="4" x="320" y="224" width="32" height="32"/>
-  <object id="7" name="Butt 7" gid="4" x="1152" y="224" width="32" height="32"/>
-  <object id="8" name="Butt 8" gid="4" x="384" y="256" width="32" height="32"/>
-  <object id="9" name="Butt 9" gid="4" x="512" y="256" width="32" height="32"/>
-  <object id="10" name="Butt 10" gid="4" x="576" y="256" width="32" height="32"/>
-  <object id="11" name="Butt 11" gid="4" x="832" y="256" width="32" height="32"/>
-  <object id="12" name="Butt 12" gid="4" x="896" y="256" width="32" height="32"/>
-  <object id="13" name="Butt 13" gid="4" x="704" y="288" width="32" height="32"/>
-  <object id="14" name="Butt 14" gid="4" x="1088" y="288" width="32" height="32"/>
-  <object id="15" name="Butt 15" gid="4" x="1152" y="288" width="32" height="32"/>
-  <object id="16" name="Butt 16" gid="4" x="320" y="320" width="32" height="32"/>
-  <object id="17" name="Butt 17" gid="4" x="448" y="320" width="32" height="32"/>
-  <object id="18" name="Butt 18" gid="4" x="768" y="320" width="32" height="32"/>
-  <object id="19" name="Butt 19" gid="4" x="832" y="320" width="32" height="32"/>
-  <object id="20" name="Butt 20" gid="4" x="960" y="320" width="32" height="32"/>
-  <object id="21" name="Butt 21" gid="4" x="1024" y="320" width="32" height="32"/>
-  <object id="22" name="Butt 22" gid="4" x="512" y="352" width="32" height="32"/>
-  <object id="23" name="Butt 23" gid="4" x="576" y="352" width="32" height="32"/>
-  <object id="24" name="Butt 24" gid="4" x="384" y="416" width="32" height="32"/>
-  <object id="25" name="Butt 25" gid="4" x="448" y="416" width="32" height="32"/>
-  <object id="26" name="Butt 26" gid="4" x="512" y="416" width="32" height="32"/>
-  <object id="27" name="Butt 27" gid="4" x="1024" y="416" width="32" height="32"/>
-  <object id="28" name="Butt 28" gid="4" x="1152" y="416" width="32" height="32"/>
-  <object id="29" name="Butt 29" gid="4" x="640" y="448" width="32" height="32"/>
-  <object id="30" name="Butt 30" gid="4" x="704" y="448" width="32" height="32"/>
-  <object id="31" name="Butt 31" gid="4" x="256" y="480" width="32" height="32"/>
-  <object id="32" name="Butt 32" gid="4" x="384" y="480" width="32" height="32"/>
-  <object id="33" name="Butt 33" gid="4" x="896" y="480" width="32" height="32"/>
-  <object id="34" name="Door 34" gid="7" x="160" y="288" width="32" height="64">
+  <object id="0" name="Butt0" gid="1" x="1248" y="352" width="32" height="32"/>
+  <object id="1" name="Butt1" gid="4" x="448" y="192" width="32" height="32"/>
+  <object id="2" name="Butt2" gid="4" x="512" y="192" width="32" height="32"/>
+  <object id="3" name="Butt3" gid="4" x="704" y="192" width="32" height="32"/>
+  <object id="4" name="Butt4" gid="4" x="768" y="192" width="32" height="32"/>
+  <object id="5" name="Butt5" gid="4" x="960" y="192" width="32" height="32"/>
+  <object id="6" name="Butt6" gid="4" x="320" y="224" width="32" height="32"/>
+  <object id="7" name="Butt7" gid="4" x="1152" y="224" width="32" height="32"/>
+  <object id="8" name="Butt8" gid="4" x="384" y="256" width="32" height="32"/>
+  <object id="9" name="Butt9" gid="4" x="512" y="256" width="32" height="32"/>
+  <object id="10" name="Butt10" gid="4" x="576" y="256" width="32" height="32"/>
+  <object id="11" name="Butt11" gid="4" x="832" y="256" width="32" height="32"/>
+  <object id="12" name="Butt12" gid="4" x="896" y="256" width="32" height="32"/>
+  <object id="13" name="Butt13" gid="4" x="704" y="288" width="32" height="32"/>
+  <object id="14" name="Butt14" gid="4" x="1088" y="288" width="32" height="32"/>
+  <object id="15" name="Butt15" gid="4" x="1152" y="288" width="32" height="32"/>
+  <object id="16" name="Butt16" gid="4" x="320" y="320" width="32" height="32"/>
+  <object id="17" name="Butt17" gid="4" x="448" y="320" width="32" height="32"/>
+  <object id="18" name="Butt18" gid="4" x="768" y="320" width="32" height="32"/>
+  <object id="19" name="Butt19" gid="4" x="832" y="320" width="32" height="32"/>
+  <object id="20" name="Butt20" gid="4" x="960" y="320" width="32" height="32"/>
+  <object id="21" name="Butt21" gid="4" x="1024" y="320" width="32" height="32"/>
+  <object id="22" name="Butt22" gid="4" x="512" y="352" width="32" height="32"/>
+  <object id="23" name="Butt23" gid="4" x="576" y="352" width="32" height="32"/>
+  <object id="24" name="Butt24" gid="4" x="384" y="416" width="32" height="32"/>
+  <object id="25" name="Butt25" gid="4" x="448" y="416" width="32" height="32"/>
+  <object id="26" name="Butt26" gid="4" x="512" y="416" width="32" height="32"/>
+  <object id="27" name="Butt27" gid="4" x="1024" y="416" width="32" height="32"/>
+  <object id="28" name="Butt28" gid="4" x="1152" y="416" width="32" height="32"/>
+  <object id="29" name="Butt29" gid="4" x="640" y="448" width="32" height="32"/>
+  <object id="30" name="Butt30" gid="4" x="704" y="448" width="32" height="32"/>
+  <object id="31" name="Butt31" gid="4" x="256" y="480" width="32" height="32"/>
+  <object id="32" name="Butt32" gid="4" x="384" y="480" width="32" height="32"/>
+  <object id="33" name="Butt33" gid="4" x="896" y="480" width="32" height="32"/>
+  <object id="34" name="Door34" gid="7" x="160" y="288" width="32" height="64">
    <properties>
-    <property name="+Close" value="NOT #Butt 0@On"/>
-    <property name="+Open" value="#Butt 0@On"/>
+    <property name="+Close" value="NOT(#{Butt0_On})"/>
+    <property name="+Open" value="#{Butt0_On}"/>
    </properties>
   </object>
-  <object id="35" name="Door 35" gid="16" x="160" y="320" width="32" height="48">
+  <object id="35" name="Door35" gid="16" x="160" y="320" width="32" height="48">
    <properties>
-    <property name="+Close" value="NOT #Butt 1@On OR NOT #Butt 2@On OR NOT #Butt 3@On OR NOT #Butt 4@On OR NOT #Butt 5@On OR NOT #Butt 6@On OR NOT #Butt 7@On OR NOT #Butt 8@On OR NOT #Butt 9@On OR NOT #Butt 10@On OR NOT #Butt 11@On OR NOT #Butt 12@On OR NOT #Butt 13@On OR NOT #Butt 14@On OR NOT #Butt 15@On OR NOT #Butt 16@On OR NOT #Butt 17@On OR NOT #Butt 18@On OR NOT #Butt 19@On OR NOT #Butt 20@On OR NOT #Butt 21@On OR NOT #Butt 22@On OR NOT #Butt 23@On OR NOT #Butt 24@On OR NOT #Butt 25@On OR NOT #Butt 26@On OR NOT #Butt 27@On OR NOT #Butt 28@On OR NOT #Butt 29@On OR NOT #Butt 30@On OR NOT #Butt 31@On OR NOT #Butt 32@On OR NOT #Butt 33@On"/>
-    <property name="+Open" value="#Butt 1@On AND #Butt 2@On AND #Butt 3@On AND #Butt 4@On AND #Butt 5@On AND #Butt 6@On AND #Butt 7@On AND #Butt 8@On AND #Butt 9@On AND #Butt 10@On AND #Butt 11@On AND #Butt 12@On AND #Butt 13@On AND #Butt 14@On AND #Butt 15@On AND #Butt 16@On AND #Butt 17@On AND #Butt 18@On AND #Butt 19@On AND #Butt 20@On AND #Butt 21@On AND #Butt 22@On AND #Butt 23@On AND #Butt 24@On AND #Butt 25@On AND #Butt 26@On AND #Butt 27@On AND #Butt 28@On AND #Butt 29@On AND #Butt 30@On AND #Butt 31@On AND #Butt 32@On AND #Butt 33@On"/>
+    <property name="+Close" value="NOT(#{Butt1_On} AND #{Butt2_On} AND #{Butt3_On} AND #{Butt4_On} AND #{Butt5_On} AND #{Butt6_On} AND #{Butt7_On} AND #{Butt8_On} AND #{Butt9_On} AND #{Butt10_On} AND #{Butt11_On} AND #{Butt12_On} AND #{Butt13_On} AND #{Butt14_On} AND #{Butt15_On} AND #{Butt16_On} AND #{Butt17_On} AND #{Butt18_On} AND #{Butt19_On} AND #{Butt20_On} AND #{Butt21_On} AND #{Butt22_On} AND #{Butt23_On} AND #{Butt24_On} AND #{Butt25_On} AND #{Butt26_On} AND #{Butt27_On} AND #{Butt28_On} AND #{Butt29_On} AND #{Butt30_On} AND #{Butt31_On} AND #{Butt32_On} AND #{Butt33_On})"/>
+    <property name="+Open" value="#{Butt1_On} AND #{Butt2_On} AND #{Butt3_On} AND #{Butt4_On} AND #{Butt5_On} AND #{Butt6_On} AND #{Butt7_On} AND #{Butt8_On} AND #{Butt9_On} AND #{Butt10_On} AND #{Butt11_On} AND #{Butt12_On} AND #{Butt13_On} AND #{Butt14_On} AND #{Butt15_On} AND #{Butt16_On} AND #{Butt17_On} AND #{Butt18_On} AND #{Butt19_On} AND #{Butt20_On} AND #{Butt21_On} AND #{Butt22_On} AND #{Butt23_On} AND #{Butt24_On} AND #{Butt25_On} AND #{Butt26_On} AND #{Butt27_On} AND #{Butt28_On} AND #{Butt29_On} AND #{Butt30_On} AND #{Butt31_On} AND #{Butt32_On} AND #{Butt33_On}"/>
    </properties>
   </object>
-  <object id="36" name="Elev 36" gid="35" x="224" y="352" width="32" height="35"/>
-  <object id="37" name="Elev 37" gid="51" x="160" y="192" width="32" height="37"/>
-  <object id="38" name="Elev 38" gid="51" x="288" y="192" width="32" height="37"/>
-  <object id="39" name="Elev 39" gid="51" x="1120" y="192" width="32" height="37"/>
-  <object id="40" name="Elev 40" gid="51" x="1184" y="192" width="32" height="37"/>
-  <object id="41" name="Elev 41" gid="51" x="416" y="224" width="32" height="37"/>
-  <object id="42" name="Elev 42" gid="51" x="544" y="224" width="32" height="37"/>
-  <object id="43" name="Elev 43" gid="51" x="1120" y="256" width="32" height="37"/>
-  <object id="44" name="Elev 44" gid="51" x="1184" y="256" width="32" height="37"/>
-  <object id="45" name="Elev 45" gid="51" x="416" y="288" width="32" height="37"/>
-  <object id="46" name="Elev 46" gid="51" x="864" y="288" width="32" height="37"/>
-  <object id="47" name="Elev 47" gid="51" x="928" y="288" width="32" height="37"/>
-  <object id="48" name="Elev 48" gid="51" x="992" y="352" width="32" height="37"/>
-  <object id="49" name="Elev 49" gid="51" x="544" y="384" width="32" height="37"/>
-  <object id="50" name="Elev 50" gid="51" x="1056" y="384" width="32" height="37"/>
-  <object id="51" name="Elev 51" gid="51" x="288" y="512" width="32" height="37"/>
-  <object id="52" name="Elev 52" gid="51" x="352" y="512" width="32" height="37"/>
-  <object id="53" name="Elev 53" gid="51" x="928" y="512" width="32" height="37"/>
-  <object id="54" name="Elev 54" gid="51" x="992" y="512" width="32" height="37"/>
-  <object id="55" name="Elev 55" gid="52" x="224" y="192" width="32" height="35"/>
-  <object id="56" name="Elev 56" gid="52" x="352" y="192" width="32" height="35"/>
-  <object id="57" name="Elev 57" gid="52" x="480" y="192" width="32" height="35"/>
-  <object id="58" name="Elev 58" gid="52" x="608" y="192" width="32" height="35"/>
-  <object id="59" name="Elev 59" gid="52" x="672" y="192" width="32" height="35"/>
-  <object id="60" name="Elev 60" gid="52" x="864" y="192" width="32" height="35"/>
-  <object id="61" name="Elev 61" gid="52" x="928" y="192" width="32" height="35"/>
-  <object id="62" name="Elev 62" gid="52" x="1056" y="192" width="32" height="35"/>
-  <object id="63" name="Elev 63" gid="52" x="1248" y="192" width="32" height="35"/>
-  <object id="64" name="Elev 64" gid="52" x="736" y="224" width="32" height="35"/>
-  <object id="65" name="Elev 65" gid="52" x="800" y="224" width="32" height="35"/>
-  <object id="66" name="Elev 66" gid="52" x="992" y="224" width="32" height="35"/>
-  <object id="67" name="Elev 67" gid="52" x="288" y="256" width="32" height="35"/>
-  <object id="68" name="Elev 68" gid="52" x="480" y="288" width="32" height="35"/>
-  <object id="69" name="Elev 69" gid="52" x="544" y="288" width="32" height="35"/>
-  <object id="70" name="Elev 70" gid="52" x="672" y="320" width="32" height="35"/>
-  <object id="71" name="Elev 71" gid="52" x="1120" y="320" width="32" height="35"/>
-  <object id="72" name="Elev 72" gid="52" x="1184" y="320" width="32" height="35"/>
-  <object id="73" name="Elev 73" gid="52" x="352" y="352" width="32" height="35"/>
-  <object id="74" name="Elev 74" gid="52" x="416" y="352" width="32" height="35"/>
-  <object id="75" name="Elev 75" gid="52" x="800" y="352" width="32" height="35"/>
-  <object id="76" name="Elev 76" gid="52" x="864" y="352" width="32" height="35"/>
-  <object id="77" name="Elev 77" gid="52" x="928" y="352" width="32" height="35"/>
-  <object id="78" name="Elev 78" gid="52" x="608" y="384" width="32" height="35"/>
-  <object id="79" name="Elev 79" gid="52" x="160" y="416" width="32" height="35"/>
-  <object id="80" name="Elev 80" gid="52" x="992" y="416" width="32" height="35"/>
-  <object id="81" name="Elev 81" gid="52" x="1248" y="416" width="32" height="35"/>
-  <object id="82" name="Elev 82" gid="52" x="416" y="448" width="32" height="35"/>
-  <object id="83" name="Elev 83" gid="52" x="480" y="448" width="32" height="35"/>
-  <object id="84" name="Elev 84" gid="52" x="544" y="448" width="32" height="35"/>
-  <object id="85" name="Elev 85" gid="52" x="1056" y="448" width="32" height="35"/>
-  <object id="86" name="Elev 86" gid="52" x="1120" y="448" width="32" height="35"/>
-  <object id="87" name="Elev 87" gid="52" x="672" y="480" width="32" height="35"/>
-  <object id="88" name="Elev 88" gid="52" x="736" y="480" width="32" height="35"/>
-  <object id="89" name="Elev 89" gid="53" x="192" y="352" width="32" height="35"/>
-  <object id="90" name="Elev 90" gid="70" x="480" y="224" width="32" height="35"/>
-  <object id="91" name="Elev 91" gid="70" x="864" y="224" width="32" height="35"/>
-  <object id="92" name="Elev 92" gid="70" x="928" y="224" width="32" height="35"/>
-  <object id="93" name="Elev 93" gid="70" x="672" y="256" width="32" height="35"/>
-  <object id="94" name="Elev 94" gid="70" x="352" y="288" width="32" height="35"/>
-  <object id="95" name="Elev 95" gid="70" x="800" y="288" width="32" height="35"/>
-  <object id="96" name="Elev 96" gid="70" x="992" y="288" width="32" height="35"/>
-  <object id="97" name="Elev 97" gid="70" x="1248" y="288" width="32" height="35"/>
-  <object id="98" name="Elev 98" gid="70" x="544" y="320" width="32" height="35"/>
-  <object id="99" name="Elev 99" gid="70" x="608" y="320" width="32" height="35"/>
-  <object id="100" name="Elev 100" gid="70" x="1056" y="320" width="32" height="35"/>
-  <object id="101" name="Elev 101" gid="70" x="416" y="384" width="32" height="35"/>
-  <object id="102" name="Elev 102" gid="70" x="480" y="384" width="32" height="35"/>
-  <object id="103" name="Elev 103" gid="70" x="1120" y="384" width="32" height="35"/>
-  <object id="104" name="Elev 104" gid="70" x="672" y="416" width="32" height="35"/>
-  <object id="105" name="Elev 105" gid="70" x="736" y="416" width="32" height="35"/>
-  <object id="106" name="Elev 106" gid="70" x="288" y="448" width="32" height="35"/>
-  <object id="107" name="Elev 107" gid="70" x="352" y="448" width="32" height="35"/>
-  <object id="108" name="Elev 108" gid="70" x="928" y="448" width="32" height="35"/>
-  <object id="109" name="Elev 109" gid="70" x="992" y="448" width="32" height="35"/>
-  <object id="110" name="Elev 110" gid="70" x="160" y="512" width="32" height="35"/>
-  <object id="111" name="Elev 111" gid="70" x="224" y="512" width="32" height="35"/>
-  <object id="112" name="Elev 112" gid="70" x="416" y="512" width="32" height="35"/>
-  <object id="113" name="Elev 113" gid="70" x="480" y="512" width="32" height="35"/>
-  <object id="114" name="Elev 114" gid="70" x="544" y="512" width="32" height="35"/>
-  <object id="115" name="Elev 115" gid="70" x="608" y="512" width="32" height="35"/>
-  <object id="116" name="Elev 116" gid="70" x="672" y="512" width="32" height="35"/>
-  <object id="117" name="Elev 117" gid="70" x="736" y="512" width="32" height="35"/>
-  <object id="118" name="Elev 118" gid="70" x="800" y="512" width="32" height="35"/>
-  <object id="119" name="Elev 119" gid="70" x="864" y="512" width="32" height="35"/>
-  <object id="120" name="Elev 120" gid="70" x="1056" y="512" width="32" height="35"/>
-  <object id="121" name="Elev 121" gid="70" x="1120" y="512" width="32" height="35"/>
-  <object id="122" name="Elev 122" gid="70" x="1184" y="512" width="32" height="35"/>
-  <object id="123" name="Elev 123" gid="70" x="1248" y="512" width="32" height="35"/>
-  <object id="124" name="Elev 124" gid="71" x="224" y="224" width="32" height="35"/>
-  <object id="125" name="Elev 125" gid="71" x="352" y="224" width="32" height="35"/>
-  <object id="126" name="Elev 126" gid="71" x="608" y="224" width="32" height="35"/>
-  <object id="127" name="Elev 127" gid="71" x="672" y="224" width="32" height="35"/>
-  <object id="128" name="Elev 128" gid="71" x="1056" y="224" width="32" height="35"/>
-  <object id="129" name="Elev 129" gid="71" x="1248" y="224" width="32" height="35"/>
-  <object id="130" name="Elev 130" gid="71" x="224" y="256" width="32" height="35"/>
-  <object id="131" name="Elev 131" gid="71" x="352" y="256" width="32" height="35"/>
-  <object id="132" name="Elev 132" gid="71" x="608" y="256" width="32" height="35"/>
-  <object id="133" name="Elev 133" gid="71" x="736" y="256" width="32" height="35"/>
-  <object id="134" name="Elev 134" gid="71" x="800" y="256" width="32" height="35"/>
-  <object id="135" name="Elev 135" gid="71" x="992" y="256" width="32" height="35"/>
-  <object id="136" name="Elev 136" gid="71" x="1056" y="256" width="32" height="35"/>
-  <object id="137" name="Elev 137" gid="71" x="1248" y="256" width="32" height="35"/>
-  <object id="138" name="Elev 138" gid="71" x="224" y="288" width="32" height="35"/>
-  <object id="139" name="Elev 139" gid="71" x="288" y="288" width="32" height="35"/>
-  <object id="140" name="Elev 140" gid="71" x="608" y="288" width="32" height="35"/>
-  <object id="141" name="Elev 141" gid="71" x="736" y="288" width="32" height="35"/>
-  <object id="142" name="Elev 142" gid="71" x="1056" y="288" width="32" height="35"/>
-  <object id="143" name="Elev 143" gid="71" x="224" y="320" width="32" height="35"/>
-  <object id="144" name="Elev 144" gid="71" x="288" y="320" width="32" height="35"/>
-  <object id="145" name="Elev 145" gid="71" x="480" y="320" width="32" height="35"/>
-  <object id="146" name="Elev 146" gid="71" x="736" y="320" width="32" height="35"/>
-  <object id="147" name="Elev 147" gid="71" x="288" y="352" width="32" height="35"/>
-  <object id="148" name="Elev 148" gid="71" x="480" y="352" width="32" height="35"/>
-  <object id="149" name="Elev 149" gid="71" x="672" y="352" width="32" height="35"/>
-  <object id="150" name="Elev 150" gid="71" x="736" y="352" width="32" height="35"/>
-  <object id="151" name="Elev 151" gid="71" x="1120" y="352" width="32" height="35"/>
-  <object id="152" name="Elev 152" gid="71" x="1184" y="352" width="32" height="35"/>
-  <object id="153" name="Elev 153" gid="71" x="224" y="384" width="32" height="35"/>
-  <object id="154" name="Elev 154" gid="71" x="288" y="384" width="32" height="35"/>
-  <object id="155" name="Elev 155" gid="71" x="352" y="384" width="32" height="35"/>
-  <object id="156" name="Elev 156" gid="71" x="672" y="384" width="32" height="35"/>
-  <object id="157" name="Elev 157" gid="71" x="736" y="384" width="32" height="35"/>
-  <object id="158" name="Elev 158" gid="71" x="800" y="384" width="32" height="35"/>
-  <object id="159" name="Elev 159" gid="71" x="864" y="384" width="32" height="35"/>
-  <object id="160" name="Elev 160" gid="71" x="928" y="384" width="32" height="35"/>
-  <object id="161" name="Elev 161" gid="71" x="1184" y="384" width="32" height="35"/>
-  <object id="162" name="Elev 162" gid="71" x="224" y="416" width="32" height="35"/>
-  <object id="163" name="Elev 163" gid="71" x="288" y="416" width="32" height="35"/>
-  <object id="164" name="Elev 164" gid="71" x="352" y="416" width="32" height="35"/>
-  <object id="165" name="Elev 165" gid="71" x="608" y="416" width="32" height="35"/>
-  <object id="166" name="Elev 166" gid="71" x="800" y="416" width="32" height="35"/>
-  <object id="167" name="Elev 167" gid="71" x="864" y="416" width="32" height="35"/>
-  <object id="168" name="Elev 168" gid="71" x="928" y="416" width="32" height="35"/>
-  <object id="169" name="Elev 169" gid="71" x="1184" y="416" width="32" height="35"/>
-  <object id="170" name="Elev 170" gid="71" x="160" y="448" width="32" height="35"/>
-  <object id="171" name="Elev 171" gid="71" x="224" y="448" width="32" height="35"/>
-  <object id="172" name="Elev 172" gid="71" x="608" y="448" width="32" height="35"/>
-  <object id="173" name="Elev 173" gid="71" x="800" y="448" width="32" height="35"/>
-  <object id="174" name="Elev 174" gid="71" x="864" y="448" width="32" height="35"/>
-  <object id="175" name="Elev 175" gid="71" x="1184" y="448" width="32" height="35"/>
-  <object id="176" name="Elev 176" gid="71" x="1248" y="448" width="32" height="35"/>
-  <object id="177" name="Elev 177" gid="71" x="160" y="480" width="32" height="35"/>
-  <object id="178" name="Elev 178" gid="71" x="224" y="480" width="32" height="35"/>
-  <object id="179" name="Elev 179" gid="71" x="416" y="480" width="32" height="35"/>
-  <object id="180" name="Elev 180" gid="71" x="480" y="480" width="32" height="35"/>
-  <object id="181" name="Elev 181" gid="71" x="544" y="480" width="32" height="35"/>
-  <object id="182" name="Elev 182" gid="71" x="608" y="480" width="32" height="35"/>
-  <object id="183" name="Elev 183" gid="71" x="800" y="480" width="32" height="35"/>
-  <object id="184" name="Elev 184" gid="71" x="864" y="480" width="32" height="35"/>
-  <object id="185" name="Elev 185" gid="71" x="1056" y="480" width="32" height="35"/>
-  <object id="186" name="Elev 186" gid="71" x="1120" y="480" width="32" height="35"/>
-  <object id="187" name="Elev 187" gid="71" x="1184" y="480" width="32" height="35"/>
-  <object id="188" name="Elev 188" gid="71" x="1248" y="480" width="32" height="35"/>
-  <object id="189" name="Exit 189" gid="113" x="160" y="256" width="32" height="32"/>
-  <object id="190" name="Play 190" gid="401" x="160" y="352" width="32" height="48"/>
-  <object id="191" name="Push 191" gid="262" x="448" y="192" width="32" height="48"/>
-  <object id="192" name="Push 192" gid="262" x="512" y="192" width="32" height="48"/>
-  <object id="193" name="Push 193" gid="262" x="704" y="192" width="32" height="48"/>
-  <object id="194" name="Push 194" gid="262" x="768" y="192" width="32" height="48"/>
-  <object id="195" name="Push 195" gid="262" x="960" y="192" width="32" height="48"/>
-  <object id="196" name="Push 196" gid="262" x="320" y="224" width="32" height="48"/>
-  <object id="197" name="Push 197" gid="262" x="1152" y="224" width="32" height="48"/>
-  <object id="198" name="Push 198" gid="262" x="384" y="256" width="32" height="48"/>
-  <object id="199" name="Push 199" gid="262" x="512" y="256" width="32" height="48"/>
-  <object id="200" name="Push 200" gid="262" x="576" y="256" width="32" height="48"/>
-  <object id="201" name="Push 201" gid="262" x="832" y="256" width="32" height="48"/>
-  <object id="202" name="Push 202" gid="262" x="896" y="256" width="32" height="48"/>
-  <object id="203" name="Push 203" gid="262" x="704" y="288" width="32" height="48"/>
-  <object id="204" name="Push 204" gid="262" x="1088" y="288" width="32" height="48"/>
-  <object id="205" name="Push 205" gid="262" x="1152" y="288" width="32" height="48"/>
-  <object id="206" name="Push 206" gid="262" x="320" y="320" width="32" height="48"/>
-  <object id="207" name="Push 207" gid="262" x="448" y="320" width="32" height="48"/>
-  <object id="208" name="Push 208" gid="262" x="768" y="320" width="32" height="48"/>
-  <object id="209" name="Push 209" gid="262" x="832" y="320" width="32" height="48"/>
-  <object id="210" name="Push 210" gid="262" x="960" y="320" width="32" height="48"/>
-  <object id="211" name="Push 211" gid="262" x="1024" y="320" width="32" height="48"/>
-  <object id="212" name="Push 212" gid="262" x="512" y="352" width="32" height="48"/>
-  <object id="213" name="Push 213" gid="262" x="576" y="352" width="32" height="48"/>
-  <object id="214" name="Push 214" gid="262" x="1216" y="352" width="32" height="48"/>
-  <object id="215" name="Push 215" gid="262" x="384" y="416" width="32" height="48"/>
-  <object id="216" name="Push 216" gid="262" x="448" y="416" width="32" height="48"/>
-  <object id="217" name="Push 217" gid="262" x="512" y="416" width="32" height="48"/>
-  <object id="218" name="Push 218" gid="262" x="1024" y="416" width="32" height="48"/>
-  <object id="219" name="Push 219" gid="262" x="1152" y="416" width="32" height="48"/>
-  <object id="220" name="Push 220" gid="262" x="640" y="448" width="32" height="48"/>
-  <object id="221" name="Push 221" gid="262" x="704" y="448" width="32" height="48"/>
-  <object id="222" name="Push 222" gid="262" x="256" y="480" width="32" height="48"/>
-  <object id="223" name="Push 223" gid="262" x="384" y="480" width="32" height="48"/>
-  <object id="224" name="Push 224" gid="262" x="896" y="480" width="32" height="48"/>
-  <object id="225" name="Unpu 225" gid="323" x="1056" y="352" width="32" height="48"/>
-  <object id="226" name="Unpu 226" gid="323" x="992" y="384" width="32" height="48"/>
+  <object id="36" name="Elev36" gid="35" x="224" y="352" width="32" height="35"/>
+  <object id="37" name="Elev37" gid="51" x="160" y="192" width="32" height="37"/>
+  <object id="38" name="Elev38" gid="51" x="288" y="192" width="32" height="37"/>
+  <object id="39" name="Elev39" gid="51" x="1120" y="192" width="32" height="37"/>
+  <object id="40" name="Elev40" gid="51" x="1184" y="192" width="32" height="37"/>
+  <object id="41" name="Elev41" gid="51" x="416" y="224" width="32" height="37"/>
+  <object id="42" name="Elev42" gid="51" x="544" y="224" width="32" height="37"/>
+  <object id="43" name="Elev43" gid="51" x="1120" y="256" width="32" height="37"/>
+  <object id="44" name="Elev44" gid="51" x="1184" y="256" width="32" height="37"/>
+  <object id="45" name="Elev45" gid="51" x="416" y="288" width="32" height="37"/>
+  <object id="46" name="Elev46" gid="51" x="864" y="288" width="32" height="37"/>
+  <object id="47" name="Elev47" gid="51" x="928" y="288" width="32" height="37"/>
+  <object id="48" name="Elev48" gid="51" x="992" y="352" width="32" height="37"/>
+  <object id="49" name="Elev49" gid="51" x="544" y="384" width="32" height="37"/>
+  <object id="50" name="Elev50" gid="51" x="1056" y="384" width="32" height="37"/>
+  <object id="51" name="Elev51" gid="51" x="288" y="512" width="32" height="37"/>
+  <object id="52" name="Elev52" gid="51" x="352" y="512" width="32" height="37"/>
+  <object id="53" name="Elev53" gid="51" x="928" y="512" width="32" height="37"/>
+  <object id="54" name="Elev54" gid="51" x="992" y="512" width="32" height="37"/>
+  <object id="55" name="Elev55" gid="52" x="224" y="192" width="32" height="35"/>
+  <object id="56" name="Elev56" gid="52" x="352" y="192" width="32" height="35"/>
+  <object id="57" name="Elev57" gid="52" x="480" y="192" width="32" height="35"/>
+  <object id="58" name="Elev58" gid="52" x="608" y="192" width="32" height="35"/>
+  <object id="59" name="Elev59" gid="52" x="672" y="192" width="32" height="35"/>
+  <object id="60" name="Elev60" gid="52" x="864" y="192" width="32" height="35"/>
+  <object id="61" name="Elev61" gid="52" x="928" y="192" width="32" height="35"/>
+  <object id="62" name="Elev62" gid="52" x="1056" y="192" width="32" height="35"/>
+  <object id="63" name="Elev63" gid="52" x="1248" y="192" width="32" height="35"/>
+  <object id="64" name="Elev64" gid="52" x="736" y="224" width="32" height="35"/>
+  <object id="65" name="Elev65" gid="52" x="800" y="224" width="32" height="35"/>
+  <object id="66" name="Elev66" gid="52" x="992" y="224" width="32" height="35"/>
+  <object id="67" name="Elev67" gid="52" x="288" y="256" width="32" height="35"/>
+  <object id="68" name="Elev68" gid="52" x="480" y="288" width="32" height="35"/>
+  <object id="69" name="Elev69" gid="52" x="544" y="288" width="32" height="35"/>
+  <object id="70" name="Elev70" gid="52" x="672" y="320" width="32" height="35"/>
+  <object id="71" name="Elev71" gid="52" x="1120" y="320" width="32" height="35"/>
+  <object id="72" name="Elev72" gid="52" x="1184" y="320" width="32" height="35"/>
+  <object id="73" name="Elev73" gid="52" x="352" y="352" width="32" height="35"/>
+  <object id="74" name="Elev74" gid="52" x="416" y="352" width="32" height="35"/>
+  <object id="75" name="Elev75" gid="52" x="800" y="352" width="32" height="35"/>
+  <object id="76" name="Elev76" gid="52" x="864" y="352" width="32" height="35"/>
+  <object id="77" name="Elev77" gid="52" x="928" y="352" width="32" height="35"/>
+  <object id="78" name="Elev78" gid="52" x="608" y="384" width="32" height="35"/>
+  <object id="79" name="Elev79" gid="52" x="160" y="416" width="32" height="35"/>
+  <object id="80" name="Elev80" gid="52" x="992" y="416" width="32" height="35"/>
+  <object id="81" name="Elev81" gid="52" x="1248" y="416" width="32" height="35"/>
+  <object id="82" name="Elev82" gid="52" x="416" y="448" width="32" height="35"/>
+  <object id="83" name="Elev83" gid="52" x="480" y="448" width="32" height="35"/>
+  <object id="84" name="Elev84" gid="52" x="544" y="448" width="32" height="35"/>
+  <object id="85" name="Elev85" gid="52" x="1056" y="448" width="32" height="35"/>
+  <object id="86" name="Elev86" gid="52" x="1120" y="448" width="32" height="35"/>
+  <object id="87" name="Elev87" gid="52" x="672" y="480" width="32" height="35"/>
+  <object id="88" name="Elev88" gid="52" x="736" y="480" width="32" height="35"/>
+  <object id="89" name="Elev89" gid="53" x="192" y="352" width="32" height="35"/>
+  <object id="90" name="Elev90" gid="70" x="480" y="224" width="32" height="35"/>
+  <object id="91" name="Elev91" gid="70" x="864" y="224" width="32" height="35"/>
+  <object id="92" name="Elev92" gid="70" x="928" y="224" width="32" height="35"/>
+  <object id="93" name="Elev93" gid="70" x="672" y="256" width="32" height="35"/>
+  <object id="94" name="Elev94" gid="70" x="352" y="288" width="32" height="35"/>
+  <object id="95" name="Elev95" gid="70" x="800" y="288" width="32" height="35"/>
+  <object id="96" name="Elev96" gid="70" x="992" y="288" width="32" height="35"/>
+  <object id="97" name="Elev97" gid="70" x="1248" y="288" width="32" height="35"/>
+  <object id="98" name="Elev98" gid="70" x="544" y="320" width="32" height="35"/>
+  <object id="99" name="Elev99" gid="70" x="608" y="320" width="32" height="35"/>
+  <object id="100" name="Elev100" gid="70" x="1056" y="320" width="32" height="35"/>
+  <object id="101" name="Elev101" gid="70" x="416" y="384" width="32" height="35"/>
+  <object id="102" name="Elev102" gid="70" x="480" y="384" width="32" height="35"/>
+  <object id="103" name="Elev103" gid="70" x="1120" y="384" width="32" height="35"/>
+  <object id="104" name="Elev104" gid="70" x="672" y="416" width="32" height="35"/>
+  <object id="105" name="Elev105" gid="70" x="736" y="416" width="32" height="35"/>
+  <object id="106" name="Elev106" gid="70" x="288" y="448" width="32" height="35"/>
+  <object id="107" name="Elev107" gid="70" x="352" y="448" width="32" height="35"/>
+  <object id="108" name="Elev108" gid="70" x="928" y="448" width="32" height="35"/>
+  <object id="109" name="Elev109" gid="70" x="992" y="448" width="32" height="35"/>
+  <object id="110" name="Elev110" gid="70" x="160" y="512" width="32" height="35"/>
+  <object id="111" name="Elev111" gid="70" x="224" y="512" width="32" height="35"/>
+  <object id="112" name="Elev112" gid="70" x="416" y="512" width="32" height="35"/>
+  <object id="113" name="Elev113" gid="70" x="480" y="512" width="32" height="35"/>
+  <object id="114" name="Elev114" gid="70" x="544" y="512" width="32" height="35"/>
+  <object id="115" name="Elev115" gid="70" x="608" y="512" width="32" height="35"/>
+  <object id="116" name="Elev116" gid="70" x="672" y="512" width="32" height="35"/>
+  <object id="117" name="Elev117" gid="70" x="736" y="512" width="32" height="35"/>
+  <object id="118" name="Elev118" gid="70" x="800" y="512" width="32" height="35"/>
+  <object id="119" name="Elev119" gid="70" x="864" y="512" width="32" height="35"/>
+  <object id="120" name="Elev120" gid="70" x="1056" y="512" width="32" height="35"/>
+  <object id="121" name="Elev121" gid="70" x="1120" y="512" width="32" height="35"/>
+  <object id="122" name="Elev122" gid="70" x="1184" y="512" width="32" height="35"/>
+  <object id="123" name="Elev123" gid="70" x="1248" y="512" width="32" height="35"/>
+  <object id="124" name="Elev124" gid="71" x="224" y="224" width="32" height="35"/>
+  <object id="125" name="Elev125" gid="71" x="352" y="224" width="32" height="35"/>
+  <object id="126" name="Elev126" gid="71" x="608" y="224" width="32" height="35"/>
+  <object id="127" name="Elev127" gid="71" x="672" y="224" width="32" height="35"/>
+  <object id="128" name="Elev128" gid="71" x="1056" y="224" width="32" height="35"/>
+  <object id="129" name="Elev129" gid="71" x="1248" y="224" width="32" height="35"/>
+  <object id="130" name="Elev130" gid="71" x="224" y="256" width="32" height="35"/>
+  <object id="131" name="Elev131" gid="71" x="352" y="256" width="32" height="35"/>
+  <object id="132" name="Elev132" gid="71" x="608" y="256" width="32" height="35"/>
+  <object id="133" name="Elev133" gid="71" x="736" y="256" width="32" height="35"/>
+  <object id="134" name="Elev134" gid="71" x="800" y="256" width="32" height="35"/>
+  <object id="135" name="Elev135" gid="71" x="992" y="256" width="32" height="35"/>
+  <object id="136" name="Elev136" gid="71" x="1056" y="256" width="32" height="35"/>
+  <object id="137" name="Elev137" gid="71" x="1248" y="256" width="32" height="35"/>
+  <object id="138" name="Elev138" gid="71" x="224" y="288" width="32" height="35"/>
+  <object id="139" name="Elev139" gid="71" x="288" y="288" width="32" height="35"/>
+  <object id="140" name="Elev140" gid="71" x="608" y="288" width="32" height="35"/>
+  <object id="141" name="Elev141" gid="71" x="736" y="288" width="32" height="35"/>
+  <object id="142" name="Elev142" gid="71" x="1056" y="288" width="32" height="35"/>
+  <object id="143" name="Elev143" gid="71" x="224" y="320" width="32" height="35"/>
+  <object id="144" name="Elev144" gid="71" x="288" y="320" width="32" height="35"/>
+  <object id="145" name="Elev145" gid="71" x="480" y="320" width="32" height="35"/>
+  <object id="146" name="Elev146" gid="71" x="736" y="320" width="32" height="35"/>
+  <object id="147" name="Elev147" gid="71" x="288" y="352" width="32" height="35"/>
+  <object id="148" name="Elev148" gid="71" x="480" y="352" width="32" height="35"/>
+  <object id="149" name="Elev149" gid="71" x="672" y="352" width="32" height="35"/>
+  <object id="150" name="Elev150" gid="71" x="736" y="352" width="32" height="35"/>
+  <object id="151" name="Elev151" gid="71" x="1120" y="352" width="32" height="35"/>
+  <object id="152" name="Elev152" gid="71" x="1184" y="352" width="32" height="35"/>
+  <object id="153" name="Elev153" gid="71" x="224" y="384" width="32" height="35"/>
+  <object id="154" name="Elev154" gid="71" x="288" y="384" width="32" height="35"/>
+  <object id="155" name="Elev155" gid="71" x="352" y="384" width="32" height="35"/>
+  <object id="156" name="Elev156" gid="71" x="672" y="384" width="32" height="35"/>
+  <object id="157" name="Elev157" gid="71" x="736" y="384" width="32" height="35"/>
+  <object id="158" name="Elev158" gid="71" x="800" y="384" width="32" height="35"/>
+  <object id="159" name="Elev159" gid="71" x="864" y="384" width="32" height="35"/>
+  <object id="160" name="Elev160" gid="71" x="928" y="384" width="32" height="35"/>
+  <object id="161" name="Elev161" gid="71" x="1184" y="384" width="32" height="35"/>
+  <object id="162" name="Elev162" gid="71" x="224" y="416" width="32" height="35"/>
+  <object id="163" name="Elev163" gid="71" x="288" y="416" width="32" height="35"/>
+  <object id="164" name="Elev164" gid="71" x="352" y="416" width="32" height="35"/>
+  <object id="165" name="Elev165" gid="71" x="608" y="416" width="32" height="35"/>
+  <object id="166" name="Elev166" gid="71" x="800" y="416" width="32" height="35"/>
+  <object id="167" name="Elev167" gid="71" x="864" y="416" width="32" height="35"/>
+  <object id="168" name="Elev168" gid="71" x="928" y="416" width="32" height="35"/>
+  <object id="169" name="Elev169" gid="71" x="1184" y="416" width="32" height="35"/>
+  <object id="170" name="Elev170" gid="71" x="160" y="448" width="32" height="35"/>
+  <object id="171" name="Elev171" gid="71" x="224" y="448" width="32" height="35"/>
+  <object id="172" name="Elev172" gid="71" x="608" y="448" width="32" height="35"/>
+  <object id="173" name="Elev173" gid="71" x="800" y="448" width="32" height="35"/>
+  <object id="174" name="Elev174" gid="71" x="864" y="448" width="32" height="35"/>
+  <object id="175" name="Elev175" gid="71" x="1184" y="448" width="32" height="35"/>
+  <object id="176" name="Elev176" gid="71" x="1248" y="448" width="32" height="35"/>
+  <object id="177" name="Elev177" gid="71" x="160" y="480" width="32" height="35"/>
+  <object id="178" name="Elev178" gid="71" x="224" y="480" width="32" height="35"/>
+  <object id="179" name="Elev179" gid="71" x="416" y="480" width="32" height="35"/>
+  <object id="180" name="Elev180" gid="71" x="480" y="480" width="32" height="35"/>
+  <object id="181" name="Elev181" gid="71" x="544" y="480" width="32" height="35"/>
+  <object id="182" name="Elev182" gid="71" x="608" y="480" width="32" height="35"/>
+  <object id="183" name="Elev183" gid="71" x="800" y="480" width="32" height="35"/>
+  <object id="184" name="Elev184" gid="71" x="864" y="480" width="32" height="35"/>
+  <object id="185" name="Elev185" gid="71" x="1056" y="480" width="32" height="35"/>
+  <object id="186" name="Elev186" gid="71" x="1120" y="480" width="32" height="35"/>
+  <object id="187" name="Elev187" gid="71" x="1184" y="480" width="32" height="35"/>
+  <object id="188" name="Elev188" gid="71" x="1248" y="480" width="32" height="35"/>
+  <object id="189" name="Exit189" gid="113" x="160" y="256" width="32" height="32"/>
+  <object id="190" name="Play190" gid="402" x="160" y="352" width="32" height="48"/>
+  <object id="191" name="Push191" gid="262" x="448" y="192" width="32" height="48"/>
+  <object id="192" name="Push192" gid="262" x="512" y="192" width="32" height="48"/>
+  <object id="193" name="Push193" gid="262" x="704" y="192" width="32" height="48"/>
+  <object id="194" name="Push194" gid="262" x="768" y="192" width="32" height="48"/>
+  <object id="195" name="Push195" gid="262" x="960" y="192" width="32" height="48"/>
+  <object id="196" name="Push196" gid="262" x="320" y="224" width="32" height="48"/>
+  <object id="197" name="Push197" gid="262" x="1152" y="224" width="32" height="48"/>
+  <object id="198" name="Push198" gid="262" x="384" y="256" width="32" height="48"/>
+  <object id="199" name="Push199" gid="262" x="512" y="256" width="32" height="48"/>
+  <object id="200" name="Push200" gid="262" x="576" y="256" width="32" height="48"/>
+  <object id="201" name="Push201" gid="262" x="832" y="256" width="32" height="48"/>
+  <object id="202" name="Push202" gid="262" x="896" y="256" width="32" height="48"/>
+  <object id="203" name="Push203" gid="262" x="704" y="288" width="32" height="48"/>
+  <object id="204" name="Push204" gid="262" x="1088" y="288" width="32" height="48"/>
+  <object id="205" name="Push205" gid="262" x="1152" y="288" width="32" height="48"/>
+  <object id="206" name="Push206" gid="262" x="320" y="320" width="32" height="48"/>
+  <object id="207" name="Push207" gid="262" x="448" y="320" width="32" height="48"/>
+  <object id="208" name="Push208" gid="262" x="768" y="320" width="32" height="48"/>
+  <object id="209" name="Push209" gid="262" x="832" y="320" width="32" height="48"/>
+  <object id="210" name="Push210" gid="262" x="960" y="320" width="32" height="48"/>
+  <object id="211" name="Push211" gid="262" x="1024" y="320" width="32" height="48"/>
+  <object id="212" name="Push212" gid="262" x="512" y="352" width="32" height="48"/>
+  <object id="213" name="Push213" gid="262" x="576" y="352" width="32" height="48"/>
+  <object id="214" name="Push214" gid="262" x="1216" y="352" width="32" height="48"/>
+  <object id="215" name="Push215" gid="262" x="384" y="416" width="32" height="48"/>
+  <object id="216" name="Push216" gid="262" x="448" y="416" width="32" height="48"/>
+  <object id="217" name="Push217" gid="262" x="512" y="416" width="32" height="48"/>
+  <object id="218" name="Push218" gid="262" x="1024" y="416" width="32" height="48"/>
+  <object id="219" name="Push219" gid="262" x="1152" y="416" width="32" height="48"/>
+  <object id="220" name="Push220" gid="262" x="640" y="448" width="32" height="48"/>
+  <object id="221" name="Push221" gid="262" x="704" y="448" width="32" height="48"/>
+  <object id="222" name="Push222" gid="262" x="256" y="480" width="32" height="48"/>
+  <object id="223" name="Push223" gid="262" x="384" y="480" width="32" height="48"/>
+  <object id="224" name="Push224" gid="262" x="896" y="480" width="32" height="48"/>
+  <object id="225" name="Unpu225" gid="323" x="1056" y="352" width="32" height="48"/>
+  <object id="226" name="Unpu226" gid="323" x="992" y="384" width="32" height="48"/>
  </objectgroup>
 </map>

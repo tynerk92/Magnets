@@ -326,36 +326,42 @@ public class TextToTmx {
 						case player: 		objname = "Player Idle"; 																	break;
 						case magnetsource:	objname = "Magnetic Source " + "01_" + tsGen.numMagneticSourceFrames; 						break;
 						//case boulder: 		objname = "Boulder"; break;
-						case exit: if (!data[y - 1][x].equals(wall)) {
-							// If the exit is a pit, arrows can point from any direction.
-							objname = "Exit Down";
-							// Up Left Right Down
-							String yo = "0" + (data[y][x + 1].equals(" ") ? "1" : "") + 
-									(data[y][x - 1].equals(" ") ? "2" : "") + 
-									(data[y - 1][x].equals(" ") ? "3" : "");
-							String chosenDirection = directions[Integer.parseInt("" + yo.charAt(random.nextInt(yo.length())))];
-							switch (chosenDirection) {
-							case "Up": 
-								Walls[y + ioffset][x - 1 + joffset] = nameToTileID.get("Exit Arrow " + chosenDirection + " 1_" + tsGen.numExitFrames); break;
-							case "Left": 
-								Walls[y - 1 + ioffset][x + joffset] = nameToTileID.get("Exit Arrow " + chosenDirection + " 1_" + tsGen.numExitFrames); break;
-							case "Right": 
-								Walls[y - 1 + ioffset][x - 2+ joffset] = nameToTileID.get("Exit Arrow " + chosenDirection + " 1_" + tsGen.numExitFrames); break;
-							case "Down": 
-								Walls[y - 2+ ioffset][x - 1 + joffset] = nameToTileID.get("Exit Arrow " + chosenDirection + " 1_" + tsGen.numExitFrames); break;
-							}
-							FloorDeco[y - 1 + ioffset][x - 1 + joffset] = nameToTileID.get(objname);
-						} else {
-							objname = "Exit Front " + (Math.random() < 0.5 ? "Down" : "Forwards"); 
-							// Arrows are supposed to be behind walls, and hence should belong to floor deco.
-							// There are not supposed to be debris under the arrow anyway so this will overwrite anyother things.
-							// Btw, arrows are only set to spawn on empty floors only.
-							WallDeco1[y - 1 + ioffset][x - 1 + joffset] = nameToTileID.get("Exit Arrow Up 1_" + tsGen.numExitFrames); 
-							// SInce front exits are supposed to be on top of the walls, it should belong to wall deco2 which is merged together 
-							// into the Walls and Objects layer
-							WallDeco2[y - 2 + ioffset][x - 1 + joffset] = nameToTileID.get(objname);
-						} 
-						objname = "Exit Dud"; break;
+						case exit: 
+							if (!data[y - 1][x].equals(wall)) {
+								// If the exit is a pit, arrows can point from any direction.
+								// Up Left Right Down
+								String yo = "0" + (data[y][x + 1].equals(" ") ? "1" : "") + 
+													(data[y][x - 1].equals(" ") ? "2" : "") + 
+													(data[y - 1][x].equals(" ") ? "3" : "");
+								String chosenDirection = directions[Integer.parseInt("" + yo.charAt(random.nextInt(yo.length())))];
+								String arrow = "Exit Arrow " + chosenDirection + " 1_" + tsGen.numExitFrames;
+								switch (chosenDirection) {
+									case "Up": 		//Objects.add(tsGen.createObject(arrow, x, y + 1)); 
+													WallDeco1[y + ioffset][x - 1 + joffset] = nameToTileID.get("Exit Arrow " + chosenDirection + " 1_" + tsGen.numExitFrames); 
+									break;
+									case "Left": 	//Objects.add(tsGen.createObject(arrow, x + 1, y)); 
+													WallDeco1[y - 1 + ioffset][x + joffset] = nameToTileID.get("Exit Arrow " + chosenDirection + " 1_" + tsGen.numExitFrames);
+									break;
+									case "Right": 	//Objects.add(tsGen.createObject(arrow, x - 1, y));
+													WallDeco1[y - 1 + ioffset][x - 2 + joffset] = nameToTileID.get("Exit Arrow " + chosenDirection + " 1_" + tsGen.numExitFrames);
+									break;
+									case "Down": 	//Objects.add(tsGen.createObject(arrow, x, y - 1)); 
+													WallDeco1[y - 2 + ioffset][x - 1 + joffset] = nameToTileID.get("Exit Arrow " + chosenDirection + " 1_" + tsGen.numExitFrames);
+									break;
+								}
+								FloorDeco[y - 1 + ioffset][x - 1 + joffset] = nameToTileID.get("Exit Down");
+							} else {
+								// Arrows are supposed to be behind walls, and hence should belong to floor deco.
+								// There are not supposed to be debris under the arrow anyway so this will overwrite anyother things.
+								// Btw, arrows are only set to spawn on empty floors only.
+								// Objects.add(tsGen.createObject("Exit Arrow Up 1_" + tsGen.numExitFrames, x, y + 1));
+								WallDeco1[y - 1 + ioffset][x - 1 + joffset] = nameToTileID.get("Exit Arrow Up 1_" + tsGen.numExitFrames); 
+								// SInce front exits are supposed to be on top of the walls, it should belong to wall deco2 which is merged together 
+								// into the Walls and Objects layer
+								WallDeco2[y - 2 + ioffset][x - 1 + joffset] = nameToTileID.get("Exit Front " + (Math.random() < 0.5 ? "Down" : "Forwards"));
+							} 
+							objname = "Exit Dud"; break;
+							
 						default: 
 							if (!(lodestoneSymbols + " ").contains(currentTile)) {
 								System.out.println("Warning: \'" + currentTile + "\' is not defined");
@@ -415,27 +421,29 @@ public class TextToTmx {
 		// Objects Layer
 		ObjectsInfo += " <objectgroup name=\"Objects\">\n";
 		int n = 0;
-		List<String> buttons1 = new ArrayList<String>(), buttonsNOT1 = new ArrayList<String>();
-		List<String> buttons2 = new ArrayList<String>(), buttonsNOT2 = new ArrayList<String>();
+		List<String> buttons1 = new ArrayList<String>();
+		List<String> buttons2 = new ArrayList<String>();
 		Collections.sort(Objects);
 		// WARNING : Sorting IS required because if not, some doors will be processed before some of the buttons that open it
 		// and those buttons will NOT be included in the door opening condition. Also because "C" comes after "B". SO DON"T CHANGE THE NAMES
 		
+		String on = "_On";
+		
 		for (Object object : Objects) {
 			//System.out.println(object.name);
-			String currName = object.name.substring(0, 4) + " " + nameCount++;
+			if (object.name.contains("Arrow")) continue;
+			
+			String currName = object.name.substring(0, 4) + nameCount++;
 			if (object.name.startsWith("Button 1")) {
-				buttons1.add("#" + currName + "@On");
-				buttonsNOT1.add("NOT #" + currName + "@On");
+				buttons1.add("#{" + currName + on + "}");
 			} else if (object.name.startsWith("Button 2")) {
-				buttons2.add("#" + currName + "@On");
-				buttonsNOT2.add("NOT #" + currName + "@On");
+				buttons2.add("#{" + currName + on + "}");
 			}
 			
 			String doorSet1Open = String.join(" AND ", buttons1.toArray(new String[buttons1.size()]));
-			String doorSet1Close = String.join(" OR ", buttonsNOT1.toArray(new String[buttons1.size()]));
+			String doorSet1Close = "NOT(" + doorSet1Open + ")";
 			String doorSet2Open = String.join(" AND ", buttons2.toArray(new String[buttons2.size()]));
-			String doorSet2Close = String.join(" OR ", buttonsNOT2.toArray(new String[buttons2.size()]));
+			String doorSet2Close = "NOT(" + doorSet2Open + ")";
 			
 			ObjectsInfo += 
 					"  <object id=\"" + n++ + 
@@ -618,7 +626,7 @@ public class TextToTmx {
 				prog.writeLevel(mainAssetsDirectory + "Levels/", levelcode, difficulty, hasSolution, solutionLength, hasSecondLayer);
 			}
 		} System.out.println(prog.errorMSG);
-		System.out.println("\n" + s);
+		System.out.println("\n" + s.substring(0, s.length() - 2));
 		prog.writeToFile(mainAssetsDirectory + "Animations/", "Tileset", "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + TextToTmx.TileSetInfo, "tsx");
 	}
 }

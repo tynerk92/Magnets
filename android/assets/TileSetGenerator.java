@@ -309,12 +309,13 @@ public class TileSetGenerator {
 						case "Exit":
 							data = name.split("[ _]");
 							boolean isArrow = data[0].equals("Arrow");
-							info = image(width, height, source);
 							if (isArrow) {
 								whichFrame = Integer.parseInt(data[data.length - 2]);
 								if (whichFrame == 1) {
 									numExitFrames = Integer.parseInt(data[data.length - 1]);
-									info += animation(ExitAnim, ExitInte, IntervalMultiplier, false); 
+									info = enclose("properties", 
+												property("Render Depth", "int", "-1")) + 
+											animation(ExitAnim, ExitInte, IntervalMultiplier, false); 
 								}
 							} else if (name.equals("Dud")) {
 								info = enclose("properties", 
@@ -323,7 +324,7 @@ public class TileSetGenerator {
 												property("Type", type) + 
 												property("Render Depth", "int", "-1")) + 
 										info;
-							} break;
+							} info += image(width, height, source); break;
 						case "Pushable": 
 						case "Unpushable": 
 							boolean pushable = type.equals("Pushable");
@@ -443,8 +444,7 @@ public class TileSetGenerator {
 											property("Lighting Height", 200) + 
 											property("Lighting Width", 200) + 
 											property("Lighting Image Path", relativeGraphicsSetPath + "/Lighting/Point Source White.png") + 
-											property("Lighting Intensity", 0.4) + 
-											property("Shadow Displacement Y", 16)) + 
+											property("Lighting Intensity", 0.4)) + 
 									image(width, height, source); break;
 						case "Wall": 
 							info = enclose("properties", 
