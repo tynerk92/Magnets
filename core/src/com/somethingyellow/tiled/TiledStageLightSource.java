@@ -1,26 +1,22 @@
 package com.somethingyellow.tiled;
 
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.utils.Disposable;
-import com.badlogic.gdx.utils.Pool;
-import com.badlogic.gdx.utils.Pools;
+import com.somethingyellow.graphics.AnimatedActor;
+import com.somethingyellow.graphics.AnimationDef;
 
-import java.util.LinkedList;
+import java.util.HashMap;
 
-public class TiledStageLightSource extends Actor implements Pool.Poolable, Disposable {
-	private Texture _texture;
-	private float _renderDisplacementX;
-	private float _renderDisplacementY;
+public class TiledStageLightSource extends AnimatedActor {
+	private static final HashMap<String, AnimationDef> TempAnimationDefs = new HashMap<String, AnimationDef>();
+	private float _renderDisplacementX = 0f;
+	private float _renderDisplacementY = 0f;
 	private float _intensity;
-	private LinkedList<Listener> _listeners = new LinkedList<Listener>();
-	private LinkedList<Listener> _tempListeners = new LinkedList<Listener>();
 
-	public void initialize(Texture texture) {
-		if (_texture != null) _texture.dispose();
-		_texture = texture;
-		_renderDisplacementX = 0f;
-		_renderDisplacementY = 0f;
+	public void initialize(AnimationDef def, float renderDisplacementX, float renderDisplacementY) {
+		TempAnimationDefs.clear();
+		TempAnimationDefs.put("", def);
+		super.initialize(TempAnimationDefs);
+
+		setRenderDisplacement(renderDisplacementX, renderDisplacementY);
 		_intensity = 1f;
 	}
 
@@ -33,50 +29,17 @@ public class TiledStageLightSource extends Actor implements Pool.Poolable, Dispo
 		_intensity = intensity;
 	}
 
-	public float renderX() {
-		return getX() - _renderDisplacementX;
+	@Override
+	public float getX() {
+		return super.getX() - _renderDisplacementX;
 	}
 
-	public float renderY() {
-		return getY() - _renderDisplacementY;
+	@Override
+	public float getY() {
+		return super.getY() - _renderDisplacementY;
 	}
 
 	public float intensity() {
 		return _intensity;
-	}
-
-	@Override
-	public void reset() {
-		_listeners.clear();
-	}
-
-	public Listener addListener(Listener listener) {
-		_listeners.add(listener);
-		return listener;
-	}
-
-	@Override
-	public boolean remove() {
-		for (Listener listener : _listeners) {
-			listener.removed(this);
-		}
-
-		Pools.free(this);
-
-		return super.remove();
-	}
-
-	public Texture texture() {
-		return _texture;
-	}
-
-	@Override
-	public void dispose() {
-		_texture.dispose();
-	}
-
-	public abstract static class Listener {
-		public void removed(TiledStageLightSource lightSource) {
-		}
 	}
 }

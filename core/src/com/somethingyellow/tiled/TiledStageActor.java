@@ -14,6 +14,7 @@ import java.util.TreeSet;
 /**
  * Represents an actor in TiledStage
  * Tightly coupled with TiledStage, TiledStageMapRenderer
+ * Does not occupy coordinate by default
  */
 
 public abstract class TiledStageActor extends AnimatedActor implements Comparable<TiledStageActor> {
@@ -31,6 +32,8 @@ public abstract class TiledStageActor extends AnimatedActor implements Comparabl
 
 	public void initialize(Map<String, AnimationDef> animationDefs, boolean[] bodyArea, int bodyWidth, TiledStage.Coordinate origin) {
 		super.initialize(animationDefs);
+
+		hideAllAnimations();
 
 		if (bodyArea.length % bodyWidth != 0)
 			throw new IllegalArgumentException("Length of 'Body Area' should be a multiple of 'Body Width'!");
@@ -80,13 +83,28 @@ public abstract class TiledStageActor extends AnimatedActor implements Comparabl
 
 	public abstract void tick(int subtick);
 
-	public abstract boolean bodyCanBeAt(TiledStage.Coordinate coordinate);
+	public boolean occupiesCoordinate() {
+		return false;
+	}
 
 	public boolean canBeAt(TiledStage.Coordinate origin) {
-		// Check if all coordinates of body can move to their direction
-		LinkedList<TiledStage.Coordinate> targetCoordinates = getBodyCoordinates(origin);
-		for (TiledStage.Coordinate bodyCoordinate : targetCoordinates) {
-			if (!bodyCanBeAt(bodyCoordinate)) return false;
+		// If actor occupies its coordinate
+		if (occupiesCoordinate()) {
+			// Check if all coordinates of actor's body can move to their direction
+			LinkedList<TiledStage.Coordinate> targetCoordinates = getBodyCoordinates(origin);
+			for (TiledStage.Coordinate bodyCoordinate : targetCoordinates) {
+				if (!bodyCanBeAt(bodyCoordinate)) return false;
+			}
+		}
+
+		return true;
+	}
+
+	public boolean bodyCanBeAt(TiledStage.Coordinate coordinate) {
+		if (coordinate.isWall()) return false;
+
+		for (TiledStageActor actor : coordinate.actors()) {
+			if (actor != this && actor.occupiesCoordinate()) return false;
 		}
 
 		return true;
@@ -152,9 +170,17 @@ public abstract class TiledStageActor extends AnimatedActor implements Comparabl
 		for (TiledStage.Coordinate coordinate : _bodyCoordinates) {
 			coordinate.add(this);
 		}
+
+		// Update z
+		_z = 0;
+		for (TiledStage.Coordinate coordinate : bodyCoordinates()) {
+			_z = Math.max(_z, coordinate.elevation());
+		}
 	}
 
 	public boolean getBodyAreaAt(int bodyRow, int bodyColumn) {
+		if (bodyRow < 0 || bodyColumn < 0 || bodyRow >= _bodyHeight || bodyColumn >= _bodyWidth)
+			return false;
 		return _bodyArea[bodyRow * _bodyWidth + bodyColumn];
 	}
 

@@ -73,11 +73,6 @@ public class Button extends TiledStageActor {
 		}
 	}
 
-	@Override
-	public boolean bodyCanBeAt(TiledStage.Coordinate coordinate) {
-		return true;
-	}
-
 	public static class Config {
 		public static String AnimationOning = "Oning";
 		public static String AnimationOn = "On";

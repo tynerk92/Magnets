@@ -217,6 +217,11 @@ public class TiledStage extends Stage {
 			}
 		}
 
+		// Process coordinates
+		for (Coordinate coordinate : _coordinates) {
+			_commands.processCoordinate(coordinate);
+		}
+
 		_mapRenderer.initialize(screenWidth, screenHeight);
 		setScreenSize(screenWidth, screenHeight);
 
@@ -230,9 +235,6 @@ public class TiledStage extends Stage {
 		_actors.clear();
 		for (int i = 0; i < _maxSubTicks; i++) {
 			_subTicksToActors.get(i).clear();
-		}
-		for (TiledStageLightSource lightSource : _lightSources) {
-			lightSource.dispose();
 		}
 		_lightSources.clear();
 		_cameraFocalActor = null;
@@ -366,18 +368,17 @@ public class TiledStage extends Stage {
 		_lightSources.add(lightSource);
 	}
 
+	public void removeLightSource(TiledStageLightSource lightSource) {
+		_lightSources.remove(lightSource);
+		lightSource.remove();
+	}
+
 	public void removeActor(TiledStageActor actor) {
 		_actors.remove(actor);
 
 		for (HashSet<TiledStageActor> actors : _subTicksToActors) {
 			actors.remove(actor);
 		}
-	}
-
-	public void removeLightSource(TiledStageLightSource lightSource) {
-		lightSource.dispose();
-		_lightSources.remove(lightSource);
-		lightSource.remove();
 	}
 
 	public TiledStageActor getActorByName(String name) {
@@ -436,6 +437,8 @@ public class TiledStage extends Stage {
 
 	public interface Commands {
 		void spawnObject(Coordinate origin, TiledMapTile tile, String name, MapProperties properties);
+
+		void processCoordinate(Coordinate coordinate);
 	}
 
 	public static class Config {
@@ -461,6 +464,7 @@ public class TiledStage extends Stage {
 		private HashSet<TiledStageActor> _actors = new HashSet<TiledStageActor>();
 		private int _row;
 		private int _col;
+		private int _elevation;
 		private HashMap<String, Cell> _cells;
 
 		public Coordinate(int row, int col) {
@@ -571,8 +575,16 @@ public class TiledStage extends Stage {
 			return _col;
 		}
 
+		public int elevation() {
+			return _elevation;
+		}
+
 		public boolean isWall() {
 			return _wallLayer.getCell(_col, _row) != null; }
+
+		public void setElevation(int elevation) {
+			_elevation = elevation;
+		}
 
 		public Cell getCell(String layerName) {
 			return _cells.get(layerName);

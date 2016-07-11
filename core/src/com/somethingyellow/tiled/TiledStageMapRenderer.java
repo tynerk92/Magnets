@@ -49,7 +49,7 @@ import static com.badlogic.gdx.graphics.g2d.Batch.Y4;
 /**
  * Map renderer for TiledStage
  * Manages rendering of TiledStageActors and TiledStageLightSources in TiledStage
- * Renders TiledStageActors within "wall" layer of TiledStage, in pseudo-3D
+ * Renders TiledStageActors in pseudo-3D
  * (Actors in foremost rows are rendered on top of actors behind)
  * For exclusive use in TiledStage
  * Image and object layers are ignored during rendering
@@ -107,10 +107,10 @@ public class TiledStageMapRenderer implements Disposable {
 	private Rectangle _viewBounds = new Rectangle();
 	private TiledStage _stage;
 	private ShaderProgram _lightingShaderProgram = new ShaderProgram(VERTEX_SHADER, LIGHTING_FRAGMENT_SHADER);
-	private ArrayList<HashSet<Animation>> _animationsByCoordinates;
-	private HashMap<Animation, TiledStageActor> _animationToActors = new HashMap<Animation, TiledStageActor>();
+	private ArrayList<HashSet<TiledStageActor>> _actorsByRowsVisually;
 	private ArrayList<Animation> _tempAnimationsArray = new ArrayList<Animation>();
-	private ArrayList<Animation> _tempAnimationsArray2 = new ArrayList<Animation>();
+	private HashMap<Animation, TiledStageActor> _animationsToActors = new HashMap<Animation, TiledStageActor>();
+	private HashMap<TiledStageActor, TiledStage.Coordinate> _visualOrigins = new HashMap<TiledStageActor, TiledStage.Coordinate>();
 	private FrameBuffer _frameBuffer;
 	private Texture _blackTexture;
 	private float _ambientColorRed;
@@ -134,9 +134,9 @@ public class TiledStageMapRenderer implements Disposable {
 		_ambientColorGreen = Config.AmbientColorGreenDefault;
 		_ambientColorBlue = Config.AmbientColorBlueDefault;
 
-		_animationsByCoordinates = new ArrayList<HashSet<Animation>>(_stage.tileRows() * _stage.tileColumns());
-		for (int i = 0; i < _stage.tileRows() * _stage.tileColumns(); i++) {
-			_animationsByCoordinates.add(i, new HashSet<Animation>());
+		_actorsByRowsVisually = new ArrayList<HashSet<TiledStageActor>>(_stage.tileRows());
+		for (int i = 0; i < _stage.tileRows(); i++) {
+			_actorsByRowsVisually.add(i, new HashSet<TiledStageActor>());
 		}
 
 		// Prepare black texture for shadows
@@ -184,8 +184,8 @@ public class TiledStageMapRenderer implements Disposable {
 
 		AnimatedTiledMapTile.updateAnimationBaseTime();
 		_batch.begin();
-		for (TiledMapTileLayer layer : _tileLayers) {
-			for (int row = layer.getHeight() - 1; row >= 0; row--) {
+		for (int row = _stage.tileRows() - 1; row >= 0; row--) {
+			for (TiledMapTileLayer layer : _tileLayers) {
 				drawLayerByRow(layer, row);
 				if (layer == _stage.wallLayer()) drawActorsByRow(row);
 			}
@@ -201,9 +201,7 @@ public class TiledStageMapRenderer implements Disposable {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		_batch.begin();
 		for (TiledStageLightSource lightSource : _stage.lightSources()) {
-			_batch.setColor(1, 1, 1, lightSource.intensity());
-			_batch.draw(lightSource.texture(), lightSource.renderX(), lightSource.renderY(),
-					lightSource.getWidth(), lightSource.getHeight());
+			lightSource.draw(_batch, lightSource.intensity());
 		}
 		_batch.end();
 		_batch.setColor(Color.WHITE);
@@ -356,109 +354,89 @@ public class TiledStageMapRenderer implements Disposable {
 	}
 
 	private void drawActorsByRow(int row) {
-		for (int col = 0; col < _stage.tileColumns(); col++) {
-			HashSet<Animation> animations = _animationsByCoordinates.get(row * _stage.tileColumns() + col);
+		HashSet<TiledStageActor> actors = _actorsByRowsVisually.get(row);
+		_tempAnimationsArray.clear();
 
-			// Sort sprites by z index
-			_tempAnimationsArray.clear();
-			_tempAnimationsArray2.clear();
-			_tempAnimationsArray.addAll(animations);
-			Collections.sort(_tempAnimationsArray);
-
-			for (Animation animation : _tempAnimationsArray) {
-				TiledStageActor actor = _animationToActors.get(animation);
-				Sprite sprite = getSprite(actor, animation, row, col);
-
-				int leftProtrusion = (animation.frame().width() - (actor.bodyWidth() * _stage.tileWidth())) / 2;
-				int topProtrusion = animation.frame().height() - (actor.bodyHeight() * _stage.tileHeight());
-
-				// Find relative coordinate within actor
-				int bodyRow = Math.floorDiv(sprite.getRegionY() - topProtrusion, _stage.tileHeight());
-				int bodyCol = Math.floorDiv(sprite.getRegionX() - leftProtrusion, _stage.tileWidth());
-				if (bodyCol < 0) bodyCol = 0;
-				if (bodyCol >= actor.bodyWidth()) bodyCol = actor.bodyWidth() - 1;
-
-				if (bodyRow < 0 || !actor.getBodyAreaAt(bodyRow, bodyCol)) {
-					for (int r = Math.max(0, bodyRow + 1); r < actor.bodyHeight(); r++) {
-						if (actor.getBodyAreaAt(r, bodyCol)) {
-							_tempAnimationsArray2.add(animation);
-							break;
-						}
-					}
-				}
-
-				if (sprite.getBoundingRectangle().overlaps(_viewBounds)) sprite.draw(_batch);
+		for (TiledStageActor actor : actors) {
+			for (Animation animation : actor.animations()) {
+				_tempAnimationsArray.add(animation);
 			}
+		}
 
-			for (Animation animation : _tempAnimationsArray2) {
-				TiledStageActor actor = _animationToActors.get(animation);
-				Sprite sprite = getSprite(actor, animation, row, col);
+		// Sort sprites by z index
+		Collections.sort(_tempAnimationsArray);
+		for (Animation animation : _tempAnimationsArray) {
+			for (int col = 0; col < _stage.tileColumns(); col++) {
+				TiledStageActor actor = _animationsToActors.get(animation);
+				TiledStage.Coordinate visualOrigin = _visualOrigins.get(actor);
+
+				// Calculate displacement of actor (from its "visual origin")
+				int displacementX = (int) actor.getX() - visualOrigin.column() * _stage.tileWidth();
+				int displacementY = (int) actor.getY() - visualOrigin.row() * _stage.tileHeight();
+
+				// Calculate corresponding body row and column of actor
+				int bodyRow = (actor.bodyHeight() - 1) - (row - ((int) actor.getY() - displacementY) / _stage.tileHeight());
+				int bodyCol = col - ((int) actor.getX() - displacementX) / _stage.tileWidth();
+				if (!actor.getBodyAreaAt(bodyRow, bodyCol)) continue;
+
+				Sprite sprite = getSprite(actor, animation, bodyRow, bodyCol);
+				sprite.setPosition(col * _stage.tileWidth() + displacementX, (int) actor.getZ() + row * _stage.tileHeight() + displacementY);
 				if (sprite.getBoundingRectangle().overlaps(_viewBounds)) sprite.draw(_batch);
 			}
 		}
 	}
 
-	private Sprite getSprite(TiledStageActor body, Animation animation, int row, int col) {
+	/**
+	 * Generates a sprite for an actor's animation associated with Coordinate at row and col (visually)
+	 * If Coordinate corresponds to top body row of actor, the cell and everything above is rendered
+	 * If Coordinate corresponds to a body coordinate that "doesn't have body coordinates" above it,
+	 * the cell and everything above is rendered up to the next upper body coordinate
+	 * If not, only the cell is rendered
+	 */
+	private Sprite getSprite(TiledStageActor actor, Animation animation, int bodyRow, int bodyCol) {
 		Sprite sprite = animation.getSprite();
-		int x = col * _stage.tileWidth();
-		int y = (row + 1) * _stage.tileHeight();
-		int leftProtrusion = (sprite.getRegionWidth() - (body.bodyWidth() * _stage.tileWidth())) / 2;
 
-		int regionTop = sprite.getRegionHeight() - (y - (int) body.getY());
-		int regionLeft = x - (int) body.getX() + leftProtrusion;
-		int regionWidth = _stage.tileWidth();
-		int regionHeight = _stage.tileHeight();
+		// Calculate region of sprite that is associated with coordinate (raw)
+		int topProtrusion = sprite.getRegionHeight() - actor.bodyHeight() * _stage.tileHeight();
+		int regionLeft = bodyCol * _stage.tileWidth();
+		int regionRight = regionLeft + _stage.tileWidth();
+		int regionTop = topProtrusion + bodyRow * _stage.tileHeight();
+		int regionBottom = regionTop + _stage.tileHeight();
 
-		if (regionTop < 0) {
-			regionHeight -= -regionTop;
-			regionTop = 0;
-		} else if (regionTop + regionHeight > sprite.getRegionHeight()) {
-			int diff = (regionTop + regionHeight) - sprite.getRegionHeight();
-			regionHeight -= diff;
-			y += diff;
+		// Account for protrusions
+		int curBodyRow = bodyRow;
+		while (curBodyRow > 0 && !actor.getBodyAreaAt(curBodyRow - 1, bodyCol)) {
+			curBodyRow--;
+			regionTop -= _stage.tileHeight();
 		}
+		if (curBodyRow == 0) regionTop = 0;
 
-		if (regionLeft < 0) {
-			regionWidth -= -regionLeft;
-			x += -regionLeft;
-			regionLeft = 0;
-		} else if (regionLeft + regionWidth > sprite.getRegionWidth()) {
-			int diff = (regionLeft + regionWidth) - sprite.getRegionWidth();
-			regionWidth -= diff;
-		}
-
-		sprite.setRegion(regionLeft, regionTop, regionWidth, regionHeight);
+		sprite.setRegion(regionLeft, regionTop, regionRight - regionLeft, regionBottom - regionTop);
 		sprite.setSize(sprite.getRegionWidth(), sprite.getRegionHeight());
-		sprite.setPosition(x - leftProtrusion, y - _stage.tileHeight());
-
 		return sprite;
 	}
 
 	private void updateActorsData() {
-		// Clear previous rows of bodies
-		for (HashSet<Animation> set : _animationsByCoordinates) {
+		// Clear previous actors
+		for (HashSet<TiledStageActor> set : _actorsByRowsVisually) {
 			set.clear();
 		}
-
-		_animationToActors.clear();
+		_animationsToActors.clear();
+		_visualOrigins.clear();
 
 		for (TiledStageActor actor : _stage.actors()) {
-			for (Animation animation : actor.animations()) {
-				float left = actor.getX();
-				float bottom = actor.getY();
-				float right = left + animation.frame().width() - 1;
-				float top = bottom + animation.frame().height() - 1;
-				int leftProtrusion = (animation.frame().width() - (actor.bodyWidth() * _stage.tileWidth())) / 2;
-				TiledStage.Coordinate bottomLeft = _stage.getCoordinateAt(left - leftProtrusion, bottom);
-				TiledStage.Coordinate topRight = _stage.getCoordinateAt(right - leftProtrusion, top);
-				for (int row = bottomLeft.row(); row <= topRight.row(); row++) {
-					for (int col = bottomLeft.column(); col <= topRight.column(); col++) {
-						_animationsByCoordinates.get(row * _stage.tileColumns() + col).add(animation);
-					}
-				}
+			float left = actor.getX();
+			float bottom = actor.getY();
+			TiledStage.Coordinate visualOrigin = _stage.getCoordinateAt(left, bottom);
+			LinkedList<TiledStage.Coordinate> bodyCoordinates = actor.getBodyCoordinates(visualOrigin);
 
-				_animationToActors.put(animation, actor);
+			for (TiledStage.Coordinate bodyCoordinate : bodyCoordinates) {
+				_actorsByRowsVisually.get(bodyCoordinate.row()).add(actor);
 			}
+
+			// Populate animations to actors hashmap and remember visual origin for actor
+			for (Animation animation : actor.animations()) _animationsToActors.put(animation, actor);
+			_visualOrigins.put(actor, visualOrigin);
 		}
 	}
 
@@ -469,8 +447,8 @@ public class TiledStageMapRenderer implements Disposable {
 	}
 
 	public static class Config {
-		public static float AmbientColorGreenDefault = 0.7f;
-		public static float AmbientColorRedDefault = 0.7f;
-		public static float AmbientColorBlueDefault = 0.7f;
+		public static float AmbientColorGreenDefault = 0.6f;
+		public static float AmbientColorRedDefault = 0.6f;
+		public static float AmbientColorBlueDefault = 0.6f;
 	}
 }

@@ -25,17 +25,9 @@ public class Player extends TiledStageActor {
 	@Override
 	public void tick(int subtick) {
 		if (subtick == PlayScreen.SUBTICKS.GRAPHICS.ordinal()) {
-
-			setZ(0);
-
 			for (TiledStage.Coordinate bodyCoordinate : bodyCoordinates()) {
 				for (TiledStageActor body : bodyCoordinate.actors()) {
-					if (body instanceof ObstructedFloor) {
-
-						ObstructedFloor obstructedFloor = (ObstructedFloor) body;
-						setZ(Math.max(getZ(), obstructedFloor.elevation()));
-
-					} else if (body instanceof Exit) {
+					if (body instanceof Exit) {
 						_commands.endLevel();
 					}
 				}
@@ -75,15 +67,7 @@ public class Player extends TiledStageActor {
 	}
 
 	@Override
-	public boolean bodyCanBeAt(TiledStage.Coordinate coordinate) {
-		if (coordinate.isWall()) return false;
-
-		for (TiledStageActor actor : coordinate.actors()) {
-			if (actor == this) continue;
-			if (actor instanceof Player || actor instanceof Lodestone || actor instanceof MagneticSource ||
-					(actor instanceof Door && !((Door) actor).isOpen())) return false;
-		}
-
+	public boolean occupiesCoordinate() {
 		return true;
 	}
 

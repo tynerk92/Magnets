@@ -16,8 +16,8 @@ import java.util.Map;
 /**
  * Represents an Poolable libgdx Actor displayed with set of animations
  * Stores a Map of String tag -> Animation
- * To call initialize() to initialize the object
- * Animations are hidden at the start
+ * To call initialize() to initialize the object with a temporary map of tag -> AnimationDefs
+ * All animations are shown at the start
  * Animation Map cannot be modified after initialization
  * animations() and draw() returns/renders animations in z-index order
  * remove() frees itself from Pools
@@ -33,7 +33,6 @@ public class AnimatedActor extends Actor implements Pool.Poolable {
 		for (String tag : defs.keySet()) {
 			Animation animation = new Animation(defs.get(tag), tag);
 			animation.listeners().add(_animationListener);
-			animation.hide();
 			_animations.put(animation.tag(), animation);
 			_animationsArray.add(animation);
 		}
@@ -95,6 +94,7 @@ public class AnimatedActor extends Actor implements Pool.Poolable {
 	public void draw(Batch batch, float parentAlpha) {
 		for (Animation animation : _animationsArray) {
 			Sprite sprite = animation.getSprite();
+			sprite.setScale(getScaleX(), getScaleY());
 			sprite.setPosition(getX(), getY());
 			sprite.draw(batch, parentAlpha);
 		}
@@ -125,6 +125,12 @@ public class AnimatedActor extends Actor implements Pool.Poolable {
 
 		animation.show();
 		for (Listener listener : _listeners) listener.animationShown(this, animation);
+	}
+
+	protected void hideAllAnimations() {
+		for (String tag : _animations.keySet()) {
+			hideAnimation(tag);
+		}
 	}
 
 	protected boolean isAnimationActive(String tag) {

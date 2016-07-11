@@ -106,7 +106,7 @@ public class Main extends Game implements LevelSelectScreen.Commands, PlayScreen
 
 			while (iterator.hasNext()) {
 				TiledMapTile tile = iterator.next();
-				String name = TiledMapHelper.ParseProp(tile.getProperties(), Config.TMX.AnimationProp);
+				String name = TiledMapHelper.ParseProp(tile.getProperties(), Config.TMX.NameProp);
 				if (name == null) continue;
 				int zIndex = TiledMapHelper.ParseIntegerProp(tile.getProperties(), Config.TMX.Animation.ZIndexProp, 0);
 				animationDefs.put(name, new AnimationDef(ExtractFrames(tile, defaultDuration), zIndex));
@@ -118,7 +118,7 @@ public class Main extends Game implements LevelSelectScreen.Commands, PlayScreen
 
 	public static class Config {
 		public static class TMX {
-			public static String AnimationProp = "~";
+			public static String NameProp = "Name";
 
 			public static class Animation {
 				public static String ZIndexProp = "Render Depth";

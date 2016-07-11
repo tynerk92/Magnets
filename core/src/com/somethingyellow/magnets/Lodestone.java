@@ -177,17 +177,14 @@ public class Lodestone extends TiledStageActor {
 	}
 
 	@Override
-	public boolean bodyCanBeAt(TiledStage.Coordinate coordinate) {
-		if (coordinate.isWall()) return false;
-
-		for (TiledStageActor actor : coordinate.actors()) {
-			if (actor == this) continue;
-			if (actor instanceof Player || actor instanceof Lodestone || actor instanceof MagneticSource ||
-					actor instanceof ObstructedFloor || (actor instanceof Door && !((Door) actor).isOpen()))
-				return false;
-		}
-
+	public boolean occupiesCoordinate() {
 		return true;
+	}
+
+	@Override
+	public boolean bodyCanBeAt(TiledStage.Coordinate coordinate) {
+		if (coordinate.elevation() > getZ()) return false;
+		return super.bodyCanBeAt(coordinate);
 	}
 
 	public boolean isPushable() {

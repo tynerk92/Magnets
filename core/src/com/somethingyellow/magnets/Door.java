@@ -85,8 +85,8 @@ public class Door extends TiledStageActor {
 	}
 
 	@Override
-	public boolean bodyCanBeAt(TiledStage.Coordinate coordinate) {
-		return true;
+	public boolean occupiesCoordinate() {
+		return !hasStatus(Config.StatusOpened);
 	}
 
 	public boolean isOpen() {

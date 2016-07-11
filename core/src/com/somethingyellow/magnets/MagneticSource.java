@@ -66,8 +66,8 @@ public class MagneticSource extends TiledStageActor {
 	}
 
 	@Override
-	public boolean bodyCanBeAt(TiledStage.Coordinate coordinate) {
-		return false;
+	public boolean occupiesCoordinate() {
+		return true;
 	}
 
 	public static class Config {

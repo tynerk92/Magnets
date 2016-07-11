@@ -17,11 +17,6 @@ public class MagneticField extends TiledStageActor {
 		SUBTICKS = SUBTICKS_STATIC;
 	}
 
-	@Override
-	public boolean bodyCanBeAt(TiledStage.Coordinate coordinate) {
-		return true;
-	}
-
 	// TODO: Code logic
 
 	public void tick(int subtick) {

@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.MapProperties;
@@ -38,13 +37,14 @@ public class PlayScreen implements Screen, Player.Commands, Lodestone.Commands {
 	private LogicMachine _logicMachine = new LogicMachine();
 	private HashMap<String, AnimationDef> _animationDefs;
 	private HashMap<String, AnimationDef> _tempAnimationDefs = new HashMap<String, AnimationDef>();
-	private LinkedList<TiledStageActor> _bodies = new LinkedList<TiledStageActor>();
+	private LinkedList<TiledStageActor> _actors = new LinkedList<TiledStageActor>();
 	private LinkedList<TiledStageLightSource> _lightSources = new LinkedList<TiledStageLightSource>();
 	private String _levelPath;
 	private LinkedList<TiledStage.DIRECTION> _moveQueue = new LinkedList<TiledStage.DIRECTION>();
 	private TiledStageListener _tiledStageListener = new TiledStageListener();
 	private TiledStageCommands _tiledStageCommands = new TiledStageCommands();
 	private TiledStageActorListener _tiledStageActorListener = new TiledStageActorListener();
+	private TiledStageLightSourceListener _tiledStageLightSourceListener = new TiledStageLightSourceListener();
 	private ControllerListener _controllerListener = new ControllerListener();
 	private LinkedList<HashMap<TiledStageActor, TiledStageActor.State>> _statesHistory = new LinkedList<HashMap<TiledStageActor, TiledStageActor.State>>();
 	private HashSet<TiledStageActor> _stateChangedInTick = new HashSet<TiledStageActor>();
@@ -88,26 +88,16 @@ public class PlayScreen implements Screen, Player.Commands, Lodestone.Commands {
 	}
 
 	public TiledStageLightSource getLightSource(TiledMapTile tile) {
-		String lightingImagePath = TiledMapHelper.ParseProp(tile.getProperties(), Config.TMX.Tiles.LightingImagePathProp);
-		if (lightingImagePath == null) return null; // no light source
-
-		Texture lightingTexture = new Texture(Gdx.files.internal(lightingImagePath));
-
-		float sizeX = TiledMapHelper.ParseFloatProp(tile.getProperties(), Config.TMX.Tiles.LightingWidthProp, 0f);
-		float sizeY = TiledMapHelper.ParseFloatProp(tile.getProperties(), Config.TMX.Tiles.LightingHeightProp, 0f);
-
-		if (sizeX == 0f || sizeY == 0f)
-			throw new IllegalArgumentException("`Width` and `Height` of lighting must be defined!");
+		String lightingAnimation = TiledMapHelper.ParseProp(tile.getProperties(), Config.TMX.Tiles.LightingAnimationProp);
+		if (lightingAnimation == null) return null; // no light source
 
 		float intensity = TiledMapHelper.ParseFloatProp(tile.getProperties(), Config.TMX.Tiles.LightingIntensityProp, 1f);
 		float displacementX = TiledMapHelper.ParseIntegerProp(tile.getProperties(), Config.TMX.Tiles.LightingDisplacementXProp, 0);
 		float displacementY = TiledMapHelper.ParseIntegerProp(tile.getProperties(), Config.TMX.Tiles.LightingDisplacementYProp, 0);
 
 		TiledStageLightSource lightSource = Pools.obtain(TiledStageLightSource.class);
-		lightSource.initialize(lightingTexture);
+		lightSource.initialize(_animationDefs.get(lightingAnimation), displacementX, displacementY);
 		lightSource.setIntensity(intensity);
-		lightSource.setSize(sizeX, sizeY);
-		lightSource.setRenderDisplacement(sizeX / 2 - displacementX, sizeY / 2 - displacementY);
 		return lightSource;
 	}
 
@@ -118,26 +108,26 @@ public class PlayScreen implements Screen, Player.Commands, Lodestone.Commands {
 		while (props.hasNext()) {
 			String prop = props.next();
 
-			if (prop.indexOf(Config.TMX.Tiles.AnimationPropPrefix) == 0) {
+			if (prop.indexOf(Config.TMX.Tiles.StatusAnimationPropPrefix) == 0) {
 				String animationName = TiledMapHelper.ParseProp(tile.getProperties(), prop);
 				if (!_animationDefs.containsKey(animationName))
 					throw new IllegalArgumentException("Property '" + prop + "' pointing to missing animation!");
 
 				AnimationDef animationDef = _animationDefs.get(animationName);
-				_tempAnimationDefs.put(prop.substring(Config.TMX.Tiles.AnimationPropPrefix.length()), animationDef);
+				_tempAnimationDefs.put(prop.substring(Config.TMX.Tiles.StatusAnimationPropPrefix.length()), animationDef);
 			}
 		}
 
 		return _tempAnimationDefs;
 	}
 
-	public void processProperties(TiledStageActor body, TiledMapTile tile) {
+	public void processProperties(TiledStageActor actor, TiledMapTile tile) {
 		// Light source
 		final TiledStageLightSource lightSource = getLightSource(tile);
 		if (lightSource != null) {
 			addLightSource(lightSource);
-			lightSource.setPosition(body.getX(), body.getY());
-			body.listeners().add(new TiledStageActor.Listener() {
+			lightSource.setPosition(actor.getX(), actor.getY());
+			actor.listeners().add(new TiledStageActor.Listener() {
 				@Override
 				public void positionChanged(TiledStageActor body) {
 					lightSource.setPosition(body.getX(), body.getY());
@@ -145,10 +135,11 @@ public class PlayScreen implements Screen, Player.Commands, Lodestone.Commands {
 
 				@Override
 				public void removed(AnimatedActor actor) {
-					actor.remove();
+					lightSource.remove();
 				}
 			});
 		}
+
 	}
 
 	public void doAction(TiledStageActor body, String action) {
@@ -195,7 +186,7 @@ public class PlayScreen implements Screen, Player.Commands, Lodestone.Commands {
 		// Remember first state
 		_statesHistory.clear();
 		HashMap<TiledStageActor, TiledStageActor.State> states = new HashMap<TiledStageActor, TiledStageActor.State>();
-		for (TiledStageActor body : _bodies) {
+		for (TiledStageActor body : _actors) {
 			states.put(body, body.getState());
 		}
 		_statesHistory.add(states);
@@ -207,10 +198,10 @@ public class PlayScreen implements Screen, Player.Commands, Lodestone.Commands {
 		_controller.listeners().clear();
 		_controller.reset();
 		_logicMachine.clear();
-		for (TiledStageActor body : _bodies.toArray(new TiledStageActor[_bodies.size()])) {
+		for (TiledStageActor body : _actors.toArray(new TiledStageActor[_actors.size()])) {
 			body.remove();
 		}
-		_bodies.clear();
+		_actors.clear();
 		_player = null;
 		for (TiledStageLightSource lightSource : _lightSources.toArray(new TiledStageLightSource[_lightSources.size()])) {
 			lightSource.remove();
@@ -256,16 +247,6 @@ public class PlayScreen implements Screen, Player.Commands, Lodestone.Commands {
 			MagneticFloor magneticFloor = Pools.get(MagneticFloor.class).obtain();
 			magneticFloor.initialize(getAnimationDefs(tile), origin);
 			body = magneticFloor;
-
-		} else if (type.equals(Config.TMX.Tiles.Types.ObstructedFloor)) {
-
-			ObstructedFloor obstructedFloor = Pools.get(ObstructedFloor.class).obtain();
-			obstructedFloor.initialize(
-					getAnimationDefs(tile),
-					origin,
-					TiledMapHelper.ParseIntegerProp(tile.getProperties(), Config.TMX.Tiles.ObstructedFloor.ElevationProp, 0)
-			);
-			body = obstructedFloor;
 
 		} else if (type.equals(Config.TMX.Tiles.Types.Player)) {
 
@@ -320,7 +301,7 @@ public class PlayScreen implements Screen, Player.Commands, Lodestone.Commands {
 		processProperties(actor, tile);
 
 		_tiledStage.addActor(actor);
-		_bodies.add(actor);
+		_actors.add(actor);
 
 		actor.listeners().add(_tiledStageActorListener);
 	}
@@ -329,12 +310,7 @@ public class PlayScreen implements Screen, Player.Commands, Lodestone.Commands {
 		_tiledStage.addLightSource(lightSource);
 		_lightSources.add(lightSource);
 
-		lightSource.addListener(new TiledStageLightSource.Listener() {
-			@Override
-			public void removed(TiledStageLightSource lightSource) {
-				_lightSources.remove(lightSource);
-			}
-		});
+		lightSource.listeners().add(_tiledStageLightSourceListener);
 	}
 
 	@Override
@@ -460,13 +436,12 @@ public class PlayScreen implements Screen, Player.Commands, Lodestone.Commands {
 		public static class TMX {
 			public static class Tiles {
 				public static String TypeProp = "Type";
-				public static String LightingImagePathProp = "Lighting Image Path";
-				public static String LightingWidthProp = "Lighting Width";
-				public static String LightingHeightProp = "Lighting Height";
+				public static String LightingAnimationProp = "Lighting Animation";
 				public static String LightingIntensityProp = "Lighting Intensity";
 				public static String LightingDisplacementXProp = "Lighting Displacement X";
 				public static String LightingDisplacementYProp = "Lighting Displacement Y";
-				public static String AnimationPropPrefix = "~";
+				public static String ElevationProp = "Elevation";
+				public static String StatusAnimationPropPrefix = "~";
 
 				public static class Types {
 					public static String Lodestone = "Block";
@@ -474,7 +449,6 @@ public class PlayScreen implements Screen, Player.Commands, Lodestone.Commands {
 					public static String Player = "Player";
 					public static String MagneticSource = "Magnetic Source";
 					public static String MagneticFloor = "Magnetic Floor";
-					public static String ObstructedFloor = "Obstructed Floor";
 					public static String MagneticField = "Magnetic Field";
 					public static String Button = "Button";
 					public static String Exit = "Exit";
@@ -501,10 +475,6 @@ public class PlayScreen implements Screen, Player.Commands, Lodestone.Commands {
 					public static String IsMagnetisableProp = "IsMagnetisable";
 					public static String BodyWidthProp = "Body Width";
 					public static String BodyAreaProp = "Body Area";
-				}
-
-				public static class ObstructedFloor {
-					public static String ElevationProp = "Elevation";
 				}
 			}
 
@@ -640,6 +610,18 @@ public class PlayScreen implements Screen, Player.Commands, Lodestone.Commands {
 				}
 			}
 		}
+
+		@Override
+		public void processCoordinate(TiledStage.Coordinate coordinate) {
+			int elevation = 0;
+			for (TiledStage.Cell cell : coordinate.cells().values()) {
+				TiledMapTile tile = cell.tile();
+				if (tile != null) {
+					elevation = Math.max(elevation, TiledMapHelper.ParseIntegerProp(tile.getProperties(), Config.TMX.Tiles.ElevationProp, 0));
+				}
+			}
+			coordinate.setElevation(elevation);
+		}
 	}
 
 	public class TiledStageActorListener extends TiledStageActor.Listener {
@@ -664,7 +646,14 @@ public class PlayScreen implements Screen, Player.Commands, Lodestone.Commands {
 
 		@Override
 		public void removed(AnimatedActor actor) {
-			_bodies.remove(actor);
+			_actors.remove(actor);
+		}
+	}
+
+	public class TiledStageLightSourceListener extends AnimatedActor.Listener {
+		@Override
+		public void removed(AnimatedActor actor) {
+			_lightSources.remove(actor);
 		}
 	}
 
