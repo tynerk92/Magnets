@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
- <tileset firstgid="1" name="Tileset" tilewidth="800" tileheight="600" tilecount="451" columns="0">
+ <tileset firstgid="1" name="Tileset" tilewidth="800" tileheight="600" tilecount="450" columns="0">
   <tile id="0">
    <properties>
     <property name="Render Depth" type="int" value="-1"/>
-    <property name="~" value="Button Off 1"/>
+    <property name="Name" value="Button Off 1"/>
     <property name="~Off" value="Button Off 1"/>
     <property name="~Offing" value="Button Pressing 1"/>
     <property name="~On" value="Button On 1"/>
@@ -16,7 +16,7 @@
   <tile id="1">
    <properties>
     <property name="Render Depth" type="int" value="-1"/>
-    <property name="~" value="Button Pressing 1"/>
+    <property name="Name" value="Button Pressing 1"/>
    </properties>
    <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Button/1 2_3.png"/>
   </tile>
@@ -24,7 +24,7 @@
   <tile id="2">
    <properties>
     <property name="Render Depth" type="int" value="-1"/>
-    <property name="~" value="Button On 1"/>
+    <property name="Name" value="Button On 1"/>
    </properties>
    <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Button/1 3_3.png"/>
   </tile>
@@ -32,7 +32,7 @@
   <tile id="3">
    <properties>
     <property name="Render Depth" type="int" value="-1"/>
-    <property name="~" value="Button Off 2"/>
+    <property name="Name" value="Button Off 2"/>
     <property name="~Off" value="Button Off 2"/>
     <property name="~Offing" value="Button Pressing 2"/>
     <property name="~On" value="Button On 2"/>
@@ -45,7 +45,7 @@
   <tile id="4">
    <properties>
     <property name="Render Depth" type="int" value="-1"/>
-    <property name="~" value="Button Pressing 2"/>
+    <property name="Name" value="Button Pressing 2"/>
    </properties>
    <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Button/2 2_3.png"/>
   </tile>
@@ -53,14 +53,14 @@
   <tile id="5">
    <properties>
     <property name="Render Depth" type="int" value="-1"/>
-    <property name="~" value="Button On 2"/>
+    <property name="Name" value="Button On 2"/>
    </properties>
    <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Button/2 3_3.png"/>
   </tile>
 
   <tile id="6">
    <properties>
-    <property name="~" value="Door Closed 1"/>
+    <property name="Name" value="Door Closed 1"/>
     <property name="~Closed" value="Door Closed 1"/>
     <property name="~Closing" value="Door Closing 1"/>
     <property name="~Opened" value="Door Opened 1"/>
@@ -72,7 +72,7 @@
 
   <tile id="7">
    <properties>
-    <property name="~" value="Door Opening 1"/>
+    <property name="Name" value="Door Opening 1"/>
    <animation>
     <frame tileid="7" duration="160"/>
     <frame tileid="8" duration="240"/>
@@ -118,7 +118,7 @@
 
   <tile id="13">
    <properties>
-    <property name="~" value="Door Closing 1"/>
+    <property name="Name" value="Door Closing 1"/>
    <animation>
     <frame tileid="13" duration="160"/>
     <frame tileid="12" duration="240"/>
@@ -134,7 +134,7 @@
 
   <tile id="14">
    <properties>
-    <property name="~" value="Door Opened 1"/>
+    <property name="Name" value="Door Opened 1"/>
     <property name="~Closed" value="Door Closed 1"/>
     <property name="~Closing" value="Door Closing 1"/>
     <property name="~Opened" value="Door Opened 1"/>
@@ -147,7 +147,7 @@
 
   <tile id="15">
    <properties>
-    <property name="~" value="Door Closed 2"/>
+    <property name="Name" value="Door Closed 2"/>
     <property name="~Closed" value="Door Closed 2"/>
     <property name="~Closing" value="Door Closing 2"/>
     <property name="~Opened" value="Door Opened 2"/>
@@ -159,7 +159,7 @@
 
   <tile id="16">
    <properties>
-    <property name="~" value="Door Opening 2"/>
+    <property name="Name" value="Door Opening 2"/>
    <animation>
     <frame tileid="16" duration="160"/>
     <frame tileid="17" duration="240"/>
@@ -205,7 +205,7 @@
 
   <tile id="22">
    <properties>
-    <property name="~" value="Door Closing 2"/>
+    <property name="Name" value="Door Closing 2"/>
    <animation>
     <frame tileid="22" duration="160"/>
     <frame tileid="21" duration="240"/>
@@ -221,7 +221,7 @@
 
   <tile id="23">
    <properties>
-    <property name="~" value="Door Opened 2"/>
+    <property name="Name" value="Door Opened 2"/>
     <property name="~Closed" value="Door Closed 2"/>
     <property name="~Closing" value="Door Closing 2"/>
     <property name="~Opened" value="Door Opened 2"/>
@@ -234,517 +234,329 @@
 
   <tile id="24">
    <properties>
-    <property name="~" value="Elevated Floor 01011010"/>
-    <property name="~Floor" value="Elevated Floor 01011010"/>
-    <property name="Type" value="Obstructed Floor"/>
-    <property name="Render Depth" type="int" value="-1"/>
-    <property name="Elevation" type="int" value="4"/>
+    <property name="Elevation" value="4"/>
    </properties>
    <image width="32" height="35" source="../Graphics/Set 1 (Cave)/Elevated Floor/01011010.png"/>
   </tile>
 
   <tile id="25">
    <properties>
-    <property name="~" value="Elevated Floor 01011011"/>
-    <property name="~Floor" value="Elevated Floor 01011011"/>
-    <property name="Type" value="Obstructed Floor"/>
-    <property name="Render Depth" type="int" value="-1"/>
-    <property name="Elevation" type="int" value="4"/>
+    <property name="Elevation" value="4"/>
    </properties>
    <image width="32" height="35" source="../Graphics/Set 1 (Cave)/Elevated Floor/01011011.png"/>
   </tile>
 
   <tile id="26">
    <properties>
-    <property name="~" value="Elevated Floor 01011110"/>
-    <property name="~Floor" value="Elevated Floor 01011110"/>
-    <property name="Type" value="Obstructed Floor"/>
-    <property name="Render Depth" type="int" value="-1"/>
-    <property name="Elevation" type="int" value="4"/>
+    <property name="Elevation" value="4"/>
    </properties>
    <image width="32" height="35" source="../Graphics/Set 1 (Cave)/Elevated Floor/01011110.png"/>
   </tile>
 
   <tile id="27">
    <properties>
-    <property name="~" value="Elevated Floor 01011111"/>
-    <property name="~Floor" value="Elevated Floor 01011111"/>
-    <property name="Type" value="Obstructed Floor"/>
-    <property name="Render Depth" type="int" value="-1"/>
-    <property name="Elevation" type="int" value="4"/>
+    <property name="Elevation" value="4"/>
    </properties>
    <image width="32" height="35" source="../Graphics/Set 1 (Cave)/Elevated Floor/01011111.png"/>
   </tile>
 
   <tile id="28">
    <properties>
-    <property name="~" value="Elevated Floor 01011X0X"/>
-    <property name="~Floor" value="Elevated Floor 01011X0X"/>
-    <property name="Type" value="Obstructed Floor"/>
-    <property name="Render Depth" type="int" value="-1"/>
-    <property name="Elevation" type="int" value="4"/>
+    <property name="Elevation" value="4"/>
    </properties>
    <image width="32" height="35" source="../Graphics/Set 1 (Cave)/Elevated Floor/01011X0X.png"/>
   </tile>
 
   <tile id="29">
    <properties>
-    <property name="~" value="Elevated Floor 01111010"/>
-    <property name="~Floor" value="Elevated Floor 01111010"/>
-    <property name="Type" value="Obstructed Floor"/>
-    <property name="Render Depth" type="int" value="-1"/>
-    <property name="Elevation" type="int" value="4"/>
+    <property name="Elevation" value="4"/>
    </properties>
    <image width="32" height="35" source="../Graphics/Set 1 (Cave)/Elevated Floor/01111010.png"/>
   </tile>
 
   <tile id="30">
    <properties>
-    <property name="~" value="Elevated Floor 01111011"/>
-    <property name="~Floor" value="Elevated Floor 01111011"/>
-    <property name="Type" value="Obstructed Floor"/>
-    <property name="Render Depth" type="int" value="-1"/>
-    <property name="Elevation" type="int" value="4"/>
+    <property name="Elevation" value="4"/>
    </properties>
    <image width="32" height="35" source="../Graphics/Set 1 (Cave)/Elevated Floor/01111011.png"/>
   </tile>
 
   <tile id="31">
    <properties>
-    <property name="~" value="Elevated Floor 01111110"/>
-    <property name="~Floor" value="Elevated Floor 01111110"/>
-    <property name="Type" value="Obstructed Floor"/>
-    <property name="Render Depth" type="int" value="-1"/>
-    <property name="Elevation" type="int" value="4"/>
+    <property name="Elevation" value="4"/>
    </properties>
    <image width="32" height="35" source="../Graphics/Set 1 (Cave)/Elevated Floor/01111110.png"/>
   </tile>
 
   <tile id="32">
    <properties>
-    <property name="~" value="Elevated Floor 01111111"/>
-    <property name="~Floor" value="Elevated Floor 01111111"/>
-    <property name="Type" value="Obstructed Floor"/>
-    <property name="Render Depth" type="int" value="-1"/>
-    <property name="Elevation" type="int" value="4"/>
+    <property name="Elevation" value="4"/>
    </properties>
    <image width="32" height="35" source="../Graphics/Set 1 (Cave)/Elevated Floor/01111111.png"/>
   </tile>
 
   <tile id="33">
    <properties>
-    <property name="~" value="Elevated Floor 01111X0X"/>
-    <property name="~Floor" value="Elevated Floor 01111X0X"/>
-    <property name="Type" value="Obstructed Floor"/>
-    <property name="Render Depth" type="int" value="-1"/>
-    <property name="Elevation" type="int" value="4"/>
+    <property name="Elevation" value="4"/>
    </properties>
    <image width="32" height="35" source="../Graphics/Set 1 (Cave)/Elevated Floor/01111X0X.png"/>
   </tile>
 
   <tile id="34">
    <properties>
-    <property name="~" value="Elevated Floor 01X1001X"/>
-    <property name="~Floor" value="Elevated Floor 01X1001X"/>
-    <property name="Type" value="Obstructed Floor"/>
-    <property name="Render Depth" type="int" value="-1"/>
-    <property name="Elevation" type="int" value="4"/>
+    <property name="Elevation" value="4"/>
    </properties>
    <image width="32" height="35" source="../Graphics/Set 1 (Cave)/Elevated Floor/01X1001X.png"/>
   </tile>
 
   <tile id="35">
    <properties>
-    <property name="~" value="Elevated Floor 01X1011X"/>
-    <property name="~Floor" value="Elevated Floor 01X1011X"/>
-    <property name="Type" value="Obstructed Floor"/>
-    <property name="Render Depth" type="int" value="-1"/>
-    <property name="Elevation" type="int" value="4"/>
+    <property name="Elevation" value="4"/>
    </properties>
    <image width="32" height="35" source="../Graphics/Set 1 (Cave)/Elevated Floor/01X1011X.png"/>
   </tile>
 
   <tile id="36">
    <properties>
-    <property name="~" value="Elevated Floor 01X10X0X"/>
-    <property name="~Floor" value="Elevated Floor 01X10X0X"/>
-    <property name="Type" value="Obstructed Floor"/>
-    <property name="Render Depth" type="int" value="-1"/>
-    <property name="Elevation" type="int" value="4"/>
+    <property name="Elevation" value="4"/>
    </properties>
    <image width="32" height="35" source="../Graphics/Set 1 (Cave)/Elevated Floor/01X10X0X.png"/>
   </tile>
 
   <tile id="37">
    <properties>
-    <property name="~" value="Elevated Floor 11011010"/>
-    <property name="~Floor" value="Elevated Floor 11011010"/>
-    <property name="Type" value="Obstructed Floor"/>
-    <property name="Render Depth" type="int" value="-1"/>
-    <property name="Elevation" type="int" value="4"/>
+    <property name="Elevation" value="4"/>
    </properties>
    <image width="32" height="35" source="../Graphics/Set 1 (Cave)/Elevated Floor/11011010.png"/>
   </tile>
 
   <tile id="38">
    <properties>
-    <property name="~" value="Elevated Floor 11011011"/>
-    <property name="~Floor" value="Elevated Floor 11011011"/>
-    <property name="Type" value="Obstructed Floor"/>
-    <property name="Render Depth" type="int" value="-1"/>
-    <property name="Elevation" type="int" value="4"/>
+    <property name="Elevation" value="4"/>
    </properties>
    <image width="32" height="35" source="../Graphics/Set 1 (Cave)/Elevated Floor/11011011.png"/>
   </tile>
 
   <tile id="39">
    <properties>
-    <property name="~" value="Elevated Floor 11011110"/>
-    <property name="~Floor" value="Elevated Floor 11011110"/>
-    <property name="Type" value="Obstructed Floor"/>
-    <property name="Render Depth" type="int" value="-1"/>
-    <property name="Elevation" type="int" value="4"/>
+    <property name="Elevation" value="4"/>
    </properties>
    <image width="32" height="35" source="../Graphics/Set 1 (Cave)/Elevated Floor/11011110.png"/>
   </tile>
 
   <tile id="40">
    <properties>
-    <property name="~" value="Elevated Floor 11011111"/>
-    <property name="~Floor" value="Elevated Floor 11011111"/>
-    <property name="Type" value="Obstructed Floor"/>
-    <property name="Render Depth" type="int" value="-1"/>
-    <property name="Elevation" type="int" value="4"/>
+    <property name="Elevation" value="4"/>
    </properties>
    <image width="32" height="35" source="../Graphics/Set 1 (Cave)/Elevated Floor/11011111.png"/>
   </tile>
 
   <tile id="41">
    <properties>
-    <property name="~" value="Elevated Floor 11011X0X"/>
-    <property name="~Floor" value="Elevated Floor 11011X0X"/>
-    <property name="Type" value="Obstructed Floor"/>
-    <property name="Render Depth" type="int" value="-1"/>
-    <property name="Elevation" type="int" value="4"/>
+    <property name="Elevation" value="4"/>
    </properties>
    <image width="32" height="35" source="../Graphics/Set 1 (Cave)/Elevated Floor/11011X0X.png"/>
   </tile>
 
   <tile id="42">
    <properties>
-    <property name="~" value="Elevated Floor 11111010"/>
-    <property name="~Floor" value="Elevated Floor 11111010"/>
-    <property name="Type" value="Obstructed Floor"/>
-    <property name="Render Depth" type="int" value="-1"/>
-    <property name="Elevation" type="int" value="4"/>
+    <property name="Elevation" value="4"/>
    </properties>
    <image width="32" height="35" source="../Graphics/Set 1 (Cave)/Elevated Floor/11111010.png"/>
   </tile>
 
   <tile id="43">
    <properties>
-    <property name="~" value="Elevated Floor 11111011"/>
-    <property name="~Floor" value="Elevated Floor 11111011"/>
-    <property name="Type" value="Obstructed Floor"/>
-    <property name="Render Depth" type="int" value="-1"/>
-    <property name="Elevation" type="int" value="4"/>
+    <property name="Elevation" value="4"/>
    </properties>
    <image width="32" height="35" source="../Graphics/Set 1 (Cave)/Elevated Floor/11111011.png"/>
   </tile>
 
   <tile id="44">
    <properties>
-    <property name="~" value="Elevated Floor 11111110"/>
-    <property name="~Floor" value="Elevated Floor 11111110"/>
-    <property name="Type" value="Obstructed Floor"/>
-    <property name="Render Depth" type="int" value="-1"/>
-    <property name="Elevation" type="int" value="4"/>
+    <property name="Elevation" value="4"/>
    </properties>
    <image width="32" height="35" source="../Graphics/Set 1 (Cave)/Elevated Floor/11111110.png"/>
   </tile>
 
   <tile id="45">
    <properties>
-    <property name="~" value="Elevated Floor 11111111"/>
-    <property name="~Floor" value="Elevated Floor 11111111"/>
-    <property name="Type" value="Obstructed Floor"/>
-    <property name="Render Depth" type="int" value="-1"/>
-    <property name="Elevation" type="int" value="4"/>
+    <property name="Elevation" value="4"/>
    </properties>
    <image width="32" height="35" source="../Graphics/Set 1 (Cave)/Elevated Floor/11111111.png"/>
   </tile>
 
   <tile id="46">
    <properties>
-    <property name="~" value="Elevated Floor 11111X0X"/>
-    <property name="~Floor" value="Elevated Floor 11111X0X"/>
-    <property name="Type" value="Obstructed Floor"/>
-    <property name="Render Depth" type="int" value="-1"/>
-    <property name="Elevation" type="int" value="4"/>
+    <property name="Elevation" value="4"/>
    </properties>
    <image width="32" height="35" source="../Graphics/Set 1 (Cave)/Elevated Floor/11111X0X.png"/>
   </tile>
 
   <tile id="47">
    <properties>
-    <property name="~" value="Elevated Floor 11X1001X"/>
-    <property name="~Floor" value="Elevated Floor 11X1001X"/>
-    <property name="Type" value="Obstructed Floor"/>
-    <property name="Render Depth" type="int" value="-1"/>
-    <property name="Elevation" type="int" value="4"/>
+    <property name="Elevation" value="4"/>
    </properties>
    <image width="32" height="35" source="../Graphics/Set 1 (Cave)/Elevated Floor/11X1001X.png"/>
   </tile>
 
   <tile id="48">
    <properties>
-    <property name="~" value="Elevated Floor 11X1011X"/>
-    <property name="~Floor" value="Elevated Floor 11X1011X"/>
-    <property name="Type" value="Obstructed Floor"/>
-    <property name="Render Depth" type="int" value="-1"/>
-    <property name="Elevation" type="int" value="4"/>
+    <property name="Elevation" value="4"/>
    </properties>
    <image width="32" height="35" source="../Graphics/Set 1 (Cave)/Elevated Floor/11X1011X.png"/>
   </tile>
 
   <tile id="49">
    <properties>
-    <property name="~" value="Elevated Floor 11X10X0X"/>
-    <property name="~Floor" value="Elevated Floor 11X10X0X"/>
-    <property name="Type" value="Obstructed Floor"/>
-    <property name="Render Depth" type="int" value="-1"/>
-    <property name="Elevation" type="int" value="4"/>
+    <property name="Elevation" value="4"/>
    </properties>
    <image width="32" height="35" source="../Graphics/Set 1 (Cave)/Elevated Floor/11X10X0X.png"/>
   </tile>
 
   <tile id="50">
    <properties>
-    <property name="~" value="Elevated Floor X0X00X0X"/>
-    <property name="~Floor" value="Elevated Floor X0X00X0X"/>
-    <property name="Type" value="Obstructed Floor"/>
-    <property name="Render Depth" type="int" value="-1"/>
-    <property name="Elevation" type="int" value="4"/>
+    <property name="Elevation" value="4"/>
    </properties>
    <image width="32" height="37" source="../Graphics/Set 1 (Cave)/Elevated Floor/X0X00X0X.png"/>
   </tile>
 
   <tile id="51">
    <properties>
-    <property name="~" value="Elevated Floor X0X00X1X"/>
-    <property name="~Floor" value="Elevated Floor X0X00X1X"/>
-    <property name="Type" value="Obstructed Floor"/>
-    <property name="Render Depth" type="int" value="-1"/>
-    <property name="Elevation" type="int" value="4"/>
+    <property name="Elevation" value="4"/>
    </properties>
    <image width="32" height="35" source="../Graphics/Set 1 (Cave)/Elevated Floor/X0X00X1X.png"/>
   </tile>
 
   <tile id="52">
    <properties>
-    <property name="~" value="Elevated Floor X0X01X0X"/>
-    <property name="~Floor" value="Elevated Floor X0X01X0X"/>
-    <property name="Type" value="Obstructed Floor"/>
-    <property name="Render Depth" type="int" value="-1"/>
-    <property name="Elevation" type="int" value="4"/>
+    <property name="Elevation" value="4"/>
    </properties>
    <image width="32" height="35" source="../Graphics/Set 1 (Cave)/Elevated Floor/X0X01X0X.png"/>
   </tile>
 
   <tile id="53">
    <properties>
-    <property name="~" value="Elevated Floor X0X01X10"/>
-    <property name="~Floor" value="Elevated Floor X0X01X10"/>
-    <property name="Type" value="Obstructed Floor"/>
-    <property name="Render Depth" type="int" value="-1"/>
-    <property name="Elevation" type="int" value="4"/>
+    <property name="Elevation" value="4"/>
    </properties>
    <image width="32" height="35" source="../Graphics/Set 1 (Cave)/Elevated Floor/X0X01X10.png"/>
   </tile>
 
   <tile id="54">
    <properties>
-    <property name="~" value="Elevated Floor X0X01X11"/>
-    <property name="~Floor" value="Elevated Floor X0X01X11"/>
-    <property name="Type" value="Obstructed Floor"/>
-    <property name="Render Depth" type="int" value="-1"/>
-    <property name="Elevation" type="int" value="4"/>
+    <property name="Elevation" value="4"/>
    </properties>
    <image width="32" height="35" source="../Graphics/Set 1 (Cave)/Elevated Floor/X0X01X11.png"/>
   </tile>
 
   <tile id="55">
    <properties>
-    <property name="~" value="Elevated Floor X0X1001X"/>
-    <property name="~Floor" value="Elevated Floor X0X1001X"/>
-    <property name="Type" value="Obstructed Floor"/>
-    <property name="Render Depth" type="int" value="-1"/>
-    <property name="Elevation" type="int" value="4"/>
+    <property name="Elevation" value="4"/>
    </properties>
    <image width="32" height="35" source="../Graphics/Set 1 (Cave)/Elevated Floor/X0X1001X.png"/>
   </tile>
 
   <tile id="56">
    <properties>
-    <property name="~" value="Elevated Floor X0X1011X"/>
-    <property name="~Floor" value="Elevated Floor X0X1011X"/>
-    <property name="Type" value="Obstructed Floor"/>
-    <property name="Render Depth" type="int" value="-1"/>
-    <property name="Elevation" type="int" value="4"/>
+    <property name="Elevation" value="4"/>
    </properties>
    <image width="32" height="35" source="../Graphics/Set 1 (Cave)/Elevated Floor/X0X1011X.png"/>
   </tile>
 
   <tile id="57">
    <properties>
-    <property name="~" value="Elevated Floor X0X10X0X"/>
-    <property name="~Floor" value="Elevated Floor X0X10X0X"/>
-    <property name="Type" value="Obstructed Floor"/>
-    <property name="Render Depth" type="int" value="-1"/>
-    <property name="Elevation" type="int" value="4"/>
+    <property name="Elevation" value="4"/>
    </properties>
    <image width="32" height="35" source="../Graphics/Set 1 (Cave)/Elevated Floor/X0X10X0X.png"/>
   </tile>
 
   <tile id="58">
    <properties>
-    <property name="~" value="Elevated Floor X0X11010"/>
-    <property name="~Floor" value="Elevated Floor X0X11010"/>
-    <property name="Type" value="Obstructed Floor"/>
-    <property name="Render Depth" type="int" value="-1"/>
-    <property name="Elevation" type="int" value="4"/>
+    <property name="Elevation" value="4"/>
    </properties>
    <image width="32" height="35" source="../Graphics/Set 1 (Cave)/Elevated Floor/X0X11010.png"/>
   </tile>
 
   <tile id="59">
    <properties>
-    <property name="~" value="Elevated Floor X0X11011"/>
-    <property name="~Floor" value="Elevated Floor X0X11011"/>
-    <property name="Type" value="Obstructed Floor"/>
-    <property name="Render Depth" type="int" value="-1"/>
-    <property name="Elevation" type="int" value="4"/>
+    <property name="Elevation" value="4"/>
    </properties>
    <image width="32" height="35" source="../Graphics/Set 1 (Cave)/Elevated Floor/X0X11011.png"/>
   </tile>
 
   <tile id="60">
    <properties>
-    <property name="~" value="Elevated Floor X0X11110"/>
-    <property name="~Floor" value="Elevated Floor X0X11110"/>
-    <property name="Type" value="Obstructed Floor"/>
-    <property name="Render Depth" type="int" value="-1"/>
-    <property name="Elevation" type="int" value="4"/>
+    <property name="Elevation" value="4"/>
    </properties>
    <image width="32" height="35" source="../Graphics/Set 1 (Cave)/Elevated Floor/X0X11110.png"/>
   </tile>
 
   <tile id="61">
    <properties>
-    <property name="~" value="Elevated Floor X0X11111"/>
-    <property name="~Floor" value="Elevated Floor X0X11111"/>
-    <property name="Type" value="Obstructed Floor"/>
-    <property name="Render Depth" type="int" value="-1"/>
-    <property name="Elevation" type="int" value="4"/>
+    <property name="Elevation" value="4"/>
    </properties>
    <image width="32" height="35" source="../Graphics/Set 1 (Cave)/Elevated Floor/X0X11111.png"/>
   </tile>
 
   <tile id="62">
    <properties>
-    <property name="~" value="Elevated Floor X0X11X0X"/>
-    <property name="~Floor" value="Elevated Floor X0X11X0X"/>
-    <property name="Type" value="Obstructed Floor"/>
-    <property name="Render Depth" type="int" value="-1"/>
-    <property name="Elevation" type="int" value="4"/>
+    <property name="Elevation" value="4"/>
    </properties>
    <image width="32" height="35" source="../Graphics/Set 1 (Cave)/Elevated Floor/X0X11X0X.png"/>
   </tile>
 
   <tile id="63">
    <properties>
-    <property name="~" value="Elevated Floor X1001X0X"/>
-    <property name="~Floor" value="Elevated Floor X1001X0X"/>
-    <property name="Type" value="Obstructed Floor"/>
-    <property name="Render Depth" type="int" value="-1"/>
-    <property name="Elevation" type="int" value="4"/>
+    <property name="Elevation" value="4"/>
    </properties>
    <image width="32" height="35" source="../Graphics/Set 1 (Cave)/Elevated Floor/X1001X0X.png"/>
   </tile>
 
   <tile id="64">
    <properties>
-    <property name="~" value="Elevated Floor X1001X10"/>
-    <property name="~Floor" value="Elevated Floor X1001X10"/>
-    <property name="Type" value="Obstructed Floor"/>
-    <property name="Render Depth" type="int" value="-1"/>
-    <property name="Elevation" type="int" value="4"/>
+    <property name="Elevation" value="4"/>
    </properties>
    <image width="32" height="35" source="../Graphics/Set 1 (Cave)/Elevated Floor/X1001X10.png"/>
   </tile>
 
   <tile id="65">
    <properties>
-    <property name="~" value="Elevated Floor X1001X11"/>
-    <property name="~Floor" value="Elevated Floor X1001X11"/>
-    <property name="Type" value="Obstructed Floor"/>
-    <property name="Render Depth" type="int" value="-1"/>
-    <property name="Elevation" type="int" value="4"/>
+    <property name="Elevation" value="4"/>
    </properties>
    <image width="32" height="35" source="../Graphics/Set 1 (Cave)/Elevated Floor/X1001X11.png"/>
   </tile>
 
   <tile id="66">
    <properties>
-    <property name="~" value="Elevated Floor X1101X0X"/>
-    <property name="~Floor" value="Elevated Floor X1101X0X"/>
-    <property name="Type" value="Obstructed Floor"/>
-    <property name="Render Depth" type="int" value="-1"/>
-    <property name="Elevation" type="int" value="4"/>
+    <property name="Elevation" value="4"/>
    </properties>
    <image width="32" height="35" source="../Graphics/Set 1 (Cave)/Elevated Floor/X1101X0X.png"/>
   </tile>
 
   <tile id="67">
    <properties>
-    <property name="~" value="Elevated Floor X1101X10"/>
-    <property name="~Floor" value="Elevated Floor X1101X10"/>
-    <property name="Type" value="Obstructed Floor"/>
-    <property name="Render Depth" type="int" value="-1"/>
-    <property name="Elevation" type="int" value="4"/>
+    <property name="Elevation" value="4"/>
    </properties>
    <image width="32" height="35" source="../Graphics/Set 1 (Cave)/Elevated Floor/X1101X10.png"/>
   </tile>
 
   <tile id="68">
    <properties>
-    <property name="~" value="Elevated Floor X1101X11"/>
-    <property name="~Floor" value="Elevated Floor X1101X11"/>
-    <property name="Type" value="Obstructed Floor"/>
-    <property name="Render Depth" type="int" value="-1"/>
-    <property name="Elevation" type="int" value="4"/>
+    <property name="Elevation" value="4"/>
    </properties>
    <image width="32" height="35" source="../Graphics/Set 1 (Cave)/Elevated Floor/X1101X11.png"/>
   </tile>
 
   <tile id="69">
    <properties>
-    <property name="~" value="Elevated Floor X1X00X0X"/>
-    <property name="~Floor" value="Elevated Floor X1X00X0X"/>
-    <property name="Type" value="Obstructed Floor"/>
-    <property name="Render Depth" type="int" value="-1"/>
-    <property name="Elevation" type="int" value="4"/>
+    <property name="Elevation" value="4"/>
    </properties>
    <image width="32" height="35" source="../Graphics/Set 1 (Cave)/Elevated Floor/X1X00X0X.png"/>
   </tile>
 
   <tile id="70">
    <properties>
-    <property name="~" value="Elevated Floor X1X00X1X"/>
-    <property name="~Floor" value="Elevated Floor X1X00X1X"/>
-    <property name="Type" value="Obstructed Floor"/>
-    <property name="Render Depth" type="int" value="-1"/>
-    <property name="Elevation" type="int" value="4"/>
+    <property name="Elevation" value="4"/>
    </properties>
    <image width="32" height="35" source="../Graphics/Set 1 (Cave)/Elevated Floor/X1X00X1X.png"/>
   </tile>
@@ -999,7 +811,7 @@
 
   <tile id="112">
    <properties>
-    <property name="~" value="Exit"/>
+    <property name="Name" value="Exit"/>
     <property name="~Exit" value="Exit"/>
     <property name="Type" value="Exit"/>
     <property name="Render Depth" type="int" value="-1"/>
@@ -1304,11 +1116,17 @@
   </tile>
 
   <tile id="187">
-   <image width="256" height="256" source="../Graphics/Set 1 (Cave)/Lighting/Point Source Red.png"/>
+   <properties>
+    <property name="Name" value="Magnet Light Source"/>
+   </properties>
+   <image width="96" height="96" source="../Graphics/Set 1 (Cave)/Lighting/Magnet Light Source.png"/>
   </tile>
 
   <tile id="188">
-   <image width="256" height="256" source="../Graphics/Set 1 (Cave)/Lighting/Point Source White.png"/>
+   <properties>
+    <property name="Name" value="Player Light Source"/>
+   </properties>
+   <image width="256" height="256" source="../Graphics/Set 1 (Cave)/Lighting/Player Light Source.png"/>
   </tile>
 
   <tile id="189">
@@ -1393,7 +1211,7 @@
 
   <tile id="203">
    <properties>
-    <property name="~" value="Magnetised Overlay 1x1 1"/>
+    <property name="Name" value="Magnetised Overlay 1x1 1"/>
     <property name="Render Depth" type="int" value="2"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/1x1 1.png"/>
@@ -1401,7 +1219,7 @@
 
   <tile id="204">
    <properties>
-    <property name="~" value="Magnetised Overlay 1x2 1"/>
+    <property name="Name" value="Magnetised Overlay 1x2 1"/>
     <property name="Render Depth" type="int" value="2"/>
    </properties>
    <image width="32" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/1x2 1.png"/>
@@ -1409,7 +1227,7 @@
 
   <tile id="205">
    <properties>
-    <property name="~" value="Magnetised Overlay 1x3 1"/>
+    <property name="Name" value="Magnetised Overlay 1x3 1"/>
     <property name="Render Depth" type="int" value="2"/>
    </properties>
    <image width="32" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/1x3 1.png"/>
@@ -1417,7 +1235,7 @@
 
   <tile id="206">
    <properties>
-    <property name="~" value="Magnetised Overlay 2x1 1"/>
+    <property name="Name" value="Magnetised Overlay 2x1 1"/>
     <property name="Render Depth" type="int" value="2"/>
    </properties>
    <image width="64" height="48" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/2x1 1.png"/>
@@ -1425,7 +1243,7 @@
 
   <tile id="207">
    <properties>
-    <property name="~" value="Magnetised Overlay 2x2 1"/>
+    <property name="Name" value="Magnetised Overlay 2x2 1"/>
     <property name="Render Depth" type="int" value="2"/>
    </properties>
    <image width="64" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/2x2 1.png"/>
@@ -1433,7 +1251,7 @@
 
   <tile id="208">
    <properties>
-    <property name="~" value="Magnetised Overlay 2x2 2"/>
+    <property name="Name" value="Magnetised Overlay 2x2 2"/>
     <property name="Render Depth" type="int" value="2"/>
    </properties>
    <image width="64" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/2x2 2.png"/>
@@ -1441,7 +1259,7 @@
 
   <tile id="209">
    <properties>
-    <property name="~" value="Magnetised Overlay 2x2 3"/>
+    <property name="Name" value="Magnetised Overlay 2x2 3"/>
     <property name="Render Depth" type="int" value="2"/>
    </properties>
    <image width="64" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/2x2 3.png"/>
@@ -1449,7 +1267,7 @@
 
   <tile id="210">
    <properties>
-    <property name="~" value="Magnetised Overlay 2x2 4"/>
+    <property name="Name" value="Magnetised Overlay 2x2 4"/>
     <property name="Render Depth" type="int" value="2"/>
    </properties>
    <image width="64" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/2x2 4.png"/>
@@ -1457,7 +1275,7 @@
 
   <tile id="211">
    <properties>
-    <property name="~" value="Magnetised Overlay 2x2 5"/>
+    <property name="Name" value="Magnetised Overlay 2x2 5"/>
     <property name="Render Depth" type="int" value="2"/>
    </properties>
    <image width="64" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/2x2 5.png"/>
@@ -1465,7 +1283,7 @@
 
   <tile id="212">
    <properties>
-    <property name="~" value="Magnetised Overlay 2x3 1"/>
+    <property name="Name" value="Magnetised Overlay 2x3 1"/>
     <property name="Render Depth" type="int" value="2"/>
    </properties>
    <image width="64" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/2x3 1.png"/>
@@ -1473,7 +1291,7 @@
 
   <tile id="213">
    <properties>
-    <property name="~" value="Magnetised Overlay 2x3 10"/>
+    <property name="Name" value="Magnetised Overlay 2x3 10"/>
     <property name="Render Depth" type="int" value="2"/>
    </properties>
    <image width="64" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/2x3 10.png"/>
@@ -1481,7 +1299,7 @@
 
   <tile id="214">
    <properties>
-    <property name="~" value="Magnetised Overlay 2x3 11"/>
+    <property name="Name" value="Magnetised Overlay 2x3 11"/>
     <property name="Render Depth" type="int" value="2"/>
    </properties>
    <image width="64" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/2x3 11.png"/>
@@ -1489,7 +1307,7 @@
 
   <tile id="215">
    <properties>
-    <property name="~" value="Magnetised Overlay 2x3 12"/>
+    <property name="Name" value="Magnetised Overlay 2x3 12"/>
     <property name="Render Depth" type="int" value="2"/>
    </properties>
    <image width="64" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/2x3 12.png"/>
@@ -1497,7 +1315,7 @@
 
   <tile id="216">
    <properties>
-    <property name="~" value="Magnetised Overlay 2x3 13"/>
+    <property name="Name" value="Magnetised Overlay 2x3 13"/>
     <property name="Render Depth" type="int" value="2"/>
    </properties>
    <image width="64" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/2x3 13.png"/>
@@ -1505,7 +1323,7 @@
 
   <tile id="217">
    <properties>
-    <property name="~" value="Magnetised Overlay 2x3 14"/>
+    <property name="Name" value="Magnetised Overlay 2x3 14"/>
     <property name="Render Depth" type="int" value="2"/>
    </properties>
    <image width="64" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/2x3 14.png"/>
@@ -1513,7 +1331,7 @@
 
   <tile id="218">
    <properties>
-    <property name="~" value="Magnetised Overlay 2x3 15"/>
+    <property name="Name" value="Magnetised Overlay 2x3 15"/>
     <property name="Render Depth" type="int" value="2"/>
    </properties>
    <image width="64" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/2x3 15.png"/>
@@ -1521,7 +1339,7 @@
 
   <tile id="219">
    <properties>
-    <property name="~" value="Magnetised Overlay 2x3 2"/>
+    <property name="Name" value="Magnetised Overlay 2x3 2"/>
     <property name="Render Depth" type="int" value="2"/>
    </properties>
    <image width="64" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/2x3 2.png"/>
@@ -1529,7 +1347,7 @@
 
   <tile id="220">
    <properties>
-    <property name="~" value="Magnetised Overlay 2x3 3"/>
+    <property name="Name" value="Magnetised Overlay 2x3 3"/>
     <property name="Render Depth" type="int" value="2"/>
    </properties>
    <image width="64" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/2x3 3.png"/>
@@ -1537,7 +1355,7 @@
 
   <tile id="221">
    <properties>
-    <property name="~" value="Magnetised Overlay 2x3 4"/>
+    <property name="Name" value="Magnetised Overlay 2x3 4"/>
     <property name="Render Depth" type="int" value="2"/>
    </properties>
    <image width="64" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/2x3 4.png"/>
@@ -1545,7 +1363,7 @@
 
   <tile id="222">
    <properties>
-    <property name="~" value="Magnetised Overlay 2x3 5"/>
+    <property name="Name" value="Magnetised Overlay 2x3 5"/>
     <property name="Render Depth" type="int" value="2"/>
    </properties>
    <image width="64" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/2x3 5.png"/>
@@ -1553,7 +1371,7 @@
 
   <tile id="223">
    <properties>
-    <property name="~" value="Magnetised Overlay 2x3 6"/>
+    <property name="Name" value="Magnetised Overlay 2x3 6"/>
     <property name="Render Depth" type="int" value="2"/>
    </properties>
    <image width="64" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/2x3 6.png"/>
@@ -1561,7 +1379,7 @@
 
   <tile id="224">
    <properties>
-    <property name="~" value="Magnetised Overlay 2x3 7"/>
+    <property name="Name" value="Magnetised Overlay 2x3 7"/>
     <property name="Render Depth" type="int" value="2"/>
    </properties>
    <image width="64" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/2x3 7.png"/>
@@ -1569,7 +1387,7 @@
 
   <tile id="225">
    <properties>
-    <property name="~" value="Magnetised Overlay 2x3 8"/>
+    <property name="Name" value="Magnetised Overlay 2x3 8"/>
     <property name="Render Depth" type="int" value="2"/>
    </properties>
    <image width="64" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/2x3 8.png"/>
@@ -1577,7 +1395,7 @@
 
   <tile id="226">
    <properties>
-    <property name="~" value="Magnetised Overlay 2x3 9"/>
+    <property name="Name" value="Magnetised Overlay 2x3 9"/>
     <property name="Render Depth" type="int" value="2"/>
    </properties>
    <image width="64" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/2x3 9.png"/>
@@ -1585,7 +1403,7 @@
 
   <tile id="227">
    <properties>
-    <property name="~" value="Magnetised Overlay 3x1 1"/>
+    <property name="Name" value="Magnetised Overlay 3x1 1"/>
     <property name="Render Depth" type="int" value="2"/>
    </properties>
    <image width="96" height="48" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x1 1.png"/>
@@ -1593,7 +1411,7 @@
 
   <tile id="228">
    <properties>
-    <property name="~" value="Magnetised Overlay 3x2 1"/>
+    <property name="Name" value="Magnetised Overlay 3x2 1"/>
     <property name="Render Depth" type="int" value="2"/>
    </properties>
    <image width="96" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x2 1.png"/>
@@ -1601,7 +1419,7 @@
 
   <tile id="229">
    <properties>
-    <property name="~" value="Magnetised Overlay 3x2 10"/>
+    <property name="Name" value="Magnetised Overlay 3x2 10"/>
     <property name="Render Depth" type="int" value="2"/>
    </properties>
    <image width="96" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x2 10.png"/>
@@ -1609,7 +1427,7 @@
 
   <tile id="230">
    <properties>
-    <property name="~" value="Magnetised Overlay 3x2 11"/>
+    <property name="Name" value="Magnetised Overlay 3x2 11"/>
     <property name="Render Depth" type="int" value="2"/>
    </properties>
    <image width="96" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x2 11.png"/>
@@ -1617,7 +1435,7 @@
 
   <tile id="231">
    <properties>
-    <property name="~" value="Magnetised Overlay 3x2 12"/>
+    <property name="Name" value="Magnetised Overlay 3x2 12"/>
     <property name="Render Depth" type="int" value="2"/>
    </properties>
    <image width="96" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x2 12.png"/>
@@ -1625,7 +1443,7 @@
 
   <tile id="232">
    <properties>
-    <property name="~" value="Magnetised Overlay 3x2 13"/>
+    <property name="Name" value="Magnetised Overlay 3x2 13"/>
     <property name="Render Depth" type="int" value="2"/>
    </properties>
    <image width="96" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x2 13.png"/>
@@ -1633,7 +1451,7 @@
 
   <tile id="233">
    <properties>
-    <property name="~" value="Magnetised Overlay 3x2 14"/>
+    <property name="Name" value="Magnetised Overlay 3x2 14"/>
     <property name="Render Depth" type="int" value="2"/>
    </properties>
    <image width="96" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x2 14.png"/>
@@ -1641,7 +1459,7 @@
 
   <tile id="234">
    <properties>
-    <property name="~" value="Magnetised Overlay 3x2 15"/>
+    <property name="Name" value="Magnetised Overlay 3x2 15"/>
     <property name="Render Depth" type="int" value="2"/>
    </properties>
    <image width="96" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x2 15.png"/>
@@ -1649,7 +1467,7 @@
 
   <tile id="235">
    <properties>
-    <property name="~" value="Magnetised Overlay 3x2 2"/>
+    <property name="Name" value="Magnetised Overlay 3x2 2"/>
     <property name="Render Depth" type="int" value="2"/>
    </properties>
    <image width="96" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x2 2.png"/>
@@ -1657,7 +1475,7 @@
 
   <tile id="236">
    <properties>
-    <property name="~" value="Magnetised Overlay 3x2 3"/>
+    <property name="Name" value="Magnetised Overlay 3x2 3"/>
     <property name="Render Depth" type="int" value="2"/>
    </properties>
    <image width="96" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x2 3.png"/>
@@ -1665,7 +1483,7 @@
 
   <tile id="237">
    <properties>
-    <property name="~" value="Magnetised Overlay 3x2 4"/>
+    <property name="Name" value="Magnetised Overlay 3x2 4"/>
     <property name="Render Depth" type="int" value="2"/>
    </properties>
    <image width="96" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x2 4.png"/>
@@ -1673,7 +1491,7 @@
 
   <tile id="238">
    <properties>
-    <property name="~" value="Magnetised Overlay 3x2 5"/>
+    <property name="Name" value="Magnetised Overlay 3x2 5"/>
     <property name="Render Depth" type="int" value="2"/>
    </properties>
    <image width="96" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x2 5.png"/>
@@ -1681,7 +1499,7 @@
 
   <tile id="239">
    <properties>
-    <property name="~" value="Magnetised Overlay 3x2 6"/>
+    <property name="Name" value="Magnetised Overlay 3x2 6"/>
     <property name="Render Depth" type="int" value="2"/>
    </properties>
    <image width="96" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x2 6.png"/>
@@ -1689,7 +1507,7 @@
 
   <tile id="240">
    <properties>
-    <property name="~" value="Magnetised Overlay 3x2 7"/>
+    <property name="Name" value="Magnetised Overlay 3x2 7"/>
     <property name="Render Depth" type="int" value="2"/>
    </properties>
    <image width="96" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x2 7.png"/>
@@ -1697,7 +1515,7 @@
 
   <tile id="241">
    <properties>
-    <property name="~" value="Magnetised Overlay 3x2 8"/>
+    <property name="Name" value="Magnetised Overlay 3x2 8"/>
     <property name="Render Depth" type="int" value="2"/>
    </properties>
    <image width="96" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x2 8.png"/>
@@ -1705,7 +1523,7 @@
 
   <tile id="242">
    <properties>
-    <property name="~" value="Magnetised Overlay 3x2 9"/>
+    <property name="Name" value="Magnetised Overlay 3x2 9"/>
     <property name="Render Depth" type="int" value="2"/>
    </properties>
    <image width="96" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x2 9.png"/>
@@ -1713,7 +1531,7 @@
 
   <tile id="243">
    <properties>
-    <property name="~" value="Magnetised Overlay 3x3 1"/>
+    <property name="Name" value="Magnetised Overlay 3x3 1"/>
     <property name="Render Depth" type="int" value="2"/>
    </properties>
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x3 1.png"/>
@@ -1721,7 +1539,7 @@
 
   <tile id="244">
    <properties>
-    <property name="~" value="Magnetised Overlay 3x3 10"/>
+    <property name="Name" value="Magnetised Overlay 3x3 10"/>
     <property name="Render Depth" type="int" value="2"/>
    </properties>
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x3 10.png"/>
@@ -1729,7 +1547,7 @@
 
   <tile id="245">
    <properties>
-    <property name="~" value="Magnetised Overlay 3x3 11"/>
+    <property name="Name" value="Magnetised Overlay 3x3 11"/>
     <property name="Render Depth" type="int" value="2"/>
    </properties>
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x3 11.png"/>
@@ -1737,7 +1555,7 @@
 
   <tile id="246">
    <properties>
-    <property name="~" value="Magnetised Overlay 3x3 12"/>
+    <property name="Name" value="Magnetised Overlay 3x3 12"/>
     <property name="Render Depth" type="int" value="2"/>
    </properties>
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x3 12.png"/>
@@ -1745,7 +1563,7 @@
 
   <tile id="247">
    <properties>
-    <property name="~" value="Magnetised Overlay 3x3 13"/>
+    <property name="Name" value="Magnetised Overlay 3x3 13"/>
     <property name="Render Depth" type="int" value="2"/>
    </properties>
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x3 13.png"/>
@@ -1753,7 +1571,7 @@
 
   <tile id="248">
    <properties>
-    <property name="~" value="Magnetised Overlay 3x3 14"/>
+    <property name="Name" value="Magnetised Overlay 3x3 14"/>
     <property name="Render Depth" type="int" value="2"/>
    </properties>
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x3 14.png"/>
@@ -1761,7 +1579,7 @@
 
   <tile id="249">
    <properties>
-    <property name="~" value="Magnetised Overlay 3x3 15"/>
+    <property name="Name" value="Magnetised Overlay 3x3 15"/>
     <property name="Render Depth" type="int" value="2"/>
    </properties>
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x3 15.png"/>
@@ -1769,7 +1587,7 @@
 
   <tile id="250">
    <properties>
-    <property name="~" value="Magnetised Overlay 3x3 16"/>
+    <property name="Name" value="Magnetised Overlay 3x3 16"/>
     <property name="Render Depth" type="int" value="2"/>
    </properties>
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x3 16.png"/>
@@ -1777,7 +1595,7 @@
 
   <tile id="251">
    <properties>
-    <property name="~" value="Magnetised Overlay 3x3 17"/>
+    <property name="Name" value="Magnetised Overlay 3x3 17"/>
     <property name="Render Depth" type="int" value="2"/>
    </properties>
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x3 17.png"/>
@@ -1785,7 +1603,7 @@
 
   <tile id="252">
    <properties>
-    <property name="~" value="Magnetised Overlay 3x3 18"/>
+    <property name="Name" value="Magnetised Overlay 3x3 18"/>
     <property name="Render Depth" type="int" value="2"/>
    </properties>
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x3 18.png"/>
@@ -1793,7 +1611,7 @@
 
   <tile id="253">
    <properties>
-    <property name="~" value="Magnetised Overlay 3x3 2"/>
+    <property name="Name" value="Magnetised Overlay 3x3 2"/>
     <property name="Render Depth" type="int" value="2"/>
    </properties>
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x3 2.png"/>
@@ -1801,7 +1619,7 @@
 
   <tile id="254">
    <properties>
-    <property name="~" value="Magnetised Overlay 3x3 3"/>
+    <property name="Name" value="Magnetised Overlay 3x3 3"/>
     <property name="Render Depth" type="int" value="2"/>
    </properties>
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x3 3.png"/>
@@ -1809,7 +1627,7 @@
 
   <tile id="255">
    <properties>
-    <property name="~" value="Magnetised Overlay 3x3 4"/>
+    <property name="Name" value="Magnetised Overlay 3x3 4"/>
     <property name="Render Depth" type="int" value="2"/>
    </properties>
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x3 4.png"/>
@@ -1817,7 +1635,7 @@
 
   <tile id="256">
    <properties>
-    <property name="~" value="Magnetised Overlay 3x3 5"/>
+    <property name="Name" value="Magnetised Overlay 3x3 5"/>
     <property name="Render Depth" type="int" value="2"/>
    </properties>
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x3 5.png"/>
@@ -1825,7 +1643,7 @@
 
   <tile id="257">
    <properties>
-    <property name="~" value="Magnetised Overlay 3x3 6"/>
+    <property name="Name" value="Magnetised Overlay 3x3 6"/>
     <property name="Render Depth" type="int" value="2"/>
    </properties>
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x3 6.png"/>
@@ -1833,7 +1651,7 @@
 
   <tile id="258">
    <properties>
-    <property name="~" value="Magnetised Overlay 3x3 7"/>
+    <property name="Name" value="Magnetised Overlay 3x3 7"/>
     <property name="Render Depth" type="int" value="2"/>
    </properties>
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x3 7.png"/>
@@ -1841,7 +1659,7 @@
 
   <tile id="259">
    <properties>
-    <property name="~" value="Magnetised Overlay 3x3 8"/>
+    <property name="Name" value="Magnetised Overlay 3x3 8"/>
     <property name="Render Depth" type="int" value="2"/>
    </properties>
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x3 8.png"/>
@@ -1849,7 +1667,7 @@
 
   <tile id="260">
    <properties>
-    <property name="~" value="Magnetised Overlay 3x3 9"/>
+    <property name="Name" value="Magnetised Overlay 3x3 9"/>
     <property name="Render Depth" type="int" value="2"/>
    </properties>
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x3 9.png"/>
@@ -1857,7 +1675,7 @@
 
   <tile id="261">
    <properties>
-    <property name="~" value="Pushable 1x1 1 1"/>
+    <property name="Name" value="Pushable 1x1 1 1"/>
     <property name="~Lodestone" value="Pushable 1x1 1 1"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 1x1 1"/>
     <property name="Body Area" value="1"/>
@@ -1871,7 +1689,7 @@
 
   <tile id="262">
    <properties>
-    <property name="~" value="Pushable 1x1 2 1"/>
+    <property name="Name" value="Pushable 1x1 2 1"/>
     <property name="~Lodestone" value="Pushable 1x1 2 1"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 1x1 2"/>
     <property name="Body Area" value="1"/>
@@ -1885,7 +1703,7 @@
 
   <tile id="263">
    <properties>
-    <property name="~" value="Pushable 1x1 3 1"/>
+    <property name="Name" value="Pushable 1x1 3 1"/>
     <property name="~Lodestone" value="Pushable 1x1 3 1"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 1x1 3"/>
     <property name="Body Area" value="1"/>
@@ -1899,7 +1717,7 @@
 
   <tile id="264">
    <properties>
-    <property name="~" value="Pushable 1x1 4 1"/>
+    <property name="Name" value="Pushable 1x1 4 1"/>
     <property name="~Lodestone" value="Pushable 1x1 4 1"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 1x1 4"/>
     <property name="Body Area" value="1"/>
@@ -1913,7 +1731,7 @@
 
   <tile id="265">
    <properties>
-    <property name="~" value="Pushable 1x2 1 11"/>
+    <property name="Name" value="Pushable 1x2 1 11"/>
     <property name="~Lodestone" value="Pushable 1x2 1 11"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 1x2 1"/>
     <property name="Body Area" value="11"/>
@@ -1927,7 +1745,7 @@
 
   <tile id="266">
    <properties>
-    <property name="~" value="Pushable 1x3 1 111"/>
+    <property name="Name" value="Pushable 1x3 1 111"/>
     <property name="~Lodestone" value="Pushable 1x3 1 111"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 1x3 1"/>
     <property name="Body Area" value="111"/>
@@ -1941,7 +1759,7 @@
 
   <tile id="267">
    <properties>
-    <property name="~" value="Pushable 2x1 1 11"/>
+    <property name="Name" value="Pushable 2x1 1 11"/>
     <property name="~Lodestone" value="Pushable 2x1 1 11"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 2x1 1"/>
     <property name="Body Area" value="11"/>
@@ -1955,7 +1773,7 @@
 
   <tile id="268">
    <properties>
-    <property name="~" value="Pushable 2x2 1 1110"/>
+    <property name="Name" value="Pushable 2x2 1 1110"/>
     <property name="~Lodestone" value="Pushable 2x2 1 1110"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 2x2 1"/>
     <property name="Body Area" value="1110"/>
@@ -1969,7 +1787,7 @@
 
   <tile id="269">
    <properties>
-    <property name="~" value="Pushable 2x2 2 1101"/>
+    <property name="Name" value="Pushable 2x2 2 1101"/>
     <property name="~Lodestone" value="Pushable 2x2 2 1101"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 2x2 2"/>
     <property name="Body Area" value="1101"/>
@@ -1983,7 +1801,7 @@
 
   <tile id="270">
    <properties>
-    <property name="~" value="Pushable 2x2 3 0111"/>
+    <property name="Name" value="Pushable 2x2 3 0111"/>
     <property name="~Lodestone" value="Pushable 2x2 3 0111"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 2x2 3"/>
     <property name="Body Area" value="0111"/>
@@ -1997,7 +1815,7 @@
 
   <tile id="271">
    <properties>
-    <property name="~" value="Pushable 2x2 4 1011"/>
+    <property name="Name" value="Pushable 2x2 4 1011"/>
     <property name="~Lodestone" value="Pushable 2x2 4 1011"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 2x2 4"/>
     <property name="Body Area" value="1011"/>
@@ -2011,7 +1829,7 @@
 
   <tile id="272">
    <properties>
-    <property name="~" value="Pushable 2x2 5 1111"/>
+    <property name="Name" value="Pushable 2x2 5 1111"/>
     <property name="~Lodestone" value="Pushable 2x2 5 1111"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 2x2 5"/>
     <property name="Body Area" value="1111"/>
@@ -2025,7 +1843,7 @@
 
   <tile id="273">
    <properties>
-    <property name="~" value="Pushable 2x3 1 101110"/>
+    <property name="Name" value="Pushable 2x3 1 101110"/>
     <property name="~Lodestone" value="Pushable 2x3 1 101110"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 2x3 1"/>
     <property name="Body Area" value="101110"/>
@@ -2039,7 +1857,7 @@
 
   <tile id="274">
    <properties>
-    <property name="~" value="Pushable 2x3 10 110111"/>
+    <property name="Name" value="Pushable 2x3 10 110111"/>
     <property name="~Lodestone" value="Pushable 2x3 10 110111"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 2x3 10"/>
     <property name="Body Area" value="110111"/>
@@ -2053,7 +1871,7 @@
 
   <tile id="275">
    <properties>
-    <property name="~" value="Pushable 2x3 11 111110"/>
+    <property name="Name" value="Pushable 2x3 11 111110"/>
     <property name="~Lodestone" value="Pushable 2x3 11 111110"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 2x3 11"/>
     <property name="Body Area" value="111110"/>
@@ -2067,7 +1885,7 @@
 
   <tile id="276">
    <properties>
-    <property name="~" value="Pushable 2x3 12 111101"/>
+    <property name="Name" value="Pushable 2x3 12 111101"/>
     <property name="~Lodestone" value="Pushable 2x3 12 111101"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 2x3 12"/>
     <property name="Body Area" value="111101"/>
@@ -2081,7 +1899,7 @@
 
   <tile id="277">
    <properties>
-    <property name="~" value="Pushable 2x3 13 101111"/>
+    <property name="Name" value="Pushable 2x3 13 101111"/>
     <property name="~Lodestone" value="Pushable 2x3 13 101111"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 2x3 13"/>
     <property name="Body Area" value="101111"/>
@@ -2095,7 +1913,7 @@
 
   <tile id="278">
    <properties>
-    <property name="~" value="Pushable 2x3 14 011111"/>
+    <property name="Name" value="Pushable 2x3 14 011111"/>
     <property name="~Lodestone" value="Pushable 2x3 14 011111"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 2x3 14"/>
     <property name="Body Area" value="011111"/>
@@ -2109,7 +1927,7 @@
 
   <tile id="279">
    <properties>
-    <property name="~" value="Pushable 2x3 15 111111"/>
+    <property name="Name" value="Pushable 2x3 15 111111"/>
     <property name="~Lodestone" value="Pushable 2x3 15 111111"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 2x3 15"/>
     <property name="Body Area" value="111111"/>
@@ -2123,7 +1941,7 @@
 
   <tile id="280">
    <properties>
-    <property name="~" value="Pushable 2x3 2 011101"/>
+    <property name="Name" value="Pushable 2x3 2 011101"/>
     <property name="~Lodestone" value="Pushable 2x3 2 011101"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 2x3 2"/>
     <property name="Body Area" value="011101"/>
@@ -2137,7 +1955,7 @@
 
   <tile id="281">
    <properties>
-    <property name="~" value="Pushable 2x3 3 101011"/>
+    <property name="Name" value="Pushable 2x3 3 101011"/>
     <property name="~Lodestone" value="Pushable 2x3 3 101011"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 2x3 3"/>
     <property name="Body Area" value="101011"/>
@@ -2151,7 +1969,7 @@
 
   <tile id="282">
    <properties>
-    <property name="~" value="Pushable 2x3 4 111010"/>
+    <property name="Name" value="Pushable 2x3 4 111010"/>
     <property name="~Lodestone" value="Pushable 2x3 4 111010"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 2x3 4"/>
     <property name="Body Area" value="111010"/>
@@ -2165,7 +1983,7 @@
 
   <tile id="283">
    <properties>
-    <property name="~" value="Pushable 2x3 5 010111"/>
+    <property name="Name" value="Pushable 2x3 5 010111"/>
     <property name="~Lodestone" value="Pushable 2x3 5 010111"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 2x3 5"/>
     <property name="Body Area" value="010111"/>
@@ -2179,7 +1997,7 @@
 
   <tile id="284">
    <properties>
-    <property name="~" value="Pushable 2x3 6 110101"/>
+    <property name="Name" value="Pushable 2x3 6 110101"/>
     <property name="~Lodestone" value="Pushable 2x3 6 110101"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 2x3 6"/>
     <property name="Body Area" value="110101"/>
@@ -2193,7 +2011,7 @@
 
   <tile id="285">
    <properties>
-    <property name="~" value="Pushable 2x3 7 101101"/>
+    <property name="Name" value="Pushable 2x3 7 101101"/>
     <property name="~Lodestone" value="Pushable 2x3 7 101101"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 2x3 7"/>
     <property name="Body Area" value="101101"/>
@@ -2207,7 +2025,7 @@
 
   <tile id="286">
    <properties>
-    <property name="~" value="Pushable 2x3 8 011110"/>
+    <property name="Name" value="Pushable 2x3 8 011110"/>
     <property name="~Lodestone" value="Pushable 2x3 8 011110"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 2x3 8"/>
     <property name="Body Area" value="011110"/>
@@ -2221,7 +2039,7 @@
 
   <tile id="287">
    <properties>
-    <property name="~" value="Pushable 2x3 9 111011"/>
+    <property name="Name" value="Pushable 2x3 9 111011"/>
     <property name="~Lodestone" value="Pushable 2x3 9 111011"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 2x3 9"/>
     <property name="Body Area" value="111011"/>
@@ -2235,7 +2053,7 @@
 
   <tile id="288">
    <properties>
-    <property name="~" value="Pushable 3x1 1 111"/>
+    <property name="Name" value="Pushable 3x1 1 111"/>
     <property name="~Lodestone" value="Pushable 3x1 1 111"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x1 1"/>
     <property name="Body Area" value="111"/>
@@ -2249,7 +2067,7 @@
 
   <tile id="289">
    <properties>
-    <property name="~" value="Pushable 3x2 1 010111"/>
+    <property name="Name" value="Pushable 3x2 1 010111"/>
     <property name="~Lodestone" value="Pushable 3x2 1 010111"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x2 1"/>
     <property name="Body Area" value="010111"/>
@@ -2263,7 +2081,7 @@
 
   <tile id="290">
    <properties>
-    <property name="~" value="Pushable 3x2 10 101111"/>
+    <property name="Name" value="Pushable 3x2 10 101111"/>
     <property name="~Lodestone" value="Pushable 3x2 10 101111"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x2 10"/>
     <property name="Body Area" value="101111"/>
@@ -2277,7 +2095,7 @@
 
   <tile id="291">
    <properties>
-    <property name="~" value="Pushable 3x2 11 111110"/>
+    <property name="Name" value="Pushable 3x2 11 111110"/>
     <property name="~Lodestone" value="Pushable 3x2 11 111110"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x2 11"/>
     <property name="Body Area" value="111110"/>
@@ -2291,7 +2109,7 @@
 
   <tile id="292">
    <properties>
-    <property name="~" value="Pushable 3x2 12 111011"/>
+    <property name="Name" value="Pushable 3x2 12 111011"/>
     <property name="~Lodestone" value="Pushable 3x2 12 111011"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x2 12"/>
     <property name="Body Area" value="111011"/>
@@ -2305,7 +2123,7 @@
 
   <tile id="293">
    <properties>
-    <property name="~" value="Pushable 3x2 13 110111"/>
+    <property name="Name" value="Pushable 3x2 13 110111"/>
     <property name="~Lodestone" value="Pushable 3x2 13 110111"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x2 13"/>
     <property name="Body Area" value="110111"/>
@@ -2319,7 +2137,7 @@
 
   <tile id="294">
    <properties>
-    <property name="~" value="Pushable 3x2 14 011111"/>
+    <property name="Name" value="Pushable 3x2 14 011111"/>
     <property name="~Lodestone" value="Pushable 3x2 14 011111"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x2 14"/>
     <property name="Body Area" value="011111"/>
@@ -2333,7 +2151,7 @@
 
   <tile id="295">
    <properties>
-    <property name="~" value="Pushable 3x2 15 111111"/>
+    <property name="Name" value="Pushable 3x2 15 111111"/>
     <property name="~Lodestone" value="Pushable 3x2 15 111111"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x2 15"/>
     <property name="Body Area" value="111111"/>
@@ -2347,7 +2165,7 @@
 
   <tile id="296">
    <properties>
-    <property name="~" value="Pushable 3x2 2 111010"/>
+    <property name="Name" value="Pushable 3x2 2 111010"/>
     <property name="~Lodestone" value="Pushable 3x2 2 111010"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x2 2"/>
     <property name="Body Area" value="111010"/>
@@ -2361,7 +2179,7 @@
 
   <tile id="297">
    <properties>
-    <property name="~" value="Pushable 3x2 3 111100"/>
+    <property name="Name" value="Pushable 3x2 3 111100"/>
     <property name="~Lodestone" value="Pushable 3x2 3 111100"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x2 3"/>
     <property name="Body Area" value="111100"/>
@@ -2375,7 +2193,7 @@
 
   <tile id="298">
    <properties>
-    <property name="~" value="Pushable 3x2 4 111001"/>
+    <property name="Name" value="Pushable 3x2 4 111001"/>
     <property name="~Lodestone" value="Pushable 3x2 4 111001"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x2 4"/>
     <property name="Body Area" value="111001"/>
@@ -2389,7 +2207,7 @@
 
   <tile id="299">
    <properties>
-    <property name="~" value="Pushable 3x2 5 100111"/>
+    <property name="Name" value="Pushable 3x2 5 100111"/>
     <property name="~Lodestone" value="Pushable 3x2 5 100111"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x2 5"/>
     <property name="Body Area" value="100111"/>
@@ -2403,7 +2221,7 @@
 
   <tile id="300">
    <properties>
-    <property name="~" value="Pushable 3x2 6 001111"/>
+    <property name="Name" value="Pushable 3x2 6 001111"/>
     <property name="~Lodestone" value="Pushable 3x2 6 001111"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x2 6"/>
     <property name="Body Area" value="001111"/>
@@ -2417,7 +2235,7 @@
 
   <tile id="301">
    <properties>
-    <property name="~" value="Pushable 3x2 7 110011"/>
+    <property name="Name" value="Pushable 3x2 7 110011"/>
     <property name="~Lodestone" value="Pushable 3x2 7 110011"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x2 7"/>
     <property name="Body Area" value="110011"/>
@@ -2431,7 +2249,7 @@
 
   <tile id="302">
    <properties>
-    <property name="~" value="Pushable 3x2 8 011110"/>
+    <property name="Name" value="Pushable 3x2 8 011110"/>
     <property name="~Lodestone" value="Pushable 3x2 8 011110"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x2 8"/>
     <property name="Body Area" value="011110"/>
@@ -2445,7 +2263,7 @@
 
   <tile id="303">
    <properties>
-    <property name="~" value="Pushable 3x2 9 111101"/>
+    <property name="Name" value="Pushable 3x2 9 111101"/>
     <property name="~Lodestone" value="Pushable 3x2 9 111101"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x2 9"/>
     <property name="Body Area" value="111101"/>
@@ -2459,7 +2277,7 @@
 
   <tile id="304">
    <properties>
-    <property name="~" value="Pushable 3x3 1 010111010"/>
+    <property name="Name" value="Pushable 3x3 1 010111010"/>
     <property name="~Lodestone" value="Pushable 3x3 1 010111010"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x3 1"/>
     <property name="Body Area" value="010111010"/>
@@ -2473,7 +2291,7 @@
 
   <tile id="305">
    <properties>
-    <property name="~" value="Pushable 3x3 10 111001001"/>
+    <property name="Name" value="Pushable 3x3 10 111001001"/>
     <property name="~Lodestone" value="Pushable 3x3 10 111001001"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x3 10"/>
     <property name="Body Area" value="111001001"/>
@@ -2487,7 +2305,7 @@
 
   <tile id="306">
    <properties>
-    <property name="~" value="Pushable 3x3 11 100100111"/>
+    <property name="Name" value="Pushable 3x3 11 100100111"/>
     <property name="~Lodestone" value="Pushable 3x3 11 100100111"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x3 11"/>
     <property name="Body Area" value="100100111"/>
@@ -2501,7 +2319,7 @@
 
   <tile id="307">
    <properties>
-    <property name="~" value="Pushable 3x3 12 001001111"/>
+    <property name="Name" value="Pushable 3x3 12 001001111"/>
     <property name="~Lodestone" value="Pushable 3x3 12 001001111"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x3 12"/>
     <property name="Body Area" value="001001111"/>
@@ -2515,7 +2333,7 @@
 
   <tile id="308">
    <properties>
-    <property name="~" value="Pushable 3x3 13 111100100"/>
+    <property name="Name" value="Pushable 3x3 13 111100100"/>
     <property name="~Lodestone" value="Pushable 3x3 13 111100100"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x3 13"/>
     <property name="Body Area" value="111100100"/>
@@ -2529,7 +2347,7 @@
 
   <tile id="309">
    <properties>
-    <property name="~" value="Pushable 3x3 14 111101101"/>
+    <property name="Name" value="Pushable 3x3 14 111101101"/>
     <property name="~Lodestone" value="Pushable 3x3 14 111101101"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x3 14"/>
     <property name="Body Area" value="111101101"/>
@@ -2543,7 +2361,7 @@
 
   <tile id="310">
    <properties>
-    <property name="~" value="Pushable 3x3 15 101101111"/>
+    <property name="Name" value="Pushable 3x3 15 101101111"/>
     <property name="~Lodestone" value="Pushable 3x3 15 101101111"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x3 15"/>
     <property name="Body Area" value="101101111"/>
@@ -2557,7 +2375,7 @@
 
   <tile id="311">
    <properties>
-    <property name="~" value="Pushable 3x3 16 111001111"/>
+    <property name="Name" value="Pushable 3x3 16 111001111"/>
     <property name="~Lodestone" value="Pushable 3x3 16 111001111"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x3 16"/>
     <property name="Body Area" value="111001111"/>
@@ -2571,7 +2389,7 @@
 
   <tile id="312">
    <properties>
-    <property name="~" value="Pushable 3x3 17 111100111"/>
+    <property name="Name" value="Pushable 3x3 17 111100111"/>
     <property name="~Lodestone" value="Pushable 3x3 17 111100111"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x3 17"/>
     <property name="Body Area" value="111100111"/>
@@ -2585,7 +2403,7 @@
 
   <tile id="313">
    <properties>
-    <property name="~" value="Pushable 3x3 18 111111111"/>
+    <property name="Name" value="Pushable 3x3 18 111111111"/>
     <property name="~Lodestone" value="Pushable 3x3 18 111111111"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x3 18"/>
     <property name="Body Area" value="111111111"/>
@@ -2599,7 +2417,7 @@
 
   <tile id="314">
    <properties>
-    <property name="~" value="Pushable 3x3 2 010010111"/>
+    <property name="Name" value="Pushable 3x3 2 010010111"/>
     <property name="~Lodestone" value="Pushable 3x3 2 010010111"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x3 2"/>
     <property name="Body Area" value="010010111"/>
@@ -2613,7 +2431,7 @@
 
   <tile id="315">
    <properties>
-    <property name="~" value="Pushable 3x3 3 111010010"/>
+    <property name="Name" value="Pushable 3x3 3 111010010"/>
     <property name="~Lodestone" value="Pushable 3x3 3 111010010"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x3 3"/>
     <property name="Body Area" value="111010010"/>
@@ -2627,7 +2445,7 @@
 
   <tile id="316">
    <properties>
-    <property name="~" value="Pushable 3x3 4 001111001"/>
+    <property name="Name" value="Pushable 3x3 4 001111001"/>
     <property name="~Lodestone" value="Pushable 3x3 4 001111001"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x3 4"/>
     <property name="Body Area" value="001111001"/>
@@ -2641,7 +2459,7 @@
 
   <tile id="317">
    <properties>
-    <property name="~" value="Pushable 3x3 5 100111100"/>
+    <property name="Name" value="Pushable 3x3 5 100111100"/>
     <property name="~Lodestone" value="Pushable 3x3 5 100111100"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x3 5"/>
     <property name="Body Area" value="100111100"/>
@@ -2655,7 +2473,7 @@
 
   <tile id="318">
    <properties>
-    <property name="~" value="Pushable 3x3 6 011010110"/>
+    <property name="Name" value="Pushable 3x3 6 011010110"/>
     <property name="~Lodestone" value="Pushable 3x3 6 011010110"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x3 6"/>
     <property name="Body Area" value="011010110"/>
@@ -2669,7 +2487,7 @@
 
   <tile id="319">
    <properties>
-    <property name="~" value="Pushable 3x3 7 110010011"/>
+    <property name="Name" value="Pushable 3x3 7 110010011"/>
     <property name="~Lodestone" value="Pushable 3x3 7 110010011"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x3 7"/>
     <property name="Body Area" value="110010011"/>
@@ -2683,7 +2501,7 @@
 
   <tile id="320">
    <properties>
-    <property name="~" value="Pushable 3x3 8 100111001"/>
+    <property name="Name" value="Pushable 3x3 8 100111001"/>
     <property name="~Lodestone" value="Pushable 3x3 8 100111001"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x3 8"/>
     <property name="Body Area" value="100111001"/>
@@ -2697,7 +2515,7 @@
 
   <tile id="321">
    <properties>
-    <property name="~" value="Pushable 3x3 9 001111100"/>
+    <property name="Name" value="Pushable 3x3 9 001111100"/>
     <property name="~Lodestone" value="Pushable 3x3 9 001111100"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x3 9"/>
     <property name="Body Area" value="001111100"/>
@@ -2711,7 +2529,7 @@
 
   <tile id="322">
    <properties>
-    <property name="~" value="Unpushable 1x1 1 1"/>
+    <property name="Name" value="Unpushable 1x1 1 1"/>
     <property name="~Lodestone" value="Unpushable 1x1 1 1"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 1x1 1"/>
     <property name="Body Area" value="1"/>
@@ -2725,7 +2543,7 @@
 
   <tile id="323">
    <properties>
-    <property name="~" value="Unpushable 1x2 1 11"/>
+    <property name="Name" value="Unpushable 1x2 1 11"/>
     <property name="~Lodestone" value="Unpushable 1x2 1 11"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 1x2 1"/>
     <property name="Body Area" value="11"/>
@@ -2739,7 +2557,7 @@
 
   <tile id="324">
    <properties>
-    <property name="~" value="Unpushable 1x3 1 111"/>
+    <property name="Name" value="Unpushable 1x3 1 111"/>
     <property name="~Lodestone" value="Unpushable 1x3 1 111"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 1x3 1"/>
     <property name="Body Area" value="111"/>
@@ -2753,7 +2571,7 @@
 
   <tile id="325">
    <properties>
-    <property name="~" value="Unpushable 2x1 1 11"/>
+    <property name="Name" value="Unpushable 2x1 1 11"/>
     <property name="~Lodestone" value="Unpushable 2x1 1 11"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 2x1 1"/>
     <property name="Body Area" value="11"/>
@@ -2767,7 +2585,7 @@
 
   <tile id="326">
    <properties>
-    <property name="~" value="Unpushable 2x2 1 1110"/>
+    <property name="Name" value="Unpushable 2x2 1 1110"/>
     <property name="~Lodestone" value="Unpushable 2x2 1 1110"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 2x2 1"/>
     <property name="Body Area" value="1110"/>
@@ -2781,7 +2599,7 @@
 
   <tile id="327">
    <properties>
-    <property name="~" value="Unpushable 2x2 2 1101"/>
+    <property name="Name" value="Unpushable 2x2 2 1101"/>
     <property name="~Lodestone" value="Unpushable 2x2 2 1101"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 2x2 2"/>
     <property name="Body Area" value="1101"/>
@@ -2795,7 +2613,7 @@
 
   <tile id="328">
    <properties>
-    <property name="~" value="Unpushable 2x2 3 0111"/>
+    <property name="Name" value="Unpushable 2x2 3 0111"/>
     <property name="~Lodestone" value="Unpushable 2x2 3 0111"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 2x2 3"/>
     <property name="Body Area" value="0111"/>
@@ -2809,7 +2627,7 @@
 
   <tile id="329">
    <properties>
-    <property name="~" value="Unpushable 2x2 4 1011"/>
+    <property name="Name" value="Unpushable 2x2 4 1011"/>
     <property name="~Lodestone" value="Unpushable 2x2 4 1011"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 2x2 4"/>
     <property name="Body Area" value="1011"/>
@@ -2823,7 +2641,7 @@
 
   <tile id="330">
    <properties>
-    <property name="~" value="Unpushable 2x2 5 1111"/>
+    <property name="Name" value="Unpushable 2x2 5 1111"/>
     <property name="~Lodestone" value="Unpushable 2x2 5 1111"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 2x2 5"/>
     <property name="Body Area" value="1111"/>
@@ -2837,7 +2655,7 @@
 
   <tile id="331">
    <properties>
-    <property name="~" value="Unpushable 2x3 1 101110"/>
+    <property name="Name" value="Unpushable 2x3 1 101110"/>
     <property name="~Lodestone" value="Unpushable 2x3 1 101110"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 2x3 1"/>
     <property name="Body Area" value="101110"/>
@@ -2851,7 +2669,7 @@
 
   <tile id="332">
    <properties>
-    <property name="~" value="Unpushable 2x3 10 110111"/>
+    <property name="Name" value="Unpushable 2x3 10 110111"/>
     <property name="~Lodestone" value="Unpushable 2x3 10 110111"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 2x3 10"/>
     <property name="Body Area" value="110111"/>
@@ -2865,7 +2683,7 @@
 
   <tile id="333">
    <properties>
-    <property name="~" value="Unpushable 2x3 11 111110"/>
+    <property name="Name" value="Unpushable 2x3 11 111110"/>
     <property name="~Lodestone" value="Unpushable 2x3 11 111110"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 2x3 11"/>
     <property name="Body Area" value="111110"/>
@@ -2879,7 +2697,7 @@
 
   <tile id="334">
    <properties>
-    <property name="~" value="Unpushable 2x3 12 111101"/>
+    <property name="Name" value="Unpushable 2x3 12 111101"/>
     <property name="~Lodestone" value="Unpushable 2x3 12 111101"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 2x3 12"/>
     <property name="Body Area" value="111101"/>
@@ -2893,7 +2711,7 @@
 
   <tile id="335">
    <properties>
-    <property name="~" value="Unpushable 2x3 13 101111"/>
+    <property name="Name" value="Unpushable 2x3 13 101111"/>
     <property name="~Lodestone" value="Unpushable 2x3 13 101111"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 2x3 13"/>
     <property name="Body Area" value="101111"/>
@@ -2907,7 +2725,7 @@
 
   <tile id="336">
    <properties>
-    <property name="~" value="Unpushable 2x3 14 011111"/>
+    <property name="Name" value="Unpushable 2x3 14 011111"/>
     <property name="~Lodestone" value="Unpushable 2x3 14 011111"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 2x3 14"/>
     <property name="Body Area" value="011111"/>
@@ -2921,7 +2739,7 @@
 
   <tile id="337">
    <properties>
-    <property name="~" value="Unpushable 2x3 15 111111"/>
+    <property name="Name" value="Unpushable 2x3 15 111111"/>
     <property name="~Lodestone" value="Unpushable 2x3 15 111111"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 2x3 15"/>
     <property name="Body Area" value="111111"/>
@@ -2935,7 +2753,7 @@
 
   <tile id="338">
    <properties>
-    <property name="~" value="Unpushable 2x3 2 011101"/>
+    <property name="Name" value="Unpushable 2x3 2 011101"/>
     <property name="~Lodestone" value="Unpushable 2x3 2 011101"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 2x3 2"/>
     <property name="Body Area" value="011101"/>
@@ -2949,7 +2767,7 @@
 
   <tile id="339">
    <properties>
-    <property name="~" value="Unpushable 2x3 3 101011"/>
+    <property name="Name" value="Unpushable 2x3 3 101011"/>
     <property name="~Lodestone" value="Unpushable 2x3 3 101011"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 2x3 3"/>
     <property name="Body Area" value="101011"/>
@@ -2963,7 +2781,7 @@
 
   <tile id="340">
    <properties>
-    <property name="~" value="Unpushable 2x3 4 111010"/>
+    <property name="Name" value="Unpushable 2x3 4 111010"/>
     <property name="~Lodestone" value="Unpushable 2x3 4 111010"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 2x3 4"/>
     <property name="Body Area" value="111010"/>
@@ -2977,7 +2795,7 @@
 
   <tile id="341">
    <properties>
-    <property name="~" value="Unpushable 2x3 5 010111"/>
+    <property name="Name" value="Unpushable 2x3 5 010111"/>
     <property name="~Lodestone" value="Unpushable 2x3 5 010111"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 2x3 5"/>
     <property name="Body Area" value="010111"/>
@@ -2991,7 +2809,7 @@
 
   <tile id="342">
    <properties>
-    <property name="~" value="Unpushable 2x3 6 110101"/>
+    <property name="Name" value="Unpushable 2x3 6 110101"/>
     <property name="~Lodestone" value="Unpushable 2x3 6 110101"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 2x3 6"/>
     <property name="Body Area" value="110101"/>
@@ -3005,7 +2823,7 @@
 
   <tile id="343">
    <properties>
-    <property name="~" value="Unpushable 2x3 7 101101"/>
+    <property name="Name" value="Unpushable 2x3 7 101101"/>
     <property name="~Lodestone" value="Unpushable 2x3 7 101101"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 2x3 7"/>
     <property name="Body Area" value="101101"/>
@@ -3019,7 +2837,7 @@
 
   <tile id="344">
    <properties>
-    <property name="~" value="Unpushable 2x3 8 011110"/>
+    <property name="Name" value="Unpushable 2x3 8 011110"/>
     <property name="~Lodestone" value="Unpushable 2x3 8 011110"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 2x3 8"/>
     <property name="Body Area" value="011110"/>
@@ -3033,7 +2851,7 @@
 
   <tile id="345">
    <properties>
-    <property name="~" value="Unpushable 2x3 9 111011"/>
+    <property name="Name" value="Unpushable 2x3 9 111011"/>
     <property name="~Lodestone" value="Unpushable 2x3 9 111011"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 2x3 9"/>
     <property name="Body Area" value="111011"/>
@@ -3047,7 +2865,7 @@
 
   <tile id="346">
    <properties>
-    <property name="~" value="Unpushable 3x1 1 111"/>
+    <property name="Name" value="Unpushable 3x1 1 111"/>
     <property name="~Lodestone" value="Unpushable 3x1 1 111"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x1 1"/>
     <property name="Body Area" value="111"/>
@@ -3061,7 +2879,7 @@
 
   <tile id="347">
    <properties>
-    <property name="~" value="Unpushable 3x2 1 010111"/>
+    <property name="Name" value="Unpushable 3x2 1 010111"/>
     <property name="~Lodestone" value="Unpushable 3x2 1 010111"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x2 1"/>
     <property name="Body Area" value="010111"/>
@@ -3075,7 +2893,7 @@
 
   <tile id="348">
    <properties>
-    <property name="~" value="Unpushable 3x2 10 101111"/>
+    <property name="Name" value="Unpushable 3x2 10 101111"/>
     <property name="~Lodestone" value="Unpushable 3x2 10 101111"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x2 10"/>
     <property name="Body Area" value="101111"/>
@@ -3089,7 +2907,7 @@
 
   <tile id="349">
    <properties>
-    <property name="~" value="Unpushable 3x2 11 111110"/>
+    <property name="Name" value="Unpushable 3x2 11 111110"/>
     <property name="~Lodestone" value="Unpushable 3x2 11 111110"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x2 11"/>
     <property name="Body Area" value="111110"/>
@@ -3103,7 +2921,7 @@
 
   <tile id="350">
    <properties>
-    <property name="~" value="Unpushable 3x2 12 111011"/>
+    <property name="Name" value="Unpushable 3x2 12 111011"/>
     <property name="~Lodestone" value="Unpushable 3x2 12 111011"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x2 12"/>
     <property name="Body Area" value="111011"/>
@@ -3117,7 +2935,7 @@
 
   <tile id="351">
    <properties>
-    <property name="~" value="Unpushable 3x2 13 110111"/>
+    <property name="Name" value="Unpushable 3x2 13 110111"/>
     <property name="~Lodestone" value="Unpushable 3x2 13 110111"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x2 13"/>
     <property name="Body Area" value="110111"/>
@@ -3131,7 +2949,7 @@
 
   <tile id="352">
    <properties>
-    <property name="~" value="Unpushable 3x2 14 011111"/>
+    <property name="Name" value="Unpushable 3x2 14 011111"/>
     <property name="~Lodestone" value="Unpushable 3x2 14 011111"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x2 14"/>
     <property name="Body Area" value="011111"/>
@@ -3145,7 +2963,7 @@
 
   <tile id="353">
    <properties>
-    <property name="~" value="Unpushable 3x2 15 111111"/>
+    <property name="Name" value="Unpushable 3x2 15 111111"/>
     <property name="~Lodestone" value="Unpushable 3x2 15 111111"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x2 15"/>
     <property name="Body Area" value="111111"/>
@@ -3159,7 +2977,7 @@
 
   <tile id="354">
    <properties>
-    <property name="~" value="Unpushable 3x2 2 111010"/>
+    <property name="Name" value="Unpushable 3x2 2 111010"/>
     <property name="~Lodestone" value="Unpushable 3x2 2 111010"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x2 2"/>
     <property name="Body Area" value="111010"/>
@@ -3173,7 +2991,7 @@
 
   <tile id="355">
    <properties>
-    <property name="~" value="Unpushable 3x2 3 111100"/>
+    <property name="Name" value="Unpushable 3x2 3 111100"/>
     <property name="~Lodestone" value="Unpushable 3x2 3 111100"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x2 3"/>
     <property name="Body Area" value="111100"/>
@@ -3187,7 +3005,7 @@
 
   <tile id="356">
    <properties>
-    <property name="~" value="Unpushable 3x2 4 111001"/>
+    <property name="Name" value="Unpushable 3x2 4 111001"/>
     <property name="~Lodestone" value="Unpushable 3x2 4 111001"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x2 4"/>
     <property name="Body Area" value="111001"/>
@@ -3201,7 +3019,7 @@
 
   <tile id="357">
    <properties>
-    <property name="~" value="Unpushable 3x2 5 100111"/>
+    <property name="Name" value="Unpushable 3x2 5 100111"/>
     <property name="~Lodestone" value="Unpushable 3x2 5 100111"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x2 5"/>
     <property name="Body Area" value="100111"/>
@@ -3215,7 +3033,7 @@
 
   <tile id="358">
    <properties>
-    <property name="~" value="Unpushable 3x2 6 001111"/>
+    <property name="Name" value="Unpushable 3x2 6 001111"/>
     <property name="~Lodestone" value="Unpushable 3x2 6 001111"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x2 6"/>
     <property name="Body Area" value="001111"/>
@@ -3229,7 +3047,7 @@
 
   <tile id="359">
    <properties>
-    <property name="~" value="Unpushable 3x2 7 110011"/>
+    <property name="Name" value="Unpushable 3x2 7 110011"/>
     <property name="~Lodestone" value="Unpushable 3x2 7 110011"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x2 7"/>
     <property name="Body Area" value="110011"/>
@@ -3243,7 +3061,7 @@
 
   <tile id="360">
    <properties>
-    <property name="~" value="Unpushable 3x2 8 011110"/>
+    <property name="Name" value="Unpushable 3x2 8 011110"/>
     <property name="~Lodestone" value="Unpushable 3x2 8 011110"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x2 8"/>
     <property name="Body Area" value="011110"/>
@@ -3257,7 +3075,7 @@
 
   <tile id="361">
    <properties>
-    <property name="~" value="Unpushable 3x2 9 111101"/>
+    <property name="Name" value="Unpushable 3x2 9 111101"/>
     <property name="~Lodestone" value="Unpushable 3x2 9 111101"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x2 9"/>
     <property name="Body Area" value="111101"/>
@@ -3271,7 +3089,7 @@
 
   <tile id="362">
    <properties>
-    <property name="~" value="Unpushable 3x3 1 010111010"/>
+    <property name="Name" value="Unpushable 3x3 1 010111010"/>
     <property name="~Lodestone" value="Unpushable 3x3 1 010111010"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x3 1"/>
     <property name="Body Area" value="010111010"/>
@@ -3285,7 +3103,7 @@
 
   <tile id="363">
    <properties>
-    <property name="~" value="Unpushable 3x3 10 111001001"/>
+    <property name="Name" value="Unpushable 3x3 10 111001001"/>
     <property name="~Lodestone" value="Unpushable 3x3 10 111001001"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x3 10"/>
     <property name="Body Area" value="111001001"/>
@@ -3299,7 +3117,7 @@
 
   <tile id="364">
    <properties>
-    <property name="~" value="Unpushable 3x3 11 100100111"/>
+    <property name="Name" value="Unpushable 3x3 11 100100111"/>
     <property name="~Lodestone" value="Unpushable 3x3 11 100100111"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x3 11"/>
     <property name="Body Area" value="100100111"/>
@@ -3313,7 +3131,7 @@
 
   <tile id="365">
    <properties>
-    <property name="~" value="Unpushable 3x3 12 001001111"/>
+    <property name="Name" value="Unpushable 3x3 12 001001111"/>
     <property name="~Lodestone" value="Unpushable 3x3 12 001001111"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x3 12"/>
     <property name="Body Area" value="001001111"/>
@@ -3327,7 +3145,7 @@
 
   <tile id="366">
    <properties>
-    <property name="~" value="Unpushable 3x3 13 111100100"/>
+    <property name="Name" value="Unpushable 3x3 13 111100100"/>
     <property name="~Lodestone" value="Unpushable 3x3 13 111100100"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x3 13"/>
     <property name="Body Area" value="111100100"/>
@@ -3341,7 +3159,7 @@
 
   <tile id="367">
    <properties>
-    <property name="~" value="Unpushable 3x3 14 111101101"/>
+    <property name="Name" value="Unpushable 3x3 14 111101101"/>
     <property name="~Lodestone" value="Unpushable 3x3 14 111101101"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x3 14"/>
     <property name="Body Area" value="111101101"/>
@@ -3355,7 +3173,7 @@
 
   <tile id="368">
    <properties>
-    <property name="~" value="Unpushable 3x3 15 101101111"/>
+    <property name="Name" value="Unpushable 3x3 15 101101111"/>
     <property name="~Lodestone" value="Unpushable 3x3 15 101101111"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x3 15"/>
     <property name="Body Area" value="101101111"/>
@@ -3369,7 +3187,7 @@
 
   <tile id="369">
    <properties>
-    <property name="~" value="Unpushable 3x3 16 111001111"/>
+    <property name="Name" value="Unpushable 3x3 16 111001111"/>
     <property name="~Lodestone" value="Unpushable 3x3 16 111001111"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x3 16"/>
     <property name="Body Area" value="111001111"/>
@@ -3383,7 +3201,7 @@
 
   <tile id="370">
    <properties>
-    <property name="~" value="Unpushable 3x3 17 111100111"/>
+    <property name="Name" value="Unpushable 3x3 17 111100111"/>
     <property name="~Lodestone" value="Unpushable 3x3 17 111100111"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x3 17"/>
     <property name="Body Area" value="111100111"/>
@@ -3397,7 +3215,7 @@
 
   <tile id="371">
    <properties>
-    <property name="~" value="Unpushable 3x3 18 111111111"/>
+    <property name="Name" value="Unpushable 3x3 18 111111111"/>
     <property name="~Lodestone" value="Unpushable 3x3 18 111111111"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x3 18"/>
     <property name="Body Area" value="111111111"/>
@@ -3411,7 +3229,7 @@
 
   <tile id="372">
    <properties>
-    <property name="~" value="Unpushable 3x3 2 010010111"/>
+    <property name="Name" value="Unpushable 3x3 2 010010111"/>
     <property name="~Lodestone" value="Unpushable 3x3 2 010010111"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x3 2"/>
     <property name="Body Area" value="010010111"/>
@@ -3425,7 +3243,7 @@
 
   <tile id="373">
    <properties>
-    <property name="~" value="Unpushable 3x3 3 111010010"/>
+    <property name="Name" value="Unpushable 3x3 3 111010010"/>
     <property name="~Lodestone" value="Unpushable 3x3 3 111010010"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x3 3"/>
     <property name="Body Area" value="111010010"/>
@@ -3439,7 +3257,7 @@
 
   <tile id="374">
    <properties>
-    <property name="~" value="Unpushable 3x3 4 001111001"/>
+    <property name="Name" value="Unpushable 3x3 4 001111001"/>
     <property name="~Lodestone" value="Unpushable 3x3 4 001111001"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x3 4"/>
     <property name="Body Area" value="001111001"/>
@@ -3453,7 +3271,7 @@
 
   <tile id="375">
    <properties>
-    <property name="~" value="Unpushable 3x3 5 100111100"/>
+    <property name="Name" value="Unpushable 3x3 5 100111100"/>
     <property name="~Lodestone" value="Unpushable 3x3 5 100111100"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x3 5"/>
     <property name="Body Area" value="100111100"/>
@@ -3467,7 +3285,7 @@
 
   <tile id="376">
    <properties>
-    <property name="~" value="Unpushable 3x3 6 011010110"/>
+    <property name="Name" value="Unpushable 3x3 6 011010110"/>
     <property name="~Lodestone" value="Unpushable 3x3 6 011010110"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x3 6"/>
     <property name="Body Area" value="011010110"/>
@@ -3481,7 +3299,7 @@
 
   <tile id="377">
    <properties>
-    <property name="~" value="Unpushable 3x3 7 110010011"/>
+    <property name="Name" value="Unpushable 3x3 7 110010011"/>
     <property name="~Lodestone" value="Unpushable 3x3 7 110010011"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x3 7"/>
     <property name="Body Area" value="110010011"/>
@@ -3495,7 +3313,7 @@
 
   <tile id="378">
    <properties>
-    <property name="~" value="Unpushable 3x3 8 100111001"/>
+    <property name="Name" value="Unpushable 3x3 8 100111001"/>
     <property name="~Lodestone" value="Unpushable 3x3 8 100111001"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x3 8"/>
     <property name="Body Area" value="100111001"/>
@@ -3509,7 +3327,7 @@
 
   <tile id="379">
    <properties>
-    <property name="~" value="Unpushable 3x3 9 001111100"/>
+    <property name="Name" value="Unpushable 3x3 9 001111100"/>
     <property name="~Lodestone" value="Unpushable 3x3 9 001111100"/>
     <property name="~Magnetised Overlay" value="Magnetised Overlay 3x3 9"/>
     <property name="Body Area" value="001111100"/>
@@ -3523,15 +3341,13 @@
 
   <tile id="380">
    <properties>
-    <property name="~" value="Magnetic Floor 01_10"/>
+    <property name="Name" value="Magnetic Floor 01_10"/>
     <property name="~Floor" value="Magnetic Floor 01_10"/>
     <property name="Render Depth" type="int" value="-1"/>
     <property name="Type" value="Magnetic Floor"/>
-    <property name="Lighting Displacement X" value="16"/>
-    <property name="Lighting Displacement Y" value="16"/>
-    <property name="Lighting Height" value="100"/>
-    <property name="Lighting Width" value="100"/>
-    <property name="Lighting Image Path" value="Graphics/Set 1 (Cave)/Lighting/Point Source Red.png"/>
+    <property name="Lighting Displacement X" value="32"/>
+    <property name="Lighting Displacement Y" value="32"/>
+    <property name="Lighting Animation" value="Magnet Light Source"/>
     <property name="Lighting Intensity" value="0.5"/>
    </properties>
    <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Magnetic Floor/01_10.png"/>
@@ -3587,14 +3403,12 @@
 
   <tile id="390">
    <properties>
-    <property name="~" value="Magnetic Source"/>
+    <property name="Name" value="Magnetic Source"/>
     <property name="~Source" value="Magnetic Source"/>
     <property name="Type" value="Magnetic Source"/>
-    <property name="Lighting Displacement X" value="16"/>
-    <property name="Lighting Displacement Y" value="16"/>
-    <property name="Lighting Height" value="100"/>
-    <property name="Lighting Width" value="100"/>
-    <property name="Lighting Image Path" value="Graphics/Set 1 (Cave)/Lighting/Point Source Red.png"/>
+    <property name="Lighting Displacement X" value="32"/>
+    <property name="Lighting Displacement Y" value="32"/>
+    <property name="Lighting Animation" value="Magnet Light Source"/>
     <property name="Lighting Intensity" value="0.5"/>
    </properties>
    <image width="32" height="50" source="../Graphics/Set 1 (Cave)/Magnetic Source/01_10.png"/>
@@ -3650,381 +3464,217 @@
 
   <tile id="400">
    <properties>
-    <property name="~" value="Player Standing"/>
+    <property name="Name" value="Player Standing"/>
     <property name="Type" value="Player"/>
     <property name="~Standing" value="Player Standing"/>
-    <property name="Lighting Displacement X" value="16"/>
-    <property name="Lighting Displacement Y" value="24"/>
-    <property name="Lighting Height" value="200"/>
-    <property name="Lighting Width" value="200"/>
-    <property name="Lighting Image Path" value="Graphics/Set 1 (Cave)/Lighting/Point Source White.png"/>
-    <property name="Lighting Intensity" value="0.4"/>
-   </properties>
-   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/corny.png"/>
-  </tile>
-
-  <tile id="401">
-   <properties>
-    <property name="~" value="Player Standing"/>
-    <property name="Type" value="Player"/>
-    <property name="~Standing" value="Player Standing"/>
-    <property name="Lighting Displacement X" value="16"/>
-    <property name="Lighting Displacement Y" value="24"/>
-    <property name="Lighting Height" value="200"/>
-    <property name="Lighting Width" value="200"/>
-    <property name="Lighting Image Path" value="Graphics/Set 1 (Cave)/Lighting/Point Source White.png"/>
+    <property name="Lighting Displacement X" value="112"/>
+    <property name="Lighting Displacement Y" value="104"/>
+    <property name="Lighting Animation" value="Player Light Source"/>
     <property name="Lighting Intensity" value="0.4"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Idle.png"/>
   </tile>
 
-  <tile id="402">
+  <tile id="401">
    <properties>
-    <property name="~" value="Pause Overlay"/>
+    <property name="Name" value="Pause Overlay"/>
    </properties>
    <image width="800" height="600" source="../Graphics/Set 1 (Cave)/UI/Pause Overlay.png"/>
   </tile>
 
-  <tile id="403">
-   <properties>
-    <property name="Type" value="Wall"/>
-   </properties>
+  <tile id="402">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/01011010.png"/>
   </tile>
 
-  <tile id="404">
-   <properties>
-    <property name="Type" value="Wall"/>
-   </properties>
+  <tile id="403">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/01011011.png"/>
   </tile>
 
-  <tile id="405">
-   <properties>
-    <property name="Type" value="Wall"/>
-   </properties>
+  <tile id="404">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/01011110.png"/>
   </tile>
 
-  <tile id="406">
-   <properties>
-    <property name="Type" value="Wall"/>
-   </properties>
+  <tile id="405">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/01011111.png"/>
   </tile>
 
-  <tile id="407">
-   <properties>
-    <property name="Type" value="Wall"/>
-   </properties>
+  <tile id="406">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/01011X0X.png"/>
   </tile>
 
-  <tile id="408">
-   <properties>
-    <property name="Type" value="Wall"/>
-   </properties>
+  <tile id="407">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/01111010.png"/>
   </tile>
 
-  <tile id="409">
-   <properties>
-    <property name="Type" value="Wall"/>
-   </properties>
+  <tile id="408">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/01111011.png"/>
   </tile>
 
-  <tile id="410">
-   <properties>
-    <property name="Type" value="Wall"/>
-   </properties>
+  <tile id="409">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/01111110.png"/>
   </tile>
 
-  <tile id="411">
-   <properties>
-    <property name="Type" value="Wall"/>
-   </properties>
+  <tile id="410">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/01111111.png"/>
   </tile>
 
-  <tile id="412">
-   <properties>
-    <property name="Type" value="Wall"/>
-   </properties>
+  <tile id="411">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/01111X0X.png"/>
   </tile>
 
-  <tile id="413">
-   <properties>
-    <property name="Type" value="Wall"/>
-   </properties>
+  <tile id="412">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/01X1001X.png"/>
   </tile>
 
-  <tile id="414">
-   <properties>
-    <property name="Type" value="Wall"/>
-   </properties>
+  <tile id="413">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/01X1011X.png"/>
   </tile>
 
-  <tile id="415">
-   <properties>
-    <property name="Type" value="Wall"/>
-   </properties>
+  <tile id="414">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/01X10X0X.png"/>
   </tile>
 
-  <tile id="416">
-   <properties>
-    <property name="Type" value="Wall"/>
-   </properties>
+  <tile id="415">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/11011010.png"/>
   </tile>
 
-  <tile id="417">
-   <properties>
-    <property name="Type" value="Wall"/>
-   </properties>
+  <tile id="416">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/11011011.png"/>
   </tile>
 
-  <tile id="418">
-   <properties>
-    <property name="Type" value="Wall"/>
-   </properties>
+  <tile id="417">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/11011110.png"/>
   </tile>
 
-  <tile id="419">
-   <properties>
-    <property name="Type" value="Wall"/>
-   </properties>
+  <tile id="418">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/11011111.png"/>
   </tile>
 
-  <tile id="420">
-   <properties>
-    <property name="Type" value="Wall"/>
-   </properties>
+  <tile id="419">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/11011X0X.png"/>
   </tile>
 
-  <tile id="421">
-   <properties>
-    <property name="Type" value="Wall"/>
-   </properties>
+  <tile id="420">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/11111010.png"/>
   </tile>
 
-  <tile id="422">
-   <properties>
-    <property name="Type" value="Wall"/>
-   </properties>
+  <tile id="421">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/11111011.png"/>
   </tile>
 
-  <tile id="423">
-   <properties>
-    <property name="Type" value="Wall"/>
-   </properties>
+  <tile id="422">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/11111110.png"/>
   </tile>
 
-  <tile id="424">
-   <properties>
-    <property name="Type" value="Wall"/>
-   </properties>
+  <tile id="423">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/11111111.png"/>
   </tile>
 
-  <tile id="425">
-   <properties>
-    <property name="Type" value="Wall"/>
-   </properties>
+  <tile id="424">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/11111X0X.png"/>
   </tile>
 
-  <tile id="426">
-   <properties>
-    <property name="Type" value="Wall"/>
-   </properties>
+  <tile id="425">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/11X1001X.png"/>
   </tile>
 
-  <tile id="427">
-   <properties>
-    <property name="Type" value="Wall"/>
-   </properties>
+  <tile id="426">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/11X1011X.png"/>
   </tile>
 
-  <tile id="428">
-   <properties>
-    <property name="Type" value="Wall"/>
-   </properties>
+  <tile id="427">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/11X10X0X.png"/>
   </tile>
 
-  <tile id="429">
-   <properties>
-    <property name="Type" value="Wall"/>
-   </properties>
+  <tile id="428">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/Boulder.png"/>
   </tile>
 
-  <tile id="430">
-   <properties>
-    <property name="Type" value="Wall"/>
-   </properties>
+  <tile id="429">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/Stalagmites.png"/>
   </tile>
 
-  <tile id="431">
-   <properties>
-    <property name="Type" value="Wall"/>
-   </properties>
+  <tile id="430">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X0X00X0X.png"/>
   </tile>
 
-  <tile id="432">
-   <properties>
-    <property name="Type" value="Wall"/>
-   </properties>
+  <tile id="431">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X0X00X1X.png"/>
   </tile>
 
-  <tile id="433">
-   <properties>
-    <property name="Type" value="Wall"/>
-   </properties>
+  <tile id="432">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X0X01X0X.png"/>
   </tile>
 
-  <tile id="434">
-   <properties>
-    <property name="Type" value="Wall"/>
-   </properties>
+  <tile id="433">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X0X01X10.png"/>
   </tile>
 
-  <tile id="435">
-   <properties>
-    <property name="Type" value="Wall"/>
-   </properties>
+  <tile id="434">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X0X01X11.png"/>
   </tile>
 
-  <tile id="436">
-   <properties>
-    <property name="Type" value="Wall"/>
-   </properties>
+  <tile id="435">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X0X1001X.png"/>
   </tile>
 
-  <tile id="437">
-   <properties>
-    <property name="Type" value="Wall"/>
-   </properties>
+  <tile id="436">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X0X1011X.png"/>
   </tile>
 
-  <tile id="438">
-   <properties>
-    <property name="Type" value="Wall"/>
-   </properties>
+  <tile id="437">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X0X10X0X.png"/>
   </tile>
 
-  <tile id="439">
-   <properties>
-    <property name="Type" value="Wall"/>
-   </properties>
+  <tile id="438">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X0X11010.png"/>
   </tile>
 
-  <tile id="440">
-   <properties>
-    <property name="Type" value="Wall"/>
-   </properties>
+  <tile id="439">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X0X11011.png"/>
   </tile>
 
-  <tile id="441">
-   <properties>
-    <property name="Type" value="Wall"/>
-   </properties>
+  <tile id="440">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X0X11110.png"/>
   </tile>
 
-  <tile id="442">
-   <properties>
-    <property name="Type" value="Wall"/>
-   </properties>
+  <tile id="441">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X0X11111.png"/>
   </tile>
 
-  <tile id="443">
-   <properties>
-    <property name="Type" value="Wall"/>
-   </properties>
+  <tile id="442">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X0X11X0X.png"/>
   </tile>
 
-  <tile id="444">
-   <properties>
-    <property name="Type" value="Wall"/>
-   </properties>
+  <tile id="443">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X1001X0X.png"/>
   </tile>
 
-  <tile id="445">
-   <properties>
-    <property name="Type" value="Wall"/>
-   </properties>
+  <tile id="444">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X1001X10.png"/>
   </tile>
 
-  <tile id="446">
-   <properties>
-    <property name="Type" value="Wall"/>
-   </properties>
+  <tile id="445">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X1001X11.png"/>
   </tile>
 
-  <tile id="447">
-   <properties>
-    <property name="Type" value="Wall"/>
-   </properties>
+  <tile id="446">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X1101X0X.png"/>
   </tile>
 
-  <tile id="448">
-   <properties>
-    <property name="Type" value="Wall"/>
-   </properties>
+  <tile id="447">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X1101X10.png"/>
   </tile>
 
-  <tile id="449">
-   <properties>
-    <property name="Type" value="Wall"/>
-   </properties>
+  <tile id="448">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X1101X11.png"/>
   </tile>
 
-  <tile id="450">
-   <properties>
-    <property name="Type" value="Wall"/>
-   </properties>
+  <tile id="449">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X1X00X0X.png"/>
   </tile>
 
-  <tile id="451">
-   <properties>
-    <property name="Type" value="Wall"/>
-   </properties>
+  <tile id="450">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X1X00X1X.png"/>
   </tile>
  </tileset>
