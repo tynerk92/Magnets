@@ -122,3 +122,23 @@ Testtt
                  
                  
 Solution :
+
+Testicle
+                     
+                     
+                     
+                     
+                     
+         YYY         
+ X       X X       X 
+ XYYXXXYYX XYYXXXYYX 
+ XXYYXYYXX XXYYXYYXX 
+    XXX       XXX    
+  MM   MM   MM   MM  
+     M    e    M     
+                     
+          s          
+                     
+                     
+                     
+Solution :

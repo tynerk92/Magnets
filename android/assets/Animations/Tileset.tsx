@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
- <tileset firstgid="1" name="Tileset" tilewidth="800" tileheight="600" tilecount="615" columns="0">
+ <tileset firstgid="1" name="Tileset" tilewidth="800" tileheight="600" tilecount="617" columns="0">
   <tile id="0">
    <properties>
     <property name="Render Depth" type="int" value="-1"/>
@@ -622,11 +622,11 @@
 
   <tile id="60">
    <properties>
-    <property name="Name" value="Door Closed 1"/>
-    <property name="~Closed" value="Door Closed 1"/>
-    <property name="~Closing" value="Door Closing 1"/>
-    <property name="~Opened" value="Door Opened 1"/>
-    <property name="~Opening" value="Door Opening 1"/>
+    <property name="Name" value="Door Closed 1 1x1 1"/>
+    <property name="~Closed" value="Door Closed 1 1x1 1"/>
+    <property name="~Closing" value="Door Closing 1 1x1 1"/>
+    <property name="~Opened" value="Door Opened 1 1x1 1"/>
+    <property name="~Opening" value="Door Opening 1 1x1 1"/>
     <property name="Body Area" value="1"/>
     <property name="Body Width" type="int" value="1"/>
     <property name="Type" value="Door"/>
@@ -636,16 +636,16 @@
 
   <tile id="61">
    <properties>
-    <property name="Name" value="Door Opening 1"/>
+    <property name="Name" value="Door Opening 1 1x1 1"/>
    </properties>
    <animation>
-    <frame tileid="61" duration="160"/>
-    <frame tileid="62" duration="240"/>
-    <frame tileid="63" duration="320"/>
-    <frame tileid="64" duration="400"/>
-    <frame tileid="65" duration="320"/>
-    <frame tileid="66" duration="240"/>
-    <frame tileid="67" duration="160"/>
+    <frame tileid="61" duration="8"/>
+    <frame tileid="62" duration="12"/>
+    <frame tileid="63" duration="16"/>
+    <frame tileid="64" duration="20"/>
+    <frame tileid="65" duration="16"/>
+    <frame tileid="66" duration="12"/>
+    <frame tileid="67" duration="8"/>
    </animation>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Door/Set_1 1x1 1 2_9.png"/>
   </tile>
@@ -682,27 +682,27 @@
 
   <tile id="67">
    <properties>
-    <property name="Name" value="Door Closing 1"/>
+    <property name="Name" value="Door Closing 1 1x1 1"/>
    </properties>
    <animation>
-    <frame tileid="67" duration="160"/>
-    <frame tileid="66" duration="240"/>
-    <frame tileid="65" duration="320"/>
-    <frame tileid="64" duration="400"/>
-    <frame tileid="63" duration="320"/>
-    <frame tileid="62" duration="240"/>
-    <frame tileid="61" duration="160"/>
+    <frame tileid="67" duration="8"/>
+    <frame tileid="66" duration="12"/>
+    <frame tileid="65" duration="16"/>
+    <frame tileid="64" duration="20"/>
+    <frame tileid="63" duration="16"/>
+    <frame tileid="62" duration="12"/>
+    <frame tileid="61" duration="8"/>
    </animation>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Door/Set_1 1x1 1 8_9.png"/>
   </tile>
 
   <tile id="68">
    <properties>
-    <property name="Name" value="Door Opened 1"/>
-    <property name="~Closed" value="Door Closed 1"/>
-    <property name="~Closing" value="Door Closing 1"/>
-    <property name="~Opened" value="Door Opened 1"/>
-    <property name="~Opening" value="Door Opening 1"/>
+    <property name="Name" value="Door Opened 1 1x1 1"/>
+    <property name="~Closed" value="Door Closed 1 1x1 1"/>
+    <property name="~Closing" value="Door Closing 1 1x1 1"/>
+    <property name="~Opened" value="Door Opened 1 1x1 1"/>
+    <property name="~Opening" value="Door Opening 1 1x1 1"/>
     <property name="Body Area" value="1"/>
     <property name="Body Width" type="int" value="1"/>
     <property name="Type" value="Door"/>
@@ -713,11 +713,11 @@
 
   <tile id="69">
    <properties>
-    <property name="Name" value="Door Closed 1"/>
-    <property name="~Closed" value="Door Closed 1"/>
-    <property name="~Closing" value="Door Closing 1"/>
-    <property name="~Opened" value="Door Opened 1"/>
-    <property name="~Opening" value="Door Opening 1"/>
+    <property name="Name" value="Door Closed 1 1x2 11"/>
+    <property name="~Closed" value="Door Closed 1 1x2 11"/>
+    <property name="~Closing" value="Door Closing 1 1x2 11"/>
+    <property name="~Opened" value="Door Opened 1 1x2 11"/>
+    <property name="~Opening" value="Door Opening 1 1x2 11"/>
     <property name="Body Area" value="11"/>
     <property name="Body Width" type="int" value="1"/>
     <property name="Type" value="Door"/>
@@ -727,16 +727,16 @@
 
   <tile id="70">
    <properties>
-    <property name="Name" value="Door Opening 1"/>
+    <property name="Name" value="Door Opening 1 1x2 11"/>
    </properties>
    <animation>
-    <frame tileid="70" duration="160"/>
-    <frame tileid="71" duration="240"/>
-    <frame tileid="72" duration="320"/>
-    <frame tileid="73" duration="400"/>
-    <frame tileid="74" duration="320"/>
-    <frame tileid="75" duration="240"/>
-    <frame tileid="76" duration="160"/>
+    <frame tileid="70" duration="8"/>
+    <frame tileid="71" duration="12"/>
+    <frame tileid="72" duration="16"/>
+    <frame tileid="73" duration="20"/>
+    <frame tileid="74" duration="16"/>
+    <frame tileid="75" duration="12"/>
+    <frame tileid="76" duration="8"/>
    </animation>
    <image width="32" height="80" source="../Graphics/Set 1 (Cave)/Door/Set_1 1x2 11 2_9.png"/>
   </tile>
@@ -773,27 +773,27 @@
 
   <tile id="76">
    <properties>
-    <property name="Name" value="Door Closing 1"/>
+    <property name="Name" value="Door Closing 1 1x2 11"/>
    </properties>
    <animation>
-    <frame tileid="76" duration="160"/>
-    <frame tileid="75" duration="240"/>
-    <frame tileid="74" duration="320"/>
-    <frame tileid="73" duration="400"/>
-    <frame tileid="72" duration="320"/>
-    <frame tileid="71" duration="240"/>
-    <frame tileid="70" duration="160"/>
+    <frame tileid="76" duration="8"/>
+    <frame tileid="75" duration="12"/>
+    <frame tileid="74" duration="16"/>
+    <frame tileid="73" duration="20"/>
+    <frame tileid="72" duration="16"/>
+    <frame tileid="71" duration="12"/>
+    <frame tileid="70" duration="8"/>
    </animation>
    <image width="32" height="80" source="../Graphics/Set 1 (Cave)/Door/Set_1 1x2 11 8_9.png"/>
   </tile>
 
   <tile id="77">
    <properties>
-    <property name="Name" value="Door Opened 1"/>
-    <property name="~Closed" value="Door Closed 1"/>
-    <property name="~Closing" value="Door Closing 1"/>
-    <property name="~Opened" value="Door Opened 1"/>
-    <property name="~Opening" value="Door Opening 1"/>
+    <property name="Name" value="Door Opened 1 1x2 11"/>
+    <property name="~Closed" value="Door Closed 1 1x2 11"/>
+    <property name="~Closing" value="Door Closing 1 1x2 11"/>
+    <property name="~Opened" value="Door Opened 1 1x2 11"/>
+    <property name="~Opening" value="Door Opening 1 1x2 11"/>
     <property name="Body Area" value="11"/>
     <property name="Body Width" type="int" value="1"/>
     <property name="Type" value="Door"/>
@@ -804,11 +804,11 @@
 
   <tile id="78">
    <properties>
-    <property name="Name" value="Door Closed 1"/>
-    <property name="~Closed" value="Door Closed 1"/>
-    <property name="~Closing" value="Door Closing 1"/>
-    <property name="~Opened" value="Door Opened 1"/>
-    <property name="~Opening" value="Door Opening 1"/>
+    <property name="Name" value="Door Closed 1 2x1 11"/>
+    <property name="~Closed" value="Door Closed 1 2x1 11"/>
+    <property name="~Closing" value="Door Closing 1 2x1 11"/>
+    <property name="~Opened" value="Door Opened 1 2x1 11"/>
+    <property name="~Opening" value="Door Opening 1 2x1 11"/>
     <property name="Body Area" value="11"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="Type" value="Door"/>
@@ -818,16 +818,16 @@
 
   <tile id="79">
    <properties>
-    <property name="Name" value="Door Opening 1"/>
+    <property name="Name" value="Door Opening 1 2x1 11"/>
    </properties>
    <animation>
-    <frame tileid="79" duration="160"/>
-    <frame tileid="80" duration="240"/>
-    <frame tileid="81" duration="320"/>
-    <frame tileid="82" duration="400"/>
-    <frame tileid="83" duration="320"/>
-    <frame tileid="84" duration="240"/>
-    <frame tileid="85" duration="160"/>
+    <frame tileid="79" duration="8"/>
+    <frame tileid="80" duration="12"/>
+    <frame tileid="81" duration="16"/>
+    <frame tileid="82" duration="20"/>
+    <frame tileid="83" duration="16"/>
+    <frame tileid="84" duration="12"/>
+    <frame tileid="85" duration="8"/>
    </animation>
    <image width="64" height="48" source="../Graphics/Set 1 (Cave)/Door/Set_1 2x1 11 2_9.png"/>
   </tile>
@@ -864,27 +864,27 @@
 
   <tile id="85">
    <properties>
-    <property name="Name" value="Door Closing 1"/>
+    <property name="Name" value="Door Closing 1 2x1 11"/>
    </properties>
    <animation>
-    <frame tileid="85" duration="160"/>
-    <frame tileid="84" duration="240"/>
-    <frame tileid="83" duration="320"/>
-    <frame tileid="82" duration="400"/>
-    <frame tileid="81" duration="320"/>
-    <frame tileid="80" duration="240"/>
-    <frame tileid="79" duration="160"/>
+    <frame tileid="85" duration="8"/>
+    <frame tileid="84" duration="12"/>
+    <frame tileid="83" duration="16"/>
+    <frame tileid="82" duration="20"/>
+    <frame tileid="81" duration="16"/>
+    <frame tileid="80" duration="12"/>
+    <frame tileid="79" duration="8"/>
    </animation>
    <image width="64" height="48" source="../Graphics/Set 1 (Cave)/Door/Set_1 2x1 11 8_9.png"/>
   </tile>
 
   <tile id="86">
    <properties>
-    <property name="Name" value="Door Opened 1"/>
-    <property name="~Closed" value="Door Closed 1"/>
-    <property name="~Closing" value="Door Closing 1"/>
-    <property name="~Opened" value="Door Opened 1"/>
-    <property name="~Opening" value="Door Opening 1"/>
+    <property name="Name" value="Door Opened 1 2x1 11"/>
+    <property name="~Closed" value="Door Closed 1 2x1 11"/>
+    <property name="~Closing" value="Door Closing 1 2x1 11"/>
+    <property name="~Opened" value="Door Opened 1 2x1 11"/>
+    <property name="~Opening" value="Door Opening 1 2x1 11"/>
     <property name="Body Area" value="11"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="Type" value="Door"/>
@@ -895,11 +895,11 @@
 
   <tile id="87">
    <properties>
-    <property name="Name" value="Door Closed 1"/>
-    <property name="~Closed" value="Door Closed 1"/>
-    <property name="~Closing" value="Door Closing 1"/>
-    <property name="~Opened" value="Door Opened 1"/>
-    <property name="~Opening" value="Door Opening 1"/>
+    <property name="Name" value="Door Closed 1 2x2 0111"/>
+    <property name="~Closed" value="Door Closed 1 2x2 0111"/>
+    <property name="~Closing" value="Door Closing 1 2x2 0111"/>
+    <property name="~Opened" value="Door Opened 1 2x2 0111"/>
+    <property name="~Opening" value="Door Opening 1 2x2 0111"/>
     <property name="Body Area" value="0111"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="Type" value="Door"/>
@@ -909,16 +909,16 @@
 
   <tile id="88">
    <properties>
-    <property name="Name" value="Door Opening 1"/>
+    <property name="Name" value="Door Opening 1 2x2 0111"/>
    </properties>
    <animation>
-    <frame tileid="88" duration="160"/>
-    <frame tileid="89" duration="240"/>
-    <frame tileid="90" duration="320"/>
-    <frame tileid="91" duration="400"/>
-    <frame tileid="92" duration="320"/>
-    <frame tileid="93" duration="240"/>
-    <frame tileid="94" duration="160"/>
+    <frame tileid="88" duration="8"/>
+    <frame tileid="89" duration="12"/>
+    <frame tileid="90" duration="16"/>
+    <frame tileid="91" duration="20"/>
+    <frame tileid="92" duration="16"/>
+    <frame tileid="93" duration="12"/>
+    <frame tileid="94" duration="8"/>
    </animation>
    <image width="64" height="80" source="../Graphics/Set 1 (Cave)/Door/Set_1 2x2 0111 2_9.png"/>
   </tile>
@@ -955,27 +955,27 @@
 
   <tile id="94">
    <properties>
-    <property name="Name" value="Door Closing 1"/>
+    <property name="Name" value="Door Closing 1 2x2 0111"/>
    </properties>
    <animation>
-    <frame tileid="94" duration="160"/>
-    <frame tileid="93" duration="240"/>
-    <frame tileid="92" duration="320"/>
-    <frame tileid="91" duration="400"/>
-    <frame tileid="90" duration="320"/>
-    <frame tileid="89" duration="240"/>
-    <frame tileid="88" duration="160"/>
+    <frame tileid="94" duration="8"/>
+    <frame tileid="93" duration="12"/>
+    <frame tileid="92" duration="16"/>
+    <frame tileid="91" duration="20"/>
+    <frame tileid="90" duration="16"/>
+    <frame tileid="89" duration="12"/>
+    <frame tileid="88" duration="8"/>
    </animation>
    <image width="64" height="80" source="../Graphics/Set 1 (Cave)/Door/Set_1 2x2 0111 8_9.png"/>
   </tile>
 
   <tile id="95">
    <properties>
-    <property name="Name" value="Door Opened 1"/>
-    <property name="~Closed" value="Door Closed 1"/>
-    <property name="~Closing" value="Door Closing 1"/>
-    <property name="~Opened" value="Door Opened 1"/>
-    <property name="~Opening" value="Door Opening 1"/>
+    <property name="Name" value="Door Opened 1 2x2 0111"/>
+    <property name="~Closed" value="Door Closed 1 2x2 0111"/>
+    <property name="~Closing" value="Door Closing 1 2x2 0111"/>
+    <property name="~Opened" value="Door Opened 1 2x2 0111"/>
+    <property name="~Opening" value="Door Opening 1 2x2 0111"/>
     <property name="Body Area" value="0111"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="Type" value="Door"/>
@@ -986,11 +986,11 @@
 
   <tile id="96">
    <properties>
-    <property name="Name" value="Door Closed 1"/>
-    <property name="~Closed" value="Door Closed 1"/>
-    <property name="~Closing" value="Door Closing 1"/>
-    <property name="~Opened" value="Door Opened 1"/>
-    <property name="~Opening" value="Door Opening 1"/>
+    <property name="Name" value="Door Closed 1 2x2 1011"/>
+    <property name="~Closed" value="Door Closed 1 2x2 1011"/>
+    <property name="~Closing" value="Door Closing 1 2x2 1011"/>
+    <property name="~Opened" value="Door Opened 1 2x2 1011"/>
+    <property name="~Opening" value="Door Opening 1 2x2 1011"/>
     <property name="Body Area" value="1011"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="Type" value="Door"/>
@@ -1000,16 +1000,16 @@
 
   <tile id="97">
    <properties>
-    <property name="Name" value="Door Opening 1"/>
+    <property name="Name" value="Door Opening 1 2x2 1011"/>
    </properties>
    <animation>
-    <frame tileid="97" duration="160"/>
-    <frame tileid="98" duration="240"/>
-    <frame tileid="99" duration="320"/>
-    <frame tileid="100" duration="400"/>
-    <frame tileid="101" duration="320"/>
-    <frame tileid="102" duration="240"/>
-    <frame tileid="103" duration="160"/>
+    <frame tileid="97" duration="8"/>
+    <frame tileid="98" duration="12"/>
+    <frame tileid="99" duration="16"/>
+    <frame tileid="100" duration="20"/>
+    <frame tileid="101" duration="16"/>
+    <frame tileid="102" duration="12"/>
+    <frame tileid="103" duration="8"/>
    </animation>
    <image width="64" height="80" source="../Graphics/Set 1 (Cave)/Door/Set_1 2x2 1011 2_9.png"/>
   </tile>
@@ -1046,27 +1046,27 @@
 
   <tile id="103">
    <properties>
-    <property name="Name" value="Door Closing 1"/>
+    <property name="Name" value="Door Closing 1 2x2 1011"/>
    </properties>
    <animation>
-    <frame tileid="103" duration="160"/>
-    <frame tileid="102" duration="240"/>
-    <frame tileid="101" duration="320"/>
-    <frame tileid="100" duration="400"/>
-    <frame tileid="99" duration="320"/>
-    <frame tileid="98" duration="240"/>
-    <frame tileid="97" duration="160"/>
+    <frame tileid="103" duration="8"/>
+    <frame tileid="102" duration="12"/>
+    <frame tileid="101" duration="16"/>
+    <frame tileid="100" duration="20"/>
+    <frame tileid="99" duration="16"/>
+    <frame tileid="98" duration="12"/>
+    <frame tileid="97" duration="8"/>
    </animation>
    <image width="64" height="80" source="../Graphics/Set 1 (Cave)/Door/Set_1 2x2 1011 8_9.png"/>
   </tile>
 
   <tile id="104">
    <properties>
-    <property name="Name" value="Door Opened 1"/>
-    <property name="~Closed" value="Door Closed 1"/>
-    <property name="~Closing" value="Door Closing 1"/>
-    <property name="~Opened" value="Door Opened 1"/>
-    <property name="~Opening" value="Door Opening 1"/>
+    <property name="Name" value="Door Opened 1 2x2 1011"/>
+    <property name="~Closed" value="Door Closed 1 2x2 1011"/>
+    <property name="~Closing" value="Door Closing 1 2x2 1011"/>
+    <property name="~Opened" value="Door Opened 1 2x2 1011"/>
+    <property name="~Opening" value="Door Opening 1 2x2 1011"/>
     <property name="Body Area" value="1011"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="Type" value="Door"/>
@@ -1077,11 +1077,11 @@
 
   <tile id="105">
    <properties>
-    <property name="Name" value="Door Closed 1"/>
-    <property name="~Closed" value="Door Closed 1"/>
-    <property name="~Closing" value="Door Closing 1"/>
-    <property name="~Opened" value="Door Opened 1"/>
-    <property name="~Opening" value="Door Opening 1"/>
+    <property name="Name" value="Door Closed 1 2x2 1101"/>
+    <property name="~Closed" value="Door Closed 1 2x2 1101"/>
+    <property name="~Closing" value="Door Closing 1 2x2 1101"/>
+    <property name="~Opened" value="Door Opened 1 2x2 1101"/>
+    <property name="~Opening" value="Door Opening 1 2x2 1101"/>
     <property name="Body Area" value="1101"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="Type" value="Door"/>
@@ -1091,16 +1091,16 @@
 
   <tile id="106">
    <properties>
-    <property name="Name" value="Door Opening 1"/>
+    <property name="Name" value="Door Opening 1 2x2 1101"/>
    </properties>
    <animation>
-    <frame tileid="106" duration="160"/>
-    <frame tileid="107" duration="240"/>
-    <frame tileid="108" duration="320"/>
-    <frame tileid="109" duration="400"/>
-    <frame tileid="110" duration="320"/>
-    <frame tileid="111" duration="240"/>
-    <frame tileid="112" duration="160"/>
+    <frame tileid="106" duration="8"/>
+    <frame tileid="107" duration="12"/>
+    <frame tileid="108" duration="16"/>
+    <frame tileid="109" duration="20"/>
+    <frame tileid="110" duration="16"/>
+    <frame tileid="111" duration="12"/>
+    <frame tileid="112" duration="8"/>
    </animation>
    <image width="64" height="80" source="../Graphics/Set 1 (Cave)/Door/Set_1 2x2 1101 2_9.png"/>
   </tile>
@@ -1137,27 +1137,27 @@
 
   <tile id="112">
    <properties>
-    <property name="Name" value="Door Closing 1"/>
+    <property name="Name" value="Door Closing 1 2x2 1101"/>
    </properties>
    <animation>
-    <frame tileid="112" duration="160"/>
-    <frame tileid="111" duration="240"/>
-    <frame tileid="110" duration="320"/>
-    <frame tileid="109" duration="400"/>
-    <frame tileid="108" duration="320"/>
-    <frame tileid="107" duration="240"/>
-    <frame tileid="106" duration="160"/>
+    <frame tileid="112" duration="8"/>
+    <frame tileid="111" duration="12"/>
+    <frame tileid="110" duration="16"/>
+    <frame tileid="109" duration="20"/>
+    <frame tileid="108" duration="16"/>
+    <frame tileid="107" duration="12"/>
+    <frame tileid="106" duration="8"/>
    </animation>
    <image width="64" height="80" source="../Graphics/Set 1 (Cave)/Door/Set_1 2x2 1101 8_9.png"/>
   </tile>
 
   <tile id="113">
    <properties>
-    <property name="Name" value="Door Opened 1"/>
-    <property name="~Closed" value="Door Closed 1"/>
-    <property name="~Closing" value="Door Closing 1"/>
-    <property name="~Opened" value="Door Opened 1"/>
-    <property name="~Opening" value="Door Opening 1"/>
+    <property name="Name" value="Door Opened 1 2x2 1101"/>
+    <property name="~Closed" value="Door Closed 1 2x2 1101"/>
+    <property name="~Closing" value="Door Closing 1 2x2 1101"/>
+    <property name="~Opened" value="Door Opened 1 2x2 1101"/>
+    <property name="~Opening" value="Door Opening 1 2x2 1101"/>
     <property name="Body Area" value="1101"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="Type" value="Door"/>
@@ -1168,11 +1168,11 @@
 
   <tile id="114">
    <properties>
-    <property name="Name" value="Door Closed 1"/>
-    <property name="~Closed" value="Door Closed 1"/>
-    <property name="~Closing" value="Door Closing 1"/>
-    <property name="~Opened" value="Door Opened 1"/>
-    <property name="~Opening" value="Door Opening 1"/>
+    <property name="Name" value="Door Closed 1 2x2 1110"/>
+    <property name="~Closed" value="Door Closed 1 2x2 1110"/>
+    <property name="~Closing" value="Door Closing 1 2x2 1110"/>
+    <property name="~Opened" value="Door Opened 1 2x2 1110"/>
+    <property name="~Opening" value="Door Opening 1 2x2 1110"/>
     <property name="Body Area" value="1110"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="Type" value="Door"/>
@@ -1182,16 +1182,16 @@
 
   <tile id="115">
    <properties>
-    <property name="Name" value="Door Opening 1"/>
+    <property name="Name" value="Door Opening 1 2x2 1110"/>
    </properties>
    <animation>
-    <frame tileid="115" duration="160"/>
-    <frame tileid="116" duration="240"/>
-    <frame tileid="117" duration="320"/>
-    <frame tileid="118" duration="400"/>
-    <frame tileid="119" duration="320"/>
-    <frame tileid="120" duration="240"/>
-    <frame tileid="121" duration="160"/>
+    <frame tileid="115" duration="8"/>
+    <frame tileid="116" duration="12"/>
+    <frame tileid="117" duration="16"/>
+    <frame tileid="118" duration="20"/>
+    <frame tileid="119" duration="16"/>
+    <frame tileid="120" duration="12"/>
+    <frame tileid="121" duration="8"/>
    </animation>
    <image width="64" height="80" source="../Graphics/Set 1 (Cave)/Door/Set_1 2x2 1110 2_9.png"/>
   </tile>
@@ -1228,27 +1228,27 @@
 
   <tile id="121">
    <properties>
-    <property name="Name" value="Door Closing 1"/>
+    <property name="Name" value="Door Closing 1 2x2 1110"/>
    </properties>
    <animation>
-    <frame tileid="121" duration="160"/>
-    <frame tileid="120" duration="240"/>
-    <frame tileid="119" duration="320"/>
-    <frame tileid="118" duration="400"/>
-    <frame tileid="117" duration="320"/>
-    <frame tileid="116" duration="240"/>
-    <frame tileid="115" duration="160"/>
+    <frame tileid="121" duration="8"/>
+    <frame tileid="120" duration="12"/>
+    <frame tileid="119" duration="16"/>
+    <frame tileid="118" duration="20"/>
+    <frame tileid="117" duration="16"/>
+    <frame tileid="116" duration="12"/>
+    <frame tileid="115" duration="8"/>
    </animation>
    <image width="64" height="80" source="../Graphics/Set 1 (Cave)/Door/Set_1 2x2 1110 8_9.png"/>
   </tile>
 
   <tile id="122">
    <properties>
-    <property name="Name" value="Door Opened 1"/>
-    <property name="~Closed" value="Door Closed 1"/>
-    <property name="~Closing" value="Door Closing 1"/>
-    <property name="~Opened" value="Door Opened 1"/>
-    <property name="~Opening" value="Door Opening 1"/>
+    <property name="Name" value="Door Opened 1 2x2 1110"/>
+    <property name="~Closed" value="Door Closed 1 2x2 1110"/>
+    <property name="~Closing" value="Door Closing 1 2x2 1110"/>
+    <property name="~Opened" value="Door Opened 1 2x2 1110"/>
+    <property name="~Opening" value="Door Opening 1 2x2 1110"/>
     <property name="Body Area" value="1110"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="Type" value="Door"/>
@@ -1259,11 +1259,11 @@
 
   <tile id="123">
    <properties>
-    <property name="Name" value="Door Closed 1"/>
-    <property name="~Closed" value="Door Closed 1"/>
-    <property name="~Closing" value="Door Closing 1"/>
-    <property name="~Opened" value="Door Opened 1"/>
-    <property name="~Opening" value="Door Opening 1"/>
+    <property name="Name" value="Door Closed 1 2x2 1111"/>
+    <property name="~Closed" value="Door Closed 1 2x2 1111"/>
+    <property name="~Closing" value="Door Closing 1 2x2 1111"/>
+    <property name="~Opened" value="Door Opened 1 2x2 1111"/>
+    <property name="~Opening" value="Door Opening 1 2x2 1111"/>
     <property name="Body Area" value="1111"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="Type" value="Door"/>
@@ -1273,16 +1273,16 @@
 
   <tile id="124">
    <properties>
-    <property name="Name" value="Door Opening 1"/>
+    <property name="Name" value="Door Opening 1 2x2 1111"/>
    </properties>
    <animation>
-    <frame tileid="124" duration="160"/>
-    <frame tileid="125" duration="240"/>
-    <frame tileid="126" duration="320"/>
-    <frame tileid="127" duration="400"/>
-    <frame tileid="128" duration="320"/>
-    <frame tileid="129" duration="240"/>
-    <frame tileid="130" duration="160"/>
+    <frame tileid="124" duration="8"/>
+    <frame tileid="125" duration="12"/>
+    <frame tileid="126" duration="16"/>
+    <frame tileid="127" duration="20"/>
+    <frame tileid="128" duration="16"/>
+    <frame tileid="129" duration="12"/>
+    <frame tileid="130" duration="8"/>
    </animation>
    <image width="64" height="80" source="../Graphics/Set 1 (Cave)/Door/Set_1 2x2 1111 2_9.png"/>
   </tile>
@@ -1319,27 +1319,27 @@
 
   <tile id="130">
    <properties>
-    <property name="Name" value="Door Closing 1"/>
+    <property name="Name" value="Door Closing 1 2x2 1111"/>
    </properties>
    <animation>
-    <frame tileid="130" duration="160"/>
-    <frame tileid="129" duration="240"/>
-    <frame tileid="128" duration="320"/>
-    <frame tileid="127" duration="400"/>
-    <frame tileid="126" duration="320"/>
-    <frame tileid="125" duration="240"/>
-    <frame tileid="124" duration="160"/>
+    <frame tileid="130" duration="8"/>
+    <frame tileid="129" duration="12"/>
+    <frame tileid="128" duration="16"/>
+    <frame tileid="127" duration="20"/>
+    <frame tileid="126" duration="16"/>
+    <frame tileid="125" duration="12"/>
+    <frame tileid="124" duration="8"/>
    </animation>
    <image width="64" height="80" source="../Graphics/Set 1 (Cave)/Door/Set_1 2x2 1111 8_9.png"/>
   </tile>
 
   <tile id="131">
    <properties>
-    <property name="Name" value="Door Opened 1"/>
-    <property name="~Closed" value="Door Closed 1"/>
-    <property name="~Closing" value="Door Closing 1"/>
-    <property name="~Opened" value="Door Opened 1"/>
-    <property name="~Opening" value="Door Opening 1"/>
+    <property name="Name" value="Door Opened 1 2x2 1111"/>
+    <property name="~Closed" value="Door Closed 1 2x2 1111"/>
+    <property name="~Closing" value="Door Closing 1 2x2 1111"/>
+    <property name="~Opened" value="Door Opened 1 2x2 1111"/>
+    <property name="~Opening" value="Door Opening 1 2x2 1111"/>
     <property name="Body Area" value="1111"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="Type" value="Door"/>
@@ -1350,11 +1350,11 @@
 
   <tile id="132">
    <properties>
-    <property name="Name" value="Door Closed 2"/>
-    <property name="~Closed" value="Door Closed 2"/>
-    <property name="~Closing" value="Door Closing 2"/>
-    <property name="~Opened" value="Door Opened 2"/>
-    <property name="~Opening" value="Door Opening 2"/>
+    <property name="Name" value="Door Closed 2 1x1 1"/>
+    <property name="~Closed" value="Door Closed 2 1x1 1"/>
+    <property name="~Closing" value="Door Closing 2 1x1 1"/>
+    <property name="~Opened" value="Door Opened 2 1x1 1"/>
+    <property name="~Opening" value="Door Opening 2 1x1 1"/>
     <property name="Body Area" value="1"/>
     <property name="Body Width" type="int" value="1"/>
     <property name="Type" value="Door"/>
@@ -1364,16 +1364,16 @@
 
   <tile id="133">
    <properties>
-    <property name="Name" value="Door Opening 2"/>
+    <property name="Name" value="Door Opening 2 1x1 1"/>
    </properties>
    <animation>
-    <frame tileid="133" duration="160"/>
-    <frame tileid="134" duration="240"/>
-    <frame tileid="135" duration="320"/>
-    <frame tileid="136" duration="400"/>
-    <frame tileid="137" duration="320"/>
-    <frame tileid="138" duration="240"/>
-    <frame tileid="139" duration="160"/>
+    <frame tileid="133" duration="8"/>
+    <frame tileid="134" duration="12"/>
+    <frame tileid="135" duration="16"/>
+    <frame tileid="136" duration="20"/>
+    <frame tileid="137" duration="16"/>
+    <frame tileid="138" duration="12"/>
+    <frame tileid="139" duration="8"/>
    </animation>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Door/Set_2 1x1 1 2_9.png"/>
   </tile>
@@ -1410,27 +1410,27 @@
 
   <tile id="139">
    <properties>
-    <property name="Name" value="Door Closing 2"/>
+    <property name="Name" value="Door Closing 2 1x1 1"/>
    </properties>
    <animation>
-    <frame tileid="139" duration="160"/>
-    <frame tileid="138" duration="240"/>
-    <frame tileid="137" duration="320"/>
-    <frame tileid="136" duration="400"/>
-    <frame tileid="135" duration="320"/>
-    <frame tileid="134" duration="240"/>
-    <frame tileid="133" duration="160"/>
+    <frame tileid="139" duration="8"/>
+    <frame tileid="138" duration="12"/>
+    <frame tileid="137" duration="16"/>
+    <frame tileid="136" duration="20"/>
+    <frame tileid="135" duration="16"/>
+    <frame tileid="134" duration="12"/>
+    <frame tileid="133" duration="8"/>
    </animation>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Door/Set_2 1x1 1 8_9.png"/>
   </tile>
 
   <tile id="140">
    <properties>
-    <property name="Name" value="Door Opened 2"/>
-    <property name="~Closed" value="Door Closed 2"/>
-    <property name="~Closing" value="Door Closing 2"/>
-    <property name="~Opened" value="Door Opened 2"/>
-    <property name="~Opening" value="Door Opening 2"/>
+    <property name="Name" value="Door Opened 2 1x1 1"/>
+    <property name="~Closed" value="Door Closed 2 1x1 1"/>
+    <property name="~Closing" value="Door Closing 2 1x1 1"/>
+    <property name="~Opened" value="Door Opened 2 1x1 1"/>
+    <property name="~Opening" value="Door Opening 2 1x1 1"/>
     <property name="Body Area" value="1"/>
     <property name="Body Width" type="int" value="1"/>
     <property name="Type" value="Door"/>
@@ -1441,11 +1441,11 @@
 
   <tile id="141">
    <properties>
-    <property name="Name" value="Door Closed 2"/>
-    <property name="~Closed" value="Door Closed 2"/>
-    <property name="~Closing" value="Door Closing 2"/>
-    <property name="~Opened" value="Door Opened 2"/>
-    <property name="~Opening" value="Door Opening 2"/>
+    <property name="Name" value="Door Closed 2 1x2 11"/>
+    <property name="~Closed" value="Door Closed 2 1x2 11"/>
+    <property name="~Closing" value="Door Closing 2 1x2 11"/>
+    <property name="~Opened" value="Door Opened 2 1x2 11"/>
+    <property name="~Opening" value="Door Opening 2 1x2 11"/>
     <property name="Body Area" value="11"/>
     <property name="Body Width" type="int" value="1"/>
     <property name="Type" value="Door"/>
@@ -1455,16 +1455,16 @@
 
   <tile id="142">
    <properties>
-    <property name="Name" value="Door Opening 2"/>
+    <property name="Name" value="Door Opening 2 1x2 11"/>
    </properties>
    <animation>
-    <frame tileid="142" duration="160"/>
-    <frame tileid="143" duration="240"/>
-    <frame tileid="144" duration="320"/>
-    <frame tileid="145" duration="400"/>
-    <frame tileid="146" duration="320"/>
-    <frame tileid="147" duration="240"/>
-    <frame tileid="148" duration="160"/>
+    <frame tileid="142" duration="8"/>
+    <frame tileid="143" duration="12"/>
+    <frame tileid="144" duration="16"/>
+    <frame tileid="145" duration="20"/>
+    <frame tileid="146" duration="16"/>
+    <frame tileid="147" duration="12"/>
+    <frame tileid="148" duration="8"/>
    </animation>
    <image width="32" height="80" source="../Graphics/Set 1 (Cave)/Door/Set_2 1x2 11 2_9.png"/>
   </tile>
@@ -1501,27 +1501,27 @@
 
   <tile id="148">
    <properties>
-    <property name="Name" value="Door Closing 2"/>
+    <property name="Name" value="Door Closing 2 1x2 11"/>
    </properties>
    <animation>
-    <frame tileid="148" duration="160"/>
-    <frame tileid="147" duration="240"/>
-    <frame tileid="146" duration="320"/>
-    <frame tileid="145" duration="400"/>
-    <frame tileid="144" duration="320"/>
-    <frame tileid="143" duration="240"/>
-    <frame tileid="142" duration="160"/>
+    <frame tileid="148" duration="8"/>
+    <frame tileid="147" duration="12"/>
+    <frame tileid="146" duration="16"/>
+    <frame tileid="145" duration="20"/>
+    <frame tileid="144" duration="16"/>
+    <frame tileid="143" duration="12"/>
+    <frame tileid="142" duration="8"/>
    </animation>
    <image width="32" height="80" source="../Graphics/Set 1 (Cave)/Door/Set_2 1x2 11 8_9.png"/>
   </tile>
 
   <tile id="149">
    <properties>
-    <property name="Name" value="Door Opened 2"/>
-    <property name="~Closed" value="Door Closed 2"/>
-    <property name="~Closing" value="Door Closing 2"/>
-    <property name="~Opened" value="Door Opened 2"/>
-    <property name="~Opening" value="Door Opening 2"/>
+    <property name="Name" value="Door Opened 2 1x2 11"/>
+    <property name="~Closed" value="Door Closed 2 1x2 11"/>
+    <property name="~Closing" value="Door Closing 2 1x2 11"/>
+    <property name="~Opened" value="Door Opened 2 1x2 11"/>
+    <property name="~Opening" value="Door Opening 2 1x2 11"/>
     <property name="Body Area" value="11"/>
     <property name="Body Width" type="int" value="1"/>
     <property name="Type" value="Door"/>
@@ -1532,11 +1532,11 @@
 
   <tile id="150">
    <properties>
-    <property name="Name" value="Door Closed 2"/>
-    <property name="~Closed" value="Door Closed 2"/>
-    <property name="~Closing" value="Door Closing 2"/>
-    <property name="~Opened" value="Door Opened 2"/>
-    <property name="~Opening" value="Door Opening 2"/>
+    <property name="Name" value="Door Closed 2 2x1 11"/>
+    <property name="~Closed" value="Door Closed 2 2x1 11"/>
+    <property name="~Closing" value="Door Closing 2 2x1 11"/>
+    <property name="~Opened" value="Door Opened 2 2x1 11"/>
+    <property name="~Opening" value="Door Opening 2 2x1 11"/>
     <property name="Body Area" value="11"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="Type" value="Door"/>
@@ -1546,16 +1546,16 @@
 
   <tile id="151">
    <properties>
-    <property name="Name" value="Door Opening 2"/>
+    <property name="Name" value="Door Opening 2 2x1 11"/>
    </properties>
    <animation>
-    <frame tileid="151" duration="160"/>
-    <frame tileid="152" duration="240"/>
-    <frame tileid="153" duration="320"/>
-    <frame tileid="154" duration="400"/>
-    <frame tileid="155" duration="320"/>
-    <frame tileid="156" duration="240"/>
-    <frame tileid="157" duration="160"/>
+    <frame tileid="151" duration="8"/>
+    <frame tileid="152" duration="12"/>
+    <frame tileid="153" duration="16"/>
+    <frame tileid="154" duration="20"/>
+    <frame tileid="155" duration="16"/>
+    <frame tileid="156" duration="12"/>
+    <frame tileid="157" duration="8"/>
    </animation>
    <image width="64" height="48" source="../Graphics/Set 1 (Cave)/Door/Set_2 2x1 11 2_9.png"/>
   </tile>
@@ -1592,27 +1592,27 @@
 
   <tile id="157">
    <properties>
-    <property name="Name" value="Door Closing 2"/>
+    <property name="Name" value="Door Closing 2 2x1 11"/>
    </properties>
    <animation>
-    <frame tileid="157" duration="160"/>
-    <frame tileid="156" duration="240"/>
-    <frame tileid="155" duration="320"/>
-    <frame tileid="154" duration="400"/>
-    <frame tileid="153" duration="320"/>
-    <frame tileid="152" duration="240"/>
-    <frame tileid="151" duration="160"/>
+    <frame tileid="157" duration="8"/>
+    <frame tileid="156" duration="12"/>
+    <frame tileid="155" duration="16"/>
+    <frame tileid="154" duration="20"/>
+    <frame tileid="153" duration="16"/>
+    <frame tileid="152" duration="12"/>
+    <frame tileid="151" duration="8"/>
    </animation>
    <image width="64" height="48" source="../Graphics/Set 1 (Cave)/Door/Set_2 2x1 11 8_9.png"/>
   </tile>
 
   <tile id="158">
    <properties>
-    <property name="Name" value="Door Opened 2"/>
-    <property name="~Closed" value="Door Closed 2"/>
-    <property name="~Closing" value="Door Closing 2"/>
-    <property name="~Opened" value="Door Opened 2"/>
-    <property name="~Opening" value="Door Opening 2"/>
+    <property name="Name" value="Door Opened 2 2x1 11"/>
+    <property name="~Closed" value="Door Closed 2 2x1 11"/>
+    <property name="~Closing" value="Door Closing 2 2x1 11"/>
+    <property name="~Opened" value="Door Opened 2 2x1 11"/>
+    <property name="~Opening" value="Door Opening 2 2x1 11"/>
     <property name="Body Area" value="11"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="Type" value="Door"/>
@@ -1623,11 +1623,11 @@
 
   <tile id="159">
    <properties>
-    <property name="Name" value="Door Closed 2"/>
-    <property name="~Closed" value="Door Closed 2"/>
-    <property name="~Closing" value="Door Closing 2"/>
-    <property name="~Opened" value="Door Opened 2"/>
-    <property name="~Opening" value="Door Opening 2"/>
+    <property name="Name" value="Door Closed 2 2x2 0111"/>
+    <property name="~Closed" value="Door Closed 2 2x2 0111"/>
+    <property name="~Closing" value="Door Closing 2 2x2 0111"/>
+    <property name="~Opened" value="Door Opened 2 2x2 0111"/>
+    <property name="~Opening" value="Door Opening 2 2x2 0111"/>
     <property name="Body Area" value="0111"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="Type" value="Door"/>
@@ -1637,16 +1637,16 @@
 
   <tile id="160">
    <properties>
-    <property name="Name" value="Door Opening 2"/>
+    <property name="Name" value="Door Opening 2 2x2 0111"/>
    </properties>
    <animation>
-    <frame tileid="160" duration="160"/>
-    <frame tileid="161" duration="240"/>
-    <frame tileid="162" duration="320"/>
-    <frame tileid="163" duration="400"/>
-    <frame tileid="164" duration="320"/>
-    <frame tileid="165" duration="240"/>
-    <frame tileid="166" duration="160"/>
+    <frame tileid="160" duration="8"/>
+    <frame tileid="161" duration="12"/>
+    <frame tileid="162" duration="16"/>
+    <frame tileid="163" duration="20"/>
+    <frame tileid="164" duration="16"/>
+    <frame tileid="165" duration="12"/>
+    <frame tileid="166" duration="8"/>
    </animation>
    <image width="64" height="80" source="../Graphics/Set 1 (Cave)/Door/Set_2 2x2 0111 2_9.png"/>
   </tile>
@@ -1683,27 +1683,27 @@
 
   <tile id="166">
    <properties>
-    <property name="Name" value="Door Closing 2"/>
+    <property name="Name" value="Door Closing 2 2x2 0111"/>
    </properties>
    <animation>
-    <frame tileid="166" duration="160"/>
-    <frame tileid="165" duration="240"/>
-    <frame tileid="164" duration="320"/>
-    <frame tileid="163" duration="400"/>
-    <frame tileid="162" duration="320"/>
-    <frame tileid="161" duration="240"/>
-    <frame tileid="160" duration="160"/>
+    <frame tileid="166" duration="8"/>
+    <frame tileid="165" duration="12"/>
+    <frame tileid="164" duration="16"/>
+    <frame tileid="163" duration="20"/>
+    <frame tileid="162" duration="16"/>
+    <frame tileid="161" duration="12"/>
+    <frame tileid="160" duration="8"/>
    </animation>
    <image width="64" height="80" source="../Graphics/Set 1 (Cave)/Door/Set_2 2x2 0111 8_9.png"/>
   </tile>
 
   <tile id="167">
    <properties>
-    <property name="Name" value="Door Opened 2"/>
-    <property name="~Closed" value="Door Closed 2"/>
-    <property name="~Closing" value="Door Closing 2"/>
-    <property name="~Opened" value="Door Opened 2"/>
-    <property name="~Opening" value="Door Opening 2"/>
+    <property name="Name" value="Door Opened 2 2x2 0111"/>
+    <property name="~Closed" value="Door Closed 2 2x2 0111"/>
+    <property name="~Closing" value="Door Closing 2 2x2 0111"/>
+    <property name="~Opened" value="Door Opened 2 2x2 0111"/>
+    <property name="~Opening" value="Door Opening 2 2x2 0111"/>
     <property name="Body Area" value="0111"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="Type" value="Door"/>
@@ -1714,11 +1714,11 @@
 
   <tile id="168">
    <properties>
-    <property name="Name" value="Door Closed 2"/>
-    <property name="~Closed" value="Door Closed 2"/>
-    <property name="~Closing" value="Door Closing 2"/>
-    <property name="~Opened" value="Door Opened 2"/>
-    <property name="~Opening" value="Door Opening 2"/>
+    <property name="Name" value="Door Closed 2 2x2 1011"/>
+    <property name="~Closed" value="Door Closed 2 2x2 1011"/>
+    <property name="~Closing" value="Door Closing 2 2x2 1011"/>
+    <property name="~Opened" value="Door Opened 2 2x2 1011"/>
+    <property name="~Opening" value="Door Opening 2 2x2 1011"/>
     <property name="Body Area" value="1011"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="Type" value="Door"/>
@@ -1728,16 +1728,16 @@
 
   <tile id="169">
    <properties>
-    <property name="Name" value="Door Opening 2"/>
+    <property name="Name" value="Door Opening 2 2x2 1011"/>
    </properties>
    <animation>
-    <frame tileid="169" duration="160"/>
-    <frame tileid="170" duration="240"/>
-    <frame tileid="171" duration="320"/>
-    <frame tileid="172" duration="400"/>
-    <frame tileid="173" duration="320"/>
-    <frame tileid="174" duration="240"/>
-    <frame tileid="175" duration="160"/>
+    <frame tileid="169" duration="8"/>
+    <frame tileid="170" duration="12"/>
+    <frame tileid="171" duration="16"/>
+    <frame tileid="172" duration="20"/>
+    <frame tileid="173" duration="16"/>
+    <frame tileid="174" duration="12"/>
+    <frame tileid="175" duration="8"/>
    </animation>
    <image width="64" height="80" source="../Graphics/Set 1 (Cave)/Door/Set_2 2x2 1011 2_9.png"/>
   </tile>
@@ -1774,27 +1774,27 @@
 
   <tile id="175">
    <properties>
-    <property name="Name" value="Door Closing 2"/>
+    <property name="Name" value="Door Closing 2 2x2 1011"/>
    </properties>
    <animation>
-    <frame tileid="175" duration="160"/>
-    <frame tileid="174" duration="240"/>
-    <frame tileid="173" duration="320"/>
-    <frame tileid="172" duration="400"/>
-    <frame tileid="171" duration="320"/>
-    <frame tileid="170" duration="240"/>
-    <frame tileid="169" duration="160"/>
+    <frame tileid="175" duration="8"/>
+    <frame tileid="174" duration="12"/>
+    <frame tileid="173" duration="16"/>
+    <frame tileid="172" duration="20"/>
+    <frame tileid="171" duration="16"/>
+    <frame tileid="170" duration="12"/>
+    <frame tileid="169" duration="8"/>
    </animation>
    <image width="64" height="80" source="../Graphics/Set 1 (Cave)/Door/Set_2 2x2 1011 8_9.png"/>
   </tile>
 
   <tile id="176">
    <properties>
-    <property name="Name" value="Door Opened 2"/>
-    <property name="~Closed" value="Door Closed 2"/>
-    <property name="~Closing" value="Door Closing 2"/>
-    <property name="~Opened" value="Door Opened 2"/>
-    <property name="~Opening" value="Door Opening 2"/>
+    <property name="Name" value="Door Opened 2 2x2 1011"/>
+    <property name="~Closed" value="Door Closed 2 2x2 1011"/>
+    <property name="~Closing" value="Door Closing 2 2x2 1011"/>
+    <property name="~Opened" value="Door Opened 2 2x2 1011"/>
+    <property name="~Opening" value="Door Opening 2 2x2 1011"/>
     <property name="Body Area" value="1011"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="Type" value="Door"/>
@@ -1805,11 +1805,11 @@
 
   <tile id="177">
    <properties>
-    <property name="Name" value="Door Closed 2"/>
-    <property name="~Closed" value="Door Closed 2"/>
-    <property name="~Closing" value="Door Closing 2"/>
-    <property name="~Opened" value="Door Opened 2"/>
-    <property name="~Opening" value="Door Opening 2"/>
+    <property name="Name" value="Door Closed 2 2x2 1101"/>
+    <property name="~Closed" value="Door Closed 2 2x2 1101"/>
+    <property name="~Closing" value="Door Closing 2 2x2 1101"/>
+    <property name="~Opened" value="Door Opened 2 2x2 1101"/>
+    <property name="~Opening" value="Door Opening 2 2x2 1101"/>
     <property name="Body Area" value="1101"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="Type" value="Door"/>
@@ -1819,16 +1819,16 @@
 
   <tile id="178">
    <properties>
-    <property name="Name" value="Door Opening 2"/>
+    <property name="Name" value="Door Opening 2 2x2 1101"/>
    </properties>
    <animation>
-    <frame tileid="178" duration="160"/>
-    <frame tileid="179" duration="240"/>
-    <frame tileid="180" duration="320"/>
-    <frame tileid="181" duration="400"/>
-    <frame tileid="182" duration="320"/>
-    <frame tileid="183" duration="240"/>
-    <frame tileid="184" duration="160"/>
+    <frame tileid="178" duration="8"/>
+    <frame tileid="179" duration="12"/>
+    <frame tileid="180" duration="16"/>
+    <frame tileid="181" duration="20"/>
+    <frame tileid="182" duration="16"/>
+    <frame tileid="183" duration="12"/>
+    <frame tileid="184" duration="8"/>
    </animation>
    <image width="64" height="80" source="../Graphics/Set 1 (Cave)/Door/Set_2 2x2 1101 2_9.png"/>
   </tile>
@@ -1865,27 +1865,27 @@
 
   <tile id="184">
    <properties>
-    <property name="Name" value="Door Closing 2"/>
+    <property name="Name" value="Door Closing 2 2x2 1101"/>
    </properties>
    <animation>
-    <frame tileid="184" duration="160"/>
-    <frame tileid="183" duration="240"/>
-    <frame tileid="182" duration="320"/>
-    <frame tileid="181" duration="400"/>
-    <frame tileid="180" duration="320"/>
-    <frame tileid="179" duration="240"/>
-    <frame tileid="178" duration="160"/>
+    <frame tileid="184" duration="8"/>
+    <frame tileid="183" duration="12"/>
+    <frame tileid="182" duration="16"/>
+    <frame tileid="181" duration="20"/>
+    <frame tileid="180" duration="16"/>
+    <frame tileid="179" duration="12"/>
+    <frame tileid="178" duration="8"/>
    </animation>
    <image width="64" height="80" source="../Graphics/Set 1 (Cave)/Door/Set_2 2x2 1101 8_9.png"/>
   </tile>
 
   <tile id="185">
    <properties>
-    <property name="Name" value="Door Opened 2"/>
-    <property name="~Closed" value="Door Closed 2"/>
-    <property name="~Closing" value="Door Closing 2"/>
-    <property name="~Opened" value="Door Opened 2"/>
-    <property name="~Opening" value="Door Opening 2"/>
+    <property name="Name" value="Door Opened 2 2x2 1101"/>
+    <property name="~Closed" value="Door Closed 2 2x2 1101"/>
+    <property name="~Closing" value="Door Closing 2 2x2 1101"/>
+    <property name="~Opened" value="Door Opened 2 2x2 1101"/>
+    <property name="~Opening" value="Door Opening 2 2x2 1101"/>
     <property name="Body Area" value="1101"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="Type" value="Door"/>
@@ -1896,11 +1896,11 @@
 
   <tile id="186">
    <properties>
-    <property name="Name" value="Door Closed 2"/>
-    <property name="~Closed" value="Door Closed 2"/>
-    <property name="~Closing" value="Door Closing 2"/>
-    <property name="~Opened" value="Door Opened 2"/>
-    <property name="~Opening" value="Door Opening 2"/>
+    <property name="Name" value="Door Closed 2 2x2 1110"/>
+    <property name="~Closed" value="Door Closed 2 2x2 1110"/>
+    <property name="~Closing" value="Door Closing 2 2x2 1110"/>
+    <property name="~Opened" value="Door Opened 2 2x2 1110"/>
+    <property name="~Opening" value="Door Opening 2 2x2 1110"/>
     <property name="Body Area" value="1110"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="Type" value="Door"/>
@@ -1910,16 +1910,16 @@
 
   <tile id="187">
    <properties>
-    <property name="Name" value="Door Opening 2"/>
+    <property name="Name" value="Door Opening 2 2x2 1110"/>
    </properties>
    <animation>
-    <frame tileid="187" duration="160"/>
-    <frame tileid="188" duration="240"/>
-    <frame tileid="189" duration="320"/>
-    <frame tileid="190" duration="400"/>
-    <frame tileid="191" duration="320"/>
-    <frame tileid="192" duration="240"/>
-    <frame tileid="193" duration="160"/>
+    <frame tileid="187" duration="8"/>
+    <frame tileid="188" duration="12"/>
+    <frame tileid="189" duration="16"/>
+    <frame tileid="190" duration="20"/>
+    <frame tileid="191" duration="16"/>
+    <frame tileid="192" duration="12"/>
+    <frame tileid="193" duration="8"/>
    </animation>
    <image width="64" height="80" source="../Graphics/Set 1 (Cave)/Door/Set_2 2x2 1110 2_9.png"/>
   </tile>
@@ -1956,27 +1956,27 @@
 
   <tile id="193">
    <properties>
-    <property name="Name" value="Door Closing 2"/>
+    <property name="Name" value="Door Closing 2 2x2 1110"/>
    </properties>
    <animation>
-    <frame tileid="193" duration="160"/>
-    <frame tileid="192" duration="240"/>
-    <frame tileid="191" duration="320"/>
-    <frame tileid="190" duration="400"/>
-    <frame tileid="189" duration="320"/>
-    <frame tileid="188" duration="240"/>
-    <frame tileid="187" duration="160"/>
+    <frame tileid="193" duration="8"/>
+    <frame tileid="192" duration="12"/>
+    <frame tileid="191" duration="16"/>
+    <frame tileid="190" duration="20"/>
+    <frame tileid="189" duration="16"/>
+    <frame tileid="188" duration="12"/>
+    <frame tileid="187" duration="8"/>
    </animation>
    <image width="64" height="80" source="../Graphics/Set 1 (Cave)/Door/Set_2 2x2 1110 8_9.png"/>
   </tile>
 
   <tile id="194">
    <properties>
-    <property name="Name" value="Door Opened 2"/>
-    <property name="~Closed" value="Door Closed 2"/>
-    <property name="~Closing" value="Door Closing 2"/>
-    <property name="~Opened" value="Door Opened 2"/>
-    <property name="~Opening" value="Door Opening 2"/>
+    <property name="Name" value="Door Opened 2 2x2 1110"/>
+    <property name="~Closed" value="Door Closed 2 2x2 1110"/>
+    <property name="~Closing" value="Door Closing 2 2x2 1110"/>
+    <property name="~Opened" value="Door Opened 2 2x2 1110"/>
+    <property name="~Opening" value="Door Opening 2 2x2 1110"/>
     <property name="Body Area" value="1110"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="Type" value="Door"/>
@@ -1987,11 +1987,11 @@
 
   <tile id="195">
    <properties>
-    <property name="Name" value="Door Closed 2"/>
-    <property name="~Closed" value="Door Closed 2"/>
-    <property name="~Closing" value="Door Closing 2"/>
-    <property name="~Opened" value="Door Opened 2"/>
-    <property name="~Opening" value="Door Opening 2"/>
+    <property name="Name" value="Door Closed 2 2x2 1111"/>
+    <property name="~Closed" value="Door Closed 2 2x2 1111"/>
+    <property name="~Closing" value="Door Closing 2 2x2 1111"/>
+    <property name="~Opened" value="Door Opened 2 2x2 1111"/>
+    <property name="~Opening" value="Door Opening 2 2x2 1111"/>
     <property name="Body Area" value="1111"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="Type" value="Door"/>
@@ -2001,16 +2001,16 @@
 
   <tile id="196">
    <properties>
-    <property name="Name" value="Door Opening 2"/>
+    <property name="Name" value="Door Opening 2 2x2 1111"/>
    </properties>
    <animation>
-    <frame tileid="196" duration="160"/>
-    <frame tileid="197" duration="240"/>
-    <frame tileid="198" duration="320"/>
-    <frame tileid="199" duration="400"/>
-    <frame tileid="200" duration="320"/>
-    <frame tileid="201" duration="240"/>
-    <frame tileid="202" duration="160"/>
+    <frame tileid="196" duration="8"/>
+    <frame tileid="197" duration="12"/>
+    <frame tileid="198" duration="16"/>
+    <frame tileid="199" duration="20"/>
+    <frame tileid="200" duration="16"/>
+    <frame tileid="201" duration="12"/>
+    <frame tileid="202" duration="8"/>
    </animation>
    <image width="64" height="80" source="../Graphics/Set 1 (Cave)/Door/Set_2 2x2 1111 2_9.png"/>
   </tile>
@@ -2047,27 +2047,27 @@
 
   <tile id="202">
    <properties>
-    <property name="Name" value="Door Closing 2"/>
+    <property name="Name" value="Door Closing 2 2x2 1111"/>
    </properties>
    <animation>
-    <frame tileid="202" duration="160"/>
-    <frame tileid="201" duration="240"/>
-    <frame tileid="200" duration="320"/>
-    <frame tileid="199" duration="400"/>
-    <frame tileid="198" duration="320"/>
-    <frame tileid="197" duration="240"/>
-    <frame tileid="196" duration="160"/>
+    <frame tileid="202" duration="8"/>
+    <frame tileid="201" duration="12"/>
+    <frame tileid="200" duration="16"/>
+    <frame tileid="199" duration="20"/>
+    <frame tileid="198" duration="16"/>
+    <frame tileid="197" duration="12"/>
+    <frame tileid="196" duration="8"/>
    </animation>
    <image width="64" height="80" source="../Graphics/Set 1 (Cave)/Door/Set_2 2x2 1111 8_9.png"/>
   </tile>
 
   <tile id="203">
    <properties>
-    <property name="Name" value="Door Opened 2"/>
-    <property name="~Closed" value="Door Closed 2"/>
-    <property name="~Closing" value="Door Closing 2"/>
-    <property name="~Opened" value="Door Opened 2"/>
-    <property name="~Opening" value="Door Opening 2"/>
+    <property name="Name" value="Door Opened 2 2x2 1111"/>
+    <property name="~Closed" value="Door Closed 2 2x2 1111"/>
+    <property name="~Closing" value="Door Closing 2 2x2 1111"/>
+    <property name="~Opened" value="Door Opened 2 2x2 1111"/>
+    <property name="~Opening" value="Door Opening 2 2x2 1111"/>
     <property name="Body Area" value="1111"/>
     <property name="Body Width" type="int" value="2"/>
     <property name="Type" value="Door"/>
@@ -2407,8 +2407,8 @@
 
   <tile id="251">
    <properties>
-    <property name="Name" value="Exit"/>
-    <property name="~Exit" value="Exit"/>
+    <property name="Name" value="Exit 1"/>
+    <property name="~Exit" value="Exit 1"/>
     <property name="Type" value="Exit"/>
     <property name="Lighting Displacement X" value="-4"/>
     <property name="Lighting Displacement Y" value="-12"/>
@@ -2420,8 +2420,8 @@
 
   <tile id="252">
    <properties>
-    <property name="Name" value="Exit"/>
-    <property name="~Exit" value="Exit"/>
+    <property name="Name" value="Exit 2"/>
+    <property name="~Exit" value="Exit 2"/>
     <property name="Type" value="Exit"/>
     <property name="Lighting Displacement X" value="-4"/>
     <property name="Lighting Displacement Y" value="-12"/>
@@ -2433,8 +2433,8 @@
 
   <tile id="253">
    <properties>
-    <property name="Name" value="Exit"/>
-    <property name="~Exit" value="Exit"/>
+    <property name="Name" value="Exit 3"/>
+    <property name="~Exit" value="Exit 3"/>
     <property name="Type" value="Exit"/>
     <property name="Lighting Displacement X" value="-4"/>
     <property name="Lighting Displacement Y" value="-12"/>
@@ -2446,8 +2446,8 @@
 
   <tile id="254">
    <properties>
-    <property name="Name" value="Exit"/>
-    <property name="~Exit" value="Exit"/>
+    <property name="Name" value="Exit 4"/>
+    <property name="~Exit" value="Exit 4"/>
     <property name="Type" value="Exit"/>
     <property name="Lighting Displacement X" value="-4"/>
     <property name="Lighting Displacement Y" value="-12"/>
@@ -2459,8 +2459,8 @@
 
   <tile id="255">
    <properties>
-    <property name="Name" value="Exit"/>
-    <property name="~Exit" value="Exit"/>
+    <property name="Name" value="Exit 5"/>
+    <property name="~Exit" value="Exit 5"/>
     <property name="Type" value="Exit"/>
     <property name="Lighting Displacement X" value="-4"/>
     <property name="Lighting Displacement Y" value="-12"/>
@@ -3300,7 +3300,7 @@
    <properties>
     <property name="Name" value="Pushable 1x1 2 1"/>
     <property name="~Lodestone" value="Pushable 1x1 2 1"/>
-    <property name="~Magnetised Overlay" value="Magnetised Overlay 1x1 2"/>
+    <property name="~Magnetised Overlay" value="Magnetised Overlay 1x1 1"/>
     <property name="Body Area" value="1"/>
     <property name="Body Width" type="int" value="1"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -3314,7 +3314,7 @@
    <properties>
     <property name="Name" value="Pushable 1x1 3 1"/>
     <property name="~Lodestone" value="Pushable 1x1 3 1"/>
-    <property name="~Magnetised Overlay" value="Magnetised Overlay 1x1 3"/>
+    <property name="~Magnetised Overlay" value="Magnetised Overlay 1x1 1"/>
     <property name="Body Area" value="1"/>
     <property name="Body Width" type="int" value="1"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -3328,7 +3328,7 @@
    <properties>
     <property name="Name" value="Pushable 1x1 4 1"/>
     <property name="~Lodestone" value="Pushable 1x1 4 1"/>
-    <property name="~Magnetised Overlay" value="Magnetised Overlay 1x1 4"/>
+    <property name="~Magnetised Overlay" value="Magnetised Overlay 1x1 1"/>
     <property name="Body Area" value="1"/>
     <property name="Body Width" type="int" value="1"/>
     <property name="IsMagnetisable" type="bool" value="true"/>
@@ -5075,6 +5075,9 @@
   </tile>
 
   <tile id="533">
+   <properties>
+    <property name="Name" value="Player Back Idle"/>
+   </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Back Idle.png"/>
   </tile>
 
@@ -5092,10 +5095,16 @@
   </tile>
 
   <tile id="535">
+   <properties>
+    <property name="Name" value="Player Back Push Step 1"/>
+   </properties>
    <image width="32" height="49" source="../Graphics/Set 1 (Cave)/Player/Back Push Step 1.png"/>
   </tile>
 
   <tile id="536">
+   <properties>
+    <property name="Name" value="Player Back Push Step 2"/>
+   </properties>
    <image width="32" height="49" source="../Graphics/Set 1 (Cave)/Player/Back Push Step 2.png"/>
   </tile>
 
@@ -5113,10 +5122,16 @@
   </tile>
 
   <tile id="538">
+   <properties>
+    <property name="Name" value="Player Back Walk Step 1"/>
+   </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Back Walk Step 1.png"/>
   </tile>
 
   <tile id="539">
+   <properties>
+    <property name="Name" value="Player Back Walk Step 2"/>
+   </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Back Walk Step 2.png"/>
   </tile>
 
@@ -5135,6 +5150,9 @@
   </tile>
 
   <tile id="542">
+   <properties>
+    <property name="Name" value="Player Front Idle"/>
+   </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Front Idle.png"/>
   </tile>
 
@@ -5152,10 +5170,16 @@
   </tile>
 
   <tile id="544">
+   <properties>
+    <property name="Name" value="Player Front Push Step 1"/>
+   </properties>
    <image width="32" height="49" source="../Graphics/Set 1 (Cave)/Player/Front Push Step 1.png"/>
   </tile>
 
   <tile id="545">
+   <properties>
+    <property name="Name" value="Player Front Push Step 2"/>
+   </properties>
    <image width="32" height="49" source="../Graphics/Set 1 (Cave)/Player/Front Push Step 2.png"/>
   </tile>
 
@@ -5173,10 +5197,16 @@
   </tile>
 
   <tile id="547">
+   <properties>
+    <property name="Name" value="Player Front Walk Step 1"/>
+   </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Front Walk Step 1.png"/>
   </tile>
 
   <tile id="548">
+   <properties>
+    <property name="Name" value="Player Front Walk Step 2"/>
+   </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Front Walk Step 2.png"/>
   </tile>
 
@@ -5195,6 +5225,9 @@
   </tile>
 
   <tile id="551">
+   <properties>
+    <property name="Name" value="Player Left Idle"/>
+   </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Left Idle.png"/>
   </tile>
 
@@ -5212,10 +5245,16 @@
   </tile>
 
   <tile id="553">
+   <properties>
+    <property name="Name" value="Player Left Push Step 1"/>
+   </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Left Push Step 1.png"/>
   </tile>
 
   <tile id="554">
+   <properties>
+    <property name="Name" value="Player Left Push Step 2"/>
+   </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Left Push Step 2.png"/>
   </tile>
 
@@ -5233,21 +5272,34 @@
   </tile>
 
   <tile id="556">
+   <properties>
+    <property name="Name" value="Player Left Walk Step 1"/>
+   </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Left Walk Step 1.png"/>
   </tile>
 
   <tile id="557">
+   <properties>
+    <property name="Name" value="Player Left Walk Step 2"/>
+   </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Left Walk Step 2.png"/>
   </tile>
 
   <tile id="558">
+   <properties>
+    <property name="Name" value="Player Left Walk to Push"/>
+   </properties>
+   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Left Walk to Push.png"/>
+  </tile>
+
+  <tile id="559">
    <properties>
     <property name="Name" value="Player Right Blink"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Right Blink.png"/>
   </tile>
 
-  <tile id="559">
+  <tile id="560">
    <properties>
     <property name="Name" value="Player Right Idle"/>
     <property name="Type" value="Player"/>
@@ -5256,25 +5308,25 @@
     <property name="~Right Walk to Push" value="Player Right Walk to Push"/>
     <property name="~Right Walk to Middle" value="Player Right Walk to Push"/>
     <property name="~Right Push" value="Player Right Push"/>
-    <property name="~Right Push Stuck" value="Player Right Push Stuck"/>
+    <property name="~Right Push Stuck" value="Player Right Push Step 1"/>
     <property name="~Left Idle" value="Player Left Idle"/>
     <property name="~Left Blink" value="Player Left Blink"/>
     <property name="~Left Walk to Push" value="Player Left Walk to Push"/>
     <property name="~Left Walk to Middle" value="Player Left Walk to Push"/>
     <property name="~Left Push" value="Player Left Push"/>
-    <property name="~Left Push Stuck" value="Player Left Push Stuck"/>
+    <property name="~Left Push Stuck" value="Player Left Push Step 1"/>
     <property name="~Front Idle" value="Player Front Idle"/>
     <property name="~Front Blink" value="Player Front Blink"/>
     <property name="~Front Walk to Push" value="Player Front Walk to Push"/>
     <property name="~Front Walk to Middle" value="Player Front Walk to Push"/>
     <property name="~Front Push" value="Player Front Push"/>
-    <property name="~Front Push Stuck" value="Player Front Push Stuck"/>
+    <property name="~Front Push Stuck" value="Player Front Push Step 1"/>
     <property name="~Back Idle" value="Player Back Idle"/>
     <property name="~Back Blink" value="Player Back Idle"/>
     <property name="~Back Walk to Push" value="Player Back Walk to Push"/>
     <property name="~Back Walk to Middle" value="Player Back Walk to Push"/>
     <property name="~Back Push" value="Player Back Push"/>
-    <property name="~Back Push Stuck" value="Player Back Push Stuck"/>
+    <property name="~Back Push Stuck" value="Player Back Push Step 1"/>
     <property name="Lighting Displacement X" value="112"/>
     <property name="Lighting Displacement Y" value="104"/>
     <property name="Lighting Animation" value="Player Light Source"/>
@@ -5283,242 +5335,261 @@
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Right Idle.png"/>
   </tile>
 
-  <tile id="560">
+  <tile id="561">
    <properties>
     <property name="Name" value="Player Right Push"/>
    </properties>
    <animation>
-    <frame tileid="560" duration="400"/>
     <frame tileid="561" duration="400"/>
-    <frame tileid="560" duration="400"/>
     <frame tileid="562" duration="400"/>
+    <frame tileid="561" duration="400"/>
+    <frame tileid="563" duration="400"/>
    </animation>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Right Push Step 0.png"/>
   </tile>
 
-  <tile id="561">
+  <tile id="562">
+   <properties>
+    <property name="Name" value="Player Right Push Step 1"/>
+   </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Right Push Step 1.png"/>
   </tile>
 
-  <tile id="562">
+  <tile id="563">
+   <properties>
+    <property name="Name" value="Player Right Push Step 2"/>
+   </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Right Push Step 2.png"/>
   </tile>
 
-  <tile id="563">
+  <tile id="564">
+   <properties>
+    <property name="Name" value="Player Right Walk Step 1"/>
+   </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Right Walk Step 1.png"/>
   </tile>
 
-  <tile id="564">
+  <tile id="565">
+   <properties>
+    <property name="Name" value="Player Right Walk Step 2"/>
+   </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Right Walk Step 2.png"/>
   </tile>
 
-  <tile id="565">
+  <tile id="566">
+   <properties>
+    <property name="Name" value="Player Right Walk to Push"/>
+   </properties>
+   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Right Walk to Push.png"/>
+  </tile>
+
+  <tile id="567">
    <properties>
     <property name="Name" value="Pause Overlay"/>
    </properties>
    <image width="800" height="600" source="../Graphics/Set 1 (Cave)/UI/Pause Overlay.png"/>
   </tile>
 
-  <tile id="566">
+  <tile id="568">
    <properties>
     <property name="Name" value="Step Counter"/>
    </properties>
    <image width="128" height="64" source="../Graphics/Set 1 (Cave)/UI/Step Counter.png"/>
   </tile>
 
-  <tile id="567">
+  <tile id="569">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/01011010.png"/>
   </tile>
 
-  <tile id="568">
+  <tile id="570">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/01011011.png"/>
   </tile>
 
-  <tile id="569">
+  <tile id="571">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/01011110.png"/>
   </tile>
 
-  <tile id="570">
+  <tile id="572">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/01011111.png"/>
   </tile>
 
-  <tile id="571">
+  <tile id="573">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/01011X0X.png"/>
   </tile>
 
-  <tile id="572">
+  <tile id="574">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/01111010.png"/>
   </tile>
 
-  <tile id="573">
+  <tile id="575">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/01111011.png"/>
   </tile>
 
-  <tile id="574">
+  <tile id="576">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/01111110.png"/>
   </tile>
 
-  <tile id="575">
+  <tile id="577">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/01111111.png"/>
   </tile>
 
-  <tile id="576">
+  <tile id="578">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/01111X0X.png"/>
   </tile>
 
-  <tile id="577">
+  <tile id="579">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/01X1001X.png"/>
   </tile>
 
-  <tile id="578">
+  <tile id="580">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/01X1011X.png"/>
   </tile>
 
-  <tile id="579">
+  <tile id="581">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/01X10X0X.png"/>
   </tile>
 
-  <tile id="580">
+  <tile id="582">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/11011010.png"/>
   </tile>
 
-  <tile id="581">
+  <tile id="583">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/11011011.png"/>
   </tile>
 
-  <tile id="582">
+  <tile id="584">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/11011110.png"/>
   </tile>
 
-  <tile id="583">
+  <tile id="585">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/11011111.png"/>
   </tile>
 
-  <tile id="584">
+  <tile id="586">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/11011X0X.png"/>
   </tile>
 
-  <tile id="585">
+  <tile id="587">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/11111010.png"/>
   </tile>
 
-  <tile id="586">
+  <tile id="588">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/11111011.png"/>
   </tile>
 
-  <tile id="587">
+  <tile id="589">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/11111110.png"/>
   </tile>
 
-  <tile id="588">
+  <tile id="590">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/11111111.png"/>
   </tile>
 
-  <tile id="589">
+  <tile id="591">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/11111X0X.png"/>
   </tile>
 
-  <tile id="590">
+  <tile id="592">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/11X1001X.png"/>
   </tile>
 
-  <tile id="591">
+  <tile id="593">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/11X1011X.png"/>
   </tile>
 
-  <tile id="592">
+  <tile id="594">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/11X10X0X.png"/>
   </tile>
 
-  <tile id="593">
+  <tile id="595">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/Boulder.png"/>
   </tile>
 
-  <tile id="594">
+  <tile id="596">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/Stalagmites.png"/>
   </tile>
 
-  <tile id="595">
+  <tile id="597">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X0X00X0X.png"/>
   </tile>
 
-  <tile id="596">
+  <tile id="598">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X0X00X1X.png"/>
   </tile>
 
-  <tile id="597">
+  <tile id="599">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X0X01X0X.png"/>
   </tile>
 
-  <tile id="598">
+  <tile id="600">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X0X01X10.png"/>
   </tile>
 
-  <tile id="599">
+  <tile id="601">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X0X01X11.png"/>
   </tile>
 
-  <tile id="600">
+  <tile id="602">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X0X1001X.png"/>
   </tile>
 
-  <tile id="601">
+  <tile id="603">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X0X1011X.png"/>
   </tile>
 
-  <tile id="602">
+  <tile id="604">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X0X10X0X.png"/>
   </tile>
 
-  <tile id="603">
+  <tile id="605">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X0X11010.png"/>
   </tile>
 
-  <tile id="604">
+  <tile id="606">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X0X11011.png"/>
   </tile>
 
-  <tile id="605">
+  <tile id="607">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X0X11110.png"/>
   </tile>
 
-  <tile id="606">
+  <tile id="608">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X0X11111.png"/>
   </tile>
 
-  <tile id="607">
+  <tile id="609">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X0X11X0X.png"/>
   </tile>
 
-  <tile id="608">
+  <tile id="610">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X1001X0X.png"/>
   </tile>
 
-  <tile id="609">
+  <tile id="611">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X1001X10.png"/>
   </tile>
 
-  <tile id="610">
+  <tile id="612">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X1001X11.png"/>
   </tile>
 
-  <tile id="611">
+  <tile id="613">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X1101X0X.png"/>
   </tile>
 
-  <tile id="612">
+  <tile id="614">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X1101X10.png"/>
   </tile>
 
-  <tile id="613">
+  <tile id="615">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X1101X11.png"/>
   </tile>
 
-  <tile id="614">
+  <tile id="616">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X1X00X0X.png"/>
   </tile>
 
-  <tile id="615">
+  <tile id="617">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X1X00X1X.png"/>
   </tile>
  </tileset>

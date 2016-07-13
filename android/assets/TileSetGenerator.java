@@ -51,15 +51,16 @@ public class TileSetGenerator {
 	
 	// Num MagneticFloor frames = 1
 	private final int[] MagneticFloorAnim = new int[] {  0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-	private final int[] MagneticFloorInte = new int[] { 40, 2, 2, 2, 2, 4, 4, 6, 6, 8 };
+	private final double[] MagneticFloorInte = new double[] { 40, 2, 2, 2, 2, 4, 4, 6, 6, 8 };
 	
 	// Num MagneticSource frames = 10;
 	private final int[] MagneticSourceAnim = new int[] {  0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-	private final int[] MagneticSourceInte = new int[] { 40, 2, 2, 2, 2, 4, 4, 6, 6, 8 };
+	private final double[] MagneticSourceInte = new double[] { 40, 2, 2, 2, 2, 4, 4, 6, 6, 8 };
 	
 	// Num DoorTransition frames = 7; // Excluding open and closed
-	private final int[] DoorTransitionAnim = new int[] { 0,  1,  2,  3,  4,  5, 6 };
-	private final int[] DoorTransitionInte = new int[] { 8, 12, 16, 20, 16, 12, 8 };
+	private final int[] DoorTransitionAnim = new int[] { 0, 1, 2,  3, 4, 5, 6 };
+	//private final int[] DoorTransitionInte = new int[] { 4, 6, 8, 10, 8, 6, 4 };
+	private final double[] DoorTransitionInte = new double[] { 0.4, 0.6, 0.8, 1, 0.8, 0.6, 0.4 };
 	
 	// Num MagneticAttraction frames = 7;
 	private final int[] MagneticAttractAnim = new int[] { 0, 1, 2, 3, 4, 5, 6 };
@@ -67,11 +68,11 @@ public class TileSetGenerator {
 	
 	// Num Spring Frames = 5;
 	private final int[] SpringAnim = new int[] { 0, 1, 2, 3, 4 };
-	private final int[] SpringInte = new int[] { 8, 8, 8, 8, 8 };
+	private final double[] SpringInte = new double[] { 8, 8, 8, 8, 8 };
 	
 	// Num Spring Frames = 5;
 	private final int[] SplashAnim = new int[] { 0, 1, 2, 3, 4 };
-	private final int[] SplashInte = new int[] { 8, 8, 8, 8, 8 };
+	private final double[] SplashInte = new double[] { 8, 8, 8, 8, 8 };
 	
 	public void main(String... args) {
 	    TileSetGenerator tsGen = new TileSetGenerator();
@@ -174,7 +175,8 @@ public class TileSetGenerator {
 						   whichType = "",
 						   dimensions = "",
 						   area = "",
-						   lodewidth = "";
+						   lodewidth = "",
+						   identity = "";
 					int totalFrames = 0, 
 						whichSet = 0, 
 						whichFrame = 0;
@@ -190,7 +192,9 @@ public class TileSetGenerator {
 							
 							numButtonFrames = totalFrames;
 							info += property("Render Depth", "int", "-1");
-							String identity = whichSet + " " + dimensions + " " + area;
+							
+							identity = whichSet + " " + dimensions + " " + area;
+							
 							if (whichFrame == 1) {
 								String buttonwidth = dimensions.split("x")[0];
 								int buttonheight = Integer.parseInt(dimensions.split("x")[1]);
@@ -218,6 +222,7 @@ public class TileSetGenerator {
 							dimensions = data[2];
 							area = data[3];
 							
+							identity = whichSet + " " + dimensions + " " + area;
 							
 							numDoorTransitionFrames = totalFrames;
 							if (whichFrame == 1) {	
@@ -228,17 +233,17 @@ public class TileSetGenerator {
 								doorNameToOffsetArray.put(type + "Clos " + name, new int[] { doorheight - 1, area.indexOf("1") });
 								isDoorClose = true;
 								//System.out.println(type + "Clos " + name + " | " + (doorheight - 1) + " " + area.indexOf("1"));
-																	info += property("Name", "Door Closed " + whichSet) + 
-																			property("~Closed", "Door Closed " + whichSet) + 
-																			property("~Closing", "Door Closing " + whichSet) + 
-																			property("~Opened", "Door Opened " + whichSet) + 
-																			property("~Opening", "Door Opening " + whichSet) +
+																	info += property("Name", "Door Closed " + identity) + 
+																			property("~Closed", "Door Closed " + identity) + 
+																			property("~Closing", "Door Closing " + identity) + 
+																			property("~Opened", "Door Opened " + identity) + 
+																			property("~Opening", "Door Opening " + identity) +
 																			property("Body Area", area) + 
 																			property("Body Width", "int", doorwidth) +
 																			property("Type", "Door");
-							} else if (whichFrame == 2) 			info += property("Name", "Door Opening " + whichSet);
+							} else if (whichFrame == 2) 			info += property("Name", "Door Opening " + identity);
 							else if (whichFrame < totalFrames - 1) 	{}
-							else if (whichFrame == totalFrames - 1) info += property("Name", "Door Closing " + whichSet);
+							else if (whichFrame == totalFrames - 1) info += property("Name", "Door Closing " + identity);
 							else {
 								String doorwidth = dimensions.split("x")[0];
 								int doorheight = Integer.parseInt(dimensions.split("x")[1]);
@@ -247,11 +252,11 @@ public class TileSetGenerator {
 								doorNameToOffsetArray.put(type + "Open " + name, new int[] { doorheight - 1, area.indexOf("1") });
 								isDoorOpen = true;
 								//System.out.println(type + "Open " + name + " | " + (doorheight - 1) + " " + area.indexOf("1"));
-																	info += property("Name", "Door Opened " + whichSet) + 
-																			property("~Closed", "Door Closed " + whichSet) + 
-																			property("~Closing", "Door Closing " + whichSet) + 
-																			property("~Opened", "Door Opened " + whichSet) + 
-																			property("~Opening", "Door Opening " + whichSet) +
+																	info += property("Name", "Door Opened " + identity) + 
+																			property("~Closed", "Door Closed " + identity) + 
+																			property("~Closing", "Door Closing " + identity) + 
+																			property("~Opened", "Door Opened " + identity) + 
+																			property("~Opening", "Door Opening " + identity) +
 																			property("Body Area", area) + 
 																			property("Body Width", "int", doorwidth) +
 																			property("Type", "Door") +
@@ -268,8 +273,8 @@ public class TileSetGenerator {
 									image(width, height, source); break;
 						case "Exit":
 							info = enclose("properties", 
-											property("Name", type) +
-											property("~Exit", type) +
+											property("Name", type + " " + name) +
+											property("~Exit", type + " " + name) +
 											property("Type", type) + 
 											property("Lighting Displacement X", -4) + 
 											property("Lighting Displacement Y", -12) + 
@@ -295,6 +300,8 @@ public class TileSetGenerator {
 							
 							lodestoneNameToOffsetArray.put(type + " " + name, new int[] { lodeheight - 1, area.indexOf("1") });
 							// System.out.println(type + " " + name + " | " + (lodeheight - 1) + " " + area.indexOf("1"));
+							
+							if (dimensions.equals("1x1")) tag = "1";
 							
 							// <Width>x<height> <Numbering within the set of equal width and height> <Area code>
 							info = enclose("properties", 
@@ -398,42 +405,37 @@ public class TileSetGenerator {
 											property("~Right Walk to Push", type + " Right Walk to Push") + 
 											property("~Right Walk to Middle", type + " Right Walk to Push") + 
 											property("~Right Push", type + " Right Push") + 
-											property("~Right Push Stuck", type + " Right Push Stuck") + 
+											property("~Right Push Stuck", type + " Right Push Step 1") + 
 											property("~Left Idle", type + " Left Idle") + 
 											property("~Left Blink", type + " Left Blink") + 
 											property("~Left Walk to Push", type + " Left Walk to Push") + 
 											property("~Left Walk to Middle", type + " Left Walk to Push") + 
 											property("~Left Push", type + " Left Push") + 
-											property("~Left Push Stuck", type + " Left Push Stuck") + 
+											property("~Left Push Stuck", type + " Left Push Step 1") + 
 											property("~Front Idle", type + " Front Idle") + 
 											property("~Front Blink", type + " Front Blink") + 
 											property("~Front Walk to Push", type + " Front Walk to Push") + 
 											property("~Front Walk to Middle", type + " Front Walk to Push") + 
 											property("~Front Push", type + " Front Push") + 
-											property("~Front Push Stuck", type + " Front Push Stuck") + 
+											property("~Front Push Stuck", type + " Front Push Step 1") + 
 											property("~Back Idle", type + " Back Idle") + 
 											property("~Back Blink", type + " Back Idle") + 
 											property("~Back Walk to Push", type + " Back Walk to Push") + 
 											property("~Back Walk to Middle", type + " Back Walk to Push") + 
 											property("~Back Push", type + " Back Push") + 
-											property("~Back Push Stuck", type + " Back Push Stuck") + 
+											property("~Back Push Stuck", type + " Back Push Step 1") + 
 											property("Lighting Displacement X", 128 - 16) + 
 											property("Lighting Displacement Y", 128 - 24) + 
 											property("Lighting Animation", "Player Light Source") + 
 											property("Lighting Intensity", 0.4));
-							} else if (!name.contains("Step")) {
-								if (name.contains("Blink")) {
-									info = enclose("properties", 
-												property("Name", type + " " + name)); 
-								} else if (name.contains(" to ")) {
-									info = enclose("properties", 
-												property("Name", type + " " + name)); 
-								}
 							} else if (name.contains("Step 0")) {
 								info = enclose("properties", 
 											property("Name", type + " " + name.replace(" Step 0", ""))) + 
-										animation(new int[] { 0, 1, 0, 2 }, new int[] { 20, 20, 20, 20 }, IntervalMultiplier, false);
-							} 
+										animation(new int[] { 0, 1, 0, 2 }, new double[] { 20, 20, 20, 20 }, IntervalMultiplier, false);
+							} else {
+								info = enclose("properties", 
+										property("Name", type + " " + name));
+							}
 							info += image(width, height, source); break;
 						case "Wall": 
 							info = image(width, height, source); break;
@@ -504,23 +506,23 @@ public class TileSetGenerator {
 	// With offset. This is meant for looping animations.
 	// In an effort to make levels look less static, every frame of the originally defined animation will
 	// be an animation themselves. 
-	public String animation(int[] sequence, int[] intervals, int IntervalMultiplier, boolean reverse, int startingFrame, int maxFrames) {
+	public String animation(int[] sequence, double[] intervals, int IntervalMultiplier, boolean reverse, int startingFrame, int maxFrames) {
 		if (sequence.length != intervals.length) throw new IllegalArgumentException("Number of intervals must match amount of numbers");
 		String info = "";
 		for (int i = 0; i < sequence.length; i++) {
 			int offset = (sequence[i] + startingFrame > maxFrames) ? maxFrames * -1 : 0;
 			info += 	"    <frame tileid=\"" + (currentBlockCount + (sequence[i] + offset) * ((reverse) ? -1 : 1)) + 
-						                    "\" duration=\"" + (intervals[i] * IntervalMultiplier) + "\"/>\n";
+						                    "\" duration=\"" + (int) (intervals[i] * IntervalMultiplier) + "\"/>\n";
 		}
 		return enclose("animation", info);
 	}
 	
-	public String animation(int[] sequence, int[] intervals, int IntervalMultiplier, boolean reverse) {
+	public String animation(int[] sequence, double[] intervals, int IntervalMultiplier, boolean reverse) {
 		if (sequence.length != intervals.length) throw new IllegalArgumentException("Number of intervals must match amount of numbers");
 		String info = "";
 		for (int i = 0; i < sequence.length; i++) {
 			info += 	"    <frame tileid=\"" + (currentBlockCount + sequence[i] * ((reverse) ? -1 : 1)) + 
-						                    "\" duration=\"" + (intervals[i] * IntervalMultiplier) + "\"/>\n";
+						                    "\" duration=\"" + (int) (intervals[i] * IntervalMultiplier) + "\"/>\n";
 		}
 		return enclose("animation", info);
 	}

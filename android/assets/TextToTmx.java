@@ -53,11 +53,9 @@ public class TextToTmx {
 	public static final String doorSymbols = door1Symbols + door1openSymbols + door2Symbols + door2openSymbols;
 	
 	public static final String noOutline = " " + player + exit;
-	public static final String validObjects = button1Symbols + door1Symbols + door1openSymbols + button2Symbols + door2Symbols + door2openSymbols +
-												player + magnetfloor + magnetsource + elevatedfloor + exit;
+	public static final String validObjects = player + magnetfloor + magnetsource + elevatedfloor + exit;
 	public static final String nonObjects = bigtree + wall;
 	
-
 	public static Boolean wroteTileSet = false;
 	// These 4 Info must be printed out in this order to complete
 	public static String LevelInfo = "";
@@ -304,19 +302,7 @@ public class TextToTmx {
 						//case boulder: 		objname = "Boulder"; break;
 						case exit:  		objname = "Exit " + (random.nextInt(5) + 1); 								break;
 						default: 
-							if (button1Symbols.contains(currentTile)) {
-								objname = "Button Set_1 1x1 1 1_" + tsGen.numButtonFrames;
-							} else if (button2Symbols.contains(currentTile)) {
-								objname = "Button Set_2 1x1 1 1_" + tsGen.numButtonFrames;
-							} else if (door1Symbols.contains(currentTile)) {
-								objname = "DoorClos Set_1 1x1 1 1_" + tsGen.numDoorTransitionFrames;
-							} else if (door1openSymbols.contains(currentTile)) {
-								objname = "DoorOpen Set_1 1x1 1 " + tsGen.numDoorTransitionFrames + "_" + tsGen.numDoorTransitionFrames;
-							} else if (door2Symbols.contains(currentTile)) {
-								objname = "DoorClos Set_2 1x1 1 1_" + tsGen.numDoorTransitionFrames;
-							} else if (door2openSymbols.contains(currentTile)) {
-								objname = "DoorOpen Set_2 1x1 1 " + tsGen.numDoorTransitionFrames + "_" + tsGen.numDoorTransitionFrames;
-							} else if (!(lodestoneSymbols + " ").contains(currentTile)) {
+							if (!(lodestoneSymbols + buttonSymbols + doorSymbols + " ").contains(currentTile)) {
 								System.out.println("Warning: \'" + currentTile + "\' is not defined");
 							}
 						}
@@ -385,13 +371,13 @@ public class TextToTmx {
 		String on = "_On";
 		
 		for (Object object : Objects) {
-			//System.out.println(object.name);
+			// System.out.println(object.name);
 			if (object.name.contains("Arrow")) continue;
 			
 			String currName = object.name.substring(0, 4) + nameCount++;
-			if (object.name.startsWith("Button 1")) {
+			if (object.name.startsWith("Button Set_1")) {
 				buttons1.add("#{" + currName + on + "}");
-			} else if (object.name.startsWith("Button 2")) {
+			} else if (object.name.startsWith("Button Set_2")) {
 				buttons2.add("#{" + currName + on + "}");
 			}
 			
@@ -574,7 +560,7 @@ public class TextToTmx {
 				}
 				levelcode = data[0];
 				prog.writeLevel(mainAssetsDirectory + "Levels/", levelcode, difficulty, hasSolution, solutionLength, hasSecondLayer);
-			}
+			} 
 		} System.out.println(prog.errorMSG);
 		System.out.println("\n" + s.substring(0, s.length() - 2));
 		prog.writeToFile(mainAssetsDirectory + "Animations/", "Tileset", "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + TextToTmx.TileSetInfo, "tsx");
