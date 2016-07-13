@@ -1,15 +1,19 @@
-package com.somethingyellow;
+package com.somethingyellow.utility;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.math.Vector2;
-import com.somethingyellow.utility.ObjectList;
+
+/**
+ * Convenience class which implements InputProcessor to process and abstract input events to methods
+ */
 
 public class Controller implements InputProcessor {
 	private static final Vector2 TempCoords = new Vector2();
 	private boolean[] _keysHeld = new boolean[256];
+	private boolean[] _keysPressed = new boolean[256];
 	private float _zoom;
-	private ObjectList<Listener> _listeners = new ObjectList<Listener>();
+	private ObjectSet<Listener> _listeners = new ObjectSet<Listener>();
 
 	public Controller() {
 		_zoom = Config.ZoomDefault;
@@ -35,6 +39,22 @@ public class Controller implements InputProcessor {
 		return _keysHeld[Input.Keys.DOWN] || _keysHeld[Input.Keys.S];
 	}
 
+	public boolean wasKeyLeftPressed() {
+		return _keysPressed[Input.Keys.LEFT] || _keysPressed[Input.Keys.A];
+	}
+
+	public boolean wasKeyRightPressed() {
+		return _keysPressed[Input.Keys.RIGHT] || _keysPressed[Input.Keys.D];
+	}
+
+	public boolean wasKeyUpPressed() {
+		return _keysPressed[Input.Keys.UP] || _keysPressed[Input.Keys.W];
+	}
+
+	public boolean wasKeyDownPressed() {
+		return _keysPressed[Input.Keys.DOWN] || _keysPressed[Input.Keys.S];
+	}
+
 	public boolean isKeyCtrlHeld() {
 		return _keysHeld[Input.Keys.CONTROL_LEFT] || _keysHeld[Input.Keys.CONTROL_RIGHT];
 	}
@@ -43,9 +63,20 @@ public class Controller implements InputProcessor {
 		return _keysHeld[keycode];
 	}
 
+	public boolean wasKeyPressed(int keycode) {
+		return _keysPressed[keycode];
+	}
+
+	public void clearKeysPressed() {
+		for (int i = 0; i < _keysPressed.length; i++) {
+			_keysPressed[i] = false;
+		}
+	}
+
 	@Override
 	public boolean keyDown(int keycode) {
 		_keysHeld[keycode] = true;
+		_keysPressed[keycode] = true;
 
 		for (Listener listener : _listeners) {
 			listener.keyPressed(this, keycode);
@@ -92,7 +123,7 @@ public class Controller implements InputProcessor {
 		return true;
 	}
 
-	public ObjectList<Listener> listeners() {
+	public ObjectSet<Listener> listeners() {
 		return _listeners;
 	}
 

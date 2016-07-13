@@ -9,17 +9,13 @@ public class GameConfig {
 
 		// Button.Config
 
-		// ObstructedFloor.Config
-
-		// MagneticFloor.Config
-
 		// MagneticSource.Config
 
 		// Door.Config
 
 		// TiledStage.Config
 
-		// TiledMapRender.Config
+		// TiledStageMapRenderer.Config
 
 		// Main.Config
 

@@ -1,7 +1,5 @@
 package com.somethingyellow.magnets;
 
-import com.somethingyellow.graphics.AnimatedActor;
-import com.somethingyellow.graphics.Animation;
 import com.somethingyellow.graphics.AnimationDef;
 import com.somethingyellow.tiled.TiledStage;
 import com.somethingyellow.tiled.TiledStageActor;
@@ -11,81 +9,75 @@ import java.util.Map;
 public class Door extends TiledStageActor {
 
 	public static final int[] SUBTICKS_STATIC = new int[]{
-			PlayScreen.SUBTICKS.GRAPHICS.ordinal()
+			PlayScreen.SUBTICKS.DOORS.ordinal()
 	};
 
-	public void initialize(Map<String, AnimationDef> animationDefs, boolean[] bodyArea, int bodyWidth, TiledStage.Coordinate origin, boolean toOpen) {
-		super.initialize(animationDefs, bodyArea, bodyWidth, origin);
+	public Door() {
+		super();
 		SUBTICKS = SUBTICKS_STATIC;
+	}
+
+	public void initialize(Map<String, AnimationDef> animationDefs, TiledStage.Coordinate origin, boolean toOpen) {
+		super.initialize(animationDefs, origin);
 
 		setTransition(Config.AnimationOpening, Config.AnimationOpened);
 		setTransition(Config.AnimationClosing, Config.AnimationClosed);
-		listeners().add(new AnimatedActor.Listener() {
-			@Override
-			public void animationShown(AnimatedActor actor, Animation animation) {
-				if (animation.tag().equals(Config.AnimationOpened)) {
-					addStatus(Config.StatusOpened);
-					removeStatus(Config.StatusClosed);
-				}
-			}
-
-			@Override
-			public void animationHidden(AnimatedActor actor, Animation animation) {
-				if (animation.tag().equals(Config.AnimationOpened)) {
-					addStatus(Config.StatusClosed);
-					removeStatus(Config.StatusOpened);
-				}
-			}
-		});
-
 		setStatus(Config.StatusToOpen, toOpen);
-		addStatus(Config.StatusClosed);
-		showAnimation(Config.AnimationClosed);
+		setStatus(Config.StatusOpened, true);
+		showAnimation(Config.AnimationOpened);
 	}
 
 	@Override
-	public void tick(int subtick) {
-		if (subtick == PlayScreen.SUBTICKS.GRAPHICS.ordinal()) {
-
+	public void subtick(int subtick) {
+		if (subtick == PlayScreen.SUBTICKS.DOORS.ordinal()) {
 			if (hasStatus(Config.StatusToOpen)) {
-				if (isAnimationActive(Config.AnimationClosed)) {
-					showAnimation(Config.AnimationOpening);
-					hideAnimation(Config.AnimationClosed);
-				}
-			} else { // To close the door
-				if (isAnimationActive(Config.AnimationOpened)) {
-					// Check if blocked by anything to prevent it from closing
-					boolean ifBlocked = false;
-
-					loop:
-					for (TiledStage.Coordinate bodyCoordinate : bodyCoordinates()) {
-						for (TiledStageActor actor : bodyCoordinate.actors()) {
-							if (actor instanceof Lodestone || actor instanceof Player) {
-								ifBlocked = true;
-								break loop;
-							}
+				addStatus(Config.StatusOpened);
+			} else {
+				// To close the door
+				// Check if blocked by anything to prevent it from closing
+				boolean ifBlocked = false;
+				loop:
+				for (TiledStage.Coordinate bodyCoordinate : bodyCoordinates()) {
+					for (TiledStageActor actor : bodyCoordinate.actors()) {
+						if (actor != this && actor.isSolid()) {
+							ifBlocked = true;
+							break loop;
 						}
 					}
-
-					if (!ifBlocked) {
-						showAnimation(Config.AnimationClosing);
-						hideAnimation(Config.AnimationOpened);
-					}
 				}
+
+				setStatus(Config.StatusOpened, ifBlocked);
 			}
 		}
 	}
 
-	public void open() {
-		setStatus(Config.StatusToOpen, true);
+	@Override
+	public void updateAnimation() {
+		if (hasStatus(Config.StatusOpened)) {
+			if (!isAnimationActive(Config.AnimationOpened) && !isAnimationActive(Config.AnimationOpening)) {
+				hideAllAnimations();
+				showAnimation(Config.AnimationOpening);
+			}
+		} else {
+			if (!isAnimationActive(Config.AnimationClosed) && !isAnimationActive(Config.AnimationClosing)) {
+				hideAllAnimations();
+				showAnimation(Config.AnimationClosing);
+			}
+		}
 	}
 
+	public void open() { setToOpen(true); }
+
 	public void close() {
-		setStatus(Config.StatusToOpen, false);
+		setToOpen(false);
+	}
+
+	private void setToOpen(boolean toOpen) {
+		setStatus(Config.StatusToOpen, toOpen);
 	}
 
 	@Override
-	public boolean occupiesCoordinate() {
+	public boolean isSolid() {
 		return !hasStatus(Config.StatusOpened);
 	}
 
@@ -98,8 +90,7 @@ public class Door extends TiledStageActor {
 		public static String AnimationOpened = "Opened";
 		public static String AnimationClosing = "Closing";
 		public static String AnimationClosed = "Closed";
-		public static String StatusOpened = "Opened"; // When door shows `Opened` animation
-		public static String StatusClosed = "Closed"; // When door hides `Opened` animation
-		public static String StatusToOpen = "ToOpen"; // When door is to open, before considering any objects on top
+		public static String StatusToOpen = "ToOpen"; // When door should be opened
+		public static String StatusOpened = "Opened"; // When door is opened
 	}
 }

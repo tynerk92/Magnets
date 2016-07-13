@@ -49,8 +49,8 @@ import static com.badlogic.gdx.graphics.g2d.Batch.Y4;
 /**
  * Map renderer for TiledStage
  * Manages rendering of TiledStageActors and TiledStageLightSources in TiledStage
- * Renders TiledStageActors in pseudo-3D
- * (Actors in foremost rows are rendered on top of actors behind)
+ * Renders the map and actors of TiledStage in pseudo-3D
+ * All actors and layers are rendered together row-wise, starting from the topmost row
  * For exclusive use in TiledStage
  * Image and object layers are ignored during rendering
  * Draws on Batch of TiledStage
@@ -374,7 +374,7 @@ public class TiledStageMapRenderer implements Disposable {
 				int displacementX = (int) actor.getX() - visualOrigin.column() * _stage.tileWidth();
 				int displacementY = (int) actor.getY() - visualOrigin.row() * _stage.tileHeight();
 
-				// Calculate corresponding body row and column of actor
+				// Calculate corresponding actor row and column of actor
 				int bodyRow = (actor.bodyHeight() - 1) - (row - ((int) actor.getY() - displacementY) / _stage.tileHeight());
 				int bodyCol = col - ((int) actor.getX() - displacementX) / _stage.tileWidth();
 				if (!actor.getBodyAreaAt(bodyRow, bodyCol)) continue;
@@ -388,9 +388,9 @@ public class TiledStageMapRenderer implements Disposable {
 
 	/**
 	 * Generates a sprite for an actor's animation associated with Coordinate at row and col (visually)
-	 * If Coordinate corresponds to top body row of actor, the cell and everything above is rendered
-	 * If Coordinate corresponds to a body coordinate that "doesn't have body coordinates" above it,
-	 * the cell and everything above is rendered up to the next upper body coordinate
+	 * If Coordinate corresponds to top actor row of actor, the cell and everything above is rendered
+	 * If Coordinate corresponds to a actor coordinate that "doesn't have actor coordinates" above it,
+	 * the cell and everything above is rendered up to the next upper actor coordinate
 	 * If not, only the cell is rendered
 	 */
 	private Sprite getSprite(TiledStageActor actor, Animation animation, int bodyRow, int bodyCol) {

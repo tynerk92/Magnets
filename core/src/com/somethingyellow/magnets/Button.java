@@ -1,7 +1,5 @@
 package com.somethingyellow.magnets;
 
-import com.somethingyellow.graphics.AnimatedActor;
-import com.somethingyellow.graphics.Animation;
 import com.somethingyellow.graphics.AnimationDef;
 import com.somethingyellow.tiled.TiledStage;
 import com.somethingyellow.tiled.TiledStageActor;
@@ -11,64 +9,51 @@ import java.util.Map;
 public class Button extends TiledStageActor {
 
 	public static final int[] SUBTICKS_STATIC = new int[]{
-			PlayScreen.SUBTICKS.BUTTON_PRESSES.ordinal(),
-			PlayScreen.SUBTICKS.GRAPHICS.ordinal()
+			PlayScreen.SUBTICKS.BUTTONS.ordinal()
 	};
 
-	public void initialize(Map<String, AnimationDef> animationDefs, boolean[] bodyArea, int bodyWidth, TiledStage.Coordinate origin) {
-		super.initialize(animationDefs, bodyArea, bodyWidth, origin);
+	public Button() {
+		super();
 		SUBTICKS = SUBTICKS_STATIC;
+	}
+
+	public void initialize(Map<String, AnimationDef> animationDefs, TiledStage.Coordinate origin) {
+		super.initialize(animationDefs, origin);
 
 		setTransition(Config.AnimationOning, Config.AnimationOn);
 		setTransition(Config.AnimationOffing, Config.AnimationOff);
-		listeners().add(new AnimatedActor.Listener() {
-			@Override
-			public void animationShown(AnimatedActor actor, Animation animation) {
-				if (animation.tag().equals(Config.AnimationOn)) {
-					addStatus(Config.StatusOn);
-					removeStatus(Config.StatusOff);
-				}
-			}
-
-			@Override
-			public void animationHidden(AnimatedActor actor, Animation animation) {
-				if (animation.tag().equals(Config.AnimationOn)) {
-					addStatus(Config.StatusOff);
-					removeStatus(Config.StatusOn);
-				}
-			}
-		});
-		addStatus(Config.StatusOff);
 		showAnimation(Config.AnimationOff);
 	}
 
 	@Override
-	public void tick(int subtick) {
-		if (subtick == PlayScreen.SUBTICKS.BUTTON_PRESSES.ordinal()) {
+	public void subtick(int subtick) {
+		if (subtick == PlayScreen.SUBTICKS.BUTTONS.ordinal()) {
 			boolean isOn = false;
 			loop:
 			for (TiledStage.Coordinate bodyCoordinate : bodyCoordinates()) {
 				for (TiledStageActor actor : bodyCoordinate.actors()) {
-					if (actor instanceof Player || actor instanceof Lodestone) {
+					if (actor != this && actor.isSolid()) {
 						isOn = true;
 						break loop;
 					}
 				}
 			}
-			setStatus(Config.StatusPressed, isOn);
 
-		} else if (subtick == PlayScreen.SUBTICKS.GRAPHICS.ordinal()) {
+			setStatus(Config.StatusOn, isOn);
+		}
+	}
 
-			if (hasStatus(Config.StatusPressed)) {
-				if (isAnimationActive(Config.AnimationOff)) {
-					showAnimation(Config.AnimationOning);
-					hideAnimation(Config.AnimationOff);
-				}
-			} else {
-				if (isAnimationActive(Config.AnimationOn)) {
-					showAnimation(Config.AnimationOffing);
-					hideAnimation(Config.AnimationOn);
-				}
+	@Override
+	public void updateAnimation() {
+		if (hasStatus(Config.StatusOn)) {
+			if (!isAnimationActive(Config.AnimationOn) && !isAnimationActive(Config.AnimationOning)) {
+				hideAllAnimations();
+				showAnimation(Config.AnimationOning);
+			}
+		} else {
+			if (!isAnimationActive(Config.AnimationOff) && !isAnimationActive(Config.AnimationOffing)) {
+				hideAllAnimations();
+				showAnimation(Config.AnimationOffing);
 			}
 		}
 	}
@@ -78,8 +63,6 @@ public class Button extends TiledStageActor {
 		public static String AnimationOn = "On";
 		public static String AnimationOffing = "Offing";
 		public static String AnimationOff = "Off";
-		public static String StatusOn = "On"; // When button shows animation `On`
-		public static String StatusOff = "Off"; // When buttons hides animation `On`
-		public static String StatusPressed = "Pressed"; // When something is on top
+		public static String StatusOn = "On"; // When something is on top
 	}
 }

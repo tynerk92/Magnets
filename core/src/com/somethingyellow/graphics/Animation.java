@@ -1,7 +1,7 @@
 package com.somethingyellow.graphics;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.somethingyellow.utility.ObjectList;
+import com.somethingyellow.utility.ObjectSet;
 
 /**
  * Represents an animation
@@ -22,7 +22,7 @@ public class Animation implements Comparable<Animation> {
 	private float _duration;
 	private float _alpha;
 	private boolean _isActive;
-	private ObjectList<Listener> _listeners;
+	private ObjectSet<Listener> _listeners;
 
 	public Animation(AnimationDef def) {
 		this(def, null);
@@ -54,7 +54,7 @@ public class Animation implements Comparable<Animation> {
 			_duration += frame.duration();
 		}
 
-		_listeners = new ObjectList<Listener>();
+		_listeners = new ObjectSet<Listener>();
 	}
 
 	public void update(float timeDelta) {
@@ -79,18 +79,24 @@ public class Animation implements Comparable<Animation> {
 		return sprite;
 	}
 
-	public void show() {
+	public boolean show() {
 		if (!_isActive) {
 			_isActive = true;
 			_alpha = 1f;
 			_time = 0f;
 			_frameIndex = 0;
+			return true;
 		}
+		return false;
 	}
 
-	public void hide() {
-		_isActive = false;
-		_alpha = 0f;
+	public boolean hide() {
+		if (_isActive) {
+			_isActive = false;
+			_alpha = 0f;
+			return true;
+		}
+		return false;
 	}
 
 	public AnimationFrame frame() {
@@ -117,7 +123,7 @@ public class Animation implements Comparable<Animation> {
 		return _isActive;
 	}
 
-	public ObjectList<Listener> listeners() {
+	public ObjectSet<Listener> listeners() {
 		return _listeners;
 	}
 

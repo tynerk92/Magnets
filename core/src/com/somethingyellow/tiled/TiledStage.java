@@ -12,22 +12,26 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.somethingyellow.utility.ObjectList;
+import com.badlogic.gdx.utils.Pools;
+import com.somethingyellow.utility.ObjectSet;
 import com.somethingyellow.utility.TiledMapHelper;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Set;
-import java.util.TreeSet;
 
 /**
  * Represents a stage with a tiled coordinate system
- * Tightly coupled with TiledStageActor, TiledStageLightSource, TiledStageMapRenderer
+ * Tightly coupled with TiledStageActor, TiledStageLightSource,
+ * TiledStageMapRenderer, TiledStageMotionResolver, TiledStageHistorian
  * Delegates rendering of actors and map to TiledStageMapRenderer
+ * Delegates motion resolution to TiledStageMotionResolver
+ * To call load() to load a tiled map
  */
 
 public class TiledStage extends Stage {
@@ -44,6 +48,7 @@ public class TiledStage extends Stage {
 	private int _tileHeight;
 	private int _tileRows;
 	private int _tileColumns;
+	private int _tickNo;
 	private int _maxSubTicks;
 	private float _tickTime;
 	private float _tickDuration;
@@ -51,16 +56,21 @@ public class TiledStage extends Stage {
 	private Commands _commands;
 	private TiledMapTileLayer _wallLayer;
 	private ArrayList<Coordinate> _coordinates;
+	private ActorsComparator _actorsComparator = new ActorsComparator();
 	private HashMap<String, TiledMapTileLayer> _tileLayers = new HashMap<String, TiledMapTileLayer>();
-	private ObjectList<Listener> _listeners = new ObjectList<Listener>();
-	private boolean _isPaused = true;
+	private ObjectSet<Listener> _listeners = new ObjectSet<Listener>();
+	private TiledStageMotionResolver _motionResolver;
+	private boolean _isPaused;
 
 	public TiledStage(int maxSubTicks, float tickDuration, Commands commands) {
 		_maxSubTicks = maxSubTicks;
 		_tickTime = 0f;
 		_cameraZoom = 1f;
 		_tickDuration = tickDuration;
+		_motionResolver = new TiledStageMotionResolver(this);
+		_tickNo = 0;
 		_commands = commands;
+		_isPaused = true;
 
 		_subTicksToActors = new ArrayList<HashSet<TiledStageActor>>(_maxSubTicks);
 		for (int i = 0; i < _maxSubTicks; i++) {
@@ -149,7 +159,11 @@ public class TiledStage extends Stage {
 		return 0;
 	}
 
-	public ObjectList<Listener> listeners() {
+	public float ticksToTime(int ticks) {
+		return ticks * _tickDuration;
+	}
+
+	public ObjectSet<Listener> listeners() {
 		return _listeners;
 	}
 
@@ -159,12 +173,6 @@ public class TiledStage extends Stage {
 
 	/**
 	 * Loads a TiledMap, unloading if it is still loaded
-	 *
-	 * @param map
-	 * @param screenWidth
-	 * @param screenHeight
-	 * @param cameraZoom    Initial zoom ratio of camera
-	 * @param wallLayerName Name of the "wall" layer in the map
 	 */
 
 	public void load(TiledMap map, int screenWidth, int screenHeight, float cameraZoom,
@@ -213,8 +221,13 @@ public class TiledStage extends Stage {
 				TiledMapTile tile = _map.getTileSets().getTile(gid);
 
 				_commands.spawnObject(origin, tile, object.getName(), object.getProperties());
-
 			}
+		}
+
+		// Process tiles
+		TilesIterator tilesIterator = new TilesIterator();
+		while (tilesIterator.hasNext()) {
+			_commands.processTile(tilesIterator.next());
 		}
 
 		// Process coordinates
@@ -229,20 +242,33 @@ public class TiledStage extends Stage {
 	}
 
 	public void unload() {
-		_actorsByName.clear();
+		// Remove all actors and free them
 		_tempActors.clear();
-		_tileLayers.clear();
+		_tempActors.addAll(_actors);
+		for (TiledStageActor actor : _tempActors) {
+			actor.remove();
+			Pools.free(actor);
+		}
 		_actors.clear();
+		_tempActors.clear();
+		_actorsByName.clear();
 		for (int i = 0; i < _maxSubTicks; i++) {
 			_subTicksToActors.get(i).clear();
 		}
-		_lightSources.clear();
 		_cameraFocalActor = null;
 
+		// Remove all lightsources and free them
+		for (TiledStageLightSource lightSource : _lightSources) {
+			Pools.free(lightSource);
+		}
+		_lightSources.clear();
+
+		_tileLayers.clear();
 		_mapRenderer.dispose();
 		_mapRenderer = null;
 		_map.dispose();
 		_isPaused = true;
+		_tickNo = 0;
 		_map = null;
 	}
 
@@ -250,19 +276,16 @@ public class TiledStage extends Stage {
 	public void draw() {
 		if (_map == null) return;
 
-		for (Listener listener : _listeners) {
-			listener.beforeDraw(this);
-		}
+		for (Listener listener : _listeners) listener.beforeDraw(this);
 
 		float delta = Gdx.graphics.getDeltaTime();
 
 		_tickTime += delta;
 
 		while (_tickTime >= _tickDuration) {
-			for (Listener listener : _listeners) {
-				listener.beforeTick(this);
-			}
+			for (Listener listener : _listeners) listener.beforeTick(this);
 			if (!_isPaused) tick();
+			for (Listener listener : _listeners) listener.afterTick(this);
 			_tickTime -= _tickDuration;
 		}
 
@@ -277,36 +300,39 @@ public class TiledStage extends Stage {
 		_camera.update();
 
 		// Map
+		for (TiledStageActor actor : _actors) actor.updateAnimation();
 		_mapRenderer.setView(_camera);
 		_mapRenderer.render();
 
-		for (Listener listener : _listeners) {
-			listener.drawn(this);
-		}
+		for (Listener listener : _listeners) listener.drawn(this);
 	}
 
 	private void tick() {
-		_tempActors.clear();
-		_tempActors.addAll(_actors);
-		for (TiledStageActor actor : _tempActors) actor.tick();
-
 		for (int i = 0; i < _maxSubTicks; i ++) {
 			_tempActors.clear();
 			_tempActors.addAll(_subTicksToActors.get(i));
-			Collections.sort(_tempActors);
+			Collections.sort(_tempActors, _actorsComparator);
 
-			for (TiledStageActor actor : _tempActors) {
-				actor.tick(i);
-			}
+			for (TiledStageActor actor : _tempActors) actor.subtick(i);
+			for (Listener listener : _listeners) listener.subticked(this, i);
 		}
 
-		for (Listener listener : _listeners) {
-			listener.ticked(this);
-		}
+		_tempActors.clear();
+		_tempActors.addAll(_actors);
+		for (TiledStageActor actor : _tempActors) actor.subtick();
+
+		_tickNo++;
 	}
 
 	public Set<TiledStageActor> actors() {
 		return _actors;
+	}
+
+	public LinkedList<TiledStageActor> actorsByInitiative() {
+		_tempActors.clear();
+		_tempActors.addAll(_actors);
+		Collections.sort(_tempActors, _actorsComparator);
+		return _tempActors;
 	}
 
 	public TiledMap map() {
@@ -333,6 +359,14 @@ public class TiledStage extends Stage {
 		return _tickDuration;
 	}
 
+	public TiledStageMotionResolver motionResolver() {
+		return _motionResolver;
+	}
+
+	public int tickNo() {
+		return _tickNo;
+	}
+
 	public TiledMapTileLayer wallLayer() {
 		return _wallLayer; }
 
@@ -356,11 +390,12 @@ public class TiledStage extends Stage {
 	public void addActor(TiledStageActor actor) {
 		super.addActor(actor);
 		_actors.add(actor);
-
 		// Considering what subticks the bodies listen to, add to hashmap
 		for (int i : actor.SUBTICKS) {
 			_subTicksToActors.get(i).add(actor);
 		}
+
+		for (Listener listener : _listeners) listener.actorAdded(this, actor);
 	}
 
 	public void addLightSource(TiledStageLightSource lightSource) {
@@ -379,6 +414,8 @@ public class TiledStage extends Stage {
 		for (HashSet<TiledStageActor> actors : _subTicksToActors) {
 			actors.remove(actor);
 		}
+
+		for (Listener listener : _listeners) listener.actorRemoved(this, actor);
 	}
 
 	public TiledStageActor getActorByName(String name) {
@@ -439,6 +476,8 @@ public class TiledStage extends Stage {
 		void spawnObject(Coordinate origin, TiledMapTile tile, String name, MapProperties properties);
 
 		void processCoordinate(Coordinate coordinate);
+
+		void processTile(TiledMapTile tile);
 	}
 
 	public static class Config {
@@ -447,15 +486,47 @@ public class TiledStage extends Stage {
 	}
 
 	public abstract static class Listener {
-		public void beforeDraw(TiledStage tileStage) {
+		/**
+		 * When a TiledStageActor is added
+		 */
+		public void actorAdded(TiledStage tiledStage, TiledStageActor actor) {
 		}
 
+		/**
+		 * When a TiledStageActor is removed
+		 */
+		public void actorRemoved(TiledStage tiledStage, TiledStageActor actor) {
+		}
+
+		/**
+		 * When a subtick happens
+		 */
+		public void subticked(TiledStage tiledstage, int subtick) {
+		}
+
+		/**
+		 * Before rendering of map and actors
+		 */
+		public void beforeDraw(TiledStage tiledStage) {
+		}
+
+		/**
+		 * Before a game tick
+		 * Happens even when paused
+		 */
 		public void beforeTick(TiledStage tiledStage) {
 		}
 
-		public void ticked(TiledStage tiledStage) {
+		/**
+		 * After a game tick
+		 * Happens even when paused
+		 */
+		public void afterTick(TiledStage tiledStage) {
 		}
 
+		/**
+		 * After rending of map and actors
+		 */
 		public void drawn(TiledStage tiledStage) {
 		}
 	}
@@ -466,6 +537,7 @@ public class TiledStage extends Stage {
 		private int _col;
 		private int _elevation;
 		private HashMap<String, Cell> _cells;
+		private HashSet<Coordinate> TempCoordinates = new HashSet<Coordinate>();
 
 		public Coordinate(int row, int col) {
 			_row = row;
@@ -512,54 +584,59 @@ public class TiledStage extends Stage {
 			}
 		}
 
-		public TreeSet<Coordinate> getCoordinatesAtRange(int range, boolean includeDiagonally) {
-			TreeSet<Coordinate> coordinates = new TreeSet<Coordinate>();
+		public HashSet<Coordinate> getCoordinatesAtRange(int range, boolean includeDiagonally) {
+			TempCoordinates.clear();
 			Coordinate coordinate;
+
+			if (range == 0) {
+				TempCoordinates.add(this);
+				return TempCoordinates;
+			}
 
 			if (includeDiagonally) {
 				for (int r = _row - range; r <= _row + range; r += 2 * range) {
 					for (int c = _col - range; c <= _col + range; c += 2 * range) {
 						coordinate = getCoordinate(r, c);
-						if (coordinate != null) coordinates.add(coordinate);
+						if (coordinate != null) TempCoordinates.add(coordinate);
 					}
 				}
 			} else {
 				for (int r = _row - range; r <= _row + range; r += 2 * range) {
 					coordinate = getCoordinate(r, _col);
-					if (coordinate != null) coordinates.add(coordinate);
+					if (coordinate != null) TempCoordinates.add(coordinate);
 				}
 				for (int c = _col - range; c <= _col + range; c += 2 * range) {
 					coordinate = getCoordinate(_row, c);
-					if (coordinate != null) coordinates.add(coordinate);
+					if (coordinate != null) TempCoordinates.add(coordinate);
 				}
 			}
 
-			return coordinates;
+			return TempCoordinates;
 		}
 
-		public TreeSet<Coordinate> getCoordinatesInRange(int range, boolean includeDiagonally) {
-			TreeSet<Coordinate> coordinates = new TreeSet<Coordinate>();
+		public HashSet<Coordinate> getCoordinatesInRange(int range, boolean includeDiagonally) {
+			TempCoordinates.clear();
 			Coordinate coordinate;
 
 			if (includeDiagonally) {
 				for (int r = _row - range; r <= _row + range; r++) {
-					for (int c = _col - range; c <= _col + range; c++) {
+					for (int c = _col - range; c <= _col + range; c ++) {
 						coordinate = getCoordinate(r, c);
-						if (coordinate != null) coordinates.add(coordinate);
+						if (coordinate != null) TempCoordinates.add(coordinate);
 					}
 				}
 			} else {
-				for (int r = _row - range; r <= _row + range; r++) {
+				for (int r = _row - range; r <= _row + range; r ++) {
 					coordinate = getCoordinate(r, _col);
-					if (coordinate != null) coordinates.add(coordinate);
+					if (coordinate != null) TempCoordinates.add(coordinate);
 				}
-				for (int c = _col - range; c <= _col + range; c++) {
+				for (int c = _col - range; c <= _col + range; c ++) {
 					coordinate = getCoordinate(_row, c);
-					if (coordinate != null) coordinates.add(coordinate);
+					if (coordinate != null) TempCoordinates.add(coordinate);
 				}
 			}
 
-			return coordinates;
+			return TempCoordinates;
 		}
 
 		public Coordinate getAdjacentCoordinate(DIRECTION direction) {
@@ -742,6 +819,14 @@ public class TiledStage extends Stage {
 				_tilesIterator = _tilesetsIterator.next().iterator();
 
 			return tile;
+		}
+	}
+
+	private class ActorsComparator implements Comparator<TiledStageActor> {
+		@Override
+		public int compare(TiledStageActor actor1, TiledStageActor actor2) {
+			// TODO: Test initiative
+			return actor1.initiative() - actor2.initiative();
 		}
 	}
 }

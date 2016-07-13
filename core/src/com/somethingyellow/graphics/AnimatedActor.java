@@ -4,14 +4,14 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Pool;
-import com.badlogic.gdx.utils.Pools;
-import com.somethingyellow.utility.ObjectList;
+import com.somethingyellow.utility.ObjectSet;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Represents an Poolable libgdx Actor displayed with set of animations
@@ -20,14 +20,13 @@ import java.util.Map;
  * All animations are shown at the start
  * Animation Map cannot be modified after initialization
  * animations() and draw() returns/renders animations in z-index order
- * remove() frees itself from Pools
  */
 
 public class AnimatedActor extends Actor implements Pool.Poolable {
 	private HashMap<String, Animation> _animations = new HashMap<String, Animation>(); // For access by tag
 	private ArrayList<Animation> _animationsArray = new ArrayList<Animation>(); // For ordering by z-index
 	private AnimationListener _animationListener = new AnimationListener();
-	private ObjectList<Listener> _listeners = new ObjectList<Listener>();
+	private ObjectSet<Listener> _listeners = new ObjectSet<Listener>();
 
 	public void initialize(Map<String, AnimationDef> defs) {
 		for (String tag : defs.keySet()) {
@@ -81,12 +80,10 @@ public class AnimatedActor extends Actor implements Pool.Poolable {
 			listener.removed(this);
 		}
 
-		Pools.free(this);
-
 		return super.remove();
 	}
 
-	public ObjectList<Listener> listeners() {
+	public ObjectSet<Listener> listeners() {
 		return _listeners;
 	}
 
@@ -104,6 +101,10 @@ public class AnimatedActor extends Actor implements Pool.Poolable {
 		return _animationsArray;
 	}
 
+	public Set<String> animationTags() {
+		return _animations.keySet();
+	}
+
 	@Override
 	public void act(float timeDelta) {
 		super.act(timeDelta);
@@ -111,20 +112,26 @@ public class AnimatedActor extends Actor implements Pool.Poolable {
 		for (Animation animation : _animationsArray) animation.update(timeDelta);
 	}
 
+	protected void setAnimationShown(String tag, boolean isShown) {
+		if (isShown) showAnimation(tag); else hideAnimation(tag);
+	}
+
 	protected void hideAnimation(String tag) {
 		Animation animation = _animations.get(tag);
 		if (animation == null) throw new IllegalArgumentException("Animation '" + tag + "' not found!");
 
-		animation.hide();
-		for (Listener listener : _listeners) listener.animationHidden(this, animation);
+		if (animation.hide()) {
+			for (Listener listener : _listeners) listener.animationHidden(this, animation);
+		}
 	}
 
 	protected void showAnimation(String tag) {
 		Animation animation = _animations.get(tag);
 		if (animation == null) throw new IllegalArgumentException("Animation '" + tag + "' not found!");
 
-		animation.show();
-		for (Listener listener : _listeners) listener.animationShown(this, animation);
+		if (animation.show()) {
+			for (Listener listener : _listeners) listener.animationShown(this, animation);
+		}
 	}
 
 	protected void hideAllAnimations() {

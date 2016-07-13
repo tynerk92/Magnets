@@ -8,66 +8,92 @@ import java.util.Map;
 
 public class MagneticSource extends TiledStageActor {
 
-	public static final int MAGNETISE_RANGE = 1;
-	public static final int ATTRACTION_RANGE = 2;
-	public static final int ATTRACTION_STRENGTH = 1;
 	public static final int[] SUBTICKS_STATIC = new int[]{
 			PlayScreen.SUBTICKS.MAGNETISATION.ordinal(),
-			PlayScreen.SUBTICKS.FORCES.ordinal()
+			PlayScreen.SUBTICKS.MAGNETIC_ATTRACTION.ordinal()
 	};
 
-	public void initialize(Map<String, AnimationDef> animationDefs, TiledStage.Coordinate origin) {
-		super.initialize(animationDefs, TiledStageActor.BodyArea1x1, 1, origin);
+	private boolean _isSolid;
+	private int _magnetisationRange;
+	private int _magnetisationStrength;
+	private int _attractionRange;
+	private int _attractionStrength;
+
+	public MagneticSource() {
+		super();
 		SUBTICKS = SUBTICKS_STATIC;
+	}
+
+	public void initialize(Map<String, AnimationDef> animationDefs, TiledStage.Coordinate origin, boolean isSolid,
+	                       int magnetisationRange, int magnetisationStrength, int attractionRange, int attractionStrength) {
+		super.initialize(animationDefs, origin);
+
+		_isSolid = isSolid;
+		_magnetisationRange = magnetisationRange;
+		_magnetisationStrength = magnetisationStrength;
+		_attractionRange = attractionRange;
+		_attractionStrength = attractionStrength;
 
 		showAnimation(Config.AnimationSource);
 	}
 
 	@Override
-	public void tick(int subtick) {
+	public void updateAnimation() {
+	}
+
+	@Override
+	public void subtick(int subtick) {
+
 		if (subtick == PlayScreen.SUBTICKS.MAGNETISATION.ordinal()) {
 
 			for (TiledStage.Coordinate bodyCoordinate : bodyCoordinates()) {
 
-				// Magnetise blocks within magnetisation range
-				for (TiledStage.Coordinate coordinate : bodyCoordinate.getCoordinatesInRange(MAGNETISE_RANGE, false)) {
+				// Magnetise magnetisable objects within magnetisation range
+				for (TiledStage.Coordinate coordinate : bodyCoordinate.getCoordinatesInRange(_magnetisationRange, false)) {
 					for (TiledStageActor actor : coordinate.actors()) {
-						if (actor == this) continue;
-						if (actor instanceof Lodestone) {
-							Lodestone lodestone = (Lodestone) actor;
-							if (!lodestone.isMagnetised()) lodestone.magnetise();
+						if (actor != this && actor instanceof Magnetisable) {
+							((Magnetisable) actor).magnetise(this, _magnetisationStrength);
 						}
 					}
 				}
 
 			}
 
-		} else if (subtick == PlayScreen.SUBTICKS.FORCES.ordinal()) {
+		} else if (subtick == PlayScreen.SUBTICKS.MAGNETIC_ATTRACTION.ordinal()) {
 
 			for (TiledStage.Coordinate bodyCoordinate : bodyCoordinates()) {
 
-				// Attract blocks within attraction range
-				for (TiledStage.Coordinate coordinate : bodyCoordinate.getCoordinatesAtRange(ATTRACTION_RANGE, false)) {
+				// Attract magnetic objects within attraction range
+				for (TiledStage.Coordinate coordinate : bodyCoordinate.getCoordinatesInRange(_attractionRange, false)) {
 					for (TiledStageActor actor : coordinate.actors()) {
-						if (actor == this) continue;
-						if (actor instanceof Lodestone) {
-							Lodestone lodestone = (Lodestone) actor;
-							if (lodestone.isMagnetised() || lodestone.isMoving()) continue;
-
+						if (actor != this && actor instanceof Magnetic) {
 							TiledStage.DIRECTION direction = bodyCoordinate.getDirectionFrom(coordinate);
-							if (direction == null) continue;
-
-							lodestone.attract(direction, coordinate, ATTRACTION_STRENGTH);
+							((Magnetic) actor).applyMagneticForce(coordinate, direction, _attractionStrength);
 						}
 					}
 				}
+
 			}
 		}
 	}
 
 	@Override
-	public boolean occupiesCoordinate() {
-		return true;
+	public boolean isSolid() {
+		return _isSolid;
+	}
+
+	/**
+	 * To implement on an actor that can be magnetised and act as a "magnetic source"
+	 */
+	public interface Magnetisable {
+		void magnetise(MagneticSource source, int magnetisationStrength);
+	}
+
+	/**
+	 * To implement on an actor that can be affected by magnetism
+	 */
+	public interface Magnetic {
+		void applyMagneticForce(TiledStage.Coordinate bodyCoordinateApplied, TiledStage.DIRECTION direction, int attractionStrength);
 	}
 
 	public static class Config {

@@ -10,29 +10,69 @@ import java.util.Map;
 public class Player extends TiledStageActor {
 
 	public static final int[] SUBTICKS_STATIC = new int[]{
-			PlayScreen.SUBTICKS.GRAPHICS.ordinal()
+			PlayScreen.SUBTICKS.PLAYER_ACTION.ordinal()
 	};
 	private Commands _commands;
+	private PLAYER_ACTION _action;
 
-	public void initialize(Map<String, AnimationDef> animationDefs, boolean[] bodyArea, int bodyWidth, TiledStage.Coordinate origin, Commands commands) {
-		super.initialize(animationDefs, bodyArea, bodyWidth, origin);
+	public Player() {
+		super();
 		SUBTICKS = SUBTICKS_STATIC;
-		_commands = commands;
+	}
 
-		showAnimation(Config.AnimationStanding);
+	public void initialize(Map<String, AnimationDef> animationDefs, TiledStage.Coordinate origin, Commands commands) {
+		super.initialize(animationDefs, origin);
+		_commands = commands;
+		_action = null;
+
+		showAnimation(Config.AnimationRightIdle);
 	}
 
 	@Override
-	public void tick(int subtick) {
-		if (subtick == PlayScreen.SUBTICKS.GRAPHICS.ordinal()) {
+	public void subtick(int subtick) {
+
+		if (subtick == PlayScreen.SUBTICKS.PLAYER_ACTION.ordinal()) {
+
 			for (TiledStage.Coordinate bodyCoordinate : bodyCoordinates()) {
 				for (TiledStageActor body : bodyCoordinate.actors()) {
 					if (body instanceof Exit) {
 						_commands.endLevel();
+						return;
 					}
 				}
 			}
+
+			if (_action != null) {
+				switch (_action) {
+					case MOVE_UP:
+						tryToMoveDirection(TiledStage.DIRECTION.NORTH, Config.MoveTicks);
+						pushDirection(TiledStage.DIRECTION.NORTH);
+						break;
+					case MOVE_DOWN:
+						tryToMoveDirection(TiledStage.DIRECTION.SOUTH, Config.MoveTicks);
+						pushDirection(TiledStage.DIRECTION.SOUTH);
+						break;
+					case MOVE_LEFT:
+						tryToMoveDirection(TiledStage.DIRECTION.WEST, Config.MoveTicks);
+						pushDirection(TiledStage.DIRECTION.WEST);
+						break;
+					case MOVE_RIGHT:
+						tryToMoveDirection(TiledStage.DIRECTION.EAST, Config.MoveTicks);
+						pushDirection(TiledStage.DIRECTION.EAST);
+						break;
+				}
+			}
+
+			_action = null;
 		}
+	}
+
+	public void doAction(PLAYER_ACTION action) {
+		_action = action;
+	}
+
+	@Override
+	public void updateAnimation() {
 	}
 
 	protected boolean pushDirection(final TiledStage.DIRECTION direction) {
@@ -41,42 +81,41 @@ public class Player extends TiledStageActor {
 		if (targetCoordinate == null) return false;
 		HashSet<TiledStageActor> actors = targetCoordinate.actors();
 		for (TiledStageActor actor : actors) {
-			if (actor instanceof Lodestone) {
-				Lodestone lodestone = (Lodestone) actor;
-
-				if (lodestone.isPushable()) {
-					TiledStage.Coordinate origin = origin();
-					setOrigin(targetCoordinate);
-					if (lodestone.push(direction)) { // if lodestone can really move to its pushed position (not considering actor)
-						setOrigin(origin);
-						moveDirection(direction);
-					} else {
-						setOrigin(origin);
-					}
-				}
-
+			if (actor instanceof Pushable) {
+				((Pushable) actor).push(direction);
 				return true;
 			}
 		}
 		return false;
 	}
 
-	public boolean moveDirection(TiledStage.DIRECTION direction) {
-		if (pushDirection(direction)) return true;
-		return moveDirection(direction, Config.MoveTicks);
+	@Override
+	public boolean isSolid() {
+		return true;
 	}
 
-	@Override
-	public boolean occupiesCoordinate() {
-		return true;
+	public enum PLAYER_ACTION {
+		MOVE_LEFT, MOVE_UP, MOVE_DOWN, MOVE_RIGHT
 	}
 
 	public interface Commands {
 		void endLevel();
 	}
 
+	public interface Pushable {
+		void push(TiledStage.DIRECTION direction);
+	}
+
 	public static class Config {
 		public static int MoveTicks = 3;
-		public static String AnimationStanding = "Standing";
+		public static String AnimationRightIdle = "Right Idle";
+		public static String AnimationWalkingLeft = "Walking Left";
+		public static String AnimationWalkingRight = "Walking Right";
+		public static String AnimationWalkingUp = "Walking Up";
+		public static String AnimationWalkingDown = "Walking Down";
+		public static String AnimationPushingLeft = "Pushing Left";
+		public static String AnimationPushingRight = "Pushing Right";
+		public static String AnimationPushingUp = "Pushing Up";
+		public static String AnimationPushingDown = "Pushing Down";
 	}
 }
