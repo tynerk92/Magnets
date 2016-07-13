@@ -193,7 +193,7 @@ Open Sesame
 ███████████ff███████████
 ███████X        X███████
 █    █BF  X  X  FB█    █
-█ bx  FF  X  X  FF  xb █
+█ bx  FJ  X  X  JF  xb █
 █    █BF  Xs X  FB█    █
 ███████X        X███████
 ███████████xx███████████

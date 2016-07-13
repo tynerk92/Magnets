@@ -17,23 +17,6 @@ import java.util.Random;
 
 
 public class TextToTmx {
-	
-	final static List<String> demoLevels = Arrays.asList(new String[] { "Exploration", 
-																		"Strange Attraction",
-																		"Offering", 
-																		"Pushing Forward", 
-																		"Buttons",
-																		"Maze",
-																		"Puzzle for ants",
-																		"Blockade",
-																		"Interspersing",
-																		"Open Sesame",
-																		"Chain", 
-																		"Roundabout", 
-																		"Toggle",
-																		"Cascade", 
-																		"Suction", 
-																		"Trio" });
 	final static String mainAssetsDirectory = "D:/Dropbox/Magnets/android/assets/";
 	private static final String[] Levels = new String[] { 	"Introductory Levels Pack", 
 															"Easy Levels Pack", 
@@ -49,12 +32,6 @@ public class TextToTmx {
 	// private String[] adjacentsCodes = tsGen.adjacentsCodes;
 	
 	// Text representation of the level
-	public static final String button1 = "b";
-	public static final String door1 = "B";
-	public static final String door1open = "C";
-	public static final String button2 = "f";
-	public static final String door2 = "F";
-	public static final String door2open = "G";
 	public static final String player = "s";
 	public static final String magnetfloor = "m";
 	public static final String magnetsource = "M"; 
@@ -66,9 +43,17 @@ public class TextToTmx {
 	public static final String stalagmite = "▒";
 	public static final String boulder = "@";
 	public static final String lodestoneSymbols = "xyzXYZ";
+	public static final String button1Symbols = "bdp";
+	public static final String button2Symbols = "fjl";
+	public static final String door1Symbols = "BDP";
+	public static final String door1openSymbols = "COQ";
+	public static final String door2Symbols = "FJL";
+	public static final String door2openSymbols = "GWU";
+	public static final String buttonSymbols = button1Symbols + button2Symbols;
+	public static final String doorSymbols = door1Symbols + door1openSymbols + door2Symbols + door2openSymbols;
 	
 	public static final String noOutline = " " + player + exit;
-	public static final String validObjects = button1 + door1 + door1open + button2 + door2 + door2open +
+	public static final String validObjects = button1Symbols + door1Symbols + door1openSymbols + button2Symbols + door2Symbols + door2openSymbols +
 												player + magnetfloor + magnetsource + elevatedfloor + exit;
 	public static final String nonObjects = bigtree + wall;
 	
@@ -186,7 +171,6 @@ public class TextToTmx {
 	
 	public static int bufferWalls = 4;
 	private int nameCount = 0;
-	private String[] directions = new String[] { "Up", "Left", "Right", "Down" };
 	public boolean skipGeneration = false;
 	public void writeLayersInfo(String dir, String text, boolean hasSecondLayer) {
 		
@@ -204,7 +188,6 @@ public class TextToTmx {
 		int[][] WallDeco1		 = new int[rows][cols];
 		int[][] WallDeco2		 = new int[rows][cols];
 		int[][] Collision	     = new int[rows][cols];
-		int[][] Shadows			 = new int[rows][cols];
 		// Determines if the collision layer should be created
 		Boolean hasCollision = false;
 		// Extra 2 rows and cols as required by the wall scanning algorithm
@@ -218,7 +201,6 @@ public class TextToTmx {
 		for (int[] row: WallDeco2) 			Arrays.fill(row, 0);
 		for (int[] row: Walls) 				Arrays.fill(row, 0);
 		for (int[] row: Collision) 			Arrays.fill(row, 0);
-		for (int[] row: Shadows)			Arrays.fill(row, 0);
 		
 		for (int y = 0; y < rows - bufferWalls * 2; y++) {
 			for (int x = 0; x < cols - bufferWalls * 2; x++) {
@@ -297,7 +279,7 @@ public class TextToTmx {
 						wallNeighbours = getNeighbours(y, x, elevatedfloor, data, false);
 						for (String code: neighbourCodes) {
 							if (compareWithDontCares(wallNeighbours, code)) {
-								Objects.add(tsGen.createObject("Elevated Floor " + code, x, y));
+								FloorDeco[y - 1 + ioffset][x - 1 + joffset] = nameToTileID.get("Elevated Floor " + code);
 								break;
 							}
 						} break;
@@ -317,53 +299,24 @@ public class TextToTmx {
 						} */break;
 					default:
 						switch (currentTile) {
-						case button1: 		objname = "Button 1 1_" + tsGen.numButtonFrames; 											break;
-						case door1: 		objname = "Door 1 1_" + tsGen.numDoorTransitionFrames; 										break;
-						case door1open: 	objname = "Door 1 " + tsGen.numDoorTransitionFrames + "_" + tsGen.numDoorTransitionFrames; 	break;
-						case button2: 		objname = "Button 2 1_" + tsGen.numButtonFrames;											break;
-						case door2: 		objname = "Door 2 1_" + tsGen.numDoorTransitionFrames; 										break;
-						case door2open: 	objname = "Door 2 " + tsGen.numDoorTransitionFrames + "_" + tsGen.numDoorTransitionFrames; 	break;
-						case player: 		objname = "Player Idle"; 																	break;
-						case magnetsource:	objname = "Magnetic Source " + "01_" + tsGen.numMagneticSourceFrames; 						break;
+						case player: 		objname = "Player Right Idle"; 												break;
+						case magnetsource:	objname = "Magnetic Source " + "01_" + tsGen.numMagneticSourceFrames; 		break;
 						//case boulder: 		objname = "Boulder"; break;
-						case exit: 
-							if (!data[y - 1][x].equals(wall)) {
-								// If the exit is a pit, arrows can point from any direction.
-								// Up Left Right Down
-								String yo = "0" + (data[y][x + 1].equals(" ") ? "1" : "") + 
-													(data[y][x - 1].equals(" ") ? "2" : "") + 
-													(data[y - 1][x].equals(" ") ? "3" : "");
-								String chosenDirection = directions[Integer.parseInt("" + yo.charAt(random.nextInt(yo.length())))];
-								String arrow = "Exit Arrow " + chosenDirection + " 1_" + tsGen.numExitFrames;
-								switch (chosenDirection) {
-									case "Up": 		//Objects.add(tsGen.createObject(arrow, x, y + 1)); 
-													WallDeco1[y + ioffset][x - 1 + joffset] = nameToTileID.get("Exit Arrow " + chosenDirection + " 1_" + tsGen.numExitFrames); 
-									break;
-									case "Left": 	//Objects.add(tsGen.createObject(arrow, x + 1, y)); 
-													WallDeco1[y - 1 + ioffset][x + joffset] = nameToTileID.get("Exit Arrow " + chosenDirection + " 1_" + tsGen.numExitFrames);
-									break;
-									case "Right": 	//Objects.add(tsGen.createObject(arrow, x - 1, y));
-													WallDeco1[y - 1 + ioffset][x - 2 + joffset] = nameToTileID.get("Exit Arrow " + chosenDirection + " 1_" + tsGen.numExitFrames);
-									break;
-									case "Down": 	//Objects.add(tsGen.createObject(arrow, x, y - 1)); 
-													WallDeco1[y - 2 + ioffset][x - 1 + joffset] = nameToTileID.get("Exit Arrow " + chosenDirection + " 1_" + tsGen.numExitFrames);
-									break;
-								}
-								FloorDeco[y - 1 + ioffset][x - 1 + joffset] = nameToTileID.get("Exit Down");
-							} else {
-								// Arrows are supposed to be behind walls, and hence should belong to floor deco.
-								// There are not supposed to be debris under the arrow anyway so this will overwrite anyother things.
-								// Btw, arrows are only set to spawn on empty floors only.
-								// Objects.add(tsGen.createObject("Exit Arrow Up 1_" + tsGen.numExitFrames, x, y + 1));
-								WallDeco1[y - 1 + ioffset][x - 1 + joffset] = nameToTileID.get("Exit Arrow Up 1_" + tsGen.numExitFrames); 
-								// SInce front exits are supposed to be on top of the walls, it should belong to wall deco2 which is merged together 
-								// into the Walls and Objects layer
-								WallDeco2[y - 2 + ioffset][x - 1 + joffset] = nameToTileID.get("Exit Front " + (Math.random() < 0.5 ? "Down" : "Forwards"));
-							} 
-							objname = "Exit Dud"; break;
-							
+						case exit:  		objname = "Exit " + (random.nextInt(5) + 1); 								break;
 						default: 
-							if (!(lodestoneSymbols + " ").contains(currentTile)) {
+							if (button1Symbols.contains(currentTile)) {
+								objname = "Button Set_1 1x1 1 1_" + tsGen.numButtonFrames;
+							} else if (button2Symbols.contains(currentTile)) {
+								objname = "Button Set_2 1x1 1 1_" + tsGen.numButtonFrames;
+							} else if (door1Symbols.contains(currentTile)) {
+								objname = "DoorClos Set_1 1x1 1 1_" + tsGen.numDoorTransitionFrames;
+							} else if (door1openSymbols.contains(currentTile)) {
+								objname = "DoorOpen Set_1 1x1 1 " + tsGen.numDoorTransitionFrames + "_" + tsGen.numDoorTransitionFrames;
+							} else if (door2Symbols.contains(currentTile)) {
+								objname = "DoorClos Set_2 1x1 1 1_" + tsGen.numDoorTransitionFrames;
+							} else if (door2openSymbols.contains(currentTile)) {
+								objname = "DoorOpen Set_2 1x1 1 " + tsGen.numDoorTransitionFrames + "_" + tsGen.numDoorTransitionFrames;
+							} else if (!(lodestoneSymbols + " ").contains(currentTile)) {
 								System.out.println("Warning: \'" + currentTile + "\' is not defined");
 							}
 						}
@@ -398,21 +351,23 @@ public class TextToTmx {
 							if (Math.random() < 0.7) 		FloorDeco[y - 1][x - 1] = nameToTileID.get("Floor Overlays Debris " + (random.nextInt(8) + 1));
 							else if (Math.random() < 0.25)  FloorDeco[y - 1][x - 1] = nameToTileID.get("Floor Overlays Depression " + (random.nextInt(8) + 1));
 							else if (whichWallSet == 1) 	FloorDeco[y - 1][x - 1] = nameToTileID.get("Floor Overlays Grey Scratches " + (random.nextInt(8) + 1));
-							//else if (whichWallSet == 2) 	FloorDeco[y - 1][x - 1] = nameToTileID.get("Floor Overlays Blue Scratches " + (random.nextInt(4) + 1));
 						}
-					}
+					} 
 			}
 		}
 		
-		LodestoneDetector ld = new LodestoneDetector(data, data2, hasSecondLayer);
+		MultiTileDetector lodestoneDetector = new MultiTileDetector(data, data2, hasSecondLayer, lodestoneSymbols);
+		MultiTileDetector buttonDetector 	= new MultiTileDetector(data, data, false, buttonSymbols);
+		MultiTileDetector doorDetector 		= new MultiTileDetector(data, data, false, doorSymbols);
 		//for (String code : tsGen.genLodestoneCodes()) System.out.println(code);
-		ld.addLodestones(Objects, tsGen);
+		lodestoneDetector.addMultiTiles("Lodestone", Objects, tsGen, lodestoneSymbols, tsGen.lodestoneAreas, tsGen.lodestoneNames, tsGen.lodestoneNameToOffsetArray);
+		buttonDetector.addMultiTiles(   "Button"   , Objects, tsGen,    buttonSymbols,    tsGen.buttonAreas,    tsGen.buttonNames, tsGen.buttonNameToOffsetArray);
+		doorDetector.addMultiTiles(     "Door"     , Objects, tsGen,      doorSymbols,      tsGen.doorAreas,      tsGen.doorNames, tsGen.doorNameToOffsetArray);
 		
 		/////////////////////////////////////// LAYERS /////////////////////////////////////////
 		
 		LayersInfo += writeGenericLayer("Floor", Floor);
 		LayersInfo += writeGenericLayer("Floor Decoration", FloorDeco);
-		LayersInfo += writeGenericLayer("Shadows", Shadows);
 		LayersInfo += writeGenericLayer("Walls and Objects", Walls);
 		LayersInfo += writeGenericLayer("Wall Decoration 1", WallDeco1);
 		LayersInfo += writeGenericLayer("Wall Decoration 2", WallDeco2);
@@ -457,7 +412,7 @@ public class TextToTmx {
 			
 			if (object.name.startsWith("Door")) {
 				String[] name = object.name.split("[ _]");
-				int whichSet = Integer.parseInt(name[1]);
+				int whichSet = Integer.parseInt(name[2]);
 				int whichFrame = Integer.parseInt(name[name.length - 2]);
 				String open = "", close = "";
 				
@@ -570,9 +525,6 @@ public class TextToTmx {
 		// Reset all those varying info
 		LevelInfo = ""; PuzzleInfo = ""; LayersInfo = ""; ObjectsInfo = "";
 		
-		if (demoLevels.contains(name)) {
-			writeToFile(mainAssetsDirectory + "Demo Levels/", levelName, finalTmx, "tmx");
-		}
 		if (!wroteToAnimationsFolder) {
 			wroteToAnimationsFolder = true;
 			writeToFile(mainAssetsDirectory + "Animations/", levelName, finalTmx, "tmx");
@@ -605,8 +557,6 @@ public class TextToTmx {
 		
 		File[] files = new File(mainAssetsDirectory + "Levels").listFiles(Tmx);
 		for (File file : files) file.delete();
-		File[] demoLevels = new File(mainAssetsDirectory + "Demo Levels").listFiles(Tmx);
-		for (File demoLevel : demoLevels) demoLevel.delete();
 		
 		TextToTmx prog = new TextToTmx();
 		for (String pack: Levels) {

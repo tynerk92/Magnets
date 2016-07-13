@@ -98,3 +98,27 @@ Unexpected Behaviour
 █             █
 ██ MMMMMMMMs ██
 ███████████████
+
+Testtt
+                 
+ B     F         
+   bpb           
+   xxx           
+ e               
+      xf    f    
+      xj         
+  s   xf         
+                 
+                 
+<Second>
+                 
+                 
+                 
+                 
+                 
+            x    
+                 
+                 
+                 
+                 
+Solution :

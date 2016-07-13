@@ -279,22 +279,21 @@ SOUTH SOUTH SOUTH SOUTH SOUTH WEST NORTH NORTH WEST WEST SOUTH SOUTH SOUTH SOUTH
 
 Traps
 ████████████████████
-███e█xxxM█xxxMxxx███
-███F█x█████x███x████
-███ ██x██x████x█x███
-███ xxx██xxx██xxx███
-███BBBBBBBBBBBBBBBB█
-████mmf██mmf██mmf█E█
-████mmm██mmm██mmm█E█
-█       s        FF█
+██e█xxxM█xxxMxxx████
+██F█x█████x███x█████
+██ ██x██x████x█x████
+██ xxx██xxx██xxx████
+██BDBDBDBDBDBDBDBD██
+███mmf██mmf██mmf█E██
+███mmm██mmm██mmm█E██
+█                JJ█
 █    x  xxx   xx Fx█
 █  xxx   xx  xx  Fb█
 █                ███
-██               ███
+██        s      ███
 ████    ██     █████
 ████████████████████
 Solution :
-EAST EAST EAST EAST EAST EAST SOUTH SOUTH WEST WEST WEST SOUTH WEST WEST WEST NORTH EAST EAST EAST EAST EAST EAST NORTH NORTH NORTH SOUTH SOUTH SOUTH EAST EAST SOUTH WEST WEST WEST WEST WEST WEST WEST WEST WEST NORTH NORTH NORTH WEST WEST WEST SOUTH EAST EAST EAST EAST EAST EAST WEST WEST SOUTH SOUTH EAST NORTH NORTH NORTH SOUTH SOUTH SOUTH SOUTH WEST WEST WEST NORTH NORTH NORTH NORTH NORTH SOUTH EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST NORTH NORTH NORTH WEST WEST WEST WEST WEST WEST WEST WEST WEST WEST WEST WEST WEST WEST WEST NORTH NORTH NORTH NORTH  (108)
 
 Quad
 █████████████████████████
@@ -321,7 +320,7 @@ Penta
 ██████████
 ██████e ██
 ██████ B██
-█bb b██b██
+█bd b██b██
 █ █m x   █
 █b  x xs █
 ███ yx   █
@@ -347,8 +346,8 @@ Conveyor Belt
 ████████████████████
 ███  █████  ███Be███
 █   xx    xx █  ████
-█  bb████bbm     ███
-███     mbb████bb  █
+█  bd████bdm     ███
+███     mdb████bd  █
 ████  █ xxs   xx   █
 ███eB███  █████  ███
 ████████████████████
@@ -420,11 +419,11 @@ EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST 
 Steps
 █████████████████
 █   ████████   b█
-█ e █████  x  bb█
+█ e █████  x  bd█
 █  ███  x x    b█
 ██B█   x x   █B██
 █b  s xmx  ███  █
-█bb  x  █████ e █
+█db  x  █████ e █
 █b   ████████   █
 █████████████████
 Solution :
