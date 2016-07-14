@@ -170,6 +170,7 @@ public class TextToTmx {
 	public static int bufferWalls = 4;
 	private int nameCount = 0;
 	public boolean skipGeneration = false;
+	private int bouldercount = 0, staglamitecount = 0;
 	public void writeLayersInfo(String dir, String text, boolean hasSecondLayer) {
 		
 		List<Object> Objects = new ArrayList<Object>();
@@ -185,6 +186,7 @@ public class TextToTmx {
 		int[][] FloorDeco		 = new int[rows][cols];
 		int[][] WallDeco1		 = new int[rows][cols];
 		int[][] WallDeco2		 = new int[rows][cols];
+		int[][] WallDeco3		 = new int[rows][cols];
 		int[][] Collision	     = new int[rows][cols];
 		// Determines if the collision layer should be created
 		Boolean hasCollision = false;
@@ -197,6 +199,7 @@ public class TextToTmx {
 		for (int[] row: Floor) 				Arrays.fill(row, 0);
 		for (int[] row: WallDeco1) 			Arrays.fill(row, 0);
 		for (int[] row: WallDeco2) 			Arrays.fill(row, 0);
+		for (int[] row: WallDeco3) 			Arrays.fill(row, 0);
 		for (int[] row: Walls) 				Arrays.fill(row, 0);
 		for (int[] row: Collision) 			Arrays.fill(row, 0);
 		
@@ -235,12 +238,12 @@ public class TextToTmx {
 		// Processing walls and floors and other objects
 		String currentTile;
 		String wallNeighbours;
-		String objname = "";
+		String objname = "", belowTile = "";
 		int ioffset, joffset;
 		for (int y = 1; y < rows + 1; y++) {
 			for (int x = 1; x < cols + 1; x++) {
 				currentTile = data[y][x];
-				// String belowTile = data[y + 1][x];
+				belowTile = data[y + 1][x];
 				ioffset = 0;
 				joffset = 0;
 				switch (currentTile) {
@@ -251,24 +254,25 @@ public class TextToTmx {
 						// the purpose of 0, 1 and X
 						for (String code: neighbourCodes) {
 							if (compareWithDontCares(wallNeighbours, code)) {
-								/*// Uncomment when you are ready to introduce springs
-								 * And take out the spring graphics from the test folder too
-								if (code.endsWith("X0X") && Math.random() < 0.3 && !belowTile.equals("e")) {
+								// Uncomment when you are ready to introduce springs
+								//And take out the spring graphics from the test folder too
+								if (code.endsWith("X0X") && Math.random() < 0.1 && belowTile.equals(" ")) {
 									int chosenFrame = random.nextInt(tsGen.numSpringFrames) + 1;
 									int chosenSet = random.nextInt(2) + 1;
-									WallDeco1[y - 1][x - 1] = nameToTileID.get("Wall Overlays Spring " + chosenSet + " " + chosenFrame + "_" + tsGen.numSpringFrames);
+									WallDeco1[y][x - 1] = nameToTileID.get("Wall Overlays Spring " + chosenSet + " " + chosenFrame + "_" + tsGen.numSpringFrames);
 									WallDeco2[y][x - 1] 	= nameToTileID.get("Wall Overlays Splash " + chosenSet + " " + chosenFrame + "_" + tsGen.numSplashFrames);
-									WallDeco1[y][x - 1]     = nameToTileID.get("Wall Overlays Puddle " + chosenSet);
-								}*/
+									WallDeco3[y][x - 1]     = nameToTileID.get("Wall Overlays Puddle " + chosenSet);
+								}
 								Walls[y - 1][x - 1] = nameToTileID.get("Wall " + code); break;
 							}
 						} break;
 						
 					case stalagmite: 
-						Walls[y - 1][x - 1] = nameToTileID.get("Wall Stalagmites"); break;
+						Walls[y - 1][x - 1] = nameToTileID.get("Wall Stalagmites " + ((staglamitecount++ % 2) + 1)); break;
 					
 					case boulder:
-						Walls[y - 1][x - 1] = nameToTileID.get("Wall Boulder"); break;
+						WallDeco1[y - 1][x - 1] = nameToTileID.get("Wall Boulder " + ((bouldercount++ % 4) + 1));
+						Walls[y - 1][x - 1]     = nameToTileID.get("Floor Null"); break;
 						
 					case elevatedfloor: 
 						// Elevated Floors needs to be processed by the same style as walls and floors
@@ -357,6 +361,7 @@ public class TextToTmx {
 		LayersInfo += writeGenericLayer("Walls and Objects", Walls);
 		LayersInfo += writeGenericLayer("Wall Decoration 1", WallDeco1);
 		LayersInfo += writeGenericLayer("Wall Decoration 2", WallDeco2);
+		LayersInfo += writeGenericLayer("Wall Decoration 3", WallDeco3);
 		if (hasCollision) LayersInfo += writeGenericLayer("Collision", Collision);
 		
 		// Objects Layer
