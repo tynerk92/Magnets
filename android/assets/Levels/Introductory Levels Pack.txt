@@ -4,21 +4,21 @@ Exploration
 ████████████████     █████ ███████████████████
 ████████████████  s                ███████████
 ████████████████     █████████ ██ ████████████
-██████████████████████████████ ██ ██ █████████
-█████████████████████████████████    █████████
-█████████████████████████████████ █ ██████████
-██████████████████████████████    █ ██████████
-███████████████████████████████████   ████████
-████████████████████████████████    █ ▒███████
-████████████████████████████████  █   ████████
-████████████████████████████████████ █████████
-████████████████████████████████████ ████    █
-████████████████████████████████████ ████▒████
-████████████████████████████████████      ████
+███████████████████████ ██████ ██ ██ █████████
+███████████████████████ █████████    █████████
+███████████████████████ █████████ █▒██████████
+██████████████████                █▒██████████
+████████████     ▒ ███████ ████████   ████████
+██████████████████ ███████X████████ █ ▒███████
+██████████████████                    ████████
+███████████████████████ ████████████ █████████
+██████████████████████   ███████████ ████    █
+██████████████████████ X ███████████ ████▒████
+██████████████████████   ███████████     X  ██
 ██████████████████████████████   █▒█ ██ █ ████
 ██████████████████████████████    ▒█ ██ █ ████
 ██████████████████████████████   █ █ ██ █ ████
-██████████████████████████████████  X     ████
+██████████████████████████████████  X    x  ██
 ████████████████████████████████████ ████ ████
 ████████████████████████████████████      ████
 ████████████████████████████████████ █ ███████
@@ -28,7 +28,7 @@ Exploration
 ██████████████████████████████████████ ███████
 ██████████████████████████████████████     ███
 ██████████████████████████████████████ ███████
-██████████████████████████████████████ ███████
+███████████████████████████████████    ███████
 ██████████████████████████████ ███████ ███████
 ██████████████████████████████ ███████ ███████
 █████████████████████████   ██ ██   ██ ███████
@@ -55,15 +55,15 @@ Exploration
 █████  ████████      █████ ██████   ██████████
 █████  █████████████████   ███████████████████
 █████ ▒ ███████████████EEEEE████EEE███████████
-████  █ ██████████████   x        E███████████
-█████   ███████████████EEEEE█████ ████████████
-█████ ██████████████████   ██████ ████████████
+████  █ ███████████████E x        E███████████
+█████   ███████████████EEEEE█████ E███████████
+█████ ██████████████████   ██████   ██████████
 █████ ███████████████████ ███████ ████████████
 █████ ███████████████████ ███▒▒   ▒███████████
-█████ ██████████████████EEE██████ ████████████
-█████ █████████████████EEb        E███████████
+████  ██████████████████EEE██████ E███████████
+████  █████████████████EEb        E███████████
 █████ ████  ████████████EEE█████EEE███████████
-█████ ████   ████████████E████████████████████
+█████ ████  █████████████E████████████████████
 █████ ████  ██████████████████████████████████
 █████ ████  ██████████████████████████████████
 ████   xx         ████████████████████████████
@@ -85,7 +85,6 @@ Exploration
 ██████████████████████████xxx█████████████████
 ██████████████████████████████████████████████
 Solution :
-EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST SOUTH SOUTH SOUTH EAST EAST SOUTH SOUTH SOUTH SOUTH SOUTH EAST SOUTH SOUTH SOUTH SOUTH EAST EAST EAST EAST EAST SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH WEST WEST WEST SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH WEST WEST WEST WEST WEST WEST WEST WEST SOUTH SOUTH SOUTH SOUTH EAST EAST EAST EAST EAST SOUTH SOUTH SOUTH EAST EAST EAST SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH WEST WEST WEST SOUTH SOUTH WEST WEST WEST WEST WEST WEST WEST WEST WEST SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH WEST SOUTH EAST EAST EAST EAST EAST EAST EAST EAST NORTH EAST SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH NORTH NORTH NORTH NORTH NORTH WEST WEST WEST WEST WEST WEST WEST WEST SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH EAST EAST EAST EAST EAST EAST EAST SOUTH EAST EAST NORTH WEST WEST WEST WEST WEST WEST WEST WEST NORTH WEST NORTH NORTH NORTH NORTH NORTH NORTH NORTH NORTH NORTH NORTH NORTH NORTH WEST WEST WEST WEST WEST WEST WEST NORTH WEST WEST SOUTH WEST WEST NORTH NORTH NORTH NORTH NORTH WEST WEST WEST WEST WEST WEST WEST WEST WEST WEST SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH EAST EAST EAST EAST SOUTH EAST NORTH NORTH SOUTH EAST EAST EAST EAST EAST EAST EAST SOUTH SOUTH EAST EAST EAST SOUTH SOUTH SOUTH SOUTH SOUTH EAST EAST SOUTH EAST SOUTH SOUTH SOUTH SOUTH EAST EAST SOUTH EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST NORTH NORTH NORTH NORTH NORTH NORTH NORTH  (283)
 
 Strange Attraction
 ████████████████████████████████████████
@@ -104,18 +103,17 @@ Strange Attraction
 █████████x██████ ██████ ██████x██████▒██
 ██e██████ ██████@██████▒██████ ██████▒██
 █   ████   ████   ████   ████   ████   █
-█           ▒ █   y      M█            M
+█    DF     ▒ █   y      M█            M
 █   ████   ████   ████   ████   ████   █
 ██ ██████ ██████ ██████ ██████ ██████ ██
 █████████ ██████ ██████ ██████▒██████ ██
 ██ ██████ ██████ ██████ ██████▒██████ ██
 ██ ██████ ██████ ██████ ██████ ██████ ██
-█Mm ███X   x███   ████   ████   ████ x █
-█ █m███x m X ██ s  █   M               █
-█ M ███X   x███   ████   ████   ████   █
+█Mm ███Xb bx███   ████   ████   ████ x █
+█ █m▒█▒xdmdX ██ s  █   M               █
+█ M ███Xf fx███   ████   ████   ████   █
 ████████████████████████████████████████
 Solution :
-NORTH NORTH NORTH NORTH NORTH NORTH NORTH EAST EAST EAST EAST EAST EAST EAST SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH EAST SOUTH EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST EAST NORTH NORTH NORTH NORTH NORTH NORTH NORTH WEST WEST WEST WEST WEST WEST WEST NORTH NORTH NORTH NORTH NORTH NORTH NORTH NORTH NORTH NORTH NORTH NORTH NORTH NORTH WEST WEST WEST WEST WEST WEST WEST SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH WEST WEST WEST WEST WEST WEST NORTH WEST NORTH NORTH NORTH NORTH NORTH NORTH WEST WEST WEST WEST WEST WEST NORTH WEST WEST SOUTH WEST WEST WEST WEST WEST WEST SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH EAST SOUTH EAST EAST EAST EAST EAST EAST SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH SOUTH WEST WEST WEST WEST WEST WEST WEST NORTH NORTH  (137)
 
 Offering
 ██████████████████████████████████████████████
@@ -135,7 +133,7 @@ Offering
 ██       X█████████████████████ ████Y█████████
 ██       ██████████████████████ ████X█████████
 ██       █████████████     ████ ████Y█████ e █
-██        ███████████            EEEXEEEEE   █
+██        ███████████  X         EEEXEEEEE   █
 ███       ██████████       ███   █████████   █
 ███        ████████       ████████████████████
 ███         █████         ████████████████████
@@ -144,9 +142,9 @@ Offering
 █               s      ███████████████████████
 █     ██              ████████████████████████
 █  X ████              ███████████████████████
-██ X███████x             █████████████████████
-██████████████              X ████████████████
-██████████████████             ███████████████
+██ X███████x            x█████████████████████
+██████████████XX            X ████████████████
+███████████████X██             ███████████████
 ████████████████████            ██████████████
 █████████████████████           ██████████████
 ██████████████████████          ██████████████
@@ -162,8 +160,8 @@ Pushing Forward
 ██████████████████████████████████████████
 ██   ████████████Z██████Z█████████████ e █
 █     ██████ZX█Y█X██████Z█████████████   █
-█      X██Y█ZYXZ█XY██Y█YY███████Y█████   █
-█      X   XZYXZYXY█YX█XY █MMMMMXMM████B██
+█      X██Y█XYXZ█XY██Y█YY███████Y█████   █
+█      X  YXZYXZYXY█YX█XY █MMMMMXMM████B██
 █      X             X█ YX█        ███   █
 ██ x s  mmmmmmmmmmmmmmmmmmm        mmm b █
 ██     X██████          Z██        ███   █

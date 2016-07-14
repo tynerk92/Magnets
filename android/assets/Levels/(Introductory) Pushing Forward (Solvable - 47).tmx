@@ -2416,7 +2416,7 @@
     <property name="Lighting Animation" value="Light Rays Above"/>
     <property name="Render Depth" type="int" value="-1"/>
    </properties>
-   <image width="32" height="80" source="../Graphics/Set 1 (Cave)/Exit/1.png"/>
+   <image width="32" height="64" source="../Graphics/Set 1 (Cave)/Exit/1.png"/>
   </tile>
 
   <tile id="252">
@@ -2429,7 +2429,7 @@
     <property name="Lighting Animation" value="Light Rays Above"/>
     <property name="Render Depth" type="int" value="-1"/>
    </properties>
-   <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Exit/2.png"/>
+   <image width="32" height="64" source="../Graphics/Set 1 (Cave)/Exit/2.png"/>
   </tile>
 
   <tile id="253">
@@ -2442,7 +2442,7 @@
     <property name="Lighting Animation" value="Light Rays Above"/>
     <property name="Render Depth" type="int" value="-1"/>
    </properties>
-   <image width="32" height="80" source="../Graphics/Set 1 (Cave)/Exit/3.png"/>
+   <image width="32" height="64" source="../Graphics/Set 1 (Cave)/Exit/3.png"/>
   </tile>
 
   <tile id="254">
@@ -2455,7 +2455,7 @@
     <property name="Lighting Animation" value="Light Rays Above"/>
     <property name="Render Depth" type="int" value="-1"/>
    </properties>
-   <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Exit/4.png"/>
+   <image width="32" height="64" source="../Graphics/Set 1 (Cave)/Exit/4.png"/>
   </tile>
 
   <tile id="255">
@@ -2468,7 +2468,7 @@
     <property name="Lighting Animation" value="Light Rays Above"/>
     <property name="Render Depth" type="int" value="-1"/>
    </properties>
-   <image width="32" height="80" source="../Graphics/Set 1 (Cave)/Exit/5.png"/>
+   <image width="32" height="64" source="../Graphics/Set 1 (Cave)/Exit/5.png"/>
   </tile>
 
   <tile id="256">
@@ -5604,8 +5604,8 @@
 0,0,0,0,0,0,312,319,314,0,0,0,0,0,0,0,0,0,0,0,0,307,0,0,0,0,0,0,307,0,0,0,0,0,0,0,0,0,0,0,0,0,312,319,314,0,0,0,0,0,
 0,0,0,0,0,312,265,278,273,314,0,0,0,0,0,0,307,307,0,307,0,307,0,0,0,0,0,0,307,0,0,0,0,0,0,0,0,0,0,0,0,0,326,278,281,0,0,0,0,0,
 0,0,0,0,0,326,278,278,278,273,314,307,0,0,307,0,307,307,307,307,0,307,307,0,0,307,0,307,307,0,0,0,0,0,0,0,307,0,0,0,0,0,324,279,282,0,0,0,0,0,
-0,0,0,0,0,326,278,278,278,278,281,307,312,319,314,307,307,307,307,307,307,307,307,0,307,307,0,307,307,308,0,307,307,307,307,307,307,307,307,0,0,0,0,307,0,0,0,0,0,0,
-0,0,0,0,0,324,275,279,276,278,281,307,324,279,274,320,320,320,320,320,320,320,320,320,315,307,0,308,307,307,0,312,319,319,319,319,319,319,314,0,0,0,311,320,313,0,0,0,0,0,
+0,0,0,0,0,326,278,278,278,278,281,307,312,314,307,307,307,307,307,307,307,307,307,0,307,307,0,307,307,308,0,307,307,307,307,307,307,307,307,0,0,0,0,307,0,0,0,0,0,0,
+0,0,0,0,0,324,275,279,276,278,281,307,324,274,320,320,320,320,320,320,320,320,320,320,315,307,0,308,307,307,0,312,319,319,319,319,319,319,314,0,0,0,311,320,313,0,0,0,0,0,
 0,0,0,0,0,0,328,307,326,278,272,315,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,326,278,278,278,278,278,278,281,0,0,0,328,307,328,0,0,0,0,0,
 0,0,0,0,0,0,321,317,265,278,281,307,0,0,0,0,0,0,310,320,320,320,320,316,320,320,320,315,307,0,0,324,279,279,279,279,279,279,282,0,0,0,321,320,269,0,0,0,0,0,
 0,0,0,0,0,0,0,324,279,276,281,307,0,0,0,0,0,0,307,307,307,307,307,327,307,0,307,307,307,0,0,307,307,307,307,307,307,307,307,0,0,0,0,0,0,0,0,0,0,0,
@@ -5626,15 +5626,15 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,290,0,288,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,286,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,286,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,283,0,286,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,285,0,0,0,0,0,0,285,0,287,0,0,0,0,0,0,0,285,0,0,288,0,0,0,292,0,0,0,291,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,286,294,0,283,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,297,290,0,0,0,0,0,0,0,0,0,0,0,0,295,285,284,0,0,0,0,0,0,0,0,285,0,289,290,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,287,290,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,285,0,0,0,0,0,
+0,0,0,0,0,288,0,0,284,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,290,297,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,290,0,0,0,0,0,0,
+0,0,0,0,0,284,0,0,0,0,0,0,290,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,288,285,285,0,0,289,0,0,288,0,0,286,288,289,0,0,0,286,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,287,289,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,285,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,289,290,0,0,0,0,287,0,0,0,0,0,294,0,0,0,0,0,
+0,0,0,0,0,0,284,0,0,0,290,0,0,0,0,0,0,0,0,0,287,0,0,293,0,287,0,0,0,0,0,0,289,0,0,287,286,0,0,0,0,0,0,284,0,0,0,0,0,0,
+0,0,0,0,0,0,0,288,290,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,288,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -5727,7 +5727,7 @@
     <property name="+Open" value="#{Butt0_On}"/>
    </properties>
   </object>
-  <object id="2" name="Exit2" gid="255" x="1376" y="192" width="32" height="32"/>
+  <object id="2" name="Exit2" gid="253" x="1376" y="192" width="32" height="64"/>
   <object id="3" name="Magn3" gid="514" x="384" y="352" width="32" height="32"/>
   <object id="4" name="Magn4" gid="514" x="416" y="352" width="32" height="32"/>
   <object id="5" name="Magn5" gid="514" x="448" y="352" width="32" height="32"/>
@@ -5767,37 +5767,39 @@
   <object id="39" name="Play39" gid="561" x="288" y="352" width="32" height="48"/>
   <object id="40" name="Push40" gid="398" x="224" y="352" width="32" height="48"/>
   <object id="41" name="Unpu41" gid="456" x="672" y="192" width="32" height="48"/>
-  <object id="42" name="Unpu42" gid="456" x="544" y="224" width="32" height="48"/>
-  <object id="43" name="Unpu43" gid="456" x="608" y="224" width="32" height="48"/>
-  <object id="44" name="Unpu44" gid="456" x="448" y="256" width="32" height="48"/>
-  <object id="45" name="Unpu45" gid="456" x="800" y="256" width="32" height="48"/>
-  <object id="46" name="Unpu46" gid="456" x="1152" y="256" width="32" height="48"/>
-  <object id="47" name="Unpu47" gid="456" x="480" y="288" width="32" height="48"/>
-  <object id="48" name="Unpu48" gid="456" x="640" y="288" width="32" height="48"/>
-  <object id="49" name="Unpu49" gid="456" x="768" y="288" width="32" height="48"/>
-  <object id="50" name="Unpu50" gid="456" x="864" y="288" width="32" height="48"/>
-  <object id="51" name="Unpu51" gid="456" x="1152" y="288" width="32" height="48"/>
-  <object id="52" name="Unpu52" gid="456" x="928" y="320" width="32" height="48"/>
-  <object id="53" name="Unpu53" gid="456" x="640" y="416" width="32" height="48"/>
-  <object id="54" name="Unpu54" gid="456" x="768" y="416" width="32" height="48"/>
-  <object id="55" name="Unpu55" gid="457" x="896" y="224" width="32" height="80"/>
-  <object id="56" name="Unpu56" gid="457" x="544" y="288" width="32" height="80"/>
-  <object id="57" name="Unpu57" gid="457" x="576" y="288" width="32" height="80"/>
-  <object id="58" name="Unpu58" gid="457" x="608" y="288" width="32" height="80"/>
-  <object id="59" name="Unpu59" gid="457" x="704" y="288" width="32" height="80"/>
-  <object id="60" name="Unpu60" gid="457" x="800" y="320" width="32" height="80"/>
-  <object id="61" name="Unpu61" gid="457" x="896" y="416" width="32" height="80"/>
-  <object id="62" name="Unpu62" gid="457" x="608" y="448" width="32" height="80"/>
-  <object id="63" name="Unpu63" gid="457" x="832" y="448" width="32" height="80"/>
-  <object id="64" name="Unpu64" gid="457" x="1088" y="448" width="32" height="80"/>
-  <object id="65" name="Unpu65" gid="458" x="512" y="288" width="32" height="112"/>
-  <object id="66" name="Unpu66" gid="458" x="672" y="288" width="32" height="112"/>
-  <object id="67" name="Unpu67" gid="458" x="352" y="320" width="32" height="112"/>
-  <object id="68" name="Unpu68" gid="458" x="352" y="448" width="32" height="112"/>
-  <object id="69" name="Unpu69" gid="458" x="672" y="480" width="32" height="112"/>
-  <object id="70" name="Unpu70" gid="458" x="704" y="480" width="32" height="112"/>
-  <object id="71" name="Unpu71" gid="458" x="864" y="480" width="32" height="112"/>
-  <object id="72" name="Unpu72" gid="473" x="576" y="480" width="64" height="112"/>
-  <object id="73" name="Unpu73" gid="476" x="864" y="320" width="64" height="112"/>
+  <object id="42" name="Unpu42" gid="456" x="512" y="224" width="32" height="48"/>
+  <object id="43" name="Unpu43" gid="456" x="544" y="224" width="32" height="48"/>
+  <object id="44" name="Unpu44" gid="456" x="608" y="224" width="32" height="48"/>
+  <object id="45" name="Unpu45" gid="456" x="512" y="256" width="32" height="48"/>
+  <object id="46" name="Unpu46" gid="456" x="800" y="256" width="32" height="48"/>
+  <object id="47" name="Unpu47" gid="456" x="1152" y="256" width="32" height="48"/>
+  <object id="48" name="Unpu48" gid="456" x="480" y="288" width="32" height="48"/>
+  <object id="49" name="Unpu49" gid="456" x="512" y="288" width="32" height="48"/>
+  <object id="50" name="Unpu50" gid="456" x="640" y="288" width="32" height="48"/>
+  <object id="51" name="Unpu51" gid="456" x="768" y="288" width="32" height="48"/>
+  <object id="52" name="Unpu52" gid="456" x="864" y="288" width="32" height="48"/>
+  <object id="53" name="Unpu53" gid="456" x="1152" y="288" width="32" height="48"/>
+  <object id="54" name="Unpu54" gid="456" x="928" y="320" width="32" height="48"/>
+  <object id="55" name="Unpu55" gid="456" x="640" y="416" width="32" height="48"/>
+  <object id="56" name="Unpu56" gid="456" x="768" y="416" width="32" height="48"/>
+  <object id="57" name="Unpu57" gid="457" x="896" y="224" width="32" height="80"/>
+  <object id="58" name="Unpu58" gid="457" x="448" y="288" width="32" height="80"/>
+  <object id="59" name="Unpu59" gid="457" x="544" y="288" width="32" height="80"/>
+  <object id="60" name="Unpu60" gid="457" x="576" y="288" width="32" height="80"/>
+  <object id="61" name="Unpu61" gid="457" x="608" y="288" width="32" height="80"/>
+  <object id="62" name="Unpu62" gid="457" x="704" y="288" width="32" height="80"/>
+  <object id="63" name="Unpu63" gid="457" x="800" y="320" width="32" height="80"/>
+  <object id="64" name="Unpu64" gid="457" x="896" y="416" width="32" height="80"/>
+  <object id="65" name="Unpu65" gid="457" x="608" y="448" width="32" height="80"/>
+  <object id="66" name="Unpu66" gid="457" x="832" y="448" width="32" height="80"/>
+  <object id="67" name="Unpu67" gid="457" x="1088" y="448" width="32" height="80"/>
+  <object id="68" name="Unpu68" gid="458" x="672" y="288" width="32" height="112"/>
+  <object id="69" name="Unpu69" gid="458" x="352" y="320" width="32" height="112"/>
+  <object id="70" name="Unpu70" gid="458" x="352" y="448" width="32" height="112"/>
+  <object id="71" name="Unpu71" gid="458" x="672" y="480" width="32" height="112"/>
+  <object id="72" name="Unpu72" gid="458" x="704" y="480" width="32" height="112"/>
+  <object id="73" name="Unpu73" gid="458" x="864" y="480" width="32" height="112"/>
+  <object id="74" name="Unpu74" gid="473" x="576" y="480" width="64" height="112"/>
+  <object id="75" name="Unpu75" gid="476" x="864" y="320" width="64" height="112"/>
  </objectgroup>
 </map>

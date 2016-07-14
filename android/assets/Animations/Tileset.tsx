@@ -2415,7 +2415,7 @@
     <property name="Lighting Animation" value="Light Rays Above"/>
     <property name="Render Depth" type="int" value="-1"/>
    </properties>
-   <image width="32" height="80" source="../Graphics/Set 1 (Cave)/Exit/1.png"/>
+   <image width="32" height="64" source="../Graphics/Set 1 (Cave)/Exit/1.png"/>
   </tile>
 
   <tile id="252">
@@ -2428,7 +2428,7 @@
     <property name="Lighting Animation" value="Light Rays Above"/>
     <property name="Render Depth" type="int" value="-1"/>
    </properties>
-   <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Exit/2.png"/>
+   <image width="32" height="64" source="../Graphics/Set 1 (Cave)/Exit/2.png"/>
   </tile>
 
   <tile id="253">
@@ -2441,7 +2441,7 @@
     <property name="Lighting Animation" value="Light Rays Above"/>
     <property name="Render Depth" type="int" value="-1"/>
    </properties>
-   <image width="32" height="80" source="../Graphics/Set 1 (Cave)/Exit/3.png"/>
+   <image width="32" height="64" source="../Graphics/Set 1 (Cave)/Exit/3.png"/>
   </tile>
 
   <tile id="254">
@@ -2454,7 +2454,7 @@
     <property name="Lighting Animation" value="Light Rays Above"/>
     <property name="Render Depth" type="int" value="-1"/>
    </properties>
-   <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Exit/4.png"/>
+   <image width="32" height="64" source="../Graphics/Set 1 (Cave)/Exit/4.png"/>
   </tile>
 
   <tile id="255">
@@ -2467,7 +2467,7 @@
     <property name="Lighting Animation" value="Light Rays Above"/>
     <property name="Render Depth" type="int" value="-1"/>
    </properties>
-   <image width="32" height="80" source="../Graphics/Set 1 (Cave)/Exit/5.png"/>
+   <image width="32" height="64" source="../Graphics/Set 1 (Cave)/Exit/5.png"/>
   </tile>
 
   <tile id="256">

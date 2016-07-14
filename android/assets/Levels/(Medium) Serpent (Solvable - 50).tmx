@@ -2416,7 +2416,7 @@
     <property name="Lighting Animation" value="Light Rays Above"/>
     <property name="Render Depth" type="int" value="-1"/>
    </properties>
-   <image width="32" height="80" source="../Graphics/Set 1 (Cave)/Exit/1.png"/>
+   <image width="32" height="64" source="../Graphics/Set 1 (Cave)/Exit/1.png"/>
   </tile>
 
   <tile id="252">
@@ -2429,7 +2429,7 @@
     <property name="Lighting Animation" value="Light Rays Above"/>
     <property name="Render Depth" type="int" value="-1"/>
    </properties>
-   <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Exit/2.png"/>
+   <image width="32" height="64" source="../Graphics/Set 1 (Cave)/Exit/2.png"/>
   </tile>
 
   <tile id="253">
@@ -2442,7 +2442,7 @@
     <property name="Lighting Animation" value="Light Rays Above"/>
     <property name="Render Depth" type="int" value="-1"/>
    </properties>
-   <image width="32" height="80" source="../Graphics/Set 1 (Cave)/Exit/3.png"/>
+   <image width="32" height="64" source="../Graphics/Set 1 (Cave)/Exit/3.png"/>
   </tile>
 
   <tile id="254">
@@ -2455,7 +2455,7 @@
     <property name="Lighting Animation" value="Light Rays Above"/>
     <property name="Render Depth" type="int" value="-1"/>
    </properties>
-   <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Exit/4.png"/>
+   <image width="32" height="64" source="../Graphics/Set 1 (Cave)/Exit/4.png"/>
   </tile>
 
   <tile id="255">
@@ -2468,7 +2468,7 @@
     <property name="Lighting Animation" value="Light Rays Above"/>
     <property name="Render Depth" type="int" value="-1"/>
    </properties>
-   <image width="32" height="80" source="../Graphics/Set 1 (Cave)/Exit/5.png"/>
+   <image width="32" height="64" source="../Graphics/Set 1 (Cave)/Exit/5.png"/>
   </tile>
 
   <tile id="256">
@@ -5623,13 +5623,13 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,285,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,284,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,290,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,291,0,289,284,290,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,284,291,0,0,0,0,0,0,0,0,283,284,289,0,0,0,0,0,0,
-0,0,0,0,0,283,0,0,289,0,290,0,0,0,0,0,285,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,289,0,0,285,284,0,0,0,289,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,284,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,287,0,0,0,0,0,0,0,0,
+0,0,0,0,0,286,0,0,0,0,0,0,0,0,283,0,0,0,284,0,0,0,0,0,0,
+0,0,0,0,0,289,284,0,0,0,0,0,0,290,284,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,286,0,0,286,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -5721,7 +5721,7 @@
     <property name="+Open" value="#{Butt0_On} AND #{Butt1_On} AND #{Butt2_On} AND #{Butt3_On}"/>
    </properties>
   </object>
-  <object id="6" name="Exit6" gid="254" x="384" y="192" width="32" height="80"/>
+  <object id="6" name="Exit6" gid="253" x="384" y="192" width="32" height="64"/>
   <object id="7" name="Play7" gid="561" x="192" y="320" width="32" height="48"/>
   <object id="8" name="Push8" gid="424" x="224" y="384" width="96" height="80"/>
   <object id="9" name="Push9" gid="424" x="480" y="384" width="96" height="80"/>

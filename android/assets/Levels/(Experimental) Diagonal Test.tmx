@@ -2416,7 +2416,7 @@
     <property name="Lighting Animation" value="Light Rays Above"/>
     <property name="Render Depth" type="int" value="-1"/>
    </properties>
-   <image width="32" height="80" source="../Graphics/Set 1 (Cave)/Exit/1.png"/>
+   <image width="32" height="64" source="../Graphics/Set 1 (Cave)/Exit/1.png"/>
   </tile>
 
   <tile id="252">
@@ -2429,7 +2429,7 @@
     <property name="Lighting Animation" value="Light Rays Above"/>
     <property name="Render Depth" type="int" value="-1"/>
    </properties>
-   <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Exit/2.png"/>
+   <image width="32" height="64" source="../Graphics/Set 1 (Cave)/Exit/2.png"/>
   </tile>
 
   <tile id="253">
@@ -2442,7 +2442,7 @@
     <property name="Lighting Animation" value="Light Rays Above"/>
     <property name="Render Depth" type="int" value="-1"/>
    </properties>
-   <image width="32" height="80" source="../Graphics/Set 1 (Cave)/Exit/3.png"/>
+   <image width="32" height="64" source="../Graphics/Set 1 (Cave)/Exit/3.png"/>
   </tile>
 
   <tile id="254">
@@ -2455,7 +2455,7 @@
     <property name="Lighting Animation" value="Light Rays Above"/>
     <property name="Render Depth" type="int" value="-1"/>
    </properties>
-   <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Exit/4.png"/>
+   <image width="32" height="64" source="../Graphics/Set 1 (Cave)/Exit/4.png"/>
   </tile>
 
   <tile id="255">
@@ -2468,7 +2468,7 @@
     <property name="Lighting Animation" value="Light Rays Above"/>
     <property name="Render Depth" type="int" value="-1"/>
    </properties>
-   <image width="32" height="80" source="../Graphics/Set 1 (Cave)/Exit/5.png"/>
+   <image width="32" height="64" source="../Graphics/Set 1 (Cave)/Exit/5.png"/>
   </tile>
 
   <tile id="256">
@@ -5633,23 +5633,23 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,286,0,286,0,0,0,284,0,0,0,0,0,0,0,0,
-0,0,0,0,0,289,284,0,0,0,0,0,285,290,0,297,0,0,0,0,0,
+0,0,0,0,0,0,288,0,0,0,0,0,0,0,283,0,0,0,0,0,0,
+0,0,0,0,0,285,0,0,0,289,0,0,0,0,0,285,0,0,0,0,0,
+0,0,0,0,0,0,0,0,287,0,0,288,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,289,0,0,0,0,287,0,0,0,0,0,0,
+0,0,0,0,0,290,0,284,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,283,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,284,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,284,0,0,288,295,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,283,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,292,0,0,289,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,287,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,287,0,288,0,0,0,288,0,284,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,285,288,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,287,288,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,289,0,0,0,0,0,290,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,297,0,290,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,289,0,0,0,0,286,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,283,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,288,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,285,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,289,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,289,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,284,0,284,0,0,0,0,0,0,0,287,0,0,0,0,0,
+0,0,0,0,0,0,0,0,289,0,0,0,0,0,0,284,0,0,0,0,0,
+0,0,0,0,0,283,0,284,0,0,0,0,0,289,0,0,0,0,0,0,0,
+0,0,0,0,0,285,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,298,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,287,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -5755,7 +5755,7 @@
  </layer>
 
  <objectgroup name="Objects">
-  <object id="0" name="Exit0" gid="255" x="320" y="320" width="32" height="32"/>
+  <object id="0" name="Exit0" gid="254" x="320" y="320" width="32" height="64"/>
   <object id="1" name="Magn1" gid="524" x="224" y="192" width="32" height="50"/>
   <object id="2" name="Magn2" gid="524" x="416" y="192" width="32" height="50"/>
   <object id="3" name="Magn3" gid="524" x="288" y="256" width="32" height="50"/>
