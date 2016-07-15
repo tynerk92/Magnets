@@ -13,8 +13,8 @@ import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Pools;
+import com.somethingyellow.graphics.LightSource;
 import com.somethingyellow.utility.ObjectSet;
-import com.somethingyellow.utility.TiledMapHelper;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -27,8 +27,7 @@ import java.util.Set;
 
 /**
  * Represents a stage with a tiled coordinate system
- * Tightly coupled with TiledStageActor, TiledStageLightSource,
- * TiledStageMapRenderer, TiledStageMotionResolver, TiledStageHistorian
+ * Tightly coupled with TiledStageActor, TiledStageMapRenderer, TiledStageMotionResolver, TiledStageHistorian
  * Delegates rendering of actors and map to TiledStageMapRenderer
  * Delegates motion resolution to TiledStageMotionResolver
  * To call load() to load a tiled map
@@ -40,7 +39,7 @@ public class TiledStage extends Stage {
 	private OrthographicCamera _camera = new OrthographicCamera();
 	private TiledStageActor _cameraFocalActor;
 	private HashMap<String, TiledStageActor> _actorsByName = new HashMap<String, TiledStageActor>();
-	private HashSet<TiledStageLightSource> _lightSources = new HashSet<TiledStageLightSource>();
+	private HashSet<LightSource> _lightSources = new HashSet<LightSource>();
 	private ArrayList<HashSet<TiledStageActor>> _subTicksToActors;
 	private HashSet<TiledStageActor> _actors = new HashSet<TiledStageActor>();
 	private LinkedList<TiledStageActor> _tempActors = new LinkedList<TiledStageActor>();
@@ -63,11 +62,14 @@ public class TiledStage extends Stage {
 	private boolean _isPaused;
 
 	public TiledStage(int maxSubTicks, float tickDuration, Commands commands) {
+		super();
+
 		_maxSubTicks = maxSubTicks;
 		_tickTime = 0f;
 		_cameraZoom = 1f;
 		_tickDuration = tickDuration;
 		_motionResolver = new TiledStageMotionResolver(this);
+		_mapRenderer = new TiledStageMapRenderer(this);
 		_tickNo = 0;
 		_commands = commands;
 		_isPaused = true;
@@ -175,12 +177,10 @@ public class TiledStage extends Stage {
 	 * Loads a TiledMap, unloading if it is still loaded
 	 */
 
-	public void load(TiledMap map, int screenWidth, int screenHeight, float cameraZoom,
-	                 String wallLayerName) {
+	public void load(TiledMap map, float cameraZoom, String wallLayerName) {
 		if (isLoaded()) unload();
 
 		_map = map;
-		_mapRenderer = new TiledStageMapRenderer(this);
 		MapProperties props = _map.getProperties();
 		_tileWidth = props.get("tilewidth", Integer.class);
 		_tileHeight = props.get("tileheight", Integer.class);
@@ -235,8 +235,7 @@ public class TiledStage extends Stage {
 			_commands.processCoordinate(coordinate);
 		}
 
-		_mapRenderer.initialize(screenWidth, screenHeight);
-		setScreenSize(screenWidth, screenHeight);
+		_mapRenderer.load(_map);
 
 		_isPaused = false;
 	}
@@ -246,7 +245,7 @@ public class TiledStage extends Stage {
 		_tempActors.clear();
 		_tempActors.addAll(_actors);
 		for (TiledStageActor actor : _tempActors) {
-			actor.remove();
+			actor.setOrigin(null);
 			Pools.free(actor);
 		}
 		_actors.clear();
@@ -257,19 +256,18 @@ public class TiledStage extends Stage {
 		}
 		_cameraFocalActor = null;
 
-		// Remove all lightsources and free them
-		for (TiledStageLightSource lightSource : _lightSources) {
-			Pools.free(lightSource);
-		}
+		// Remove all lightsources
 		_lightSources.clear();
+		System.out.println(_lightSources);
 
 		_tileLayers.clear();
-		_mapRenderer.dispose();
-		_mapRenderer = null;
+		_mapRenderer.unload();
 		_map.dispose();
 		_isPaused = true;
 		_tickNo = 0;
 		_map = null;
+
+		for (Listener listener : _listeners) listener.unloaded(this);
 	}
 
 	@Override
@@ -302,7 +300,7 @@ public class TiledStage extends Stage {
 		// Map
 		for (TiledStageActor actor : _actors) actor.updateAnimation();
 		_mapRenderer.setView(_camera);
-		_mapRenderer.render();
+		_mapRenderer.render(_lightSources);
 
 		for (Listener listener : _listeners) listener.drawn(this);
 	}
@@ -398,14 +396,12 @@ public class TiledStage extends Stage {
 		for (Listener listener : _listeners) listener.actorAdded(this, actor);
 	}
 
-	public void addLightSource(TiledStageLightSource lightSource) {
-		super.addActor(lightSource);
+	public void addLightSource(LightSource lightSource) {
 		_lightSources.add(lightSource);
 	}
 
-	public void removeLightSource(TiledStageLightSource lightSource) {
+	public void removeLightSource(LightSource lightSource) {
 		_lightSources.remove(lightSource);
-		lightSource.remove();
 	}
 
 	public void removeActor(TiledStageActor actor) {
@@ -445,14 +441,13 @@ public class TiledStage extends Stage {
 		return tileRow * _tileColumns + tileCol;
 	}
 
-	public Set<TiledStageLightSource> lightSources() {
+	public Set<LightSource> lightSources() {
 		return _lightSources;
 	}
 
 	public void setScreenSize(int screenWidth, int screenHeight) {
 		_camera.setToOrtho(false, screenWidth, screenHeight);
 		if (_cameraFocalActor != null) _camera.position.set(_cameraFocalActor.center(), 0);
-		if (_mapRenderer != null) _mapRenderer.setScreenSize(screenWidth, screenHeight);
 	}
 
 	public void setCameraFocalActor(TiledStageActor actor) {
@@ -466,6 +461,12 @@ public class TiledStage extends Stage {
 
 	public Iterator<TiledMapTile> tilesIterator() {
 		return new TilesIterator();
+	}
+
+	@Override
+	public void dispose() {
+		super.dispose();
+		_mapRenderer.dispose();
 	}
 
 	public enum DIRECTION {
@@ -529,6 +530,12 @@ public class TiledStage extends Stage {
 		 */
 		public void drawn(TiledStage tiledStage) {
 		}
+
+		/**
+		 * When map is unloaded
+		 */
+		public void unloaded(TiledStage tiledStage) {
+		}
 	}
 
 	public class Coordinate implements Comparable<Coordinate> {
@@ -537,7 +544,7 @@ public class TiledStage extends Stage {
 		private int _col;
 		private int _elevation;
 		private HashMap<String, Cell> _cells;
-		private HashSet<Coordinate> TempCoordinates = new HashSet<Coordinate>();
+		private ObjectSet<Coordinate> TempCoordinates = new ObjectSet<Coordinate>();
 
 		public Coordinate(int row, int col) {
 			_row = row;
@@ -565,6 +572,10 @@ public class TiledStage extends Stage {
 			_actors.remove(actor);
 		}
 
+		public Coordinate getRelativeCoordinate(int rowOffset, int colOffset) {
+			return getCoordinate(rowOffset + _row, colOffset + _col);
+		}
+
 		public DIRECTION getDirectionFrom(Coordinate sourceCoordinate) {
 			if (this == sourceCoordinate) return null;
 
@@ -584,7 +595,7 @@ public class TiledStage extends Stage {
 			}
 		}
 
-		public HashSet<Coordinate> getCoordinatesAtRange(int range, boolean includeDiagonally) {
+		public ObjectSet<Coordinate> getCoordinatesAtRange(int range, boolean includeDiagonally) {
 			TempCoordinates.clear();
 			Coordinate coordinate;
 
@@ -614,7 +625,7 @@ public class TiledStage extends Stage {
 			return TempCoordinates;
 		}
 
-		public HashSet<Coordinate> getCoordinatesInRange(int range, boolean includeDiagonally) {
+		public ObjectSet<Coordinate> getCoordinatesInRange(int range, boolean includeDiagonally) {
 			TempCoordinates.clear();
 			Coordinate coordinate;
 

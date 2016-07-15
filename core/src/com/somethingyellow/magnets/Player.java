@@ -1,5 +1,6 @@
 package com.somethingyellow.magnets;
 
+import com.somethingyellow.graphics.AnimatedActor;
 import com.somethingyellow.graphics.AnimationDef;
 import com.somethingyellow.tiled.TiledStage;
 import com.somethingyellow.tiled.TiledStageActor;
@@ -10,60 +11,108 @@ import java.util.Map;
 public class Player extends TiledStageActor {
 
 	public static final int[] SUBTICKS_STATIC = new int[]{
-			PlayScreen.SUBTICKS.PLAYER_ACTION.ordinal()
+			PlayScreen.SUBTICKS.START.ordinal(),
+			PlayScreen.SUBTICKS.PLAYER_ACTION.ordinal(),
+			PlayScreen.SUBTICKS.END.ordinal()
 	};
 	private Commands _commands;
 	private PLAYER_ACTION _action;
+	private boolean _ifTriedMoving;
 
 	public Player() {
 		super();
 		SUBTICKS = SUBTICKS_STATIC;
 	}
 
-	public void initialize(Map<String, AnimationDef> animationDefs, TiledStage.Coordinate origin, Commands commands) {
-		super.initialize(animationDefs, origin);
+	public void initialize(TiledStage stage, Map<String, AnimationDef> animationDefs, TiledStage.Coordinate origin, Commands commands) {
+		super.initialize(stage, animationDefs, origin);
 		_commands = commands;
 		_action = null;
+		_ifTriedMoving = false;
 
-		showAnimation(Config.AnimationRightIdle);
+		setTransition(Config.AnimationPushingDownToIdle, Config.AnimationIdleDown);
+		setTransition(Config.AnimationPushingRightToIdle, Config.AnimationIdleRight);
+		setTransition(Config.AnimationPushingLeftToIdle, Config.AnimationIdleLeft);
+		setTransition(Config.AnimationPushingUpToIdle, Config.AnimationIdleUp);
+		setTransition(Config.AnimationIdleToPushingDown, Config.AnimationPushingDown);
+		setTransition(Config.AnimationIdleToPushingRight, Config.AnimationPushingRight);
+		setTransition(Config.AnimationIdleToPushingLeft, Config.AnimationPushingLeft);
+		setTransition(Config.AnimationIdleToPushingUp, Config.AnimationPushingUp);
+		addStatus(Config.StatusFacingRight);
+		showAnimation(Config.AnimationIdleRight);
 	}
 
 	@Override
 	public void subtick(int subtick) {
+		if (subtick == PlayScreen.SUBTICKS.START.ordinal()) {
 
-		if (subtick == PlayScreen.SUBTICKS.PLAYER_ACTION.ordinal()) {
+			_ifTriedMoving = false;
 
-			for (TiledStage.Coordinate bodyCoordinate : bodyCoordinates()) {
-				for (TiledStageActor body : bodyCoordinate.actors()) {
-					if (body instanceof Exit) {
-						_commands.endLevel();
-						return;
+		} else if (subtick == PlayScreen.SUBTICKS.PLAYER_ACTION.ordinal()) {
+
+			// Check if player exited the level
+			if (!isMoving()) {
+				for (TiledStage.Coordinate bodyCoordinate : bodyCoordinates()) {
+					for (TiledStageActor body : bodyCoordinate.actors()) {
+						if (body instanceof Exit) {
+							_commands.endLevel();
+							return;
+						}
 					}
 				}
 			}
 
-			if (_action != null) {
+			if (!isMoving() && _action != null) {
+
+				TiledStage.DIRECTION direction = null;
 				switch (_action) {
 					case MOVE_UP:
-						tryToMoveDirection(TiledStage.DIRECTION.NORTH, Config.MoveTicks);
-						pushDirection(TiledStage.DIRECTION.NORTH);
+						direction = TiledStage.DIRECTION.NORTH;
 						break;
 					case MOVE_DOWN:
-						tryToMoveDirection(TiledStage.DIRECTION.SOUTH, Config.MoveTicks);
-						pushDirection(TiledStage.DIRECTION.SOUTH);
+						direction = TiledStage.DIRECTION.SOUTH;
 						break;
 					case MOVE_LEFT:
-						tryToMoveDirection(TiledStage.DIRECTION.WEST, Config.MoveTicks);
-						pushDirection(TiledStage.DIRECTION.WEST);
+						direction = TiledStage.DIRECTION.WEST;
 						break;
 					case MOVE_RIGHT:
-						tryToMoveDirection(TiledStage.DIRECTION.EAST, Config.MoveTicks);
-						pushDirection(TiledStage.DIRECTION.EAST);
+						direction = TiledStage.DIRECTION.EAST;
 						break;
+				}
+
+				if (direction != null) {
+					_ifTriedMoving = true;
+					tryToMoveDirection(direction, Config.MoveTicks);
+
+					if (pushDirection(direction)) {
+						setStatus(Config.StatusPushing, true);
+						setStatus(Config.StatusMoving, false);
+					} else {
+						setStatus(Config.StatusMoving, true);
+						setStatus(Config.StatusPushing, false);
+					}
+
+					setStatus(Config.StatusFacingRight, direction == TiledStage.DIRECTION.EAST);
+					setStatus(Config.StatusFacingLeft, direction == TiledStage.DIRECTION.WEST);
+					setStatus(Config.StatusFacingUp, direction == TiledStage.DIRECTION.NORTH);
+					setStatus(Config.StatusFacingDown, direction == TiledStage.DIRECTION.SOUTH);
 				}
 			}
 
 			_action = null;
+
+		} else if (subtick == PlayScreen.SUBTICKS.END.ordinal()) {
+
+			if (isMoving()) {
+				if (_ifTriedMoving) {
+					for (AnimatedActor.Listener listener : listeners()) {
+						if (listener instanceof Listener) ((Listener) listener).moved(this);
+					}
+				}
+			} else {
+				setStatus(Config.StatusPushing, false);
+				setStatus(Config.StatusMoving, false);
+			}
 		}
 	}
 
@@ -73,6 +122,61 @@ public class Player extends TiledStageActor {
 
 	@Override
 	public void updateAnimation() {
+		// If animation is pushing and it is not longer pushing that direction, animate back to idle first
+		if (isAnimationActive(Config.AnimationPushingLeft)) {
+			if (!hasStatuses(Config.StatusPushing, Config.StatusFacingLeft)) {
+				hideAllButAnimations(Config.AnimationPushingLeftToIdle);
+			}
+		} else if (isAnimationActive(Config.AnimationPushingRight)) {
+			if (!hasStatuses(Config.StatusPushing, Config.StatusFacingRight)) {
+				hideAllButAnimations(Config.AnimationPushingRightToIdle);
+			}
+		} else if (isAnimationActive(Config.AnimationPushingDown)) {
+			if (!hasStatuses(Config.StatusPushing, Config.StatusFacingDown)) {
+				hideAllButAnimations(Config.AnimationPushingDownToIdle);
+			}
+		} else if (isAnimationActive(Config.AnimationPushingUp)) {
+			if (!hasStatuses(Config.StatusPushing, Config.StatusFacingUp)) {
+				hideAllButAnimations(Config.AnimationPushingUpToIdle);
+			}
+		} else if (isAnyAnimationActive(
+				Config.AnimationIdleDown,
+				Config.AnimationIdleRight,
+				Config.AnimationIdleLeft,
+				Config.AnimationIdleUp,
+				Config.AnimationWalkingDown,
+				Config.AnimationWalkingUp,
+				Config.AnimationWalkingLeft,
+				Config.AnimationWalkingRight)) {
+
+			if (hasStatuses(Config.StatusPushing, Config.StatusFacingUp)) {
+				hideAllButAnimations(Config.AnimationIdleToPushingUp);
+			} else if (hasStatuses(Config.StatusPushing, Config.StatusFacingDown)) {
+				hideAllButAnimations(Config.AnimationIdleToPushingDown);
+			} else if (hasStatuses(Config.StatusPushing, Config.StatusFacingLeft)) {
+				hideAllButAnimations(Config.AnimationIdleToPushingLeft);
+			} else if (hasStatuses(Config.StatusPushing, Config.StatusFacingRight)) {
+				hideAllButAnimations(Config.AnimationIdleToPushingRight);
+			} else if (hasStatuses(Config.StatusMoving, Config.StatusFacingUp)) {
+				hideAllButAnimations(Config.AnimationWalkingUp);
+			} else if (hasStatuses(Config.StatusMoving, Config.StatusFacingDown)) {
+				hideAllButAnimations(Config.AnimationWalkingDown);
+			} else if (hasStatuses(Config.StatusMoving, Config.StatusFacingLeft)) {
+				hideAllButAnimations(Config.AnimationWalkingLeft);
+			} else if (hasStatuses(Config.StatusMoving, Config.StatusFacingRight)) {
+				hideAllButAnimations(Config.AnimationWalkingRight);
+			} else if (hasStatuses(Config.StatusFacingRight)) {
+				hideAllButAnimations(Config.AnimationIdleRight);
+			} else if (hasStatuses(Config.StatusFacingLeft)) {
+				hideAllButAnimations(Config.AnimationIdleLeft);
+			} else if (hasStatuses(Config.StatusFacingUp)) {
+				hideAllButAnimations(Config.AnimationIdleUp);
+			} else if (hasStatuses(Config.StatusFacingDown)) {
+				hideAllButAnimations(Config.AnimationIdleDown);
+			}
+		}
+
+		System.out.println(getActiveAnimations());
 	}
 
 	protected boolean pushDirection(final TiledStage.DIRECTION direction) {
@@ -108,7 +212,14 @@ public class Player extends TiledStageActor {
 
 	public static class Config {
 		public static int MoveTicks = 3;
-		public static String AnimationRightIdle = "Right Idle";
+		public static String AnimationIdleLeft = "Idle Left";
+		public static String AnimationIdleRight = "Idle Right";
+		public static String AnimationIdleUp = "Idle Up";
+		public static String AnimationIdleDown = "Idle Down";
+		public static String AnimationBlinkingLeft = "Blinking Left";
+		public static String AnimationBlinkingRight = "Blinking Right";
+		public static String AnimationBlinkingUp = "Blinking Up";
+		public static String AnimationBlinking = "Blinking Down";
 		public static String AnimationWalkingLeft = "Walking Left";
 		public static String AnimationWalkingRight = "Walking Right";
 		public static String AnimationWalkingUp = "Walking Up";
@@ -117,5 +228,24 @@ public class Player extends TiledStageActor {
 		public static String AnimationPushingRight = "Pushing Right";
 		public static String AnimationPushingUp = "Pushing Up";
 		public static String AnimationPushingDown = "Pushing Down";
+		public static String AnimationPushingLeftToIdle = "Pushing Left To Idle";
+		public static String AnimationPushingRightToIdle = "Pushing Right To Idle";
+		public static String AnimationPushingUpToIdle = "Pushing Up To Idle";
+		public static String AnimationPushingDownToIdle = "Pushing Down To Idle";
+		public static String AnimationIdleToPushingLeft = "Idle To Pushing Left";
+		public static String AnimationIdleToPushingRight = "Idle To Pushing Right";
+		public static String AnimationIdleToPushingUp = "Idle To Pushing Up";
+		public static String AnimationIdleToPushingDown = "Idle To Pushing Down";
+		public static String StatusFacingLeft = "Facing Left";
+		public static String StatusFacingRight = "Facing Right";
+		public static String StatusFacingUp = "Facing Up";
+		public static String StatusFacingDown = "Facing Down";
+		public static String StatusPushing = "Pushing";
+		public static String StatusMoving = "Moving";
+	}
+
+	public abstract static class Listener extends TiledStageActor.Listener {
+		public void moved(Player player) {
+		}
 	}
 }

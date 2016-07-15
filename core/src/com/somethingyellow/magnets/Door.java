@@ -17,8 +17,8 @@ public class Door extends TiledStageActor {
 		SUBTICKS = SUBTICKS_STATIC;
 	}
 
-	public void initialize(Map<String, AnimationDef> animationDefs, TiledStage.Coordinate origin, boolean toOpen) {
-		super.initialize(animationDefs, origin);
+	public void initialize(TiledStage stage, Map<String, AnimationDef> animationDefs, TiledStage.Coordinate origin, boolean toOpen) {
+		super.initialize(stage, animationDefs, origin);
 
 		setTransition(Config.AnimationOpening, Config.AnimationOpened);
 		setTransition(Config.AnimationClosing, Config.AnimationClosed);
@@ -55,13 +55,11 @@ public class Door extends TiledStageActor {
 	public void updateAnimation() {
 		if (hasStatus(Config.StatusOpened)) {
 			if (!isAnimationActive(Config.AnimationOpened) && !isAnimationActive(Config.AnimationOpening)) {
-				hideAllAnimations();
-				showAnimation(Config.AnimationOpening);
+				hideAllButAnimations(Config.AnimationOpening);
 			}
 		} else {
 			if (!isAnimationActive(Config.AnimationClosed) && !isAnimationActive(Config.AnimationClosing)) {
-				hideAllAnimations();
-				showAnimation(Config.AnimationClosing);
+				hideAllButAnimations(Config.AnimationClosing);
 			}
 		}
 	}

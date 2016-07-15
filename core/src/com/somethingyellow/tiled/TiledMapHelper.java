@@ -1,4 +1,4 @@
-package com.somethingyellow.utility;
+package com.somethingyellow.tiled;
 
 import com.badlogic.gdx.maps.MapProperties;
 

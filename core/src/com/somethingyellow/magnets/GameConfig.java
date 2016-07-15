@@ -123,9 +123,13 @@ public class GameConfig {
 		};*/
 
 		// PlayScreen.Config
-		PlayScreen.Config.GameAnimationsTMXPath = "Animations/(Introductory) Exploration (Solvable - 283).tmx";
+		PlayScreen.Config.AnimationsTMXPath = "Animations/(Introductory) Exploration.tmx";
 		PlayScreen.Config.GameWallLayer = "Walls and Objects";
-		PlayScreen.Config.AnimationPauseOverlay = "Pause Overlay";
+
+		// PlayScreenUIStage.Config
+		PlayScreenUIStage.Config.AnimationsTMXPath = "Animations/(Introductory) Exploration.tmx";
+		PlayScreenUIStage.Config.AnimationPauseOverlay = "Pause Overlay";
+
 
 		// Controller.Config
 

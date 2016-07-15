@@ -18,6 +18,8 @@ public class Animation implements Comparable<Animation> {
 	private AnimationFrame[] _frames;
 	private int _frameIndex;
 	private int _zIndex;
+	private float _renderDisplacementX;
+	private float _renderDisplacementY;
 
 	private float _duration;
 	private float _alpha;
@@ -29,7 +31,7 @@ public class Animation implements Comparable<Animation> {
 	}
 
 	public Animation(AnimationDef def, String tag) {
-		this(def.frames(), def.zIndex(), tag);
+		this(def.frames(), def.zIndex(), tag, def.renderDisplacementX(), def.renderDisplacementY());
 	}
 
 	public Animation(AnimationFrame[] frames) {
@@ -37,10 +39,10 @@ public class Animation implements Comparable<Animation> {
 	}
 
 	public Animation(AnimationFrame[] frames, int zIndex) {
-		this(frames, zIndex, null);
+		this(frames, zIndex, null, 0f, 0f);
 	}
 
-	public Animation(AnimationFrame[] frames, int zIndex, String tag) {
+	public Animation(AnimationFrame[] frames, int zIndex, String tag, float renderDisplacementX, float renderDisplacementY) {
 		_time = 0f;
 		_tag = tag;
 		_frameIndex = 0;
@@ -48,6 +50,8 @@ public class Animation implements Comparable<Animation> {
 		_isActive = true;
 		_frames = frames;
 		_zIndex = zIndex;
+		_renderDisplacementX = renderDisplacementX;
+		_renderDisplacementY = renderDisplacementY;
 
 		_duration = 0f;
 		for (AnimationFrame frame : _frames) {
@@ -55,6 +59,19 @@ public class Animation implements Comparable<Animation> {
 		}
 
 		_listeners = new ObjectSet<Listener>();
+	}
+
+	public void setRenderDisplacement(float x, float y) {
+		_renderDisplacementX = x;
+		_renderDisplacementY = y;
+	}
+
+	public float renderDisplacementX() {
+		return _renderDisplacementX;
+	}
+
+	public float renderDisplacementY() {
+		return _renderDisplacementY;
 	}
 
 	public void update(float timeDelta) {
@@ -130,6 +147,11 @@ public class Animation implements Comparable<Animation> {
 	@Override
 	public int compareTo(Animation animation) {
 		return _zIndex - animation._zIndex;
+	}
+
+	@Override
+	public String toString() {
+		return _tag;
 	}
 
 	public static abstract class Listener {

@@ -17,7 +17,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.somethingyellow.graphics.AnimationDef;
 import com.somethingyellow.graphics.AnimationFrame;
-import com.somethingyellow.utility.TiledMapHelper;
+import com.somethingyellow.tiled.TiledMapHelper;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -109,7 +109,9 @@ public class Main extends Game implements LevelSelectScreen.Commands, PlayScreen
 				String name = TiledMapHelper.ParseProp(tile.getProperties(), Config.TMX.NameProp);
 				if (name == null) continue;
 				int zIndex = TiledMapHelper.ParseIntegerProp(tile.getProperties(), Config.TMX.Animation.ZIndexProp, 0);
-				animationDefs.put(name, new AnimationDef(ExtractFrames(tile, defaultDuration), zIndex));
+				float renderDisplacementX = TiledMapHelper.ParseFloatProp(tile.getProperties(), Config.TMX.Animation.RenderDisplacementXProp, 0f);
+				float renderDisplacementY = TiledMapHelper.ParseFloatProp(tile.getProperties(), Config.TMX.Animation.RenderDisplacementYProp, 0f);
+				animationDefs.put(name, new AnimationDef(ExtractFrames(tile, defaultDuration), zIndex, renderDisplacementX, renderDisplacementY));
 			}
 		}
 
@@ -122,6 +124,8 @@ public class Main extends Game implements LevelSelectScreen.Commands, PlayScreen
 
 			public static class Animation {
 				public static String ZIndexProp = "Render Depth";
+				public static String RenderDisplacementXProp = "Render Displacement X";
+				public static String RenderDisplacementYProp = "Render Displacement Y";
 			}
 		}
 	}

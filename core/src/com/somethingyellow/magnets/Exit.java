@@ -14,8 +14,8 @@ public class Exit extends TiledStageActor {
 		SUBTICKS = SUBTICKS_STATIC;
 	}
 
-	public void initialize(Map<String, AnimationDef> animationDefs, TiledStage.Coordinate origin) {
-		super.initialize(animationDefs, origin);
+	public void initialize(TiledStage stage, Map<String, AnimationDef> animationDefs, TiledStage.Coordinate origin) {
+		super.initialize(stage, animationDefs, origin);
 
 		showAnimation(Config.AnimationExit);
 	}

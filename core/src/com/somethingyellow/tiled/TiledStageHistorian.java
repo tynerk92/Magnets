@@ -7,7 +7,7 @@ import java.util.LinkedList;
 
 /**
  * Tracks changes in a TiledStage over its ticks
- * Supports restoring of the TiledStage a previous tick
+ * Supports restoring of the TiledStage to a previous tick
  */
 
 public class TiledStageHistorian {
@@ -52,7 +52,7 @@ public class TiledStageHistorian {
 				states.put(actor, actor.getState());
 			}
 			_history.add(states);
-			System.out.println("TICK " + _stage.tickNo() + " SAVED: " + states);
+			// System.out.println("TICK " + _stage.tickNo() + " SAVED: " + states);
 			_historyTickNos.add(_stage.tickNo()); // Remember tick no for stage at this time
 			_actorsChangedSinceSave.clear();
 		}
@@ -63,17 +63,17 @@ public class TiledStageHistorian {
 	/**
 	 * Revert stage to last save
 	 */
-	public void revert(float time) {
+	public void revert(int time) {
 		if (_history.size() > 0) {
 			HashMap<TiledStageActor, TiledStageActor.State> states = _history.getLast();
-			System.out.println("INVALIDATING TICK " + _historyTickNos.get(_historyTickNos.size() - 1));
+			// System.out.println("INVALIDATING TICK " + _historyTickNos.get(_historyTickNos.size() - 1));
 			for (TiledStageActor actor : states.keySet()) {
 				// Search up history to find the most recent previous state for actor, and restore it
 				int index = _history.size() - 2;
 				while (index >= 0 && !_history.get(index).keySet().contains(actor)) index--;
 				if (index >= 0) {
 					_history.get(index).get(actor).restore(time);
-					System.out.println("RESTORED: " + actor);
+					// System.out.println("RESTORED: " + actor);
 				}
 			}
 			_actorsChangedSinceSave.clear();
@@ -91,14 +91,7 @@ public class TiledStageHistorian {
 		public void actorAdded(TiledStage tiledStage, TiledStageActor actor) {
 			super.actorAdded(tiledStage, actor);
 			actor.listeners().add(_tiledStageActorListener);
-			System.out.println("ADDED: " + actor);
-			_actorsChangedSinceSave.add(actor);
-		}
-
-		@Override
-		public void actorRemoved(TiledStage tiledStage, TiledStageActor actor) {
-			super.actorRemoved(tiledStage, actor);
-			System.out.println("REMOVED: " + actor);
+			// System.out.println("ADDED: " + actor);
 			_actorsChangedSinceSave.add(actor);
 		}
 	}
@@ -107,7 +100,7 @@ public class TiledStageHistorian {
 		@Override
 		public void stateChanged(TiledStageActor actor) {
 			super.stateChanged(actor);
-			System.out.println("CHANGED: " + actor);
+			// System.out.println("CHANGED: " + actor);
 			_actorsChangedSinceSave.add(actor);
 		}
 	}

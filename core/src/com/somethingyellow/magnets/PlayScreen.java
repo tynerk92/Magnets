@@ -4,24 +4,19 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.Pools;
 import com.somethingyellow.LogicMachine;
-import com.somethingyellow.graphics.AnimatedActor;
-import com.somethingyellow.graphics.Animation;
 import com.somethingyellow.graphics.AnimationDef;
+import com.somethingyellow.graphics.LightSource;
+import com.somethingyellow.tiled.TiledMapHelper;
 import com.somethingyellow.tiled.TiledStage;
 import com.somethingyellow.tiled.TiledStageActor;
 import com.somethingyellow.tiled.TiledStageHistorian;
-import com.somethingyellow.tiled.TiledStageLightSource;
 import com.somethingyellow.utility.Controller;
-import com.somethingyellow.utility.TiledMapHelper;
 import com.somethingyellow.utility.TimedTrigger;
 
 import java.util.HashMap;
@@ -29,7 +24,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Stack;
 
-public class PlayScreen implements Screen {
+public class PlayScreen implements Screen, PlayScreenUIStage.Commands {
 	private TiledStage _tiledStage;
 	private TiledMap _animationsMap;
 	private Controller _controller = new Controller();
@@ -52,25 +47,22 @@ public class PlayScreen implements Screen {
 	private boolean _toSaveStates = false;
 	private TimedTrigger _undoTimeTrigger;
 	private int _playerMovesCount = 0;
-	private SpriteBatch _UISpriteBatch;
-	private Animation _pauseOverlayAnimation;
 	private Commands _commands;
-	private Skin _skin;
+
+	private PlayScreenUIStage _UIStage;
 
 	private Stack<String> solution = new Stack<String>();
 
 	public PlayScreen(Skin skin, Commands commands) {
-		_skin = skin;
 		_commands = commands;
 		_tiledStage = new TiledStage(SUBTICKS.values().length, Config.GameTickDuration, _tiledStageCommands);
+		_UIStage = new PlayScreenUIStage(skin, this);
 		_tiledStageHistorian = new TiledStageHistorian(_tiledStage);
 		_tiledStage.listeners().add(_tiledStageListener);
 		_undoTimeTrigger = new TimedTrigger(_undoTimeTriggerTrigger, Config.UndoTriggerTimingChart);
-		_UISpriteBatch = new SpriteBatch();
 		_tilesByType = new HashMap<String, TiledMapTile>();
-		_animationsMap = _commands.loadMap(Config.GameAnimationsTMXPath);
+		_animationsMap = _commands.loadMap(Config.AnimationsTMXPath);
 		_animationDefs = _commands.loadAnimations(_animationsMap, Config.GameTickDuration);
-		_pauseOverlayAnimation = new Animation(_animationDefs.get(Config.AnimationPauseOverlay));
 	}
 
 	public static boolean[] StringToBodyArea(String bodyArea, boolean[] defaultBodyArea) {
@@ -91,7 +83,7 @@ public class PlayScreen implements Screen {
 		return area;
 	}
 
-	public TiledStageLightSource getLightSource(TiledMapTile tile) {
+	public LightSource getLightSource(TiledMapTile tile, TiledStageActor actor) {
 		String lightingAnimation = TiledMapHelper.ParseProp(tile.getProperties(), Config.TMX.Tiles.LightingAnimationProp);
 		if (lightingAnimation == null) return null; // no light source
 
@@ -99,8 +91,7 @@ public class PlayScreen implements Screen {
 		float displacementX = TiledMapHelper.ParseIntegerProp(tile.getProperties(), Config.TMX.Tiles.LightingDisplacementXProp, 0);
 		float displacementY = TiledMapHelper.ParseIntegerProp(tile.getProperties(), Config.TMX.Tiles.LightingDisplacementYProp, 0);
 
-		TiledStageLightSource lightSource = Pools.obtain(TiledStageLightSource.class);
-		lightSource.initialize(_animationDefs.get(lightingAnimation), displacementX, displacementY);
+		LightSource lightSource = new LightSource(_animationDefs.get(lightingAnimation), actor, -displacementX, -displacementY);
 		lightSource.setIntensity(intensity);
 		return lightSource;
 	}
@@ -126,7 +117,7 @@ public class PlayScreen implements Screen {
 		return _tempAnimationDefs;
 	}
 
-	public void processProperties(TiledStageActor actor, TiledMapTile tile) {
+	public void processProperties(final TiledStageActor actor, TiledMapTile tile) {
 		// Body area
 		actor.setBody(
 				StringToBodyArea(TiledMapHelper.ParseProp(tile.getProperties(), Config.TMX.Tiles.BodyAreaProp), TiledStageActor.BodyArea1x1),
@@ -134,23 +125,30 @@ public class PlayScreen implements Screen {
 		);
 
 		// Light source
-		final TiledStageLightSource lightSource = getLightSource(tile);
+		final LightSource lightSource = getLightSource(tile, actor);
 		if (lightSource != null) {
 			addLightSource(lightSource);
-			lightSource.setPosition(actor.getX(), actor.getY());
-			actor.listeners().add(new TiledStageActor.Listener() {
+
+			_tiledStage.listeners().add(new TiledStage.Listener() {
 				@Override
-				public void positionChanged(TiledStageActor body) {
-					lightSource.setPosition(body.getX(), body.getY());
+				public void actorAdded(TiledStage tiledStage, TiledStageActor actorAdded) {
+					super.actorAdded(tiledStage, actorAdded);
+					if (actorAdded == actor) tiledStage.addLightSource(lightSource);
 				}
 
 				@Override
-				public void removed(AnimatedActor actor) {
-					lightSource.remove();
+				public void actorRemoved(TiledStage tiledStage, TiledStageActor actorRemoved) {
+					super.actorRemoved(tiledStage, actorRemoved);
+					if (actorRemoved == actor) tiledStage.removeLightSource(lightSource);
+				}
+
+				@Override
+				public void unloaded(TiledStage tiledStage) {
+					super.unloaded(tiledStage);
+					tiledStage.listeners().remove(this);
 				}
 			});
 		}
-
 	}
 
 	public void doAction(TiledStageActor actor, String action) {
@@ -170,11 +168,11 @@ public class PlayScreen implements Screen {
 	}
 
 	public void loadLevel(String levelPath) {
-		if (_tiledStage.isLoaded()) _tiledStage.unload();
+		if (_tiledStage.isLoaded()) unloadLevel();
 
 		_levelPath = levelPath;
 		TiledMap map = _commands.loadMap(_levelPath);
-		_tiledStage.load(map, Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), _controller.zoom(), Config.GameWallLayer);
+		_tiledStage.load(map, _controller.zoom(), Config.GameWallLayer);
 		if (_player == null) throw new IllegalArgumentException("No player on the map!");
 		if (!_tilesByType.containsKey(Config.TMX.Tiles.Types.MagneticAttraction))
 			throw new IllegalArgumentException("Need tile of type for MagneticAttraction!");
@@ -186,6 +184,7 @@ public class PlayScreen implements Screen {
 		_tiledStageHistorian.save();
 
 		_playerMovesCount = 0;
+		_UIStage.setPlayerMoveCount(_playerMovesCount);
 	}
 
 	public void unloadLevel() {
@@ -210,6 +209,7 @@ public class PlayScreen implements Screen {
 
 			Lodestone lodestone = Pools.get(Lodestone.class).obtain();
 			lodestone.initialize(
+					_tiledStage,
 					getAnimationDefs(tile),
 					origin,
 					TiledMapHelper.ParseBooleanProp(tile.getProperties(), Config.TMX.Tiles.Lodestone.IsPushableProp, false),
@@ -223,6 +223,7 @@ public class PlayScreen implements Screen {
 
 			MagneticSource magneticSource = Pools.get(MagneticSource.class).obtain();
 			magneticSource.initialize(
+					_tiledStage,
 					getAnimationDefs(tile),
 					origin,
 					TiledMapHelper.ParseBooleanProp(tile.getProperties(), Config.TMX.Tiles.MagneticSource.isSolidProp, true),
@@ -240,7 +241,21 @@ public class PlayScreen implements Screen {
 			}
 
 			_player = Pools.get(Player.class).obtain();
-			_player.initialize(getAnimationDefs(tile), origin, _playerCommands);
+			_player.initialize(
+					_tiledStage,
+					getAnimationDefs(tile),
+					origin,
+					_playerCommands);
+
+			_player.listeners().add(new Player.Listener() {
+				@Override
+				public void moved(Player player) {
+					super.moved(player);
+					_playerMovesCount ++;
+					_toSaveStates = true;
+					_UIStage.setPlayerMoveCount(_playerMovesCount);
+				}
+			});
 
 			_tiledStage.setCameraFocalActor(_player);
 			actor = _player;
@@ -249,6 +264,7 @@ public class PlayScreen implements Screen {
 
 			Button button = Pools.get(Button.class).obtain();
 			button.initialize(
+					_tiledStage,
 					getAnimationDefs(tile),
 					origin
 			);
@@ -258,6 +274,7 @@ public class PlayScreen implements Screen {
 
 			Door door = Pools.get(Door.class).obtain();
 			door.initialize(
+					_tiledStage,
 					getAnimationDefs(tile),
 					origin,
 					TiledMapHelper.ParseBooleanProp(tile.getProperties(), Config.TMX.Tiles.Door.IsOpenProp, false)
@@ -267,7 +284,10 @@ public class PlayScreen implements Screen {
 		} else if (type.equals(Config.TMX.Tiles.Types.Exit)) {
 
 			Exit exit = Pools.get(Exit.class).obtain();
-			exit.initialize(getAnimationDefs(tile), origin);
+			exit.initialize(
+					_tiledStage,
+					getAnimationDefs(tile),
+					origin);
 			actor = exit;
 		}
 
@@ -282,7 +302,7 @@ public class PlayScreen implements Screen {
 		actor.listeners().add(_tiledStageActorListener);
 	}
 
-	public void addLightSource(TiledStageLightSource lightSource) {
+	public void addLightSource(LightSource lightSource) {
 		_tiledStage.addLightSource(lightSource);
 	}
 
@@ -292,26 +312,7 @@ public class PlayScreen implements Screen {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 		_tiledStage.draw();
-
-		// UI
-		_UISpriteBatch.begin();
-
-		// Pause screen
-		if (_tiledStage.isPaused()) {
-			Sprite sprite = _pauseOverlayAnimation.getSprite();
-			sprite.setPosition(0, 0);
-			sprite.draw(_UISpriteBatch);
-			Label pausedText = new Label(Config.PausedText, _skin);
-			pausedText.setPosition(10, 10);
-			pausedText.draw(_UISpriteBatch, 1f);
-		}
-
-		// Player moves counter
-		//Label playerMovesText = new Label(String.valueOf(_playerMovesCount), _skin);
-		//playerMovesText.setPosition(Gdx.graphics.getWidth() - playerMovesText.getWidth() - 10, 10);
-		//playerMovesText.draw(_UISpriteBatch, 1f);
-
-		_UISpriteBatch.end();
+		_UIStage.draw();
 	}
 
 	@Override
@@ -336,6 +337,7 @@ public class PlayScreen implements Screen {
 	@Override
 	public void dispose() {
 		if (_tiledStage != null) _tiledStage.dispose();
+		if (_UIStage != null) _UIStage.dispose();
 		if (_animationsMap != null) {
 			_animationDefs.clear();
 			_animationsMap.dispose();
@@ -373,35 +375,39 @@ public class PlayScreen implements Screen {
 		_tiledStage.setZoom(zoom);
 	}
 
-	public Player.PLAYER_ACTION checkPlayerInput() {
+	public Player.PLAYER_ACTION getPlayerAction() {
 		Player.PLAYER_ACTION action = null;
-		if (!_player.isMoving()) {
-			// If player is not moving, move player if keys are held or move queue is not empty
-			if (_moveQueue.isEmpty()) {
-				if (_controller.isKeyLeftHeld() && !_controller.isKeyRightHeld() &&
-						!_controller.isKeyUpHeld() && !_controller.isKeyDownHeld()) {
-					action = Player.PLAYER_ACTION.MOVE_LEFT;
-				} else if (_controller.isKeyRightHeld() && !_controller.isKeyLeftHeld() &&
-						!_controller.isKeyUpHeld() && !_controller.isKeyDownHeld()) {
-					action = Player.PLAYER_ACTION.MOVE_RIGHT;
-				} else if (_controller.isKeyUpHeld() && !_controller.isKeyLeftHeld() &&
-						!_controller.isKeyRightHeld() && !_controller.isKeyDownHeld()) {
-					action = Player.PLAYER_ACTION.MOVE_UP;
-				} else if (_controller.isKeyDownHeld() && !_controller.isKeyLeftHeld() &&
-						!_controller.isKeyRightHeld() && !_controller.isKeyUpHeld()) {
-					action = Player.PLAYER_ACTION.MOVE_DOWN;
-				}
-			} else {
-				action = _moveQueue.removeFirst();
-			}
-		}
 
-		if (action != null) {
-			_toSaveStates = true;
-			_playerMovesCount++;
+		// If player is not moving, move player if keys are held or move queue is not empty
+		if (_moveQueue.isEmpty()) {
+			if (_controller.isKeyLeftHeld() && !_controller.isKeyRightHeld() &&
+					!_controller.isKeyUpHeld() && !_controller.isKeyDownHeld()) {
+				action = Player.PLAYER_ACTION.MOVE_LEFT;
+			} else if (_controller.isKeyRightHeld() && !_controller.isKeyLeftHeld() &&
+					!_controller.isKeyUpHeld() && !_controller.isKeyDownHeld()) {
+				action = Player.PLAYER_ACTION.MOVE_RIGHT;
+			} else if (_controller.isKeyUpHeld() && !_controller.isKeyLeftHeld() &&
+					!_controller.isKeyRightHeld() && !_controller.isKeyDownHeld()) {
+				action = Player.PLAYER_ACTION.MOVE_UP;
+			} else if (_controller.isKeyDownHeld() && !_controller.isKeyLeftHeld() &&
+					!_controller.isKeyRightHeld() && !_controller.isKeyUpHeld()) {
+				action = Player.PLAYER_ACTION.MOVE_DOWN;
+			}
+		} else {
+			action = _moveQueue.removeFirst();
 		}
 
 		return action;
+	}
+
+	@Override
+	public TiledMap loadMap(String mapFilePath) {
+		return _commands.loadMap(mapFilePath);
+	}
+
+	@Override
+	public HashMap<String, AnimationDef> loadAnimations(TiledMap map, float defaultDuration) {
+		return _commands.loadAnimations(map, defaultDuration);
 	}
 
 	public enum SUBTICKS {
@@ -418,18 +424,10 @@ public class PlayScreen implements Screen {
 
 	public static class Config {
 		public static float GameTickDuration = 0.06f;
-		public static String GameAnimationsTMXPath = "";
-		public static String GameWallLayer = "Walls";
-		public static String AnimationPauseOverlay = "";
-		public static float GameUndoTicks = GameTickDuration;
+		public static String AnimationsTMXPath = null;
+		public static String GameWallLayer = null;
+		public static int GameUndoTicks = 1;
 		public static int[] UndoTriggerTimingChart = new int[]{1, 10, 3, 3, 3, 3, 3, -1};
-		public static String PausedText = "CONTROLS:\n" +
-				"'WASD' or arrow keys to move.\n" +
-				"Scroll mouse to zoom in and out.\n" +
-				"'Esc' to exit level.\n" +
-				"'P' to toggle pause.\n" +
-				"'Ctrl + R' to reset level.\n" +
-				"'Ctrl + Z' to undo a game tick.";
 
 		public static class TMX {
 			public static class Tiles {
@@ -511,7 +509,7 @@ public class PlayScreen implements Screen {
 		public void beforeTick(TiledStage stage) {
 			super.beforeTick(stage);
 
-			Player.PLAYER_ACTION action = checkPlayerInput();
+			Player.PLAYER_ACTION action = getPlayerAction();
 			if (action != null) _player.doAction(action);
 		}
 
@@ -519,15 +517,15 @@ public class PlayScreen implements Screen {
 		public void afterTick(TiledStage stage) {
 			super.afterTick(stage);
 
+			if (_toSaveStates) {
+				_tiledStageHistorian.save();
+				_toSaveStates = false;
+			}
+
 			if (_controller.isKeyHeld(Input.Keys.Z)) {
 				_undoTimeTrigger.update(1);
 			} else {
 				_undoTimeTrigger.reset();
-
-				if (_toSaveStates) {
-					_tiledStageHistorian.save();
-					_toSaveStates = false;
-				}
 			}
 
 			if (_controller.wasKeyPressed(Input.Keys.R)) {
@@ -581,20 +579,12 @@ public class PlayScreen implements Screen {
 
 	public class LodestoneCommands implements Lodestone.Commands {
 		@Override
-		public MagneticAttractionVisual spawnMagneticAttractionVisual(TiledStage.Coordinate origin) {
-			// Try to find a magnetic attraction visual at coordinate
-			for (TiledStageActor actor : origin.actors()) {
-				if (actor instanceof MagneticAttractionVisual) {
-					return (MagneticAttractionVisual) actor;
-				}
-			}
-
-			// If not, spawn new one
+		public MagneticAttractionVisual spawnMagneticAttractionVisual() {
 			MagneticAttractionVisual visual = Pools.get(MagneticAttractionVisual.class).obtain();
 			TiledMapTile tile = _tilesByType.get(Config.TMX.Tiles.Types.MagneticAttraction);
 			visual.initialize(
-					getAnimationDefs(tile),
-					origin
+					_tiledStage,
+					getAnimationDefs(tile)
 			);
 
 			addActor(visual, tile);

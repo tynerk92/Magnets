@@ -1,10 +1,10 @@
 package com.somethingyellow.magnets;
 
-import com.somethingyellow.graphics.AnimatedActor;
 import com.somethingyellow.graphics.AnimationDef;
 import com.somethingyellow.tiled.TiledStage;
 import com.somethingyellow.tiled.TiledStageActor;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class Lodestone extends TiledStageActor implements Player.Pushable,
@@ -23,16 +23,17 @@ public class Lodestone extends TiledStageActor implements Player.Pushable,
 	private int _forceY;
 	private int _magneticStrength;
 	private Commands _commands;
+	private HashMap<Integer, MagneticAttractionVisual> _attractionVisuals = new HashMap<Integer, MagneticAttractionVisual>();
 
 	public Lodestone() {
 		super();
 		SUBTICKS = SUBTICKS_STATIC;
 	}
 
-	public void initialize(Map<String, AnimationDef> animationDefs, TiledStage.Coordinate origin,
+	public void initialize(TiledStage stage, Map<String, AnimationDef> animationDefs, TiledStage.Coordinate origin,
 	                       boolean isPushable, boolean isMagnetisable, int magneticRange,
 	                       int attractionRange, Commands commands) {
-		super.initialize(animationDefs, origin);
+		super.initialize(stage, animationDefs, origin);
 
 		_isPushable = isPushable;
 		_isMagnetisable = isMagnetisable;
@@ -47,6 +48,12 @@ public class Lodestone extends TiledStageActor implements Player.Pushable,
 	}
 
 	@Override
+	public void reset() {
+		super.reset();
+		_attractionVisuals.clear();
+	}
+
+	@Override
 	public void subtick(int subtick) {
 
 		if (subtick == PlayScreen.SUBTICKS.START.ordinal()) {
@@ -58,7 +65,7 @@ public class Lodestone extends TiledStageActor implements Player.Pushable,
 			if (!isMoving()) setStatus(Config.StatusMagnetised, _magneticStrength > 0);
 
 			// If lodestone is magnetised and is not moving
-			if (_magneticStrength > 0) {
+			if (_magneticStrength > 0 && !isMoving()) {
 				for (TiledStage.Coordinate bodyCoordinate : bodyCoordinates()) {
 
 					// Attract other magnetic objects within attraction range
@@ -124,10 +131,6 @@ public class Lodestone extends TiledStageActor implements Player.Pushable,
 						}
 					}
 				}
-
-				for (AnimatedActor.Listener listener : listeners()) {
-					if (listener instanceof Listener) ((Listener) listener).magnetised();
-				}
 			}
 		}
 	}
@@ -143,16 +146,26 @@ public class Lodestone extends TiledStageActor implements Player.Pushable,
 		if (_magneticStrength == 0) {
 			applyForce(direction, attractionStrength);
 
+			// Show attraction arrow for body coordinate
 			int bodyIndex = getBodyIndex(coordinate);
+
 			if (bodyIndex != -1) {
-				MagneticAttractionVisual visual = _commands.spawnMagneticAttractionVisual(coordinate);
+				MagneticAttractionVisual visual;
+				if (!_attractionVisuals.containsKey(bodyIndex)) {
+					visual = _commands.spawnMagneticAttractionVisual();
+					bindActor(visual, getBodyRow(coordinate), getBodyColumn(coordinate));
+					_attractionVisuals.put(bodyIndex, visual);
+				} else {
+					visual = _attractionVisuals.get(bodyIndex);
+				}
+
 				visual.addAttraction(direction);
 			}
 		}
 	}
 
 	public interface Commands {
-		MagneticAttractionVisual spawnMagneticAttractionVisual(TiledStage.Coordinate origin);
+		MagneticAttractionVisual spawnMagneticAttractionVisual();
 	}
 
 	public static class Config {
@@ -161,10 +174,5 @@ public class Lodestone extends TiledStageActor implements Player.Pushable,
 		public static String AnimationLodestone = "Lodestone";
 		public static String AnimationMagnetisedOverlay = "Magnetised Overlay";
 		public static String StatusMagnetised = "Magnetised";
-	}
-
-	public abstract static class Listener extends TiledStageActor.Listener {
-		public void magnetised() {
-		}
 	}
 }

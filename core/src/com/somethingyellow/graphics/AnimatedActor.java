@@ -23,28 +23,36 @@ import java.util.Set;
  */
 
 public class AnimatedActor extends Actor implements Pool.Poolable {
+	private static HashMap<String, AnimationDef> TempAnimationDefMap = new HashMap<String, AnimationDef>();
+	private static ArrayList<Animation> TempAnimationsList = new ArrayList<Animation>();
 	private HashMap<String, Animation> _animations = new HashMap<String, Animation>(); // For access by tag
-	private ArrayList<Animation> _animationsArray = new ArrayList<Animation>(); // For ordering by z-index
+	private ArrayList<Animation> _animationsList = new ArrayList<Animation>(); // For ordering by z-index
 	private AnimationListener _animationListener = new AnimationListener();
 	private ObjectSet<Listener> _listeners = new ObjectSet<Listener>();
+
+	public void initialize(AnimationDef def) {
+		TempAnimationDefMap.clear();
+		TempAnimationDefMap.put("", def);
+		initialize(TempAnimationDefMap);
+	}
 
 	public void initialize(Map<String, AnimationDef> defs) {
 		for (String tag : defs.keySet()) {
 			Animation animation = new Animation(defs.get(tag), tag);
 			animation.listeners().add(_animationListener);
 			_animations.put(animation.tag(), animation);
-			_animationsArray.add(animation);
+			_animationsList.add(animation);
 		}
 
 		// Sort animations by z-index
-		Collections.sort(_animationsArray);
+		Collections.sort(_animationsList);
 	}
 
 	@Override
 	public void reset() {
 		_animations.clear();
 		_listeners.clear();
-		_animationsArray.clear();
+		_animationsList.clear();
 		clearActions();
 	}
 
@@ -54,33 +62,12 @@ public class AnimatedActor extends Actor implements Pool.Poolable {
 	 */
 
 	protected void setTransition(final String fromTag, final String toTag) {
-		Animation animation = _animations.get(fromTag);
-		if (animation == null) {
-			throw new IllegalArgumentException("`fromTag` doesn't exist!");
-		}
-
-		if (!_animations.containsKey(toTag)) {
-			throw new IllegalArgumentException("`toTag` doesn't exist!");
-		}
-
 		_listeners.add(new Listener() {
 			@Override
 			public void animationEnded(AnimatedActor actor, Animation animation) {
-				if (animation.tag().equals(fromTag)) {
-					showAnimation(toTag);
-					hideAnimation(fromTag);
-				}
+				if (animation.tag().equals(fromTag)) swapAnimation(toTag, fromTag);
 			}
 		});
-	}
-
-	@Override
-	public boolean remove() {
-		for (Listener listener : _listeners) {
-			listener.removed(this);
-		}
-
-		return super.remove();
 	}
 
 	public ObjectSet<Listener> listeners() {
@@ -89,16 +76,36 @@ public class AnimatedActor extends Actor implements Pool.Poolable {
 
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
-		for (Animation animation : _animationsArray) {
+		super.draw(batch, parentAlpha);
+
+		for (Animation animation : _animationsList) {
 			Sprite sprite = animation.getSprite();
 			sprite.setScale(getScaleX(), getScaleY());
-			sprite.setPosition(getX(), getY());
+			sprite.setPosition(getX() + animation.renderDisplacementX(), getY() + animation.renderDisplacementY());
 			sprite.draw(batch, parentAlpha);
 		}
 	}
 
-	protected List<Animation> animations() {
-		return _animationsArray;
+	@Override
+	public int getZIndex() {
+		int zIndex = Integer.MIN_VALUE;
+		for (Animation animation : animations()) {
+			if (animation.isActive()) zIndex = Math.max(zIndex, animation.zIndex());
+		}
+
+		return zIndex;
+	}
+
+	public List<Animation> animations() {
+		return _animationsList;
+	}
+
+	public List<Animation> getActiveAnimations() {
+		TempAnimationsList.clear();
+		for (Animation animation : _animations.values()) {
+			if (animation.isActive()) TempAnimationsList.add(animation);
+		}
+		return TempAnimationsList;
 	}
 
 	public Set<String> animationTags() {
@@ -109,7 +116,7 @@ public class AnimatedActor extends Actor implements Pool.Poolable {
 	public void act(float timeDelta) {
 		super.act(timeDelta);
 
-		for (Animation animation : _animationsArray) animation.update(timeDelta);
+		for (Animation animation : _animationsList) animation.update(timeDelta);
 	}
 
 	protected void setAnimationShown(String tag, boolean isShown) {
@@ -134,8 +141,31 @@ public class AnimatedActor extends Actor implements Pool.Poolable {
 		}
 	}
 
-	protected void hideAllAnimations() {
+	protected void showAnimations(String... tags) {
+		for (String tag : tags) {
+			showAnimation(tag);
+		}
+	}
+
+	protected void hideAnimations(String... tags) {
+		for (String tag : tags) {
+			hideAnimation(tag);
+		}
+	}
+
+	protected void swapAnimation(String showTag, String hideTag) {
+		showAnimation(showTag);
+		hideAnimation(hideTag);
+	}
+
+	protected void hideAllButAnimations(String... showTags) {
+		showAnimations(showTags);
+		loop:
 		for (String tag : _animations.keySet()) {
+			for (String showTag : showTags) {
+				if (showTag.equals(tag)) continue loop;
+			}
+
 			hideAnimation(tag);
 		}
 	}
@@ -143,6 +173,14 @@ public class AnimatedActor extends Actor implements Pool.Poolable {
 	protected boolean isAnimationActive(String tag) {
 		Animation animation = _animations.get(tag);
 		return (animation == null) ? false : animation.isActive();
+	}
+
+	protected boolean isAnyAnimationActive(String... tags) {
+		for (String tag : tags) {
+			if (isAnimationActive(tag)) return true;
+		}
+
+		return false;
 	}
 
 	public static abstract class Listener {
@@ -162,12 +200,6 @@ public class AnimatedActor extends Actor implements Pool.Poolable {
 		 * When one of its animation is hidden
 		 */
 		public void animationHidden(AnimatedActor actor, Animation animation) {
-		}
-
-		/**
-		 * When this is removed
-		 */
-		public void removed(AnimatedActor actor) {
 		}
 	}
 

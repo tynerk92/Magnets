@@ -4,23 +4,24 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Pixmap;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.graphics.glutils.FrameBuffer;
-import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.maps.MapLayer;
+import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.tiles.AnimatedTiledMapTile;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Disposable;
 import com.somethingyellow.graphics.Animation;
+import com.somethingyellow.graphics.LightSource;
+import com.somethingyellow.graphics.LightingShaderGenerator;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -48,7 +49,7 @@ import static com.badlogic.gdx.graphics.g2d.Batch.Y4;
 
 /**
  * Map renderer for TiledStage
- * Manages rendering of TiledStageActors and TiledStageLightSources in TiledStage
+ * Manages rendering of TiledStageActors in TiledStage
  * Renders the map and actors of TiledStage in pseudo-3D
  * All actors and layers are rendered together row-wise, starting from the topmost row
  * For exclusive use in TiledStage
@@ -57,96 +58,38 @@ import static com.badlogic.gdx.graphics.g2d.Batch.Y4;
  */
 
 public class TiledStageMapRenderer implements Disposable {
-	public static final String LIGHTING_FRAGMENT_SHADER =
-			"#ifdef GL_ES\n" +
-					"    #define LOWP lowp\n" +
-					"    precision mediump float;\n" +
-					"#else\n" +
-					"    #define LOWP\n" +
-					"#endif\n" +
-					"\n" +
-					"varying LOWP vec4 v_color;\n" +
-					"varying vec2 v_texCoord;\n" +
-					"\n" +
-					"// texture samplers\n" +
-					"uniform sampler2D u_texture; // diffuse map\n" +
-					"uniform sampler2D u_lightmap;   // light map\n" +
-					"\n" +
-					"// additional parameters for the shader\n" +
-					"uniform vec2 resolution; // resolution of screen\n" +
-					"uniform LOWP vec4 ambientColor; // ambient RGB, alpha channel is intensity\n" +
-					"\n" +
-					"void main() {\n" +
-					"\tvec4 diffuseColor = texture2D(u_texture, v_texCoord);\n" +
-					"\tvec2 lightCoord = (gl_FragCoord.xy / resolution.xy);\n" +
-					"\tvec4 light = texture2D(u_lightmap, lightCoord);\n" +
-					"\n" +
-					"\tvec3 ambient = ambientColor.rgb * ambientColor.a;\n" +
-					"\tvec3 intensity = ambient + light.rgb;\n" +
-					" \tvec3 finalColor = diffuseColor.rgb * intensity;\n" +
-					"\n" +
-					"\tgl_FragColor = v_color * vec4(finalColor, diffuseColor.a);\n" +
-					"}\n";
-	public static final String VERTEX_SHADER =
-			"attribute vec4 a_position;\n" +
-					"attribute vec4 a_color;\n" +
-					"attribute vec2 a_texCoord0;\n" +
-					"uniform mat4 u_projTrans;\n" +
-					"varying vec4 v_color;\n" +
-					"varying vec2 v_texCoord;\n" +
-					"\n" +
-					"void main() {\n" +
-					"\tv_color = a_color;\n" +
-					"\tv_color.a = v_color.a * (255.0/254.0);\n" +
-					"\tv_texCoord = a_texCoord0;\n" +
-					"\tgl_Position = u_projTrans * a_position;\n" +
-					"}";
 	private static final int NUM_VERTICES = 20;
 	private float _vertices[] = new float[NUM_VERTICES];
 	private Batch _batch;
 	private Rectangle _viewBounds = new Rectangle();
 	private TiledStage _stage;
-	private ShaderProgram _lightingShaderProgram = new ShaderProgram(VERTEX_SHADER, LIGHTING_FRAGMENT_SHADER);
 	private ArrayList<HashSet<TiledStageActor>> _actorsByRowsVisually;
-	private ArrayList<Animation> _tempAnimationsArray = new ArrayList<Animation>();
-	private HashMap<Animation, TiledStageActor> _animationsToActors = new HashMap<Animation, TiledStageActor>();
+	private ArrayList<TiledStageActor> _tempActors = new ArrayList<TiledStageActor>();
+	private ActorsComparator _actorsComparator = new ActorsComparator();
 	private HashMap<TiledStageActor, TiledStage.Coordinate> _visualOrigins = new HashMap<TiledStageActor, TiledStage.Coordinate>();
-	private FrameBuffer _frameBuffer;
-	private Texture _blackTexture;
-	private float _ambientColorRed;
-	private float _ambientColorGreen;
-	private float _ambientColorBlue;
-	private TiledMapTileLayer[] _tileLayers;
+	private ArrayList<TiledMapTileLayer> _tileLayers = new ArrayList<TiledMapTileLayer>();
+	private LightingShaderGenerator _lightingShaderGenerator;
 
 	public TiledStageMapRenderer(TiledStage stage) {
 		_stage = stage;
 		_batch = _stage.getBatch();
-
-		LinkedList<TiledMapTileLayer> layers = new LinkedList<TiledMapTileLayer>();
-		for (MapLayer layer : stage.map().getLayers()) {
-			if (layer instanceof TiledMapTileLayer) layers.add((TiledMapTileLayer) layer);
-		}
-		_tileLayers = layers.toArray(new TiledMapTileLayer[layers.size()]);
+		_lightingShaderGenerator = new LightingShaderGenerator();
 	}
 
-	public void initialize(int screenWidth, int screenHeight) {
-		_ambientColorRed = Config.AmbientColorRedDefault;
-		_ambientColorGreen = Config.AmbientColorGreenDefault;
-		_ambientColorBlue = Config.AmbientColorBlueDefault;
+	public void load(TiledMap map) {
+		_tileLayers.clear();
+		for (MapLayer layer : map.getLayers()) {
+			if (layer instanceof TiledMapTileLayer) _tileLayers.add((TiledMapTileLayer) layer);
+		}
 
 		_actorsByRowsVisually = new ArrayList<HashSet<TiledStageActor>>(_stage.tileRows());
 		for (int i = 0; i < _stage.tileRows(); i++) {
 			_actorsByRowsVisually.add(i, new HashSet<TiledStageActor>());
 		}
+	}
 
-		// Prepare black texture for shadows
-		Pixmap blackPixmap = new Pixmap(1, 1, Pixmap.Format.RGBA8888);
-		blackPixmap.setColor(Color.BLACK);
-		blackPixmap.fill();
-		_blackTexture = new Texture(blackPixmap);
-		blackPixmap.dispose();
-
-		setScreenSize(screenWidth, screenHeight);
+	public void unload() {
+		_tileLayers.clear();
 	}
 
 	public void setView(OrthographicCamera camera) {
@@ -156,32 +99,17 @@ public class TiledStageMapRenderer implements Disposable {
 		_viewBounds.set(camera.position.x - width / 2, camera.position.y - height / 2, width, height);
 	}
 
-	public void setScreenSize(int screenWidth, int screenHeight) {
-		if (_frameBuffer != null) {
-			if (_frameBuffer.getWidth() == screenWidth && _frameBuffer.getHeight() == screenHeight)
-				return;
-			_frameBuffer.dispose();
-		}
-		_frameBuffer = new FrameBuffer(Pixmap.Format.RGBA8888, screenWidth, screenHeight, false);
-	}
+	public void render(Collection<LightSource> lightSources) {
+		if (_tileLayers.isEmpty()) return;
 
-	public void setAmbientColor(float red, float green, float blue) {
-		_ambientColorBlue = blue;
-		_ambientColorGreen = green;
-		_ambientColorRed = red;
-	}
-
-	public void render() {
 		// Process animations' data
 		updateActorsData();
 
-		// Prepare shader based on light sources
-		prepareLightingShader();
+		_lightingShaderGenerator.applyLightingShader(_batch, lightSources);
 
 		// Render layers
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
 		AnimatedTiledMapTile.updateAnimationBaseTime();
 		_batch.begin();
 		for (int row = _stage.tileRows() - 1; row >= 0; row--) {
@@ -190,31 +118,7 @@ public class TiledStageMapRenderer implements Disposable {
 				if (layer == _stage.wallLayer()) drawActorsByRow(row);
 			}
 		}
-
 		_batch.end();
-	}
-
-	private void prepareLightingShader() {
-		_frameBuffer.begin();
-		_batch.setShader(null);
-		Gdx.gl.glClearColor(0, 0, 0, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		_batch.begin();
-		for (TiledStageLightSource lightSource : _stage.lightSources()) {
-			lightSource.draw(_batch, lightSource.intensity());
-		}
-		_batch.end();
-		_batch.setColor(Color.WHITE);
-		_frameBuffer.end();
-
-		_lightingShaderProgram.begin();
-		_lightingShaderProgram.setUniformi("u_lightmap", 1);
-		_lightingShaderProgram.setUniformf("ambientColor", _ambientColorRed, _ambientColorGreen, _ambientColorBlue, 1f);
-		_lightingShaderProgram.setUniformf("resolution", _frameBuffer.getWidth(), _frameBuffer.getHeight());
-		_lightingShaderProgram.end();
-		_frameBuffer.getColorBufferTexture().bind(1);
-		_blackTexture.bind(0);
-		_batch.setShader(_lightingShaderProgram);
 	}
 
 	private void drawLayerByRow(TiledMapTileLayer layer, int row) {
@@ -355,33 +259,35 @@ public class TiledStageMapRenderer implements Disposable {
 
 	private void drawActorsByRow(int row) {
 		HashSet<TiledStageActor> actors = _actorsByRowsVisually.get(row);
-		_tempAnimationsArray.clear();
 
+		_tempActors.clear();
 		for (TiledStageActor actor : actors) {
-			for (Animation animation : actor.animations()) {
-				_tempAnimationsArray.add(animation);
-			}
+			_tempActors.add(actor);
 		}
 
-		// Sort sprites by z index
-		Collections.sort(_tempAnimationsArray);
-		for (Animation animation : _tempAnimationsArray) {
+		// Sort actors by their yIndex
+		Collections.sort(_tempActors, _actorsComparator);
+
+		for (TiledStageActor actor : _tempActors) {
+			TiledStage.Coordinate visualOrigin = _visualOrigins.get(actor);
+
+			// Calculate displacement of actor (from its "visual origin")
+			int displacementX = (int) actor.getX() - visualOrigin.column() * _stage.tileWidth();
+			int displacementY = (int) actor.getY() - visualOrigin.row() * _stage.tileHeight();
+
 			for (int col = 0; col < _stage.tileColumns(); col++) {
-				TiledStageActor actor = _animationsToActors.get(animation);
-				TiledStage.Coordinate visualOrigin = _visualOrigins.get(actor);
-
-				// Calculate displacement of actor (from its "visual origin")
-				int displacementX = (int) actor.getX() - visualOrigin.column() * _stage.tileWidth();
-				int displacementY = (int) actor.getY() - visualOrigin.row() * _stage.tileHeight();
-
 				// Calculate corresponding actor row and column of actor
 				int bodyRow = (actor.bodyHeight() - 1) - (row - ((int) actor.getY() - displacementY) / _stage.tileHeight());
 				int bodyCol = col - ((int) actor.getX() - displacementX) / _stage.tileWidth();
 				if (!actor.getBodyAreaAt(bodyRow, bodyCol)) continue;
 
-				Sprite sprite = getSprite(actor, animation, bodyRow, bodyCol);
-				sprite.setPosition(col * _stage.tileWidth() + displacementX, (int) actor.getZ() + row * _stage.tileHeight() + displacementY);
-				if (sprite.getBoundingRectangle().overlaps(_viewBounds)) sprite.draw(_batch);
+				for (Animation animation : actor.animations()) {
+					Sprite sprite = getSprite(actor, animation, bodyRow, bodyCol);
+					sprite.setScale(actor.getScaleX(), actor.getScaleY());
+					sprite.setPosition(col * _stage.tileWidth() + displacementX + animation.renderDisplacementX(),
+							row * _stage.tileHeight() + displacementY + animation.renderDisplacementY() + actor.getZ());
+					if (sprite.getBoundingRectangle().overlaps(_viewBounds)) sprite.draw(_batch);
+				}
 			}
 		}
 	}
@@ -389,8 +295,8 @@ public class TiledStageMapRenderer implements Disposable {
 	/**
 	 * Generates a sprite for an actor's animation associated with Coordinate at row and col (visually)
 	 * If Coordinate corresponds to top actor row of actor, the cell and everything above is rendered
-	 * If Coordinate corresponds to a actor coordinate that "doesn't have actor coordinates" above it,
-	 * the cell and everything above is rendered up to the next upper actor coordinate
+	 * If Coordinate corresponds to an actor's body coordinate that "doesn't have body coordinates" above it,
+	 * the cell and everything above is rendered up to the next upper body coordinate
 	 * If not, only the cell is rendered
 	 */
 	private Sprite getSprite(TiledStageActor actor, Animation animation, int bodyRow, int bodyCol) {
@@ -421,7 +327,6 @@ public class TiledStageMapRenderer implements Disposable {
 		for (HashSet<TiledStageActor> set : _actorsByRowsVisually) {
 			set.clear();
 		}
-		_animationsToActors.clear();
 		_visualOrigins.clear();
 
 		for (TiledStageActor actor : _stage.actors()) {
@@ -434,21 +339,19 @@ public class TiledStageMapRenderer implements Disposable {
 				_actorsByRowsVisually.get(bodyCoordinate.row()).add(actor);
 			}
 
-			// Populate animations to actors hashmap and remember visual origin for actor
-			for (Animation animation : actor.animations()) _animationsToActors.put(animation, actor);
 			_visualOrigins.put(actor, visualOrigin);
 		}
 	}
 
 	@Override
 	public void dispose() {
-		_blackTexture.dispose();
-		_frameBuffer.dispose();
+		_lightingShaderGenerator.dispose();
 	}
 
-	public static class Config {
-		public static float AmbientColorGreenDefault = 0.6f;
-		public static float AmbientColorRedDefault = 0.6f;
-		public static float AmbientColorBlueDefault = 0.6f;
+	private class ActorsComparator implements Comparator<TiledStageActor> {
+		@Override
+		public int compare(TiledStageActor actor1, TiledStageActor actor2) {
+			return actor1.getZIndex() - actor2.getZIndex();
+		}
 	}
 }

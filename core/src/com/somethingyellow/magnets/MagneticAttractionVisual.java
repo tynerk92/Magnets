@@ -1,7 +1,10 @@
 package com.somethingyellow.magnets;
 
+import com.somethingyellow.graphics.AnimationDef;
 import com.somethingyellow.tiled.TiledStage;
 import com.somethingyellow.tiled.TiledStageActor;
+
+import java.util.Map;
 
 public class MagneticAttractionVisual extends TiledStageActor {
 	public static final int[] SUBTICKS_STATIC = new int[]{
@@ -9,14 +12,18 @@ public class MagneticAttractionVisual extends TiledStageActor {
 			PlayScreen.SUBTICKS.END.ordinal()
 	};
 
-	private boolean _hasArrowUp;
-	private boolean _hasArrowDown;
-	private boolean _hasArrowLeft;
-	private boolean _hasArrowRight;
+	private boolean _hasArrowUp = false;
+	private boolean _hasArrowDown = false;
+	private boolean _hasArrowLeft = false;
+	private boolean _hasArrowRight = false;
 
 	public MagneticAttractionVisual() {
 		super();
 		SUBTICKS = SUBTICKS_STATIC;
+	}
+
+	public void initialize(TiledStage stage, Map<String, AnimationDef> animationDefs) {
+		super.initialize(stage, animationDefs, null);
 	}
 
 	@Override
@@ -30,10 +37,10 @@ public class MagneticAttractionVisual extends TiledStageActor {
 
 		} else if (subtick == PlayScreen.SUBTICKS.END.ordinal()) {
 
-			// If no arrows pointing, remove itself
-			if (!_hasArrowUp && !_hasArrowDown && !_hasArrowLeft && !_hasArrowRight) {
-				remove();
-			}
+			setStatus(Config.StatusAttractedUp, _hasArrowUp);
+			setStatus(Config.StatusAttractedDown, _hasArrowDown);
+			setStatus(Config.StatusAttractedLeft, _hasArrowLeft);
+			setStatus(Config.StatusAttractedRight, _hasArrowRight);
 
 		}
 	}
@@ -56,16 +63,11 @@ public class MagneticAttractionVisual extends TiledStageActor {
 	}
 
 	@Override
-	public String getName() {
-		return "ARROW!!";
-	}
-
-	@Override
 	public void updateAnimation() {
-		setAnimationShown(Config.AnimationArrowUp, _hasArrowUp);
-		setAnimationShown(Config.AnimationArrowDown, _hasArrowDown);
-		setAnimationShown(Config.AnimationArrowLeft, _hasArrowLeft);
-		setAnimationShown(Config.AnimationArrowRight, _hasArrowRight);
+		setAnimationShown(Config.AnimationArrowUp, hasStatus(Config.StatusAttractedUp));
+		setAnimationShown(Config.AnimationArrowDown, hasStatus(Config.StatusAttractedDown));
+		setAnimationShown(Config.AnimationArrowLeft, hasStatus(Config.StatusAttractedLeft));
+		setAnimationShown(Config.AnimationArrowRight, hasStatus(Config.StatusAttractedRight));
 	}
 
 	public static class Config {
@@ -73,5 +75,9 @@ public class MagneticAttractionVisual extends TiledStageActor {
 		public static String AnimationArrowRight = "Attraction Arrow Right";
 		public static String AnimationArrowUp = "Attraction Arrow Up";
 		public static String AnimationArrowDown = "Attraction Arrow Down";
+		public static String StatusAttractedLeft = "Attracted Left";
+		public static String StatusAttractedRight = "Attracted Right";
+		public static String StatusAttractedUp = "Attracted Up";
+		public static String StatusAttractedDown = "Attracted Down";
 	}
 }

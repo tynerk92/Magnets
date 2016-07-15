@@ -17,8 +17,8 @@ public class Button extends TiledStageActor {
 		SUBTICKS = SUBTICKS_STATIC;
 	}
 
-	public void initialize(Map<String, AnimationDef> animationDefs, TiledStage.Coordinate origin) {
-		super.initialize(animationDefs, origin);
+	public void initialize(TiledStage stage, Map<String, AnimationDef> animationDefs, TiledStage.Coordinate origin) {
+		super.initialize(stage, animationDefs, origin);
 
 		setTransition(Config.AnimationOning, Config.AnimationOn);
 		setTransition(Config.AnimationOffing, Config.AnimationOff);
@@ -47,13 +47,11 @@ public class Button extends TiledStageActor {
 	public void updateAnimation() {
 		if (hasStatus(Config.StatusOn)) {
 			if (!isAnimationActive(Config.AnimationOn) && !isAnimationActive(Config.AnimationOning)) {
-				hideAllAnimations();
-				showAnimation(Config.AnimationOning);
+				hideAllButAnimations(Config.AnimationOning);
 			}
 		} else {
 			if (!isAnimationActive(Config.AnimationOff) && !isAnimationActive(Config.AnimationOffing)) {
-				hideAllAnimations();
-				showAnimation(Config.AnimationOffing);
+				hideAllButAnimations(Config.AnimationOffing);
 			}
 		}
 	}

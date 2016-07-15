@@ -3,12 +3,10 @@ package com.somethingyellow.tiled;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.somethingyellow.graphics.AnimatedActor;
-import com.somethingyellow.graphics.Animation;
 import com.somethingyellow.graphics.AnimationDef;
 import com.somethingyellow.utility.ObjectSet;
 
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -21,7 +19,7 @@ public abstract class TiledStageActor extends AnimatedActor {
 	public static final boolean[] BodyArea1x1 = new boolean[]{true};
 	public int[] SUBTICKS = new int[0];
 	public ObjectSet<String> _statuses = new ObjectSet<String>();
-	private TiledStage.Coordinate _origin;
+	private TiledStage.Coordinate _origin = null;
 	private LinkedList<TiledStage.Coordinate> _bodyCoordinates = new LinkedList<TiledStage.Coordinate>();
 	private boolean[] _bodyArea;
 	private int _bodyWidth;
@@ -34,20 +32,23 @@ public abstract class TiledStageActor extends AnimatedActor {
 	/**
 	 * Initializes the actor and puts it in TiledStage
 	 */
-	public void initialize(Map<String, AnimationDef> animationDefs, TiledStage.Coordinate origin) {
+	public void initialize(TiledStage stage, Map<String, AnimationDef> animationDefs, TiledStage.Coordinate origin) {
 		super.initialize(animationDefs);
 
-		hideAllAnimations();
+		hideAllButAnimations();
 
 		_z = 0;
 		_movingTicks = 0;
 		_motion = new TiledStageMotionResolver.Motion();
-		_stage = origin.stage();
-		_origin = origin;
-		_stage.addActor(this);
-		setBody(BodyArea1x1, 1);
-		Vector2 pos = _origin.position();
-		setPosition(pos.x, pos.y);
+		_bodyArea = BodyArea1x1;
+		_bodyWidth = 1;
+		_stage = stage;
+		setOrigin(origin);
+
+		if (_origin != null) {
+			Vector2 pos = _origin.position();
+			setPosition(pos.x, pos.y);
+		}
 	}
 
 	public void setBody(boolean[] bodyArea, int bodyWidth) {
@@ -57,29 +58,23 @@ public abstract class TiledStageActor extends AnimatedActor {
 		_bodyArea = bodyArea;
 		_bodyWidth = bodyWidth;
 		_bodyHeight = bodyArea.length / bodyWidth;
-		setOrigin(_origin);
-	}
 
-	@Override
-	public List<Animation> animations() {
-		return super.animations();
+		// Remove and add back to stage
+		TiledStage.Coordinate origin = _origin;
+		setOrigin(null);
+		setOrigin(origin);
 	}
 
 	@Override
 	public void reset() {
 		super.reset();
 		_statuses.clear();
+		_origin = null;
 	}
 
 	@Override
 	public boolean remove() {
-		if (_origin != null) {
-			setOrigin(null);
-			super.remove();
-			return true;
-		} else {
-			return false;
-		}
+		return true;
 	}
 
 	public boolean isRemoved() {
@@ -111,7 +106,6 @@ public abstract class TiledStageActor extends AnimatedActor {
 	}
 
 	public boolean moveDirection(TiledStage.DIRECTION direction, int ticks) {
-		if (isMoving()) return false;
 		int unitRow = TiledStage.GetUnitRow(direction);
 		int unitCol = TiledStage.GetUnitColumn(direction);
 		moveTo(_stage.getCoordinate(origin().row() + unitRow, origin().column() + unitCol), ticks);
@@ -120,14 +114,8 @@ public abstract class TiledStageActor extends AnimatedActor {
 
 	public void moveTo(TiledStage.Coordinate targetCoordinate, int ticks) {
 		if (targetCoordinate == _origin) return;
-		setOrigin(targetCoordinate);
-		Vector2 pos = targetCoordinate.position();
 		_movingTicks = ticks;
-		addAction(Actions.moveTo(pos.x, pos.y, _stage.ticksToTime(ticks)));
-
-		for (AnimatedActor.Listener listener : listeners()) {
-			if (listener instanceof Listener) ((Listener) listener).stateChanged(this);
-		}
+		setOrigin(targetCoordinate);
 	}
 
 	public boolean isMoving() {
@@ -140,26 +128,27 @@ public abstract class TiledStageActor extends AnimatedActor {
 	 * If origin != null, actor is automatically added to stage
 	 */
 	protected void setOrigin(TiledStage.Coordinate origin) {
+		if (_origin == origin) return;
+
 		for (TiledStage.Coordinate coordinate : _bodyCoordinates) {
 			coordinate.remove(this);
 		}
 
 		if (origin == null) {
 
-			if (_origin != null) {
-				_stage.removeActor(this);
-				_origin = null;
-			}
+			_stage.removeActor(this);
+			_origin = null;
 
 		} else {
 
-			if (_origin == null) {
-				_stage.addActor(this);
+			// Visual set the actor to move, timing based on _movingTicks
+			addAction(Actions.moveTo(origin.position().x, origin.position().y,
+					_stage.ticksToTime(_movingTicks)));
 
-				System.out.println("WELCOME BACK " + this);
-			}
+			if (_origin == null) _stage.addActor(this);
 
 			_origin = origin;
+
 			_bodyCoordinates = getBodyCoordinates(_origin);
 			for (TiledStage.Coordinate coordinate : _bodyCoordinates) {
 				coordinate.add(this);
@@ -171,12 +160,37 @@ public abstract class TiledStageActor extends AnimatedActor {
 				_z = Math.max(_z, coordinate.elevation());
 			}
 		}
+
+		for (AnimatedActor.Listener listener : listeners()) {
+			if (listener instanceof Listener) {
+				((Listener) listener).originChanged(this);
+				((Listener) listener).stateChanged(this);
+			}
+		}
 	}
 
 	public boolean getBodyAreaAt(int bodyRow, int bodyColumn) {
 		if (bodyRow < 0 || bodyColumn < 0 || bodyRow >= _bodyHeight || bodyColumn >= _bodyWidth)
 			return false;
 		return _bodyArea[bodyRow * _bodyWidth + bodyColumn];
+	}
+
+	public TiledStage.Coordinate getBodyCoordinateAt(int bodyRow, int bodyColumn) {
+		return getCoordinateByBodyIndex(bodyRow * _bodyWidth + bodyColumn);
+	}
+
+
+	public void bindActor(final TiledStageActor actor, final int bodyRow, final int bodyColumn) {
+		actor.setOrigin(getBodyCoordinateAt(bodyRow, bodyColumn));
+
+		listeners().add(new TiledStageActor.Listener() {
+			@Override
+			public void originChanged(TiledStageActor actorToBindTo) {
+				super.originChanged(actorToBindTo);
+				actor._movingTicks = actorToBindTo._movingTicks;
+				actor.setOrigin(actorToBindTo.getBodyCoordinateAt(bodyRow, bodyColumn));
+			}
+		});
 	}
 
 	public TiledStage.Coordinate origin() {
@@ -239,6 +253,7 @@ public abstract class TiledStageActor extends AnimatedActor {
 	}
 
 	private TiledStage.Coordinate getCoordinateByBodyIndex(TiledStage.Coordinate origin, int bodyIndex) {
+		if (origin == null) return null;
 		if (bodyIndex < 0 || bodyIndex >= _bodyWidth * _bodyHeight) return null;
 		int tileRow = _bodyHeight - 1 - Math.floorDiv(bodyIndex, _bodyWidth) + origin.row();
 		int tileCol = (bodyIndex % _bodyWidth) + origin.column();
@@ -250,7 +265,7 @@ public abstract class TiledStageActor extends AnimatedActor {
 	 * Returns -1 if coordinate doesn't coincide with body of actor
 	 */
 	public int getBodyRow(TiledStage.Coordinate coordinate) {
-		int row = coordinate.row() - _origin.row() - _bodyHeight + 1;
+		int row = _bodyHeight - (coordinate.row() - _origin.row()) - 1;
 		if (row < 0 || row >= _bodyHeight) return -1;
 		return row;
 	}
@@ -263,6 +278,14 @@ public abstract class TiledStageActor extends AnimatedActor {
 		int col = coordinate.column() - _origin.column();
 		if (col < 0 || col >= _bodyWidth) return -1;
 		return col;
+	}
+
+	public int getDisplacementX(TiledStage.Coordinate coordinate) {
+		return (coordinate.column() - origin().column()) * _stage.tileWidth();
+	}
+
+	public int getDisplacementY(TiledStage.Coordinate coordinate) {
+		return (coordinate.row() - origin().row()) * _stage.tileHeight();
 	}
 
 	public void addStatus(String status) {
@@ -285,6 +308,14 @@ public abstract class TiledStageActor extends AnimatedActor {
 
 	public boolean hasStatus(String status) {
 		return _statuses.contains(status);
+	}
+
+	public boolean hasStatuses(String... statuses) {
+		for (String status : statuses) {
+			if (!hasStatus(status)) return false;
+		}
+
+		return true;
 	}
 
 	public void removeStatus(String status) {
@@ -342,7 +373,9 @@ public abstract class TiledStageActor extends AnimatedActor {
 
 	@Override
 	public String toString() {
-		return getName() + " @ " + _origin + " with statuses " + _statuses.toString();
+		String name = getName();
+		if (name == null) name = getClass().toString();
+		return name + " @ " + _origin + " with statuses " + _statuses.toString();
 	}
 
 	public abstract static class Listener extends AnimatedActor.Listener {
@@ -369,6 +402,13 @@ public abstract class TiledStageActor extends AnimatedActor {
 		 */
 		public void stateChanged(TiledStageActor actor) {
 		}
+
+		/**
+		 * When origin changes
+		 */
+		public void originChanged(TiledStageActor actor) {
+
+		}
 	}
 
 	public class State {
@@ -385,16 +425,13 @@ public abstract class TiledStageActor extends AnimatedActor {
 		}
 
 		public void restore() {
-			restore(0f);
+			restore(0);
 		}
 
-		public void restore(float time) {
+		public void restore(int time) {
 			// Restore actor's origin
+			_movingTicks = time;
 			setOrigin(_origin);
-			if (_origin != null) {
-				Vector2 pos = _origin.position();
-				addAction(Actions.moveTo(pos.x, pos.y, time));
-			}
 
 			// Restore actor's statuses
 			for (String status : TiledStageActor.this._statuses) {

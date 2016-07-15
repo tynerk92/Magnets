@@ -24,9 +24,9 @@ public class MagneticSource extends TiledStageActor {
 		SUBTICKS = SUBTICKS_STATIC;
 	}
 
-	public void initialize(Map<String, AnimationDef> animationDefs, TiledStage.Coordinate origin, boolean isSolid,
+	public void initialize(TiledStage stage, Map<String, AnimationDef> animationDefs, TiledStage.Coordinate origin, boolean isSolid,
 	                       int magnetisationRange, int magnetisationStrength, int attractionRange, int attractionStrength) {
-		super.initialize(animationDefs, origin);
+		super.initialize(stage, animationDefs, origin);
 
 		_isSolid = isSolid;
 		_magnetisationRange = magnetisationRange;
