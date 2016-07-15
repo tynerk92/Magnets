@@ -43,7 +43,7 @@ public abstract class TiledStageActor extends AnimatedActor {
 		_bodyArea = BodyArea1x1;
 		_bodyWidth = 1;
 		_stage = stage;
-		setOrigin(origin);
+		setOrigin(origin, true);
 
 		if (_origin != null) {
 			Vector2 pos = _origin.position();
@@ -61,8 +61,8 @@ public abstract class TiledStageActor extends AnimatedActor {
 
 		// Remove and add back to stage
 		TiledStage.Coordinate origin = _origin;
-		setOrigin(null);
-		setOrigin(origin);
+		setOrigin(null, false);
+		setOrigin(origin, false);
 	}
 
 	@Override
@@ -115,7 +115,7 @@ public abstract class TiledStageActor extends AnimatedActor {
 	public void moveTo(TiledStage.Coordinate targetCoordinate, int ticks) {
 		if (targetCoordinate == _origin) return;
 		_movingTicks = ticks;
-		setOrigin(targetCoordinate);
+		setOrigin(targetCoordinate, true);
 	}
 
 	public boolean isMoving() {
@@ -127,7 +127,7 @@ public abstract class TiledStageActor extends AnimatedActor {
 	 * If origin == null, actor is automatically removed from stage
 	 * If origin != null, actor is automatically added to stage
 	 */
-	protected void setOrigin(TiledStage.Coordinate origin) {
+	protected void setOrigin(TiledStage.Coordinate origin, boolean ifNotifyListeners) {
 		if (_origin == origin) return;
 
 		for (TiledStage.Coordinate coordinate : _bodyCoordinates) {
@@ -161,10 +161,12 @@ public abstract class TiledStageActor extends AnimatedActor {
 			}
 		}
 
-		for (AnimatedActor.Listener listener : listeners()) {
-			if (listener instanceof Listener) {
-				((Listener) listener).originChanged(this);
-				((Listener) listener).stateChanged(this);
+		if (ifNotifyListeners) {
+			for (AnimatedActor.Listener listener : listeners()) {
+				if (listener instanceof Listener) {
+					((Listener) listener).originChanged(this);
+					((Listener) listener).stateChanged(this);
+				}
 			}
 		}
 	}
@@ -181,14 +183,14 @@ public abstract class TiledStageActor extends AnimatedActor {
 
 
 	public void bindActor(final TiledStageActor actor, final int bodyRow, final int bodyColumn) {
-		actor.setOrigin(getBodyCoordinateAt(bodyRow, bodyColumn));
+		actor.setOrigin(getBodyCoordinateAt(bodyRow, bodyColumn), true);
 
 		listeners().add(new TiledStageActor.Listener() {
 			@Override
 			public void originChanged(TiledStageActor actorToBindTo) {
 				super.originChanged(actorToBindTo);
 				actor._movingTicks = actorToBindTo._movingTicks;
-				actor.setOrigin(actorToBindTo.getBodyCoordinateAt(bodyRow, bodyColumn));
+				actor.setOrigin(actorToBindTo.getBodyCoordinateAt(bodyRow, bodyColumn), true);
 			}
 		});
 	}
@@ -414,10 +416,14 @@ public abstract class TiledStageActor extends AnimatedActor {
 	public class State {
 		private TiledStage.Coordinate _origin;
 		private ObjectSet<String> _statuses;
+		private ObjectSet<String> _animationTags;
+		private int _movingTicks;
 
 		protected State() {
 			_origin = TiledStageActor.this._origin;
 			_statuses = TiledStageActor.this._statuses.clone();
+			_movingTicks = TiledStageActor.this._movingTicks;
+			_animationTags = new ObjectSet<String>(getActiveAnimationTags());
 		}
 
 		public TiledStageActor actor() {
@@ -429,17 +435,29 @@ public abstract class TiledStageActor extends AnimatedActor {
 		}
 
 		public void restore(int time) {
+			clearActions();
+
 			// Restore actor's origin
-			_movingTicks = time;
-			setOrigin(_origin);
+			TiledStageActor.this._movingTicks = time;
+			setOrigin(_origin, false);
+			TiledStageActor.this._movingTicks = _movingTicks;
+
+			// Restore actor's animations
+			hideAllButAnimations();
+			showAnimations(_animationTags);
 
 			// Restore actor's statuses
-			for (String status : TiledStageActor.this._statuses) {
-				removeStatus(status);
-			}
+			TiledStageActor.this._statuses.clear();
 			for (String status : _statuses) {
-				addStatus(status);
+				TiledStageActor.this._statuses.add(status);
 			}
+		}
+
+		@Override
+		public String toString() {
+			String name = getName();
+			if (name == null) name = getClass().toString();
+			return name + "'s state @ " + _origin + " with statuses " + _statuses.toString();
 		}
 	}
 }

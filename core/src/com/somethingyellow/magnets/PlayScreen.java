@@ -1,7 +1,6 @@
 package com.somethingyellow.magnets;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.maps.MapProperties;
@@ -16,18 +15,14 @@ import com.somethingyellow.tiled.TiledMapHelper;
 import com.somethingyellow.tiled.TiledStage;
 import com.somethingyellow.tiled.TiledStageActor;
 import com.somethingyellow.tiled.TiledStageHistorian;
-import com.somethingyellow.utility.Controller;
-import com.somethingyellow.utility.TimedTrigger;
 
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.Stack;
 
 public class PlayScreen implements Screen, PlayScreenUIStage.Commands {
 	private TiledStage _tiledStage;
 	private TiledMap _animationsMap;
-	private Controller _controller = new Controller();
 	private Player _player;
 	private LogicMachine _logicMachine = new LogicMachine();
 	private HashMap<String, AnimationDef> _animationDefs;
@@ -41,17 +36,13 @@ public class PlayScreen implements Screen, PlayScreenUIStage.Commands {
 	private LodestoneCommands _lodestoneCommands = new LodestoneCommands();
 	private TiledStageHistorian _tiledStageHistorian;
 	private TiledStageActorListener _tiledStageActorListener = new TiledStageActorListener();
-	private ControllerListener _controllerListener = new ControllerListener();
-	private UndoTimeTrigger _undoTimeTriggerTrigger = new UndoTimeTrigger();
-	private boolean _toEndLevel = false;
+	private boolean _toClearLevel = false;
 	private boolean _toSaveStates = false;
-	private TimedTrigger _undoTimeTrigger;
+	private boolean _toUndo = false;
+	private boolean _toReset = false;
 	private int _playerMovesCount = 0;
 	private Commands _commands;
-
 	private PlayScreenUIStage _UIStage;
-
-	private Stack<String> solution = new Stack<String>();
 
 	public PlayScreen(Skin skin, Commands commands) {
 		_commands = commands;
@@ -59,7 +50,6 @@ public class PlayScreen implements Screen, PlayScreenUIStage.Commands {
 		_UIStage = new PlayScreenUIStage(skin, this);
 		_tiledStageHistorian = new TiledStageHistorian(_tiledStage);
 		_tiledStage.listeners().add(_tiledStageListener);
-		_undoTimeTrigger = new TimedTrigger(_undoTimeTriggerTrigger, Config.UndoTriggerTimingChart);
 		_tilesByType = new HashMap<String, TiledMapTile>();
 		_animationsMap = _commands.loadMap(Config.AnimationsTMXPath);
 		_animationDefs = _commands.loadAnimations(_animationsMap, Config.GameTickDuration);
@@ -164,7 +154,7 @@ public class PlayScreen implements Screen, PlayScreenUIStage.Commands {
 
 	@Override
 	public void show() {
-		Gdx.input.setInputProcessor(_controller);
+		_UIStage.focus();
 	}
 
 	public void loadLevel(String levelPath) {
@@ -172,24 +162,20 @@ public class PlayScreen implements Screen, PlayScreenUIStage.Commands {
 
 		_levelPath = levelPath;
 		TiledMap map = _commands.loadMap(_levelPath);
-		_tiledStage.load(map, _controller.zoom(), Config.GameWallLayer);
+		_tiledStage.load(map, Config.GameWallLayer);
 		if (_player == null) throw new IllegalArgumentException("No player on the map!");
 		if (!_tilesByType.containsKey(Config.TMX.Tiles.Types.MagneticAttraction))
 			throw new IllegalArgumentException("Need tile of type for MagneticAttraction!");
 
-		// Controls
-		_controller.listeners().add(_controllerListener);
 		_moveQueue.clear();
-
-		_tiledStageHistorian.save();
-
+		_toClearLevel = _toReset = _toSaveStates = _toUndo = false;
 		_playerMovesCount = 0;
 		_UIStage.setPlayerMoveCount(_playerMovesCount);
+
+		_tiledStageHistorian.save();
 	}
 
 	public void unloadLevel() {
-		_controller.listeners().clear();
-		_controller.reset();
 		_logicMachine.clear();
 		_player = null;
 		_tiledStage.unload();
@@ -322,12 +308,12 @@ public class PlayScreen implements Screen, PlayScreenUIStage.Commands {
 
 	@Override
 	public void pause() {
-		pauseLevel();
+		setIsPaused(true);
 	}
 
 	@Override
 	public void resume() {
-		unpauseLevel();
+		setIsPaused(false);
 	}
 
 	@Override
@@ -345,17 +331,8 @@ public class PlayScreen implements Screen, PlayScreenUIStage.Commands {
 	}
 
 	public void resetLevel() {
-		solution = new Stack<String>();
 		unloadLevel();
 		loadLevel(_levelPath);
-	}
-
-	public void pauseLevel() {
-		_tiledStage.setIsPaused(true);
-	}
-
-	public void unpauseLevel() {
-		_tiledStage.setIsPaused(false);
 	}
 
 	public boolean isPaused() {
@@ -364,37 +341,27 @@ public class PlayScreen implements Screen, PlayScreenUIStage.Commands {
 
 	public void exitLevel() {
 		unloadLevel();
-		System.out.println("Ended");
-		for (String dir : solution) System.out.print(dir + " ");
-		System.out.print(" (" + solution.size() + ")\n");
-		solution = new Stack<String>();
 		_commands.exitLevel();
-	}
-
-	public void setZoom(float zoom) {
-		_tiledStage.setZoom(zoom);
 	}
 
 	public Player.PLAYER_ACTION getPlayerAction() {
 		Player.PLAYER_ACTION action = null;
 
-		// If player is not moving, move player if keys are held or move queue is not empty
-		if (_moveQueue.isEmpty()) {
-			if (_controller.isKeyLeftHeld() && !_controller.isKeyRightHeld() &&
-					!_controller.isKeyUpHeld() && !_controller.isKeyDownHeld()) {
-				action = Player.PLAYER_ACTION.MOVE_LEFT;
-			} else if (_controller.isKeyRightHeld() && !_controller.isKeyLeftHeld() &&
-					!_controller.isKeyUpHeld() && !_controller.isKeyDownHeld()) {
-				action = Player.PLAYER_ACTION.MOVE_RIGHT;
-			} else if (_controller.isKeyUpHeld() && !_controller.isKeyLeftHeld() &&
-					!_controller.isKeyRightHeld() && !_controller.isKeyDownHeld()) {
-				action = Player.PLAYER_ACTION.MOVE_UP;
-			} else if (_controller.isKeyDownHeld() && !_controller.isKeyLeftHeld() &&
-					!_controller.isKeyRightHeld() && !_controller.isKeyUpHeld()) {
-				action = Player.PLAYER_ACTION.MOVE_DOWN;
+		if (!_player.isMoving()) {
+			// If player is not moving, move player if keys are held or move queue is not empty
+			if (_moveQueue.isEmpty()) {
+				if (_UIStage.moveLeftHeld()) {
+					action = Player.PLAYER_ACTION.MOVE_LEFT;
+				} else if (_UIStage.moveRightHeld()) {
+					action = Player.PLAYER_ACTION.MOVE_RIGHT;
+				} else if (_UIStage.moveUpHeld()) {
+					action = Player.PLAYER_ACTION.MOVE_UP;
+				} else if (_UIStage.moveDownHeld()) {
+					action = Player.PLAYER_ACTION.MOVE_DOWN;
+				}
+			} else {
+				action = _moveQueue.removeFirst();
 			}
-		} else {
-			action = _moveQueue.removeFirst();
 		}
 
 		return action;
@@ -410,8 +377,72 @@ public class PlayScreen implements Screen, PlayScreenUIStage.Commands {
 		return _commands.loadAnimations(map, defaultDuration);
 	}
 
+	@Override
+	public void undo() {
+		_toUndo = true;
+	}
+
+	@Override
+	public void reset() {
+		_toReset = true;
+	}
+
+	public void setIsPaused(boolean isPaused) {
+		_tiledStage.setIsPaused(isPaused);
+		_UIStage.setIsPaused(isPaused);
+	}
+
+	@Override
+	public void togglePause() {
+		setIsPaused(!isPaused());
+	}
+
+	@Override
+	public void exit() {
+		exitLevel();
+	}
+
+	@Override
+	public void setCameraMode(boolean cameraMode) {
+
+	}
+
+	@Override
+	public void moveUp() {
+		_moveQueue.add(Player.PLAYER_ACTION.MOVE_UP);
+		setIsPaused(false);
+	}
+
+	@Override
+	public void moveDown() {
+		_moveQueue.add(Player.PLAYER_ACTION.MOVE_DOWN);
+		setIsPaused(false);
+	}
+
+	@Override
+	public void moveLeft() {
+		_moveQueue.add(Player.PLAYER_ACTION.MOVE_LEFT);
+		setIsPaused(false);
+	}
+
+	@Override
+	public void moveRight() {
+		_moveQueue.add(Player.PLAYER_ACTION.MOVE_RIGHT);
+		setIsPaused(false);
+	}
+
+	@Override
+	public float zoom(float zoom) {
+		return _tiledStage.setCameraZoom(zoom);
+	}
+
+	@Override
+	public void dragged(float displacementX, float displacementY) {
+
+	}
+
 	public enum SUBTICKS {
-		START, MAGNETISATION, MAGNETIC_ATTRACTION, BLOCK_MOVEMENT, BUTTONS, DOORS, PLAYER_ACTION, END
+		START, BUTTONS, DOORS, MAGNETISATION, MAGNETIC_ATTRACTION, BLOCK_MOVEMENT, PLAYER_ACTION, END
 	}
 
 	public interface Commands {
@@ -424,10 +455,9 @@ public class PlayScreen implements Screen, PlayScreenUIStage.Commands {
 
 	public static class Config {
 		public static float GameTickDuration = 0.06f;
+		public static int GameUndoTicks = 1;
 		public static String AnimationsTMXPath = null;
 		public static String GameWallLayer = null;
-		public static int GameUndoTicks = 1;
-		public static int[] UndoTriggerTimingChart = new int[]{1, 10, 3, 3, 3, 3, 3, -1};
 
 		public static class TMX {
 			public static class Tiles {
@@ -517,63 +547,42 @@ public class PlayScreen implements Screen, PlayScreenUIStage.Commands {
 		public void afterTick(TiledStage stage) {
 			super.afterTick(stage);
 
-			if (_toSaveStates) {
+			if (_toReset) {
+
+				resetLevel();
+				_toReset = false;
+
+			} else if (_toUndo) {
+
+				_tiledStageHistorian.save();
+				_tiledStageHistorian.revert(Config.GameUndoTicks);
+				setIsPaused(true);
+				_toUndo = false;
+
+			} else if (_toSaveStates) {
+
 				_tiledStageHistorian.save();
 				_toSaveStates = false;
+
 			}
 
-			if (_controller.isKeyHeld(Input.Keys.Z)) {
-				_undoTimeTrigger.update(1);
-			} else {
-				_undoTimeTrigger.reset();
-			}
-
-			if (_controller.wasKeyPressed(Input.Keys.R)) {
-				resetLevel();
-			}
-
-			if (_controller.wasKeyPressed(Input.Keys.P)) {
-				if (!isPaused()) pauseLevel();
-				else unpauseLevel();
-			}
-
-			// Unpause game when movement keys are pressed
-			if (_tiledStage.isPaused() && (_controller.wasKeyLeftPressed() || _controller.wasKeyRightPressed() ||
-					_controller.wasKeyUpPressed() || _controller.wasKeyDownPressed())) {
-				unpauseLevel();
-			}
-
-			if (_controller.wasKeyPressed(Input.Keys.ESCAPE)) {
-				_toEndLevel = true;
-			}
-
-			_controller.clearKeysPressed();
 		}
 
 		@Override
 		public void drawn(TiledStage tiledStage) {
 			super.drawn(tiledStage);
 
-			if (_toEndLevel) {
+			if (_toClearLevel) {
 				exitLevel();
-				_toEndLevel = false;
+				_toClearLevel = false;
 			}
-		}
-	}
-
-	public class UndoTimeTrigger implements TimedTrigger.Trigger {
-		@Override
-		public void activate() {
-			_tiledStageHistorian.save();
-			_tiledStageHistorian.revert(Config.GameUndoTicks);
-			if (!_tiledStage.isPaused()) pauseLevel();
 		}
 	}
 
 	public class PlayerCommands implements Player.Commands {
 		@Override
 		public void endLevel() {
-			_toEndLevel = true;
+			_toClearLevel = true;
 		}
 	}
 
@@ -660,33 +669,6 @@ public class PlayScreen implements Screen, PlayScreenUIStage.Commands {
 			if (actor.getName() != null) {
 				_logicMachine.set(actor.getName() + Config.TMX.Objects.StatusPrefixIdentifier + status, false);
 			}
-		}
-	}
-
-	public class ControllerListener extends Controller.Listener {
-		@Override
-		public void zoomed(Controller controller, float zoom) {
-			setZoom(zoom);
-		}
-
-		@Override
-		public void keyUpPressed(Controller controller) {
-			if (!_tiledStage.isPaused()) _moveQueue.add(Player.PLAYER_ACTION.MOVE_UP);
-		}
-
-		@Override
-		public void keyDownPressed(Controller controller) {
-			if (!_tiledStage.isPaused()) _moveQueue.add(Player.PLAYER_ACTION.MOVE_DOWN);
-		}
-
-		@Override
-		public void keyLeftPressed(Controller controller) {
-			if (!_tiledStage.isPaused()) _moveQueue.add(Player.PLAYER_ACTION.MOVE_LEFT);
-		}
-
-		@Override
-		public void keyRightPressed(Controller controller) {
-			if (!_tiledStage.isPaused()) _moveQueue.add(Player.PLAYER_ACTION.MOVE_RIGHT);
 		}
 	}
 }

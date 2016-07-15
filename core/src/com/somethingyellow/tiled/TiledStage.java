@@ -13,10 +13,12 @@ import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Pools;
+import com.somethingyellow.graphics.AnimatedActor;
 import com.somethingyellow.graphics.LightSource;
 import com.somethingyellow.utility.ObjectSet;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -107,6 +109,9 @@ public class TiledStage extends Stage {
 	public static DIRECTION GetDirection(int rowDiff, int colDiff) {
 		if (rowDiff == 0 && colDiff == 0) return null;
 
+		if (Math.abs(rowDiff) > Math.abs(colDiff)) colDiff = 0;
+		else if (Math.abs(colDiff) > Math.abs(rowDiff)) rowDiff = 0;
+
 		double angle = Math.atan2(rowDiff, colDiff);
 		int angleUnit = (int) Math.round(angle / (Math.PI / 4));
 
@@ -177,7 +182,7 @@ public class TiledStage extends Stage {
 	 * Loads a TiledMap, unloading if it is still loaded
 	 */
 
-	public void load(TiledMap map, float cameraZoom, String wallLayerName) {
+	public void load(TiledMap map, String wallLayerName) {
 		if (isLoaded()) unload();
 
 		_map = map;
@@ -186,7 +191,6 @@ public class TiledStage extends Stage {
 		_tileHeight = props.get("tileheight", Integer.class);
 		_tileRows = props.get("height", Integer.class);
 		_tileColumns = props.get("width", Integer.class);
-		_cameraZoom = cameraZoom;
 		_wallLayer = null;
 		_coordinates = new ArrayList<Coordinate>(_tileRows * _tileColumns);
 
@@ -245,7 +249,7 @@ public class TiledStage extends Stage {
 		_tempActors.clear();
 		_tempActors.addAll(_actors);
 		for (TiledStageActor actor : _tempActors) {
-			actor.setOrigin(null);
+			actor.setOrigin(null, true);
 			Pools.free(actor);
 		}
 		_actors.clear();
@@ -357,6 +361,10 @@ public class TiledStage extends Stage {
 		return _tickDuration;
 	}
 
+	public float cameraZoom() {
+		return _cameraZoom;
+	}
+
 	public TiledStageMotionResolver motionResolver() {
 		return _motionResolver;
 	}
@@ -373,6 +381,13 @@ public class TiledStage extends Stage {
 	}
 
 	public void setIsPaused(boolean isPaused) {
+
+		if (_isPaused != isPaused) {
+			for (AnimatedActor actor : actors()) {
+				actor.setIsPaused(isPaused);
+			}
+		}
+
 		_isPaused = isPaused;
 	}
 
@@ -455,8 +470,12 @@ public class TiledStage extends Stage {
 		_camera.position.set(_cameraFocalActor.center(), 0);
 	}
 
-	public void setZoom(float zoom) {
-		_cameraZoom = zoom;
+	/**
+	 * Sets camera zoom, returning the clamped value of final zoom set (considering min and max zoom)
+	 */
+	public float setCameraZoom(float zoom) {
+		_cameraZoom = Math.min(Math.max(zoom, Config.CameraZoomMin), Config.CameraZoomMax);
+		return _cameraZoom;
 	}
 
 	public Iterator<TiledMapTile> tilesIterator() {
@@ -484,6 +503,8 @@ public class TiledStage extends Stage {
 	public static class Config {
 		public static float CameraPanningSmoothRatio = 0.1f;
 		public static float CameraZoomSmoothRatio = 0.1f;
+		public static float CameraZoomMin = 0.4f;
+		public static float CameraZoomMax = 2.0f;
 	}
 
 	public abstract static class Listener {
@@ -539,12 +560,12 @@ public class TiledStage extends Stage {
 	}
 
 	public class Coordinate implements Comparable<Coordinate> {
-		private HashSet<TiledStageActor> _actors = new HashSet<TiledStageActor>();
+		private ObjectSet<TiledStageActor> _actors = new ObjectSet<TiledStageActor>();
+		private ObjectSet<Coordinate> TempCoordinates = new ObjectSet<Coordinate>();
 		private int _row;
 		private int _col;
 		private int _elevation;
 		private HashMap<String, Cell> _cells;
-		private ObjectSet<Coordinate> TempCoordinates = new ObjectSet<Coordinate>();
 
 		public Coordinate(int row, int col) {
 			_row = row;
@@ -556,7 +577,7 @@ public class TiledStage extends Stage {
 			}
 		}
 
-		public HashSet<TiledStageActor> actors() {
+		public Collection<TiledStageActor> actors() {
 			return _actors;
 		}
 

@@ -5,7 +5,7 @@ import com.somethingyellow.graphics.AnimationDef;
 import com.somethingyellow.tiled.TiledStage;
 import com.somethingyellow.tiled.TiledStageActor;
 
-import java.util.HashSet;
+import java.util.Collection;
 import java.util.Map;
 
 public class Player extends TiledStageActor {
@@ -62,7 +62,7 @@ public class Player extends TiledStageActor {
 				}
 			}
 
-			if (!isMoving() && _action != null) {
+			if (_action != null) {
 
 				TiledStage.DIRECTION direction = null;
 				switch (_action) {
@@ -81,14 +81,15 @@ public class Player extends TiledStageActor {
 				}
 
 				if (direction != null) {
-					_ifTriedMoving = true;
-					tryToMoveDirection(direction, Config.MoveTicks);
+
+					if (!isMoving()) {
+						tryToMoveDirection(direction, Config.MoveTicks);
+						_ifTriedMoving = true;
+					}
 
 					if (pushDirection(direction)) {
 						setStatus(Config.StatusPushing, true);
-						setStatus(Config.StatusMoving, false);
 					} else {
-						setStatus(Config.StatusMoving, true);
 						setStatus(Config.StatusPushing, false);
 					}
 
@@ -97,6 +98,9 @@ public class Player extends TiledStageActor {
 					setStatus(Config.StatusFacingUp, direction == TiledStage.DIRECTION.NORTH);
 					setStatus(Config.StatusFacingDown, direction == TiledStage.DIRECTION.SOUTH);
 				}
+
+			} else {
+				if (!isMoving()) setStatus(Config.StatusPushing, false);
 			}
 
 			_action = null;
@@ -104,13 +108,13 @@ public class Player extends TiledStageActor {
 		} else if (subtick == PlayScreen.SUBTICKS.END.ordinal()) {
 
 			if (isMoving()) {
+				setStatus(Config.StatusMoving, true);
 				if (_ifTriedMoving) {
 					for (AnimatedActor.Listener listener : listeners()) {
 						if (listener instanceof Listener) ((Listener) listener).moved(this);
 					}
 				}
 			} else {
-				setStatus(Config.StatusPushing, false);
 				setStatus(Config.StatusMoving, false);
 			}
 		}
@@ -122,6 +126,10 @@ public class Player extends TiledStageActor {
 
 	@Override
 	public void updateAnimation() {
+
+		// TODO: When the player is walking against both pushable and unpushable lodestones, play pushing animation
+		// TODO: Player can change direction without moving
+		// TODO: When rewinding, don't play player animations
 		// If animation is pushing and it is not longer pushing that direction, animate back to idle first
 		if (isAnimationActive(Config.AnimationPushingLeft)) {
 			if (!hasStatuses(Config.StatusPushing, Config.StatusFacingLeft)) {
@@ -175,15 +183,13 @@ public class Player extends TiledStageActor {
 				hideAllButAnimations(Config.AnimationIdleDown);
 			}
 		}
-
-		System.out.println(getActiveAnimations());
 	}
 
 	protected boolean pushDirection(final TiledStage.DIRECTION direction) {
 		// check if there're any blocks in direction, push if there are
 		TiledStage.Coordinate targetCoordinate = origin().getAdjacentCoordinate(direction);
 		if (targetCoordinate == null) return false;
-		HashSet<TiledStageActor> actors = targetCoordinate.actors();
+		Collection<TiledStageActor> actors = targetCoordinate.actors();
 		for (TiledStageActor actor : actors) {
 			if (actor instanceof Pushable) {
 				((Pushable) actor).push(direction);
@@ -216,10 +222,6 @@ public class Player extends TiledStageActor {
 		public static String AnimationIdleRight = "Idle Right";
 		public static String AnimationIdleUp = "Idle Up";
 		public static String AnimationIdleDown = "Idle Down";
-		public static String AnimationBlinkingLeft = "Blinking Left";
-		public static String AnimationBlinkingRight = "Blinking Right";
-		public static String AnimationBlinkingUp = "Blinking Up";
-		public static String AnimationBlinking = "Blinking Down";
 		public static String AnimationWalkingLeft = "Walking Left";
 		public static String AnimationWalkingRight = "Walking Right";
 		public static String AnimationWalkingUp = "Walking Up";

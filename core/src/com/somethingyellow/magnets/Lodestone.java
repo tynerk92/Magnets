@@ -59,6 +59,8 @@ public class Lodestone extends TiledStageActor implements Player.Pushable,
 		if (subtick == PlayScreen.SUBTICKS.START.ordinal()) {
 
 			_magneticStrength = 0;
+			_forceX = 0;
+			_forceY = 0;
 
 		} else if (subtick == PlayScreen.SUBTICKS.MAGNETIC_ATTRACTION.ordinal()) {
 
@@ -85,8 +87,6 @@ public class Lodestone extends TiledStageActor implements Player.Pushable,
 			if (!isMoving()) {
 				if (_forceX != 0 || _forceY != 0) {
 					tryToMoveDirection(TiledStage.GetDirection(_forceY, _forceX), Config.MoveTicks);
-					_forceX = 0;
-					_forceY = 0;
 				}
 			}
 		}
@@ -164,6 +164,11 @@ public class Lodestone extends TiledStageActor implements Player.Pushable,
 		}
 	}
 
+	@Override
+	public TiledStageActor.State getState() {
+		return new State();
+	}
+
 	public interface Commands {
 		MagneticAttractionVisual spawnMagneticAttractionVisual();
 	}
@@ -174,5 +179,21 @@ public class Lodestone extends TiledStageActor implements Player.Pushable,
 		public static String AnimationLodestone = "Lodestone";
 		public static String AnimationMagnetisedOverlay = "Magnetised Overlay";
 		public static String StatusMagnetised = "Magnetised";
+	}
+
+	public class State extends TiledStageActor.State {
+		private HashMap<Integer, MagneticAttractionVisual> _attractionVisuals;
+
+		protected State() {
+			_attractionVisuals = Lodestone.this._attractionVisuals;
+		}
+
+		@Override
+		public void restore(int time) {
+			super.restore(time);
+
+			Lodestone.this._attractionVisuals.clear();
+			Lodestone.this._attractionVisuals.putAll(_attractionVisuals);
+		}
 	}
 }

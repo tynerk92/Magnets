@@ -39,6 +39,7 @@ public class TiledStageHistorian {
 		for (HashMap<TiledStageActor, TiledStageActor.State> states : _history) {
 			states.clear();
 		}
+
 		_history.clear();
 	}
 
@@ -73,10 +74,10 @@ public class TiledStageHistorian {
 				while (index >= 0 && !_history.get(index).keySet().contains(actor)) index--;
 				if (index >= 0) {
 					_history.get(index).get(actor).restore(time);
-					// System.out.println("RESTORED: " + actor);
 				}
+
+				// System.out.println("RESTORED: " + actor);
 			}
-			_actorsChangedSinceSave.clear();
 
 			if (_history.size() > 1) {
 				states.clear();
@@ -92,7 +93,7 @@ public class TiledStageHistorian {
 			super.actorAdded(tiledStage, actor);
 			actor.listeners().add(_tiledStageActorListener);
 			// System.out.println("ADDED: " + actor);
-			_actorsChangedSinceSave.add(actor);
+			if (_history.size() > 0) _history.getLast().put(actor, actor.getState());
 		}
 	}
 
