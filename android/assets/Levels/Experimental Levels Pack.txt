@@ -46,28 +46,6 @@ Test cases 2
 ██████████ XXX █    M███
 ████████████████████████
 
-Wake me up when there is repulsion
-████████████████████
-████████  e ████████
-████████M██M████████
-█████  M x  M  █████
-████   █X██X█   ████
-███   ██X██X██   ███
-███  ██XXY XX██  ███
-███M██X██Y ██X██M███
-█ M XXX█    █XXX M █
-█ █x██YY s    ██ █ █
-█ █ ██      YY██x█ █
-█ M XXX█    █XXX M █
-███M██X██ Y██X██M███
-███  ██XX YXX██  ███
-███   ██X██X██   ███
-████   █X██X█   ████
-█████  M  x M  █████
-████████M██M████████
-████████    ████████
-████████████████████
-
 Diagonal Test
 █████████████
 █  M  █  M  █
@@ -88,57 +66,3 @@ M XX M█ XX M█
 █ XX  █ XX M█
 █     █     █
 █████████M███
-
-Unexpected Behaviour
-███████████████
-███    e    ███
-███      yy ███
-██  xxyyxxy  ██
-█  xxyyxxyy   █
-█             █
-██ MMMMMMMMs ██
-███████████████
-
-Testtt
-                 
- B     F         
-   bpb           
-   xxx           
- e               
-      xf    f    
-      xj         
-  s   xf         
-                 
-                 
-<Second>
-                 
-                 
-                 
-                 
-                 
-            x    
-                 
-                 
-                 
-                 
-Solution :
-
-Testicle
-                     
-                     
-                     
-                     
-                     
-         YYY         
- X       X X       X 
- XYYXXXYYX XYYXXXYYX 
- XXYYXYYXX XXYYXYYXX 
-    XXX       XXX    
-  MM   MM   MM   MM  
-     M    e    M     
-                     
-          s          
-                     
-                     
-                     
-Solution :

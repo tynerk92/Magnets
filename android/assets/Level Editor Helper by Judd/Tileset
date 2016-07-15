@@ -10,11 +10,23 @@ Tile Number, Image file, Tile Name, Type, Extended Info
 8, Unpushable 3.png, New Tile 10, No Type
 9, Start.png, New Tile 3, No Type
 10, Exit.png, New Tile 4, No Type
-11, Button 1.png, New Tile 5, No Type
-12, Button 2.png, New Tile 7, No Type
-13, Door 1.png, New Tile 6, No Type
-14, Door 2.png, New Tile 8, No Type
-15, Door 1 Open.png, New Tile 18, No Type
-16, Door 2 Open.png, New Tile 17, No Type
-17, Source.png, New Tile 9, No Type
-18, Source Floor.png, New Tile 15, No Type
+11, Button 1 1.png, New Tile 5, No Type
+12, Button 1 2.png, New Tile 5, No Type
+13, Button 1 3.png, New Tile 5, No Type
+14, Button 2 1.png, New Tile 7, No Type
+15, Button 2 2.png, New Tile 7, No Type
+16, Button 2 3.png, New Tile 7, No Type
+17, Door 1 1.png, New Tile 6, No Type
+18, Door 1 2.png, New Tile 6, No Type
+19, Door 1 3.png, New Tile 6, No Type
+20, Door 2 1.png, New Tile 8, No Type
+21, Door 2 2.png, New Tile 8, No Type
+22, Door 2 3.png, New Tile 8, No Type
+23, Door 1 Open 1.png, New Tile 18, No Type
+24, Door 1 Open 2.png, New Tile 18, No Type
+25, Door 1 Open 3.png, New Tile 18, No Type
+26, Door 2 Open 1.png, New Tile 17, No Type
+27, Door 2 Open 2.png, New Tile 17, No Type
+28, Door 2 Open 3.png, New Tile 17, No Type
+29, Source.png, New Tile 9, No Type
+30, Source Floor.png, New Tile 15, No Type

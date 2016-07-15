@@ -46,16 +46,24 @@ public class MultiTileDetector {
 	public Hashtable<String, String> multiTileCodeToNameArray = new Hashtable<String, String>();
 	
 	MultiTileDetector(String[][] data, String[][] data2, boolean hasSecondLayer, String whatToDetect) {
-		this.data = data;
+		
+		this.data = new String[data.length][data[0].length];
+		for (int j = 0; j < data.length; j++) {
+			for (int i = 0; i < data[0].length; i++) {
+				this.data[j][i] = data[j][i];
+			}
+		}
+		
 		if (hasSecondLayer) {
-			for (int j = 0; j < this.data.length; j++) {
-				for (int i = 0; i < this.data[0].length; i++) {
+			for (int j = 0; j < data2.length; j++) {
+				for (int i = 0; i < data2[0].length; i++) {
 					if (whatToDetect.contains(data2[j][i])) {
 						this.data[j][i] = data2[j][i];
 					}
 				}
 			}
 		}
+		
 		this.checked = new Integer[data.length][data[0].length];
 		this.output = new int[data.length][data[0].length];
 		for (Integer[] row: checked) Arrays.fill(row, 0);

@@ -102,6 +102,10 @@ public class TextToTmx {
 		TileSetInfo += tsGen.generateTileSet(mainAssetsDirectory, upHowManyLevels, relativeGraphicsSetPath);
 		tilelist = tsGen.getList();
 		nameToTileID = tsGen.getTable();
+		
+		writeToFile(mainAssetsDirectory + "Animations/", "Tileset", "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + TileSetInfo, "tsx");
+		TileSetInfo = " <tileset firstgid=\"1\" source=\"../Animations/Tileset.tsx\"/>\n";
+		
 		wroteTileSet = true;
 	}
 	
@@ -218,22 +222,6 @@ public class TextToTmx {
 			}
 		}
 		
-		/*
-		// Place boulders and staglamites randomly over a wall with at least 1 
-		String adjacents;
-		for (int y = 1; y < rows + 1; y++) {
-			for (int x = 1; x < cols + 1; x++) {
-				if (data[y][x].equals(wall)) {
-					adjacents = getAdjacents(y, x, wall, data, false);
-					if (adjacents.contains("0")) {
-						if (Math.random() < 0.05 * countOccurrences(adjacents, "0")) {
-							data[y][x] = Math.random() < 0.5 ? "▒" : "@";
-						}
-					}
-				}
-			}
-		}*/
-		
 		// Second Layer should only be comprised only of lodestones
 		// Processing walls and floors and other objects
 		String currentTile;
@@ -259,16 +247,16 @@ public class TextToTmx {
 								if (code.endsWith("X0X") && Math.random() < 0.1 && belowTile.equals(" ")) {
 									int chosenFrame = random.nextInt(tsGen.numSpringFrames) + 1;
 									int chosenSet = random.nextInt(2) + 1;
-									WallDeco1[y][x - 1] = nameToTileID.get("Wall Overlays Spring " + chosenSet + " " + chosenFrame + "_" + tsGen.numSpringFrames);
-									WallDeco2[y][x - 1] 	= nameToTileID.get("Wall Overlays Splash " + chosenSet + " " + chosenFrame + "_" + tsGen.numSplashFrames);
-									WallDeco3[y][x - 1]     = nameToTileID.get("Wall Overlays Puddle " + chosenSet);
+										WallDeco1[y - 1][x - 1] = nameToTileID.get("Wall Overlays Spring " + chosenSet + " " + chosenFrame + "_" + tsGen.numSpringFrames);
+										//WallDeco2[y - 1][x - 1] = nameToTileID.get("Wall Overlays Splash " + chosenSet + " " + chosenFrame + "_" + tsGen.numSplashFrames);
+										FloorDeco[y][x - 1] = nameToTileID.get("Wall Overlays Puddle " + chosenSet);
 								}
 								Walls[y - 1][x - 1] = nameToTileID.get("Wall " + code); break;
 							}
 						} break;
 						
 					case stalagmite: 
-						Walls[y - 1][x - 1] = nameToTileID.get("Wall Stalagmites " + ((staglamitecount++ % 2) + 1)); break;
+						Walls[y - 1][x - 1] = nameToTileID.get("Wall Stalagmites " + ((staglamitecount++ % 4) + 1)); break;
 					
 					case boulder:
 						WallDeco1[y - 1][x - 1] = nameToTileID.get("Wall Boulder " + ((bouldercount++ % 4) + 1));
@@ -301,7 +289,7 @@ public class TextToTmx {
 						} */break;
 					default:
 						switch (currentTile) {
-						case player: 		objname = "Player Right Idle"; 												break;
+						case player: 		objname = "Player Idle Right"; 												break;
 						case magnetsource:	objname = "Magnetic Source " + "01_" + tsGen.numMagneticSourceFrames; 		break;
 						//case boulder: 		objname = "Boulder"; break;
 						case exit:  		objname = "Exit " + (random.nextInt(5) + 1); 								break;
@@ -349,7 +337,7 @@ public class TextToTmx {
 		MultiTileDetector lodestoneDetector = new MultiTileDetector(data, data2, hasSecondLayer, lodestoneSymbols);
 		MultiTileDetector buttonDetector 	= new MultiTileDetector(data, data, false, buttonSymbols);
 		MultiTileDetector doorDetector 		= new MultiTileDetector(data, data, false, doorSymbols);
-		//for (String code : tsGen.genLodestoneCodes()) System.out.println(code);
+		
 		lodestoneDetector.addMultiTiles("Lodestone", Objects, tsGen, lodestoneSymbols, tsGen.lodestoneAreas, tsGen.lodestoneNames, tsGen.lodestoneNameToOffsetArray);
 		buttonDetector.addMultiTiles(   "Button"   , Objects, tsGen,    buttonSymbols,    tsGen.buttonAreas,    tsGen.buttonNames, tsGen.buttonNameToOffsetArray);
 		doorDetector.addMultiTiles(     "Door"     , Objects, tsGen,      doorSymbols,      tsGen.doorAreas,      tsGen.doorNames, tsGen.doorNameToOffsetArray);
@@ -507,6 +495,7 @@ public class TextToTmx {
 		writeLevelInfo(cols, rows, nameCount);
 		name = name.replaceAll("[\uFEFF-\uFFFF]", "");
 		String levelName = "(" + difficulty + ") " + name + (hasSolution ? " (Solvable - " + solutionLength + ")" : "");
+		
 		System.out.println("Generating : " + levelName);
 		if (!hasSolution) System.out.println("No solution provided yet.");
 		
@@ -568,6 +557,5 @@ public class TextToTmx {
 			} 
 		} System.out.println(prog.errorMSG);
 		System.out.println("\n" + s.substring(0, s.length() - 2));
-		prog.writeToFile(mainAssetsDirectory + "Animations/", "Tileset", "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + TextToTmx.TileSetInfo, "tsx");
 	}
 }

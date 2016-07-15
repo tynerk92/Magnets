@@ -50,24 +50,25 @@ public class TileSetGenerator {
 	private final int IntervalMultiplier = 20;
 	
 	// Num MagneticFloor frames = 1
-	private final int[] MagneticFloorAnim = new int[] {  0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+	private final    int[] MagneticFloorAnim = new    int[] {  0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 	private final double[] MagneticFloorInte = new double[] { 40, 2, 2, 2, 2, 4, 4, 6, 6, 8 };
 	
 	// Num MagneticSource frames = 10;
-	private final int[] MagneticSourceAnim = new int[] {  0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+	private final    int[] MagneticSourceAnim = new    int[] {  0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 	private final double[] MagneticSourceInte = new double[] { 40, 2, 2, 2, 2, 4, 4, 6, 6, 8 };
 	
 	// Num DoorTransition frames = 7; // Excluding open and closed
-	private final int[] DoorTransitionAnim = new int[] { 0, 1, 2,  3, 4, 5, 6 };
-	//private final int[] DoorTransitionInte = new int[] { 4, 6, 8, 10, 8, 6, 4 };
-	private final double[] DoorTransitionInte = new double[] { 0.4, 0.6, 0.8, 1, 0.8, 0.6, 0.4 };
+	private final    int[] DoorTransitionAnim = new    int[] { -1,   0,   1,   2, 3,   4,   5,   6 };
+	private final double[] DoorTransitionInte = new double[] { 5, 0.4, 0.6, 0.8, 1, 0.8, 0.6, 0.4 };
 	
-	// Num MagneticAttraction frames = 7;
-	private final int[] MagneticAttractAnim = new int[] { 0, 1, 2, 3, 4, 5, 6 };
-	private final int[] MagneticAttractInte = new int[] { 8, 8, 8, 8, 8, 8, 8 };
+	private final    int[] ButtonTransitionAnim = new    int[] { -1, 0 };
+	private final double[] ButtonTransitionInte = new double[] {  5,  5 };
+	
+	private final    int[] PlayerAnim = new    int[] { 0, 1, 0, 2 };
+	private final double[] PlayerInte = new double[] { 6, 6, 6, 6 };
 	
 	// Num Spring Frames = 5;
-	private final int[] SpringAnim = new int[] { 0, 1, 2, 3, 4 };
+	private final    int[] SpringAnim = new    int[] { 0, 1, 2, 3, 4 };
 	private final double[] SpringInte = new double[] { 8, 8, 8, 8, 8 };
 	
 	// Num Spring Frames = 5;
@@ -212,6 +213,7 @@ public class TileSetGenerator {
 																				property("Type", "Button");
 							} else if (whichFrame < totalFrames) 		info += property("Name", "Button Pressing " + identity);
 			            	else 										info += property("Name", "Button On " + identity);
+							if (whichFrame == 2) 						info += animation(ButtonTransitionAnim, ButtonTransitionInte, IntervalMultiplier, false);
 			            	info = enclose("properties", info) + 
 		            			   image(width, height, source); break;
 						case "Door": 
@@ -283,6 +285,7 @@ public class TileSetGenerator {
 									info;
 							info += image(width, height, source); break;
 						case "Treasure": 
+						case "Grinding":
 							skip = true; break;
 						case "Pushable": 
 						case "Unpushable": 
@@ -324,6 +327,8 @@ public class TileSetGenerator {
 												property("~Attraction Arrow Right", type + " Arrow Right"));
 							} else {
 								info = enclose("properties",
+												property("Render Depth", "int", 4) + 
+												property("Render Displacement Y", "int", 16) + 
 												property("Name", type + " " + name));
 							}
 							info += image(width, height, source);
@@ -341,10 +346,9 @@ public class TileSetGenerator {
 												property("Magnetisation Range", "int", 0) + 
 												property("Attraction Range", "int", 0) + 
 												property("Is Solid", false) + 
-												property("Lighting Displacement X", 48 - 16) + 
-												property("Lighting Displacement Y", 48 - 16) + 
-												property("Lighting Animation", "Magnet Light Source") + 
-												property("Lighting Intensity", 0.5)) + 
+												property("Lighting Displacement X", 32 - 16) + 
+												property("Lighting Displacement Y", 32 - 16) + 
+												property("Lighting Animation", "Magnetic Floor Light Source")) + 
 										image(width, height, source) + 
 										animation(MagneticFloorAnim, MagneticFloorInte, IntervalMultiplier, false);
 							else 
@@ -354,18 +358,17 @@ public class TileSetGenerator {
 							data = name.split("[ _]");
 							whichFrame = Integer.parseInt(data[data.length - 2]);
 							numMagneticSourceFrames = Integer.parseInt(data[data.length - 1]);
-							if (whichFrame == 1)
+							if (whichFrame == 1) {
 								info = enclose("properties", 
 												property("Name", type) +
 												property("~Source", type) +
 												property("Type", type) + 
 												property("Lighting Displacement X", 48 - 16) + 
 												property("Lighting Displacement Y", 48 - 16) + 
-												property("Lighting Animation", "Magnet Light Source") + 
-												property("Lighting Intensity", 0.5)) + 
+												property("Lighting Animation", "Magnetic Source Light Source")) + 
 										image(width, height, source) + 
 										animation(MagneticSourceAnim, MagneticSourceInte, IntervalMultiplier, false); 
-							else 
+							} else 
 								info = image(width, height, source); 
 							break;
 						case "Magnetised Overlay":
@@ -396,45 +399,46 @@ public class TileSetGenerator {
 						case "Floor": 
 							info += image(width, height, source); break;
 						case "Player":
-							if (name.equals("Right Idle")) {
+							if (name.equals("Idle Right")) {
 								info = enclose("properties", 
-											property("Name", type + " Right Idle") +
+											property("Name", type + " Idle Right") +
 											property("Type", type) + 
-											property("~Right Idle", type + " Right Idle") + 
-											property("~Right Blink", type + " Right Blink") + 
-											property("~Right Walk to Push", type + " Right Walk to Push") + 
-											property("~Right Walk to Middle", type + " Right Walk to Push") + 
-											property("~Right Push", type + " Right Push") + 
-											property("~Right Push Stuck", type + " Right Push Step 1") + 
-											property("~Left Idle", type + " Left Idle") + 
-											property("~Left Blink", type + " Left Blink") + 
-											property("~Left Walk to Push", type + " Left Walk to Push") + 
-											property("~Left Walk to Middle", type + " Left Walk to Push") + 
-											property("~Left Push", type + " Left Push") + 
-											property("~Left Push Stuck", type + " Left Push Step 1") + 
-											property("~Front Idle", type + " Front Idle") + 
-											property("~Front Blink", type + " Front Blink") + 
-											property("~Front Walk to Push", type + " Front Walk to Push") + 
-											property("~Front Walk to Middle", type + " Front Walk to Push") + 
-											property("~Front Push", type + " Front Push") + 
-											property("~Front Push Stuck", type + " Front Push Step 1") + 
-											property("~Back Idle", type + " Back Idle") + 
-											property("~Back Blink", type + " Back Idle") + 
-											property("~Back Walk to Push", type + " Back Walk to Push") + 
-											property("~Back Walk to Middle", type + " Back Walk to Push") + 
-											property("~Back Push", type + " Back Push") + 
-											property("~Back Push Stuck", type + " Back Push Step 1") + 
+											property("~Idle Right", type + " Idle Right") +
+											property("~Idle Left", type +  " Idle Left") +
+											property("~Idle Up", type + " Idle Up") +
+											property("~Idle Down", type + " Idle Down") +
+											property("~Walking Right", type + " Walking Right") +
+											property("~Walking Left", type + " Walking Left") +
+											property("~Walking Up", type + " Walking Up") +
+											property("~Walking Down", type + " Walking Down") +
+											property("~Pushing Right", type + " Pushing Right") +
+											property("~Pushing Left", type + " Pushing Left") +
+											property("~Pushing Up", type + " Pushing Up") +
+											property("~Pushing Down", type + " Pushing Down") +
+											property("~Pushing Right To Idle", type + " Pushing Right To Idle") +
+											property("~Pushing Left To Idle", type + " Pushing Left To Idle") +
+											property("~Pushing Up To Idle", type + " Pushing Up To Idle") +
+											property("~Pushing Down To Idle", type + " Pushing Down To Idle") +
+											property("~Idle To Pushing Right", type + " Pushing Right To Idle") +
+											property("~Idle To Pushing Left", type + " Pushing Left To Idle") +
+											property("~Idle To Pushing Up", type + " Pushing Up To Idle") +
+											property("~Idle To Pushing Down", type + " Pushing Down To Idle") + 
 											property("Lighting Displacement X", 128 - 16) + 
 											property("Lighting Displacement Y", 128 - 24) + 
-											property("Lighting Animation", "Player Light Source") + 
-											property("Lighting Intensity", 0.4));
-							} else if (name.contains("Step 0")) {
+											property("Lighting Animation", "Player Light Source"));
+							} else if (name.endsWith("_3")) {
+								if (name.endsWith("1_3")) {
+									info = enclose("properties", 
+												property("Name", type + " " + name.substring(0, name.indexOf(" 1_3")))) + 
+											animation(PlayerAnim, PlayerInte, IntervalMultiplier, false);
+								}
+							} else if (name.contains(" To ")) {
 								info = enclose("properties", 
-											property("Name", type + " " + name.replace(" Step 0", ""))) + 
-										animation(new int[] { 0, 1, 0, 2 }, new double[] { 20, 20, 20, 20 }, IntervalMultiplier, false);
+											property("Name", type + " " + name)) + 
+										animation(new int[] { 0 }, new double[] { 5 }, IntervalMultiplier, false);
 							} else {
 								info = enclose("properties", 
-										property("Name", type + " " + name));
+											property("Name", type + " " + name));
 							}
 							info += image(width, height, source); break;
 						case "Wall": 

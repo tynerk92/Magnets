@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
- <tileset firstgid="1" name="Tileset" tilewidth="800" tileheight="600" tilecount="664" columns="0">
+ <tileset firstgid="1" name="Tileset" tilewidth="800" tileheight="600" tilecount="648" columns="0">
   <tile id="0">
    <properties>
     <property name="Render Depth" type="int" value="-1"/>
@@ -2892,19 +2892,26 @@
 
   <tile id="330">
    <properties>
-    <property name="Name" value="Magnet Light Source"/>
+    <property name="Name" value="Magnetic Floor Light Source"/>
    </properties>
-   <image width="96" height="96" source="../Graphics/Set 1 (Cave)/Lighting/Magnet Light Source.png"/>
+   <image width="64" height="64" source="../Graphics/Set 1 (Cave)/Lighting/Magnetic Floor Light Source.png"/>
   </tile>
 
   <tile id="331">
+   <properties>
+    <property name="Name" value="Magnetic Source Light Source"/>
+   </properties>
+   <image width="96" height="96" source="../Graphics/Set 1 (Cave)/Lighting/Magnetic Source Light Source.png"/>
+  </tile>
+
+  <tile id="332">
    <properties>
     <property name="Name" value="Player Light Source"/>
    </properties>
    <image width="256" height="256" source="../Graphics/Set 1 (Cave)/Lighting/Player Light Source.png"/>
   </tile>
 
-  <tile id="332">
+  <tile id="333">
    <properties>
     <property name="Render Depth" type="int" value="4"/>
     <property name="Render Displacement Y" type="int" value="16"/>
@@ -2913,7 +2920,7 @@
    <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetic Attraction/Arrow Down.png"/>
   </tile>
 
-  <tile id="333">
+  <tile id="334">
    <properties>
     <property name="Render Depth" type="int" value="4"/>
     <property name="Render Displacement Y" type="int" value="16"/>
@@ -2922,7 +2929,7 @@
    <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetic Attraction/Arrow Left.png"/>
   </tile>
 
-  <tile id="334">
+  <tile id="335">
    <properties>
     <property name="Render Depth" type="int" value="4"/>
     <property name="Render Displacement Y" type="int" value="16"/>
@@ -2931,7 +2938,7 @@
    <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetic Attraction/Arrow Right.png"/>
   </tile>
 
-  <tile id="335">
+  <tile id="336">
    <properties>
     <property name="Render Depth" type="int" value="4"/>
     <property name="Render Displacement Y" type="int" value="16"/>
@@ -2940,7 +2947,7 @@
    <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetic Attraction/Arrow Up.png"/>
   </tile>
 
-  <tile id="336">
+  <tile id="337">
    <properties>
     <property name="Type" value="Magnetic Attraction"/>
     <property name="~Attraction Arrow Up" value="Magnetic Attraction Arrow Up"/>
@@ -2951,7 +2958,7 @@
    <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetic Attraction/Field.png"/>
   </tile>
 
-  <tile id="337">
+  <tile id="338">
    <properties>
     <property name="Name" value="Magnetised Overlay 1x1 1"/>
     <property name="Render Depth" type="int" value="2"/>
@@ -2959,7 +2966,7 @@
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/1x1 1.png"/>
   </tile>
 
-  <tile id="338">
+  <tile id="339">
    <properties>
     <property name="Name" value="Magnetised Overlay 1x2 1"/>
     <property name="Render Depth" type="int" value="2"/>
@@ -2967,7 +2974,7 @@
    <image width="32" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/1x2 1.png"/>
   </tile>
 
-  <tile id="339">
+  <tile id="340">
    <properties>
     <property name="Name" value="Magnetised Overlay 1x3 1"/>
     <property name="Render Depth" type="int" value="2"/>
@@ -2975,7 +2982,7 @@
    <image width="32" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/1x3 1.png"/>
   </tile>
 
-  <tile id="340">
+  <tile id="341">
    <properties>
     <property name="Name" value="Magnetised Overlay 2x1 1"/>
     <property name="Render Depth" type="int" value="2"/>
@@ -2983,7 +2990,7 @@
    <image width="64" height="48" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/2x1 1.png"/>
   </tile>
 
-  <tile id="341">
+  <tile id="342">
    <properties>
     <property name="Name" value="Magnetised Overlay 2x2 1"/>
     <property name="Render Depth" type="int" value="2"/>
@@ -2991,7 +2998,7 @@
    <image width="64" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/2x2 1.png"/>
   </tile>
 
-  <tile id="342">
+  <tile id="343">
    <properties>
     <property name="Name" value="Magnetised Overlay 2x2 2"/>
     <property name="Render Depth" type="int" value="2"/>
@@ -2999,7 +3006,7 @@
    <image width="64" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/2x2 2.png"/>
   </tile>
 
-  <tile id="343">
+  <tile id="344">
    <properties>
     <property name="Name" value="Magnetised Overlay 2x2 3"/>
     <property name="Render Depth" type="int" value="2"/>
@@ -3007,7 +3014,7 @@
    <image width="64" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/2x2 3.png"/>
   </tile>
 
-  <tile id="344">
+  <tile id="345">
    <properties>
     <property name="Name" value="Magnetised Overlay 2x2 4"/>
     <property name="Render Depth" type="int" value="2"/>
@@ -3015,7 +3022,7 @@
    <image width="64" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/2x2 4.png"/>
   </tile>
 
-  <tile id="345">
+  <tile id="346">
    <properties>
     <property name="Name" value="Magnetised Overlay 2x2 5"/>
     <property name="Render Depth" type="int" value="2"/>
@@ -3023,7 +3030,7 @@
    <image width="64" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/2x2 5.png"/>
   </tile>
 
-  <tile id="346">
+  <tile id="347">
    <properties>
     <property name="Name" value="Magnetised Overlay 2x3 1"/>
     <property name="Render Depth" type="int" value="2"/>
@@ -3031,7 +3038,7 @@
    <image width="64" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/2x3 1.png"/>
   </tile>
 
-  <tile id="347">
+  <tile id="348">
    <properties>
     <property name="Name" value="Magnetised Overlay 2x3 10"/>
     <property name="Render Depth" type="int" value="2"/>
@@ -3039,7 +3046,7 @@
    <image width="64" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/2x3 10.png"/>
   </tile>
 
-  <tile id="348">
+  <tile id="349">
    <properties>
     <property name="Name" value="Magnetised Overlay 2x3 11"/>
     <property name="Render Depth" type="int" value="2"/>
@@ -3047,7 +3054,7 @@
    <image width="64" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/2x3 11.png"/>
   </tile>
 
-  <tile id="349">
+  <tile id="350">
    <properties>
     <property name="Name" value="Magnetised Overlay 2x3 12"/>
     <property name="Render Depth" type="int" value="2"/>
@@ -3055,7 +3062,7 @@
    <image width="64" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/2x3 12.png"/>
   </tile>
 
-  <tile id="350">
+  <tile id="351">
    <properties>
     <property name="Name" value="Magnetised Overlay 2x3 13"/>
     <property name="Render Depth" type="int" value="2"/>
@@ -3063,7 +3070,7 @@
    <image width="64" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/2x3 13.png"/>
   </tile>
 
-  <tile id="351">
+  <tile id="352">
    <properties>
     <property name="Name" value="Magnetised Overlay 2x3 14"/>
     <property name="Render Depth" type="int" value="2"/>
@@ -3071,7 +3078,7 @@
    <image width="64" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/2x3 14.png"/>
   </tile>
 
-  <tile id="352">
+  <tile id="353">
    <properties>
     <property name="Name" value="Magnetised Overlay 2x3 15"/>
     <property name="Render Depth" type="int" value="2"/>
@@ -3079,7 +3086,7 @@
    <image width="64" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/2x3 15.png"/>
   </tile>
 
-  <tile id="353">
+  <tile id="354">
    <properties>
     <property name="Name" value="Magnetised Overlay 2x3 2"/>
     <property name="Render Depth" type="int" value="2"/>
@@ -3087,7 +3094,7 @@
    <image width="64" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/2x3 2.png"/>
   </tile>
 
-  <tile id="354">
+  <tile id="355">
    <properties>
     <property name="Name" value="Magnetised Overlay 2x3 3"/>
     <property name="Render Depth" type="int" value="2"/>
@@ -3095,7 +3102,7 @@
    <image width="64" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/2x3 3.png"/>
   </tile>
 
-  <tile id="355">
+  <tile id="356">
    <properties>
     <property name="Name" value="Magnetised Overlay 2x3 4"/>
     <property name="Render Depth" type="int" value="2"/>
@@ -3103,7 +3110,7 @@
    <image width="64" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/2x3 4.png"/>
   </tile>
 
-  <tile id="356">
+  <tile id="357">
    <properties>
     <property name="Name" value="Magnetised Overlay 2x3 5"/>
     <property name="Render Depth" type="int" value="2"/>
@@ -3111,7 +3118,7 @@
    <image width="64" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/2x3 5.png"/>
   </tile>
 
-  <tile id="357">
+  <tile id="358">
    <properties>
     <property name="Name" value="Magnetised Overlay 2x3 6"/>
     <property name="Render Depth" type="int" value="2"/>
@@ -3119,7 +3126,7 @@
    <image width="64" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/2x3 6.png"/>
   </tile>
 
-  <tile id="358">
+  <tile id="359">
    <properties>
     <property name="Name" value="Magnetised Overlay 2x3 7"/>
     <property name="Render Depth" type="int" value="2"/>
@@ -3127,7 +3134,7 @@
    <image width="64" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/2x3 7.png"/>
   </tile>
 
-  <tile id="359">
+  <tile id="360">
    <properties>
     <property name="Name" value="Magnetised Overlay 2x3 8"/>
     <property name="Render Depth" type="int" value="2"/>
@@ -3135,7 +3142,7 @@
    <image width="64" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/2x3 8.png"/>
   </tile>
 
-  <tile id="360">
+  <tile id="361">
    <properties>
     <property name="Name" value="Magnetised Overlay 2x3 9"/>
     <property name="Render Depth" type="int" value="2"/>
@@ -3143,7 +3150,7 @@
    <image width="64" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/2x3 9.png"/>
   </tile>
 
-  <tile id="361">
+  <tile id="362">
    <properties>
     <property name="Name" value="Magnetised Overlay 3x1 1"/>
     <property name="Render Depth" type="int" value="2"/>
@@ -3151,7 +3158,7 @@
    <image width="96" height="48" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x1 1.png"/>
   </tile>
 
-  <tile id="362">
+  <tile id="363">
    <properties>
     <property name="Name" value="Magnetised Overlay 3x2 1"/>
     <property name="Render Depth" type="int" value="2"/>
@@ -3159,7 +3166,7 @@
    <image width="96" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x2 1.png"/>
   </tile>
 
-  <tile id="363">
+  <tile id="364">
    <properties>
     <property name="Name" value="Magnetised Overlay 3x2 10"/>
     <property name="Render Depth" type="int" value="2"/>
@@ -3167,7 +3174,7 @@
    <image width="96" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x2 10.png"/>
   </tile>
 
-  <tile id="364">
+  <tile id="365">
    <properties>
     <property name="Name" value="Magnetised Overlay 3x2 11"/>
     <property name="Render Depth" type="int" value="2"/>
@@ -3175,7 +3182,7 @@
    <image width="96" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x2 11.png"/>
   </tile>
 
-  <tile id="365">
+  <tile id="366">
    <properties>
     <property name="Name" value="Magnetised Overlay 3x2 12"/>
     <property name="Render Depth" type="int" value="2"/>
@@ -3183,7 +3190,7 @@
    <image width="96" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x2 12.png"/>
   </tile>
 
-  <tile id="366">
+  <tile id="367">
    <properties>
     <property name="Name" value="Magnetised Overlay 3x2 13"/>
     <property name="Render Depth" type="int" value="2"/>
@@ -3191,7 +3198,7 @@
    <image width="96" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x2 13.png"/>
   </tile>
 
-  <tile id="367">
+  <tile id="368">
    <properties>
     <property name="Name" value="Magnetised Overlay 3x2 14"/>
     <property name="Render Depth" type="int" value="2"/>
@@ -3199,7 +3206,7 @@
    <image width="96" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x2 14.png"/>
   </tile>
 
-  <tile id="368">
+  <tile id="369">
    <properties>
     <property name="Name" value="Magnetised Overlay 3x2 15"/>
     <property name="Render Depth" type="int" value="2"/>
@@ -3207,7 +3214,7 @@
    <image width="96" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x2 15.png"/>
   </tile>
 
-  <tile id="369">
+  <tile id="370">
    <properties>
     <property name="Name" value="Magnetised Overlay 3x2 2"/>
     <property name="Render Depth" type="int" value="2"/>
@@ -3215,7 +3222,7 @@
    <image width="96" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x2 2.png"/>
   </tile>
 
-  <tile id="370">
+  <tile id="371">
    <properties>
     <property name="Name" value="Magnetised Overlay 3x2 3"/>
     <property name="Render Depth" type="int" value="2"/>
@@ -3223,7 +3230,7 @@
    <image width="96" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x2 3.png"/>
   </tile>
 
-  <tile id="371">
+  <tile id="372">
    <properties>
     <property name="Name" value="Magnetised Overlay 3x2 4"/>
     <property name="Render Depth" type="int" value="2"/>
@@ -3231,7 +3238,7 @@
    <image width="96" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x2 4.png"/>
   </tile>
 
-  <tile id="372">
+  <tile id="373">
    <properties>
     <property name="Name" value="Magnetised Overlay 3x2 5"/>
     <property name="Render Depth" type="int" value="2"/>
@@ -3239,7 +3246,7 @@
    <image width="96" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x2 5.png"/>
   </tile>
 
-  <tile id="373">
+  <tile id="374">
    <properties>
     <property name="Name" value="Magnetised Overlay 3x2 6"/>
     <property name="Render Depth" type="int" value="2"/>
@@ -3247,7 +3254,7 @@
    <image width="96" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x2 6.png"/>
   </tile>
 
-  <tile id="374">
+  <tile id="375">
    <properties>
     <property name="Name" value="Magnetised Overlay 3x2 7"/>
     <property name="Render Depth" type="int" value="2"/>
@@ -3255,7 +3262,7 @@
    <image width="96" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x2 7.png"/>
   </tile>
 
-  <tile id="375">
+  <tile id="376">
    <properties>
     <property name="Name" value="Magnetised Overlay 3x2 8"/>
     <property name="Render Depth" type="int" value="2"/>
@@ -3263,7 +3270,7 @@
    <image width="96" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x2 8.png"/>
   </tile>
 
-  <tile id="376">
+  <tile id="377">
    <properties>
     <property name="Name" value="Magnetised Overlay 3x2 9"/>
     <property name="Render Depth" type="int" value="2"/>
@@ -3271,7 +3278,7 @@
    <image width="96" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x2 9.png"/>
   </tile>
 
-  <tile id="377">
+  <tile id="378">
    <properties>
     <property name="Name" value="Magnetised Overlay 3x3 1"/>
     <property name="Render Depth" type="int" value="2"/>
@@ -3279,7 +3286,7 @@
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x3 1.png"/>
   </tile>
 
-  <tile id="378">
+  <tile id="379">
    <properties>
     <property name="Name" value="Magnetised Overlay 3x3 10"/>
     <property name="Render Depth" type="int" value="2"/>
@@ -3287,7 +3294,7 @@
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x3 10.png"/>
   </tile>
 
-  <tile id="379">
+  <tile id="380">
    <properties>
     <property name="Name" value="Magnetised Overlay 3x3 11"/>
     <property name="Render Depth" type="int" value="2"/>
@@ -3295,7 +3302,7 @@
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x3 11.png"/>
   </tile>
 
-  <tile id="380">
+  <tile id="381">
    <properties>
     <property name="Name" value="Magnetised Overlay 3x3 12"/>
     <property name="Render Depth" type="int" value="2"/>
@@ -3303,7 +3310,7 @@
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x3 12.png"/>
   </tile>
 
-  <tile id="381">
+  <tile id="382">
    <properties>
     <property name="Name" value="Magnetised Overlay 3x3 13"/>
     <property name="Render Depth" type="int" value="2"/>
@@ -3311,7 +3318,7 @@
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x3 13.png"/>
   </tile>
 
-  <tile id="382">
+  <tile id="383">
    <properties>
     <property name="Name" value="Magnetised Overlay 3x3 14"/>
     <property name="Render Depth" type="int" value="2"/>
@@ -3319,7 +3326,7 @@
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x3 14.png"/>
   </tile>
 
-  <tile id="383">
+  <tile id="384">
    <properties>
     <property name="Name" value="Magnetised Overlay 3x3 15"/>
     <property name="Render Depth" type="int" value="2"/>
@@ -3327,7 +3334,7 @@
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x3 15.png"/>
   </tile>
 
-  <tile id="384">
+  <tile id="385">
    <properties>
     <property name="Name" value="Magnetised Overlay 3x3 16"/>
     <property name="Render Depth" type="int" value="2"/>
@@ -3335,7 +3342,7 @@
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x3 16.png"/>
   </tile>
 
-  <tile id="385">
+  <tile id="386">
    <properties>
     <property name="Name" value="Magnetised Overlay 3x3 17"/>
     <property name="Render Depth" type="int" value="2"/>
@@ -3343,7 +3350,7 @@
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x3 17.png"/>
   </tile>
 
-  <tile id="386">
+  <tile id="387">
    <properties>
     <property name="Name" value="Magnetised Overlay 3x3 18"/>
     <property name="Render Depth" type="int" value="2"/>
@@ -3351,7 +3358,7 @@
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x3 18.png"/>
   </tile>
 
-  <tile id="387">
+  <tile id="388">
    <properties>
     <property name="Name" value="Magnetised Overlay 3x3 2"/>
     <property name="Render Depth" type="int" value="2"/>
@@ -3359,7 +3366,7 @@
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x3 2.png"/>
   </tile>
 
-  <tile id="388">
+  <tile id="389">
    <properties>
     <property name="Name" value="Magnetised Overlay 3x3 3"/>
     <property name="Render Depth" type="int" value="2"/>
@@ -3367,7 +3374,7 @@
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x3 3.png"/>
   </tile>
 
-  <tile id="389">
+  <tile id="390">
    <properties>
     <property name="Name" value="Magnetised Overlay 3x3 4"/>
     <property name="Render Depth" type="int" value="2"/>
@@ -3375,7 +3382,7 @@
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x3 4.png"/>
   </tile>
 
-  <tile id="390">
+  <tile id="391">
    <properties>
     <property name="Name" value="Magnetised Overlay 3x3 5"/>
     <property name="Render Depth" type="int" value="2"/>
@@ -3383,7 +3390,7 @@
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x3 5.png"/>
   </tile>
 
-  <tile id="391">
+  <tile id="392">
    <properties>
     <property name="Name" value="Magnetised Overlay 3x3 6"/>
     <property name="Render Depth" type="int" value="2"/>
@@ -3391,7 +3398,7 @@
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x3 6.png"/>
   </tile>
 
-  <tile id="392">
+  <tile id="393">
    <properties>
     <property name="Name" value="Magnetised Overlay 3x3 7"/>
     <property name="Render Depth" type="int" value="2"/>
@@ -3399,7 +3406,7 @@
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x3 7.png"/>
   </tile>
 
-  <tile id="393">
+  <tile id="394">
    <properties>
     <property name="Name" value="Magnetised Overlay 3x3 8"/>
     <property name="Render Depth" type="int" value="2"/>
@@ -3407,7 +3414,7 @@
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x3 8.png"/>
   </tile>
 
-  <tile id="394">
+  <tile id="395">
    <properties>
     <property name="Name" value="Magnetised Overlay 3x3 9"/>
     <property name="Render Depth" type="int" value="2"/>
@@ -3415,7 +3422,7 @@
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Magnetised Overlay/3x3 9.png"/>
   </tile>
 
-  <tile id="395">
+  <tile id="396">
    <properties>
     <property name="Name" value="Pushable 1x1 1 1"/>
     <property name="~Lodestone" value="Pushable 1x1 1 1"/>
@@ -3429,7 +3436,7 @@
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Lodestone/Pushable/1x1 1 1.png"/>
   </tile>
 
-  <tile id="396">
+  <tile id="397">
    <properties>
     <property name="Name" value="Pushable 1x1 2 1"/>
     <property name="~Lodestone" value="Pushable 1x1 2 1"/>
@@ -3443,7 +3450,7 @@
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Lodestone/Pushable/1x1 2 1.png"/>
   </tile>
 
-  <tile id="397">
+  <tile id="398">
    <properties>
     <property name="Name" value="Pushable 1x1 3 1"/>
     <property name="~Lodestone" value="Pushable 1x1 3 1"/>
@@ -3457,7 +3464,7 @@
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Lodestone/Pushable/1x1 3 1.png"/>
   </tile>
 
-  <tile id="398">
+  <tile id="399">
    <properties>
     <property name="Name" value="Pushable 1x1 4 1"/>
     <property name="~Lodestone" value="Pushable 1x1 4 1"/>
@@ -3471,7 +3478,7 @@
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Lodestone/Pushable/1x1 4 1.png"/>
   </tile>
 
-  <tile id="399">
+  <tile id="400">
    <properties>
     <property name="Name" value="Pushable 1x2 1 11"/>
     <property name="~Lodestone" value="Pushable 1x2 1 11"/>
@@ -3485,7 +3492,7 @@
    <image width="32" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Pushable/1x2 1 11.png"/>
   </tile>
 
-  <tile id="400">
+  <tile id="401">
    <properties>
     <property name="Name" value="Pushable 1x3 1 111"/>
     <property name="~Lodestone" value="Pushable 1x3 1 111"/>
@@ -3499,7 +3506,7 @@
    <image width="32" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Pushable/1x3 1 111.png"/>
   </tile>
 
-  <tile id="401">
+  <tile id="402">
    <properties>
     <property name="Name" value="Pushable 2x1 1 11"/>
     <property name="~Lodestone" value="Pushable 2x1 1 11"/>
@@ -3513,7 +3520,7 @@
    <image width="64" height="48" source="../Graphics/Set 1 (Cave)/Lodestone/Pushable/2x1 1 11.png"/>
   </tile>
 
-  <tile id="402">
+  <tile id="403">
    <properties>
     <property name="Name" value="Pushable 2x2 1 1110"/>
     <property name="~Lodestone" value="Pushable 2x2 1 1110"/>
@@ -3527,7 +3534,7 @@
    <image width="64" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Pushable/2x2 1 1110.png"/>
   </tile>
 
-  <tile id="403">
+  <tile id="404">
    <properties>
     <property name="Name" value="Pushable 2x2 2 1101"/>
     <property name="~Lodestone" value="Pushable 2x2 2 1101"/>
@@ -3541,7 +3548,7 @@
    <image width="64" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Pushable/2x2 2 1101.png"/>
   </tile>
 
-  <tile id="404">
+  <tile id="405">
    <properties>
     <property name="Name" value="Pushable 2x2 3 0111"/>
     <property name="~Lodestone" value="Pushable 2x2 3 0111"/>
@@ -3555,7 +3562,7 @@
    <image width="64" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Pushable/2x2 3 0111.png"/>
   </tile>
 
-  <tile id="405">
+  <tile id="406">
    <properties>
     <property name="Name" value="Pushable 2x2 4 1011"/>
     <property name="~Lodestone" value="Pushable 2x2 4 1011"/>
@@ -3569,7 +3576,7 @@
    <image width="64" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Pushable/2x2 4 1011.png"/>
   </tile>
 
-  <tile id="406">
+  <tile id="407">
    <properties>
     <property name="Name" value="Pushable 2x2 5 1111"/>
     <property name="~Lodestone" value="Pushable 2x2 5 1111"/>
@@ -3583,7 +3590,7 @@
    <image width="64" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Pushable/2x2 5 1111.png"/>
   </tile>
 
-  <tile id="407">
+  <tile id="408">
    <properties>
     <property name="Name" value="Pushable 2x3 1 101110"/>
     <property name="~Lodestone" value="Pushable 2x3 1 101110"/>
@@ -3597,7 +3604,7 @@
    <image width="64" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Pushable/2x3 1 101110.png"/>
   </tile>
 
-  <tile id="408">
+  <tile id="409">
    <properties>
     <property name="Name" value="Pushable 2x3 10 110111"/>
     <property name="~Lodestone" value="Pushable 2x3 10 110111"/>
@@ -3611,7 +3618,7 @@
    <image width="64" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Pushable/2x3 10 110111.png"/>
   </tile>
 
-  <tile id="409">
+  <tile id="410">
    <properties>
     <property name="Name" value="Pushable 2x3 11 111110"/>
     <property name="~Lodestone" value="Pushable 2x3 11 111110"/>
@@ -3625,7 +3632,7 @@
    <image width="64" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Pushable/2x3 11 111110.png"/>
   </tile>
 
-  <tile id="410">
+  <tile id="411">
    <properties>
     <property name="Name" value="Pushable 2x3 12 111101"/>
     <property name="~Lodestone" value="Pushable 2x3 12 111101"/>
@@ -3639,7 +3646,7 @@
    <image width="64" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Pushable/2x3 12 111101.png"/>
   </tile>
 
-  <tile id="411">
+  <tile id="412">
    <properties>
     <property name="Name" value="Pushable 2x3 13 101111"/>
     <property name="~Lodestone" value="Pushable 2x3 13 101111"/>
@@ -3653,7 +3660,7 @@
    <image width="64" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Pushable/2x3 13 101111.png"/>
   </tile>
 
-  <tile id="412">
+  <tile id="413">
    <properties>
     <property name="Name" value="Pushable 2x3 14 011111"/>
     <property name="~Lodestone" value="Pushable 2x3 14 011111"/>
@@ -3667,7 +3674,7 @@
    <image width="64" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Pushable/2x3 14 011111.png"/>
   </tile>
 
-  <tile id="413">
+  <tile id="414">
    <properties>
     <property name="Name" value="Pushable 2x3 15 111111"/>
     <property name="~Lodestone" value="Pushable 2x3 15 111111"/>
@@ -3681,7 +3688,7 @@
    <image width="64" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Pushable/2x3 15 111111.png"/>
   </tile>
 
-  <tile id="414">
+  <tile id="415">
    <properties>
     <property name="Name" value="Pushable 2x3 2 011101"/>
     <property name="~Lodestone" value="Pushable 2x3 2 011101"/>
@@ -3695,7 +3702,7 @@
    <image width="64" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Pushable/2x3 2 011101.png"/>
   </tile>
 
-  <tile id="415">
+  <tile id="416">
    <properties>
     <property name="Name" value="Pushable 2x3 3 101011"/>
     <property name="~Lodestone" value="Pushable 2x3 3 101011"/>
@@ -3709,7 +3716,7 @@
    <image width="64" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Pushable/2x3 3 101011.png"/>
   </tile>
 
-  <tile id="416">
+  <tile id="417">
    <properties>
     <property name="Name" value="Pushable 2x3 4 111010"/>
     <property name="~Lodestone" value="Pushable 2x3 4 111010"/>
@@ -3723,7 +3730,7 @@
    <image width="64" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Pushable/2x3 4 111010.png"/>
   </tile>
 
-  <tile id="417">
+  <tile id="418">
    <properties>
     <property name="Name" value="Pushable 2x3 5 010111"/>
     <property name="~Lodestone" value="Pushable 2x3 5 010111"/>
@@ -3737,7 +3744,7 @@
    <image width="64" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Pushable/2x3 5 010111.png"/>
   </tile>
 
-  <tile id="418">
+  <tile id="419">
    <properties>
     <property name="Name" value="Pushable 2x3 6 110101"/>
     <property name="~Lodestone" value="Pushable 2x3 6 110101"/>
@@ -3751,7 +3758,7 @@
    <image width="64" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Pushable/2x3 6 110101.png"/>
   </tile>
 
-  <tile id="419">
+  <tile id="420">
    <properties>
     <property name="Name" value="Pushable 2x3 7 101101"/>
     <property name="~Lodestone" value="Pushable 2x3 7 101101"/>
@@ -3765,7 +3772,7 @@
    <image width="64" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Pushable/2x3 7 101101.png"/>
   </tile>
 
-  <tile id="420">
+  <tile id="421">
    <properties>
     <property name="Name" value="Pushable 2x3 8 011110"/>
     <property name="~Lodestone" value="Pushable 2x3 8 011110"/>
@@ -3779,7 +3786,7 @@
    <image width="64" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Pushable/2x3 8 011110.png"/>
   </tile>
 
-  <tile id="421">
+  <tile id="422">
    <properties>
     <property name="Name" value="Pushable 2x3 9 111011"/>
     <property name="~Lodestone" value="Pushable 2x3 9 111011"/>
@@ -3793,7 +3800,7 @@
    <image width="64" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Pushable/2x3 9 111011.png"/>
   </tile>
 
-  <tile id="422">
+  <tile id="423">
    <properties>
     <property name="Name" value="Pushable 3x1 1 111"/>
     <property name="~Lodestone" value="Pushable 3x1 1 111"/>
@@ -3807,7 +3814,7 @@
    <image width="96" height="48" source="../Graphics/Set 1 (Cave)/Lodestone/Pushable/3x1 1 111.png"/>
   </tile>
 
-  <tile id="423">
+  <tile id="424">
    <properties>
     <property name="Name" value="Pushable 3x2 1 010111"/>
     <property name="~Lodestone" value="Pushable 3x2 1 010111"/>
@@ -3821,7 +3828,7 @@
    <image width="96" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Pushable/3x2 1 010111.png"/>
   </tile>
 
-  <tile id="424">
+  <tile id="425">
    <properties>
     <property name="Name" value="Pushable 3x2 10 101111"/>
     <property name="~Lodestone" value="Pushable 3x2 10 101111"/>
@@ -3835,7 +3842,7 @@
    <image width="96" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Pushable/3x2 10 101111.png"/>
   </tile>
 
-  <tile id="425">
+  <tile id="426">
    <properties>
     <property name="Name" value="Pushable 3x2 11 111110"/>
     <property name="~Lodestone" value="Pushable 3x2 11 111110"/>
@@ -3849,7 +3856,7 @@
    <image width="96" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Pushable/3x2 11 111110.png"/>
   </tile>
 
-  <tile id="426">
+  <tile id="427">
    <properties>
     <property name="Name" value="Pushable 3x2 12 111011"/>
     <property name="~Lodestone" value="Pushable 3x2 12 111011"/>
@@ -3863,7 +3870,7 @@
    <image width="96" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Pushable/3x2 12 111011.png"/>
   </tile>
 
-  <tile id="427">
+  <tile id="428">
    <properties>
     <property name="Name" value="Pushable 3x2 13 110111"/>
     <property name="~Lodestone" value="Pushable 3x2 13 110111"/>
@@ -3877,7 +3884,7 @@
    <image width="96" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Pushable/3x2 13 110111.png"/>
   </tile>
 
-  <tile id="428">
+  <tile id="429">
    <properties>
     <property name="Name" value="Pushable 3x2 14 011111"/>
     <property name="~Lodestone" value="Pushable 3x2 14 011111"/>
@@ -3891,7 +3898,7 @@
    <image width="96" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Pushable/3x2 14 011111.png"/>
   </tile>
 
-  <tile id="429">
+  <tile id="430">
    <properties>
     <property name="Name" value="Pushable 3x2 15 111111"/>
     <property name="~Lodestone" value="Pushable 3x2 15 111111"/>
@@ -3905,7 +3912,7 @@
    <image width="96" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Pushable/3x2 15 111111.png"/>
   </tile>
 
-  <tile id="430">
+  <tile id="431">
    <properties>
     <property name="Name" value="Pushable 3x2 2 111010"/>
     <property name="~Lodestone" value="Pushable 3x2 2 111010"/>
@@ -3919,7 +3926,7 @@
    <image width="96" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Pushable/3x2 2 111010.png"/>
   </tile>
 
-  <tile id="431">
+  <tile id="432">
    <properties>
     <property name="Name" value="Pushable 3x2 3 111100"/>
     <property name="~Lodestone" value="Pushable 3x2 3 111100"/>
@@ -3933,7 +3940,7 @@
    <image width="96" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Pushable/3x2 3 111100.png"/>
   </tile>
 
-  <tile id="432">
+  <tile id="433">
    <properties>
     <property name="Name" value="Pushable 3x2 4 111001"/>
     <property name="~Lodestone" value="Pushable 3x2 4 111001"/>
@@ -3947,7 +3954,7 @@
    <image width="96" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Pushable/3x2 4 111001.png"/>
   </tile>
 
-  <tile id="433">
+  <tile id="434">
    <properties>
     <property name="Name" value="Pushable 3x2 5 100111"/>
     <property name="~Lodestone" value="Pushable 3x2 5 100111"/>
@@ -3961,7 +3968,7 @@
    <image width="96" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Pushable/3x2 5 100111.png"/>
   </tile>
 
-  <tile id="434">
+  <tile id="435">
    <properties>
     <property name="Name" value="Pushable 3x2 6 001111"/>
     <property name="~Lodestone" value="Pushable 3x2 6 001111"/>
@@ -3975,7 +3982,7 @@
    <image width="96" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Pushable/3x2 6 001111.png"/>
   </tile>
 
-  <tile id="435">
+  <tile id="436">
    <properties>
     <property name="Name" value="Pushable 3x2 7 110011"/>
     <property name="~Lodestone" value="Pushable 3x2 7 110011"/>
@@ -3989,7 +3996,7 @@
    <image width="96" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Pushable/3x2 7 110011.png"/>
   </tile>
 
-  <tile id="436">
+  <tile id="437">
    <properties>
     <property name="Name" value="Pushable 3x2 8 011110"/>
     <property name="~Lodestone" value="Pushable 3x2 8 011110"/>
@@ -4003,7 +4010,7 @@
    <image width="96" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Pushable/3x2 8 011110.png"/>
   </tile>
 
-  <tile id="437">
+  <tile id="438">
    <properties>
     <property name="Name" value="Pushable 3x2 9 111101"/>
     <property name="~Lodestone" value="Pushable 3x2 9 111101"/>
@@ -4017,7 +4024,7 @@
    <image width="96" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Pushable/3x2 9 111101.png"/>
   </tile>
 
-  <tile id="438">
+  <tile id="439">
    <properties>
     <property name="Name" value="Pushable 3x3 1 010111010"/>
     <property name="~Lodestone" value="Pushable 3x3 1 010111010"/>
@@ -4031,7 +4038,7 @@
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Pushable/3x3 1 010111010.png"/>
   </tile>
 
-  <tile id="439">
+  <tile id="440">
    <properties>
     <property name="Name" value="Pushable 3x3 10 111001001"/>
     <property name="~Lodestone" value="Pushable 3x3 10 111001001"/>
@@ -4045,7 +4052,7 @@
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Pushable/3x3 10 111001X01.png"/>
   </tile>
 
-  <tile id="440">
+  <tile id="441">
    <properties>
     <property name="Name" value="Pushable 3x3 11 100100111"/>
     <property name="~Lodestone" value="Pushable 3x3 11 100100111"/>
@@ -4059,7 +4066,7 @@
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Pushable/3x3 11 10X100111.png"/>
   </tile>
 
-  <tile id="441">
+  <tile id="442">
    <properties>
     <property name="Name" value="Pushable 3x3 12 001001111"/>
     <property name="~Lodestone" value="Pushable 3x3 12 001001111"/>
@@ -4073,7 +4080,7 @@
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Pushable/3x3 12 X01001111.png"/>
   </tile>
 
-  <tile id="442">
+  <tile id="443">
    <properties>
     <property name="Name" value="Pushable 3x3 13 111100100"/>
     <property name="~Lodestone" value="Pushable 3x3 13 111100100"/>
@@ -4087,7 +4094,7 @@
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Pushable/3x3 13 11110010X.png"/>
   </tile>
 
-  <tile id="443">
+  <tile id="444">
    <properties>
     <property name="Name" value="Pushable 3x3 14 111101101"/>
     <property name="~Lodestone" value="Pushable 3x3 14 111101101"/>
@@ -4101,7 +4108,7 @@
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Pushable/3x3 14 111101101.png"/>
   </tile>
 
-  <tile id="444">
+  <tile id="445">
    <properties>
     <property name="Name" value="Pushable 3x3 15 101101111"/>
     <property name="~Lodestone" value="Pushable 3x3 15 101101111"/>
@@ -4115,7 +4122,7 @@
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Pushable/3x3 15 101101111.png"/>
   </tile>
 
-  <tile id="445">
+  <tile id="446">
    <properties>
     <property name="Name" value="Pushable 3x3 16 111001111"/>
     <property name="~Lodestone" value="Pushable 3x3 16 111001111"/>
@@ -4129,7 +4136,7 @@
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Pushable/3x3 16 111001111.png"/>
   </tile>
 
-  <tile id="446">
+  <tile id="447">
    <properties>
     <property name="Name" value="Pushable 3x3 17 111100111"/>
     <property name="~Lodestone" value="Pushable 3x3 17 111100111"/>
@@ -4143,7 +4150,7 @@
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Pushable/3x3 17 111100111.png"/>
   </tile>
 
-  <tile id="447">
+  <tile id="448">
    <properties>
     <property name="Name" value="Pushable 3x3 18 111111111"/>
     <property name="~Lodestone" value="Pushable 3x3 18 111111111"/>
@@ -4157,7 +4164,7 @@
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Pushable/3x3 18 111111111.png"/>
   </tile>
 
-  <tile id="448">
+  <tile id="449">
    <properties>
     <property name="Name" value="Pushable 3x3 2 010010111"/>
     <property name="~Lodestone" value="Pushable 3x3 2 010010111"/>
@@ -4171,7 +4178,7 @@
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Pushable/3x3 2 010010111.png"/>
   </tile>
 
-  <tile id="449">
+  <tile id="450">
    <properties>
     <property name="Name" value="Pushable 3x3 3 111010010"/>
     <property name="~Lodestone" value="Pushable 3x3 3 111010010"/>
@@ -4185,7 +4192,7 @@
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Pushable/3x3 3 111010010.png"/>
   </tile>
 
-  <tile id="450">
+  <tile id="451">
    <properties>
     <property name="Name" value="Pushable 3x3 4 001111001"/>
     <property name="~Lodestone" value="Pushable 3x3 4 001111001"/>
@@ -4199,7 +4206,7 @@
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Pushable/3x3 4 001111001.png"/>
   </tile>
 
-  <tile id="451">
+  <tile id="452">
    <properties>
     <property name="Name" value="Pushable 3x3 5 100111100"/>
     <property name="~Lodestone" value="Pushable 3x3 5 100111100"/>
@@ -4213,7 +4220,7 @@
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Pushable/3x3 5 100111100.png"/>
   </tile>
 
-  <tile id="452">
+  <tile id="453">
    <properties>
     <property name="Name" value="Pushable 3x3 6 011010110"/>
     <property name="~Lodestone" value="Pushable 3x3 6 011010110"/>
@@ -4227,7 +4234,7 @@
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Pushable/3x3 6 011010110.png"/>
   </tile>
 
-  <tile id="453">
+  <tile id="454">
    <properties>
     <property name="Name" value="Pushable 3x3 7 110010011"/>
     <property name="~Lodestone" value="Pushable 3x3 7 110010011"/>
@@ -4241,7 +4248,7 @@
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Pushable/3x3 7 110010011.png"/>
   </tile>
 
-  <tile id="454">
+  <tile id="455">
    <properties>
     <property name="Name" value="Pushable 3x3 8 100111001"/>
     <property name="~Lodestone" value="Pushable 3x3 8 100111001"/>
@@ -4255,7 +4262,7 @@
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Pushable/3x3 8 100111001.png"/>
   </tile>
 
-  <tile id="455">
+  <tile id="456">
    <properties>
     <property name="Name" value="Pushable 3x3 9 001111100"/>
     <property name="~Lodestone" value="Pushable 3x3 9 001111100"/>
@@ -4269,7 +4276,7 @@
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Pushable/3x3 9 001111100.png"/>
   </tile>
 
-  <tile id="456">
+  <tile id="457">
    <properties>
     <property name="Name" value="Unpushable 1x1 1 1"/>
     <property name="~Lodestone" value="Unpushable 1x1 1 1"/>
@@ -4283,7 +4290,7 @@
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Lodestone/Unpushable/1x1 1 1.png"/>
   </tile>
 
-  <tile id="457">
+  <tile id="458">
    <properties>
     <property name="Name" value="Unpushable 1x2 1 11"/>
     <property name="~Lodestone" value="Unpushable 1x2 1 11"/>
@@ -4297,7 +4304,7 @@
    <image width="32" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Unpushable/1x2 1 11.png"/>
   </tile>
 
-  <tile id="458">
+  <tile id="459">
    <properties>
     <property name="Name" value="Unpushable 1x3 1 111"/>
     <property name="~Lodestone" value="Unpushable 1x3 1 111"/>
@@ -4311,7 +4318,7 @@
    <image width="32" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Unpushable/1x3 1 111.png"/>
   </tile>
 
-  <tile id="459">
+  <tile id="460">
    <properties>
     <property name="Name" value="Unpushable 2x1 1 11"/>
     <property name="~Lodestone" value="Unpushable 2x1 1 11"/>
@@ -4325,7 +4332,7 @@
    <image width="64" height="48" source="../Graphics/Set 1 (Cave)/Lodestone/Unpushable/2x1 1 11.png"/>
   </tile>
 
-  <tile id="460">
+  <tile id="461">
    <properties>
     <property name="Name" value="Unpushable 2x2 1 1110"/>
     <property name="~Lodestone" value="Unpushable 2x2 1 1110"/>
@@ -4339,7 +4346,7 @@
    <image width="64" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Unpushable/2x2 1 1110.png"/>
   </tile>
 
-  <tile id="461">
+  <tile id="462">
    <properties>
     <property name="Name" value="Unpushable 2x2 2 1101"/>
     <property name="~Lodestone" value="Unpushable 2x2 2 1101"/>
@@ -4353,7 +4360,7 @@
    <image width="64" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Unpushable/2x2 2 1101.png"/>
   </tile>
 
-  <tile id="462">
+  <tile id="463">
    <properties>
     <property name="Name" value="Unpushable 2x2 3 0111"/>
     <property name="~Lodestone" value="Unpushable 2x2 3 0111"/>
@@ -4367,7 +4374,7 @@
    <image width="64" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Unpushable/2x2 3 0111.png"/>
   </tile>
 
-  <tile id="463">
+  <tile id="464">
    <properties>
     <property name="Name" value="Unpushable 2x2 4 1011"/>
     <property name="~Lodestone" value="Unpushable 2x2 4 1011"/>
@@ -4381,7 +4388,7 @@
    <image width="64" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Unpushable/2x2 4 1011.png"/>
   </tile>
 
-  <tile id="464">
+  <tile id="465">
    <properties>
     <property name="Name" value="Unpushable 2x2 5 1111"/>
     <property name="~Lodestone" value="Unpushable 2x2 5 1111"/>
@@ -4395,7 +4402,7 @@
    <image width="64" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Unpushable/2x2 5 1111.png"/>
   </tile>
 
-  <tile id="465">
+  <tile id="466">
    <properties>
     <property name="Name" value="Unpushable 2x3 1 101110"/>
     <property name="~Lodestone" value="Unpushable 2x3 1 101110"/>
@@ -4409,7 +4416,7 @@
    <image width="64" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Unpushable/2x3 1 101110.png"/>
   </tile>
 
-  <tile id="466">
+  <tile id="467">
    <properties>
     <property name="Name" value="Unpushable 2x3 10 110111"/>
     <property name="~Lodestone" value="Unpushable 2x3 10 110111"/>
@@ -4423,7 +4430,7 @@
    <image width="64" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Unpushable/2x3 10 110111.png"/>
   </tile>
 
-  <tile id="467">
+  <tile id="468">
    <properties>
     <property name="Name" value="Unpushable 2x3 11 111110"/>
     <property name="~Lodestone" value="Unpushable 2x3 11 111110"/>
@@ -4437,7 +4444,7 @@
    <image width="64" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Unpushable/2x3 11 111110.png"/>
   </tile>
 
-  <tile id="468">
+  <tile id="469">
    <properties>
     <property name="Name" value="Unpushable 2x3 12 111101"/>
     <property name="~Lodestone" value="Unpushable 2x3 12 111101"/>
@@ -4451,7 +4458,7 @@
    <image width="64" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Unpushable/2x3 12 111101.png"/>
   </tile>
 
-  <tile id="469">
+  <tile id="470">
    <properties>
     <property name="Name" value="Unpushable 2x3 13 101111"/>
     <property name="~Lodestone" value="Unpushable 2x3 13 101111"/>
@@ -4465,7 +4472,7 @@
    <image width="64" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Unpushable/2x3 13 101111.png"/>
   </tile>
 
-  <tile id="470">
+  <tile id="471">
    <properties>
     <property name="Name" value="Unpushable 2x3 14 011111"/>
     <property name="~Lodestone" value="Unpushable 2x3 14 011111"/>
@@ -4479,7 +4486,7 @@
    <image width="64" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Unpushable/2x3 14 011111.png"/>
   </tile>
 
-  <tile id="471">
+  <tile id="472">
    <properties>
     <property name="Name" value="Unpushable 2x3 15 111111"/>
     <property name="~Lodestone" value="Unpushable 2x3 15 111111"/>
@@ -4493,7 +4500,7 @@
    <image width="64" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Unpushable/2x3 15 111111.png"/>
   </tile>
 
-  <tile id="472">
+  <tile id="473">
    <properties>
     <property name="Name" value="Unpushable 2x3 2 011101"/>
     <property name="~Lodestone" value="Unpushable 2x3 2 011101"/>
@@ -4507,7 +4514,7 @@
    <image width="64" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Unpushable/2x3 2 011101.png"/>
   </tile>
 
-  <tile id="473">
+  <tile id="474">
    <properties>
     <property name="Name" value="Unpushable 2x3 3 101011"/>
     <property name="~Lodestone" value="Unpushable 2x3 3 101011"/>
@@ -4521,7 +4528,7 @@
    <image width="64" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Unpushable/2x3 3 101011.png"/>
   </tile>
 
-  <tile id="474">
+  <tile id="475">
    <properties>
     <property name="Name" value="Unpushable 2x3 4 111010"/>
     <property name="~Lodestone" value="Unpushable 2x3 4 111010"/>
@@ -4535,7 +4542,7 @@
    <image width="64" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Unpushable/2x3 4 111010.png"/>
   </tile>
 
-  <tile id="475">
+  <tile id="476">
    <properties>
     <property name="Name" value="Unpushable 2x3 5 010111"/>
     <property name="~Lodestone" value="Unpushable 2x3 5 010111"/>
@@ -4549,7 +4556,7 @@
    <image width="64" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Unpushable/2x3 5 010111.png"/>
   </tile>
 
-  <tile id="476">
+  <tile id="477">
    <properties>
     <property name="Name" value="Unpushable 2x3 6 110101"/>
     <property name="~Lodestone" value="Unpushable 2x3 6 110101"/>
@@ -4563,7 +4570,7 @@
    <image width="64" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Unpushable/2x3 6 110101.png"/>
   </tile>
 
-  <tile id="477">
+  <tile id="478">
    <properties>
     <property name="Name" value="Unpushable 2x3 7 101101"/>
     <property name="~Lodestone" value="Unpushable 2x3 7 101101"/>
@@ -4577,7 +4584,7 @@
    <image width="64" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Unpushable/2x3 7 101101.png"/>
   </tile>
 
-  <tile id="478">
+  <tile id="479">
    <properties>
     <property name="Name" value="Unpushable 2x3 8 011110"/>
     <property name="~Lodestone" value="Unpushable 2x3 8 011110"/>
@@ -4591,7 +4598,7 @@
    <image width="64" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Unpushable/2x3 8 011110.png"/>
   </tile>
 
-  <tile id="479">
+  <tile id="480">
    <properties>
     <property name="Name" value="Unpushable 2x3 9 111011"/>
     <property name="~Lodestone" value="Unpushable 2x3 9 111011"/>
@@ -4605,7 +4612,7 @@
    <image width="64" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Unpushable/2x3 9 111011.png"/>
   </tile>
 
-  <tile id="480">
+  <tile id="481">
    <properties>
     <property name="Name" value="Unpushable 3x1 1 111"/>
     <property name="~Lodestone" value="Unpushable 3x1 1 111"/>
@@ -4619,7 +4626,7 @@
    <image width="96" height="48" source="../Graphics/Set 1 (Cave)/Lodestone/Unpushable/3x1 1 111.png"/>
   </tile>
 
-  <tile id="481">
+  <tile id="482">
    <properties>
     <property name="Name" value="Unpushable 3x2 1 010111"/>
     <property name="~Lodestone" value="Unpushable 3x2 1 010111"/>
@@ -4633,7 +4640,7 @@
    <image width="96" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Unpushable/3x2 1 010111.png"/>
   </tile>
 
-  <tile id="482">
+  <tile id="483">
    <properties>
     <property name="Name" value="Unpushable 3x2 10 101111"/>
     <property name="~Lodestone" value="Unpushable 3x2 10 101111"/>
@@ -4647,7 +4654,7 @@
    <image width="96" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Unpushable/3x2 10 101111.png"/>
   </tile>
 
-  <tile id="483">
+  <tile id="484">
    <properties>
     <property name="Name" value="Unpushable 3x2 11 111110"/>
     <property name="~Lodestone" value="Unpushable 3x2 11 111110"/>
@@ -4661,7 +4668,7 @@
    <image width="96" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Unpushable/3x2 11 111110.png"/>
   </tile>
 
-  <tile id="484">
+  <tile id="485">
    <properties>
     <property name="Name" value="Unpushable 3x2 12 111011"/>
     <property name="~Lodestone" value="Unpushable 3x2 12 111011"/>
@@ -4675,7 +4682,7 @@
    <image width="96" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Unpushable/3x2 12 111011.png"/>
   </tile>
 
-  <tile id="485">
+  <tile id="486">
    <properties>
     <property name="Name" value="Unpushable 3x2 13 110111"/>
     <property name="~Lodestone" value="Unpushable 3x2 13 110111"/>
@@ -4689,7 +4696,7 @@
    <image width="96" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Unpushable/3x2 13 110111.png"/>
   </tile>
 
-  <tile id="486">
+  <tile id="487">
    <properties>
     <property name="Name" value="Unpushable 3x2 14 011111"/>
     <property name="~Lodestone" value="Unpushable 3x2 14 011111"/>
@@ -4703,7 +4710,7 @@
    <image width="96" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Unpushable/3x2 14 011111.png"/>
   </tile>
 
-  <tile id="487">
+  <tile id="488">
    <properties>
     <property name="Name" value="Unpushable 3x2 15 111111"/>
     <property name="~Lodestone" value="Unpushable 3x2 15 111111"/>
@@ -4717,7 +4724,7 @@
    <image width="96" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Unpushable/3x2 15 111111.png"/>
   </tile>
 
-  <tile id="488">
+  <tile id="489">
    <properties>
     <property name="Name" value="Unpushable 3x2 2 111010"/>
     <property name="~Lodestone" value="Unpushable 3x2 2 111010"/>
@@ -4731,7 +4738,7 @@
    <image width="96" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Unpushable/3x2 2 111010.png"/>
   </tile>
 
-  <tile id="489">
+  <tile id="490">
    <properties>
     <property name="Name" value="Unpushable 3x2 3 111100"/>
     <property name="~Lodestone" value="Unpushable 3x2 3 111100"/>
@@ -4745,7 +4752,7 @@
    <image width="96" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Unpushable/3x2 3 111100.png"/>
   </tile>
 
-  <tile id="490">
+  <tile id="491">
    <properties>
     <property name="Name" value="Unpushable 3x2 4 111001"/>
     <property name="~Lodestone" value="Unpushable 3x2 4 111001"/>
@@ -4759,7 +4766,7 @@
    <image width="96" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Unpushable/3x2 4 111001.png"/>
   </tile>
 
-  <tile id="491">
+  <tile id="492">
    <properties>
     <property name="Name" value="Unpushable 3x2 5 100111"/>
     <property name="~Lodestone" value="Unpushable 3x2 5 100111"/>
@@ -4773,7 +4780,7 @@
    <image width="96" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Unpushable/3x2 5 100111.png"/>
   </tile>
 
-  <tile id="492">
+  <tile id="493">
    <properties>
     <property name="Name" value="Unpushable 3x2 6 001111"/>
     <property name="~Lodestone" value="Unpushable 3x2 6 001111"/>
@@ -4787,7 +4794,7 @@
    <image width="96" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Unpushable/3x2 6 001111.png"/>
   </tile>
 
-  <tile id="493">
+  <tile id="494">
    <properties>
     <property name="Name" value="Unpushable 3x2 7 110011"/>
     <property name="~Lodestone" value="Unpushable 3x2 7 110011"/>
@@ -4801,7 +4808,7 @@
    <image width="96" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Unpushable/3x2 7 110011.png"/>
   </tile>
 
-  <tile id="494">
+  <tile id="495">
    <properties>
     <property name="Name" value="Unpushable 3x2 8 011110"/>
     <property name="~Lodestone" value="Unpushable 3x2 8 011110"/>
@@ -4815,7 +4822,7 @@
    <image width="96" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Unpushable/3x2 8 011110.png"/>
   </tile>
 
-  <tile id="495">
+  <tile id="496">
    <properties>
     <property name="Name" value="Unpushable 3x2 9 111101"/>
     <property name="~Lodestone" value="Unpushable 3x2 9 111101"/>
@@ -4829,7 +4836,7 @@
    <image width="96" height="80" source="../Graphics/Set 1 (Cave)/Lodestone/Unpushable/3x2 9 111101.png"/>
   </tile>
 
-  <tile id="496">
+  <tile id="497">
    <properties>
     <property name="Name" value="Unpushable 3x3 1 010111010"/>
     <property name="~Lodestone" value="Unpushable 3x3 1 010111010"/>
@@ -4843,7 +4850,7 @@
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Unpushable/3x3 1 010111010.png"/>
   </tile>
 
-  <tile id="497">
+  <tile id="498">
    <properties>
     <property name="Name" value="Unpushable 3x3 10 111001001"/>
     <property name="~Lodestone" value="Unpushable 3x3 10 111001001"/>
@@ -4857,7 +4864,7 @@
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Unpushable/3x3 10 111001001.png"/>
   </tile>
 
-  <tile id="498">
+  <tile id="499">
    <properties>
     <property name="Name" value="Unpushable 3x3 11 100100111"/>
     <property name="~Lodestone" value="Unpushable 3x3 11 100100111"/>
@@ -4871,7 +4878,7 @@
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Unpushable/3x3 11 100100111.png"/>
   </tile>
 
-  <tile id="499">
+  <tile id="500">
    <properties>
     <property name="Name" value="Unpushable 3x3 12 001001111"/>
     <property name="~Lodestone" value="Unpushable 3x3 12 001001111"/>
@@ -4885,7 +4892,7 @@
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Unpushable/3x3 12 001001111.png"/>
   </tile>
 
-  <tile id="500">
+  <tile id="501">
    <properties>
     <property name="Name" value="Unpushable 3x3 13 111100100"/>
     <property name="~Lodestone" value="Unpushable 3x3 13 111100100"/>
@@ -4899,7 +4906,7 @@
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Unpushable/3x3 13 111100100.png"/>
   </tile>
 
-  <tile id="501">
+  <tile id="502">
    <properties>
     <property name="Name" value="Unpushable 3x3 14 111101101"/>
     <property name="~Lodestone" value="Unpushable 3x3 14 111101101"/>
@@ -4913,7 +4920,7 @@
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Unpushable/3x3 14 111101101.png"/>
   </tile>
 
-  <tile id="502">
+  <tile id="503">
    <properties>
     <property name="Name" value="Unpushable 3x3 15 101101111"/>
     <property name="~Lodestone" value="Unpushable 3x3 15 101101111"/>
@@ -4927,7 +4934,7 @@
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Unpushable/3x3 15 101101111.png"/>
   </tile>
 
-  <tile id="503">
+  <tile id="504">
    <properties>
     <property name="Name" value="Unpushable 3x3 16 111001111"/>
     <property name="~Lodestone" value="Unpushable 3x3 16 111001111"/>
@@ -4941,7 +4948,7 @@
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Unpushable/3x3 16 111001111.png"/>
   </tile>
 
-  <tile id="504">
+  <tile id="505">
    <properties>
     <property name="Name" value="Unpushable 3x3 17 111100111"/>
     <property name="~Lodestone" value="Unpushable 3x3 17 111100111"/>
@@ -4955,7 +4962,7 @@
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Unpushable/3x3 17 111100111.png"/>
   </tile>
 
-  <tile id="505">
+  <tile id="506">
    <properties>
     <property name="Name" value="Unpushable 3x3 18 111111111"/>
     <property name="~Lodestone" value="Unpushable 3x3 18 111111111"/>
@@ -4969,7 +4976,7 @@
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Unpushable/3x3 18 111111111.png"/>
   </tile>
 
-  <tile id="506">
+  <tile id="507">
    <properties>
     <property name="Name" value="Unpushable 3x3 2 010010111"/>
     <property name="~Lodestone" value="Unpushable 3x3 2 010010111"/>
@@ -4983,7 +4990,7 @@
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Unpushable/3x3 2 010010111.png"/>
   </tile>
 
-  <tile id="507">
+  <tile id="508">
    <properties>
     <property name="Name" value="Unpushable 3x3 3 111010010"/>
     <property name="~Lodestone" value="Unpushable 3x3 3 111010010"/>
@@ -4997,7 +5004,7 @@
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Unpushable/3x3 3 111010010.png"/>
   </tile>
 
-  <tile id="508">
+  <tile id="509">
    <properties>
     <property name="Name" value="Unpushable 3x3 4 001111001"/>
     <property name="~Lodestone" value="Unpushable 3x3 4 001111001"/>
@@ -5011,7 +5018,7 @@
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Unpushable/3x3 4 001111001.png"/>
   </tile>
 
-  <tile id="509">
+  <tile id="510">
    <properties>
     <property name="Name" value="Unpushable 3x3 5 100111100"/>
     <property name="~Lodestone" value="Unpushable 3x3 5 100111100"/>
@@ -5025,7 +5032,7 @@
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Unpushable/3x3 5 100111100.png"/>
   </tile>
 
-  <tile id="510">
+  <tile id="511">
    <properties>
     <property name="Name" value="Unpushable 3x3 6 011010110"/>
     <property name="~Lodestone" value="Unpushable 3x3 6 011010110"/>
@@ -5039,7 +5046,7 @@
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Unpushable/3x3 6 011010110.png"/>
   </tile>
 
-  <tile id="511">
+  <tile id="512">
    <properties>
     <property name="Name" value="Unpushable 3x3 7 110010011"/>
     <property name="~Lodestone" value="Unpushable 3x3 7 110010011"/>
@@ -5053,7 +5060,7 @@
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Unpushable/3x3 7 110010011.png"/>
   </tile>
 
-  <tile id="512">
+  <tile id="513">
    <properties>
     <property name="Name" value="Unpushable 3x3 8 100111001"/>
     <property name="~Lodestone" value="Unpushable 3x3 8 100111001"/>
@@ -5067,7 +5074,7 @@
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Unpushable/3x3 8 100111001.png"/>
   </tile>
 
-  <tile id="513">
+  <tile id="514">
    <properties>
     <property name="Name" value="Unpushable 3x3 9 001111100"/>
     <property name="~Lodestone" value="Unpushable 3x3 9 001111100"/>
@@ -5081,7 +5088,7 @@
    <image width="96" height="112" source="../Graphics/Set 1 (Cave)/Lodestone/Unpushable/3x3 9 001111100.png"/>
   </tile>
 
-  <tile id="514">
+  <tile id="515">
    <properties>
     <property name="Name" value="Magnetic Floor 01_10"/>
     <property name="~Source" value="Magnetic Floor 01_10"/>
@@ -5090,138 +5097,136 @@
     <property name="Magnetisation Range" type="int" value="0"/>
     <property name="Attraction Range" type="int" value="0"/>
     <property name="Is Solid" value="false"/>
-    <property name="Lighting Displacement X" value="32"/>
-    <property name="Lighting Displacement Y" value="32"/>
-    <property name="Lighting Animation" value="Magnet Light Source"/>
-    <property name="Lighting Intensity" value="0.5"/>
+    <property name="Lighting Displacement X" value="16"/>
+    <property name="Lighting Displacement Y" value="16"/>
+    <property name="Lighting Animation" value="Magnetic Floor Light Source"/>
    </properties>
    <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Magnetic Floor/01_10.png"/>
    <animation>
-    <frame tileid="514" duration="800"/>
-    <frame tileid="515" duration="40"/>
+    <frame tileid="515" duration="800"/>
     <frame tileid="516" duration="40"/>
     <frame tileid="517" duration="40"/>
     <frame tileid="518" duration="40"/>
-    <frame tileid="519" duration="80"/>
+    <frame tileid="519" duration="40"/>
     <frame tileid="520" duration="80"/>
-    <frame tileid="521" duration="120"/>
+    <frame tileid="521" duration="80"/>
     <frame tileid="522" duration="120"/>
-    <frame tileid="523" duration="160"/>
+    <frame tileid="523" duration="120"/>
+    <frame tileid="524" duration="160"/>
    </animation>
   </tile>
 
-  <tile id="515">
+  <tile id="516">
    <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Magnetic Floor/02_10.png"/>
   </tile>
 
-  <tile id="516">
+  <tile id="517">
    <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Magnetic Floor/03_10.png"/>
   </tile>
 
-  <tile id="517">
+  <tile id="518">
    <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Magnetic Floor/04_10.png"/>
   </tile>
 
-  <tile id="518">
+  <tile id="519">
    <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Magnetic Floor/05_10.png"/>
   </tile>
 
-  <tile id="519">
+  <tile id="520">
    <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Magnetic Floor/06_10.png"/>
   </tile>
 
-  <tile id="520">
+  <tile id="521">
    <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Magnetic Floor/07_10.png"/>
   </tile>
 
-  <tile id="521">
+  <tile id="522">
    <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Magnetic Floor/08_10.png"/>
   </tile>
 
-  <tile id="522">
+  <tile id="523">
    <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Magnetic Floor/09_10.png"/>
   </tile>
 
-  <tile id="523">
+  <tile id="524">
    <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Magnetic Floor/10_10.png"/>
   </tile>
 
-  <tile id="524">
+  <tile id="525">
    <properties>
     <property name="Name" value="Magnetic Source"/>
     <property name="~Source" value="Magnetic Source"/>
     <property name="Type" value="Magnetic Source"/>
     <property name="Lighting Displacement X" value="32"/>
     <property name="Lighting Displacement Y" value="32"/>
-    <property name="Lighting Animation" value="Magnet Light Source"/>
-    <property name="Lighting Intensity" value="0.5"/>
+    <property name="Lighting Animation" value="Magnetic Source Light Source"/>
    </properties>
    <image width="32" height="50" source="../Graphics/Set 1 (Cave)/Magnetic Source/01_10.png"/>
    <animation>
-    <frame tileid="524" duration="800"/>
-    <frame tileid="525" duration="40"/>
+    <frame tileid="525" duration="800"/>
     <frame tileid="526" duration="40"/>
     <frame tileid="527" duration="40"/>
     <frame tileid="528" duration="40"/>
-    <frame tileid="529" duration="80"/>
+    <frame tileid="529" duration="40"/>
     <frame tileid="530" duration="80"/>
-    <frame tileid="531" duration="120"/>
+    <frame tileid="531" duration="80"/>
     <frame tileid="532" duration="120"/>
-    <frame tileid="533" duration="160"/>
+    <frame tileid="533" duration="120"/>
+    <frame tileid="534" duration="160"/>
    </animation>
   </tile>
 
-  <tile id="525">
+  <tile id="526">
    <image width="32" height="50" source="../Graphics/Set 1 (Cave)/Magnetic Source/02_10.png"/>
   </tile>
 
-  <tile id="526">
+  <tile id="527">
    <image width="32" height="50" source="../Graphics/Set 1 (Cave)/Magnetic Source/03_10.png"/>
   </tile>
 
-  <tile id="527">
+  <tile id="528">
    <image width="32" height="50" source="../Graphics/Set 1 (Cave)/Magnetic Source/04_10.png"/>
   </tile>
 
-  <tile id="528">
+  <tile id="529">
    <image width="32" height="50" source="../Graphics/Set 1 (Cave)/Magnetic Source/05_10.png"/>
   </tile>
 
-  <tile id="529">
+  <tile id="530">
    <image width="32" height="50" source="../Graphics/Set 1 (Cave)/Magnetic Source/06_10.png"/>
   </tile>
 
-  <tile id="530">
+  <tile id="531">
    <image width="32" height="50" source="../Graphics/Set 1 (Cave)/Magnetic Source/07_10.png"/>
   </tile>
 
-  <tile id="531">
+  <tile id="532">
    <image width="32" height="50" source="../Graphics/Set 1 (Cave)/Magnetic Source/08_10.png"/>
   </tile>
 
-  <tile id="532">
+  <tile id="533">
    <image width="32" height="50" source="../Graphics/Set 1 (Cave)/Magnetic Source/09_10.png"/>
   </tile>
 
-  <tile id="533">
+  <tile id="534">
    <image width="32" height="50" source="../Graphics/Set 1 (Cave)/Magnetic Source/10_10.png"/>
   </tile>
 
-  <tile id="534">
+  <tile id="535">
    <properties>
     <property name="Name" value="Player Idle Down"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Idle Down.png"/>
   </tile>
 
-  <tile id="535">
+  <tile id="536">
    <properties>
     <property name="Name" value="Player Idle Left"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Idle Left.png"/>
   </tile>
 
-  <tile id="536">
+  <tile id="537">
    <properties>
     <property name="Name" value="Player Idle Right"/>
     <property name="Type" value="Player"/>
@@ -5248,485 +5253,404 @@
     <property name="Lighting Displacement X" value="112"/>
     <property name="Lighting Displacement Y" value="104"/>
     <property name="Lighting Animation" value="Player Light Source"/>
-    <property name="Lighting Intensity" value="0.4"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Idle Right.png"/>
   </tile>
 
-  <tile id="537">
+  <tile id="538">
    <properties>
     <property name="Name" value="Player Idle Up"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Idle Up.png"/>
   </tile>
 
-  <tile id="538">
+  <tile id="539">
    <properties>
     <property name="Name" value="Player Pushing Down"/>
    </properties>
    <animation>
-    <frame tileid="538" duration="100"/>
-    <frame tileid="539" duration="100"/>
-    <frame tileid="538" duration="100"/>
-    <frame tileid="540" duration="100"/>
+    <frame tileid="539" duration="120"/>
+    <frame tileid="540" duration="120"/>
+    <frame tileid="539" duration="120"/>
+    <frame tileid="541" duration="120"/>
    </animation>
    <image width="32" height="49" source="../Graphics/Set 1 (Cave)/Player/Pushing Down 1_3.png"/>
   </tile>
 
-  <tile id="539">
-   <properties>
-    <property name="Name" value="Player Pushing Down 2_3"/>
-   </properties>
+  <tile id="540">
    <image width="32" height="49" source="../Graphics/Set 1 (Cave)/Player/Pushing Down 2_3.png"/>
   </tile>
 
-  <tile id="540">
-   <properties>
-    <property name="Name" value="Player Pushing Down 3_3"/>
-   </properties>
-   <image width="32" height="49" source="../Graphics/Set 1 (Cave)/Player/Pushing Down 3_3.png"/>
-  </tile>
-
   <tile id="541">
-   <properties>
-    <property name="Name" value="Player Pushing Down To Idle"/>
-   </properties>
-   <animation>
-    <frame tileid="541" duration="100"/>
-   </animation>
-   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Pushing Down To Idle.png"/>
+   <image width="32" height="49" source="../Graphics/Set 1 (Cave)/Player/Pushing Down 3_3.png"/>
   </tile>
 
   <tile id="542">
    <properties>
-    <property name="Name" value="Player Pushing Left"/>
+    <property name="Name" value="Player Pushing Down To Idle"/>
    </properties>
    <animation>
     <frame tileid="542" duration="100"/>
-    <frame tileid="543" duration="100"/>
-    <frame tileid="542" duration="100"/>
-    <frame tileid="544" duration="100"/>
    </animation>
-   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Pushing Left 1_3.png"/>
+   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Pushing Down To Idle.png"/>
   </tile>
 
   <tile id="543">
    <properties>
-    <property name="Name" value="Player Pushing Left 2_3"/>
+    <property name="Name" value="Player Pushing Left"/>
    </properties>
-   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Pushing Left 2_3.png"/>
+   <animation>
+    <frame tileid="543" duration="120"/>
+    <frame tileid="544" duration="120"/>
+    <frame tileid="543" duration="120"/>
+    <frame tileid="545" duration="120"/>
+   </animation>
+   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Pushing Left 1_3.png"/>
   </tile>
 
   <tile id="544">
-   <properties>
-    <property name="Name" value="Player Pushing Left 3_3"/>
-   </properties>
-   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Pushing Left 3_3.png"/>
+   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Pushing Left 2_3.png"/>
   </tile>
 
   <tile id="545">
-   <properties>
-    <property name="Name" value="Player Pushing Left To Idle"/>
-   </properties>
-   <animation>
-    <frame tileid="545" duration="100"/>
-   </animation>
-   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Pushing Left To Idle.png"/>
+   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Pushing Left 3_3.png"/>
   </tile>
 
   <tile id="546">
    <properties>
-    <property name="Name" value="Player Pushing Right"/>
+    <property name="Name" value="Player Pushing Left To Idle"/>
    </properties>
    <animation>
     <frame tileid="546" duration="100"/>
-    <frame tileid="547" duration="100"/>
-    <frame tileid="546" duration="100"/>
-    <frame tileid="548" duration="100"/>
    </animation>
-   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Pushing Right 1_3.png"/>
+   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Pushing Left To Idle.png"/>
   </tile>
 
   <tile id="547">
    <properties>
-    <property name="Name" value="Player Pushing Right 2_3"/>
+    <property name="Name" value="Player Pushing Right"/>
    </properties>
-   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Pushing Right 2_3.png"/>
+   <animation>
+    <frame tileid="547" duration="120"/>
+    <frame tileid="548" duration="120"/>
+    <frame tileid="547" duration="120"/>
+    <frame tileid="549" duration="120"/>
+   </animation>
+   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Pushing Right 1_3.png"/>
   </tile>
 
   <tile id="548">
-   <properties>
-    <property name="Name" value="Player Pushing Right 3_3"/>
-   </properties>
-   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Pushing Right 3_3.png"/>
+   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Pushing Right 2_3.png"/>
   </tile>
 
   <tile id="549">
-   <properties>
-    <property name="Name" value="Player Pushing Right To Idle"/>
-   </properties>
-   <animation>
-    <frame tileid="549" duration="100"/>
-   </animation>
-   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Pushing Right To Idle.png"/>
+   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Pushing Right 3_3.png"/>
   </tile>
 
   <tile id="550">
    <properties>
-    <property name="Name" value="Player Pushing Up"/>
+    <property name="Name" value="Player Pushing Right To Idle"/>
    </properties>
    <animation>
     <frame tileid="550" duration="100"/>
-    <frame tileid="551" duration="100"/>
-    <frame tileid="550" duration="100"/>
-    <frame tileid="552" duration="100"/>
    </animation>
-   <image width="32" height="49" source="../Graphics/Set 1 (Cave)/Player/Pushing Up 1_3.png"/>
+   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Pushing Right To Idle.png"/>
   </tile>
 
   <tile id="551">
    <properties>
-    <property name="Name" value="Player Pushing Up 2_3"/>
+    <property name="Name" value="Player Pushing Up"/>
    </properties>
-   <image width="32" height="49" source="../Graphics/Set 1 (Cave)/Player/Pushing Up 2_3.png"/>
+   <animation>
+    <frame tileid="551" duration="120"/>
+    <frame tileid="552" duration="120"/>
+    <frame tileid="551" duration="120"/>
+    <frame tileid="553" duration="120"/>
+   </animation>
+   <image width="32" height="49" source="../Graphics/Set 1 (Cave)/Player/Pushing Up 1_3.png"/>
   </tile>
 
   <tile id="552">
-   <properties>
-    <property name="Name" value="Player Pushing Up 3_3"/>
-   </properties>
-   <image width="32" height="49" source="../Graphics/Set 1 (Cave)/Player/Pushing Up 3_3.png"/>
+   <image width="32" height="49" source="../Graphics/Set 1 (Cave)/Player/Pushing Up 2_3.png"/>
   </tile>
 
   <tile id="553">
-   <properties>
-    <property name="Name" value="Player Pushing Up To Idle"/>
-   </properties>
-   <animation>
-    <frame tileid="553" duration="100"/>
-   </animation>
-   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Pushing Up To Idle.png"/>
+   <image width="32" height="49" source="../Graphics/Set 1 (Cave)/Player/Pushing Up 3_3.png"/>
   </tile>
 
   <tile id="554">
    <properties>
-    <property name="Name" value="Player Walking Down"/>
+    <property name="Name" value="Player Pushing Up To Idle"/>
    </properties>
    <animation>
     <frame tileid="554" duration="100"/>
-    <frame tileid="555" duration="100"/>
-    <frame tileid="554" duration="100"/>
-    <frame tileid="556" duration="100"/>
    </animation>
-   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Walking Down 1_3.png"/>
+   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Pushing Up To Idle.png"/>
   </tile>
 
   <tile id="555">
    <properties>
-    <property name="Name" value="Player Walking Down 2_3"/>
+    <property name="Name" value="Player Walking Down"/>
    </properties>
-   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Walking Down 2_3.png"/>
+   <animation>
+    <frame tileid="555" duration="120"/>
+    <frame tileid="556" duration="120"/>
+    <frame tileid="555" duration="120"/>
+    <frame tileid="557" duration="120"/>
+   </animation>
+   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Walking Down 1_3.png"/>
   </tile>
 
   <tile id="556">
-   <properties>
-    <property name="Name" value="Player Walking Down 3_3"/>
-   </properties>
-   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Walking Down 3_3.png"/>
+   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Walking Down 2_3.png"/>
   </tile>
 
   <tile id="557">
-   <properties>
-    <property name="Name" value="Player Walking Left"/>
-   </properties>
-   <animation>
-    <frame tileid="557" duration="100"/>
-    <frame tileid="558" duration="100"/>
-    <frame tileid="557" duration="100"/>
-    <frame tileid="559" duration="100"/>
-   </animation>
-   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Walking Left 1_3.png"/>
+   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Walking Down 3_3.png"/>
   </tile>
 
   <tile id="558">
    <properties>
-    <property name="Name" value="Player Walking Left 2_3"/>
+    <property name="Name" value="Player Walking Left"/>
    </properties>
-   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Walking Left 2_3.png"/>
+   <animation>
+    <frame tileid="558" duration="120"/>
+    <frame tileid="559" duration="120"/>
+    <frame tileid="558" duration="120"/>
+    <frame tileid="560" duration="120"/>
+   </animation>
+   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Walking Left 1_3.png"/>
   </tile>
 
   <tile id="559">
-   <properties>
-    <property name="Name" value="Player Walking Left 3_3"/>
-   </properties>
-   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Walking Left 3_3.png"/>
+   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Walking Left 2_3.png"/>
   </tile>
 
   <tile id="560">
-   <properties>
-    <property name="Name" value="Player Walking Right"/>
-   </properties>
-   <animation>
-    <frame tileid="560" duration="100"/>
-    <frame tileid="561" duration="100"/>
-    <frame tileid="560" duration="100"/>
-    <frame tileid="562" duration="100"/>
-   </animation>
-   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Walking Right 1_3.png"/>
+   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Walking Left 3_3.png"/>
   </tile>
 
   <tile id="561">
    <properties>
-    <property name="Name" value="Player Walking Right 2_3"/>
+    <property name="Name" value="Player Walking Right"/>
    </properties>
-   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Walking Right 2_3.png"/>
+   <animation>
+    <frame tileid="561" duration="120"/>
+    <frame tileid="562" duration="120"/>
+    <frame tileid="561" duration="120"/>
+    <frame tileid="563" duration="120"/>
+   </animation>
+   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Walking Right 1_3.png"/>
   </tile>
 
   <tile id="562">
-   <properties>
-    <property name="Name" value="Player Walking Right 3_3"/>
-   </properties>
-   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Walking Right 3_3.png"/>
+   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Walking Right 2_3.png"/>
   </tile>
 
   <tile id="563">
-   <properties>
-    <property name="Name" value="Player Walking Up"/>
-   </properties>
-   <animation>
-    <frame tileid="563" duration="100"/>
-    <frame tileid="564" duration="100"/>
-    <frame tileid="563" duration="100"/>
-    <frame tileid="565" duration="100"/>
-   </animation>
-   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Walking Up 1_3.png"/>
+   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Walking Right 3_3.png"/>
   </tile>
 
   <tile id="564">
    <properties>
-    <property name="Name" value="Player Walking Up 2_3"/>
+    <property name="Name" value="Player Walking Up"/>
    </properties>
-   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Walking Up 2_3.png"/>
+   <animation>
+    <frame tileid="564" duration="120"/>
+    <frame tileid="565" duration="120"/>
+    <frame tileid="564" duration="120"/>
+    <frame tileid="566" duration="120"/>
+   </animation>
+   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Walking Up 1_3.png"/>
   </tile>
 
   <tile id="565">
-   <properties>
-    <property name="Name" value="Player Walking Up 3_3"/>
-   </properties>
-   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Walking Up 3_3.png"/>
+   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Walking Up 2_3.png"/>
   </tile>
 
   <tile id="566">
+   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Walking Up 3_3.png"/>
+  </tile>
+
+  <tile id="567">
    <properties>
     <property name="Name" value="Pause Overlay"/>
    </properties>
    <image width="800" height="600" source="../Graphics/Set 1 (Cave)/UI/Pause Overlay.png"/>
   </tile>
 
-  <tile id="567">
+  <tile id="568">
    <properties>
     <property name="Name" value="Step Counter"/>
    </properties>
    <image width="128" height="64" source="../Graphics/Set 1 (Cave)/UI/Step Counter.png"/>
   </tile>
 
-  <tile id="568">
+  <tile id="569">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/01011010.png"/>
   </tile>
 
-  <tile id="569">
+  <tile id="570">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/01011011.png"/>
   </tile>
 
-  <tile id="570">
+  <tile id="571">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/01011110.png"/>
   </tile>
 
-  <tile id="571">
+  <tile id="572">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/01011111.png"/>
   </tile>
 
-  <tile id="572">
+  <tile id="573">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/01011X0X.png"/>
   </tile>
 
-  <tile id="573">
+  <tile id="574">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/01111010.png"/>
   </tile>
 
-  <tile id="574">
+  <tile id="575">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/01111011.png"/>
   </tile>
 
-  <tile id="575">
+  <tile id="576">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/01111110.png"/>
   </tile>
 
-  <tile id="576">
+  <tile id="577">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/01111111.png"/>
   </tile>
 
-  <tile id="577">
+  <tile id="578">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/01111X0X.png"/>
   </tile>
 
-  <tile id="578">
+  <tile id="579">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/01X1001X.png"/>
   </tile>
 
-  <tile id="579">
+  <tile id="580">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/01X1011X.png"/>
   </tile>
 
-  <tile id="580">
+  <tile id="581">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/01X10X0X.png"/>
   </tile>
 
-  <tile id="581">
+  <tile id="582">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/11011010.png"/>
   </tile>
 
-  <tile id="582">
+  <tile id="583">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/11011011.png"/>
   </tile>
 
-  <tile id="583">
+  <tile id="584">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/11011110.png"/>
   </tile>
 
-  <tile id="584">
+  <tile id="585">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/11011111.png"/>
   </tile>
 
-  <tile id="585">
+  <tile id="586">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/11011X0X.png"/>
   </tile>
 
-  <tile id="586">
+  <tile id="587">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/11111010.png"/>
   </tile>
 
-  <tile id="587">
+  <tile id="588">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/11111011.png"/>
   </tile>
 
-  <tile id="588">
+  <tile id="589">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/11111110.png"/>
   </tile>
 
-  <tile id="589">
+  <tile id="590">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/11111111.png"/>
   </tile>
 
-  <tile id="590">
+  <tile id="591">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/11111X0X.png"/>
   </tile>
 
-  <tile id="591">
+  <tile id="592">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/11X1001X.png"/>
   </tile>
 
-  <tile id="592">
+  <tile id="593">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/11X1011X.png"/>
   </tile>
 
-  <tile id="593">
+  <tile id="594">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/11X10X0X.png"/>
   </tile>
 
-  <tile id="594">
+  <tile id="595">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/Boulder 1.png"/>
   </tile>
 
-  <tile id="595">
+  <tile id="596">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/Boulder 2.png"/>
   </tile>
 
-  <tile id="596">
+  <tile id="597">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/Boulder 3.png"/>
   </tile>
 
-  <tile id="597">
+  <tile id="598">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/Boulder 4.png"/>
   </tile>
 
-  <tile id="598">
+  <tile id="599">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/Stalagmites 1.png"/>
   </tile>
 
-  <tile id="599">
+  <tile id="600">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/Stalagmites 2.png"/>
   </tile>
 
-  <tile id="600">
-   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Puddle 1.png"/>
-  </tile>
-
   <tile id="601">
-   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Puddle 2.png"/>
+   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/Stalagmites 3.png"/>
   </tile>
 
   <tile id="602">
-   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Puddle 3.png"/>
+   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/Stalagmites 4.png"/>
   </tile>
 
   <tile id="603">
-   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Puddle 4.png"/>
+   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Puddle 1.png"/>
   </tile>
 
   <tile id="604">
-   <animation>
-    <frame tileid="604" duration="160"/>
-    <frame tileid="605" duration="160"/>
-    <frame tileid="606" duration="160"/>
-    <frame tileid="607" duration="160"/>
-    <frame tileid="608" duration="160"/>
-   </animation>
-   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Splash 1 1_5.png"/>
+   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Puddle 2.png"/>
   </tile>
 
   <tile id="605">
-   <animation>
-    <frame tileid="605" duration="160"/>
-    <frame tileid="606" duration="160"/>
-    <frame tileid="607" duration="160"/>
-    <frame tileid="608" duration="160"/>
-    <frame tileid="604" duration="160"/>
-   </animation>
-   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Splash 1 2_5.png"/>
+   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Puddle 3.png"/>
   </tile>
 
   <tile id="606">
-   <animation>
-    <frame tileid="606" duration="160"/>
-    <frame tileid="607" duration="160"/>
-    <frame tileid="608" duration="160"/>
-    <frame tileid="604" duration="160"/>
-    <frame tileid="605" duration="160"/>
-   </animation>
-   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Splash 1 3_5.png"/>
+   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Puddle 4.png"/>
   </tile>
 
   <tile id="607">
-   <animation>
-    <frame tileid="607" duration="160"/>
-    <frame tileid="608" duration="160"/>
-    <frame tileid="604" duration="160"/>
-    <frame tileid="605" duration="160"/>
-    <frame tileid="606" duration="160"/>
-   </animation>
-   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Splash 1 4_5.png"/>
+   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Roots 1.png"/>
   </tile>
 
   <tile id="608">
    <animation>
     <frame tileid="608" duration="160"/>
-    <frame tileid="604" duration="160"/>
-    <frame tileid="605" duration="160"/>
-    <frame tileid="606" duration="160"/>
-    <frame tileid="607" duration="160"/>
+    <frame tileid="609" duration="160"/>
+    <frame tileid="610" duration="160"/>
+    <frame tileid="611" duration="160"/>
+    <frame tileid="612" duration="160"/>
    </animation>
-   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Splash 1 5_5.png"/>
+   <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Spring 1 1_5.png"/>
   </tile>
 
   <tile id="609">
@@ -5735,9 +5659,9 @@
     <frame tileid="610" duration="160"/>
     <frame tileid="611" duration="160"/>
     <frame tileid="612" duration="160"/>
-    <frame tileid="613" duration="160"/>
+    <frame tileid="608" duration="160"/>
    </animation>
-   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Splash 2 1_5.png"/>
+   <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Spring 1 2_5.png"/>
   </tile>
 
   <tile id="610">
@@ -5745,43 +5669,43 @@
     <frame tileid="610" duration="160"/>
     <frame tileid="611" duration="160"/>
     <frame tileid="612" duration="160"/>
-    <frame tileid="613" duration="160"/>
+    <frame tileid="608" duration="160"/>
     <frame tileid="609" duration="160"/>
    </animation>
-   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Splash 2 2_5.png"/>
+   <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Spring 1 3_5.png"/>
   </tile>
 
   <tile id="611">
    <animation>
     <frame tileid="611" duration="160"/>
     <frame tileid="612" duration="160"/>
-    <frame tileid="613" duration="160"/>
+    <frame tileid="608" duration="160"/>
     <frame tileid="609" duration="160"/>
     <frame tileid="610" duration="160"/>
    </animation>
-   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Splash 2 3_5.png"/>
+   <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Spring 1 4_5.png"/>
   </tile>
 
   <tile id="612">
    <animation>
     <frame tileid="612" duration="160"/>
-    <frame tileid="613" duration="160"/>
+    <frame tileid="608" duration="160"/>
     <frame tileid="609" duration="160"/>
     <frame tileid="610" duration="160"/>
     <frame tileid="611" duration="160"/>
    </animation>
-   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Splash 2 4_5.png"/>
+   <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Spring 1 5_5.png"/>
   </tile>
 
   <tile id="613">
    <animation>
     <frame tileid="613" duration="160"/>
-    <frame tileid="609" duration="160"/>
-    <frame tileid="610" duration="160"/>
-    <frame tileid="611" duration="160"/>
-    <frame tileid="612" duration="160"/>
+    <frame tileid="614" duration="160"/>
+    <frame tileid="615" duration="160"/>
+    <frame tileid="616" duration="160"/>
+    <frame tileid="617" duration="160"/>
    </animation>
-   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Splash 2 5_5.png"/>
+   <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Spring 2 1_5.png"/>
   </tile>
 
   <tile id="614">
@@ -5790,9 +5714,9 @@
     <frame tileid="615" duration="160"/>
     <frame tileid="616" duration="160"/>
     <frame tileid="617" duration="160"/>
-    <frame tileid="618" duration="160"/>
+    <frame tileid="613" duration="160"/>
    </animation>
-   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Splash 3 1_5.png"/>
+   <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Spring 2 2_5.png"/>
   </tile>
 
   <tile id="615">
@@ -5800,43 +5724,43 @@
     <frame tileid="615" duration="160"/>
     <frame tileid="616" duration="160"/>
     <frame tileid="617" duration="160"/>
-    <frame tileid="618" duration="160"/>
+    <frame tileid="613" duration="160"/>
     <frame tileid="614" duration="160"/>
    </animation>
-   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Splash 3 2_5.png"/>
+   <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Spring 2 3_5.png"/>
   </tile>
 
   <tile id="616">
    <animation>
     <frame tileid="616" duration="160"/>
     <frame tileid="617" duration="160"/>
-    <frame tileid="618" duration="160"/>
+    <frame tileid="613" duration="160"/>
     <frame tileid="614" duration="160"/>
     <frame tileid="615" duration="160"/>
    </animation>
-   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Splash 3 3_5.png"/>
+   <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Spring 2 4_5.png"/>
   </tile>
 
   <tile id="617">
    <animation>
     <frame tileid="617" duration="160"/>
-    <frame tileid="618" duration="160"/>
+    <frame tileid="613" duration="160"/>
     <frame tileid="614" duration="160"/>
     <frame tileid="615" duration="160"/>
     <frame tileid="616" duration="160"/>
    </animation>
-   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Splash 3 4_5.png"/>
+   <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Spring 2 5_5.png"/>
   </tile>
 
   <tile id="618">
    <animation>
     <frame tileid="618" duration="160"/>
-    <frame tileid="614" duration="160"/>
-    <frame tileid="615" duration="160"/>
-    <frame tileid="616" duration="160"/>
-    <frame tileid="617" duration="160"/>
+    <frame tileid="619" duration="160"/>
+    <frame tileid="620" duration="160"/>
+    <frame tileid="621" duration="160"/>
+    <frame tileid="622" duration="160"/>
    </animation>
-   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Splash 3 5_5.png"/>
+   <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Spring 3 1_5.png"/>
   </tile>
 
   <tile id="619">
@@ -5845,9 +5769,9 @@
     <frame tileid="620" duration="160"/>
     <frame tileid="621" duration="160"/>
     <frame tileid="622" duration="160"/>
-    <frame tileid="623" duration="160"/>
+    <frame tileid="618" duration="160"/>
    </animation>
-   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Splash 4 1_5.png"/>
+   <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Spring 3 2_5.png"/>
   </tile>
 
   <tile id="620">
@@ -5855,43 +5779,43 @@
     <frame tileid="620" duration="160"/>
     <frame tileid="621" duration="160"/>
     <frame tileid="622" duration="160"/>
-    <frame tileid="623" duration="160"/>
+    <frame tileid="618" duration="160"/>
     <frame tileid="619" duration="160"/>
    </animation>
-   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Splash 4 2_5.png"/>
+   <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Spring 3 3_5.png"/>
   </tile>
 
   <tile id="621">
    <animation>
     <frame tileid="621" duration="160"/>
     <frame tileid="622" duration="160"/>
-    <frame tileid="623" duration="160"/>
+    <frame tileid="618" duration="160"/>
     <frame tileid="619" duration="160"/>
     <frame tileid="620" duration="160"/>
    </animation>
-   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Splash 4 3_5.png"/>
+   <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Spring 3 4_5.png"/>
   </tile>
 
   <tile id="622">
    <animation>
     <frame tileid="622" duration="160"/>
-    <frame tileid="623" duration="160"/>
+    <frame tileid="618" duration="160"/>
     <frame tileid="619" duration="160"/>
     <frame tileid="620" duration="160"/>
     <frame tileid="621" duration="160"/>
    </animation>
-   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Splash 4 4_5.png"/>
+   <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Spring 3 5_5.png"/>
   </tile>
 
   <tile id="623">
    <animation>
     <frame tileid="623" duration="160"/>
-    <frame tileid="619" duration="160"/>
-    <frame tileid="620" duration="160"/>
-    <frame tileid="621" duration="160"/>
-    <frame tileid="622" duration="160"/>
+    <frame tileid="624" duration="160"/>
+    <frame tileid="625" duration="160"/>
+    <frame tileid="626" duration="160"/>
+    <frame tileid="627" duration="160"/>
    </animation>
-   <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Splash 4 5_5.png"/>
+   <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Spring 4 1_5.png"/>
   </tile>
 
   <tile id="624">
@@ -5900,9 +5824,9 @@
     <frame tileid="625" duration="160"/>
     <frame tileid="626" duration="160"/>
     <frame tileid="627" duration="160"/>
-    <frame tileid="628" duration="160"/>
+    <frame tileid="623" duration="160"/>
    </animation>
-   <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Spring 1 1_5.png"/>
+   <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Spring 4 2_5.png"/>
   </tile>
 
   <tile id="625">
@@ -5910,291 +5834,115 @@
     <frame tileid="625" duration="160"/>
     <frame tileid="626" duration="160"/>
     <frame tileid="627" duration="160"/>
-    <frame tileid="628" duration="160"/>
+    <frame tileid="623" duration="160"/>
     <frame tileid="624" duration="160"/>
    </animation>
-   <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Spring 1 2_5.png"/>
+   <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Spring 4 3_5.png"/>
   </tile>
 
   <tile id="626">
    <animation>
     <frame tileid="626" duration="160"/>
     <frame tileid="627" duration="160"/>
-    <frame tileid="628" duration="160"/>
+    <frame tileid="623" duration="160"/>
     <frame tileid="624" duration="160"/>
     <frame tileid="625" duration="160"/>
    </animation>
-   <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Spring 1 3_5.png"/>
+   <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Spring 4 4_5.png"/>
   </tile>
 
   <tile id="627">
    <animation>
     <frame tileid="627" duration="160"/>
-    <frame tileid="628" duration="160"/>
+    <frame tileid="623" duration="160"/>
     <frame tileid="624" duration="160"/>
     <frame tileid="625" duration="160"/>
     <frame tileid="626" duration="160"/>
-   </animation>
-   <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Spring 1 4_5.png"/>
-  </tile>
-
-  <tile id="628">
-   <animation>
-    <frame tileid="628" duration="160"/>
-    <frame tileid="624" duration="160"/>
-    <frame tileid="625" duration="160"/>
-    <frame tileid="626" duration="160"/>
-    <frame tileid="627" duration="160"/>
-   </animation>
-   <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Spring 1 5_5.png"/>
-  </tile>
-
-  <tile id="629">
-   <animation>
-    <frame tileid="629" duration="160"/>
-    <frame tileid="630" duration="160"/>
-    <frame tileid="631" duration="160"/>
-    <frame tileid="632" duration="160"/>
-    <frame tileid="633" duration="160"/>
-   </animation>
-   <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Spring 2 1_5.png"/>
-  </tile>
-
-  <tile id="630">
-   <animation>
-    <frame tileid="630" duration="160"/>
-    <frame tileid="631" duration="160"/>
-    <frame tileid="632" duration="160"/>
-    <frame tileid="633" duration="160"/>
-    <frame tileid="629" duration="160"/>
-   </animation>
-   <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Spring 2 2_5.png"/>
-  </tile>
-
-  <tile id="631">
-   <animation>
-    <frame tileid="631" duration="160"/>
-    <frame tileid="632" duration="160"/>
-    <frame tileid="633" duration="160"/>
-    <frame tileid="629" duration="160"/>
-    <frame tileid="630" duration="160"/>
-   </animation>
-   <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Spring 2 3_5.png"/>
-  </tile>
-
-  <tile id="632">
-   <animation>
-    <frame tileid="632" duration="160"/>
-    <frame tileid="633" duration="160"/>
-    <frame tileid="629" duration="160"/>
-    <frame tileid="630" duration="160"/>
-    <frame tileid="631" duration="160"/>
-   </animation>
-   <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Spring 2 4_5.png"/>
-  </tile>
-
-  <tile id="633">
-   <animation>
-    <frame tileid="633" duration="160"/>
-    <frame tileid="629" duration="160"/>
-    <frame tileid="630" duration="160"/>
-    <frame tileid="631" duration="160"/>
-    <frame tileid="632" duration="160"/>
-   </animation>
-   <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Spring 2 5_5.png"/>
-  </tile>
-
-  <tile id="634">
-   <animation>
-    <frame tileid="634" duration="160"/>
-    <frame tileid="635" duration="160"/>
-    <frame tileid="636" duration="160"/>
-    <frame tileid="637" duration="160"/>
-    <frame tileid="638" duration="160"/>
-   </animation>
-   <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Spring 3 1_5.png"/>
-  </tile>
-
-  <tile id="635">
-   <animation>
-    <frame tileid="635" duration="160"/>
-    <frame tileid="636" duration="160"/>
-    <frame tileid="637" duration="160"/>
-    <frame tileid="638" duration="160"/>
-    <frame tileid="634" duration="160"/>
-   </animation>
-   <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Spring 3 2_5.png"/>
-  </tile>
-
-  <tile id="636">
-   <animation>
-    <frame tileid="636" duration="160"/>
-    <frame tileid="637" duration="160"/>
-    <frame tileid="638" duration="160"/>
-    <frame tileid="634" duration="160"/>
-    <frame tileid="635" duration="160"/>
-   </animation>
-   <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Spring 3 3_5.png"/>
-  </tile>
-
-  <tile id="637">
-   <animation>
-    <frame tileid="637" duration="160"/>
-    <frame tileid="638" duration="160"/>
-    <frame tileid="634" duration="160"/>
-    <frame tileid="635" duration="160"/>
-    <frame tileid="636" duration="160"/>
-   </animation>
-   <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Spring 3 4_5.png"/>
-  </tile>
-
-  <tile id="638">
-   <animation>
-    <frame tileid="638" duration="160"/>
-    <frame tileid="634" duration="160"/>
-    <frame tileid="635" duration="160"/>
-    <frame tileid="636" duration="160"/>
-    <frame tileid="637" duration="160"/>
-   </animation>
-   <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Spring 3 5_5.png"/>
-  </tile>
-
-  <tile id="639">
-   <animation>
-    <frame tileid="639" duration="160"/>
-    <frame tileid="640" duration="160"/>
-    <frame tileid="641" duration="160"/>
-    <frame tileid="642" duration="160"/>
-    <frame tileid="643" duration="160"/>
-   </animation>
-   <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Spring 4 1_5.png"/>
-  </tile>
-
-  <tile id="640">
-   <animation>
-    <frame tileid="640" duration="160"/>
-    <frame tileid="641" duration="160"/>
-    <frame tileid="642" duration="160"/>
-    <frame tileid="643" duration="160"/>
-    <frame tileid="639" duration="160"/>
-   </animation>
-   <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Spring 4 2_5.png"/>
-  </tile>
-
-  <tile id="641">
-   <animation>
-    <frame tileid="641" duration="160"/>
-    <frame tileid="642" duration="160"/>
-    <frame tileid="643" duration="160"/>
-    <frame tileid="639" duration="160"/>
-    <frame tileid="640" duration="160"/>
-   </animation>
-   <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Spring 4 3_5.png"/>
-  </tile>
-
-  <tile id="642">
-   <animation>
-    <frame tileid="642" duration="160"/>
-    <frame tileid="643" duration="160"/>
-    <frame tileid="639" duration="160"/>
-    <frame tileid="640" duration="160"/>
-    <frame tileid="641" duration="160"/>
-   </animation>
-   <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Spring 4 4_5.png"/>
-  </tile>
-
-  <tile id="643">
-   <animation>
-    <frame tileid="643" duration="160"/>
-    <frame tileid="639" duration="160"/>
-    <frame tileid="640" duration="160"/>
-    <frame tileid="641" duration="160"/>
-    <frame tileid="642" duration="160"/>
    </animation>
    <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Wall/Wall Overlays/Spring 4 5_5.png"/>
   </tile>
 
-  <tile id="644">
+  <tile id="628">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X0X00X0X.png"/>
   </tile>
 
-  <tile id="645">
+  <tile id="629">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X0X00X1X.png"/>
   </tile>
 
-  <tile id="646">
+  <tile id="630">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X0X01X0X.png"/>
   </tile>
 
-  <tile id="647">
+  <tile id="631">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X0X01X10.png"/>
   </tile>
 
-  <tile id="648">
+  <tile id="632">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X0X01X11.png"/>
   </tile>
 
-  <tile id="649">
+  <tile id="633">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X0X1001X.png"/>
   </tile>
 
-  <tile id="650">
+  <tile id="634">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X0X1011X.png"/>
   </tile>
 
-  <tile id="651">
+  <tile id="635">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X0X10X0X.png"/>
   </tile>
 
-  <tile id="652">
+  <tile id="636">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X0X11010.png"/>
   </tile>
 
-  <tile id="653">
+  <tile id="637">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X0X11011.png"/>
   </tile>
 
-  <tile id="654">
+  <tile id="638">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X0X11110.png"/>
   </tile>
 
-  <tile id="655">
+  <tile id="639">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X0X11111.png"/>
   </tile>
 
-  <tile id="656">
+  <tile id="640">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X0X11X0X.png"/>
   </tile>
 
-  <tile id="657">
+  <tile id="641">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X1001X0X.png"/>
   </tile>
 
-  <tile id="658">
+  <tile id="642">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X1001X10.png"/>
   </tile>
 
-  <tile id="659">
+  <tile id="643">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X1001X11.png"/>
   </tile>
 
-  <tile id="660">
+  <tile id="644">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X1101X0X.png"/>
   </tile>
 
-  <tile id="661">
+  <tile id="645">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X1101X10.png"/>
   </tile>
 
-  <tile id="662">
+  <tile id="646">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X1101X11.png"/>
   </tile>
 
-  <tile id="663">
+  <tile id="647">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X1X00X0X.png"/>
   </tile>
 
-  <tile id="664">
+  <tile id="648">
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Wall/X1X00X1X.png"/>
   </tile>
  </tileset>

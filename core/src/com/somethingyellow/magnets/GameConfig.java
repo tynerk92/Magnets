@@ -72,6 +72,7 @@ public class GameConfig {
 				"(Medium) Steps (Solvable - 217).tmx",
 				"(Medium) Jammer.tmx",
 				"(Medium) Flip.tmx",
+				"(Medium) Deployment.tmx",
 				"(Hard) Lock (Solvable - 288).tmx",
 				"(Hard) Roundabout (Solvable - 175).tmx",
 				"(Hard) Hookline (Solvable - 647).tmx",
@@ -93,6 +94,7 @@ public class GameConfig {
 				"(Hard) Cover your tracks (Much Harder Version) (Please redo once bug is fixed) (Solvable - 753).tmx",
 				"(Hard) Extraction (Solvable - 468).tmx",
 				"(Hard) Cheating the System (Solvable - 605).tmx",
+				"(Hard) Pitcher.tmx",
 				"(Bonus) Which One (Solvable - 30).tmx",
 				"(Bonus) Which One 2 (Solvable - 30).tmx",
 				"(Bonus) Which One 3 (Solvable - 25).tmx",
@@ -106,11 +108,7 @@ public class GameConfig {
 				"(Bonus) Knockoff (Solvable - 344).tmx",
 				"(Experimental) Test Cases.tmx",
 				"(Experimental) Test cases 2.tmx",
-				"(Experimental) Wake me up when there is repulsion.tmx",
-				"(Experimental) Diagonal Test.tmx",
-				"(Experimental) Unexpected Behaviour.tmx",
-				"(Experimental) Testtt.tmx",
-				"(Experimental) Testicle.tmx"
+				"(Experimental) Diagonal Test.tmx"
 		};
 
 		PlayScreen.Config.AnimationsTMXPath = "Animations/(Introductory) Exploration.tmx";
