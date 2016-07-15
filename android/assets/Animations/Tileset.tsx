@@ -10,6 +10,7 @@
     <property name="~Oning" value="Button Pressing 1 1x1 1"/>
     <property name="Body Area" value="1"/>
     <property name="Body Width" type="int" value="1"/>
+    <property name="Render Depth" type="int" value="-1"/>
     <property name="Type" value="Button"/>
    </properties>
    <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Button/Set_1 1x1 1 1_3.png"/>
@@ -19,6 +20,7 @@
    <properties>
     <property name="Render Depth" type="int" value="-1"/>
     <property name="Name" value="Button Pressing 1 1x1 1"/>
+    <property name="Render Depth" type="int" value="-1"/>
    <animation>
     <frame tileid="0" duration="100"/>
     <frame tileid="1" duration="100"/>
@@ -31,6 +33,7 @@
    <properties>
     <property name="Render Depth" type="int" value="-1"/>
     <property name="Name" value="Button On 1 1x1 1"/>
+    <property name="Render Depth" type="int" value="-1"/>
    </properties>
    <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Button/Set_1 1x1 1 3_3.png"/>
   </tile>
@@ -45,6 +48,7 @@
     <property name="~Oning" value="Button Pressing 1 1x2 11"/>
     <property name="Body Area" value="11"/>
     <property name="Body Width" type="int" value="1"/>
+    <property name="Render Depth" type="int" value="-1"/>
     <property name="Type" value="Button"/>
    </properties>
    <image width="32" height="64" source="../Graphics/Set 1 (Cave)/Button/Set_1 1x2 11 1_3.png"/>
@@ -54,6 +58,7 @@
    <properties>
     <property name="Render Depth" type="int" value="-1"/>
     <property name="Name" value="Button Pressing 1 1x2 11"/>
+    <property name="Render Depth" type="int" value="-1"/>
    <animation>
     <frame tileid="3" duration="100"/>
     <frame tileid="4" duration="100"/>
@@ -66,6 +71,7 @@
    <properties>
     <property name="Render Depth" type="int" value="-1"/>
     <property name="Name" value="Button On 1 1x2 11"/>
+    <property name="Render Depth" type="int" value="-1"/>
    </properties>
    <image width="32" height="64" source="../Graphics/Set 1 (Cave)/Button/Set_1 1x2 11 3_3.png"/>
   </tile>
@@ -80,6 +86,7 @@
     <property name="~Oning" value="Button Pressing 1 2x1 11"/>
     <property name="Body Area" value="11"/>
     <property name="Body Width" type="int" value="2"/>
+    <property name="Render Depth" type="int" value="-1"/>
     <property name="Type" value="Button"/>
    </properties>
    <image width="64" height="32" source="../Graphics/Set 1 (Cave)/Button/Set_1 2x1 11 1_3.png"/>
@@ -89,6 +96,7 @@
    <properties>
     <property name="Render Depth" type="int" value="-1"/>
     <property name="Name" value="Button Pressing 1 2x1 11"/>
+    <property name="Render Depth" type="int" value="-1"/>
    <animation>
     <frame tileid="6" duration="100"/>
     <frame tileid="7" duration="100"/>
@@ -101,6 +109,7 @@
    <properties>
     <property name="Render Depth" type="int" value="-1"/>
     <property name="Name" value="Button On 1 2x1 11"/>
+    <property name="Render Depth" type="int" value="-1"/>
    </properties>
    <image width="64" height="32" source="../Graphics/Set 1 (Cave)/Button/Set_1 2x1 11 3_3.png"/>
   </tile>
@@ -115,6 +124,7 @@
     <property name="~Oning" value="Button Pressing 1 2x2 0110"/>
     <property name="Body Area" value="0110"/>
     <property name="Body Width" type="int" value="2"/>
+    <property name="Render Depth" type="int" value="-1"/>
     <property name="Type" value="Button"/>
    </properties>
    <image width="64" height="64" source="../Graphics/Set 1 (Cave)/Button/Set_1 2x2 0110 1_3.png"/>
@@ -124,6 +134,7 @@
    <properties>
     <property name="Render Depth" type="int" value="-1"/>
     <property name="Name" value="Button Pressing 1 2x2 0110"/>
+    <property name="Render Depth" type="int" value="-1"/>
    <animation>
     <frame tileid="9" duration="100"/>
     <frame tileid="10" duration="100"/>
@@ -136,6 +147,7 @@
    <properties>
     <property name="Render Depth" type="int" value="-1"/>
     <property name="Name" value="Button On 1 2x2 0110"/>
+    <property name="Render Depth" type="int" value="-1"/>
    </properties>
    <image width="64" height="64" source="../Graphics/Set 1 (Cave)/Button/Set_1 2x2 0110 3_3.png"/>
   </tile>
@@ -150,6 +162,7 @@
     <property name="~Oning" value="Button Pressing 1 2x2 0111"/>
     <property name="Body Area" value="0111"/>
     <property name="Body Width" type="int" value="2"/>
+    <property name="Render Depth" type="int" value="-1"/>
     <property name="Type" value="Button"/>
    </properties>
    <image width="64" height="64" source="../Graphics/Set 1 (Cave)/Button/Set_1 2x2 0111 1_3.png"/>
@@ -159,6 +172,7 @@
    <properties>
     <property name="Render Depth" type="int" value="-1"/>
     <property name="Name" value="Button Pressing 1 2x2 0111"/>
+    <property name="Render Depth" type="int" value="-1"/>
    <animation>
     <frame tileid="12" duration="100"/>
     <frame tileid="13" duration="100"/>
@@ -171,6 +185,7 @@
    <properties>
     <property name="Render Depth" type="int" value="-1"/>
     <property name="Name" value="Button On 1 2x2 0111"/>
+    <property name="Render Depth" type="int" value="-1"/>
    </properties>
    <image width="64" height="64" source="../Graphics/Set 1 (Cave)/Button/Set_1 2x2 0111 3_3.png"/>
   </tile>
@@ -185,6 +200,7 @@
     <property name="~Oning" value="Button Pressing 1 2x2 1001"/>
     <property name="Body Area" value="1001"/>
     <property name="Body Width" type="int" value="2"/>
+    <property name="Render Depth" type="int" value="-1"/>
     <property name="Type" value="Button"/>
    </properties>
    <image width="64" height="64" source="../Graphics/Set 1 (Cave)/Button/Set_1 2x2 1001 1_3.png"/>
@@ -194,6 +210,7 @@
    <properties>
     <property name="Render Depth" type="int" value="-1"/>
     <property name="Name" value="Button Pressing 1 2x2 1001"/>
+    <property name="Render Depth" type="int" value="-1"/>
    <animation>
     <frame tileid="15" duration="100"/>
     <frame tileid="16" duration="100"/>
@@ -206,6 +223,7 @@
    <properties>
     <property name="Render Depth" type="int" value="-1"/>
     <property name="Name" value="Button On 1 2x2 1001"/>
+    <property name="Render Depth" type="int" value="-1"/>
    </properties>
    <image width="64" height="64" source="../Graphics/Set 1 (Cave)/Button/Set_1 2x2 1001 3_3.png"/>
   </tile>
@@ -220,6 +238,7 @@
     <property name="~Oning" value="Button Pressing 1 2x2 1011"/>
     <property name="Body Area" value="1011"/>
     <property name="Body Width" type="int" value="2"/>
+    <property name="Render Depth" type="int" value="-1"/>
     <property name="Type" value="Button"/>
    </properties>
    <image width="64" height="64" source="../Graphics/Set 1 (Cave)/Button/Set_1 2x2 1011 1_3.png"/>
@@ -229,6 +248,7 @@
    <properties>
     <property name="Render Depth" type="int" value="-1"/>
     <property name="Name" value="Button Pressing 1 2x2 1011"/>
+    <property name="Render Depth" type="int" value="-1"/>
    <animation>
     <frame tileid="18" duration="100"/>
     <frame tileid="19" duration="100"/>
@@ -241,6 +261,7 @@
    <properties>
     <property name="Render Depth" type="int" value="-1"/>
     <property name="Name" value="Button On 1 2x2 1011"/>
+    <property name="Render Depth" type="int" value="-1"/>
    </properties>
    <image width="64" height="64" source="../Graphics/Set 1 (Cave)/Button/Set_1 2x2 1011 3_3.png"/>
   </tile>
@@ -255,6 +276,7 @@
     <property name="~Oning" value="Button Pressing 1 2x2 1101"/>
     <property name="Body Area" value="1101"/>
     <property name="Body Width" type="int" value="2"/>
+    <property name="Render Depth" type="int" value="-1"/>
     <property name="Type" value="Button"/>
    </properties>
    <image width="64" height="64" source="../Graphics/Set 1 (Cave)/Button/Set_1 2x2 1101 1_3.png"/>
@@ -264,6 +286,7 @@
    <properties>
     <property name="Render Depth" type="int" value="-1"/>
     <property name="Name" value="Button Pressing 1 2x2 1101"/>
+    <property name="Render Depth" type="int" value="-1"/>
    <animation>
     <frame tileid="21" duration="100"/>
     <frame tileid="22" duration="100"/>
@@ -276,6 +299,7 @@
    <properties>
     <property name="Render Depth" type="int" value="-1"/>
     <property name="Name" value="Button On 1 2x2 1101"/>
+    <property name="Render Depth" type="int" value="-1"/>
    </properties>
    <image width="64" height="64" source="../Graphics/Set 1 (Cave)/Button/Set_1 2x2 1101 3_3.png"/>
   </tile>
@@ -290,6 +314,7 @@
     <property name="~Oning" value="Button Pressing 1 2x2 1110"/>
     <property name="Body Area" value="1110"/>
     <property name="Body Width" type="int" value="2"/>
+    <property name="Render Depth" type="int" value="-1"/>
     <property name="Type" value="Button"/>
    </properties>
    <image width="64" height="64" source="../Graphics/Set 1 (Cave)/Button/Set_1 2x2 1110 1_3.png"/>
@@ -299,6 +324,7 @@
    <properties>
     <property name="Render Depth" type="int" value="-1"/>
     <property name="Name" value="Button Pressing 1 2x2 1110"/>
+    <property name="Render Depth" type="int" value="-1"/>
    <animation>
     <frame tileid="24" duration="100"/>
     <frame tileid="25" duration="100"/>
@@ -311,6 +337,7 @@
    <properties>
     <property name="Render Depth" type="int" value="-1"/>
     <property name="Name" value="Button On 1 2x2 1110"/>
+    <property name="Render Depth" type="int" value="-1"/>
    </properties>
    <image width="64" height="64" source="../Graphics/Set 1 (Cave)/Button/Set_1 2x2 1110 3_3.png"/>
   </tile>
@@ -325,6 +352,7 @@
     <property name="~Oning" value="Button Pressing 1 2x2 1111"/>
     <property name="Body Area" value="1111"/>
     <property name="Body Width" type="int" value="2"/>
+    <property name="Render Depth" type="int" value="-1"/>
     <property name="Type" value="Button"/>
    </properties>
    <image width="64" height="64" source="../Graphics/Set 1 (Cave)/Button/Set_1 2x2 1111 1_3.png"/>
@@ -334,6 +362,7 @@
    <properties>
     <property name="Render Depth" type="int" value="-1"/>
     <property name="Name" value="Button Pressing 1 2x2 1111"/>
+    <property name="Render Depth" type="int" value="-1"/>
    <animation>
     <frame tileid="27" duration="100"/>
     <frame tileid="28" duration="100"/>
@@ -346,6 +375,7 @@
    <properties>
     <property name="Render Depth" type="int" value="-1"/>
     <property name="Name" value="Button On 1 2x2 1111"/>
+    <property name="Render Depth" type="int" value="-1"/>
    </properties>
    <image width="64" height="64" source="../Graphics/Set 1 (Cave)/Button/Set_1 2x2 1111 3_3.png"/>
   </tile>
@@ -360,6 +390,7 @@
     <property name="~Oning" value="Button Pressing 2 1x1 1"/>
     <property name="Body Area" value="1"/>
     <property name="Body Width" type="int" value="1"/>
+    <property name="Render Depth" type="int" value="-1"/>
     <property name="Type" value="Button"/>
    </properties>
    <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Button/Set_2 1x1 1 1_3.png"/>
@@ -369,6 +400,7 @@
    <properties>
     <property name="Render Depth" type="int" value="-1"/>
     <property name="Name" value="Button Pressing 2 1x1 1"/>
+    <property name="Render Depth" type="int" value="-1"/>
    <animation>
     <frame tileid="30" duration="100"/>
     <frame tileid="31" duration="100"/>
@@ -381,6 +413,7 @@
    <properties>
     <property name="Render Depth" type="int" value="-1"/>
     <property name="Name" value="Button On 2 1x1 1"/>
+    <property name="Render Depth" type="int" value="-1"/>
    </properties>
    <image width="32" height="32" source="../Graphics/Set 1 (Cave)/Button/Set_2 1x1 1 3_3.png"/>
   </tile>
@@ -395,6 +428,7 @@
     <property name="~Oning" value="Button Pressing 2 1x2 11"/>
     <property name="Body Area" value="11"/>
     <property name="Body Width" type="int" value="1"/>
+    <property name="Render Depth" type="int" value="-1"/>
     <property name="Type" value="Button"/>
    </properties>
    <image width="32" height="64" source="../Graphics/Set 1 (Cave)/Button/Set_2 1x2 11 1_3.png"/>
@@ -404,6 +438,7 @@
    <properties>
     <property name="Render Depth" type="int" value="-1"/>
     <property name="Name" value="Button Pressing 2 1x2 11"/>
+    <property name="Render Depth" type="int" value="-1"/>
    <animation>
     <frame tileid="33" duration="100"/>
     <frame tileid="34" duration="100"/>
@@ -416,6 +451,7 @@
    <properties>
     <property name="Render Depth" type="int" value="-1"/>
     <property name="Name" value="Button On 2 1x2 11"/>
+    <property name="Render Depth" type="int" value="-1"/>
    </properties>
    <image width="32" height="64" source="../Graphics/Set 1 (Cave)/Button/Set_2 1x2 11 3_3.png"/>
   </tile>
@@ -430,6 +466,7 @@
     <property name="~Oning" value="Button Pressing 2 2x1 11"/>
     <property name="Body Area" value="11"/>
     <property name="Body Width" type="int" value="2"/>
+    <property name="Render Depth" type="int" value="-1"/>
     <property name="Type" value="Button"/>
    </properties>
    <image width="64" height="32" source="../Graphics/Set 1 (Cave)/Button/Set_2 2x1 11 1_3.png"/>
@@ -439,6 +476,7 @@
    <properties>
     <property name="Render Depth" type="int" value="-1"/>
     <property name="Name" value="Button Pressing 2 2x1 11"/>
+    <property name="Render Depth" type="int" value="-1"/>
    <animation>
     <frame tileid="36" duration="100"/>
     <frame tileid="37" duration="100"/>
@@ -451,6 +489,7 @@
    <properties>
     <property name="Render Depth" type="int" value="-1"/>
     <property name="Name" value="Button On 2 2x1 11"/>
+    <property name="Render Depth" type="int" value="-1"/>
    </properties>
    <image width="64" height="32" source="../Graphics/Set 1 (Cave)/Button/Set_2 2x1 11 3_3.png"/>
   </tile>
@@ -465,6 +504,7 @@
     <property name="~Oning" value="Button Pressing 2 2x2 0110"/>
     <property name="Body Area" value="0110"/>
     <property name="Body Width" type="int" value="2"/>
+    <property name="Render Depth" type="int" value="-1"/>
     <property name="Type" value="Button"/>
    </properties>
    <image width="64" height="64" source="../Graphics/Set 1 (Cave)/Button/Set_2 2x2 0110 1_3.png"/>
@@ -474,6 +514,7 @@
    <properties>
     <property name="Render Depth" type="int" value="-1"/>
     <property name="Name" value="Button Pressing 2 2x2 0110"/>
+    <property name="Render Depth" type="int" value="-1"/>
    <animation>
     <frame tileid="39" duration="100"/>
     <frame tileid="40" duration="100"/>
@@ -486,6 +527,7 @@
    <properties>
     <property name="Render Depth" type="int" value="-1"/>
     <property name="Name" value="Button On 2 2x2 0110"/>
+    <property name="Render Depth" type="int" value="-1"/>
    </properties>
    <image width="64" height="64" source="../Graphics/Set 1 (Cave)/Button/Set_2 2x2 0110 3_3.png"/>
   </tile>
@@ -500,6 +542,7 @@
     <property name="~Oning" value="Button Pressing 2 2x2 0111"/>
     <property name="Body Area" value="0111"/>
     <property name="Body Width" type="int" value="2"/>
+    <property name="Render Depth" type="int" value="-1"/>
     <property name="Type" value="Button"/>
    </properties>
    <image width="64" height="64" source="../Graphics/Set 1 (Cave)/Button/Set_2 2x2 0111 1_3.png"/>
@@ -509,6 +552,7 @@
    <properties>
     <property name="Render Depth" type="int" value="-1"/>
     <property name="Name" value="Button Pressing 2 2x2 0111"/>
+    <property name="Render Depth" type="int" value="-1"/>
    <animation>
     <frame tileid="42" duration="100"/>
     <frame tileid="43" duration="100"/>
@@ -521,6 +565,7 @@
    <properties>
     <property name="Render Depth" type="int" value="-1"/>
     <property name="Name" value="Button On 2 2x2 0111"/>
+    <property name="Render Depth" type="int" value="-1"/>
    </properties>
    <image width="64" height="64" source="../Graphics/Set 1 (Cave)/Button/Set_2 2x2 0111 3_3.png"/>
   </tile>
@@ -535,6 +580,7 @@
     <property name="~Oning" value="Button Pressing 2 2x2 1001"/>
     <property name="Body Area" value="1001"/>
     <property name="Body Width" type="int" value="2"/>
+    <property name="Render Depth" type="int" value="-1"/>
     <property name="Type" value="Button"/>
    </properties>
    <image width="64" height="64" source="../Graphics/Set 1 (Cave)/Button/Set_2 2x2 1001 1_3.png"/>
@@ -544,6 +590,7 @@
    <properties>
     <property name="Render Depth" type="int" value="-1"/>
     <property name="Name" value="Button Pressing 2 2x2 1001"/>
+    <property name="Render Depth" type="int" value="-1"/>
    <animation>
     <frame tileid="45" duration="100"/>
     <frame tileid="46" duration="100"/>
@@ -556,6 +603,7 @@
    <properties>
     <property name="Render Depth" type="int" value="-1"/>
     <property name="Name" value="Button On 2 2x2 1001"/>
+    <property name="Render Depth" type="int" value="-1"/>
    </properties>
    <image width="64" height="64" source="../Graphics/Set 1 (Cave)/Button/Set_2 2x2 1001 3_3.png"/>
   </tile>
@@ -570,6 +618,7 @@
     <property name="~Oning" value="Button Pressing 2 2x2 1011"/>
     <property name="Body Area" value="1011"/>
     <property name="Body Width" type="int" value="2"/>
+    <property name="Render Depth" type="int" value="-1"/>
     <property name="Type" value="Button"/>
    </properties>
    <image width="64" height="64" source="../Graphics/Set 1 (Cave)/Button/Set_2 2x2 1011 1_3.png"/>
@@ -579,6 +628,7 @@
    <properties>
     <property name="Render Depth" type="int" value="-1"/>
     <property name="Name" value="Button Pressing 2 2x2 1011"/>
+    <property name="Render Depth" type="int" value="-1"/>
    <animation>
     <frame tileid="48" duration="100"/>
     <frame tileid="49" duration="100"/>
@@ -591,6 +641,7 @@
    <properties>
     <property name="Render Depth" type="int" value="-1"/>
     <property name="Name" value="Button On 2 2x2 1011"/>
+    <property name="Render Depth" type="int" value="-1"/>
    </properties>
    <image width="64" height="64" source="../Graphics/Set 1 (Cave)/Button/Set_2 2x2 1011 3_3.png"/>
   </tile>
@@ -605,6 +656,7 @@
     <property name="~Oning" value="Button Pressing 2 2x2 1101"/>
     <property name="Body Area" value="1101"/>
     <property name="Body Width" type="int" value="2"/>
+    <property name="Render Depth" type="int" value="-1"/>
     <property name="Type" value="Button"/>
    </properties>
    <image width="64" height="64" source="../Graphics/Set 1 (Cave)/Button/Set_2 2x2 1101 1_3.png"/>
@@ -614,6 +666,7 @@
    <properties>
     <property name="Render Depth" type="int" value="-1"/>
     <property name="Name" value="Button Pressing 2 2x2 1101"/>
+    <property name="Render Depth" type="int" value="-1"/>
    <animation>
     <frame tileid="51" duration="100"/>
     <frame tileid="52" duration="100"/>
@@ -626,6 +679,7 @@
    <properties>
     <property name="Render Depth" type="int" value="-1"/>
     <property name="Name" value="Button On 2 2x2 1101"/>
+    <property name="Render Depth" type="int" value="-1"/>
    </properties>
    <image width="64" height="64" source="../Graphics/Set 1 (Cave)/Button/Set_2 2x2 1101 3_3.png"/>
   </tile>
@@ -640,6 +694,7 @@
     <property name="~Oning" value="Button Pressing 2 2x2 1110"/>
     <property name="Body Area" value="1110"/>
     <property name="Body Width" type="int" value="2"/>
+    <property name="Render Depth" type="int" value="-1"/>
     <property name="Type" value="Button"/>
    </properties>
    <image width="64" height="64" source="../Graphics/Set 1 (Cave)/Button/Set_2 2x2 1110 1_3.png"/>
@@ -649,6 +704,7 @@
    <properties>
     <property name="Render Depth" type="int" value="-1"/>
     <property name="Name" value="Button Pressing 2 2x2 1110"/>
+    <property name="Render Depth" type="int" value="-1"/>
    <animation>
     <frame tileid="54" duration="100"/>
     <frame tileid="55" duration="100"/>
@@ -661,6 +717,7 @@
    <properties>
     <property name="Render Depth" type="int" value="-1"/>
     <property name="Name" value="Button On 2 2x2 1110"/>
+    <property name="Render Depth" type="int" value="-1"/>
    </properties>
    <image width="64" height="64" source="../Graphics/Set 1 (Cave)/Button/Set_2 2x2 1110 3_3.png"/>
   </tile>
@@ -675,6 +732,7 @@
     <property name="~Oning" value="Button Pressing 2 2x2 1111"/>
     <property name="Body Area" value="1111"/>
     <property name="Body Width" type="int" value="2"/>
+    <property name="Render Depth" type="int" value="-1"/>
     <property name="Type" value="Button"/>
    </properties>
    <image width="64" height="64" source="../Graphics/Set 1 (Cave)/Button/Set_2 2x2 1111 1_3.png"/>
@@ -684,6 +742,7 @@
    <properties>
     <property name="Render Depth" type="int" value="-1"/>
     <property name="Name" value="Button Pressing 2 2x2 1111"/>
+    <property name="Render Depth" type="int" value="-1"/>
    <animation>
     <frame tileid="57" duration="100"/>
     <frame tileid="58" duration="100"/>
@@ -696,6 +755,7 @@
    <properties>
     <property name="Render Depth" type="int" value="-1"/>
     <property name="Name" value="Button On 2 2x2 1111"/>
+    <property name="Render Depth" type="int" value="-1"/>
    </properties>
    <image width="64" height="64" source="../Graphics/Set 1 (Cave)/Button/Set_2 2x2 1111 3_3.png"/>
   </tile>
@@ -709,6 +769,7 @@
     <property name="~Opening" value="Door Opening 1 1x1 1"/>
     <property name="Body Area" value="1"/>
     <property name="Body Width" type="int" value="1"/>
+    <property name="Render Depth" type="int" value="-1"/>
     <property name="Type" value="Door"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Door/Set_1 1x1 1 1_9.png"/>
@@ -717,6 +778,7 @@
   <tile id="61">
    <properties>
     <property name="Name" value="Door Opening 1 1x1 1"/>
+    <property name="Render Depth" type="int" value="-1"/>
    </properties>
    <animation>
     <frame tileid="60" duration="100"/>
@@ -764,6 +826,7 @@
   <tile id="67">
    <properties>
     <property name="Name" value="Door Closing 1 1x1 1"/>
+    <property name="Render Depth" type="int" value="-1"/>
    </properties>
    <animation>
     <frame tileid="68" duration="100"/>
@@ -787,6 +850,7 @@
     <property name="~Opening" value="Door Opening 1 1x1 1"/>
     <property name="Body Area" value="1"/>
     <property name="Body Width" type="int" value="1"/>
+    <property name="Render Depth" type="int" value="-1"/>
     <property name="Type" value="Door"/>
     <property name="Render Depth" type="int" value="-1"/>
    </properties>
@@ -802,6 +866,7 @@
     <property name="~Opening" value="Door Opening 1 1x2 11"/>
     <property name="Body Area" value="11"/>
     <property name="Body Width" type="int" value="1"/>
+    <property name="Render Depth" type="int" value="-1"/>
     <property name="Type" value="Door"/>
    </properties>
    <image width="32" height="80" source="../Graphics/Set 1 (Cave)/Door/Set_1 1x2 11 1_9.png"/>
@@ -810,6 +875,7 @@
   <tile id="70">
    <properties>
     <property name="Name" value="Door Opening 1 1x2 11"/>
+    <property name="Render Depth" type="int" value="-1"/>
    </properties>
    <animation>
     <frame tileid="69" duration="100"/>
@@ -857,6 +923,7 @@
   <tile id="76">
    <properties>
     <property name="Name" value="Door Closing 1 1x2 11"/>
+    <property name="Render Depth" type="int" value="-1"/>
    </properties>
    <animation>
     <frame tileid="77" duration="100"/>
@@ -880,6 +947,7 @@
     <property name="~Opening" value="Door Opening 1 1x2 11"/>
     <property name="Body Area" value="11"/>
     <property name="Body Width" type="int" value="1"/>
+    <property name="Render Depth" type="int" value="-1"/>
     <property name="Type" value="Door"/>
     <property name="Render Depth" type="int" value="-1"/>
    </properties>
@@ -895,6 +963,7 @@
     <property name="~Opening" value="Door Opening 1 2x1 11"/>
     <property name="Body Area" value="11"/>
     <property name="Body Width" type="int" value="2"/>
+    <property name="Render Depth" type="int" value="-1"/>
     <property name="Type" value="Door"/>
    </properties>
    <image width="64" height="48" source="../Graphics/Set 1 (Cave)/Door/Set_1 2x1 11 1_9.png"/>
@@ -903,6 +972,7 @@
   <tile id="79">
    <properties>
     <property name="Name" value="Door Opening 1 2x1 11"/>
+    <property name="Render Depth" type="int" value="-1"/>
    </properties>
    <animation>
     <frame tileid="78" duration="100"/>
@@ -950,6 +1020,7 @@
   <tile id="85">
    <properties>
     <property name="Name" value="Door Closing 1 2x1 11"/>
+    <property name="Render Depth" type="int" value="-1"/>
    </properties>
    <animation>
     <frame tileid="86" duration="100"/>
@@ -973,6 +1044,7 @@
     <property name="~Opening" value="Door Opening 1 2x1 11"/>
     <property name="Body Area" value="11"/>
     <property name="Body Width" type="int" value="2"/>
+    <property name="Render Depth" type="int" value="-1"/>
     <property name="Type" value="Door"/>
     <property name="Render Depth" type="int" value="-1"/>
    </properties>
@@ -988,6 +1060,7 @@
     <property name="~Opening" value="Door Opening 1 2x2 0111"/>
     <property name="Body Area" value="0111"/>
     <property name="Body Width" type="int" value="2"/>
+    <property name="Render Depth" type="int" value="-1"/>
     <property name="Type" value="Door"/>
    </properties>
    <image width="64" height="80" source="../Graphics/Set 1 (Cave)/Door/Set_1 2x2 0111 1_9.png"/>
@@ -996,6 +1069,7 @@
   <tile id="88">
    <properties>
     <property name="Name" value="Door Opening 1 2x2 0111"/>
+    <property name="Render Depth" type="int" value="-1"/>
    </properties>
    <animation>
     <frame tileid="87" duration="100"/>
@@ -1043,6 +1117,7 @@
   <tile id="94">
    <properties>
     <property name="Name" value="Door Closing 1 2x2 0111"/>
+    <property name="Render Depth" type="int" value="-1"/>
    </properties>
    <animation>
     <frame tileid="95" duration="100"/>
@@ -1066,6 +1141,7 @@
     <property name="~Opening" value="Door Opening 1 2x2 0111"/>
     <property name="Body Area" value="0111"/>
     <property name="Body Width" type="int" value="2"/>
+    <property name="Render Depth" type="int" value="-1"/>
     <property name="Type" value="Door"/>
     <property name="Render Depth" type="int" value="-1"/>
    </properties>
@@ -1081,6 +1157,7 @@
     <property name="~Opening" value="Door Opening 1 2x2 1011"/>
     <property name="Body Area" value="1011"/>
     <property name="Body Width" type="int" value="2"/>
+    <property name="Render Depth" type="int" value="-1"/>
     <property name="Type" value="Door"/>
    </properties>
    <image width="64" height="80" source="../Graphics/Set 1 (Cave)/Door/Set_1 2x2 1011 1_9.png"/>
@@ -1089,6 +1166,7 @@
   <tile id="97">
    <properties>
     <property name="Name" value="Door Opening 1 2x2 1011"/>
+    <property name="Render Depth" type="int" value="-1"/>
    </properties>
    <animation>
     <frame tileid="96" duration="100"/>
@@ -1136,6 +1214,7 @@
   <tile id="103">
    <properties>
     <property name="Name" value="Door Closing 1 2x2 1011"/>
+    <property name="Render Depth" type="int" value="-1"/>
    </properties>
    <animation>
     <frame tileid="104" duration="100"/>
@@ -1159,6 +1238,7 @@
     <property name="~Opening" value="Door Opening 1 2x2 1011"/>
     <property name="Body Area" value="1011"/>
     <property name="Body Width" type="int" value="2"/>
+    <property name="Render Depth" type="int" value="-1"/>
     <property name="Type" value="Door"/>
     <property name="Render Depth" type="int" value="-1"/>
    </properties>
@@ -1174,6 +1254,7 @@
     <property name="~Opening" value="Door Opening 1 2x2 1101"/>
     <property name="Body Area" value="1101"/>
     <property name="Body Width" type="int" value="2"/>
+    <property name="Render Depth" type="int" value="-1"/>
     <property name="Type" value="Door"/>
    </properties>
    <image width="64" height="80" source="../Graphics/Set 1 (Cave)/Door/Set_1 2x2 1101 1_9.png"/>
@@ -1182,6 +1263,7 @@
   <tile id="106">
    <properties>
     <property name="Name" value="Door Opening 1 2x2 1101"/>
+    <property name="Render Depth" type="int" value="-1"/>
    </properties>
    <animation>
     <frame tileid="105" duration="100"/>
@@ -1229,6 +1311,7 @@
   <tile id="112">
    <properties>
     <property name="Name" value="Door Closing 1 2x2 1101"/>
+    <property name="Render Depth" type="int" value="-1"/>
    </properties>
    <animation>
     <frame tileid="113" duration="100"/>
@@ -1252,6 +1335,7 @@
     <property name="~Opening" value="Door Opening 1 2x2 1101"/>
     <property name="Body Area" value="1101"/>
     <property name="Body Width" type="int" value="2"/>
+    <property name="Render Depth" type="int" value="-1"/>
     <property name="Type" value="Door"/>
     <property name="Render Depth" type="int" value="-1"/>
    </properties>
@@ -1267,6 +1351,7 @@
     <property name="~Opening" value="Door Opening 1 2x2 1110"/>
     <property name="Body Area" value="1110"/>
     <property name="Body Width" type="int" value="2"/>
+    <property name="Render Depth" type="int" value="-1"/>
     <property name="Type" value="Door"/>
    </properties>
    <image width="64" height="80" source="../Graphics/Set 1 (Cave)/Door/Set_1 2x2 1110 1_9.png"/>
@@ -1275,6 +1360,7 @@
   <tile id="115">
    <properties>
     <property name="Name" value="Door Opening 1 2x2 1110"/>
+    <property name="Render Depth" type="int" value="-1"/>
    </properties>
    <animation>
     <frame tileid="114" duration="100"/>
@@ -1322,6 +1408,7 @@
   <tile id="121">
    <properties>
     <property name="Name" value="Door Closing 1 2x2 1110"/>
+    <property name="Render Depth" type="int" value="-1"/>
    </properties>
    <animation>
     <frame tileid="122" duration="100"/>
@@ -1345,6 +1432,7 @@
     <property name="~Opening" value="Door Opening 1 2x2 1110"/>
     <property name="Body Area" value="1110"/>
     <property name="Body Width" type="int" value="2"/>
+    <property name="Render Depth" type="int" value="-1"/>
     <property name="Type" value="Door"/>
     <property name="Render Depth" type="int" value="-1"/>
    </properties>
@@ -1360,6 +1448,7 @@
     <property name="~Opening" value="Door Opening 1 2x2 1111"/>
     <property name="Body Area" value="1111"/>
     <property name="Body Width" type="int" value="2"/>
+    <property name="Render Depth" type="int" value="-1"/>
     <property name="Type" value="Door"/>
    </properties>
    <image width="64" height="80" source="../Graphics/Set 1 (Cave)/Door/Set_1 2x2 1111 1_9.png"/>
@@ -1368,6 +1457,7 @@
   <tile id="124">
    <properties>
     <property name="Name" value="Door Opening 1 2x2 1111"/>
+    <property name="Render Depth" type="int" value="-1"/>
    </properties>
    <animation>
     <frame tileid="123" duration="100"/>
@@ -1415,6 +1505,7 @@
   <tile id="130">
    <properties>
     <property name="Name" value="Door Closing 1 2x2 1111"/>
+    <property name="Render Depth" type="int" value="-1"/>
    </properties>
    <animation>
     <frame tileid="131" duration="100"/>
@@ -1438,6 +1529,7 @@
     <property name="~Opening" value="Door Opening 1 2x2 1111"/>
     <property name="Body Area" value="1111"/>
     <property name="Body Width" type="int" value="2"/>
+    <property name="Render Depth" type="int" value="-1"/>
     <property name="Type" value="Door"/>
     <property name="Render Depth" type="int" value="-1"/>
    </properties>
@@ -1453,6 +1545,7 @@
     <property name="~Opening" value="Door Opening 2 1x1 1"/>
     <property name="Body Area" value="1"/>
     <property name="Body Width" type="int" value="1"/>
+    <property name="Render Depth" type="int" value="-1"/>
     <property name="Type" value="Door"/>
    </properties>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Door/Set_2 1x1 1 1_9.png"/>
@@ -1461,6 +1554,7 @@
   <tile id="133">
    <properties>
     <property name="Name" value="Door Opening 2 1x1 1"/>
+    <property name="Render Depth" type="int" value="-1"/>
    </properties>
    <animation>
     <frame tileid="132" duration="100"/>
@@ -1508,6 +1602,7 @@
   <tile id="139">
    <properties>
     <property name="Name" value="Door Closing 2 1x1 1"/>
+    <property name="Render Depth" type="int" value="-1"/>
    </properties>
    <animation>
     <frame tileid="140" duration="100"/>
@@ -1531,6 +1626,7 @@
     <property name="~Opening" value="Door Opening 2 1x1 1"/>
     <property name="Body Area" value="1"/>
     <property name="Body Width" type="int" value="1"/>
+    <property name="Render Depth" type="int" value="-1"/>
     <property name="Type" value="Door"/>
     <property name="Render Depth" type="int" value="-1"/>
    </properties>
@@ -1546,6 +1642,7 @@
     <property name="~Opening" value="Door Opening 2 1x2 11"/>
     <property name="Body Area" value="11"/>
     <property name="Body Width" type="int" value="1"/>
+    <property name="Render Depth" type="int" value="-1"/>
     <property name="Type" value="Door"/>
    </properties>
    <image width="32" height="80" source="../Graphics/Set 1 (Cave)/Door/Set_2 1x2 11 1_9.png"/>
@@ -1554,6 +1651,7 @@
   <tile id="142">
    <properties>
     <property name="Name" value="Door Opening 2 1x2 11"/>
+    <property name="Render Depth" type="int" value="-1"/>
    </properties>
    <animation>
     <frame tileid="141" duration="100"/>
@@ -1601,6 +1699,7 @@
   <tile id="148">
    <properties>
     <property name="Name" value="Door Closing 2 1x2 11"/>
+    <property name="Render Depth" type="int" value="-1"/>
    </properties>
    <animation>
     <frame tileid="149" duration="100"/>
@@ -1624,6 +1723,7 @@
     <property name="~Opening" value="Door Opening 2 1x2 11"/>
     <property name="Body Area" value="11"/>
     <property name="Body Width" type="int" value="1"/>
+    <property name="Render Depth" type="int" value="-1"/>
     <property name="Type" value="Door"/>
     <property name="Render Depth" type="int" value="-1"/>
    </properties>
@@ -1639,6 +1739,7 @@
     <property name="~Opening" value="Door Opening 2 2x1 11"/>
     <property name="Body Area" value="11"/>
     <property name="Body Width" type="int" value="2"/>
+    <property name="Render Depth" type="int" value="-1"/>
     <property name="Type" value="Door"/>
    </properties>
    <image width="64" height="48" source="../Graphics/Set 1 (Cave)/Door/Set_2 2x1 11 1_9.png"/>
@@ -1647,6 +1748,7 @@
   <tile id="151">
    <properties>
     <property name="Name" value="Door Opening 2 2x1 11"/>
+    <property name="Render Depth" type="int" value="-1"/>
    </properties>
    <animation>
     <frame tileid="150" duration="100"/>
@@ -1694,6 +1796,7 @@
   <tile id="157">
    <properties>
     <property name="Name" value="Door Closing 2 2x1 11"/>
+    <property name="Render Depth" type="int" value="-1"/>
    </properties>
    <animation>
     <frame tileid="158" duration="100"/>
@@ -1717,6 +1820,7 @@
     <property name="~Opening" value="Door Opening 2 2x1 11"/>
     <property name="Body Area" value="11"/>
     <property name="Body Width" type="int" value="2"/>
+    <property name="Render Depth" type="int" value="-1"/>
     <property name="Type" value="Door"/>
     <property name="Render Depth" type="int" value="-1"/>
    </properties>
@@ -1732,6 +1836,7 @@
     <property name="~Opening" value="Door Opening 2 2x2 0111"/>
     <property name="Body Area" value="0111"/>
     <property name="Body Width" type="int" value="2"/>
+    <property name="Render Depth" type="int" value="-1"/>
     <property name="Type" value="Door"/>
    </properties>
    <image width="64" height="80" source="../Graphics/Set 1 (Cave)/Door/Set_2 2x2 0111 1_9.png"/>
@@ -1740,6 +1845,7 @@
   <tile id="160">
    <properties>
     <property name="Name" value="Door Opening 2 2x2 0111"/>
+    <property name="Render Depth" type="int" value="-1"/>
    </properties>
    <animation>
     <frame tileid="159" duration="100"/>
@@ -1787,6 +1893,7 @@
   <tile id="166">
    <properties>
     <property name="Name" value="Door Closing 2 2x2 0111"/>
+    <property name="Render Depth" type="int" value="-1"/>
    </properties>
    <animation>
     <frame tileid="167" duration="100"/>
@@ -1810,6 +1917,7 @@
     <property name="~Opening" value="Door Opening 2 2x2 0111"/>
     <property name="Body Area" value="0111"/>
     <property name="Body Width" type="int" value="2"/>
+    <property name="Render Depth" type="int" value="-1"/>
     <property name="Type" value="Door"/>
     <property name="Render Depth" type="int" value="-1"/>
    </properties>
@@ -1825,6 +1933,7 @@
     <property name="~Opening" value="Door Opening 2 2x2 1011"/>
     <property name="Body Area" value="1011"/>
     <property name="Body Width" type="int" value="2"/>
+    <property name="Render Depth" type="int" value="-1"/>
     <property name="Type" value="Door"/>
    </properties>
    <image width="64" height="80" source="../Graphics/Set 1 (Cave)/Door/Set_2 2x2 1011 1_9.png"/>
@@ -1833,6 +1942,7 @@
   <tile id="169">
    <properties>
     <property name="Name" value="Door Opening 2 2x2 1011"/>
+    <property name="Render Depth" type="int" value="-1"/>
    </properties>
    <animation>
     <frame tileid="168" duration="100"/>
@@ -1880,6 +1990,7 @@
   <tile id="175">
    <properties>
     <property name="Name" value="Door Closing 2 2x2 1011"/>
+    <property name="Render Depth" type="int" value="-1"/>
    </properties>
    <animation>
     <frame tileid="176" duration="100"/>
@@ -1903,6 +2014,7 @@
     <property name="~Opening" value="Door Opening 2 2x2 1011"/>
     <property name="Body Area" value="1011"/>
     <property name="Body Width" type="int" value="2"/>
+    <property name="Render Depth" type="int" value="-1"/>
     <property name="Type" value="Door"/>
     <property name="Render Depth" type="int" value="-1"/>
    </properties>
@@ -1918,6 +2030,7 @@
     <property name="~Opening" value="Door Opening 2 2x2 1101"/>
     <property name="Body Area" value="1101"/>
     <property name="Body Width" type="int" value="2"/>
+    <property name="Render Depth" type="int" value="-1"/>
     <property name="Type" value="Door"/>
    </properties>
    <image width="64" height="80" source="../Graphics/Set 1 (Cave)/Door/Set_2 2x2 1101 1_9.png"/>
@@ -1926,6 +2039,7 @@
   <tile id="178">
    <properties>
     <property name="Name" value="Door Opening 2 2x2 1101"/>
+    <property name="Render Depth" type="int" value="-1"/>
    </properties>
    <animation>
     <frame tileid="177" duration="100"/>
@@ -1973,6 +2087,7 @@
   <tile id="184">
    <properties>
     <property name="Name" value="Door Closing 2 2x2 1101"/>
+    <property name="Render Depth" type="int" value="-1"/>
    </properties>
    <animation>
     <frame tileid="185" duration="100"/>
@@ -1996,6 +2111,7 @@
     <property name="~Opening" value="Door Opening 2 2x2 1101"/>
     <property name="Body Area" value="1101"/>
     <property name="Body Width" type="int" value="2"/>
+    <property name="Render Depth" type="int" value="-1"/>
     <property name="Type" value="Door"/>
     <property name="Render Depth" type="int" value="-1"/>
    </properties>
@@ -2011,6 +2127,7 @@
     <property name="~Opening" value="Door Opening 2 2x2 1110"/>
     <property name="Body Area" value="1110"/>
     <property name="Body Width" type="int" value="2"/>
+    <property name="Render Depth" type="int" value="-1"/>
     <property name="Type" value="Door"/>
    </properties>
    <image width="64" height="80" source="../Graphics/Set 1 (Cave)/Door/Set_2 2x2 1110 1_9.png"/>
@@ -2019,6 +2136,7 @@
   <tile id="187">
    <properties>
     <property name="Name" value="Door Opening 2 2x2 1110"/>
+    <property name="Render Depth" type="int" value="-1"/>
    </properties>
    <animation>
     <frame tileid="186" duration="100"/>
@@ -2066,6 +2184,7 @@
   <tile id="193">
    <properties>
     <property name="Name" value="Door Closing 2 2x2 1110"/>
+    <property name="Render Depth" type="int" value="-1"/>
    </properties>
    <animation>
     <frame tileid="194" duration="100"/>
@@ -2089,6 +2208,7 @@
     <property name="~Opening" value="Door Opening 2 2x2 1110"/>
     <property name="Body Area" value="1110"/>
     <property name="Body Width" type="int" value="2"/>
+    <property name="Render Depth" type="int" value="-1"/>
     <property name="Type" value="Door"/>
     <property name="Render Depth" type="int" value="-1"/>
    </properties>
@@ -2104,6 +2224,7 @@
     <property name="~Opening" value="Door Opening 2 2x2 1111"/>
     <property name="Body Area" value="1111"/>
     <property name="Body Width" type="int" value="2"/>
+    <property name="Render Depth" type="int" value="-1"/>
     <property name="Type" value="Door"/>
    </properties>
    <image width="64" height="80" source="../Graphics/Set 1 (Cave)/Door/Set_2 2x2 1111 1_9.png"/>
@@ -2112,6 +2233,7 @@
   <tile id="196">
    <properties>
     <property name="Name" value="Door Opening 2 2x2 1111"/>
+    <property name="Render Depth" type="int" value="-1"/>
    </properties>
    <animation>
     <frame tileid="195" duration="100"/>
@@ -2159,6 +2281,7 @@
   <tile id="202">
    <properties>
     <property name="Name" value="Door Closing 2 2x2 1111"/>
+    <property name="Render Depth" type="int" value="-1"/>
    </properties>
    <animation>
     <frame tileid="203" duration="100"/>
@@ -2182,6 +2305,7 @@
     <property name="~Opening" value="Door Opening 2 2x2 1111"/>
     <property name="Body Area" value="1111"/>
     <property name="Body Width" type="int" value="2"/>
+    <property name="Render Depth" type="int" value="-1"/>
     <property name="Type" value="Door"/>
     <property name="Render Depth" type="int" value="-1"/>
    </properties>
