@@ -3,9 +3,13 @@ package com.somethingyellow.magnets;
 public class GameConfig {
 
 	public static void Configure() {
+
 		// Player.Config
+		Player.Config.MoveTicks = 5;
 
 		// Lodestone.Config
+		Lodestone.Config.MoveTicks = 5;
+		Lodestone.Config.PushTicks = 5;
 
 		// Button.Config
 
@@ -25,8 +29,8 @@ public class GameConfig {
 		//LevelSelectScreen.Config.IfSearch = true;
 
 		LevelSelectScreen.Config.Levels = new String[]{
-				"(Introductory) Exploration (Solvable - 283).tmx",
-				"(Introductory) Strange Attraction (Solvable - 137).tmx",
+				"(Introductory) Exploration.tmx",
+				"(Introductory) Strange Attraction.tmx",
 				"(Introductory) Offering (Solvable - 100).tmx",
 				"(Introductory) Pushing Forward (Solvable - 47).tmx",
 				"(Introductory) Buttons (Solvable - 46).tmx",
@@ -57,14 +61,17 @@ public class GameConfig {
 				"(Medium) Wrong Gear (Solvable - 169).tmx",
 				"(Medium) Chute (Solvable - 67).tmx",
 				"(Medium) Sliding Puzzle (Solvable - 132).tmx",
-				"(Medium) Traps (Solvable - 108).tmx",
+				"(Medium) Traps.tmx",
 				"(Medium) Quad (Solvable - 182).tmx",
 				"(Medium) Tetra (Solvable - 51).tmx",
 				"(Medium) Penta (Solvable - 87).tmx",
 				"(Medium) Flask (Solvable - 57).tmx",
 				"(Medium) Conveyor Belt (Solvable - 82).tmx",
 				"(Medium) Hedges (Solvable - 144).tmx",
-				"(Medium) T Junctions.tmx",
+				"(Medium) T Junctions (Solvable - 518).tmx",
+				"(Medium) Steps (Solvable - 217).tmx",
+				"(Medium) Jammer.tmx",
+				"(Medium) Flip.tmx",
 				"(Hard) Lock (Solvable - 288).tmx",
 				"(Hard) Roundabout (Solvable - 175).tmx",
 				"(Hard) Hookline (Solvable - 647).tmx",
@@ -84,6 +91,8 @@ public class GameConfig {
 				"(Hard) Wrench (Solvable - 349).tmx",
 				"(Hard) Cover your tracks (Solvable - 253).tmx",
 				"(Hard) Cover your tracks (Much Harder Version) (Please redo once bug is fixed) (Solvable - 753).tmx",
+				"(Hard) Extraction (Solvable - 468).tmx",
+				"(Hard) Cheating the System (Solvable - 605).tmx",
 				"(Bonus) Which One (Solvable - 30).tmx",
 				"(Bonus) Which One 2 (Solvable - 30).tmx",
 				"(Bonus) Which One 3 (Solvable - 25).tmx",
@@ -98,40 +107,18 @@ public class GameConfig {
 				"(Experimental) Test Cases.tmx",
 				"(Experimental) Test cases 2.tmx",
 				"(Experimental) Wake me up when there is repulsion.tmx",
-				"(Experimental) Exits Test.tmx",
-				"(Experimental) Elevated Floor Test.tmx",
 				"(Experimental) Diagonal Test.tmx",
-				"(Experimental) Unexpected Behaviour.tmx"
+				"(Experimental) Unexpected Behaviour.tmx",
+				"(Experimental) Testtt.tmx",
+				"(Experimental) Testicle.tmx"
 		};
-		/*
-		LevelSelectScreen.Config.Levels = new String[]{
-				"(Introductory) Exploration.tmx",
-				"(Introductory) Strange Attraction.tmx",
-				"(Introductory) Offering.tmx",
-				"(Introductory) Pushing Forward.tmx",
-				"(Introductory) Buttons.tmx",
-				"(Introductory) Maze.tmx",
-				"(Easy) Puzzle for ants.tmx",
-				"(Easy) Blockade.tmx",
-				"(Easy) Interspersing.tmx",
-				"(Easy) Open Sesame.tmx",
-				"(Medium) Suction.tmx",
-				"(Medium) Chain.tmx",
-				"(Medium) Trio.tmx",
-				"(Medium) Toggle.tmx",
-				"(Hard) Roundabout.tmx"
-		};*/
 
-		// PlayScreen.Config
 		PlayScreen.Config.AnimationsTMXPath = "Animations/(Introductory) Exploration.tmx";
 		PlayScreen.Config.GameWallLayer = "Walls and Objects";
 
 		// PlayScreenUIStage.Config
 		PlayScreenUIStage.Config.AnimationsTMXPath = "Animations/(Introductory) Exploration.tmx";
 		PlayScreenUIStage.Config.AnimationPauseOverlay = "Pause Overlay";
-
-
-		// Controller.Config
 
 	}
 }
