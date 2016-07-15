@@ -5293,7 +5293,7 @@
     <property name="Name" value="Player Pushing Down To Idle"/>
    </properties>
    <animation>
-    <frame tileid="541" duration="1000"/>
+    <frame tileid="541" duration="100"/>
    </animation>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Pushing Down To Idle.png"/>
   </tile>
@@ -5330,7 +5330,7 @@
     <property name="Name" value="Player Pushing Left To Idle"/>
    </properties>
    <animation>
-    <frame tileid="545" duration="1000"/>
+    <frame tileid="545" duration="100"/>
    </animation>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Pushing Left To Idle.png"/>
   </tile>
@@ -5367,7 +5367,7 @@
     <property name="Name" value="Player Pushing Right To Idle"/>
    </properties>
    <animation>
-    <frame tileid="549" duration="1000"/>
+    <frame tileid="549" duration="100"/>
    </animation>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Pushing Right To Idle.png"/>
   </tile>
@@ -5404,7 +5404,7 @@
     <property name="Name" value="Player Pushing Up To Idle"/>
    </properties>
    <animation>
-    <frame tileid="553" duration="1000"/>
+    <frame tileid="553" duration="100"/>
    </animation>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Pushing Up To Idle.png"/>
   </tile>
@@ -6229,9 +6229,9 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,291,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,286,285,285,0,0,0,0,0,0,0,0,0,289,284,286,290,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,285,0,293,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,290,0,0,0,0,287,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,285,0,0,0,286,0,0,0,0,602,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,287,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -6271,7 +6271,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,632,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -6333,7 +6333,7 @@
     <property name="+Open" value="#{Butt0_On}"/>
    </properties>
   </object>
-  <object id="2" name="Exit2" gid="253" x="256" y="192" width="32" height="64"/>
+  <object id="2" name="Exit2" gid="254" x="256" y="192" width="32" height="64"/>
   <object id="3" name="Magn3" gid="525" x="352" y="224" width="32" height="50"/>
   <object id="4" name="Magn4" gid="525" x="512" y="256" width="32" height="50"/>
   <object id="5" name="Magn5" gid="525" x="704" y="256" width="32" height="50"/>

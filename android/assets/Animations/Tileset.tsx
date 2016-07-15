@@ -5292,7 +5292,7 @@
     <property name="Name" value="Player Pushing Down To Idle"/>
    </properties>
    <animation>
-    <frame tileid="541" duration="1000"/>
+    <frame tileid="541" duration="100"/>
    </animation>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Pushing Down To Idle.png"/>
   </tile>
@@ -5329,7 +5329,7 @@
     <property name="Name" value="Player Pushing Left To Idle"/>
    </properties>
    <animation>
-    <frame tileid="545" duration="1000"/>
+    <frame tileid="545" duration="100"/>
    </animation>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Pushing Left To Idle.png"/>
   </tile>
@@ -5366,7 +5366,7 @@
     <property name="Name" value="Player Pushing Right To Idle"/>
    </properties>
    <animation>
-    <frame tileid="549" duration="1000"/>
+    <frame tileid="549" duration="100"/>
    </animation>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Pushing Right To Idle.png"/>
   </tile>
@@ -5403,7 +5403,7 @@
     <property name="Name" value="Player Pushing Up To Idle"/>
    </properties>
    <animation>
-    <frame tileid="553" duration="1000"/>
+    <frame tileid="553" duration="100"/>
    </animation>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Pushing Up To Idle.png"/>
   </tile>

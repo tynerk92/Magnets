@@ -5293,7 +5293,7 @@
     <property name="Name" value="Player Pushing Down To Idle"/>
    </properties>
    <animation>
-    <frame tileid="541" duration="1000"/>
+    <frame tileid="541" duration="100"/>
    </animation>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Pushing Down To Idle.png"/>
   </tile>
@@ -5330,7 +5330,7 @@
     <property name="Name" value="Player Pushing Left To Idle"/>
    </properties>
    <animation>
-    <frame tileid="545" duration="1000"/>
+    <frame tileid="545" duration="100"/>
    </animation>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Pushing Left To Idle.png"/>
   </tile>
@@ -5367,7 +5367,7 @@
     <property name="Name" value="Player Pushing Right To Idle"/>
    </properties>
    <animation>
-    <frame tileid="549" duration="1000"/>
+    <frame tileid="549" duration="100"/>
    </animation>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Pushing Right To Idle.png"/>
   </tile>
@@ -5404,7 +5404,7 @@
     <property name="Name" value="Player Pushing Up To Idle"/>
    </properties>
    <animation>
-    <frame tileid="553" duration="1000"/>
+    <frame tileid="553" duration="100"/>
    </animation>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Pushing Up To Idle.png"/>
   </tile>
@@ -6227,10 +6227,10 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,297,602,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,284,296,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,291,0,284,288,0,0,0,0,0,0,
+0,0,0,0,0,289,291,290,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,287,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -6266,7 +6266,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,632,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -6320,7 +6320,7 @@
  </layer>
 
  <objectgroup name="Objects">
-  <object id="0" name="Exit0" gid="254" x="288" y="320" width="32" height="64"/>
+  <object id="0" name="Exit0" gid="253" x="288" y="320" width="32" height="64"/>
   <object id="1" name="Magn1" gid="525" x="288" y="224" width="32" height="50"/>
   <object id="2" name="Play2" gid="537" x="192" y="192" width="32" height="48"/>
   <object id="3" name="Push3" gid="399" x="192" y="224" width="32" height="48"/>

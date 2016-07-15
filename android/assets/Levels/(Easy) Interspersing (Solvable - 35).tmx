@@ -5293,7 +5293,7 @@
     <property name="Name" value="Player Pushing Down To Idle"/>
    </properties>
    <animation>
-    <frame tileid="541" duration="1000"/>
+    <frame tileid="541" duration="100"/>
    </animation>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Pushing Down To Idle.png"/>
   </tile>
@@ -5330,7 +5330,7 @@
     <property name="Name" value="Player Pushing Left To Idle"/>
    </properties>
    <animation>
-    <frame tileid="545" duration="1000"/>
+    <frame tileid="545" duration="100"/>
    </animation>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Pushing Left To Idle.png"/>
   </tile>
@@ -5367,7 +5367,7 @@
     <property name="Name" value="Player Pushing Right To Idle"/>
    </properties>
    <animation>
-    <frame tileid="549" duration="1000"/>
+    <frame tileid="549" duration="100"/>
    </animation>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Pushing Right To Idle.png"/>
   </tile>
@@ -5404,7 +5404,7 @@
     <property name="Name" value="Player Pushing Up To Idle"/>
    </properties>
    <animation>
-    <frame tileid="553" duration="1000"/>
+    <frame tileid="553" duration="100"/>
    </animation>
    <image width="32" height="48" source="../Graphics/Set 1 (Cave)/Player/Pushing Up To Idle.png"/>
   </tile>
@@ -6229,13 +6229,13 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,290,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,286,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,602,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,289,288,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,288,0,0,0,0,0,0,
+0,0,0,0,0,0,0,291,290,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,291,0,0,0,0,284,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -6277,7 +6277,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,633,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -6347,7 +6347,7 @@
     <property name="+Open" value="#{Butt0_On} AND #{Butt1_On} AND #{Butt2_On}"/>
    </properties>
   </object>
-  <object id="4" name="Exit4" gid="254" x="160" y="192" width="32" height="64"/>
+  <object id="4" name="Exit4" gid="252" x="160" y="192" width="32" height="64"/>
   <object id="5" name="Magn5" gid="525" x="288" y="416" width="32" height="50"/>
   <object id="6" name="Play6" gid="537" x="288" y="352" width="32" height="48"/>
   <object id="7" name="Push7" gid="399" x="288" y="224" width="32" height="48"/>
