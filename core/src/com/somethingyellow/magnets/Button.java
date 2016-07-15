@@ -28,6 +28,7 @@ public class Button extends TiledStageActor {
 	@Override
 	public void subtick(int subtick) {
 		if (subtick == PlayScreen.SUBTICKS.BUTTONS.ordinal()) {
+
 			boolean isOn = false;
 			loop:
 			for (TiledStage.Coordinate bodyCoordinate : bodyCoordinates()) {
@@ -40,18 +41,21 @@ public class Button extends TiledStageActor {
 			}
 
 			setStatus(Config.StatusOn, isOn);
+
 		}
 	}
 
 	@Override
 	public void updateAnimation() {
-		if (hasStatus(Config.StatusOn)) {
-			if (!isAnimationActive(Config.AnimationOn) && !isAnimationActive(Config.AnimationOning)) {
-				hideAllButAnimations(Config.AnimationOning);
-			}
-		} else {
-			if (!isAnimationActive(Config.AnimationOff) && !isAnimationActive(Config.AnimationOffing)) {
+		// TODO: Add delay to button on-ing and off-ing
+
+		if (isAnimationActive(Config.AnimationOn)) {
+			if (!hasStatus(Config.StatusOn)) {
 				hideAllButAnimations(Config.AnimationOffing);
+			}
+		} else if (isAnimationActive(Config.AnimationOff)) {
+			if (hasStatus(Config.StatusOn)) {
+				hideAllButAnimations(Config.AnimationOning);
 			}
 		}
 	}

@@ -1,6 +1,7 @@
 package com.somethingyellow.magnets;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
@@ -61,7 +62,7 @@ public class Main extends Game implements LevelSelectScreen.Commands, PlayScreen
 		pixmap.setColor(Color.WHITE);
 		pixmap.fill();
 		_skin.add("white", new Texture(pixmap));
-		_skin.add("default", new BitmapFont());
+		_skin.add("default", new BitmapFont(Gdx.files.internal("Fonts/default.fnt")));
 		pixmap.dispose();
 
 		// Preparing stylings

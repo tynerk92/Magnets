@@ -30,36 +30,40 @@ public class Door extends TiledStageActor {
 	@Override
 	public void subtick(int subtick) {
 		if (subtick == PlayScreen.SUBTICKS.DOORS.ordinal()) {
+
 			if (hasStatus(Config.StatusToOpen)) {
-				addStatus(Config.StatusOpened);
+				setStatus(Config.StatusOpened, true);
 			} else {
-				// To close the door
-				// Check if blocked by anything to prevent it from closing
-				boolean ifBlocked = false;
-				loop:
-				for (TiledStage.Coordinate bodyCoordinate : bodyCoordinates()) {
-					for (TiledStageActor actor : bodyCoordinate.actors()) {
-						if (actor != this && actor.isSolid()) {
-							ifBlocked = true;
-							break loop;
+				if (hasStatus(Config.StatusOpened)) {
+					// To close the door
+					// Check if blocked by anything to prevent it from closing
+					boolean ifBlocked = false;
+					loop:
+					for (TiledStage.Coordinate bodyCoordinate : bodyCoordinates()) {
+						for (TiledStageActor actor : bodyCoordinate.actors()) {
+							if (actor != this && actor.isSolid()) {
+								ifBlocked = true;
+								break loop;
+							}
 						}
 					}
-				}
 
-				setStatus(Config.StatusOpened, ifBlocked);
+					if (!ifBlocked) setStatus(Config.StatusOpened, false);
+				}
 			}
 		}
 	}
 
 	@Override
 	public void updateAnimation() {
-		if (hasStatus(Config.StatusOpened)) {
-			if (!isAnimationActive(Config.AnimationOpened) && !isAnimationActive(Config.AnimationOpening)) {
-				hideAllButAnimations(Config.AnimationOpening);
-			}
-		} else {
-			if (!isAnimationActive(Config.AnimationClosed) && !isAnimationActive(Config.AnimationClosing)) {
+
+		if (isAnimationActive(Config.AnimationOpened)) {
+			if (!hasStatus(Config.StatusOpened)) {
 				hideAllButAnimations(Config.AnimationClosing);
+			}
+		} else if (isAnimationActive(Config.AnimationClosed)) {
+			if (hasStatus(Config.StatusOpened)) {
+				hideAllButAnimations(Config.AnimationOpening);
 			}
 		}
 	}

@@ -7,6 +7,7 @@ public class LightSource extends Animation {
 	private float _intensity;
 	private Actor _actorFollowing = null;
 
+	// TODO: All tiles can be defined as light sources
 	public LightSource(AnimationDef def, Actor actorFollowing, float renderDisplacementX, float renderDisplacementY) {
 		super(def);
 		setRenderDisplacement(renderDisplacementX, renderDisplacementY);

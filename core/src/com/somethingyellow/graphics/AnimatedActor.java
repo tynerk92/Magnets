@@ -7,6 +7,7 @@ import com.badlogic.gdx.utils.Pool;
 import com.somethingyellow.utility.ObjectSet;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -25,10 +26,13 @@ import java.util.Set;
 public class AnimatedActor extends Actor implements Pool.Poolable {
 	private static HashMap<String, AnimationDef> TempAnimationDefMap = new HashMap<String, AnimationDef>();
 	private static ArrayList<Animation> TempAnimationsList = new ArrayList<Animation>();
+	private static ObjectSet<String> TempAnimationTagsList = new ObjectSet<String>();
 	private HashMap<String, Animation> _animations = new HashMap<String, Animation>(); // For access by tag
 	private ArrayList<Animation> _animationsList = new ArrayList<Animation>(); // For ordering by z-index
 	private AnimationListener _animationListener = new AnimationListener();
 	private ObjectSet<Listener> _listeners = new ObjectSet<Listener>();
+	private boolean _isVisible = true;
+	private boolean _isPaused = false;
 
 	public void initialize(AnimationDef def) {
 		TempAnimationDefMap.clear();
@@ -53,6 +57,8 @@ public class AnimatedActor extends Actor implements Pool.Poolable {
 		_animations.clear();
 		_listeners.clear();
 		_animationsList.clear();
+		_isVisible = true;
+		_isPaused = false;
 		clearActions();
 	}
 
@@ -78,11 +84,13 @@ public class AnimatedActor extends Actor implements Pool.Poolable {
 	public void draw(Batch batch, float parentAlpha) {
 		super.draw(batch, parentAlpha);
 
-		for (Animation animation : _animationsList) {
-			Sprite sprite = animation.getSprite();
-			sprite.setScale(getScaleX(), getScaleY());
-			sprite.setPosition(getX() + animation.renderDisplacementX(), getY() + animation.renderDisplacementY());
-			sprite.draw(batch, parentAlpha);
+		if (_isVisible) {
+			for (Animation animation : _animationsList) {
+				Sprite sprite = animation.getSprite();
+				sprite.setScale(getScaleX(), getScaleY());
+				sprite.setPosition(getX() + animation.renderDisplacementX(), getY() + animation.renderDisplacementY());
+				sprite.draw(batch, parentAlpha);
+			}
 		}
 	}
 
@@ -108,6 +116,14 @@ public class AnimatedActor extends Actor implements Pool.Poolable {
 		return TempAnimationsList;
 	}
 
+	public Collection<String> getActiveAnimationTags() {
+		TempAnimationTagsList.clear();
+		for (Animation animation : _animations.values()) {
+			if (animation.isActive()) TempAnimationTagsList.add(animation.tag());
+		}
+		return TempAnimationTagsList;
+	}
+
 	public Set<String> animationTags() {
 		return _animations.keySet();
 	}
@@ -116,7 +132,19 @@ public class AnimatedActor extends Actor implements Pool.Poolable {
 	public void act(float timeDelta) {
 		super.act(timeDelta);
 
+		if (!_isPaused) updateAnimations(timeDelta);
+	}
+
+	public void updateAnimations(float timeDelta) {
 		for (Animation animation : _animationsList) animation.update(timeDelta);
+	}
+
+	public void setIsVisible(boolean isVisible) {
+		_isVisible = isVisible;
+	}
+
+	public void setIsPaused(boolean isPaused) {
+		_isPaused = isPaused;
 	}
 
 	protected void setAnimationShown(String tag, boolean isShown) {
@@ -142,6 +170,12 @@ public class AnimatedActor extends Actor implements Pool.Poolable {
 	}
 
 	protected void showAnimations(String... tags) {
+		for (String tag : tags) {
+			showAnimation(tag);
+		}
+	}
+
+	protected void showAnimations(Collection<String> tags) {
 		for (String tag : tags) {
 			showAnimation(tag);
 		}

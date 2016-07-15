@@ -1,5 +1,6 @@
 package com.somethingyellow.utility;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -9,28 +10,40 @@ import java.util.LinkedList;
  * When iterating, a temporary copy of the set is created (avoiding any "concurrent modification" errors)
  */
 
-public class ObjectSet<T> implements Iterable<T> {
+public class ObjectSet<T> implements Iterable<T>, Collection<T> {
 	private HashSet<T> _set = new HashSet<T>();
 	private LinkedList<T> _tempList = new LinkedList<T>();
 
 	public ObjectSet() {
 	}
 
-	public ObjectSet(ObjectSet<T> objectSet) {
-		_set.addAll(objectSet._set);
+	public ObjectSet(Collection<T> collection) {
+		_set.addAll(collection);
 	}
 
-	public T add(T object) {
-		_set.add(object);
-		return object;
+	@Override
+	public boolean remove(Object object) {
+		return _set.remove(object);
 	}
 
-	public boolean contains(T object) {
-		return _set.contains(object);
+	@Override
+	public boolean containsAll(Collection<?> collection) {
+		return _set.containsAll(collection);
 	}
 
-	public void remove(T object) {
-		_set.remove(object);
+	@Override
+	public boolean addAll(Collection<? extends T> collection) {
+		return _set.addAll(collection);
+	}
+
+	@Override
+	public boolean removeAll(Collection<?> collection) {
+		return _set.removeAll(collection);
+	}
+
+	@Override
+	public boolean retainAll(Collection<?> collection) {
+		return _set.retainAll(collection);
 	}
 
 	public ObjectSet<T> clone() {
@@ -48,8 +61,38 @@ public class ObjectSet<T> implements Iterable<T> {
 	}
 
 	@Override
+	public int size() {
+		return _set.size();
+	}
+
+	@Override
+	public boolean isEmpty() {
+		return _set.isEmpty();
+	}
+
+	@Override
+	public boolean contains(Object object) {
+		return _set.contains(object);
+	}
+
+	@Override
 	public Iterator<T> iterator() {
 		return new ListIterator();
+	}
+
+	@Override
+	public Object[] toArray() {
+		return _set.toArray();
+	}
+
+	@Override
+	public <T> T[] toArray(T[] array) {
+		return _set.toArray(array);
+	}
+
+	@Override
+	public boolean add(T object) {
+		return _set.add(object);
 	}
 
 	private class ListIterator implements Iterator<T> {

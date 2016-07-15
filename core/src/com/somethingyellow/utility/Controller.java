@@ -67,6 +67,9 @@ public class Controller implements InputProcessor {
 		return _keysPressed[keycode];
 	}
 
+	/**
+	 * Clears keys that are considered "was pressed"
+	 */
 	public void clearKeysPressed() {
 		for (int i = 0; i < _keysPressed.length; i++) {
 			_keysPressed[i] = false;
@@ -134,6 +137,10 @@ public class Controller implements InputProcessor {
 		_zoom = Config.ZoomDefault;
 	}
 
+	public void setZoom(float zoom) {
+		_zoom = zoom;
+	}
+
 	@Override
 	public boolean keyTyped(char character) {
 		return false;
@@ -161,7 +168,7 @@ public class Controller implements InputProcessor {
 
 	@Override
 	public boolean scrolled(int amount) {
-		_zoom = Math.min(Math.max(_zoom + (float) amount / 10, Config.ZoomMin), Config.ZoomMax);
+		_zoom = _zoom + (float) amount / 10;
 		for (Listener listener : _listeners) {
 			listener.zoomed(this, _zoom);
 		}
@@ -192,8 +199,6 @@ public class Controller implements InputProcessor {
 	}
 
 	public static class Config {
-		public static float ZoomMin = 0.4f;
-		public static float ZoomMax = 2.0f;
-		public static float ZoomDefault = 0.75f;
+		public static float ZoomDefault = 1f;
 	}
 }
